@@ -1,7 +1,7 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application and is carried out in groups of 2–4 people. You can come up with groups in class or form groups on Slack. It is possible we may ask for a group to volunteer to accommodate an extra member; you'll get some bonus points on the assignment for doing this.
+This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
 
 The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
 Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
@@ -76,12 +76,7 @@ Here is a sample formula for summarizing your activities, talk about:
 
 (Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
 
-## Team and Team Members
-Team Seltzer
-http://teamseltzer-a2.herokuapp.com
-
-Charlie Roberts 
-Charlie Boberts
+http://teamseltzer-a2.glitch.me
 
 ## Technical Achievements
 - **Tech Achievement 1**: Using a combination of...
@@ -90,12 +85,3 @@ Charlie Boberts
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...
 - **Design Achievement 2**: We tested the application with n=X users, finding that...
-
-### Team Coordination Activities
-
-In this section, document any learning and design activities you complete as a group.
-
-The main responsibility of every team is to ensure that all members would be comfortable implementing the basic functionalities and requirements defined in this document **on their own**. 
-
-This may mean that you allocate less time for features, and more time for team collaboration and learning activities.
-Once a team-wide baseline understanding is achieved, team-members are encouraged to use their interests and skillsets to pursue technical and design achievements that enhance the web application's functionality and design.
