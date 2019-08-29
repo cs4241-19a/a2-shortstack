@@ -4,7 +4,9 @@
   "description": "",
   "author": "",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.improved.js"
   },
-  "dependencies": {}
+  "dependencies": {
+    "mime": "^2.4.4"
+  }
 }
