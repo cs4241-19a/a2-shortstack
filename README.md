@@ -76,7 +76,7 @@ Here is a sample formula for summarizing your activities, talk about:
 
 (Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
 
-http://teamseltzer-a2.glitch.me
+http://a2-charlieroberts.glitch.me
 
 ## Technical Achievements
 - **Tech Achievement 1**: Using a combination of...
