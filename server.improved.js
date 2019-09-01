@@ -12,8 +12,7 @@ const appdata = [
   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
   { 'model': 'ford', 'year': 1987, 'mpg': 14}
 ]
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/js", express.static(__dirname + '/public/js'));
 app.use("/css", express.static(__dirname + '/public/css'));
 app.get('/', function(req, res) {
@@ -23,7 +22,7 @@ app.get('/index.html', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 })
 app.post('/submit', function(req, res) {
-  console.log(req);
+  res.status(204).send();
 })
 
 app.listen(port)
