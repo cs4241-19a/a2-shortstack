@@ -13,4 +13,28 @@ input[type=text].eventCreationField {
     text-align: center;
     position: relative;
     left: 15%;
-  }
+}
+
+button.submit {
+    border: 4px solid #B9EFE1;
+    border-radius: 10px;
+    color: #001a33;
+    width: 70%;
+    height: 30px;
+    margin: 10px auto;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    outline: none;
+    text-align: center;
+    position: relative;
+    left: 15%;
+}
+
+.bg-light {
+    background-color: #001a33 !important;
+}
+
+a {
+    color: #B9EFE1 !important;
+}
