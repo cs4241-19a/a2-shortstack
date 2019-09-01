@@ -85,3 +85,6 @@ http://a2-charlieroberts.glitch.me
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...
 - **Design Achievement 2**: We tested the application with n=X users, finding that...
+
+
+Used flatpickr version 4 > https://flatpickr.js.org/getting-started/
