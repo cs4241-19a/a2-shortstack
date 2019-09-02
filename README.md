@@ -1,6 +1,8 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
+Due: September 9th, by 11:59 AM.
+
 This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
 
 The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
@@ -56,7 +58,7 @@ Do the following to complete this assignment:
 2. Implement your project with the above requirements.
 3. Test your project to make sure that when someone goes to your main page, it displays correctly.
 4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourTeamName` so we can find it.
+5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
 6. Modify the Readme to the specifications below.
 7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
 
