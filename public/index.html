@@ -19,6 +19,14 @@
         <label for="mpg">MPG:</label>
         <input type="text" id="mpg" name="car_mpg" />
       </div>
+      <div>
+        <label for="distance">Trip Distance:</label>
+        <input type="text" id="distance" name="trip_distance" />
+      </div>
+      <div>
+        <label for="gas">Gas Price:</label>
+        <input type="text" id="gas" name="gas_price" />
+      </div>
       <br><button>submit</button>
     </form>
   </body>
@@ -28,8 +36,14 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#model' ),
-          json = { model: input.value },
+    const model = document.querySelector( '#model' ),
+          year = document.querySelector( '#year' ),
+          mpg = document.querySelector( '#mpg' ),
+          distance = document.querySelector( '#distance' ),
+          gas = document.querySelector( '#gas' )
+          json = { model: model.value, year: year.value,
+                 mpg: mpg.value, distance: distance.value,
+                 gas: gas.value},
           body = JSON.stringify( json )
 
     fetch( '/submit', {
