@@ -5,22 +5,22 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <form action=""></form>
+    <h1>Budget For Your Next Roadtrip</h1>
+    <form action="">
       <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="user_name" />
-      <div>
-      <div>
-        <label for="mail">E-mail:</label>
-        <input type="email" id="mail" name="user_email" />
+        <label for="name">Model:</label>
+        <input type="text" id="model" value="Enter your Car Model">
       </div>
       <div>
-        <label for="msg">Message:</label>
-        <textarea id="msg" name="user_message"></textarea>
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="car_year" />
       </div>
-      <input type="text" id="yourname" value="your name here">
+      <div>
+        <label for="mpg">MPG:</label>
+        <input type="text" id="mpg" name="car_mpg" />
+      </div>
       <br><button>submit</button>
-    
+    </form>
   </body>
   <script>
 
@@ -28,8 +28,8 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const input = document.querySelector( '#model' ),
+          json = { model: input.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
