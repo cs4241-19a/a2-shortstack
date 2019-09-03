@@ -93,8 +93,3 @@ function duringDrop(event){
     updateBank(-10);
   }
 }
-
-function buttonPress(id){
-  var audio = document.getElementById(id);
-  audio.play();
-}
