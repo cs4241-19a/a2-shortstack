@@ -1,1 +1,11 @@
-/*Style your own assignment! This is fun! */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    padding: 100px 0 50px;
+  }
+
+section {
+    padding: 25px 0;
+}
