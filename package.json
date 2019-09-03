@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-jameskajon",
+  "version": "0.0.0",
+  "description": "A cs forum page",
+  "author": "James Kajon",
   "scripts": {
     "start": "node server.improved.js"
   },
