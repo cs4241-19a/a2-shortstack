@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="../js/scripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/game.css">
+</head>
+<body>
+  <!--<audio loop autoplay>
+  <source src="assets/icecreamsong.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>-->
+<button id="quit">
+  <a style="color:black; text-decoration: none;" href="/">QUIT</a>
+</button>
+<h1>Money: <span id="money" style="color: green; font-size: 50px; margin: 0;">$ <span id="bills"></span></span></h1>
+<div class="divs">
+    <div class="category" id="menu">
+      <p style="margin: 0; text-decoration: underline;">MENU</p>
+      <p ondragover="allowDragging(event)">
+        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/vanilla.png"/>
+        VANILLA -
+        <span style="padding-left: 15px;">$3</span>
+      </p>
+      <p ondragover="allowDragging(event)">
+        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/chocolate.png"/>
+        CHOCOLATE -
+        <span style="padding-left: 15px;">$6</span>
+      </p>
+      <p ondragover="allowDragging(event)">
+        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/strawberry.png"/>
+        STRAWBERRY -
+        <span style="padding-left: 15px;">$5</span>
+      </p>
+      <p ondragover="allowDragging(event)">
+        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/cookie-dough.png"/>
+        COOKIE DOUGH -
+        <span style="padding-left: 15px;">$6</span>
+      </p>
+    </div>
+    <div class="category" id="orders">
+      <p style="margin: 0; text-decoration: underline;">ORDERS</p>
+    </div>
+    <div class="category" id="completed">
+      <p style="margin: 0; text-decoration: underline;">COMPLETED</p>
+    </div>
+  </div>
+  <div id="line" style="display: inline; width: 100%;">
+    <img style="width: 17%; height: auto;" src="../assets/truck.png"/>
+  </div>
+  <script>
+  updateBank(0);
+   window.onload(setInterval(generateCustomer, 3000));
+  </script>
+</body>
+</html>
