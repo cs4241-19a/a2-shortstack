@@ -52,20 +52,48 @@ a{
     text-decoration: none;
 }
 
+form {
+    display: flex;
+    justify-content: center;
+}
+
+form * {
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+
+input{
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    font-size: 150%
+}
+input[type=text]{
+    width: 30%;
+}
+input:focus {
+    border: 3px solid #555;
+    outline: none;
+}
+button{
+    background-color: seagreen;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    font-size: 150%;
+    width: 3.5%;
+    height: 10%;
+}
 .profile {
     border-radius: 50%;
     width: 20%;
 }
 
-.experience {
-    margin-bottom: 10%;
+.red {
+    color: indianred;
 }
 
-.chart-container {
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    width:80%;
-    height: 250px;
-    text-align: center;
+.green {
+    color: seagreen;
 }

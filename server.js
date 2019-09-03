@@ -37,12 +37,23 @@ const handlePost = function( request, response ) {
       let parsedData = JSON.parse( dataString )
       console.log("Note: " + parsedData.Note)
       console.log("Due: " + parsedData.Date)
-      appdata.push({ 'Note': parsedData.Note, 'Date': parsedData.Date })
+      appdata.push({ 'Note': parsedData.Note, 'Date': createDate(parsedData.Date), 'Days': daysRemaining(parsedData.Date)})
       response.writeHead(200, {"Content-Type": "application/json"});
       response.end(JSON.stringify(appdata))
   })
 }
-
+function createDate(date){
+        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        let dateArray = date.split('-')
+        return new Date(dateArray[0], dateArray[1]-1, dateArray[2]).toLocaleDateString("en-US", options)
+}
+function daysRemaining(date){
+        let dateArray = date.split('-')
+        const diffTime = new Date(dateArray[0], dateArray[1]-1, dateArray[2]).getTime() - new Date().getTime()
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))+1
+        console.log("Days: " + diffDays)
+        return diffDays
+}
 const sendFile = function( response, filename ) {
   const type = mime.getType( filename )
 

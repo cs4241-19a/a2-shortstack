@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="https://reneborner.de/favicon.ico">
     <meta charset="utf-8">
-    <script src="js/Chart.min.js"></script>
     <script src=https://cdn.jsdelivr.net/npm/fetch-json@2.2/dist/fetch-json.min.js></script>
 </head>
 <body>
@@ -15,42 +14,14 @@
          alt="
      avatar">
     <br>
-    Hi I'm your notes app!
+    Hi I'm your assignments app!
 </h1>
-<div id="notesContainer"></div>
-<!-- maybe do something with graphJS? -->
 <form action="">
-    <input type="text" id="inputText" placeholder="Text" value="test">
-    <input type="text" onfocus="(this.type='date')" id="inputDate" placeholder="Due">
-    <button>Save</button>
+    <input type="text" id="inputText" placeholder="Assignment">
+    <input type="date" id="inputDate" placeholder="Due">
+    <button>+</button>
 </form>
-<script>
-    const submit = function (e) {
-        // prevent default form action from being carried out
-        e.preventDefault()
-        const inputText = document.getElementById( 'inputText' ).value
-        const inputDate = document.getElementById( 'inputDate' ).value
-        const json = {Note: inputText, Date: inputDate}
-        const body = JSON.stringify(json)
-        fetchJson.post('/submit', json)
-            .then(handleData)
-            .catch(console.error);
-    }
-    const handleData = function (data) {
-        const myNode = document.getElementById("notesContainer");
-        while (myNode.firstChild) {
-            myNode.removeChild(myNode.firstChild);
-        }
-        data.forEach(function(item, index, array){
-            let note = document.createElement("p")
-            note.innerHTML = item.Note + " " + item.Date
-            document.getElementById("notesContainer").appendChild(note)
-        })
-    }
-    window.onload = function () {
-        const button = document.querySelector('button')
-        button.onclick = submit
-    }
-</script>
+<div id="notesContainer"></div>
+<script src="js/script.js"></script>
 </body>
 </html>
