@@ -6,12 +6,15 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-//was const before, changed to var 
-var appdata = [
+const appdata = [ //can add/edit/ delete any object in here 
   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
+
+//const appdata =[
+//  {"name":"charlie"}
+//]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -42,9 +45,14 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) ) //instead of this, store object in variable
-
+    //const data = JSON.parse(datastring)
+    //if( request.url === ''/add'){
+    //
+    //for (let i=)
+//  }
     appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
     // ... do something with the data here!!! have switch statement here
+    //have a return statement to return all data tp UI
     console.log(appdata)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
