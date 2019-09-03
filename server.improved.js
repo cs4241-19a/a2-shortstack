@@ -42,9 +42,9 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
 
-    //appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
+    appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
     // ... do something with the data here!!!
-
+    console.log(appdata)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
