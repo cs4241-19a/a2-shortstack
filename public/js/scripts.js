@@ -36,21 +36,36 @@ function random(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 //update my money
 function updateBank(num) {
-  const json = { amount: num},
-  body = JSON.stringify( json )
-  fetch( '/updateBank', {
-    method:'POST',
-    headers: {'Content-Type': 'application/json'},
-    body
+  if (num != 0){
+    const json = { amount: num},
+    body = JSON.stringify( json )
+    fetch( '/updateBank', {
+      method:'POST',
+      headers: {'Content-Type': 'application/json'},
+      body
+    })
+  .then( promiseresponse => promiseresponse.json())
+  .then(response => {
+    document.querySelector('#bills').innerHTML = response.result;
   })
-.then( promiseresponse => promiseresponse.json())
-.then(response => {
-  document.querySelector('#bills').innerHTML = response.result;
-})
-return false;
+  return false;
+  }
+  else{
+    const json = { amount: num},
+    body = JSON.stringify( json )
+    fetch( '/reset', {
+      method:'POST',
+      headers: {'Content-Type': 'application/json'},
+      body
+    })
+    .then( promiseresponse => promiseresponse.json())
+    .then(response => {
+      document.querySelector('#bills').innerHTML = response.result;
+    })
+  return false;
+  }
 }
 
 //function to allow dragging

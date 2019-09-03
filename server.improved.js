@@ -32,5 +32,9 @@ app.post('/updateBank', function(req, res) {
   money += Number(req.body.amount);
   res.send({result: money});
 })
+app.post('/reset', function(req, res) {
+  money = Number(req.body.amount);
+  res.send({result: money});
+})
 
 app.listen(port)
