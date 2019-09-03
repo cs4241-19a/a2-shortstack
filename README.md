@@ -1,89 +1,54 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
-===
-
-Due: September 9th, by 11:59 AM.
-
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
-
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
-
-Baseline Requirements
+Kent Libby's Grocery List application
 ---
 
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
+## Grocery List Online
+- **Project domain area**: This project serves as an online grocery list
+- **The main challenge the application addresses**: This application allows the user to create a grocery list that is synchronized across all devices accessing it.
+- **Key innovations**: By using a database the data is stored permanently, and allows users to see the same data.
+- **Main results**: This application does address the problem as the list can be written on a pc, then manipulate on a 
+smartphone
+- **Additional implications**: Creating a user system to allow visitors to make their own lists would improve usabality.
+Additionally being able to reorder items would broaden the use cases for the application
 
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
+http://a2-kdoje.glitch.me/
 
-Your application is required to implement the following functionalities:
+## User guide:
+- **Important Note**: because the database writes are slow, clicking the check mark or submit button too fast, can 
+cause the site to lag.
+----
+- To enter an item, simply type the item name in the bar that says "item" and press enter or submit
+- Press the checkbox to mark an item as purchased, and click the x button to delete it.
+- If you access the list from another device, the items will be synchronized across both.
 
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
+## Rubric notes:
+- a `Server` The server.js file handles serving files, and the dbAccessor handles the data storage and updates.
+- a `Results` the dbAccessor's class getAllItems will return all items in memory.
+- a `Form/Entry` This is the item input bar and the "cards" generated when an item is added
+- a `Server Logic` This is handled by the dbAccessor object
+    - `Derived field` The derived datafield is the ID since it is generated based off when the row is inserted. 
 
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Fixed issue with dynamically attaching button listeners**: As mentioned in my message to the TAs, assigning the
+listeners to the buttons individually didn't work. As a result I needed to attach the listeners to all buttons
+whenever a new item was added.
+- **Used Sqlite3 for database solutions**: This involved determining how to use the APIs, and making sure the promises 
+were chained properly. Additionally the latency from the database means adding, or "checking off" items too quickly can
+cause the webpage to freeze.
+- **Used esm to import a file on the front and back end**: To simplify the request router I created a constants module 
+to share the request urls between both. However, it is impossible to import the same files on the front and back end. So
+I used the esm package to enable these imports
+- **Created unit tests for dbaccessor class**: testing the database using only end to end tests isn't reliable so I 
+created unit tests for the database. From this I could ensure the database could handle the required functionality. 
+- **Enabled unit testing with esm**: Because the database uses the module imports, I created a jasmine test runner. This 
+test runner can take advantage of the esm package for imports. 
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Optimized front end to display changes before writing them to the db**: To reduce user perceived latency I have the 
+display update before it writes out to the database. 
+- **Used database for persistent data storage**: The database will be created if it doesn't exist, and otherwise will
+populate the list with whatever items were in the database
+- **Displayed the list items as "cards"**: When you press the submit button, it will add the item to the list. It will
+also generate a button to check off the item and a button to delete it
+- **Created a system to mark items as purchased**: When you press the checkmark next to the card it will change the color.
+This indicates to the user that the item is purchased.

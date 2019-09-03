@@ -1,12 +1,20 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "cs-4241-a2-forms",
+  "version": "0.1.0",
+  "description": "WPI CS4241 second assignment",
+  "author": "Kent Libby (klibby@wpi.edu)",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node -r esm server.js",
+    "test": "node -r esm jasmineTestRunner.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "collections": "^5.1.9",
+    "esm": "^3.2.25",
+    "jasmine": "^3.4.0",
+    "mime": "^2.4.4",
+    "sqlite3": "^4.1.0"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }

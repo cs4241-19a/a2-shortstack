@@ -1,0 +1,61 @@
+/*Style your own assignment! This is fun! */
+/**
+Color scheme
+Primary: #ffca28
+Primary-light:#fffd61
+Primary-dark: #c79a00
+Secondary: #81d4fa
+Secondary-light:#b6ffff
+Secondary-dark:#4ba3c7
+ */
+body {
+    background-color: #FFF1C2;
+}
+.data{
+    margin-top: 1em;
+    margin-right: 25%;
+    width: 50%;
+    margin-left: 25%;
+}
+.item{
+    background-color: #7AFF9E;
+
+    margin-top: 1em;
+    height: 50px;
+    width:100%;
+
+    display: flex;
+    /*align-content: flex-start;*/
+    flex-direction: row;
+}
+
+.item.purchased{
+    background-color: #BACFBF;
+}
+
+.item *{
+    align-self: center;
+    margin-right: 1em;
+}
+
+.item button {
+    border-style: none;
+    height: 100%;
+    width: 15%;
+    max-width: 50px;
+    font-size: 1.5em;
+    background-color: #44B361;
+}
+
+
+.item p{
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.item button.remove_button{
+    background-color: #B33236;
+    margin-left:auto;
+    margin-right: 0;
+    font-size: 2em;
+}
