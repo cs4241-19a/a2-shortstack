@@ -12,6 +12,14 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+const saveJSON = function(jsonFile) {
+  const eventHash = "testHash"
+  fs.writeFile('./public/events/' + eventHash + '.json', JSON.stringify(jsonFile), function (err) {
+    if (err) throw err;
+  });
+  console.log('Event saved to ' + './public/events/' + eventHash)
+}
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -38,10 +46,8 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
+    console.log("Server received\n" + dataString);
+    saveJSON(dataString)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
