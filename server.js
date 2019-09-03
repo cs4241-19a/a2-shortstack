@@ -6,11 +6,7 @@ const http = require( 'http' ),
     dir  = 'public/',
     port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14}
-]
+const appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -41,11 +37,9 @@ const handlePost = function( request, response ) {
       let parsedData = JSON.parse( dataString )
       console.log("Note: " + parsedData.Note)
       console.log("Due: " + parsedData.Date)
-
-      // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+      appdata.push({ 'Note': parsedData.Note, 'Date': parsedData.Date })
+      response.writeHead(200, {"Content-Type": "application/json"});
+      response.end(JSON.stringify(appdata))
   })
 }
 
