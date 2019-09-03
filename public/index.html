@@ -58,9 +58,9 @@
                  gas: gas.value},
           body = JSON.stringify( json )
 
-    fetch( '/submit', {
+    fetch( '/submit', { //url name = /submit
       method:'POST',
-      body 
+      body //same as saying->body:body 
     })
     .then( function( response ) {
       response = body

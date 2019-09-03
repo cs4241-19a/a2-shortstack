@@ -16,7 +16,7 @@ var appdata = [
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
-  }else if( request.method === 'POST' ){
+  }else if( request.method === 'POST' ){ //could add more functions like delete here, but could also have just POST and have the urls to determine what to do  
     handlePost( request, response ) 
   }
 })
@@ -32,7 +32,7 @@ const handleGet = function( request, response ) {
   }
 }
 //communicate from HTML to server
-//change url to look at specific file (same as A1)
+//change url to look at specific file (same as a1 with switch statement) (if request.url = delete, delete the data)
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -41,10 +41,10 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    console.log( JSON.parse( dataString ) ) //instead of this, store object in variable
 
     appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
-    // ... do something with the data here!!!
+    // ... do something with the data here!!! have switch statement here
     console.log(appdata)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
