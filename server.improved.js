@@ -26,7 +26,7 @@ const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
+    sendFile( response, 'public/index.html' ) //do sendFile for javascript file
   }else{
     sendFile( response, filename )
   }
