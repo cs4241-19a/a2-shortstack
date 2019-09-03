@@ -6,7 +6,8 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
+//was const before, changed to var 
+var appdata = [
   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
@@ -20,6 +21,7 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+//use handleGet to display data structure (server) in UI (server to UI)
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
@@ -29,7 +31,7 @@ const handleGet = function( request, response ) {
     sendFile( response, filename )
   }
 }
-
+//communicate from HTML to server
 const handlePost = function( request, response ) {
   let dataString = ''
 
