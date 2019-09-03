@@ -32,6 +32,7 @@ const handleGet = function( request, response ) {
   }
 }
 //communicate from HTML to server
+//change url to look at specific file (same as A1)
 const handlePost = function( request, response ) {
   let dataString = ''
 
