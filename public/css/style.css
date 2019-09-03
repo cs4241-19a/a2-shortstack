@@ -1,1 +1,71 @@
-/*Style your own assignment! This is fun! */
+@media only screen and (max-device-width: 40em) {
+    p {
+        margin-left: 5% !important;
+        margin-right: 5% !important;
+    }
+    h2 {
+        margin-left: 5% !important;
+        margin-right: 5% !important;
+    }
+    li {
+        margin-right: 5% !important;
+    }
+    .chart-container{
+        margin-left: auto !important;
+        margin-right: auto !important;
+        position: relative !important;
+        width:90% !important;
+        height: 450px !important;
+    }
+}
+body {
+    background-color: #0d0d0d;
+    font-family: "Verdana", Verdana, sans-serif;
+}
+
+h1 {
+    color: lightgray;
+    font-weight: bold;
+    font-size: 300%;
+    text-align: center;
+}
+
+h2 {
+    color: lightgray;
+    font-weight: bold;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+p {
+    color: gray;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+li {
+    color: gray;
+    margin-left: 10%
+}
+
+a{
+    color: hotpink;
+    text-decoration: none;
+}
+
+.profile {
+    border-radius: 50%;
+    width: 20%;
+}
+
+.experience {
+    margin-bottom: 10%;
+}
+
+.chart-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width:80%;
+    height: 250px;
+    text-align: center;
+}
