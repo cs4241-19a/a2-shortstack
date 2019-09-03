@@ -47,14 +47,20 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) ) //instead of this, store object in variable
     //const data = JSON.parse(datastring)
     //if( request.url === ''/add'){
-    //
-    //for (let i=)
+    //letfoundName=false //figuring out if something already exists
+    //for (let i=0; i<appdata.length; i++){
+    // if(appdata[i],name === data.name) foundName = true
+//  }
+//  if(foundName == false){
+    // appdata.push(data)
+ // }
 //  }
     appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
     // ... do something with the data here!!! have switch statement here
     //have a return statement to return all data tp UI
     console.log(appdata)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    //error message with 404 -> that name is already found 
     response.end()
   })
 }
