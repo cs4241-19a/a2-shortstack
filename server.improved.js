@@ -6,11 +6,49 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+// Load the SDK for JavaScript
+var AWS = require('aws-sdk');
+// Set the Region 
+AWS.config.update({region: 'us-east-2'});
+
+// Create the DynamoDB service object
+var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+
+function Entry(time, title, notes, priority) {
+  this.unixtime = time;
+  this.title = title;
+  this.notes = notes;
+  this.priority = priority;
+}
+
+const getDDB = function (user){
+  let params = {
+    ExpressionAttributeNames: {
+      '#owner_table': 'owner',
+  },
+  ExpressionAttributeValues: {
+      ':owner_name': {S: user},
+  },
+    FilterExpression: '#owner_table = :owner_name',
+    TableName: 'todont-list'
+  };
+  
+  let entryArray = []
+  ddb.scan(params, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+      return []
+    } else {
+      //console.log("Success", data.Items);
+      data.Items.forEach(function(e, index, array) {
+        entryArray.push(new Entry(e.unixtime, e.title, e.notes, e.priority))
+        // console.log(e.title.S + " (" + e.notes.S + ")");
+      });
+      console.log(entryArray)
+      return entryArray
+    }
+  });
+}
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -24,7 +62,12 @@ const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
+    entryArray = getDDB('admin')
     sendFile( response, 'public/index.html' )
+  } else if ( request.url === '/new' ) {
+      sendFile( response, 'public/new.html' )
+  } else if( request.url === '/about' ) {
+        sendFile( response, 'public/about.html' )
   }else{
     sendFile( response, filename )
   }
@@ -36,10 +79,27 @@ const handlePost = function( request, response ) {
   request.on( 'data', function( data ) {
       dataString += data 
   })
-
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
+    let dataJSON = JSON.parse( dataString )
+    console.log( dataJSON )
+    // Call DynamoDB to add the item to the table
+    let params = {
+      TableName: 'todont-list',
+      Item: {
+        'unixtime' : {N: String(Date.now())},
+        'title' : {S: dataJSON.title},
+        'notes' : {S: dataJSON.notes},
+        'priority' : {N: String(dataJSON.priority)},
+        'owner' : {S: 'admin'}
+      }
+    };
+    ddb.putItem(params, function(err, data) {
+      if (err) {
+        console.log("Error", err);
+      } else {
+        console.log("Success", data);
+      }
+    });
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })

@@ -2,8 +2,14 @@ const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#exampleInputEmail1' ),
-          json = { yourname: input.value },
+    const title = document.querySelector( '#inputTitle' ),
+          notes = document.querySelector( '#inputNotes' ),
+          priority = document.querySelector( '#gridRadios1' ).checked ? 1 : 0 +
+                      document.querySelector( '#gridRadios2' ).checked ? 2 : 0 +
+                      document.querySelector( '#gridRadios3' ).checked ? 3 : 0,
+          json = { title: title.value, 
+                   notes: notes.value,
+                   priority: priority },
           body = JSON.stringify( json )
 
     fetch( '/submit', {

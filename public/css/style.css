@@ -9,3 +9,14 @@ header {
 section {
     padding: 25px 0;
 }
+
+/* footer */
+#sticky-footer {
+    flex-shrink: none;
+  }
+
+.footer-social i {
+    font-size: 24px !important;
+    color: #FFFFFA;
+    padding: 20px;
+}
