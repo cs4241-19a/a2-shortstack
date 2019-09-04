@@ -58,6 +58,9 @@ const handlePost = function( request, response ) {
        appdata.push(data)
       }
   }*/
+    //const carData {
+    
+//    }
     
     // ... do something with the data here!!! have switch statement here
     switch( request.url ) {
