@@ -16,7 +16,7 @@
       <input type="text" id="crewhead" value="Crew Head">
       <input type="radio" id="monitor?" value="Monitor Required"> -->
      
-      <button>submit</button>
+      <button id = "myButton" >submit</button>
     </form>
     
     <div id="list">
@@ -64,10 +64,13 @@
     .then( function( response ) {
         //const data = response.str
         const data = JSON.parse(response.responseText);
-        const info = document.querySelector('list');
+        const info = document.querySelector('#list');
       
         data.foreach(name => {
           info.innerhtml += name;
+          //look up the syntax on this
+          //maybe its not the best way
+          //look up how to add html from a java script 
         })
       
     })
@@ -76,7 +79,7 @@
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
+    const button = document.querySelector( '#myButton' )
     button.onclick = submit
   }
 

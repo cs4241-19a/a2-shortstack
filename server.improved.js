@@ -18,6 +18,7 @@ const server = http.createServer( function( request,response ) { //whenevr you d
   if( request.method === 'GET' ) {
     handleGet( request, response )    //these can have many different options as well
   }else if( request.method === 'POST' ){
+    console.log('we got to post if statement')
     handlePost( request, response ) 
   }
 })
@@ -53,6 +54,7 @@ const handlePost = function( request, response ) {
       dataString += data 
   })
 
+  console.log('gets to before end');
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
     
@@ -60,8 +62,8 @@ const handlePost = function( request, response ) {
     //adds each name to an array held in the server
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
+    response.end();
+  });
 }
 
 const sendFile = function( response, filename ) {
