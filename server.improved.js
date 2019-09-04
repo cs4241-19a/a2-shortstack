@@ -62,7 +62,7 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!! have switch statement here
     switch( request.url ) {
       case '/submit':
-        return appdata
+        
         break
       case '/add':
         appdata.push( data )
