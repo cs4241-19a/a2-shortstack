@@ -48,15 +48,16 @@ const handlePost = function( request, response ) {
     
     const data = JSON.parse(dataString)
     
-    if( request.url === ''/add') {
-      letfoundName=false //figuring out if something already exists
+      //For validation
+/*    if( request.url === '/add') {
+      let foundName=false //figuring out if something already exists
       for (let i=0; i<appdata.length; i++){
        if(appdata[i],name === data.name) foundName = true
       }
       if(foundName == false){
        appdata.push(data)
       }
-  }
+  }*/
     
     // ... do something with the data here!!! have switch statement here
     switch( request.url ) {
