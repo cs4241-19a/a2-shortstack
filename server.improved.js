@@ -31,7 +31,7 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' ) //do sendFile for javascript file
   }else if(request.url === '/cars'){
-    sendData(response, 'public/index.html/cars')
+    sendData(response, appdata)
   }
   else{
     sendFile( response, filename )
@@ -61,7 +61,7 @@ const handlePost = function( request, response ) {
        appdata.push(data)
       }
   }*/
-    
+    console.log('WE ARE HERE')
     // ... do something with the data here!!! have switch statement here
     switch( request.url ) {
       case '/submit':
@@ -79,9 +79,14 @@ const handlePost = function( request, response ) {
           'totalCost': totalCost
         }
         
+        appdata.push( carData )
+        console.log(appdata)
+        
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
         break
       case '/add':
-        appdata.push( data )
+        
         break
       case '/delete':
         appdata.delete( data )
@@ -102,9 +107,10 @@ const handlePost = function( request, response ) {
   })
 }
 
-const sendData = function(response, filename){
-  const type = mime.getType( filename ) 
+const sendData = function(response, data){
+  const type = mime.getType( data ) 
   response.writeHeader( 200, { 'Content-Type': type })
+  response.write(JSON.stringify({data:data}))
   response.end( 'File Found!' )
 }
 
