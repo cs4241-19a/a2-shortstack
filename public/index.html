@@ -19,8 +19,8 @@
       <button id = "myButton" >submit</button>
     </form>
     
-    <div id="list">
-      <p>
+    <div >
+      <p id="nameshere">
         Hey this is my div
       </p>
     </div>
@@ -64,7 +64,7 @@
     .then( function( response ) {
         //const data = response.str
         const data = JSON.parse(response.responseText);
-        const info = document.querySelector('#list');
+        const info = document.querySelector('#nameshere');
       
         data.foreach(name => {
           info.innerhtml += name;
