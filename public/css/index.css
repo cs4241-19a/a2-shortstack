@@ -1,0 +1,98 @@
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-size: 4.5em;
+    color: whitesmoke;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+    letter-spacing: 2px;
+    pointer-events: none;
+    font-weight: 900;
+    border: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+.typewriter h2 {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orangered; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation:
+            typing 2.5s steps(40, end),
+            blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orangered; }
+}
+
+.typewriter {
+    display: inline-flex;
+}
+
+.name {
+    height: 100px;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    background-color: transparent;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url(../Images/indexBg.jpg);
+    /* Set a specific height */
+    height: 215px;
+    padding-top: 400px;
+    padding-bottom: 400px;
+    padding-left: 250px;
+    padding-right: 250px;
+
+    margin-top: -10px;
+    margin-right: -10px;
+    margin-left: -10px;
+    margin-bottom: -10px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Heading {
+    margin-top: -62px;
+    margin-bottom: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+    height: 22px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    padding-left: 700px;
+    padding-right: 700px;
+
+    overflow: hidden;
+    background-color: transparent;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1px 10px #999;
+}
+
+.textH {
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 2.0em;
+    padding: 0;
+}
