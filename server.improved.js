@@ -18,7 +18,6 @@ const appdata = [ //can add/edit/ delete any object in here
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    console.log('LOADING PAGE')
     handleGet( request, response )    
   }else if( request.method === 'POST' ){ //could add more functions like delete here, but could also have just POST and have the urls to determine what to do  
     handlePost( request, response ) 
@@ -30,7 +29,6 @@ const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
-    console.log('LOADING PAGE')
     sendFile( response, 'public/index.html' ) //do sendFile for javascript file
   }else if(request.url === '/cars'){
     sendData(response, appdata)
@@ -63,13 +61,13 @@ const handlePost = function( request, response ) {
        appdata.push(data)
       }
   }*/
-    console.log('WE ARE HERE')
+
     // ... do something with the data here!!! have switch statement here
     switch( request.url ) {
       case '/submit':
       //server logic 
-        let totalGallons = (data.tripDistance / data.mpg)
-        let totalCost = (totalGallons*(data.gasPrice))
+        let totalGallons = (parseInt(data.tripDistance) / parseInt(data.mpg))
+        let totalCost = (totalGallons*(parseInt(data.gasPrice)))
         
         const carData = {
           'model': data.model,
