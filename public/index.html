@@ -38,6 +38,8 @@
                 <th>MPG</th>
                 <th>Trip Distance</th>
                 <th>Gas Price</th>
+                <th>Total Distance </th>
+                <th>Total Cost </th>
             </tr>
         </thead>
     </table>
@@ -53,6 +55,7 @@
           mpg = document.querySelector( '#mpg' ),
           distance = document.querySelector( '#distance' ),
           gas = document.querySelector( '#gas' )
+    
           json = { model: model.value, year: year.value,
                  mpg: mpg.value, distance: distance.value,
                  gas: gas.value},
@@ -64,11 +67,7 @@
     })
     .then( function( response ) {
       response = body
-      //need to directly call server.js file here
-      //call appdata (our database) in here (there is a way to do it)
-      //request is the appdata database
-      // do something with the response 
-      //handlePost(request, response)
+      
       console.log( response )
     })
 

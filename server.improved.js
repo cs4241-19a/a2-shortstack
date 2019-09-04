@@ -31,7 +31,7 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' ) //do sendFile for javascript file
   }else if(request.url === '/cars'){
-    send
+    sendData(response, 'public/index.html/cars')
   }
   else{
     sendFile( response, filename )
@@ -78,6 +78,7 @@ const handlePost = function( request, response ) {
           'totalGallons': totalGallons,
           'totalCost': totalCost
         }
+        
         break
       case '/add':
         appdata.push( data )
@@ -101,6 +102,12 @@ const handlePost = function( request, response ) {
   })
 }
 
+const sendData = function(response, filename){
+  const type = mime.getType( filename ) 
+  response.writeHeader( 200, { 'Content-Type': type })
+  response.end( 'File Found!' )
+}
+
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
 
@@ -122,10 +129,6 @@ const sendFile = function( response, filename ) {
      }
    })
 }
-
-//create function here that does "server logic"
-//takes two fields, then divides them, makes JSONBody. 
-//set new field = JSONbody which adds the data to data structure
 
 
 server.listen( process.env.PORT || port )
