@@ -27,17 +27,23 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else if (request.url === '/getData')
-    {
+  }
+  else if (request.url === '/getData'){ //when the html files asks for the data the server sends it back to them
       sendData(request, response);
-    }
+  }
   else{
     sendFile( response, filename )
   }
   //for other options expand this if statement
 }
 
-
+const sendData = function(request, response) {
+  request.on('end', function(){
+     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+     response.write(JSON.stringify(namesArray));
+    response.end();
+  })
+}
 
 const handlePost = function( request, response ) {
   let dataString = ''
@@ -48,10 +54,9 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
     
     namesArray.push(JSON.parse( dataString ));
+    //adds each name to an array held in the server
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
