@@ -58,8 +58,7 @@
     //       body = JSON.stringify( json )
 
     fetch( '/getData', { //calls the getData function from the server
-      method:'GET',
-      body 
+      method:'GET'
     })
     .then( function( response ) {
         //const data = response.str
@@ -86,7 +85,6 @@
 
   window.onload = function() {
     const button = document.querySelector( '#myButton' )
-    getData
     button.onclick = submit
     getData
   }
