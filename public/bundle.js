@@ -12313,12 +12313,17 @@ selectCharacter = function(e) {
 
   const character = document.querySelector('#character-select');
   db.get(character.value).then(function (result) {
-      console.log(result);
       document.querySelector('#character-name').value = result._id;
       document.querySelector('#bio').value = result.bio;
       document.querySelector('#classes').value = result.class;
   });
 
+};
+
+deleteDB = function(e) {
+    e.preventDefault();
+
+    db.destroy();
 };
 
 window.onload = function () {
@@ -12333,9 +12338,11 @@ window.onload = function () {
     const submitButton = document.querySelector('#submit');
     const classes = document.querySelector('#classes');
     const character = document.querySelector('#character-select');
+    const deleteAll = document.querySelector('#deleteAll');
     submitButton.onclick = submit;
     classes.onchange = selectClass;
     character.onchange = selectCharacter;
+    deleteAll.onclick = deleteDB;
 
 };
 

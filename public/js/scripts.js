@@ -82,6 +82,19 @@ selectCharacter = function(e) {
 
 };
 
+deleteDB = function(e) {
+    e.preventDefault();
+
+    db.destroy();
+    db.allDocs().then(function (result){
+        let entries = result.rows;
+        for(let entry of entries) {
+            var select = document.getElementById("character-select");
+            select.options[select.options.length] = new Option(entry.id, entry.id);
+        }
+    });
+};
+
 window.onload = function () {
     const characters = document.querySelector('#character-select');
     db.allDocs().then(function (result){
@@ -94,8 +107,10 @@ window.onload = function () {
     const submitButton = document.querySelector('#submit');
     const classes = document.querySelector('#classes');
     const character = document.querySelector('#character-select');
+    const deleteAll = document.querySelector('#deleteAll');
     submitButton.onclick = submit;
     classes.onchange = selectClass;
     character.onchange = selectCharacter;
+    deleteAll.onclick = deleteDB;
 
 };
