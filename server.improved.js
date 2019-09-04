@@ -63,10 +63,16 @@ const handlePost = function( request, response ) {
     switch( request.url ) {
       case '/submit':
       //server logic 
+        let totalGallons = (data.tripDistance / data.mpg)
+        
         
         const carData = {
         'model': data.model,
-        'year': data.year
+        'year': data.year,
+        'mpg': data.mpg,
+        'tripDistance': data.tripDistance,
+        'gasPrice': data.gasPrice,
+        'totalGallons': totalGallons
         }
         break
       case '/add':
