@@ -1,12 +1,15 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "shortstacck",
+  "version": "1.0.0",
+  "description": "Project 2 for webware",
+  "author": "Noble Kalish",
   "scripts": {
-    "start": "node server.improved.js"
+    "start": "node server.improved.js",
+    "bundle": "browserify public/js/scripts.js -o public/bundle.js",
+    "build": "npm run bundle; npm start;"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.4",
+    "pouchdb": "^7.1.1"
   }
 }
