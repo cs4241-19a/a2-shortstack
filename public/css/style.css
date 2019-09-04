@@ -1,8 +1,9 @@
 /* Input for the event */
 input[type=text].eventCreationField {
     border-radius: 10px;
-    color: #001a33;
-    background-color: #ffffff;
+    color: #ffffff;
+    background: rgba(9, 28, 23, 0.5);;
+    opacity: 70%;
     width: 70%;
     height: 35px;
     margin: 10px auto;
@@ -14,10 +15,14 @@ input[type=text].eventCreationField {
     left: 15%;
 }
 
+input[type=text].eventCreationField::placeholder {
+    color: #c9c9c9;
+}
+
 button.submit {
     border-radius: 10px;
-    color: #B9EFE1;
-    background-color: #001a33;
+    color: #ffffff;
+    background-color: #091c17;
     width: 70%;
     height: 35px;
     margin: 10px auto;
@@ -31,18 +36,18 @@ button.submit {
 }
 
 .bg-light {
-    background-color: #001a33 !important;
+    background-color: #091c17 !important;
 }
 
 a.nav-link {
-    color: #B9EFE1 !important;
+    color: #61feba !important;
     font-weight: bold;
     font-size: 25px;
     margin-left: 10px;
 }
 
-.customStyle {
-    color: red !important;
+a.nav-link:hover {
+    color:green !important;
 }
 
 .navbarLogo {
@@ -52,9 +57,9 @@ a.nav-link {
 
 .bannerLogo {
     margin: 40px;
-    width: 40%;
+    width: 20%;
     height: auto;
-    margin-left: 30%;
+    margin-left: 40%;
     position: relative;
 }
 
@@ -62,9 +67,43 @@ a.nav-link {
  .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, 
  .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, 
  .flatpickr-day.endRange.nextMonthDay{
-    background: #001a33 !important;
+    background: #091c17 !important;
 }
 
 body {
-    background-color: #B9EFE1; 
+    background-color: #61feba ; 
+}
+
+table.eventTable {
+    border: 3px solid #091c17;
+    width: 95%;
+    position: relative;
+    left: 2.5%;
+}
+
+td, th {
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+td:hover {
+    background-color: #61feba;
+}
+
+.eventName {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px;
+    margin-left: 2.5%;
+}
+
+.banner-container {
+    width:100%;
 }

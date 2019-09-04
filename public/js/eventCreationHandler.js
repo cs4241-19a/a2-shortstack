@@ -8,18 +8,19 @@ $(document).ready(function() {
     $("#startTime").flatpickr({
         enableTime: true,
         noCalendar: true,
-        dateFormat: "H:i",
+        dateFormat: "H",
     });
 
     $("#endTime").flatpickr({
         enableTime: true,
         noCalendar: true,
-        dateFormat: "H:i",
+        dateFormat: "H",
     });
 });
 
 // Javascript
-const FormValidation = {
+const FormValidation = { 
+    // More thorough validation on backend using momentJS to prevent malicous intent
     validateThenSubmitForm: function() {
         if (this.validateFormFields()) {
             this.submitForm();
@@ -45,17 +46,16 @@ const FormValidation = {
     },
     validateStartTime: function(startTime) {
         if (this.isValidTime(startTime)) return true;
-        alert("Please enter a valid start time formated like HH:MM in military");
+        alert("Please enter a valid start time formated like HH in military");
         return false;
     },
     validateEndTime: function(endTime) {
         if (this.isValidTime(endTime)) return true;
-        alert("Please enter a valid end time formated like HH:MM in military");
+        alert("Please enter a valid end time formated like HH in military");
         return false;
     },
     isValidTime: function(time) {
-        const parsedTime = time.split(":");
-        return parsedTime[0] <= 24 && parsedTime[0] >= 0 && parsedTime[1] <= 59 && parsedTime[1] >= 0;
+        return time[0] <= 24 && time[0] >= 0;
     },
     submitForm: function() {
         const json = this.buildEventJSON();

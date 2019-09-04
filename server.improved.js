@@ -1,24 +1,9 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
       mime = require( 'mime' ),
+      moment = require( 'moment' ),
       dir  = 'public/',
       port = 3000
-
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
-const saveJSON = function(jsonFile) {
-  const eventHash = "testHash"
-  fs.writeFile('./public/events/' + eventHash + '.json', JSON.stringify(jsonFile), function (err) {
-    if (err) throw err;
-  });
-  console.log('Event saved to ' + './public/events/' + eventHash)
-}
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -30,9 +15,11 @@ const server = http.createServer( function( request,response ) {
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  } else if (filename.indexOf("?") > -1) { // Handle GET params, two get request made on front end
+    const parsedRequest = filename.split("?");
+    sendFile( response, parsedRequest[0]);
   } else{
     sendFile( response, filename )
   }
@@ -47,7 +34,8 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log("Server received\n" + dataString);
-    saveJSON(dataString)
+    const obj = JSON.parse(dataString);
+    if (PostValidation.validate(obj)) FileManager.saveJSON(obj)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
@@ -74,5 +62,68 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+/*
+Need to assert a few things before saving the event JSON
+1a.) Dates formatted as yyyy-mm-dd to yyyy-mm-dd
+1b.) First date occurs before second date
+2.) Start time is a valid military time
+3.) End time is a valid military time
+*/
+const PostValidation = {
+  validate: function(event) {
+    return this.validateDates(event.potentialDates) && this.validateTime(event.startTime) && this.validateTime(event.endTime);
+  },
+  validateDates: function(dates) {
+    const parsedDates = dates.split(" to ");
+    if (parsedDates.length === 2) { // got 2 dates
+      const startDate = moment(parsedDates[0], 'YYYY-MM-DD');
+      const endDate = moment(parsedDates[1], "YYYY-MM-DD");
+      if (startDate.isValid() && endDate.isValid()) { // valid format
+        if (startDate.isBefore(endDate)) { // start before end
+          return true;
+        }
+        else {
+          console.log("Start date after end date");
+        }
+      } else {
+        console.log("Dates aren't valid format");
+      }
+    } else {
+      console.log("Didn't receive 2 dates");
+    }
+    return false;
+  },
+  validateTime: function(time) {
+    return time[0] <= 24 && time[0] >= 0;
+  }
+}
+
+const FileManager = {
+  saveJSON: function(jsonFile) {
+    const eventHash = "testHash"; // TODO: SWITHC this
+    jsonFile.potentialDates = this.converDayRangeToArray(jsonFile.potentialDates); 
+    jsonFile = JSON.stringify(jsonFile);
+    fs.writeFile('./public/events/' + eventHash + '.json', JSON.stringify(jsonFile), function (err) {
+      if (err) throw err;
+    });
+    console.log('Event saved to ' + './public/events/' + eventHash);
+  },
+  converDayRangeToArray: function(dayRange) {
+    var dates = [];
+    const parsedDates = dayRange.split(" to ");
+    var currDate = moment(parsedDates[0]).startOf('day');
+    var lastDate = moment(parsedDates[1]).startOf('day');
+
+    dates.push(currDate.clone().toDate());
+    while(currDate.add(1, 'days').diff(lastDate) <= 0) {
+        console.log(currDate.toDate());
+        dates.push(currDate.clone().toDate());
+    }
+
+    return dates;
+  }
+}
+
 
 server.listen( process.env.PORT || port )
