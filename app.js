@@ -1,18 +1,27 @@
 const express = require('express'),
-    bodyParser = require('body-parser');
-
+    bodyParser = require('body-parser'),
+    hbs = require('express-handlebars');
 const app = express();
 const path = require('path');
 const port = 3000;
 
+// const config = require('./db');
+const forumRouter = require('./ForumRounter');
+
+// template engine setup (handlebars)
+app.engine('hbs', hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/'}));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
 // app.use(express.static(__dirname));
-app.use(express.static("public"));
 app.use(bodyParser.json());         // to support JSON-encoded bodies
-// app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-//     extended: true
-// }));
-app.use(express.json());       // to support JSON-encoded bodies
-// app.use(express.urlencoded()); // to support URL-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: false
+}));
+app.use(express.static(__dirname + '/public'));
+
+app.use('/', forumRouter);
+
 
 // file error logger
 const logRequests = function(req, res, next) {
@@ -40,29 +49,15 @@ const logRequests = function(req, res, next) {
     });
     next()
 };
+// app.use(logRequests);
 
-// const logRequestStart = (req, res, next) => {
-//     console.info(`${req.method} ${req.originalUrl}`);
-//
-//     res.on('finish', () => {
-//         console.info(`${res.statusCode} ${res.statusMessage}; ${res.get('Content-Length') || 0}b sent`)
-//     });
-//
-//     next();
-// };
-
-app.use(logRequests);
-
-// viewed at http://localhost:3000
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
-
-app.post('/submit/msg', function(req, res) {
-    let user_name=req.body.user;
-    let password=req.body.password;
-    console.log("User name = "+user_name+", password is "+password);
-    res.end("yes");
-});
+// app.post('/submit/add', function(req, res) {
+//     console.log("post!!!");
+//     console.log(req.body);
+//     let user_name=req.body.user;
+//     let password=req.body.password;
+//     console.log("User name = "+user_name+", password is "+password);
+//     res.end("yes");
+// });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
