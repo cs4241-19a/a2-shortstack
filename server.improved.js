@@ -57,7 +57,7 @@ const handlePost = function( request, response ) {
 //  }
     appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
     // ... do something with the data here!!! have switch statement here
-    //have a return statement to return all data tp UI
+    //have a return statement to return all data to UI
     console.log(appdata)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     //error message with 404 -> that name is already found 
