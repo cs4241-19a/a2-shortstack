@@ -58,17 +58,16 @@ const handlePost = function( request, response ) {
        appdata.push(data)
       }
   }*/
-    //server logic 
-    //
-    //const carData {
-    // 'model': data.model
-    // 'year': data.year
-//    }
     
     // ... do something with the data here!!! have switch statement here
     switch( request.url ) {
       case '/submit':
-        
+      //server logic 
+      //
+    //const carData {
+    // 'model': data.model
+    // 'year': data.year
+//    }
         break
       case '/add':
         appdata.push( data )
