@@ -19,6 +19,11 @@
       <button>submit</button>
     </form>
     
+    <div id="list">
+      <p>
+        
+      </p>
+    </div>
     
     
   </body>
@@ -57,7 +62,14 @@
       body 
     })
     .then( function( response ) {
-      response.text 
+        //const data = response.str
+        const data = //array of names
+        const info = document.querySelector('#list');
+      
+        data.foreach(name => {
+          info.innerhtml += name;
+        })
+      
     })
 
     return false
