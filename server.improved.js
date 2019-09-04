@@ -108,4 +108,9 @@ const sendFile = function( response, filename ) {
    })
 }
 
+//create function here that does "server logic"
+//takes two fields, then divides them, makes JSONBody. 
+//set new field = JSONbody which adds the data to data structure
+
+
 server.listen( process.env.PORT || port )
