@@ -21,7 +21,7 @@
     
     <div id="list">
       <p>
-        
+        Hey this is my div
       </p>
     </div>
     
@@ -63,8 +63,8 @@
     })
     .then( function( response ) {
         //const data = response.str
-        const data = //array of names
-        const info = document.querySelector('#list');
+        const data = JSON.parse(response.responseText);
+        const info = document.querySelector('list');
       
         data.foreach(name => {
           info.innerhtml += name;
