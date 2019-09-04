@@ -14,9 +14,9 @@ const appdata = [
 
 const namesArray = [];
 
-const server = http.createServer( function( request,response ) {
+const server = http.createServer( function( request,response ) { //whenevr you do a fetch it goes to this function here
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
+    handleGet( request, response )    //these can have many different options as well
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
   }
@@ -29,7 +29,7 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   }
   else if (request.url === '/getData'){ //when the html files asks for the data the server sends it back to them
-      sendData(request, response);
+      getData(request, response);
   }
   else{
     sendFile( response, filename )
@@ -37,10 +37,11 @@ const handleGet = function( request, response ) {
   //for other options expand this if statement
 }
 
-const sendData = function(request, response) {
+const getData = function(request, response) {
   request.on('end', function(){
      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-     response.write(JSON.stringify(namesArray));
+    const body = JSON.stringify(namesArray); 
+    response.write(body);
     response.end();
   })
 }
