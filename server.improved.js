@@ -44,7 +44,7 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    //console.log( JSON.parse( dataString ) ) //instead of this, store object in variable
+    console.log( JSON.parse( dataString ) ) //instead of this, store object in variable
     
     const data = JSON.parse(dataString)
     
