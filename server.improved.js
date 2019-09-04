@@ -44,19 +44,39 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) ) //instead of this, store object in variable
-    //const data = JSON.parse(datastring)
-    //if( request.url === ''/add'){
-    //letfoundName=false //figuring out if something already exists
-    //for (let i=0; i<appdata.length; i++){
-    // if(appdata[i],name === data.name) foundName = true
-//  }
-//  if(foundName == false){
-    // appdata.push(data)
- // }
-//  }
-    appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
+    //console.log( JSON.parse( dataString ) ) //instead of this, store object in variable
+    
+    const data = JSON.parse(dataString)
+    
+    if( request.url === ''/add') {
+      letfoundName=false //figuring out if something already exists
+      for (let i=0; i<appdata.length; i++){
+       if(appdata[i],name === data.name) foundName = true
+      }
+      if(foundName == false){
+       appdata.push(data)
+      }
+  }
+    
     // ... do something with the data here!!! have switch statement here
+    switch( request.url ) {
+      case '/submit':
+        return appdata
+        break
+      case '/add':
+        appdata.push( data )
+        break
+      case '/delete':
+        appdata.delete( data )
+        break
+      case '/update':
+        appdata.update( data )
+        break
+      default:
+        response.end( '404 Error: File Not Found' )
+  }
+    
+    //appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
     //have a return statement to return all data to UI
     console.log(appdata)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
