@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [ //can add/edit/ delete any object in here 
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'model': 'toyota', 'year': 1999, 'mpg': 23, 'tripDistance': 300, gasPrice: 2.39, 'totalGallons': 13.04, 'totalCost': 31.16 },
+  { 'model': 'honda', 'year': 2004, 'mpg': 30, 'tripDistance': 230, gasPrice: 3.40, 'totalGallons': 13.04, 'totalCost': 31.16  },
+  { 'model': 'ford', 'year': 1987, 'mpg': 14, 'tripDistance': 113, gasPrice: 4.50, 'totalGallons': 13.04, 'totalCost': 31.16 } 
 ]
 
 //const appdata =[
@@ -30,7 +30,10 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' ) //do sendFile for javascript file
-  }else{
+  }else if(request.url === '/cars'){
+    send
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -64,15 +67,16 @@ const handlePost = function( request, response ) {
       case '/submit':
       //server logic 
         let totalGallons = (data.tripDistance / data.mpg)
-        
+        let totalCost = (totalGallons*(data.gasPrice))
         
         const carData = {
-        'model': data.model,
-        'year': data.year,
-        'mpg': data.mpg,
-        'tripDistance': data.tripDistance,
-        'gasPrice': data.gasPrice,
-        'totalGallons': totalGallons
+          'model': data.model,
+          'year': data.year,
+          'mpg': data.mpg,
+          'tripDistance': data.tripDistance,
+          'gasPrice': data.gasPrice,
+          'totalGallons': totalGallons,
+          'totalCost': totalCost
         }
         break
       case '/add':
