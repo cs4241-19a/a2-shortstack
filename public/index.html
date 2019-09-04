@@ -6,12 +6,14 @@
   </head>
   <body>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
+      <input type="text" id="yourname" value="your name here">
       <button>submit</button>
     </form>
+    <br />
+    <span id="name">Your Name</span>
   </body>
+  
   <script>
-
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
@@ -26,7 +28,6 @@
     })
     .then( function( response ) {
       // do something with the reponse 
-      alert(input.value)
       console.log( response )
     })
 
