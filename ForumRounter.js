@@ -3,15 +3,16 @@ const forumRouter = express.Router();
 
 // const User = require('./User');
 
+// forum view
 forumRouter.get('/', function(req, res, next) {
-    // res.sendFile(path.join(__dirname + '/index.hbs'));
-    res.render('index', {title: "this is context"})
+    // res.sendFile(path.join(__dirname + '/add-message.hbs'));
+    res.render('index', {title: "The Forums"})
 });
 
 
 forumRouter.post('/submit/create', function(req, res, next) {
     console.log(req.body);
-    res.redirect('/test');
+    res.json({"worked?": "finally"});
 });
 
 

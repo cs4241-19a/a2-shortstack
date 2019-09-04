@@ -24,7 +24,7 @@ const handleGet = function( request, response ) {
     const filename = dir + request.url.slice( 1 );
 
     if ( request.url === '/' ) {
-        sendFile( response, 'public/index.hbs' );
+        sendFile( response, 'public/add-message.hbs' );
     } else {
         sendFile( response, filename );
     }
