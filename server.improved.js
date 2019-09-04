@@ -12,6 +12,8 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+const namesArray = [];
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -25,10 +27,17 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }else if (request.url === '/getData')
+    {
+      sendData(request, response);
+    }
+  else{
     sendFile( response, filename )
   }
+  //for other options expand this if statement
 }
+
+
 
 const handlePost = function( request, response ) {
   let dataString = ''
@@ -41,6 +50,8 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
+    
+    namesArray.push(JSON.parse( dataString ));
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
