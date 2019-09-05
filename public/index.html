@@ -1,13 +1,33 @@
-<!doctype html>
+!doctype html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <author>Peter Jankowski</author>
   </head>
   <body>
+    <h1>Grade</h1>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <div id="entryDiv">
+      <label for="yourname" class ="pageText">Name:</label>
+      <input type="text" id="yourname" value="student name here">
+      <label for="yourgrade" class ="pageText">Numeric Grade:</label>
+      <input type="text" id="yourgrade" value="">
+      </div>
+      <div id="inputDiv" class="individualButtonDiv">
+        <button id="inputButton">Submit/Update Grade</button>
+      </div>
+      <div id="buttonDiv">
+        <button id="viewButton">Show Current Grade Table</button>
+        <button id="hideButton">Hide table</button>
+      </div>
+      <div id="deleteDiv" class="individualButtonDiv">
+        <label for="delete" class ="pageText">Remove a Student:</label>
+        <input type="text" id="removename" value="student name here">
+        <button id="removeButton">Remove Student</button>
+      </div>
+      <table id="tablePrint"></table>
     </form>
   </body>
   <script>
@@ -16,9 +36,12 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const nameInput = document.querySelector( '#yourname' ),
+          gradeInput = document.querySelector( '#yourgrade' ),
+          //HOW WELL MUST WE ERROR HANDLE, LIKE IF THEY ENTER AN INVALID GRADE, WHAT DO?
+          //MUST ALSO ADD WAY TO REMOVE A STUDENT
+          json = { yourname: nameInput.value,  yourgrade: gradeInput.value},
+          body = JSON.stringify( json );
 
     fetch( '/submit', {
       method:'POST',
@@ -26,16 +49,105 @@
     })
     .then( function( response ) {
       // do something with the reponse 
-      console.log( response )
-    })
+      console.log( response );
+      response.json().then((data) => {
+        console.log(data);
+        document.getElementById("tablePrint").innerHTML = '<table></table>';
+        view(e);
+        if (data.modified !== true) {
+          alert("The grade of this new student is : "
+                + data.numericGrade + " (" + data.letterGrade + ")");
+        } else {
+          alert("The student's grade has been updated to : "
+                + data.numericGrade + " (" + data.letterGrade + ")");
+        }
+      });
+    });
+    return false;
+  }
+  
+  const view = function(e) {
+    //could maybe move this to scripts.js later
+    e.preventDefault();
+    let studentArray;
+    
+    const json = { view: "viewAll" },
+          body = JSON.stringify( json );
 
-    return false
+    fetch( '/view', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the reponse of all students in the system
+      console.log( response );
+      response.json().then((data) => {
+        console.log(data);
+        //alert(data.studentArray);
+        studentArray = data.studentArray;
+        let numStudents = studentArray.length;
+      let myTable = '<table class ="pageText"><tr><td>Name:</td>';
+      myTable += "<td>Grade:</td>";
+      myTable += "<td>Letter Grade:</td></tr>";
+      for (let i = 0; i < numStudents; i++) {
+        myTable += "<tr><td>" + studentArray[i].studentName + "</td>";
+        myTable += "<td>" + studentArray[i].numericGrade + "</td>";
+        myTable += "<td>" + studentArray[i].letterGrade + "</td></tr>";
+      }
+      myTable += "</table>";
+      document.getElementById("tablePrint").innerHTML = myTable;
+      });
+    });
+    //request all grades from the server, and present them in a table
+    return false;
+  }
+  
+  const deleteFunc = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault();
+
+    const removeInput = document.querySelector( '#removename' ),
+          //HOW WELL MUST WE ERROR HANDLE, LIKE IF THEY ENTER AN INVALID GRADE, WHAT DO?
+          //MUST ALSO ADD WAY TO REMOVE A STUDENT
+          json = { removeName: removeInput.value},
+          body = JSON.stringify( json );
+
+    fetch( '/remove', {
+      method:'DELETE',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the reponse 
+      console.log( response );
+      response.json().then((data) => {
+        console.log(data);
+        document.getElementById("tablePrint").innerHTML = '<table></table>';
+        view(e);
+        if (data.removed !== "true") {
+          alert("There was no student to delete with the entered name.");
+        } else {
+          alert("The student that you entered has been removed from the system.");
+        }
+      });
+    });
+    return false;
+  }
+  
+  const hide = function( e ) {
+    e.preventDefault();
+    document.getElementById("tablePrint").innerHTML = '<table></table>';
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+    const inButton = document.querySelector( '#inputButton' );
+    const viButton = document.querySelector( '#viewButton' );
+    const deButton = document.querySelector( '#removeButton' );
+    const hiButton = document.querySelector( '#hideButton' );
+    hiButton.onclick = hide;
+    viButton.onclick = view;
+    inButton.onclick = submit;
+    deButton.onclick = deleteFunc;
   }
-
+    
   </script>
 </html>

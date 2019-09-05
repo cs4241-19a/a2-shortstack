@@ -1,1 +1,91 @@
-/*Style your own assignment! This is fun! */
+/* Style your own assignment! This is fun! */
+
+body {
+  background: beige;
+}
+
+/* Element Styles: */
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  display: flex;
+  justify-content: center;
+}
+
+author {
+  display: none;
+}
+
+label {
+  display: block;
+}
+
+input {
+  display: inline-block;
+}
+
+td {
+    width: 33%;
+    color: darkblue;
+    font-size: 26px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 2px solid black;
+}
+
+/* ID Styles: */
+#yourname {
+  text-align: center;
+}
+
+#yourgrade {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+#entryDiv {
+  margin-left: 33%;
+  width: 33%;
+  text-align: center;
+  display: inline-block;
+}
+
+#removename {
+  caret-color: red;
+  margin-bottom: 30px;
+  text-align: center;
+  width: 200px;
+}
+
+#buttonDiv {
+  display: flex;
+  justify-content: space-around;
+}
+
+#deleteDiv {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Class Styles */
+
+.pageText {
+  font-family: "Cabin", helvetica, arial, sans-serif;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.individualButtonDiv {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
