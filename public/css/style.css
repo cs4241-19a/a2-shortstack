@@ -1,1 +1,45 @@
 /*Style your own assignment! This is fun! */
+body{
+  background-color: DarkSlateGray;
+  color: BlanchedAlmond;
+  font-family: Abel;
+}
+
+.contentBox{
+  border-width: 1px;
+  border-style: solid;
+  border-color: BlanchedAlmond;
+  border-radius: 5px;
+}
+
+.imgFrame{
+  padding: 0;
+  overflow: hidden;
+}
+
+.centerBox{
+  text-align: center;
+}
+
+.navbar{
+  border-bottom: 1px solid BlanchedAlmond;
+  padding-bottom: 0px;
+  margin-bottom: 15px;
+}
+
+.navbar-brand{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.navbar-brand a{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.navbar-brand span{
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  font-size: 44px;
+  color: BlanchedAlmond;
+}
