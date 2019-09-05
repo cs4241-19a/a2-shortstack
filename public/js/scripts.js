@@ -28,13 +28,26 @@ submit = function (e) {
         window.alert("There is already a character with that name");
     });
 
+    let select = document.getElementById("character-select");
+
+    for (let i=1; i<select.length; i++) {
+            select.options[i] = null;
+    }
+
+    db.allDocs().then(function (result){
+        let entries = result.rows;
+        for(let entry of entries) {
+            select.options[select.options.length] = new Option(entry.id, entry.id);
+        }
+    });
+
     return false
 };
 
 selectClass = function(e) {
     e.preventDefault();
 
-    const newClass = document.querySelector('select');
+    const newClass = document.querySelector('#classes');
     switch(newClass.value) {
         case 'Mage':
             document.querySelector('#strength').innerHTML = 'Strength: 2';
@@ -74,25 +87,36 @@ selectCharacter = function(e) {
   e.preventDefault();
 
   const character = document.querySelector('#character-select');
-  db.get(character.value).then(function (result) {
-      document.querySelector('#character-name').value = result._id;
-      document.querySelector('#bio').value = result.bio;
-      document.querySelector('#classes').value = result.class;
-  });
+  if (character.value !== "") {
+      db.get(character.value).catch(function (err){
+          console.log(err);
+      }).then(function (result) {
+          document.querySelector('#character-name').value = result._id;
+          document.querySelector('#bio').value = result.bio;
+          document.querySelector('#classes').value = result.class;
+      });
+  }
+
+  selectClass();
 
 };
 
 deleteDB = function(e) {
     e.preventDefault();
+    let select = document.getElementById("character-select");
 
-    db.destroy();
-    db.allDocs().then(function (result){
-        let entries = result.rows;
-        for(let entry of entries) {
-            var select = document.getElementById("character-select");
-            select.options[select.options.length] = new Option(entry.id, entry.id);
-        }
+    db.allDocs().then(function (result) {
+        return Promise.all(result.rows.map(function (row) {
+            return db.remove(row.id, row.value.rev);
+        }));
+    }).then(function () {
+        window.alert('Successfully deleted all characters');
+    }).catch(function (err) {
+        window.alert('Could not delete all characters');
     });
+    for (let i=1; i<=select.length; i++) {
+        select.options[i] = null;
+    }
 };
 
 window.onload = function () {
