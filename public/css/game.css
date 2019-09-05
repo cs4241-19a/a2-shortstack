@@ -26,16 +26,18 @@ body{
   align-items: center;
  justify-content: center;
 }
-#quit{
+button{
   font-family: arcade;
   border-radius: 30px;
   font-size: 30px;
   background-color: yellow;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   cursor: pointer;
-  margin: 0;
   line-height: 30px;
 }
-#quit:hover{
+button:hover{
   font-size: 35px;
   line-height: 30px;
 }
