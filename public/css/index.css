@@ -253,6 +253,13 @@ p {
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0 1px 10px #999;
+}
+
+.aboutText {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+    font-weight: 600;
+    font-size: 1.5em;
+    color: black;
 
 }
 
@@ -294,5 +301,48 @@ p {
     color: white;
     font-weight: 200;
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+}
+
+.button {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 200px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.button {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 200px;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.button:hover {
+    background-color: #006eda;
+    box-shadow: 0 1px 10px darkslategray;
+}
+
+.btn {
+    padding-left: 450px;
+    padding-right: 450px;
+    padding-top: 50px;
+    width: 100%;
+    height: 100px;
 }
 
