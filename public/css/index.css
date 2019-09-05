@@ -165,7 +165,7 @@ h1 {
 
 .mottoItemCov1 {
     margin: 10px;
-    background-color: green;
+    background-color: #00aa01;
     color: white;
     width: 220px;
     border-radius: 15px;
@@ -192,7 +192,7 @@ h1 {
 
 .mottoItemCov1:hover {
     margin: 10px;
-    background-color: green;
+    background-color: #00aa01;
     color: white;
     width: 220px;
     border-radius: 15px;
@@ -247,6 +247,15 @@ p {
     display: inline-flex;
 }
 
+.about {
+    margin-top: -55px;
+    margin-left: 80px;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 1px 10px #999;
+
+}
+
 .introText {
     font-size: 1.0em;
     color: black;
@@ -255,3 +264,35 @@ p {
     font-weight: 200;
     border: 0;
 }
+
+.headText {
+    font-size: 3.5em;
+}
+
+.startForm {
+    margin-top: 70px;
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    box-shadow: 0 1px 10px black;
+    height: 300px;
+}
+
+.designed {
+    height: 40px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    margin-left: -10px;
+    margin-right: -10px;
+    padding: 1px;
+    background-color: darkslategray;
+    text-align: center;
+}
+
+.designText {
+    font-size: 1em;
+    color: white;
+    font-weight: 200;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+}
+
