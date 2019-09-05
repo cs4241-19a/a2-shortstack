@@ -24,7 +24,10 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else if ( request.url === '/spacecraft_data' ) {
+    response.writeHeader( 200, { 'Content-Type': 'application/json' })
+    response.end( JSON.stringify(appdata) )
+  } else {
     sendFile( response, filename )
   }
 }
@@ -60,7 +63,7 @@ const handlePost = function( request, response ) {
 
 const addSpacecraft = function (data) {
   const new_spacecraft = data
-  new_spacecraft.elapsed = Date.now() - new_spacecraft.launch_date
+  new_spacecraft.elapsed = Date.now() - new_spacecraft.mission_start
   new_spacecraft.id = next_id
   next_id += 1
   appdata.append(new_spacecraft)
