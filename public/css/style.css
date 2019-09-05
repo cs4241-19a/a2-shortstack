@@ -104,6 +104,12 @@ td:hover {
     margin-left: 2.5%;
 }
 
+.instructions {
+    font-size: 24px;
+    margin: 10px;
+    margin-left: 2.5%;
+}
+
 .banner-container {
     width:100%;
 }
