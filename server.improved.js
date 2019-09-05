@@ -8,7 +8,7 @@ const http = require( 'http' ),
 
 let next_id = 1
 const appdata = [
-  { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'has_launched': true, 'mission_start': 123, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
+  { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'has_launched': true, 'mission_start': 911520000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -26,6 +26,7 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   } else if ( request.url === '/spacecraft_data' ) {
     response.writeHeader( 200, { 'Content-Type': 'application/json' })
+    refreshElapsed()
     response.end( JSON.stringify(appdata) )
   } else {
     sendFile( response, filename )
@@ -61,12 +62,22 @@ const handlePost = function( request, response ) {
   })
 }
 
+const refreshElapsed = function (data) {
+  for (let i = 0; i < appdata.length; i++) {
+    if (appdata[i].mission_completed === false) {
+      appdata[i].elapsed = Date.now() - appdata[i].mission_start
+    } else {
+      
+    }
+  }
+}
+
 const addSpacecraft = function (data) {
   const new_spacecraft = data
   new_spacecraft.elapsed = Date.now() - new_spacecraft.mission_start
   new_spacecraft.id = next_id
   next_id += 1
-  appdata.append(new_spacecraft)
+  appdata.push(new_spacecraft)
 }
 
 const removeSpacecraft = function (data) {

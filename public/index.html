@@ -6,8 +6,8 @@
   </head>
   <body>
     <form action="">
-      <input type="text" id="spsac" placeholder="your name here">
-      <input type="date">
+      <input type="text" id="name" placeholder="your name here">
+      <input type="date" id="mission_start">
       <button>submit</button>
     </form>
   </body>
@@ -17,11 +17,12 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const name = document.querySelector( '#name' ),
+          mission_start = document.querySelector( '#mission_start')
+          json = { name: name.value, mission_start: mission_start.value },
           body = JSON.stringify( json )
 
-    fetch( '/submit', {
+    fetch( '/add_spacecraft', {
       method:'POST',
       body 
     })
