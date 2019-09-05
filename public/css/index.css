@@ -14,33 +14,6 @@ h1 {
     text-align: center;
 }
 
-.typewriter h2 {
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orangered; /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .15em; /* Adjust as needed */
-    animation:
-            typing 2.5s steps(40, end),
-            blink-caret 0.75s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orangered; }
-}
-
-.typewriter {
-    display: inline-flex;
-}
-
 .name {
     height: 100px;
     padding-top: 40px;
@@ -52,17 +25,14 @@ h1 {
     /* The image used */
     background-image: url(../Images/indexBg.jpg);
     /* Set a specific height */
+
     height: 215px;
     padding-top: 400px;
     padding-bottom: 400px;
     padding-left: 250px;
     padding-right: 250px;
 
-    margin-top: -10px;
-    margin-right: -10px;
-    margin-left: -10px;
-    margin-bottom: -10px;
-
+    margin: -10px;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
@@ -70,7 +40,7 @@ h1 {
     background-size: cover;
 }
 
-.Heading {
+#navB {
     margin-top: -62px;
     margin-bottom: 0;
     margin-left: -10px;
@@ -87,12 +57,201 @@ h1 {
     position: sticky;
     top: 0;
     left: 0;
+}
+
+.solid {
+    margin-top: -62px;
+    margin-bottom: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+    height: 22px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    padding-left: 700px;
+    padding-right: 700px;
+    background-image: url(../Images/indexBg.jpg);
+
+    overflow: hidden;
+    background-color: transparent;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    left: 0;
     box-shadow: 0 1px 10px #999;
 }
 
 .textH {
-    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
     font-weight: 500;
     font-size: 2.0em;
+    color: transparent;
     padding: 0;
+}
+
+
+.navSc {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+    font-weight: 500;
+    font-size: 2.0em;
+    color: white;
+    padding: 0;
+}
+
+.bodyIndex {
+    margin-bottom: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: 0px;
+    height: 400px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+    background-color: whitesmoke;
+}
+
+.getStarted {
+    margin: -10px;
+    height: 515px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    padding-left: 250px;
+    padding-right: 250px;
+    background-color: #fa6255;
+}
+
+.bodyList {
+    list-style-type: none;
+    width: 100%;
+}
+
+.iconList {
+    list-style-type: none;
+    width: 100%;
+}
+
+.mottoList {
+    list-style-type: none;
+}
+
+.listItem1 {
+    float: left;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-right: 30px;
+
+}
+
+.listItem2 {
+    float: left;
+    padding: 10px;
+}
+
+.iconItem {
+    float: left;
+    padding: 10px;
+}
+
+.iconImage {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 200px;
+    width: 200px;
+    background-image: url(../Images/listIcon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mottoItemCov1 {
+    margin: 10px;
+    background-color: green;
+    color: white;
+    width: 220px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.mottoItemCov2 {
+    margin: 10px;
+    background-color: orange;
+    color: white;
+    width: 220px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.mottoItemCov3 {
+    margin: 10px;
+    background-color: dodgerblue;
+    color: white;
+    width: 220px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.mottoItemCov1:hover {
+    margin: 10px;
+    background-color: green;
+    color: white;
+    width: 220px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 1px 10px #999;
+}
+
+.mottoItemCov2:hover {
+    margin: 10px;
+    background-color: orange;
+    color: white;
+    width: 220px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 1px 10px #999;
+}
+
+.mottoItemCov3:hover {
+    margin: 10px;
+    background-color: dodgerblue;
+    color: white;
+    width: 220px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 1px 10px #999;
+}
+
+
+p {
+    font-size: 1.5em;
+    color: black;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 1px;
+    font-weight: 300;
+    border: 0;
+}
+
+.iText {
+    color:whitesmoke;
+    text-decoration: none;
+    border-right: .15em solid orangered;
+    animation:
+            blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orangered; }
+}
+
+.iText {
+    display: inline-flex;
+}
+
+.introText {
+    font-size: 1.0em;
+    color: black;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 1px;
+    font-weight: 200;
+    border: 0;
 }
