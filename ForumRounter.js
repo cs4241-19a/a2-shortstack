@@ -6,7 +6,137 @@ const forumRouter = express.Router();
 // forum view
 forumRouter.get('/', function(req, res, next) {
     // res.sendFile(path.join(__dirname + '/add-message.hbs'));
-    res.render('index', {title: "The Forums"})
+    let forumData = [
+        {
+            title: "Title1",
+            shortDesc: "Short desc",
+            created: {
+                name: "Jimmy Kajon",
+                date: "01 Apr 2017, 13:46"
+            },
+            lastPost: {
+                name: "Jimmy Kajon",
+                date: "01 Apr 2017, 13:46"
+            },
+            stats: {
+                replies: 1,
+                views: 100
+            }
+        },
+        {
+            title: "Title2",
+            shortDesc: "Short desc2",
+            created: {
+                name: "Jimmy Kajon2",
+                date: "02 Apr 2017, 13:46"
+            },
+            lastPost: {
+                name: "Jimmy Kajon2",
+                date: "02 Apr 2017, 13:46"
+            },
+            stats: {
+                replies: 2,
+                views: 200
+            }
+        },
+        {
+            title: "Title3",
+            shortDesc: "Short desc3",
+            created: {
+                name: "Jimmy Kajon3",
+                date: "03 Apr 2017, 13:46"
+            },
+            lastPost: {
+                name: "Jimmy Kajon3",
+                date: "03 Apr 2017, 13:46"
+            },
+            stats: {
+                replies: 3,
+                views: 300
+            }
+        },
+        {
+            title: "TitleN",
+            shortDesc: "Short descN",
+            created: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            lastPost: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            stats: {
+                replies: 90,
+                views: 9000
+            }
+        },
+        {
+            title: "TitleN",
+            shortDesc: "Short descN",
+            created: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            lastPost: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            stats: {
+                replies: 90,
+                views: 9000
+            }
+        },
+        {
+            title: "TitleN",
+            shortDesc: "Short descN",
+            created: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            lastPost: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            stats: {
+                replies: 90,
+                views: 9000
+            }
+        },
+        {
+            title: "TitleN",
+            shortDesc: "Short descN",
+            created: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            lastPost: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            stats: {
+                replies: 90,
+                views: 9000
+            }
+        },
+        {
+            title: "TitleN",
+            shortDesc: "Short descN",
+            created: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            lastPost: {
+                name: "Jimmy KajonN",
+                date: "09 Apr 2017, 13:46"
+            },
+            stats: {
+                replies: 90,
+                views: 9000
+            }
+        },
+    ];
+    res.render('index', {title: "The Forums", forumData: forumData})
 });
 
 
