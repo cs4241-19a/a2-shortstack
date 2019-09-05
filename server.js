@@ -69,4 +69,5 @@ const sendFile = function( response, filename ) {
    })
 }
 
+console.log("Spinning up on port " + port + "...")
 server.listen( process.env.PORT || port )

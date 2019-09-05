@@ -1,1 +1,46 @@
 /*Style your own assignment! This is fun! */
+
+* {box-sizing: border-box;}
+
+.seating-map {
+    border: 5px solid rgb(111,41,97);
+    display: grid;
+    grid-template-columns: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+    grid-auto-rows: minmax(50px, auto);
+    grid-template-areas: 
+      ". . . . . . a a a a . . a a a a . . . . . ."
+      ". . . b b b b b b b . . b b b b b b b . . ."
+      ". . . c c c c c c c . . c c c c c c c . . ."
+      ". . d d d d d d d d . . d d d d d d d d . ."
+      ". . e e e e e e e e . . e e e e e e e e . ."
+      ". . . . f f f f f f . . f f f f f f . . . ."
+      "g g g g g g g g g g . . g g g g g g g g g g"
+}
+
+.row-one {
+    grid-area: a;
+}
+
+.row-two {
+    grid-area: b;
+}
+
+.row-three {
+    grid-area: c;
+}
+
+.row-four {
+    grid-area: d;
+}
+
+.row-five {
+    grid-area: e;
+}
+
+.row-six {
+    grid-area: f;
+}
+
+.row-seven {
+    grid-area: g;
+}
