@@ -6,6 +6,22 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+var admin = require('firebase-admin');
+
+var serviceAccount = require("./serviceKey.json")
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://a2-webware.firebaseio.com'
+});
+
+var db = admin.database();
+var ref = db.ref("/");
+var usersRef = ref.child("users");
+
+var firebase = require('firebase/app');
+require("firebase/firestore");
+
 const appdata = [
   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
@@ -39,8 +55,10 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    json = JSON.parse( dataString )
 
     // ... do something with the data here!!!
+    writeUserData(json.name, json.email, json.Color, json.Board)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -67,6 +85,16 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+function writeUserData(username, email, color, boardName) {
+
+  usersRef.set({
+    username: username,
+    email: email,
+    color: color,
+    boardName: boardName
+  });
 }
 
 server.listen( process.env.PORT || port )

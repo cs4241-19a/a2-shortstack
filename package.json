@@ -7,6 +7,8 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
+    "firebase": "^6.5.0",
+    "firebase-admin": "^8.5.0",
     "mime": "^2.4.4"
   }
 }

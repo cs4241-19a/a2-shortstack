@@ -7,7 +7,6 @@
   <script src="js/jquery.js"></script>
 </head>
 <body>
-<script src="js/typewriter.js"></script>
 <script src="js/form.js"></script>
 <script src="js/NavBar.js"></script>
 <script src="js/parallax.js"></script>
@@ -97,31 +96,39 @@
           <table class="expTab">
             <tr class="row">
               <td class="expEle">
-                Name: <input type="text" id="userName" placeholder="AnthonyJoshua" onkeyup="stoppedTyping()">
+                <div class="ele">
+                  <input class="txtBox" type="text" id="userName" placeholder="Username" onkeyup="stoppedTyping()">
+                </div>
               </td>
               <td class="expEle">
-                Email: <input type="text" id="email" placeholder="anthony@joshua.com" onkeyup="stoppedTyping()">
+                <div class="ele">
+                  <input class="txtBox" type="text" id="email" placeholder="Email" onkeyup="stoppedTyping()">
+                </div>
               </td>
             </tr>
             <tr class="row">
-              <td class="expEle"> Favorite Color:
-                <select id="color" onkeyup="stoppedTyping()">
-                  <option value="" disabled selected>Select a Color</option>
-                  <option value="salmon">Salmon</option>
-                  <option value="dodgerblue">Dodgerblue</option>
-                  <option value="darkslategray">Darkslategray</option>
-                  <option value="orangered">Orangered</option>
-                </select>
+              <td class="expEle">
+                <div class="ele">
+                  <select class="selectBox" id="color">
+                    <option value="" disabled selected>Select a Color Theme for your Board</option>
+                    <option value="salmon">Salmon</option>
+                    <option value="dodgerblue">Dodgerblue</option>
+                    <option value="darkslategray">Darkslategray</option>
+                    <option value="orangered">Orangered</option>
+                  </select>
+              </div>
               </td>
               <td class="expEle">
-                Board Name: <input type="text" id="board" placeholder="MyLists" onkeyup="stoppedTyping()">
+                <div class="ele">
+                  <input class="txtBox" type="text" id="board" placeholder="Name for your Board" onkeyup="stoppedTyping()">
+                </div>
               </td>
             </tr>
           </table>
         </div>
       </div>
       <div class="btn">
-        <button id="continueBtn" class="button" disabled>Continue</button>
+        <button id="continueBtn" class="button">Continue</button>
       </div>
     </form>
   </div>
@@ -131,5 +138,6 @@
     <a> Designed and developed in Worcester, Massachuetts </a>
   </h2>
 </div>
+
 </body>
 </html>
