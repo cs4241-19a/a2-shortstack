@@ -7,9 +7,11 @@
   <script src="js/jquery.js"></script>
 </head>
 <body>
-<script src="js/NavBar.js"></script>
 <script src="js/typewriter.js"></script>
+<script src="js/form.js"></script>
+<script src="js/NavBar.js"></script>
 <script src="js/parallax.js"></script>
+<script src="js/button.js"></script>
 <div class="parallax">
   <div class="name">
     <div align="center">
@@ -88,30 +90,40 @@
       <a> Get Started. </a>
     </h1>
   </div>
-  <div class="startForm" >
-    <div class="startContent" >
-      <table class="expTab">
-        <tr class="expTabHead">
-          <th class="expRowHead">None</th>
-          <th class="expRowHead">Some</th>
-          <th class="expRowHead">A Lot</th>
-        </tr>
-        <tr class="row">
-          <td class="expEle">
-            <a class="expA"> JavaScript </a>
-          </td>
-          <td class="expEle">
-            <a class="expA"> HTML </a>
-          </td>
-          <td class="expEle">
-            <a class="expA"> Java </a>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-  <div class="btn" >
-    <a href="task.html" class="button">Continue</a>
+  <div class="formDiv" >
+    <form class="submitForm" action="">
+      <div class="startForm" >
+        <div class="startContent" >
+          <table class="expTab">
+            <tr class="row">
+              <td class="expEle">
+                Name: <input type="text" id="userName" placeholder="AnthonyJoshua" onkeyup="stoppedTyping()">
+              </td>
+              <td class="expEle">
+                Email: <input type="text" id="email" placeholder="anthony@joshua.com" onkeyup="stoppedTyping()">
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="expEle"> Favorite Color:
+                <select id="color" onkeyup="stoppedTyping()">
+                  <option value="" disabled selected>Select a Color</option>
+                  <option value="salmon">Salmon</option>
+                  <option value="dodgerblue">Dodgerblue</option>
+                  <option value="darkslategray">Darkslategray</option>
+                  <option value="orangered">Orangered</option>
+                </select>
+              </td>
+              <td class="expEle">
+                Board Name: <input type="text" id="board" placeholder="MyLists" onkeyup="stoppedTyping()">
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="btn">
+        <button id="continueBtn" class="button" disabled>Continue</button>
+      </div>
+    </form>
   </div>
 </div>
 <div class="designed" >
