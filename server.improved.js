@@ -8,7 +8,7 @@ const http = require( 'http' ),
 
 let next_id = 1
 const appdata = [
-  { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'has_launched': true, 'mission_start': 911520000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
+  { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'has_launched': true, 'mission_start': 911520000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -67,17 +67,17 @@ const refreshElapsed = function (data) {
     if (appdata[i].mission_completed === false) {
       appdata[i].elapsed = Date.now() - appdata[i].mission_start
     } else {
-      
+      appdata[i].elapsed = appdata[i].mission_end - appdata[i].mission_start
     }
   }
 }
 
 const addSpacecraft = function (data) {
   const new_spacecraft = data
-  new_spacecraft.elapsed = Date.now() - new_spacecraft.mission_start
   new_spacecraft.id = next_id
   next_id += 1
   appdata.push(new_spacecraft)
+  refreshElapsed()
 }
 
 const removeSpacecraft = function (data) {
@@ -95,9 +95,10 @@ const endMission = function (data) {
     if (appdata[i].id === id) {
       appdata[i].mission_completed = true
       appdata[i].mission_end = Date.now()
-      appdata[i].elapsed = appdata[i].mission_end - appdata[i].mission_start
     }
   }
+  
+  refreshElapsed()
 }
 
 const sendFile = function( response, filename ) {
