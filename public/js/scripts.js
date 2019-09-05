@@ -53,6 +53,11 @@ function updateBank(num) {
   .then( promiseresponse => promiseresponse.json())
   .then(response => {
     document.querySelector('#bills').innerHTML = response.result;
+    /*var amount = Number(document.querySelector('#bills').innerHTML);
+    if (amount < 0) {
+      alert('you lose!');
+      document.location.href = '/';
+    }*/
   })
   return false;
   }
