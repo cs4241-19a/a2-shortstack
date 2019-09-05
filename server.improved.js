@@ -6,8 +6,9 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+let next_id = 1
 const appdata = [
-  { 'name': 'ISS', 'orbit_type': 'LEO', 'launch_date': 123, 'mission_completed': false, 'elapsed': 0 }
+  { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'has_launched': true, 'mission_start': 123, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -36,18 +37,53 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    const data = JSON.parse( dataString )
 
     switch ( request.url ) {
-      case '/':
-        break
       case '/add_spacecraft':
-        console.log('submitted')
+        addSpacecraft(data)
+        break
+      case '/remove_spacecraft':
+        removeSpacecraft(data)
+        break
+      case '/end_mission':
+        endMission(data)
+        break
+      default:
+        break
     }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
+}
+
+const addSpacecraft = function (data) {
+  const new_spacecraft = data
+  new_spacecraft.elapsed = Date.now() - new_spacecraft.launch_date
+  new_spacecraft.id = next_id
+  next_id += 1
+  appdata.append(new_spacecraft)
+}
+
+const removeSpacecraft = function (data) {
+  const id = data.id
+  for (let i = 0; i < appdata.length; i++) {
+    if (appdata[i].id === id) {
+      appdata.splice(i, 1)
+    }
+  }
+}
+
+const endMission = function (data) {
+  const id = data.id
+  for (let i = 0; i < appdata.length; i++) {
+    if (appdata[i].id === id) {
+      appdata[i].mission_completed = true
+      appdata[i].mission_end = Date.now()
+      appdata[i].elapsed = appdata[i].mission_end - appdata[i].mission_start
+    }
+  }
 }
 
 const sendFile = function( response, filename ) {
