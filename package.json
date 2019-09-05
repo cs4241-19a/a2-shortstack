@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-ciduarte",
+  "version": "0.1.0",
+  "description": "WPI CS4241 Assignment 2",
+  "author": "Carla Duarte",
   "scripts": {
     "start": "node server.improved.js"
   },

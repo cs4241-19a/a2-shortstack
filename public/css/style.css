@@ -1,1 +1,241 @@
-/*Style your own assignment! This is fun! */
+body {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    float: left;
+    text-align: center;
+    background-color: black;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+nav {
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-size: 1.75vw;
+    display: inline;
+}
+
+h1 {
+    font-family: 'Oregano', cursive;
+    font-style: italic;
+    font-size: 74px;
+    font-size: 6vw;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-size: 1.75vw;
+}
+
+h3 {
+    font-family: 'Oregano', cursive;
+    font-style: normal;
+    font-size: 40px;
+    font-size: 5vw;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+form {
+    float: left;
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 7px;
+}
+
+table {
+    display: block;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+label, button, #error{
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-size: 1.75vw;
+}
+
+label {
+    margin-right: 30px;
+}
+
+button {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-appearance: none;
+    background-color:white;
+    padding: 12px 28px;
+    border-radius: 4px;
+    border: 2px solid black;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#error {
+    display: none;
+    color: white;
+    margin-bottom: 20px;
+    padding: 25px;
+    width: 50%;
+    background: #c20000;
+    border: 1px solid #c20000;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+#ramen-pic {
+    width: 100%;
+    height: auto;
+    color: white;
+}
+
+#success-pic {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.img-text {
+    color: white;
+    width: 100%;
+    position: absolute;
+    top: 8px;
+}
+
+.navigationPane {
+    display: flex;
+    flex-direction: column;
+    height: 10%;
+    width: 85%;
+    text-align: right;
+    margin-top: 20px;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.links a {
+    display: inline;
+    margin-left: 20px;
+}
+
+.links a:hover {
+    color: gray;
+}
+
+#order-form {
+    display: block;
+    width: 80%;
+}
+
+#order-confirmation {
+    display: none;
+    flex-direction: column;
+    height: 50%;
+    align-items: center;
+}
+
+#order-table {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1vw;
+    display: none;
+    width: 90%;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#update-order-form {
+    display: none;
+    width: 80%;
+}
+
+.form-input {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.form-input .text-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    font-size: 2vw;
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+[type="text"], textarea {
+    width: 95%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    resize: vertical;
+    font-family: 'Raleway', sans-serif;
+    font-size: 18px;
+    font-size: 1.75vw;
+}
+
+#submit-btn, #update-form-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+#cancel-btn {
+    background-color: white;
+    color: #bb0016;
+    margin-right: 20px;
+    border: 2px solid #bb0016;
+}
+
+#cancel-btn:hover {
+    background-color: #bb0016;
+    color: white;
+    border: 2px solid #bb0016;
+}
+
+#new-order-btn {
+    background-color: #005600;
+    color: white;
+    border: 2px solid #005600;
+    align-self: flex-end;
+}
+
+table button {
+    padding: 5px 7px;
+    width: 100%;
+}
