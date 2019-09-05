@@ -54,7 +54,6 @@ Deliverables
 
 Do the following to complete this assignment:
 
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
 2. Implement your project with the above requirements.
 3. Test your project to make sure that when someone goes to your main page, it displays correctly.
 4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
@@ -62,7 +61,7 @@ Do the following to complete this assignment:
 6. Modify the Readme to the specifications below.
 7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
+Natalie Bloniarz - Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ---
 
 ## Your Web Application Title
@@ -78,7 +77,7 @@ Here is a sample formula for summarizing your activities, talk about:
 
 (Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
 
-http://a2-charlieroberts.glitch.me
+http://a2-nbloniarz.glitch.me
 
 ## Technical Achievements
 - **Tech Achievement 1**: Using a combination of...

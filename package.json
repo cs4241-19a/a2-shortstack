@@ -8,5 +8,8 @@
   },
   "dependencies": {
     "mime": "^2.4.4"
+  },
+  "engines":{
+    "node": "^12.10.0"
   }
 }
