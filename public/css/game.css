@@ -16,7 +16,7 @@ body{
   font-family: arcade;
   font-size: 35px;
   overflow: scroll;
-  height: 47vh;
+  height: 61vh;
   justify-content: left;
   background-color: white;
 }
@@ -45,11 +45,7 @@ h1{
   text-align: center;
 }
 img.menuitem{
-  width: 20px;
-  height: 40px;
+  width: 50px;
+  height: 70px;
   cursor: pointer;
-}
-img.menuitem:hover{
-  width: 30px;
-  height: 50px;
 }
