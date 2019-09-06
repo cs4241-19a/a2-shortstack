@@ -75,7 +75,6 @@ function deleteItem(id){
     fetchJson.post('/delete', json)
         .then(handleData)
         .catch(console.error)
-    refresh()
 }
 function createDate(date){
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

@@ -18,6 +18,8 @@ http://a2-retat.glitch.me
 - using fetchJson for easier posting
 - implemented fetch polyfill
 - using bootstrap
+- accesibility
+- jQuery
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...

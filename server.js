@@ -53,6 +53,8 @@ const handlePost = function( request, response ) {
             let item = parsedData.Item
             console.log("trying to delete " + item)
             appdata.splice(item-1, 1)
+            response.writeHead(200, {"Content-Type": "application/json"});
+            response.end(JSON.stringify(appdata))
         })
     }
 
