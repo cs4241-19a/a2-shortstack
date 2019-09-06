@@ -5,9 +5,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'fName': 'Bob', 'lName': 'Smith', 'day': 23, 'month':'August' },
+  { 'fName': 'honda', 'lName': 2004, 'day': 30 },
+  { 'fName': 'ford', 'lName': 1987, 'day': 14} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -36,6 +36,7 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
+    console.log("AT END")
     console.log( JSON.parse( dataString ) )
     const convertedData = JSON.parse(dataString)
     console.log(convertedData)

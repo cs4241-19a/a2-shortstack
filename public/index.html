@@ -11,9 +11,54 @@
       <label for="lName">Last Name: Name</label>
       <input type="text" id="lName" value="your name here"><br>
       <label for="day">Day of Birth</label>
-      <input type="nimber" id="day" value="your name here"><br>
+      <select name="Days" id="day">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>      
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>   
+      </select><br>
       <label for="month">Month of birth</label>
-      <input type="text" id="month" value="your name here"><br>
+      <select name="Month" id="month">
+        <option value="January">1</option>
+        <option value="February">2</option>
+        <option value="March">3</option>
+        <option value="April">4</option>
+        <option value="May">5</option>
+        <option value="June">6</option>
+        <option value="July">7</option>
+        <option value="August">8</option>
+        <option value="September">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+      </select>
       <button>submit</button>
     </form>
   </body>
@@ -22,12 +67,13 @@
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
-
-    let valInput = document.querySelector( '#fName' )
-    valInput.add(document.querySelector( '#lName' ))
-    document.querySelector( '#fName' )
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    let valInput = []
+    valInput.push(document.querySelector( '#fName' ))
+    valInput.push(document.querySelector( '#lName' ))
+    valInput.push(document.querySelector( '#day' ))
+    valInput.push(document.querySelector( '#month' ))
+    //const input = document.querySelector( '#yourname' ),
+    const json = { fName: valInput[0], lName: valInput[1], day: valInput[2], month: valInput[3] },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
