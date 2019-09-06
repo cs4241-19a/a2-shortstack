@@ -44,3 +44,9 @@
         </table>
     </div>
 </div>
+
+{{#> layouts/modal-layout type="add" title="Add a Message" submitText="Post Message" }}
+    {{#*inline "form-block"}}
+        {{> includes/add-form }}
+    {{/inline}}
+{{/layouts/modal-layout}}

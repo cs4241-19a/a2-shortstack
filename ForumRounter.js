@@ -5,7 +5,6 @@ const forumRouter = express.Router();
 
 // forum list view
 forumRouter.get('/', function(req, res, next) {
-    // res.sendFile(path.join(__dirname + '/add-message.hbs'));
     let forumData = [
         {
             title: "Title1",
