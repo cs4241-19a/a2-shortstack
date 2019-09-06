@@ -24,7 +24,7 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }
-  else if( request.url == '/printAll'){
+  else if( request.url == 'printAll'){
     printAll(request, response)
   }
   else{
@@ -34,7 +34,8 @@ const handleGet = function( request, response ) {
 
 
 const printAll = function(request, response){
-  response.writeHead()
+  response.writeHead(1000, "TEST", {'Content-Type': 'text/plain' })
+  response.end()
   console.log("REQUESTED DATA")
   console.log(appdata)
 }

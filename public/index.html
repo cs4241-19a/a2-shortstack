@@ -60,8 +60,8 @@
         <option value="Decemeber">December</option>
       </select><br>
       <div class="Buttons">
-        <button>submit</button>
-        <button>Print All</button>
+        <button id="subButton">submit</button>
+        <button id="printAllButton">Print All</button>
       </div>
     </form>
   </body>
@@ -94,27 +94,34 @@
   
   //Print all info in database
   const printAll = function(e){
+    console.log("PRINTING")
   // prevent default form action from being carried out
     e.preventDefault()
-    const body = "Print All Data!"
 
     fetch( '/printAll', {
       method:'GET',
-      body 
     })
     .then( function( response ) {
-      // do something with the reponse
-      //print all data into table on screen
+      displayData(response)
       console.log( response )
     })
 
     return false
   }
   
+  
+  function displayData(response){
+    var node = document.createElement("P")
+    var t = document.creatTextNode()
+  }
+  
+  
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+  const subButton = document.querySelector( '#subButton' )
+   subButton.onclick = submit
+  const printAllButton = document.querySelector( '#printAllButton' )
+   printAllButton.onclick = printAll
   }
 
   </script>
