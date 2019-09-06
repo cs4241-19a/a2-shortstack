@@ -38,6 +38,8 @@ const printAll = function(request, response){
   const body = JSON.stringify(appdata) 
   console.log(body)
   response.write("TESTING TEXT")
+  response.data = body
+  console.log(response)
   response.end()
   
   
@@ -74,6 +76,7 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
     response.write(JSON.stringify(appdata))
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    console.log(response)
     response.end()
   })
 }
