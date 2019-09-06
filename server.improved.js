@@ -25,6 +25,10 @@ app.get('/game', function(req, res) {
   let thepath = path.normalize(__dirname + '/public/html/game.html');
   res.sendFile(thepath);
 })
+app.get('/scoreboard', function(req, res) {
+  let thepath = path.normalize(__dirname + '/public/html/scoreboard.html');
+  res.sendFile(thepath);
+})
 app.post('/updateBank', function(req, res) {
   money += Number(req.body.amount);
   res.send({result: money});
