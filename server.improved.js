@@ -58,7 +58,7 @@ const sendFile = function( response, filename ) {
        // status code: https://httpstatuses.com
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
-
+      
      }else{
 
        // file not found, error code 404

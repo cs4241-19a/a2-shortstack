@@ -1,1 +1,15 @@
 /*Style your own assignment! This is fun! */
+
+.center {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.selStyle {
+    margin-left: 10px;
+}
+
+.item {
+    display: flex;
+}
