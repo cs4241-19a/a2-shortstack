@@ -1,1 +1,24 @@
 /*Style your own assignment! This is fun! */
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: grey;
+}
+nav ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul li{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+nav ul li button{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
