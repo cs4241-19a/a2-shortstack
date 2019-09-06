@@ -101,23 +101,11 @@
     .then( function( response) {
       // do something with the reponse
       //display horoscope on screen
-      if(response.ok){
-        console.log("OK")
-      }
+      console.log(response)
     })
-    getData()
     return false
   }
   
-  
-  function getData(){
-    fetch('/getData', {
-      method="GET"
-    }).then(function(){
-      const data;
-      document.query
-    })
-  }
   
   //Print all info in database
   const printAll = function(e){
@@ -130,10 +118,8 @@
     })
     .then( function( response ) {
       console.log(response)
-      console.log(response.body)
-      displayData(response)
+      //displayData(response)
     })
-
     return false
   }
   

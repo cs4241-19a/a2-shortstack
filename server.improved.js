@@ -24,7 +24,7 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   }
   else if( request.url == '/printAll'){
-    printAll()
+    printAll(request, response)
   }
   else{
     sendFile( response, filename )
@@ -33,11 +33,11 @@ const handleGet = function( request, response ) {
 
 
 const printAll = function(req, res){
-  req.on('end', function(){
-    let data = JSON.stringify(appdata)
-    res.write(data)
-    res.writeHead(200, "OK", {'Content-Type': 'text/plain' })
-    res.end()
+    req.on('end', function(){
+      let data = JSON.stringify(appdata)
+      res.write(data)
+      res.writeHead(200, "OK", {'Content-Type': 'plain/text' })
+      res.end()
   })
   
   
