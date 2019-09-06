@@ -101,7 +101,9 @@
     .then( function( response) {
       // do something with the reponse
       //display horoscope on screen
-      console.log(response)
+      response.json().then(function(parsedJson) {
+        console.log('This is the parsed json', parsedJson);
+      })
     })
     return false
   }

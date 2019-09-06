@@ -23,6 +23,10 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }
+  else if (request.url == '/getData'){
+    console.log("IN RETREVIAL")
+    sendData(response, appdata)
+  }
   else if( request.url == '/printAll'){
     printAll(request, response)
   }
@@ -30,6 +34,18 @@ const handleGet = function( request, response ) {
     sendFile( response, filename )
   }
 }
+
+const sendData = function(res, horoscope){
+  const mimeType = mime.getType(horoscope)
+  res.writeHeader(200, {'Content-Type': mimeType})
+  res.write(JSON.stringify({data: horoscope}))
+  res.end()
+}
+
+
+
+
+
 
 
 const printAll = function(req, res){
