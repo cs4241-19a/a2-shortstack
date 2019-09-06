@@ -7,9 +7,11 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.4",
+    "gson": "^0.1.5",
+    "gson-query": "^2.0.0"
   },
-  "engines":{
+  "engines": {
     "node": "^12.10.0"
   }
 }
