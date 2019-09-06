@@ -1,7 +1,5 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
@@ -39,6 +37,8 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    const convertedData = JSON.parse(dataString)
+    console.log(convertedData)
 
     // ... do something with the data here!!!
 

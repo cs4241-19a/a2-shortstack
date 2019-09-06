@@ -6,7 +6,14 @@
   </head>
   <body>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
+      <label for="fName">First Name:</label>
+      <input type="text" id="fName" value="your name here"><br>
+      <label for="lName">Last Name: Name</label>
+      <input type="text" id="lName" value="your name here"><br>
+      <label for="day">Day of Birth</label>
+      <input type="nimber" id="day" value="your name here"><br>
+      <label for="month">Month of birth</label>
+      <input type="text" id="month" value="your name here"><br>
       <button>submit</button>
     </form>
   </body>
@@ -16,6 +23,9 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
+    let valInput = document.querySelector( '#fName' )
+    valInput.add(document.querySelector( '#lName' ))
+    document.querySelector( '#fName' )
     const input = document.querySelector( '#yourname' ),
           json = { yourname: input.value },
           body = JSON.stringify( json )
