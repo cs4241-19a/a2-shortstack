@@ -3,17 +3,19 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/scripts.js"></script>
     <meta charset="utf-8">
   </head>
   <body>
     <nav>
       <ul>
-        <li><button>Add New</button></li>
+        <li><button onclick="displayNewForm()">Add New</button></li>
         <li><button>Modify Existing</button></li>
         <li><button>View Data</button></li>
       </ul>
     </nav>
-    <form action="">
+    <div id="newForm">
+      <form action="">
       <label for="fName">First Name:</label>
       <input type="text" id="fName" value="your name here"><br>
       <label for="lName">Last Name: Name</label>
@@ -72,6 +74,8 @@
         <button id="printAllButton">Print All</button>
       </div>
     </form>
+    </div>
+    
     <div id="Containter">
       
     </div>
