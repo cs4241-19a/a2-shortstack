@@ -58,6 +58,10 @@ const handlePost = function( request, response ) {
     switch(reqURL){
       case "submit":
         console.log("submit")
+        const convertedData = JSON.parse(dataString)
+        console.log(convertedData)
+        appdata.push(convertedData)
+        console.log(appdata)
         break
       case "modify":
         console.log("modify")
@@ -66,10 +70,7 @@ const handlePost = function( request, response ) {
         console.log(reqURL)
     }
     
-    console.log( JSON.parse( dataString ) )
-    const convertedData = JSON.parse(dataString)
-    console.log(convertedData)
-
+    
     // ... do something with the data here!!!
     response.write(JSON.stringify(appdata))
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
