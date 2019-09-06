@@ -35,8 +35,10 @@ const handleGet = function( request, response ) {
 const printAll = function(request, response){
     console.log("IN END")
     response.writeHead(200, "OK", {'Content-Type': 'text/plain' })
-    response.write(JSON.stringify(appdata))
-    response.end()
+  const body = JSON.stringify(appdata) 
+  console.log(body)
+  response.write("TESTING TEXT")
+  response.end()
   
   
 }
