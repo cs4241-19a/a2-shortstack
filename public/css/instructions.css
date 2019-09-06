@@ -30,3 +30,18 @@ button:hover{
   font-size: 35px;
   line-height: 30px;
 }
+#instructpanel{
+  font-family: arcade;
+  background-color: white;
+  margin: auto;
+  /*border-radius: 15%;*/
+  height: 70vh;
+  font-size: 35px;
+  width: 80%;
+}
+
+.images{
+  margin: 0 20px 0 20px;
+  float: left;
+  width: 25%;
+}
