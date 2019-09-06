@@ -19,7 +19,7 @@ var db = admin.database();
 var ref = db.ref("/");
 var usersRef = ref.child("users");
 
-var firebase = require('firebase/app');
+require('firebase/app');
 require("firebase/firestore");
 
 const appdata = [
@@ -58,7 +58,7 @@ const handlePost = function( request, response ) {
     json = JSON.parse( dataString )
 
     // ... do something with the data here!!!
-    writeUserData(json.name, json.email, json.Color, json.Board)
+    writeUserData(json.name, json.name, json.email, json.Color, json.Board)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -87,9 +87,10 @@ const sendFile = function( response, filename ) {
    })
 }
 
-function writeUserData(username, email, color, boardName) {
+function writeUserData(ref, username, email, color, boardName) {
 
-  usersRef.set({
+  var usernameRef = usersRef.child(ref);
+  usernameRef.set({
     username: username,
     email: email,
     color: color,

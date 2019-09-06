@@ -233,14 +233,6 @@ p {
 .iText {
     color:whitesmoke;
     text-decoration: none;
-    border-right: .15em solid orangered;
-    animation:
-            blink-caret 0.75s step-end infinite;
-}
-
-@keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orangered; }
 }
 
 .iText {
