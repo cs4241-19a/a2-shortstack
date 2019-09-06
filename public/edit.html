@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>CS4241 Assignment 2</title>
+    <link rel="icon" type="image/png" href="public/images/favicon.png" sizes="32x32" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Max Westwater">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Font Awesome CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<!-- Template origin: https://startbootstrap.com/templates/scrolling-nav/ -->
+
+<body id="home">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="/">TO DON'T</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/">List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/new">New</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/about">About</a>
+                    </li>s
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-primary text-white">
+        <div class="container text-center">
+            <h1>Edit your previous post</h1>
+            <p class="lead">Because who doesn't love second guessing decisions</p>
+        </div>
+    </header>
+
+    <section id="list">
+        <div class="container" id="list_div1">
+            <div class="row" id="list_div2">
+                <div class="col-lg-8 mx-auto center-div" id="list_div3">
+                        <table class="table" id="list_table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Note</th>
+                                    <th scope="col">Priority</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Remove</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="table_body">
+
+                                </tbody>
+                              </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Form -->
+    <section id="form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto center-div">
+                            <form action="">
+                                    <div class="form-group row">
+                                            <label for="inputTime" class="col-sm-2 col-form-label">UTC Time</label>
+                                            <div class="col-sm-10">
+                                              <input class="form-control" id="inputTime" placeholder="Time" value="69" disabled>
+                                            </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" id="inputTitle" placeholder="Title">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="inputNotes" class="col-sm-2 col-form-label">Notes</label>
+                                      <div class="col-sm-10">
+                                        <input class="form-control" id="inputNotes" placeholder="Notes">
+                                      </div>
+                                    </div>
+                                    <fieldset class="form-group">
+                                      <div class="row">
+                                        <legend class="col-form-label col-sm-2 pt-0">Priority</legend>
+                                        <div class="col-sm-10">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="1">
+                                            <label class="form-check-label" for="gridRadios1">
+                                              HIGH
+                                            </label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="2">
+                                            <label class="form-check-label" for="gridRadios2">
+                                              MEDIUM
+                                            </label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="3">
+                                            <label class="form-check-label" for="gridRadios3">
+                                              LOW
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </fieldset>
+                                    <div class="form-group row">
+                                      <div class="col-sm-10">
+                                        <button id="submit" class="btn btn-primary">Submit</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                        <script src="js/onEdit.js"></script>
+                        <script src="js/onSubmit.js"></script>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-white">Copyright &copy; Max Westwater 2019</p>
+            <div class="footer-social">
+                <a href="mailto:mhwestwater@wpi.edu" target="_blank">
+                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                </a>
+                <a href="https://github.com/Max5254/a2-shortstack" target="_blank">
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -50,7 +50,7 @@ const getDDB = function (user, callback){
       // console.log(entryArray)
       entryString = JSON.stringify( entryArray )
       // console.log( 'entryString' )
-      console.log( entryString )
+      // console.log( entryString )
       callback(entryString)
     }
   });
@@ -76,6 +76,8 @@ const handleGet = function( request, response ) {
     });
   } else if ( request.url === '/new' ) {
     sendFile( response, 'public/new.html' )
+  } else if ( request.url.substring(0,5) === '/edit' ) {
+    sendFile( response, 'public/edit.html' )
   } else if( request.url === '/about' ) {
     sendFile( response, 'public/about.html' )
   }else{
@@ -96,7 +98,7 @@ const handlePost = function( request, response ) {
     let params = {
       TableName: 'todont-list',
       Item: {
-        'unixtime' : {N: String(Date.now())},
+        'unixtime' : {N: dataJSON.time},
         'title' : {S: dataJSON.title},
         'notes' : {S: dataJSON.notes},
         'priority' : {N: String(dataJSON.priority)},

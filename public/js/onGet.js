@@ -22,7 +22,7 @@ let getTableEntry = function(title, notes, priority, utctime){
     <td>`+ notes +`</td>
     <td>`+ priority +`</td>
     <td>`+ timeConverter(utctime) +`</td>
-    <td><a href="/edit/`+ utctime +`">EDIT</a></td>
+    <td><a href="/edit?time=`+ utctime +`&title=`+title+`&notes=`+notes+`&priority=`+priority+`">EDIT</a></td>
     </tr>`;
 }
 
