@@ -51,6 +51,9 @@ h1 {
     padding-left: 700px;
     padding-right: 700px;
 
+    position: absolute;
+    z-index: 1000;
+
     overflow: hidden;
     background-color: transparent;
     position: -webkit-sticky; /* Safari */
@@ -247,12 +250,23 @@ p {
     box-shadow: 0 1px 10px #999;
 }
 
+.aboutHead {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
 .aboutText {
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
     font-weight: 600;
     font-size: 1.5em;
     color: black;
 
+}
+
+.intro {
+    width: 600px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .introText {
@@ -262,7 +276,49 @@ p {
     letter-spacing: 1px;
     font-weight: 200;
     border: 0;
+    line-height: 1.5em;
 }
+
+.aboutT {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.aboutEle {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.imgBrd {
+    height: 100px;
+    width: 130px;
+    background-image: url("../Images/board.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.imgList {
+    height: 130px;
+    width: 100px;
+    background-image: url("../Images/lists.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.imgMan {
+    height: 100px;
+    width: 100px;
+    background-image: url("../Images/manage.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
 
 .headText {
     font-size: 3.5em;
@@ -418,3 +474,8 @@ p {
 .selectBox option {
     font-weight:normal;
 }
+
+.selectBox.salmon, option[value="salmon"] { background: salmon; color:white; }
+.selectBox.dodgerblue, option[value="dodgerblue"] { background: dodgerblue; color:white; }
+.selectBox.darkslategray, option[value="darkslategray"] { background: darkslategray; color:white; }
+.selectBox.orangered, option[value="orangered"] { background: orangered; color:white; }

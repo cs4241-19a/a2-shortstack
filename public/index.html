@@ -7,6 +7,7 @@
   <link href="css/aos.css" rel="stylesheet" type="aos/css">
   <script src="js/jquery.js"></script>
   <script src="js/aos.js"></script>
+  <script src="js/selectBox.js"></script>
 </head>
 <body>
 <script src="js/form.js"></script>
@@ -65,7 +66,7 @@
       </div>
     </li>
     <li class="listItem2">
-      <div class="about">
+      <div data-aos="fade-left" class="about">
         <div class="aboutHead">
           <h2 class="aboutText">
             <a> What is TaskTracker? </a>
@@ -73,22 +74,38 @@
         </div>
         <div class="intro">
           <p class="introText">
-            TaskTracker is an online tool developed specifically for you to keep a list of things.
+            TaskTracker is an online tool developed specifically for you to keep a list of things. Organize, track and check of items from lists, whether it's a shopping list
+            or a task list for your chores, and manage all of these lists in a personalized board.
           </p>
+        </div>
+        <div class="aboutT">
+          <table class="aboutTab">
+            <tr class="aboutRow">
+              <td class="aboutEle">
+                <div class="imgBrd"></div>
+              </td>
+              <td class="aboutEle">
+                <div class="imgList"></div>
+              </td>
+              <td class="aboutEle">
+                <div class="imgMan"></div>
+              </td>
+            </tr>
+          </table>
         </div>
       </div>
     </li>
   </ul>
 </div>
 <div class="getStarted">
-  <div class="getHead" >
+  <div data-aos="fade-up" class="getHead" >
     <h1 class="headText" >
       <a> Get Started. </a>
     </h1>
   </div>
   <div class="formDiv" >
     <form class="submitForm" action="">
-      <div class="startForm" >
+      <div data-aos="fade-up" class="startForm" >
         <div class="startContent" >
           <table class="expTab">
             <tr class="row">
@@ -124,7 +141,7 @@
           </table>
         </div>
       </div>
-      <div class="btn">
+      <div data-aos="fade-up" class="btn">
         <button id="continueBtn" class="button">Continue</button>
       </div>
     </form>
