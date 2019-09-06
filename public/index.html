@@ -1,53 +1,52 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
-</head>
-<body>
-<form action="/submit-message" method="post">
-    <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="user_name">
-    </div>
-    <div>
-        <label for="mail">E-mail:</label>
-        <input type="email" id="mail" name="user_mail">
-    </div>
-    <div>
-        <label for="msg">Message:</label>
-        <textarea id="msg" name="user_message"></textarea>
-    </div>
-    <div>
-        <Button type="submit">Submit</Button>
-    </div>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <form action="/my-handling-form-page" method="post">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="user_name">
+  </div>
+  <div>
+    <label for="mail">E-mail:</label>
+    <input type="email" id="mail" name="user_mail">
+  </div>
+  <div>
+    <label for="msg">Message:</label>
+    <textarea id="msg" name="user_message"></textarea>
+  </div>
 </form>
-</body>
-<script>
-    const submit = function (e) {
-        // prevent default form action from being carried out
-        e.preventDefault()
+  </body>
+  <script>
 
-        const input = document.querySelector('#yourname'),
-            json = {yourname: input.value},
-            body = JSON.stringify(json)
+  const submit = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
 
-        fetch('/submit', {
-            method: 'POST',
-            body
-        })
-            .then(function (response) {
-                // do something with the reponse
-                console.log(response)
-            })
+    const input = document.querySelector( '#yourname' ),
+          json = { yourname: input.value },
+          body = JSON.stringify( json )
 
-        return false
-    }
+    fetch( '/submit', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the reponse 
+      console.log( response )
+    })
 
-    window.onload = function () {
-        const button = document.querySelector('button')
-        button.onclick = submit
-    }
+    return false
+  }
 
-</script>
+  window.onload = function() {
+    const button = document.querySelector( 'button' )
+    button.onclick = submit
+  }
+
+  </script>
 </html>
