@@ -15,10 +15,24 @@ const submit = function( e ) {
     })
         .then( function( response ) {
             // do something with the reponse
-            console.log( response )
+            console.log( "post response: ", response )
         })
 
     window.location = "/task.html"
+
+    fetch( '/submit', {
+        method:'GET',
+        body
+    })
+        .then( function( response ) {
+            // do something with the reponse
+            console.log("blah blah")
+            console.log( "post response: ", response )
+        })
+
+
+
+
     return false
 }
 

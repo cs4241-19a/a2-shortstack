@@ -32,6 +32,8 @@ h1 {
     padding-left: 250px;
     padding-right: 250px;
 
+    min-width: 1150px;
+
     margin: -10px;
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -50,6 +52,8 @@ h1 {
     padding-bottom: 25px;
     padding-left: 700px;
     padding-right: 700px;
+    min-width: 250px;
+
 
     position: absolute;
     z-index: 1000;
@@ -73,6 +77,8 @@ h1 {
     padding-left: 700px;
     padding-right: 700px;
     background-image: url(../Images/indexBg.jpg);
+    min-width: 250px;
+
 
     overflow: hidden;
     background-color: transparent;
@@ -111,6 +117,8 @@ h1 {
     padding-left: 100px;
     padding-right: 100px;
     background-color: whitesmoke;
+    min-width: 1450px;
+
 }
 
 .getStarted {
@@ -121,6 +129,8 @@ h1 {
     padding-left: 250px;
     padding-right: 250px;
     background-color: #fa6255;
+    min-width: 1150px;
+
 }
 
 .bodyList {
@@ -289,6 +299,18 @@ p {
 .aboutEle {
     padding-left: 40px;
     padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.textEle {
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    letter-spacing: 1px;
+    font-weight: 400;
+    width: 115px;
+    font-size: 1.2em;
+    align-content: center;
+    text-align: center;
 }
 
 .imgBrd {
@@ -342,6 +364,9 @@ p {
     padding: 1px;
     background-color: darkslategray;
     text-align: center;
+    min-width: 1648px;
+
+
 }
 
 .designText {

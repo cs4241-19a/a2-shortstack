@@ -44,6 +44,8 @@ const handleGet = function( request, response ) {
   }else{
     sendFile( response, filename )
   }
+
+
 }
 
 const handlePost = function( request, response ) {
