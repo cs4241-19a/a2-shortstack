@@ -20,17 +20,19 @@
     e.preventDefault()
 
     const input = document.querySelector( '#response' ),
-          json = { yourname: input.value },
+          json = { yourresponse: input.value },
           body = JSON.stringify( json ),
-          text = document.querySelector( '#answer' )
-          
+          text = document.getElementById( '#answer' )
+            
 
     fetch( '/submit', {
       method:'POST',
       body 
     })
-    .then( function( response ) {
+    .then( function( response, text ) {
       // do something with the reponse 
+      //console.log(text)
+      //text.textContent = response;
       console.log( response )
     })
 
