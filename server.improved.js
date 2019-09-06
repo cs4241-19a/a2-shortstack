@@ -49,13 +49,11 @@ const sendData = function(res, horoscope){
 
 
 const printAll = function(req, res){
-    req.on('end', function(){
-      let data = JSON.stringify(appdata)
-      res.write(data)
-      res.writeHead(200, "OK", {'Content-Type': 'plain/text' })
-      res.end()
-  })
-  
+  console.log("IN printALL")  
+  let data = JSON.stringify(appdata)
+  res.writeHead(200, "OK", {'Content-Type': 'plain/text' })
+  res.write(data)
+  res.end()
   
 }
 
