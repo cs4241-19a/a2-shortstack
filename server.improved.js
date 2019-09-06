@@ -73,6 +73,7 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     const reqURL = request.url.slice(1)
     switch(reqURL){
+       /*Submission  Case*/
       case "submit":
         console.log("submit")
         const convertedData = JSON.parse(dataString)
@@ -88,10 +89,9 @@ const handlePost = function( request, response ) {
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
           response.write("Duplicate Information, Not Added!")
           response.end()
-        }
-        // ... do something with the data here!!!
-        
+        }        
         break
+        /*Modify  Case*/
       case "modify":
         console.log("modify")
         break
@@ -127,7 +127,7 @@ const sendFile = function( response, filename ) {
 
 server.listen( process.env.PORT || port )
 
-//Checks for duplicate info
+//Checks if given input os already in database
 function noDuplicates(dataToAdd){
   for(let i = 0; i< Object.keys(appdata).length; i++){
     console.log("TEST")
