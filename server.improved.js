@@ -137,3 +137,33 @@ function noDuplicates(dataToAdd){
   }
   return true;
 }
+
+//Calculates star sign for given information
+function starSign(personalInfo){
+  switch(personalInfo.month){
+    case "January":
+      break;
+    case "February":
+      break;
+    case "March":
+      break;
+    case "April":
+      break;
+    case "May":
+      break;
+    case "June":
+      break;
+    case "July":
+      break;
+    case "August":
+      break;
+    case "September":
+      break;
+    case "November":
+      break;
+    case "December":
+      break;
+    default:
+      per
+  }
+}
