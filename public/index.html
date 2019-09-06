@@ -106,9 +106,7 @@
     })
     .then( function( response ) {
       console.log(response)
-      console.log(JSON.parse(response.body))
-      displayData(JSON.parse(response))
-      console.log( response )
+      displayData(response)
     })
 
     return false
@@ -117,7 +115,7 @@
   
   function displayData(response){
     var node = document.createElement("P")
-    var t = document.createTextNode(response[0])
+    var t = document.createTextNode(response.toString())
     node.appendChild(t)
     document.body.appendChild(t)
   }
