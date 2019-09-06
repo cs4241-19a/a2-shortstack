@@ -20,13 +20,27 @@ const server = http.createServer( function( request,response ) {
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-
+  console.log(request.url)
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if( request.url == '/printAll'){
+    printAll(request, response)
+  }
+  else{
     sendFile( response, filename )
   }
 }
+
+
+const printAll = function(request, response){
+  response.writeHead()
+  console.log("REQUESTED DATA")
+  console.log(appdata)
+}
+
+
+
 
 const handlePost = function( request, response ) {
   let dataString = ''
@@ -36,6 +50,15 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
+    const reqURL = request.url.slice(1)
+    switch(reqURL){
+      case "submit":
+        console.log("submit")
+        break
+      default:
+        console.log(reqURL)
+    }
+    
     console.log("AT END")
     console.log( JSON.parse( dataString ) )
     const convertedData = JSON.parse(dataString)
