@@ -32,8 +32,8 @@ const handlePost = function( request, response ) {
   request.on( 'data', function( data ) {
     dataString += data
   })
-
-  request.on( 'end', function() {
+if( request.url === '/submit'){
+    request.on( 'end', function() {
       let parsedData = JSON.parse( dataString )
       console.log("Note: " + parsedData.Note)
       console.log("Due: " + parsedData.Date)
@@ -41,6 +41,13 @@ const handlePost = function( request, response ) {
       response.writeHead(200, {"Content-Type": "application/json"});
       response.end(JSON.stringify(appdata))
   })
+} else if( request.url === '/refresh'){
+    request.on( 'end', function() {
+    response.writeHead(200, {"Content-Type": "application/json"});
+    response.end(JSON.stringify(appdata))
+    })
+}
+  
 }
 function createDate(date){
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

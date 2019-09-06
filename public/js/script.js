@@ -1,5 +1,4 @@
 const submit = function (e) {
-        // prevent default form action from being carried out
         e.preventDefault()
         const inputText = document.getElementById( 'inputText' ).value
         const inputDate = document.getElementById( 'inputDate' ).value
@@ -7,9 +6,14 @@ const submit = function (e) {
         const body = JSON.stringify(json)
         fetchJson.post('/submit', json)
             .then(handleData)
-            .catch(console.error);
-    }
-    const handleData = function (data) {
+            .catch(console.error)
+}
+function refresh(){
+    fetchJson.post('/refresh', {})
+        .then(handleData)
+        .catch(console.error)
+}
+const handleData = function (data) {
         const myNode = document.getElementById("notesContainer");
         while (myNode.firstChild) {
             myNode.removeChild(myNode.firstChild);
@@ -24,13 +28,14 @@ const submit = function (e) {
             }
             document.getElementById("notesContainer").appendChild(note)
         })
-    }
-    function createDate(date){
+}
+function createDate(date){
         let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         let dateArray = date.split('-')
         return new Date(dateArray[0], dateArray[1]-1, dateArray[2]).toLocaleDateString("en-US", options)
-    }
-    window.onload = function () {
-        const button = document.querySelector('button')
-        button.onclick = submit
-    }
+}
+window.onload = function () {
+        const addButton = document.getElementById("add")
+        addButton.onclick = submit
+}
+document.onload = refresh()
