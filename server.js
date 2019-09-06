@@ -46,6 +46,14 @@ if( request.url === '/submit'){
     response.writeHead(200, {"Content-Type": "application/json"});
     response.end(JSON.stringify(appdata))
     })
+} else if( request.url === '/delete'){
+    request.on( 'end', function() {
+    console.log(dataString)
+    let parsedData = JSON.parse( dataString )
+    let item = parsedData.Item
+    console.log("trying to delete " + item)
+    appdata.splice(item-1, 1)
+    })
 }
   
 }
