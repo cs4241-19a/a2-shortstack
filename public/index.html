@@ -7,7 +7,7 @@
   <body>
     <form action="">
       <span id="question"> What is 2 + 2? </span>
-      <input type="number" id="response" value="answer here">
+      <input type="text" id="response" value="answer here">
       <button>submit</button>
     </form>
     <br />
@@ -19,9 +19,11 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
+    const input = document.querySelector( '#response' ),
           json = { yourname: input.value },
-          body = JSON.stringify( json )
+          body = JSON.stringify( json ),
+          text = document.querySelector( '#answer' )
+          
 
     fetch( '/submit', {
       method:'POST',
