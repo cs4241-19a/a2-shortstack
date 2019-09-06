@@ -105,7 +105,18 @@
         console.log("OK")
       }
     })
+    getData()
     return false
+  }
+  
+  
+  function getData(){
+    fetch('/getData', {
+      method="GET"
+    }).then(function(){
+      const data;
+      document.query
+    })
   }
   
   //Print all info in database

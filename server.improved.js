@@ -24,7 +24,7 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   }
   else if( request.url == '/printAll'){
-    printAll(request, response)
+    printAll()
   }
   else{
     sendFile( response, filename )
@@ -32,18 +32,17 @@ const handleGet = function( request, response ) {
 }
 
 
-const printAll = function(request, response){
-    console.log("IN END")
-    response.writeHead(200, "OK", {'Content-Type': 'text/plain' })
-  const body = JSON.stringify(appdata) 
-  console.log(body)
-  response.write("TESTING TEXT")
-  response.data = body
-  console.log(response)
-  response.end()
+const printAll = function(req, res){
+  req.on('end', function(){
+    let data = JSON.stringify(appdata)
+    res.write(data)
+    res.writeHead(200, "OK", {'Content-Type': 'text/plain' })
+    res.end()
+  })
   
   
 }
+
 
 
 
@@ -74,7 +73,6 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
     response.write(JSON.stringify(appdata))
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    console.log(response)
     response.end()
   })
 }
