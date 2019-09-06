@@ -8,3 +8,10 @@ body {
   background: linear-gradient(to right, #ffffff, #abbaab);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+.logo {
+  display: flex;
+  justify-content: flex-start;
+
+    
+}
