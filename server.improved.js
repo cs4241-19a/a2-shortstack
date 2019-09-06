@@ -76,7 +76,9 @@ const handlePost = function( request, response ) {
       case "submit":
         console.log("submit")
         const convertedData = JSON.parse(dataString)
-        appdata.push(convertedData)
+        if(noDuplicates(convertedData)){
+                  appdata.push(convertedData)
+        }
         // ... do something with the data here!!!
         let aaa = JSON.stringify(appdata)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -117,3 +119,9 @@ const sendFile = function( response, filename ) {
 }
 
 server.listen( process.env.PORT || port )
+
+const noDuplicates = function(dataToAdd){
+  for(let i = 0; i< appdata.length(); i++){
+    if(dataToAdd[0] === appData[0])
+  }
+}

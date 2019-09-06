@@ -11,7 +11,7 @@
       <ul>
         <li><button onclick="displayNewForm()">Add New</button></li>
         <li><button>Modify Existing</button></li>
-        <li><button>View Data</button></li>
+        <li><button id="viewButton">View Data</button></li>
       </ul>
     </nav>
     <div id="newForm">
@@ -122,7 +122,11 @@
     })
     .then( function( response ) {
       console.log(response)
-      //displayData(response)
+      response.text()
+      .then(function(message){
+       let allData = JSON.parse(message)
+       updateDatabaseDisplayTable(allData)
+     })
     })
     return false
   }
@@ -135,20 +139,7 @@
     document.body.appendChild(t)
   }
     
-  function updateDatabseDisplayTable(data){
-    var html = "<table><th>Existing Data</th>"
-    html += "<tr><td>Index</td><td>First Name></td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
-    for(let i = 0; i< data.length(); i++){
-      html += "<tr>" 
-      for( let j = 0; j < 6; j++){
-        html += "<td>" + data[i][j] + "</td>"
-      }
-      html +="</tr>"
-    }
-    html += "</table>"
-    
-    document.getElementByID("Containter").innerHTML = html
-  }
+  
   
   
 
