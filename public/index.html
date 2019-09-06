@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <!---->link rel="stylesheet" href="styles/debug.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 
   </head> 
@@ -18,51 +17,59 @@
             </h1>    
         </div>
     </section>
-
-      <!-- /.section -->
+   
 		<section class="section">
-        <div class="container">
-          <div class="columns">
-            <div class="column">
-              <div class="notification">
-                <form class="item" action="">
-                  <h4> Enter Amount: </h4>
-                  <input class="selStyle" type='text' id='amount' value="$" size="10"/>
-                </form>
-              </div>
-            </div>
-            <div class="column">
-              <div class="notification">
-                  <div class="dropdown">
-                      <h4> Select Category: </h4>
-                      <select class="selStyle">
-                          <option value="volvo">Volvo</option>
-                          <option value="saab">Saab</option>
-                          <option value="opel">Opel</option>
-                          <option value="audi">Audi</option>
-                      </select>
-                    </div>
-              </div>
-            </div>
-            <div class="column">
-              <div class="notification">
-                  <div class="dropdown">
-                    <h4> Select Month: </h4>
-                    <select class="selStyle">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>  
-                  </div>              
-              </div>
-            </div>
+      <div class="columns">
+        <div class="column">
+          <div class="notification">
+            <form class="item" action="">
+              <h5> Enter Amount: </h5>
+              <input class="selStyle" type='text' id='amount' value="$" size="10"/>
+            </form>
           </div>
         </div>
-      </section>
+        <div class="column">
+          <div class="notification">
+              <div class="dropdown">
+                  <h5> Select Category: </h5>
+                  <select class="selStyle">
+                      <option value="" selected value hidden> Category </option>
+                      <option value="Merchandise">Merchandise</option>
+                      <option value="Restaurants">Restaurants</option>
+                      <option value="Gasoline">Gasoline</option>
+                      <option value="Travel/Ent">Travel/Ent</option>
+                      <option value="Supermarkets">Supermarkets</option>
+                    </select>
+                </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="notification">
+              <div class="dropdown">
+                <h5> Select Month: </h5>
+                <select class="selStyle">
+                    <option value="" selected value hidden> Month </option>
+                    <option value="Jan">Jan</option>
+                    <option value="Feb">Feb</option>
+                    <option value="Mar">Mar</option>
+                    <option value="Apr">Apr</option>
+                    <option value="May">May</option>
+                    <option value="Jun">Jun</option>
+                    <option value="Jul">Jul</option>
+                    <option value="Aug">Aug</option>
+                    <option value="Sept">Sept</option>
+                    <option value="Oct">Oct</option>
+                    <option value="Nov">Nov</option>
+                    <option value="Dec">Dec</option>
+                </select>  
+              </div>              
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <a class="btn button is-primary is-focused center">Submit</a>
 
-      
   </body>
-    <script src='/js/scripts.js'></script>
+  <script src='/js/scripts.js'></script>
 </html>

@@ -13,3 +13,8 @@ align-items: center;
 .item {
     display: flex;
 }
+
+.btn {
+    margin-left: 115px;;
+    margin-right: 115px;
+}
