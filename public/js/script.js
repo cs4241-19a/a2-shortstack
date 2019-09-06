@@ -1,6 +1,6 @@
 const submit = function (e) {
         e.preventDefault()
-        const inputText = document.getElementById( 'inputText' ).value
+        const inputText = document.getElementById( 'inputAssignment' ).value
         const inputDate = document.getElementById( 'inputDate' ).value
         const json = {Note: inputText, Date: inputDate}
         const body = JSON.stringify(json)
@@ -19,12 +19,12 @@ const handleData = function (data) {
             myNode.removeChild(myNode.firstChild);
         }
         data.forEach(function(item, index, array){
-            let note = document.createElement("p")
+            let note = document.createElement("li")
             note.innerHTML = item.Note + " due: " + item.Date + " days: " + item.Days
             if(item.Days <=5){
-                note.className = "red"
+                note.className = "list-group-item list-group-item-danger"
             } else {
-                note.className = "green"
+                note.className = "list-group-item list-group-item-success"
             }
             document.getElementById("notesContainer").appendChild(note)
         })
