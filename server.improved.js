@@ -61,9 +61,7 @@ const handlePost = function( request, response ) {
       case "submit":
         console.log("submit")
         const convertedData = JSON.parse(dataString)
-        console.log(convertedData)
         appdata.push(convertedData)
-        console.log(appdata)
         break
       case "modify":
         console.log("modify")
