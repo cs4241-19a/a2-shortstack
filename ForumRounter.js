@@ -3,7 +3,7 @@ const forumRouter = express.Router();
 
 // const User = require('./User');
 
-// forum view
+// forum list view
 forumRouter.get('/', function(req, res, next) {
     // res.sendFile(path.join(__dirname + '/add-message.hbs'));
     let forumData = [
@@ -137,6 +137,43 @@ forumRouter.get('/', function(req, res, next) {
         },
     ];
     res.render('index', {title: "The Forums", forumData: forumData})
+});
+
+// forum messages view
+forumRouter.get('/forum/1', function(req, res, next) {
+    let messages = [
+        {
+            name: "Jimmy Kajon1",
+            date: "today1",
+            body: "1111111111111111111fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
+        },
+        {
+            name: "Jimmy Kajon2",
+            date: "today2",
+            body: "2222222222222222222fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
+        },
+        {
+            name: "Jimmy Kajon3",
+            date: "today3",
+            body: "3333333333333333333fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
+        },
+        {
+            name: "Jimmy Kajon4",
+            date: "today4",
+            body: "4444444444444444444fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
+        },
+        {
+            name: "Jimmy Kajon5",
+            date: "today5",
+            body: "5555555555555555555fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
+        },
+        {
+            name: "Jimmy Kajon6",
+            date: "today6",
+            body: "6666666666666666666fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
+        },
+    ];
+    res.render('forum', {forumTitle: "Title1", messages: messages})
 });
 
 

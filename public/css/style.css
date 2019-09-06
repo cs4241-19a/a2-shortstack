@@ -1,1 +1,25 @@
-/*Style your own assignment! This is fun! */
+
+/* FORUMS */
+
+#home-headers > :first-child {
+    min-width: 12em;
+}
+
+#home-headers > :last-child {
+    min-width: 8em;
+}
+
+#forum-headers > :first-child {
+    min-width: 8em;
+}
+
+
+/* FORM */
+
+.table-add-row {
+    visibility: hidden;
+}
+
+.table-add-row button {
+    visibility: visible;
+}

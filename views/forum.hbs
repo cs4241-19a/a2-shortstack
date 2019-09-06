@@ -1,0 +1,67 @@
+<div class="row m-0">
+    <div class="col p-0">
+        <div class="d-flex text-white bg-info mb-0 p-4">
+            <h1 class="mb-0 h3 w-25 bd-highlight"><a href="/" class="text-white">The Forums</a></h1>
+            <h2 class="mb-0 h3 flex-shrink-1 bd-highlight">{{ forumTitle }}</h2>
+        </div>
+        <table class="table table-bordered table-striped table-responsive-lg">
+            <thead>
+            <tr id="forum-headers">
+                <th scope="col">Info</th>
+                <th scope="col">Message</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each this.messages as |message|}}
+                <tr>
+                    <td>
+                        <div>{{ message.name }}</div>
+                        <div>{{ message.date }}</div>
+                        <div>
+                            <a style="color: orange;" title="Edit" data-toggle="modal" data-target="#editFormModal">
+                                <i class="material-icons"></i>
+                            </a>
+                            {{#if @first}}{{else}}{{!-- could not find a negator that would work ¯\_(ツ)_/¯ --}}
+                                <a style="color: red;" title="Delete" data-toggle="modal" data-target="#deleteFormModal">
+                                    <i class="material-icons"></i>
+                                </a>
+                            {{/if}}
+<!--                            {{#if @last}}-->
+<!--                                <a style="color: steelblue;" title="Add" data-toggle="modal" data-target="#addFormModal">-->
+<!--                                    <i class="material-icons"></i>-->
+<!--                                </a>-->
+<!--                            {{/if}}-->
+                        </div>
+                    </td>
+                    <td>
+                        <p>
+                            {{ message.body }}
+                        </p>
+                    </td>
+                </tr>
+            {{/each}}
+            <tr class="table-add-row">
+                <td colspan="2">
+                    <button class="btn btn-info d-block" data-toggle="modal" data-target="#addFormModal">Add a Message</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{#> layouts/modal-layout type="add" title="Add a Message" submitText="Post Message" }}
+    {{#*inline "form-block"}}
+        {{> includes/add-form }}
+    {{/inline}}
+{{/layouts/modal-layout}}
+{{#> layouts/modal-layout type="edit" title="Edit a Message" submitText="Save changes" }}
+    {{#*inline "form-block"}}
+        {{> includes/edit-form }}
+    {{/inline}}
+{{/layouts/modal-layout}}
+{{#> layouts/modal-layout type="delete" title="Delete a Message" submitText="Delete Message" }}
+    {{#*inline "form-block"}}
+        {{> includes/delete-form }}
+    {{/inline}}
+{{/layouts/modal-layout}}

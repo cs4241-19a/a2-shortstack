@@ -18,7 +18,7 @@ app.use(bodyParser.json());         // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: false
 }));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('public'));
 
 app.use('/', forumRouter);
 
@@ -49,7 +49,7 @@ const logRequests = function(req, res, next) {
     });
     next()
 };
-// app.use(logRequests);
+app.use(logRequests);
 
 // app.post('/submit/add', function(req, res) {
 //     console.log("post!!!");
