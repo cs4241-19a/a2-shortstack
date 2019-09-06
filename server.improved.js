@@ -6,8 +6,8 @@ const http = require( 'http' ),
 
 const appdata = [
   { 'fName': 'Bob', 'lName': 'Smith', 'day': 23, 'month':'August' },
-  { 'fName': 'honda', 'lName': 2004, 'day': 30 },
-  { 'fName': 'ford', 'lName': 1987, 'day': 14} 
+  { 'fName': 'Suzy', 'lName': 'Ng', 'day': 30 , 'month':'September'},
+  { 'fName': 'Jim', 'lName': 'Hopper', 'day': 14, 'month': 'July'} 
 ]
 
 const server = http.createServer( function( request,response ) {
