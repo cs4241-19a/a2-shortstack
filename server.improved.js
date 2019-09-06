@@ -129,8 +129,8 @@ server.listen( process.env.PORT || port )
 function noDuplicates(dataToAdd){
   for(let i = 0; i< Object.keys(appdata).length; i++){
     console.log("TEST")
-    if((dataToAdd.fName === appdata[i].fName) && (dataToAdd[1] === appdata[i][1])){
-      if((dataToAdd[3] === appdata[i][3]) && (dataToAdd[4] === appdata[i][4])){
+    if((dataToAdd.fName === appdata[i].fName) && (dataToAdd.lName === appdata[i].lName)){
+      if((dataToAdd.day === appdata[i].day) && (dataToAdd.month === appdata[i].month)){
         return false;
       }
     }

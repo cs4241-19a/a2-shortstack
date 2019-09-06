@@ -28,12 +28,16 @@ function diplayDataTable(data){
 
 //Runs everytime the database is updated
 function updateDatabaseDisplayTable(data){
-    var html = "<table><tr><th>Existing Data</th></tr>"
+    var html = "<table><tr><th" + " align=" + ">Existing Data</th></tr>"
     html += "<tr><td>Index</td><td>First Name</td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
     for(let i = 0; i< Object.keys(data).length; i++){
       html += "<tr>" 
-        html += "<td>" + data[i].fName + "</td>"
-      
+      html += "<td>" + i + "</td>"
+      html += "<td>" + data[i].fName + "</td>"
+      html += "<td>" + data[i].lName + "</td>"
+      html += "<td>" + data[i].day + "</td>"
+      html += "<td>" + data[i].month + "</td>"
+      html += "<td>" + data[i].sign + "</td>"
       html +="</tr>"
     }
     html += "</table>"
