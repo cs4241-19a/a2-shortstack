@@ -101,14 +101,11 @@
     .then( function( response) {
       // do something with the reponse
       //display horoscope on screen
-     /* response.json().then(function(parsedJson) {
-        console.log('This is the parsed json', parsedJson);
-      })*/
-      console.log(response)
-      response.text()
-      .then(function (message){
-        console.log("SERVER SAID: "+ message);
-      })
+     response.text()
+      .then(function(message){
+       console.log(message)
+     })
+      
     })
     return false
   }

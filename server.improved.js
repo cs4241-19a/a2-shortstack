@@ -78,9 +78,10 @@ const handlePost = function( request, response ) {
         const convertedData = JSON.parse(dataString)
         appdata.push(convertedData)
         // ... do something with the data here!!!
-      response.write(JSON.stringify(appdata))
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-      response.end()
+        let aaa = JSON.stringify(appdata)
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.write(aaa)
+        response.end()
         break
       case "modify":
         console.log("modify")
