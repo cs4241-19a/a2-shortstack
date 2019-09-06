@@ -17,6 +17,7 @@ http://a2-retat.glitch.me
 - sending data back and forth in JSON
 - using fetchJson for easier posting
 - implemented fetch polyfill
+- using bootstrap
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...
