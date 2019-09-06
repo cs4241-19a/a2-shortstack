@@ -90,6 +90,7 @@
       // do something with the reponse
       //display horoscope on screen
       console.log( response )
+      console.log(response.toString())
     })
 
     return false
@@ -106,6 +107,7 @@
     })
     .then( function( response ) {
       console.log(response)
+      console.log(response.type)
       displayData(response)
     })
 
