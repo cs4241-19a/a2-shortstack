@@ -64,6 +64,9 @@
         <button id="printAllButton">Print All</button>
       </div>
     </form>
+    <div id="Containter">
+      
+    </div>
   </body>
   <script>
 
@@ -118,14 +121,18 @@
   }
     
   function updateDatabseDisplayTable(data){
-    var baseTable = document.createElement("Table")
-    var tableHead = document.createElement("TH")
-    baseTable.appendChild(tableHead)
+    var html = "<table><th>Existing Data</th>"
+    html += "<tr><td>Index</td><td>First Name></td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
     for(let i = 0; i< data.length(); i++){
-      
+      html += "<tr>" 
+      for( let j = 0; j < 6; j++){
+        html += "<td>" + data[i][j] + "</td>"
+      }
+      html +="</tr>"
     }
+    html += "</table>"
     
-    document.body.appendChild(baseTable)
+    document.getElementByID("Containter").innerHTML = html
   }
   
   

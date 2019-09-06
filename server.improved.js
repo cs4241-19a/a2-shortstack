@@ -68,7 +68,7 @@ const handlePost = function( request, response ) {
     console.log(convertedData)
 
     // ... do something with the data here!!!
-
+    response.write(JSON.stringify(addpata))
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
