@@ -105,7 +105,9 @@
       method:'GET',
     })
     .then( function( response ) {
-      displayData(response)
+      console.log(response)
+      console.log(JSON.parse(response.body))
+      displayData(JSON.parse(response))
       console.log( response )
     })
 

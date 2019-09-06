@@ -5,9 +5,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'fName': 'Bob', 'lName': 'Smith', 'day': 23, 'month':'August' },
-  { 'fName': 'Suzy', 'lName': 'Ng', 'day': 30 , 'month':'September'},
-  { 'fName': 'Jim', 'lName': 'Hopper', 'day': 14, 'month': 'July'} 
+  { 'fName': 'Bob', 'lName': 'Smith', 'day': 23, 'month':'August', 'sign':"AHH"},
+  { 'fName': 'Suzy', 'lName': 'Ng', 'day': 30 , 'month':'September', 'sign':"AHH"},
+  { 'fName': 'Jim', 'lName': 'Hopper', 'day': 14, 'month': 'July', 'sign':"AHH"} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -33,10 +33,9 @@ const handleGet = function( request, response ) {
 
 
 const printAll = function(request, response){
+  response.write("TEST")
   response.writeHead(200, "OK", {'Content-Type': 'text/plain' })
   response.end()
-  console.log("REQUESTED DATA")
-  console.log(appdata)
 }
 
 
@@ -62,13 +61,12 @@ const handlePost = function( request, response ) {
         console.log(reqURL)
     }
     
-    console.log("AT END")
     console.log( JSON.parse( dataString ) )
     const convertedData = JSON.parse(dataString)
     console.log(convertedData)
 
     // ... do something with the data here!!!
-    response.write(JSON.stringify(addpata))
+    response.write(JSON.stringify(appdata))
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
