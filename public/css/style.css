@@ -1,1 +1,25 @@
 /*Style your own assignment! This is fun! */
+body {
+    padding: 20px;
+    font: 1em Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+* {box-sizing: border-box;}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+.formContainer{
+    width: 200px;
+    border: 2px solid rgb(10,41,97);
+    border-radius: .5em;
+    padding: 10px;
+    display: flex;
+    flex-direction: column
+}
+
+.nameForm{
+    background-color: rgb(60, 188, 188);
+    color: white;
+}

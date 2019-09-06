@@ -12,6 +12,8 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+console.log("Starting server on default port")
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -26,8 +28,10 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }else{
+    console.log("Loading to client: " + filename)
     sendFile( response, filename )
   }
+
 }
 
 const handlePost = function( request, response ) {
@@ -54,13 +58,12 @@ const sendFile = function( response, filename ) {
 
      // if the error = null, then we've loaded the file successfully
      if( err === null ) {
-
        // status code: https://httpstatuses.com
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
 
      }else{
-
+      console.log(err)
        // file not found, error code 404
        response.writeHeader( 404 )
        response.end( '404 Error: File Not Found' )
