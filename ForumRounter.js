@@ -5,6 +5,7 @@ const forumRouter = express.Router();
 
 // forum list view
 forumRouter.get('/', function(req, res, next) {
+    // TODO: specify a user nane and full name field
     let forumData = [
         {
             title: "Title1",
@@ -140,6 +141,7 @@ forumRouter.get('/', function(req, res, next) {
 
 // forum messages view
 forumRouter.get('/forum/1', function(req, res, next) {
+    // TODO: specify a user nane and full name field
     let messages = [
         {
             name: "Jimmy Kajon1",

@@ -66,8 +66,29 @@ Sample Readme (delete the above when you're ready to submit, and modify the belo
 ---
 
 ## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+My project is a forum which is creatively named "The Forums". Users can post, edit, or delete any message on the forum. 
+
+###Requirements
+
+####HTML
+- All data stored in the database can be seen on the index page, or a specific forum page.
+- All messages and dates are displayed (unless deleted). The user's name can be seen by hovering over a username.
+
+####CSS
+- I used element selectors, ID selectors, and class selectors in my style.css file
+- I horizontally centered the title (h2) on the forum page in style.css with the `#forum-title` selector
+- I made the three name fields in the add form to be side-by-side using the `#add-names`. I added padding with the `#add-names > input:not(:first-child)` selector
+- All of my css is in the styles.css file and separated by css for the forum pages and the form modals. However, most of my stying is done by bootstrap classed
+
+####JS
+- TODO
+
+####Node.js
+- I am using express instead of plain node.js. My back end code is written in the app.js and ForumRouter.js files.
+- app.js contains the basic server code.
+- ForumRouter.js handles all post and gets.
+- Data is stored in a Firebase collection.
+- My derived field is the username. The username is calculated like a wpi username for students from the name entered when posting a message.
 
 Here is a sample formula for summarizing your activities, talk about:
 - the domain area the project pertains to
@@ -84,6 +105,12 @@ http://a2-charlieroberts.glitch.me
 - **Tech Achievement 1**: Using a combination of...
 - **Tech Achievement 2**: ...
 
+express
+firebase
+
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...
 - **Design Achievement 2**: We tested the application with n=X users, finding that...
+
+bootstrap models
+

@@ -13,8 +13,21 @@
     min-width: 8em;
 }
 
+/* center the title of the forum page */
+#forum-title {
+    margin: 0 auto;
+}
 
 /* FORM */
+
+#add-names {
+    display: flex;
+    justify-content: space-between;
+}
+
+#add-names > input:not(:first-child) {
+    margin-left: 10px;
+}
 
 .table-add-row {
     visibility: hidden;

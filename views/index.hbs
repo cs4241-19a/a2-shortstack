@@ -22,7 +22,7 @@
                         <div class="small">{{entry.shortDesc}}</div>
                     </td>
                     <td>
-                        <div>{{entry.created.name}}</div>
+                        <div title="{{ entry.created.name }}">{{entry.created.name}}</div>
                         <div>{{entry.created.date}}</div>
                     </td>
                     <td>
@@ -30,14 +30,14 @@
                         <div>{{entry.stats.views}} views</div>
                     </td>
                     <td>
-                        <div>{{entry.lastPost.name}}</div>
+                        <div title="{{ entry.lastPost.name }}">{{entry.lastPost.name}}</div>
                         <div>{{entry.lastPost.date}}</div>
                     </td>
                 </tr>
             {{/each}}
             <tr class="table-add-row">
                 <td colspan="4">
-                    <button class="btn btn-info d-block" data-toggle="modal" data-target="#addFormModal">Add a Forum</button>
+                    <button class="btn btn-info d-block" data-toggle="modal" data-target="#addFormModal">Start a new Forum</button>
                 </td>
             </tr>
             </tbody>

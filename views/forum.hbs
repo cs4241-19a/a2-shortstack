@@ -2,7 +2,7 @@
     <div class="col p-0">
         <div class="d-flex text-white bg-info mb-0 p-4">
             <h1 class="mb-0 h3 w-25 bd-highlight"><a href="/" class="text-white">The Forums</a></h1>
-            <h2 class="mb-0 h3 flex-shrink-1 bd-highlight">{{ forumTitle }}</h2>
+            <h2 id="forum-title" class="mb-0 h3 flex-shrink-1 bd-highlight">{{ forumTitle }}</h2>
         </div>
         <table class="table table-bordered table-striped table-responsive-lg">
             <thead>
@@ -15,7 +15,7 @@
             {{#each this.messages as |message|}}
                 <tr>
                     <td>
-                        <div>{{ message.name }}</div>
+                        <div title="{{ message.name }}">{{ message.name }}</div>
                         <div>{{ message.date }}</div>
                         <div>
                             <a style="color: orange;" title="Edit" data-toggle="modal" data-target="#editFormModal">
