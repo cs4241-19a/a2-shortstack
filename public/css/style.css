@@ -1,6 +1,6 @@
 /*Style your own assignment! This is fun! */
 
-.gradient {
+body {
   background: #abbaab;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #ffffff, #abbaab);
