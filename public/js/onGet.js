@@ -4,7 +4,6 @@
 // https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
 function timeConverter(UNIX_timestamp){
     let a = new Date(Number(UNIX_timestamp))
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     var year = a.getFullYear();
     var month = a.getMonth();
     var date = a.getDate();
@@ -22,7 +21,7 @@ let getTableEntry = function(title, notes, priority, utctime){
     <td>`+ notes +`</td>
     <td>`+ priority +`</td>
     <td>`+ timeConverter(utctime) +`</td>
-    <td><a href="/edit?time=`+ utctime +`&title=`+title+`&notes=`+notes+`&priority=`+priority+`">EDIT</a></td>
+    <td><button id="edit" class="btn btn-primary" onclick="window.location.href ='/edit?time=`+ utctime +`&title=`+title+`&notes=`+notes+`&priority=`+priority+`';">Edit</button></td>
     </tr>`;
 }
 
@@ -32,16 +31,12 @@ console.log( 'sending GET' )
 fetch( '/get', {
     method:'GET' 
   })
-//   .then( function( response ) {
     .then(response => response.json())
     .then(data => {
     // do something with the response 
     console.log( data )
     let arrayLength = data.length;
     for( let i = 0; i < arrayLength; i++ ) {
-        // const btn = document.createElement('button')
-        // btn.innerHTML = i
-        // btn.onclick = function() { console.log( 'The value of i = ' + i  ) }
         let entry = data[i]
         $( selector ).append( getTableEntry(entry.title, entry.notes, entry.priority, entry.unixtime) )
       }

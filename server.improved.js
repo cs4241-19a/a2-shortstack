@@ -13,6 +13,7 @@ AWS.config.update({region: 'us-east-2'});
 
 // Create the DynamoDB service object
 var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
+var docClient = new AWS.DynamoDB.DocumentClient();
 
 var Entry = function(time, title, notes, priority) {
   return {
@@ -61,6 +62,8 @@ const server = http.createServer( function( request,response ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
+  }else if( request.method === 'DELETE' ){
+    handleDelete( request, response ) 
   }
 })
 
@@ -118,6 +121,38 @@ const handlePost = function( request, response ) {
     response.end()
   })
 }
+
+const handleDelete = function( request, response ) {
+  let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+  request.on( 'end', function() {
+    let dataJSON = JSON.parse( dataString )
+    console.log( 'on delete' )
+    console.log( dataJSON )
+
+    let params = {
+      TableName:'todont-list',
+      Key:{
+          unixtime: dataJSON.time,
+          priority: dataJSON.priority
+        }
+      };
+    console.log( params )
+    docClient.delete(params, function(err, data) {
+      if (err) {
+          console.error("Unable to delete item. Error JSON:", JSON.stringify(err, null, 2));
+      } else {
+          console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
+      }
+  });
+
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end()
+  })
+}  
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 

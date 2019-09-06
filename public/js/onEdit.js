@@ -27,9 +27,44 @@ let getTableEntry = function(title, notes, priority, utctime){
     <td>`+ notes +`</td>
     <td>`+ priority +`</td>
     <td>`+ timeConverter(utctime) +`</td>
-    <td><a href="/delete?`+ utctime +`">DELETE</a></td>
+    <td><button id="delete" class="btn btn-primary">Delete</button></td>
     </tr>`;
 }
+
+// Delete function
+const delete_item = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+
+    const utctime = urlVars.time,
+          priority = urlVars.priority,
+          json = { time: utctime,
+                   priority: priority
+                  },
+          body = JSON.stringify( json )
+
+    console.log(body)
+    fetch( '/delete', {
+      method:'DELETE',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the response 
+      console.log( response )
+    })
+
+    window.location = '/'
+
+    return false
+  }
+
+// window.onload = function() {
+//     console.log( 'onload' )
+//     loadData();
+//     console.log( 'data loaded' )
+//     const button = document.querySelector( '#delete' )
+//     button.onclick = delete_item
+//   }
 
 const selector = '#list #list_div1 #list_div2 #list_div3 #list_table #table_body'
 
@@ -41,3 +76,6 @@ document.querySelector("#inputTime").setAttribute('value', urlVars.time)
 document.querySelector("#inputTitle").setAttribute('value', urlVars.title)
 document.querySelector("#inputNotes").setAttribute('value', urlVars.notes)
 document.querySelector("#gridRadios" + urlVars.priority).setAttribute('checked', 1)
+
+const button = document.querySelector( '#delete' )
+button.onclick = delete_item
