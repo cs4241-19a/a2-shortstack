@@ -21,6 +21,8 @@ const submit = function( e ) {
       console.log( response )
     })
 
+    window.location = '/'
+
     return false
   }
 
