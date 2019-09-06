@@ -20,11 +20,10 @@ const server = http.createServer( function( request,response ) {
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-  console.log(request.url)
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }
-  else if( request.url == 'printAll'){
+  else if( request.url == '/printAll'){
     printAll(request, response)
   }
   else{
@@ -34,7 +33,7 @@ const handleGet = function( request, response ) {
 
 
 const printAll = function(request, response){
-  response.writeHead(1000, "TEST", {'Content-Type': 'text/plain' })
+  response.writeHead(200, "OK", {'Content-Type': 'text/plain' })
   response.end()
   console.log("REQUESTED DATA")
   console.log(appdata)
@@ -55,6 +54,9 @@ const handlePost = function( request, response ) {
     switch(reqURL){
       case "submit":
         console.log("submit")
+        break
+      case "modify":
+        console.log("modify")
         break
       default:
         console.log(reqURL)

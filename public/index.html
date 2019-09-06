@@ -112,7 +112,20 @@
   
   function displayData(response){
     var node = document.createElement("P")
-    var t = document.creatTextNode()
+    var t = document.createTextNode(response[0])
+    node.appendChild(t)
+    document.body.appendChild(t)
+  }
+    
+  function updateDatabseDisplayTable(data){
+    var baseTable = document.createElement("Table")
+    var tableHead = document.createElement("TH")
+    baseTable.appendChild(tableHead)
+    for(let i = 0; i< data.length(); i++){
+      
+    }
+    
+    document.body.appendChild(baseTable)
   }
   
   
