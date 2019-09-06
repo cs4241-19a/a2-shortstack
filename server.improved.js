@@ -77,13 +77,20 @@ const handlePost = function( request, response ) {
         console.log("submit")
         const convertedData = JSON.parse(dataString)
         if(noDuplicates(convertedData)){
-                  appdata.push(convertedData)
+            appdata.push(convertedData)
+          let json = JSON.stringify(appdata)
+          response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+          response.write(json)
+          response.end()
+        }
+        else{
+          let json = JSON.stringify(appdata)
+          response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+          response.write("Duplicate Information, Not Added!")
+          response.end()
         }
         // ... do something with the data here!!!
-        let aaa = JSON.stringify(appdata)
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-        response.write(aaa)
-        response.end()
+        
         break
       case "modify":
         console.log("modify")
@@ -120,8 +127,15 @@ const sendFile = function( response, filename ) {
 
 server.listen( process.env.PORT || port )
 
-const noDuplicates = function(dataToAdd){
-  for(let i = 0; i< appdata.length(); i++){
-    if(dataToAdd[0] === appData[0])
+//Checks for duplicate info
+function noDuplicates(dataToAdd){
+  for(let i = 0; i< Object.keys(appdata).length; i++){
+    console.log("TEST")
+    if((dataToAdd.fName === appdata[i].fName) && (dataToAdd[1] === appdata[i][1])){
+      if((dataToAdd[3] === appdata[i][3]) && (dataToAdd[4] === appdata[i][4])){
+        return false;
+      }
+    }
   }
+  return true;
 }
