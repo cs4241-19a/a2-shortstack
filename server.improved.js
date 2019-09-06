@@ -40,12 +40,18 @@ const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
+    sendFile(response, 'public/index.html')
+  }else if(request.url === '/receive') {
+    // Attach an asynchronous callback to read the data at our posts reference
+    ref.on("value", function(snapshot) {
+      console.log(snapshot.val());
+      response.end(JSON.stringify(snapshot.val()))
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
   }else{
     sendFile( response, filename )
   }
-
-
 }
 
 const handlePost = function( request, response ) {
@@ -90,7 +96,6 @@ const sendFile = function( response, filename ) {
 }
 
 function writeUserData(ref, username, email, color, boardName) {
-
   var usernameRef = usersRef.child(ref);
   usernameRef.set({
     username: username,

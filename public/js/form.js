@@ -9,6 +9,9 @@ const submit = function( e ) {
         json = { name: inputName.value, email: inputEmail.value, Color: selectColor.value, Board: boardName.value },
         body = JSON.stringify( json )
 
+    window.localStorage
+    localStorage.setItem('myName', inputName.value)
+
     fetch( '/submit', {
         method:'POST',
         body
@@ -19,20 +22,6 @@ const submit = function( e ) {
         })
 
     window.location = "/task.html"
-
-    fetch( '/submit', {
-        method:'GET',
-        body
-    })
-        .then( function( response ) {
-            // do something with the reponse
-            console.log("blah blah")
-            console.log( "post response: ", response )
-        })
-
-
-
-
     return false
 }
 

@@ -340,8 +340,6 @@ p {
     background-size: cover;
 }
 
-
-
 .headText {
     font-size: 3.5em;
 }
@@ -349,7 +347,7 @@ p {
 .startForm {
     margin-top: 70px;
     width: 100%;
-    background-color: whitesmoke;
+    background-color: #eeeeee;
     border-radius: 15px;
     box-shadow: 0 1px 10px black;
     height: 300px;
@@ -433,7 +431,6 @@ p {
     text-decoration: none;
     font-size: 1.1em;
     font-weight: 500;
-
 }
 
 .txtBox {
@@ -460,7 +457,7 @@ p {
 }
 
 .ele {
-    background-color: whitesmoke;
+    background-color: #eeeeee;
 }
 
 .selectBox {
