@@ -19,10 +19,11 @@
     e.preventDefault()
 
     const inputName = document.querySelector( '#yourname' ),
-          inputYear = document.querySelector('#classyear'),
-          inputInches document.quesrySelector('#height'),
-          json = { name: inputName.value, year: 2000, inches: 200 },
+          //inputYear = document.querySelector('#classyear'),
+          //inputInches document.querySelector('#height'),
+          json = { name: inputName.value, year: inputYear.value, inches: inputInches.value },
           body = JSON.stringify( json )
+    
 
     fetch( '/submit', {
       method:'POST',
@@ -32,6 +33,7 @@
       // do something with the reponse 
       alert(body)
       console.log( response )
+      
     })
 
     return false
