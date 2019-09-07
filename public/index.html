@@ -11,8 +11,8 @@
       <input type = "text" id="height" value="Your height in inches"><br>
       <button name ="submit">submit</button><br>
       
-      <input type="text" id="delname" value="delete name"><br>
-      <button onclick="myDelete()">delete</button>
+     <!-- <input type="text" id="delname" value="delete name"><br>
+      <button onclick="myDelete()">delete</button>-->
     </form>
   </body>
   <script>
@@ -50,28 +50,27 @@
     button.onclick = submit
   }
     
-    const myDelete = function( e ) {
+    /*const myDelete = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
     const deleteName = document.querySelector( '#delname' ),
-          json = { name: Bob },
-          body = JSON.stringify( json )
+          name = deleteName.value
     
 
     fetch( '/Ondelete', {
       method:'POST',
-      body 
+      name 
     })
     .then( function( response ) {
       // do something with the reponse 
-      alert(body)
+      alert(name)
       console.log( response )
       
     })
 
     return false
-  }
+  }*/
     
 
   </script>
