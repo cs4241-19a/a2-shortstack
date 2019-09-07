@@ -6,7 +6,9 @@
   </head>
   <body>
     <form action="">
-      <input type="text" id="yourname" value="your name here">
+      <input type="text" id="yourname" value="your name here"><br>
+      <input type ="text" id="classyear" value="Your class year"><br>
+      <input type = "text" id="height" value="Your height in inches"><br>
       <button>submit</button>
     </form>
   </body>
@@ -16,8 +18,9 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const inputName = document.querySelector( '#yourname' ),
+          inputYear = document.querySelector('#')
+          json = { name: input.value, year: 2000, inches: 200 },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
