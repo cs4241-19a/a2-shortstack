@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-calendar@5.0.3/dist/css/bulma-calendar.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bulma-calendar@5.0.3/dist/js/bulma-calendar.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.10.1/js/all.js"></script>
   </head>
   <body>
@@ -47,9 +49,18 @@
                 <option>Other</option>
               </select>
             </div>
-    <div class="icon is-small is-left">
-      <i class="fas fa-globe"></i>
-    </div>
+            <div class="icon is-small is-left">
+              <i class="fas fa-globe"></i>
+            </div>
+          </div>
+        </div>
+        
+        <div class="field">
+          <div class="control has-icons-left">
+            <input type="date" id="mission_start">
+            <span class="icon is-small is-left">
+              <i class="fas fa-satellite"></i>
+            </span>
           </div>
         </div>
         
@@ -76,7 +87,8 @@
   
   
   <script>
-
+// Initialize all input of date type.
+const calendars = bulmaCalendar.attach('[type="date"]', {"type": "date", "displayMode": "dialog"});
 //   const submit = function( e ) {
 //     // prevent default form action from being carried out
 //     e.preventDefault()
