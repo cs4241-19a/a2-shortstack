@@ -67,7 +67,7 @@ const handlePost = function( request, response ) {
 
     // ... do something with the data here!!!
     if(Object.keys(json).length === 4) {
-      writeUserData(json.name, json.name, json.email, json.Color, json.Board)
+      writeUserData(json.name, json.Board, json.name, json.email, json.Color, json.Board)
     }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -97,9 +97,10 @@ const sendFile = function( response, filename ) {
    })
 }
 
-function writeUserData(ref, username, email, color, boardName) {
+function writeUserData(ref, refBoard, username, email, color, boardName) {
   var usernameRef = usersRef.child(ref);
-  usernameRef.set({
+  var boardRef = usernameRef.child(refBoard);
+  boardRef.set({
     username: username,
     email: email,
     color: color,

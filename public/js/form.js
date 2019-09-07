@@ -19,9 +19,11 @@ const submit = function( e ) {
     if(inputName.value === '' && signName.value !== '') {
         body = JSON.stringify( jsonSign )
         localStorage.setItem('myName', signName.value)
+        localStorage.setItem('myBoard', signBoard.value)
     } else if(inputName.value !== '' && signName.value === '') {
         body = JSON.stringify( json )
         localStorage.setItem('myName', inputName.value)
+        localStorage.setItem('myBoard', boardName.value)
     } else {
         console.log('error')
     }
