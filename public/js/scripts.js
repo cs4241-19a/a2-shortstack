@@ -81,7 +81,7 @@ function showEditDataForm(){
   else{
     var html = "<form action=\"\" id=\"editForm\" class=\"editForm\"><legend>EDIT</legend>"
     html += "<label for=\"fName\">First Name:</label>"
-    html += "<input type=\"text\" class=\"fName\" value=\""
+    html += "<input type=\"text\" class=\"fNameE\" value=\""
     var selectInfo = document.getElementsByName('modList')[0]
     var selectedIndex = selectInfo.selectedIndex
     //selected index -1
@@ -96,14 +96,14 @@ function showEditDataForm(){
           selectedIndex--;
           html += allData[selectedIndex].fName + "\"><br>"
           html += "<label for=\"lName\">Last Name:</label>"
-          html += "<input type=\"text\" class=\"lName\" value=\""
+          html += "<input type=\"text\" class=\"lNameE\" value=\""
           html += allData[selectedIndex].lName + "\"><br>"
           var month = allData[selectedIndex].month
           html += monthToHTML(month)
           var day = allData[selectedIndex].day
           html += daysToHTML(month, day)
           html += "<button id=\"submitChanges\">SubmitChanges</button>"
-          html +="<button id=\"deleteOriginal\">Delete Original</button>"
+          html +="<button id=\"remove\">Delete Original</button>"
           html += "</form>"
           document.getElementById("Container").innerHTML = ""
           document.getElementById("Container").innerHTML = html
@@ -117,7 +117,7 @@ function showEditDataForm(){
             appendDataToSelect(dates, newData)
           }
           document.getElementById("submitChanges").onclick = submitChanges;
-          document.getElementById("deleteOriginal").onclick = deleteOriginal;
+          document.getElementById("remove").onclick = remove;
         }
       })
     })
@@ -274,7 +274,7 @@ function monthToHTML(month){
   let html = ""
   switch(month){
     case "January":
-      html += "<select name=\"month\" class=\"month\">"
+      html += "<select name=\"month\" class=\"monthE\">"
       html += "<option selected=\"selected\" value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -459,7 +459,7 @@ function monthToHTML(month){
 function daysToHTML(month, day){
   let totalDays = hasDays(monthToNum(month));
   let html = "<label for=\"days\">Day of Birth</label>"
-  html += "<select name=\"days\" class=\"days\">"
+  html += "<select name=\"days\" class=\"daysE\">"
   for(let i = 1; i <= totalDays; i++){
     html += "<option "
     if(i === day){

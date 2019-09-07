@@ -93,13 +93,13 @@
   const submitChanges = function(e){
     e.preventDefault()
     let valInput = []
-    valInput.push(document.querySelector( '.fName' ).value)
-    valInput.push(document.querySelector( '.lName' ).value)
-    valInput.push(document.querySelector( '.month' ).value)
-    valInput.push(document.querySelector( '.days' ).value)
+    valInput.push(document.querySelector( '.fNameE' ).value)
+    valInput.push(document.querySelector( '.lNameE' ).value)
+    valInput.push(document.querySelector( '.monthE' ).value)
+    valInput.push(document.querySelector( '.daysE' ).value)
     const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
           body = JSON.stringify( json )
-
+    console.log(body)
     fetch( '/modify', {
       method:'POST',
       body
@@ -117,8 +117,16 @@
   }
 
   //Deletes value from database
-  const deleteOriginal = function(e){
-    fetch( '/delete', {
+  const remove = function(e){
+    e.preventDefault()
+    let valInput = []
+    valInput.push(document.querySelector( '.fName' ).value)
+    valInput.push(document.querySelector( '.lName' ).value)
+    valInput.push(document.querySelector( '.month' ).value)
+    valInput.push(document.querySelector( '.days' ).value)
+    const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
+          body = JSON.stringify( json )
+    fetch( '/deleteOriginal', {
       method:'POST',
       body
     })
