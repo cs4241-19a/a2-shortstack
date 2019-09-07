@@ -58,7 +58,7 @@ const handlePost = function( request, response ) {
             if(json.code == 200) {
                payload.translation += json.text[0];
                 response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-                console.log(JSON.stringify(payload))
+                //console.log(JSON.stringify(payload))
                 response.end(JSON.stringify(payload))
             }
         }

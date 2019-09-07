@@ -60,12 +60,18 @@
       body 
     })
     .then( function( response ) {
-      text = response.body.json()
-      var tdNode = document.createElement("td");
-      var trNode = document.createElement("tr");
-      tdNode.appendChild(document.createTextNode(text.word));
-      trNode.appendChild(tdNode);
-      document.getElementById("results").appendChild(trNode);
+      return response.json();
+    }).then(function (data) {
+        console.log(data)
+        let tdNode = document.createElement("td");
+        let trNode = document.createElement("tr");
+        tdNode.appendChild(document.createTextNode(data.word));
+        trNode.appendChild(tdNode);
+        tdNode.appendChild(document.createTextNode(data.translation));
+        trNode.appendChild(tdNode);
+        tdNode.appendChild(document.createTextNode(data.lang));
+        trNode.appendChild(tdNode);
+        document.getElementById("results").appendChild(trNode);
     })
 
     return false
