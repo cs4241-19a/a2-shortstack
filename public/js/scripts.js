@@ -1,3 +1,4 @@
+var wrong = 0;
 //to generate a new customer every so often
 function generateCustomer(){
   let rand = random(1, 4);
@@ -34,16 +35,12 @@ function generateCustomer(){
   })
 }
 
-
-
 //generate a random number
 function random(min, max){
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-
 
 //update my money
 function updateBank(num) {
@@ -58,11 +55,11 @@ function updateBank(num) {
   .then( promiseresponse => promiseresponse.json())
   .then(response => {
     document.querySelector('#bills').innerHTML = response.result;
-    /*var amount = Number(document.querySelector('#bills').innerHTML);
-    if (amount < 0) {
-      alert('you lose!');
-      document.location.href = '/';
-    }*/
+    var amount = Number(document.querySelector('#bills').innerHTML);
+    if (amount <= 0 || wrong === 2) {
+      $('#YOULOSE').modal('show');
+      //document.location.href = '/';
+    }
   })
   return false;
   }
@@ -82,12 +79,52 @@ function updateBank(num) {
   }
 }
 
+//function to reset info when quitting
+function quit(){
+  updateBank(0);
+  wrong = 0;
+}
 
+//function to update the score board in the server
+function recordScore(){
+  quit();
+  let score = document.querySelector('#bills').innerHTML;
+  let name = "";
+  if(document.querySelector('#name').value){
+    name = document.querySelector('#name').value;
+  }
+  else{
+    name = "No Name";
+  }
+  let element = "<tr><td>"+name+"</td><td>"+score+"</td></tr>";
+  let json = { entry: element},
+  body = JSON.stringify( json )
+  fetch( '/submit', {
+    method:'POST',
+    headers: {'Content-Type': 'application/json'},
+    body
+  })
+  .then(response => response.json())
+  .then( response => {
+    loadScoreBoard(response);
+  })
+}
 
-
+//function to update the scoreboard on the front end
+function loadScoreBoard(){
+  fetch( '/loadscores', {
+    method:'GET'
+  })
+  .then(response => response.json())
+  .then( response => {
+    document.querySelector('#table').innerHTML = response.result.join("");
+  })
+}
 
 
 //DRAGGING STUFF!!!!!!!
+
+
 //function to allow dragging
 function allowDragging(event){
   event.preventDefault();
@@ -148,6 +185,7 @@ function duringDrop(event){
     }
   }
   else{
+    wrong += 1;
     updateBank(-10);
     let textnode = document.createTextNode("WRONG KIND!: -$10");
     newfinished.appendChild(textnode);

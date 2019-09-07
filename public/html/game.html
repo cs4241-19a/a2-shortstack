@@ -4,23 +4,38 @@
   <title>CS4241 Assignment 2</title>
   <meta charset="utf-8">
   <script type="text/javascript" src="../js/scripts.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../css/game.css">
 </head>
 <body>
-  <!--<audio loop autoplay>
+  <audio loop autoplay>
   <source src="assets/icecreamsong.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
-</audio>-->
-<div style="float: left; width: 50%;">
-  <button onclick="updateBank('0')">
-    <a style="color:black; text-decoration: none;" href="/">QUIT</a>
-  </button>
-</div>
-<div>
-  <button style>
-    <a style="color:black; text-decoration: none;">SCOREBOARD</a>
-  </button>
-</div>
+</audio>
+<div class="modal fade" id="YOULOSE" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">GAME OVER!</h2>
+          </div>
+          <div class="modal-body">
+            <form>
+              <input input="text" id="name" placeholder="Enter your name">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <form action="/">
+              <input class="button" onclick="recordScore()" type="submit" value="SUBMIT"/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+<br>
+<br>
+  <form action="/">
+    <input class="button" onclick="quit()" type="submit" value="QUIT"/>
+  </form>
 <h1>Money: <span id="money" style="color: green; font-size: 50px; margin: 0;">$ <span id="bills">0</span></span></h1>
 <div class="divs">
     <div class="category" id="menu">
@@ -60,7 +75,10 @@
     <div style="display: inline" id="line"></div>
   </div>
   <script>
-   window.onload(setInterval(generateCustomer, 1500));
+   window.onload(setInterval(generateCustomer, 1000));
   </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

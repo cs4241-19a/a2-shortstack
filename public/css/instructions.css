@@ -1,42 +1,41 @@
 @font-face {
-  src: url(../assets/arcadeclassic.ttf);
+  src: url(../assets/otherarcade.ttf);
   font-family: arcade;
 }
 
 h1{
-  font-family: arcade;
-  font-size: 80px;
+  font-size: 75px;
   text-align: center;
 }
 
 body{
   background-color: #33ccff;
   height: 100%;
+  font-family: arcade;
   width: 100%;
   margin: 0;
 }
-button{
+input{
   font-family: arcade;
   border-radius: 30px;
-  font-size: 30px;
+  font-size: 25px;
   background-color: yellow;
   margin-left: auto;
   margin-right: auto;
   display: block;
   cursor: pointer;
-  line-height: 30px;
+  line-height: 35px;
 }
-button:hover{
-  font-size: 35px;
-  line-height: 30px;
+input:hover{
+  font-size: 30px;
+  line-height: 35px;
 }
 #instructpanel{
-  font-family: arcade;
   background-color: white;
   margin: auto;
-  /*border-radius: 15%;*/
-  height: 70vh;
-  font-size: 35px;
+  height: auto;
+  border-radius: 5%;
+  font-size: 30px;
   width: 80%;
 }
 

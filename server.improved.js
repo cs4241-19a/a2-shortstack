@@ -7,6 +7,7 @@ const bodyParser = require('body-parser'),
 let money = 0;
 let imageOrders = [];
 let orders = [];
+let entries = ["<tr><td>Name</td><td>Score</td></tr>"];
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
@@ -59,6 +60,12 @@ app.post('/remove', function(req, res) {
     }
   });
   res.send({images: imageOrders, orders: orders});
+})
+app.post('/submit', function(req, res) {
+  entries.push(req.body.entry);
+})
+app.get('/loadscores', function(req, res) {
+  res.send({result: entries});
 })
 
 app.listen(port)
