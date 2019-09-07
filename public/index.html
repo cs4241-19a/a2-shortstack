@@ -105,8 +105,8 @@
             <thead>
               <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>Time Elapsed</th><th>Mark Complete</th></tr>
             </thead>    
-            <tbody>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>12 days</td><td>OK</td></tr>
+            <tbody id="active-body">
+              
             </tbody>
           </table>
         </div>
@@ -136,13 +136,30 @@
   // Initialize all input of date type.
   const calendars = bulmaCalendar.attach('[type="date"]', {"type": "date", "displayMode": "dialog"});
     
+  const displayActive = function( sat ) {
+    const template = "<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{elapsed} days</td><td><button></button></td></tr>"
+    const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", (new Date(sat.mission_start).toLocaleDateString("en-US")))
+          .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7))
+    const tbody = document.querySelector("#active-body")
+    tbody.innerHTML += row
+  }
+    
+  const displayData = function ( data ) {
+    for (let i = 0; i < data.length; i++) {
+      const sat = data[i]
+      
+      if (sat.has_launched && !sat.mission_completed) {
+        displayActive(sat)
+      }
+    }
+  }
+    
   const loadData = function( e ) {
     fetch( '/spacecraft_data', {
       method:'GET',
     })
     .then( function( response ) {
-      console.log(response)
-      console.log(response.body)
+      response.json().then(displayData)
     })
   }
     
