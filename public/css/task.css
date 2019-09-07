@@ -1,4 +1,101 @@
-#name {
-    height: 200px;
-    margin: -10px;
+#nav {
+    margin-top: -10px;
+    margin-bottom: 0;
+    margin-left: -10px;
+    margin-right: -10px;
+    height: 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: 101%;
+    text-align: center;
+    min-width: 1650px;
+
+    position: absolute;
+    z-index: 800;
+
+    overflow: hidden;
+    background-color: transparent;
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    left: 0;
+    box-shadow: 0 1px 10px #999;
+}
+
+.textH {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+    font-weight: 600;
+    font-size: 2.0em;
+    color: white;
+    padding: 0;
+}
+
+#bName {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+    font-weight: 600;
+    font-size: 2.0em;
+    color: white;
+    padding: 0;
+}
+
+body {
+    background-color: #e0e0e0;
+}
+
+.logOut {
+    position: absolute;
+    right: 0;
+    width: 600px;
+    z-index: 900;
+    margin-top: -50px;
+}
+
+.logList {
+    list-style-type: none;
+}
+
+.logItem {
+    float: right;
+    padding-left: 10px;
+    padding-right: 20px;
+    margin-top: -12px;
+}
+
+.logText {
+    padding-top: 7px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: -25px;
+    border-left: 5px solid #c9c9c9;;
+}
+
+#usrTxt {
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.6em;
+    font-weight: 500;
+    color: white;
+    padding: 0;
+}
+
+.button {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 120px;
+    font-size: 1.2em;
+    font-weight: 500;
+    box-shadow: 0 1px 10px black;
+}
+
+.button:hover {
+    background-color: #006eda;
+    box-shadow: 0 1px 10px black;
+    cursor: pointer;
 }

@@ -392,6 +392,7 @@ p {
     width: 200px;
     font-size: 1.4em;
     font-weight: 500;
+    box-shadow: 0 1px 10px darkslategray;
 }
 
 .button:hover {
@@ -413,6 +414,7 @@ p {
     width: 200px;
     font-size: 1.4em;
     font-weight: 500;
+    box-shadow: 0 1px 10px darkslategray;
 }
 
 .btn {
