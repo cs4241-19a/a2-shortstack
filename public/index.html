@@ -91,10 +91,9 @@
         <div style="height:150px; overflow-y: auto;">
           <table class="table is-fullwidth">
             <thead>
-              <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>Remove</th></tr>
+              <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>Countdown</th><th>Remove</th></tr>
             </thead>    
-            <tbody>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
+            <tbody id="future-body">
             </tbody>
           </table>
         </div>
@@ -117,8 +116,7 @@
             <thead>
               <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>End Date</th><th>Total Time</th></tr>
             </thead>    
-            <tbody>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>May 12th, 2019</td><td>7 days</td></tr>
+            <tbody id="inactive-body">
             </tbody>
           </table>
         </div>
@@ -136,11 +134,36 @@
   // Initialize all input of date type.
   const calendars = bulmaCalendar.attach('[type="date"]', {"type": "date", "displayMode": "dialog"});
     
-  const displayActive = function( sat ) {
-    const template = "<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{elapsed} days</td><td><button></button></td></tr>"
+  const markComplete = function ( sat_id ) {
+    fetch( '/end_mission', {
+      method:'POST',
+      body: JSON.stringify({ id: sat_id })
+    })
+  }
+    
+  const displayFuture = function( sat ) {
+    const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{elapsed} days</td><td><button onclick="removeSat({id})" class="button is-rounded is-danger"> \
+    <span class="icon is-small">  <i class="fas fa-cross"></i> </span> </button></td></tr>'
     const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", (new Date(sat.mission_start).toLocaleDateString("en-US")))
-          .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7))
+          .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7)).replace("{id}", sat.id)
     const tbody = document.querySelector("#active-body")
+    tbody.innerHTML += row
+  }
+    
+  const displayActive = function( sat ) {
+    const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{elapsed} days</td><td><button onclick="markComplete({id})" class="button is-rounded is-success"> \
+    <span class="icon is-small">  <i class="fas fa-check"></i> </span> </button></td></tr>'
+    const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", (new Date(sat.mission_start).toLocaleDateString("en-US")))
+          .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7)).replace("{id}", sat.id)
+    const tbody = document.querySelector("#active-body")
+    tbody.innerHTML += row
+  }
+    
+  const displayInactive = function( sat ) {
+    const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{end}</td><td>{elapsed} days</td></tr>'
+    const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", new Date(sat.mission_start).toLocaleDateString("en-US"))
+          .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7)).replace("{end}", new Date(sat.mission_end).toLocaleDateString("en-US"))
+    const tbody = document.querySelector("#inactive-body")
     tbody.innerHTML += row
   }
     
@@ -148,8 +171,16 @@
     for (let i = 0; i < data.length; i++) {
       const sat = data[i]
       
+      if (!sat.has_launched) {
+        displayFuture(sat)
+      }
+      
       if (sat.has_launched && !sat.mission_completed) {
         displayActive(sat)
+      }
+      
+      if (sat.has_launched && sat.mission_completed) {
+        displayInactive(sat)
       }
     }
   }
