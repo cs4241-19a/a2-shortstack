@@ -9,19 +9,37 @@ const http = require( 'http' ),
 const appdata = [
   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'model': 'ford', 'year': 1987, 'mpg': 14}
 ]
 
+const itemsStore = {}
+
 const server = http.createServer( function( request,response ) {
+  writeCorsHeaders(request, response);
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
+    handleGet( request, response )
   }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+    handlePost( request, response )
+  }else if (request.method === 'OPTIONS') {
+    handleOptions(request, response);
   }
 })
 
+const writeCorsHeaders = function(request, response) {
+  response.setHeader('Access-Control-Allow-Headers', request.headers.origin);
+  response.setHeader('Access-Control-Request-Method', request.headers.origin);
+  response.setHeader('Access-Control-Allow-Origin', request.headers.origin);
+  response.setHeader('Access-Control-Allow-Headers', 'authorization, content-type')
+  response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+}
+
+const handleOptions = function(request, response) {
+  response.writeHead(200);
+  response.end();
+}
+
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+  const filename = dir + request.url.slice( 1 )
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
@@ -34,21 +52,33 @@ const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    const req = JSON.parse( dataString );
+    switch(req.type) {
+      case 'getData':
+        response.setHeader('Content-Type', 'application/json');
+        response.writeHead(200);
+        response.end(JSON.stringify({ itemsStore }))
+        break;
+      case 'addItem':
+        itemsStore[req.data.id] = req.data;
+        response.writeHead(200);
+        response.end();
+        break;
+      default:
+        console.error(`Don't know what to do with`, req);
+        response.writeHead(400);
+        response.end();
+        break;
+    }
   })
 }
 
 const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+   const type = mime.getType( filename )
 
    fs.readFile( filename, function( err, content ) {
 
