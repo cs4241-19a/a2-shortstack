@@ -7,22 +7,31 @@
   </head>
   <body>
     <div class="formContainer">
+      <div id="readings-table"></div>
       <form action="" class="nameForm">
-        <input type="number" id="speed" value="0">
-        <input type="number" id="rpm" value="0">
-        <select id="gear" size="8" multiple>
-          <option value="reverse">Reverse</option>
-          <option value="park">Park</option>
-          <option value="gear1">1st Gear</option>
-          <option value="gear2">2nd Gear</option>
-          <option value="gear3">3rd Gear</option>
-          <option value="gear4">4th Gear</option>
-          <option value="gear5">5th Gear</option>
-          <option value="gear6">6th Gear</option>
-        </select>
+        <label>What is the car's current speed (in MPH)?
+          <input type="number" id="speed" value="0">
+        </label>
+        <label>What is the current wheel angular velocity (in RPM)?
+          <input type="number" id="rpm" value="0">
+        </label>
+        <label>What is the current gear?
+          <select id="gear" size="8" multiple>
+              <option value="reverse">Reverse</option>
+              <option value="park">Park</option>
+              <option value="gear1">1st Gear</option>
+              <option value="gear2">2nd Gear</option>
+              <option value="gear3">3rd Gear</option>
+              <option value="gear4">4th Gear</option>
+              <option value="gear5">5th Gear</option>
+              <option value="gear6">6th Gear</option>
+            </select>
+        </label>
         <button>submit</button>
       </form>
     </div>   
   </body>
   <script src="js/scripts.js"></script>
+  <link href="js/tabulator-master/dist/css/tabulator.css" rel="stylesheet">
+  <script type="text/javascript" src="js/tabulator-master/dist/js/tabulator.js"></script>
 </html>

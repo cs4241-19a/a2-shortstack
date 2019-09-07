@@ -11,8 +11,9 @@ p {
 }
 
 .formContainer{
-    width: 200px;
-    border: 2px solid rgb(10,41,97);
+    width: 400px;
+    border: 2px solid rgb(4, 28, 71);
+    background-color: rgb(4, 28, 71);
     border-radius: .5em;
     padding: 10px;
     display: flex;
@@ -20,6 +21,20 @@ p {
 }
 
 .nameForm{
-    background-color: rgb(60, 188, 188);
-    color: white;
+    color:rgb(240, 245, 255);
+}
+
+input, select, button {
+    font: .9em arial;
+    padding: 5px;
+    width:370px;
+    margin: 2px;
+    border: none;
+    background-color: rgb(240, 245, 255);
+    color:rgb(4, 28, 71);
+    box-sizing: border-box;
+}
+
+label {
+    font : bold 1em "typewriter", sans-serif;
 }

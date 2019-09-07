@@ -4,13 +4,8 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
-      port = 3000
-
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+      port = 3000,
+      Tabulator = require('tabulator-tables');
 
 console.log("Starting server on default port")
 
@@ -21,6 +16,27 @@ const server = http.createServer( function( request,response ) {
     handlePost( request, response ) 
   }
 })
+
+const updateRecord = function(reading){
+  return new Promise(resolve =>{
+    fs.readFile('data/carreadings.json', 'utf8', function updateFile(err, readings){
+      if (err){
+        console.log(err);
+      } else {
+        let readingsObj = JSON.parse(readings);
+        readingsObj.readings.push(reading);
+        let json = JSON.stringify(readingsObj);
+        fs.writeFile('data/carreadings.json', json, 'utf8', function writeCallback(err){
+          if (err){
+            console.log(err);
+          }
+        });
+        resolve(readingsObj);
+      }
+    });
+  })
+  
+}
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
@@ -42,12 +58,14 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    let reading = JSON.parse( dataString )
 
-    // ... do something with the data here!!!
+    updateRecord(reading).then(function(resolve){
+      console.log(resolve)
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+      response.writeHeader( 200, { 'Content-Type': 'application/json' })
+      response.end(JSON.stringify(resolve));
+    });
   })
 }
 
@@ -71,5 +89,7 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+
 
 server.listen( process.env.PORT || port )
