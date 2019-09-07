@@ -30,12 +30,11 @@
       <option value="en-ru">Russian</option>
       </select>
          ?
-         
       <button>Translate!</button>
     </form>
     </div>
-  <h2>
-  </h2>
+    <h2>
+    </h2>
   <table id="results" style="width:100%">
   <tr>
     <th>Word</th>
@@ -43,6 +42,12 @@
     <th>Lang</th>
   </tr>
   </table>
+  <h2>
+    Server Contents
+  </h2>
+  <textarea>
+    
+  </textarea>
   </body>
   <script>
 
@@ -68,9 +73,11 @@
         var tdNode2 = document.createElement("td");
         var tdNode3 = document.createElement("td");
         var trNode = document.createElement("tr");
+        var langSelect = document.getElementById("lang");
+        var selectedText = langSelect.options[langSelect.selectedIndex].text;
         tdNode.appendChild(document.createTextNode(data.word));
         tdNode2.appendChild(document.createTextNode(data.translation));
-        tdNode3.appendChild(document.createTextNode(data.lang));
+        tdNode3.appendChild(document.createTextNode(selectedText));
         trNode.appendChild(tdNode);
         trNode.appendChild(tdNode2);
         trNode.appendChild(tdNode3);

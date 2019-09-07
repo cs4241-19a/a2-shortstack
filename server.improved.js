@@ -37,7 +37,7 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     
     let body = JSON.parse( dataString )
-    var payload = {word:body.word, lang: body.lang, translation: ""};
+    var payload = {word:body.word, lang: body.lang, translation: "", alldata: ""};
     var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
     keyAPI = "trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd";
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -53,10 +53,11 @@ const handlePost = function( request, response ) {
             var res = this.responseText;
             var json = JSON.parse(res);
             if(json.code == 200) {
-               payload.translation += json.text[0];
+                payload.translation += json.text[0];
                 response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-                //console.log(JSON.stringify(payload))
+                payload.alldata = ""
                 appdata.push(JSON.stringify(payload))
+                payload.alldata = appdata.join()
                 response.end(JSON.stringify(payload))
             }
         }

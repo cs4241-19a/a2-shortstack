@@ -1,5 +1,6 @@
 dependencies:
   mime: 2.4.4
+  xmlhttprequest: 1.8.0
 packages:
   /mime/2.4.4:
     dev: false
@@ -8,8 +9,15 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-LRxmNwziLPT828z+4YkNzloCFC2YM4wrB99k+AV5ZbEyfGNWfG8SO1FUXLmLDBSo89NrJZ4DIWeLjy1CHGhMGA==
+  /xmlhttprequest/1.8.0:
+    dev: false
+    engines:
+      node: '>=0.4.0'
+    resolution:
+      integrity: sha1-Z/4HXFwk/vOfnWX197f+dRcZaPw=
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
   mime: ^2.4.4
+  xmlhttprequest: ^1.8.0
