@@ -53,12 +53,12 @@ const handlePost = function( request, response ) {
     xhr.send(req);
     xhr.onreadystatechange = function() {
         if (this.readyState==4) {
-            console.log("response recieved")
             var res = this.responseText;
             var json = JSON.parse(res);
             if(json.code == 200) {
                payload.translation += json.text[0];
                 response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+                console.log(JSON.stringify(payload))
                 response.end(JSON.stringify(payload))
             }
         }

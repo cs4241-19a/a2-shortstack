@@ -59,10 +59,14 @@
       body 
     })
     .then( function( response ) {
-      console.log( response )
+      response.on( 'data', function( data ) {
+        dataString += data 
+      })
+      response.on('end')
+      console.log( response.body )
       var tdNode = document.createElement("td");
       var trNode = document.createElement("tr");
-      tdNode.appendChild(document.createTextNode(JSON.stringify(response)));
+      tdNode.appendChild(document.createTextNode(JSON.stringify(response.body)));
       trNode.appendChild(tdNode);
       document.getElementById("results").appendChild(trNode);
       console.log( response );
