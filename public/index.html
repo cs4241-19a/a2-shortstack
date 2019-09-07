@@ -7,19 +7,19 @@
   </head>
   <body>
     <h1>
-      JOE'S TRANSLATOR APP
+      My Travel Dictionary App
     </h1>
     <form action="">
-      <input type="text" id="yourname" value="your name here">
-      <button>submit</button>
+      <input type="text" id="yourname" value="How do I say...?">
+      <button>Translate!</button>
     </form>
   <h2>
     Results
   </h2>
   <table id="results" style="width:100%">
   <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
+    <th>Word</th>
+    <th>Translation</th> 
     <th>Age</th>
   </tr>
   <tr>
@@ -52,7 +52,7 @@
       
       var tdNode = document.createElement("td");
       var trNode = document.createElement("tr");
-      tdNode.appendChild(document.createTextNode(response.yourname));
+      tdNode.appendChild(document.createTextNode(response));
       trNode.appendChild(tdNode);
       document.getElementById("results").appendChild(trNode); 
       console.log( response )
