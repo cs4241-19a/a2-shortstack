@@ -1,1 +1,10 @@
-/*Style your own assignment! This is fun! */
+html, body {
+  height: 100%;
+}
+
+body  {
+  background-image: url("https://www.nasa.gov/sites/default/files/thumbnails/image/earth_and_limb_m1199291564l_color_2stretch_mask_0.jpg");
+  background-color: #cccccc;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
