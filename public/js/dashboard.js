@@ -11,6 +11,9 @@
  * TODO: Fix title
  * TODO: Refactor
  * TODO: View all entries
+ * TODO: Fix datatable on login (no data)
+ * TODO: Edit login and register css
+ * TODO: Add profile edit options
  */
 
 var app = angular.module("dashboardApp", []);
@@ -85,23 +88,34 @@ app.controller("dashboardCtrl", function ($scope) {
         firebase.auth().signOut();
     };
 
-    firebase.auth().onAuthStateChanged(function (user) {
-
-        if (!user) {
-            window.location = 'index.html';
-        } else {
-            // Populate everything
-            currentUser = user;
-            console.log(user);
-
-            //$("#user-name-span").text(user.displayName);
-            $scope.name = user.displayName;
-            $scope.$apply();
-
-            repopulateTable(true);
-            updateStats();
-        }
+    // Your web app's Firebase configuration
+    fetch('/firebaseKey')
+        .then(function (response) {
+            return response.json();
+        }).then(function (data) {
+        firebase.initializeApp(data);
+        initOnAuth();
     });
+
+    function initOnAuth() {
+        firebase.auth().onAuthStateChanged(function (user) {
+
+            if (!user) {
+                window.location = 'index.html';
+            } else {
+                // Populate everything
+                currentUser = user;
+                console.log(user);
+
+                //$("#user-name-span").text(user.displayName);
+                $scope.name = user.displayName;
+                $scope.$apply();
+
+                repopulateTable(true);
+                updateStats();
+            }
+        });
+    }
 
     $('#form-submit').click(function () {
         // get all the inputs into an array.

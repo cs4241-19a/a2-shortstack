@@ -729,16 +729,6 @@
 <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-firestore.js"></script>
 
-<script>
-    // Your web app's Firebase configuration
-    fetch('/firebaseKey')
-        .then(function (response) {
-            return response.json();
-        }).then(function (data) {
-        firebase.initializeApp(data);
-    });
-</script>
-
 <!-- OCR Recog -->
 <script src='https://unpkg.com/tesseract.js@v2.0.0-alpha.13/dist/tesseract.min.js'></script>
 

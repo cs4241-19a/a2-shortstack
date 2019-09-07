@@ -21,19 +21,18 @@ function loadRegister() {
             }
         }
     });
+}
 
-    function register() {
-        var email = document.getElementById("email_field").value;
-        var password = document.getElementById("password_field").value;
+function register() {
+    var email = document.getElementById("email_field").value;
+    var password = document.getElementById("password_field").value;
 
-        console.log(email, password);
+    console.log(email, password);
 
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ...
-        });
-    }
-
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+    });
 }
