@@ -4,3 +4,9 @@ table, th, td {
   border: 1px solid black;
   padding: 5px;
 }
+
+div {
+  display: flex;
+  flex-direction: row
+ 
+}
