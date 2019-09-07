@@ -26,32 +26,16 @@ const handleGet = function( request, response ) {
   else if (request.url == '/getData'){
     sendData(response)
   }
-  else if( request.url == '/printAll'){
-    printAll(request, response)
-  }
   else{
     sendFile( response, filename )
   }
 }
 
 const sendData = function(res){
-  res.writeHeader(200, {'Content-Type': 'plain/text'})
+  res.writeHeader(200, "OK", {'Content-Type': 'plain/text'})
   res.write(JSON.stringify(appdata))
   res.end()
 }
-
-
-const printAll = function(req, res){
-  console.log("IN printALL")  
-  let data = JSON.stringify(appdata)
-  res.writeHead(200, "OK", {'Content-Type': 'plain/text' })
-  res.write(data)
-  res.end()
-  
-}
-
-
-
 
 
 const handlePost = function( request, response ) {
@@ -70,7 +54,7 @@ const handlePost = function( request, response ) {
         const convertedData = JSON.parse(dataString)
         convertedData.sign = starSign(convertedData)
         if(noDuplicates(convertedData)){
-            appdata.push(convertedData)
+          appdata.push(convertedData)
           let json = JSON.stringify(appdata)
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
           response.write(json)
@@ -87,6 +71,8 @@ const handlePost = function( request, response ) {
       case "modify":
         console.log("modify")
         break
+      case "delete":
+        console.log("delete")
       default:
         console.log(reqURL)
     }

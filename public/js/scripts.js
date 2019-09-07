@@ -190,17 +190,6 @@ function updateDatabaseDisplayTable(data){
   document.getElementById("Container").innerHTML = html
 }
 
-//Changes information in database to given
-const submitChanges = function(){
-  
-}
-
-//Deletes value from database
-const deleteOriginal = function(){
-  
-}
-
-
 //******* DYNAMIC DROPDOWNS ******//
 //Removes all options from given select element
 function removeAllOptions(selection, removalGroup){

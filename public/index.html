@@ -89,13 +89,57 @@
     return false
   }
   
+  //Changes information in database to given
+  const submitChanges = function(e){
+    e.preventDefault()
+    let valInput = []
+    valInput.push(document.querySelector( '.fName' ).value)
+    valInput.push(document.querySelector( '.lName' ).value)
+    valInput.push(document.querySelector( '.month' ).value)
+    valInput.push(document.querySelector( '.days' ).value)
+    const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
+          body = JSON.stringify( json )
+
+    fetch( '/modify', {
+      method:'POST',
+      body
+    })
+    .then( function( response) {
+      // do something with the reponse
+      //display horoscope on screen
+     response.text()
+      .then(function(message){
+       console.log(message)
+     })
+      
+    })
+    return false
+  }
+
+  //Deletes value from database
+  const deleteOriginal = function(e){
+    fetch( '/delete', {
+      method:'POST',
+      body
+    })
+    .then( function( response) {
+      // do something with the reponse
+      //display horoscope on screen
+     response.text()
+      .then(function(message){
+       console.log(message)
+     })
+      
+    })
+    return false
+  }
   
   
   
     //Assign Button Functions On Load
     window.onload = function() {
-      /*const subButton = document.querySelector( '#subButton' )
-      subButton.onclick = submit*/
+      const subButton = document.querySelector( '#subButton' )
+      subButton.onclick = submit
     }
   
   </script>
