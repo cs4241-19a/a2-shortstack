@@ -87,7 +87,6 @@ dnPDF.addEventListener("click", function download() {
             //return the autoTable config options object
             return {
                 styles: {
-                    fillColor: [0, 255, 255]
                 },
             };
         },
@@ -115,7 +114,16 @@ var table = new Tabulator("#expense-table", {
 		{column:"name", dir:"asc"},
 	],
     columns:[                  //define the table columns
-        {title:"Amount", field:"amount", editor:"input", formatter:"money", bottomCalc:"sum"},
+        {title:"Amount", field:"amount", editor:"input", formatter:"money", bottomCalc:"sum", bottomCalcFormatter: "money",
+        bottomCalcFormatterParams:  {
+          decimal: ".",
+          thousand: ",",
+          symbol: "$"
+        }, formatterParams: {
+            decimal: ".",
+            thousand: ",",
+            symbol: "$"
+        }},
 		{title:"Category", field:"category", align:"left", editor:"select", editorParams:{values:["Merchandise", "Restaurants", "Gasoline", "Travel/Ent", "Supermarkets"]}},
 		{title:"Month", field:"month", editor:"select", editorParams:{values:["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]}}
 	],
