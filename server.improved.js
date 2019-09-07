@@ -52,9 +52,8 @@ const handlePost = function( request, response ) {
         textAPI = body.word,
         langAPI = body.lang
         let data = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
-        console.log(body.word)
     xhr.open("POST",url,true);
-    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-type","text/html");
     console.log(data);
     xhr.send(data);
     xhr.onreadystatechange = function() {
