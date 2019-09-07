@@ -51,18 +51,18 @@ const handlePost = function( request, response ) {
         langAPI = body.lang
         let req = 'key='+keyAPI+'&text='+textAPI+'&lang='+langAPI;
     xhr.open("POST",url,true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(req);
     console.log(req);
     xhr.onreadystatechange = function() {
         if (this.readyState==4) {
             console.log("response recieved")
             var res = this.responseText;
-            console.log(res)
+           // console.log(res)
             var json = JSON.parse(res);
             if(json.code == 200) {
                 body += json.text[0];
-                console.log(json.text[0]);
+               // console.log(json.text[0]);
             }
             else {
                 body += "Error Code: " + json.code;

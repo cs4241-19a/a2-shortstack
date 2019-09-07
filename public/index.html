@@ -59,7 +59,7 @@
       body 
     })
     .then( function( response ) {
-      
+      response = JSON.stringify(response)
       var tdNode = document.createElement("td");
       var trNode = document.createElement("tr");
       tdNode.appendChild(document.createTextNode(response.word));
