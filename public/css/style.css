@@ -10,6 +10,10 @@ body  {
   background-position: center;
 }
 
+header {
+  margin-bottom: 10px
+}
+
 #title-txt {
   font-size: 24px;
   font-family: monospace;
@@ -19,4 +23,14 @@ body  {
 
 .center-txt {
   text-align: center;
+}
+
+.full-width {
+  width=100%;
+}
+
+#main-container {
+  opacity: 0.5;
+  background-color: black;
+  height: 100000px;
 }
