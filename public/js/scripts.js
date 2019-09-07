@@ -1,4 +1,5 @@
 var wrong = 0;
+
 //to generate a new customer every so often
 function generateCustomer(){
   let rand = random(1, 4);
