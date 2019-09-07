@@ -4,9 +4,14 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bulma Libraries --> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <!-- My Style CSS -->
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <!-- Tabulator Libraries -->
+    <link href="tabulator-master/dist/css/tabulator.min.css" rel="stylesheet">
+    <script type="text/javascript" src="tabulator-master/dist/js/tabulator.min.js"></script>
 
   </head> 
   <body>
@@ -32,7 +37,7 @@
           <div class="notification">
               <div class="dropdown">
                   <h5> Select Category: </h5>
-                  <select class="selStyle">
+                  <select class="selStyle" id="category">
                       <option value="" selected value hidden> Category </option>
                       <option value="Merchandise">Merchandise</option>
                       <option value="Restaurants">Restaurants</option>
@@ -47,7 +52,7 @@
           <div class="notification">
               <div class="dropdown">
                 <h5> Select Month: </h5>
-                <select class="selStyle">
+                <select class="selStyle" id="month">
                     <option value="" selected value hidden> Month </option>
                     <option value="Jan">Jan</option>
                     <option value="Feb">Feb</option>
@@ -68,8 +73,12 @@
       </div>
     </section>
 
-    <a class="btn button is-primary is-focused center">Submit</a>
-
+    <a class="button btn is-primary is-focused center" id="button">Submit</a>
+    
+    <section class="section">
+        <div id="expense-table"></div>
+    </section>
+    
   </body>
   <script src='/js/scripts.js'></script>
 </html>
