@@ -9,7 +9,7 @@ const http = require( 'http' ),
 let next_id = 1
 const appdata = [
   { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'has_launched': true, 'mission_start': 911520000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 },
-  { 'id': 0, 'name': 'ISS2', 'orbit_type': 'Lunar Orbit', 'has_launched': false, 'mission_start': (new Date()).getTime() + 10000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
+  { 'id': 1, 'name': 'ISS2', 'orbit_type': 'Lunar Orbit', 'has_launched': false, 'mission_start': (new Date()).getTime() + 10000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -28,7 +28,7 @@ const refreshCalculated = function (data) {
       appdata[i].elapsed = appdata[i].mission_end - appdata[i].mission_start
     }
     
-    if (appdata[i].mission_start > new Date()) {
+    if (appdata[i].mission_start > new Date().getTime()) {
       appdata[i].has_launched = false
     } else {
       appdata[i].has_launched = true

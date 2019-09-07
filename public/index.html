@@ -20,15 +20,15 @@
         <div class="tabs is-centered is-toggle">
           <ul>
             <li class="is-active">
-              <a>Add a Satellite</a>
+              <a onclick="toggleView(0)">Add a Satellite</a>
             </li>
             <li>
-              <a>View Satellites</a>
+              <a onclick="toggleView(1)">View Satellites</a>
             </li>
           </ul>
         </div>
         
-        <form id="new-sat-form" style="display:none">
+        <form id="new-sat-form">
           
           <div class="field">
             <div class="control has-icons-left">
@@ -86,41 +86,41 @@
 
           <button class="button is-large is-fullwidth is-rounded" disabled>Submit</button>
         </form>
-        
-        <h1 class="center-txt table-lable">Future Satellites</h1>
-        <div style="height:150px; overflow-y: auto;">
-          <table class="table is-fullwidth">
-            <thead>
-              <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>Countdown</th><th>Remove</th></tr>
-            </thead>    
-            <tbody id="future-body">
-            </tbody>
-          </table>
+        <div id="table-view" style="display:none">
+          <h1 class="center-txt table-lable">Future Satellites</h1>
+          <div style="height:150px; overflow-y: auto;">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>Remove</th></tr>
+              </thead>    
+              <tbody id="future-body">
+              </tbody>
+            </table>
+          </div>
+
+          <h1 class="center-txt table-lable">Active Satellites</h1>
+          <div style="height:150px; overflow-y: auto;">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>Time Elapsed</th><th>Mark Complete</th></tr>
+              </thead>    
+              <tbody id="active-body">
+
+              </tbody>
+            </table>
+          </div>
+
+          <h1 class="center-txt table-lable">Inactive Satellites</h1>
+          <div style="height:150px; overflow-y: auto;">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>End Date</th><th>Total Time</th></tr>
+              </thead>    
+              <tbody id="inactive-body">
+              </tbody>
+            </table>
+          </div>
         </div>
-        
-        <h1 class="center-txt table-lable">Active Satellites</h1>
-        <div style="height:150px; overflow-y: auto;">
-          <table class="table is-fullwidth">
-            <thead>
-              <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>Time Elapsed</th><th>Mark Complete</th></tr>
-            </thead>    
-            <tbody id="active-body">
-              
-            </tbody>
-          </table>
-        </div>
-        
-        <h1 class="center-txt table-lable">Inactive Satellites</h1>
-        <div style="height:150px; overflow-y: auto;">
-          <table class="table is-fullwidth">
-            <thead>
-              <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>End Date</th><th>Total Time</th></tr>
-            </thead>    
-            <tbody id="inactive-body">
-            </tbody>
-          </table>
-        </div>
-        
       </div>
     </div>
   </body>
@@ -140,13 +140,19 @@
       body: JSON.stringify({ id: sat_id })
     })
   }
+  const removeSat = function ( sat_id ) {
+    fetch( '/remove_spacecraft', {
+      method:'POST',
+      body: JSON.stringify({ id: sat_id })
+    })
+  }
     
   const displayFuture = function( sat ) {
-    const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{elapsed} days</td><td><button onclick="removeSat({id})" class="button is-rounded is-danger"> \
-    <span class="icon is-small">  <i class="fas fa-cross"></i> </span> </button></td></tr>'
+    const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td><button onclick="removeSat({id})" class="button is-rounded is-danger"> \
+    <span class="icon is-small">  <i class="fas fa-times"></i> </span> </button></td></tr>'
     const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", (new Date(sat.mission_start).toLocaleDateString("en-US")))
-          .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7)).replace("{id}", sat.id)
-    const tbody = document.querySelector("#active-body")
+          .replace("{id}", sat.id)
+    const tbody = document.querySelector("#future-body")
     tbody.innerHTML += row
   }
     
@@ -267,6 +273,22 @@
     
     button.disabled = false
   }
+  
+  const toggleView = function(view) {
+    const form = document.querySelector( '#new-sat-form' )
+    const tables = document.querySelector( '#table-view' )
+    
+    switch (view) {
+      case 0:
+        form.style.display = "block"
+        tables.sytle.display = "none"
+        break
+      case 1:
+        form.style.display = "none"
+        tables.sytle.display = "block"
+      
+    }
+  }
 
   window.onload = function() {
     const button = document.querySelector( 'button' )
@@ -284,7 +306,6 @@
     
     calendars[0].on('hide', checkInput)
     calendars[1].on('hide', checkInput)
-    
     loadData()
   }
 
