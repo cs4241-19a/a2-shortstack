@@ -43,11 +43,6 @@ const sendData = function(res, horoscope){
 }
 
 
-
-
-
-
-
 const printAll = function(req, res){
   console.log("IN printALL")  
   let data = JSON.stringify(appdata)
@@ -75,6 +70,7 @@ const handlePost = function( request, response ) {
       case "submit":
         console.log("submit")
         const convertedData = JSON.parse(dataString)
+        convertedData.sign = starSign(convertedData)
         if(noDuplicates(convertedData)){
             appdata.push(convertedData)
           let json = JSON.stringify(appdata)
@@ -186,10 +182,16 @@ function starSign(personalInfo){
         return "Gemini"
       }
       else{
-        return "Virgo"
+        return "Cancer"
       }
       break;
     case "July":
+      if(personalInfo.day < 23){
+        return "Cancer"
+      }
+      else{
+        return "Leo"
+      }
       break;
     case "August":
       if(personalInfo.day < 24){
@@ -200,10 +202,36 @@ function starSign(personalInfo){
       }
       break;
     case "September":
+      if(personalInfo.day < 23){
+        return "Virgo"
+      }
+      else{
+        return "Libra"
+      }
+      break;
+    case "October":
+      if(personalInfo.day < 24){
+        return "Libra"
+      }
+      else{
+        return "Scorpio"
+      }
       break;
     case "November":
+      if(personalInfo.day < 24){
+        return "Scorpio"
+      }
+      else{
+        return "Sagatarius"
+      }
       break;
     case "December":
+      if(personalInfo.day < 22){
+        return "Sagittarius"
+      }
+      else{
+        return "Capricorn"
+      }
       break;
     default:
       return "Error"
