@@ -9,7 +9,7 @@ const http = require( 'http' ),
 const appdata = [
   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14}
+  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -38,8 +38,8 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log("server")
-    let body = JSON.parse( dataString );
+    
+    let body = JSON.parse( dataString )
     var payload = {word:body.word, lang: body.lang, translation: ""};
     var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
     keyAPI = "trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd";
@@ -53,13 +53,12 @@ const handlePost = function( request, response ) {
     xhr.send(req);
     xhr.onreadystatechange = function() {
         if (this.readyState==4) {
+            console.log("response recieved")
             var res = this.responseText;
             var json = JSON.parse(res);
             if(json.code == 200) {
-                payload.translation += json.text[0];
-                appdata.push(JSON.stringify(payload))
-                response.writeHead( 200, "OK", {'Content-Type': 'text/plain'})
-                console.log(JSON.stringify(payload));
+               payload.translation += json.text[0];
+                response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
                 response.end(JSON.stringify(payload))
             }
         }
