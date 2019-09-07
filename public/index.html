@@ -21,7 +21,7 @@
       <label for="lName">Last Name: Name</label>
       <input type="text" class="lName" value="your name here"><br>
       <label for="month">Month of birth</label>
-      <select name="Month" class="month">
+      <select name="month" class="month">
         <option value="January">January</option>
         <option value="February">February</option>
         <option value="March">March</option>
@@ -35,7 +35,7 @@
         <option value="Novemeber">November</option>
         <option value="Decemeber">December</option>
       </select><br>
-      <label for="day">Day of Birth</label>
+      <label for="Day">Day of Birth</label>
       <select name="Days" class="day">  
       </select><br>
       <div class="Buttons">
@@ -171,24 +171,24 @@
     document.body.appendChild(t)
   }
     
-  
+    //Handling Dyanmic Form Filling
     document.forms['CHANGE'].elements['month'].onchange = function(e){
-      var relName = 'month'
+      var relName = 'day'
       var relList = this.form.elements[relName]
       var obj = DateDataForDropdown[relName][this.value]
       removeAllOptions(relList, true);
       appendDataToSelect(relList, obj);
     }
   
-  
-
-  window.onload = function() {
-  const subButton = document.querySelector( '#subButton' )
-   subButton.onclick = submit
-  const printAllButton = document.querySelector( '#printAllButton' )
-   printAllButton.onclick = printAll
-  }
+    //Assign Button Functions On Load
+    window.onload = function() {
+      const subButton = document.querySelector( '#subButton' )
+      subButton.onclick = submit
+      const printAllButton = document.querySelector( '#printAllButton' )
+     printAllButton.onclick = printAll
+    }
     
+  
 
   </script>
 </html>

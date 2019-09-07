@@ -10,20 +10,20 @@
         var form = document.forms['CHANGE'];
     
         // reference to controlling select box
-        var sel = form.elements['category'];
+        var sel = form.elements['month'];
         sel.selectedIndex = 0;
       
         // name of associated select box
-       var relName = 'month';
+         var relName = 'day';
         // reference to associated select box
         var rel = form.elements[ relName ];
     
-      // get data for associated select box passing its name
-      // and value of selected in controlling select box
-      var data = DateDataForDropdown[ relName ][ sel.value ];
+        // get data for associated select box passing its name
+        // and value of selected in controlling select box
+        var data = DateDataForDropdown[ relName ][ sel.value ];
     
-    // add options to associated select box
-    appendDataToSelect(rel, data);
+      // add options to associated select box
+      appendDataToSelect(rel, data);
       }
       else{
         newForm.style.display = 'none';
@@ -65,43 +65,40 @@ function updateDatabaseDisplayTable(data){
       html +="</tr>"
     }
     html += "</table>"
-    
     document.getElementById("Containter").innerHTML = html
-  }
+}
 
 //Populates first name drop down
 function populateFromDatabase(){
-    fetch( '/getData', {
-      method:'GET',
+  fetch( '/getData', {
+    method:'GET',
+  })
+  .then( function( response ) {
+    console.log(response)
+    response.text()
+    .then(function(message){
+      let allData = JSON.parse(message)
+      console.log(allData)
+      let nameSelector = document.querySelector(".modList");
+      var opt = document.createElement('option');
+      opt.innerHTML = opt.value = ""
+      nameSelector.appendChild(opt)
+      for(let i = 0; i<Object.keys(allData).length; i++){
+        var opt = document.createElement('option');
+        opt.innerHTML = opt.value = allData[i].fName + " " + allData[i].lName + ", " + allData[i].month + " " + allData[i].day
+        nameSelector.appendChild(opt)
+      }
+      console.log(nameSelector)
     })
-    .then( function( response ) {
-      console.log(response)
-      response.text()
-      .then(function(message){
-       let allData = JSON.parse(message)
-       console.log(allData)
-        let nameSelector = document.querySelector(".modList");
-          var opt = document.createElement('option');
-          opt.innerHTML = ""
-          opt.value = ""
-          nameSelector.appendChild(opt)
-        for(let i = 0; i<Object.keys(allData).length; i++){
-          var opt = document.createElement('option');
-          opt.innerHTML = allData[i].fName + " " + allData[i].lName + ", " + allData[i].month + " " + allData[i].day
-          opt.value = allData[i].fName + " " + allData[i].lName + ", " + allData[i].month + " " + allData[i].day
-          nameSelector.appendChild(opt)
-        }
-        console.log(nameSelector)
-     })
-    })
-    return false
-    }
+  })
+  return false
+}
 
 //FUNCTIONS FOR DYNAMIC SELECTION BOXES
 function removeAllOptions(selection, removalGroup){
   var len, groups, par;
   if(removalGroup){
-    groups = selection.getElementsByTagName('optgroup')
+    groups = selection.getElementsByTagName('option')
     len = groups.length;
     for(var i = len; i; i--){
       selection.removeChild(groups[i-1])
@@ -147,7 +144,7 @@ function appendDataToSelect(sel, obj) {
         }
         
         for (var i=0, len=labels.length; i<len; i++) {
-            group = document.createElement('optgroup');
+            group = document.createElement('option');
             group.label = labels[i];
             f.appendChild(group);
             opts = addOptions(obj[ labels[i] ] );
@@ -158,7 +155,7 @@ function appendDataToSelect(sel, obj) {
 }
 
 const DateDataForDropdown = {
-  'monthChoices' : {
+  'day' : {
     January:{
       text:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31' ]
     },
