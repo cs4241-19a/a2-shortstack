@@ -58,6 +58,13 @@ const actions =
     appdata.push( json)
   console.log("Successfully submitted")  
     console.log(appdata)
+  },
+  Ondelete(json)
+  {
+    console.log("deleted item is " + JSON.stringify(json))
+    delete appdata.
+    console.log("successfully deleted")
+    console.log(appdata)
   }
 }
 
