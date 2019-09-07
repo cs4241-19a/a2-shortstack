@@ -50,12 +50,9 @@
     })
     .then( function( response ) {
       
-      rep = JSON.parse( response )
-      
-      
       var tdNode = document.createElement("td");
       var trNode = document.createElement("tr");
-      tdNode.appendChild(document.createTextNode(rep));
+      tdNode.appendChild(document.createTextNode(response.yourname));
       trNode.appendChild(tdNode);
       document.getElementById("results").appendChild(trNode); 
       console.log( response )
