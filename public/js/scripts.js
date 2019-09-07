@@ -1,5 +1,27 @@
 // Add some Javascript code here, to run on the front end.
 
+
+//Print all info in database
+  const printAll = function(e){
+    console.log("PRINTING")
+  // prevent default form action from being carried out
+    e.preventDefault()
+
+    fetch( '/getData', {
+      method:'GET',
+    })
+    .then( function( response ) {
+      console.log(response)
+      response.text()
+      .then(function(message){
+       let allData = JSON.parse(message)
+       console.log(allData)
+       updateDatabaseDisplayTable(allData)
+     })
+    })
+    return false
+  }
+
 //******** HIDE-SHOW *******//
 //Controls ADD NEW FORM
 function displayNewForm(){
@@ -102,9 +124,9 @@ function showEditDataForm(){
           html += monthToHTML(month)
           var day = allData[selectedIndex].day
           html += daysToHTML(month, day)
+          html += "<button id=\"submitChanges\">SubmitChanges</button>"
+          html +="<button id=\"deleteOriginal\">Delete Original</button>"
           html += "</form>"
-          html += "<button>SubmitChanges</button>"
-          html +="<button>Delete Original</button>"
           document.getElementById("Container").innerHTML = ""
           document.getElementById("Container").innerHTML = html
           var form = document.forms['editForm'];
@@ -116,6 +138,8 @@ function showEditDataForm(){
             removeAllOptions(dates)
             appendDataToSelect(dates, newData)
           }
+          document.getElementById("submitChanges").onclick = submitChanges;
+          document.getElementById("deleteOriginal").onclick = deleteOriginal;
         }
       })
     })
@@ -188,7 +212,15 @@ function updateDatabaseDisplayTable(data){
   document.getElementById("Container").innerHTML = html
 }
 
+//Changes information in database to given
+const submitChanges = function(){
+  
+}
 
+//Deletes value from database
+const deleteOriginal = function(){
+  
+}
 
 
 //******* DYNAMIC DROPDOWNS ******//
@@ -220,6 +252,13 @@ function appendDataToSelect(sel, data) {
 
 //Populates initial modify dropdown will all information from database
 function populateFromDatabase(){
+  let nameSelector = document.querySelector(".modList");
+  if(nameSelector !== null){
+    var i;
+    for(i = nameSelector.options.length - 1; i >= 0; i--){
+      nameSelector.remove(i)
+    }    
+  }
   fetch( '/getData', {
     method:'GET',
   })
@@ -229,7 +268,6 @@ function populateFromDatabase(){
     .then(function(message){
       let allData = JSON.parse(message)
       console.log(allData)
-      let nameSelector = document.querySelector(".modList");
       var opt = document.createElement('option');
       opt.innerHTML = opt.value = ""
       nameSelector.appendChild(opt)
