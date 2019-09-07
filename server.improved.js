@@ -43,7 +43,30 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
     //SEND API REQUEST
     
-    
+    var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
+    keyAPI = "trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd";
+    var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+    var xhr = new XMLHttpRequest(),
+        textAPI = request.word,
+        langAPI = request.lang
+        let data = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
+    xhr.open("POST",url,true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send(data);
+    xhr.onreadystatechange = function() {
+        if (this.readyState==4 && this.status==200) {
+            var res = this.responseText;
+            document.querySelector('#json').innerHTML = res;
+            var json = JSON.parse(res);
+            if(json.code == 200) {
+                document.querySelector('#output').innerHTML = json.text[0];
+            }
+            else {
+                document.querySelector('#output').innerHTML = "Error Code: " + json.code;
+            }
+        }
+    }
+
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })

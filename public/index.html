@@ -13,7 +13,7 @@
        <form action="">
       <input type="text" id="word" value="How do I say...?">
          in... 
-      <select id="langSelect">
+      <select id="lang">
       <option value="en-sq">Albanian</option>
       <option value="en-ar">Arabic</option>
       <option value="en-hy">Armenian</option>
@@ -48,8 +48,9 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#word' ),
-          json = { word: input.value },
+    const inputword = document.querySelector( '#word' );
+    const inputlang = document.querySelector('#lang')
+          json = { word: inputword.value , lang:inputlang.value},
           body = JSON.stringify( json )
 
     fetch( '/submit', {
