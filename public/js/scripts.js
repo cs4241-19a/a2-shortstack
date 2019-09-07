@@ -5,6 +5,10 @@
 function displayNewForm(){
   var newForm = document.getElementById("newForm");
   var modForm = document.getElementById("modForm");
+  var editForm = document.getElementById("editForm");
+  if(editForm !== null){
+      editForm.style.display = 'none'
+  }
   modForm.style.display = 'none'
   if(newForm.style.display === 'none'){
     newForm.style.display = 'inline';
@@ -40,6 +44,10 @@ function displayNewForm(){
 //Controls MOD DATA FORM
 function displayModForm(){
   var newForm = document.getElementById("newForm");
+  var editForm = document.getElementById("editForm");
+  if(editForm !== null){
+      editForm.style.display = 'none'
+  }
   newForm.style.display = 'none'
   var modForm = document.getElementById("modForm");
   if(modForm.style.display === 'none'){
@@ -63,7 +71,7 @@ function showEditDataForm(){
     //update Data
   }
   else{
-    var html = "<legend>EDIT</legend>"
+    var html = "<form action=\"\" id=\"editForm\"><legend>EDIT</legend>"
     html += "<label for=\"fName\">First Name:</label>"
     html += "<input type=\"text\" class=\"fName\" value=\""
     var selectInfo = document.getElementsByName('modList')[0]
@@ -79,6 +87,7 @@ function showEditDataForm(){
         if(selectedIndex > 0){
           selectedIndex--;
           html += allData[selectedIndex].fName + "\"><br>"
+          html += "</form>"
           document.getElementById("Container").innerHTML = ""
           document.getElementById("Container").innerHTML = html
 
@@ -167,6 +176,10 @@ function populateFromDatabase(){
       let allData = JSON.parse(message)
       console.log(allData)
       let nameSelector = document.querySelector(".modList");
+      console.log(nameSelector.childNodes.length)
+      for(let i = nameSelector.childNodes.length; i; --i){
+        nameSelector.removeChild[i-1]
+      }
       var opt = document.createElement('option');
       opt.innerHTML = opt.value = ""
       nameSelector.appendChild(opt)
