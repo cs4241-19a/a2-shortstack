@@ -10,3 +10,23 @@ div {
   flex-direction: row
  
 }
+
+h1, h2, p {
+  display: flex;
+  font-family: helvetica;
+  justify-content: center;
+}
+
+button{
+  font-family: helvetica;
+}
+
+div{
+  display: flex;
+  font-family: helvetica;
+  justify-content: center;
+}
+
+table{
+  font-family: helvetica;
+}
