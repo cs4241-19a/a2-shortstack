@@ -353,6 +353,11 @@ p {
     height: 300px;
 }
 
+.startContent {
+    padding-top: 45px;
+    padding-left: 30px;
+}
+
 .designed {
     height: 40px;
     margin-top: -20px;
@@ -418,19 +423,58 @@ p {
 }
 
 .expTab {
-    padding: 50px;
+    padding-left: 30px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-top: 30px;
+    border-collapse: collapse;
 
 }
 
+.headEle {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 35px;
+    padding-right: 30px;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
 .expEle {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-top: 25px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
     text-decoration: none;
     font-size: 1.1em;
     font-weight: 500;
+}
+
+.headEle1 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 35px;
+    padding-right: 30px;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-decoration: none;
+    font-size: 1.4em;
+    font-weight: 500;
+    border-right: 5px groove #c9c9c9;
+}
+
+.expEle1 {
+    padding-top: 25px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    border-right: 5px groove #c9c9c9;
 }
 
 .txtBox {

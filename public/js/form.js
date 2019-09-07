@@ -2,15 +2,30 @@ const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
+    var body;
+
     const inputName = document.querySelector( '#userName'),
         inputEmail = document.querySelector( '#email'),
         selectColor = document.querySelector('#color'),
         boardName = document.querySelector('#board'),
-        json = { name: inputName.value, email: inputEmail.value, Color: selectColor.value, Board: boardName.value },
-        body = JSON.stringify( json )
+        json = { name: inputName.value, email: inputEmail.value, Color: selectColor.value, Board: boardName.value }
+
+    const signName = document.querySelector('#userN'),
+        signBoard = document.querySelector('#boardName'),
+        jsonSign = { name: signName.value, Board: signBoard.value }
 
     window.localStorage
-    localStorage.setItem('myName', inputName.value)
+
+
+    if(inputName.value === '' && signName.value !== '') {
+        body = JSON.stringify( jsonSign )
+        localStorage.setItem('myName', signName.value)
+    } else if(inputName.value !== '' && signName.value === '') {
+        body = JSON.stringify( json )
+        localStorage.setItem('myName', inputName.value)
+    } else {
+        console.log('error')
+    }
 
     fetch( '/submit', {
         method:'POST',

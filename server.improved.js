@@ -66,7 +66,9 @@ const handlePost = function( request, response ) {
     json = JSON.parse( dataString )
 
     // ... do something with the data here!!!
-    writeUserData(json.name, json.name, json.email, json.Color, json.Board)
+    if(Object.keys(json).length === 4) {
+      writeUserData(json.name, json.name, json.email, json.Color, json.Board)
+    }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()

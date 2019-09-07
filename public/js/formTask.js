@@ -7,7 +7,7 @@ window.onload = function() {
         var n = localStorage.getItem('myName')
         console.log(n)
         console.log(response)
-        document.getElementById('name').innerText = JSON.stringify(response.users[n].username);
+        document.getElementById('name').style.backgroundColor = response.users[n].color;
         console.log( "get response: ", response )
     })
     };

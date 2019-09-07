@@ -120,6 +120,19 @@
         <div class="startContent" >
           <table class="expTab">
             <tr class="row">
+              <td class="headEle1">
+                <div class="ele"> Sign in </div>
+              </td>
+              <td class="headEle">
+                <div class="ele"> Register </div>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="expEle1">
+                <div class="ele">
+                  <input class="txtBox" type="text" id="userN" placeholder="Username" onkeyup="stoppedTyping()">
+                </div>
+              </td>
               <td class="expEle">
                 <div class="ele">
                   <input class="txtBox" type="text" id="userName" placeholder="Username" onkeyup="stoppedTyping()">
@@ -132,10 +145,15 @@
               </td>
             </tr>
             <tr class="row">
+              <td class="expEle1">
+                <div class="ele">
+                  <input class="txtBox" type="text" id="boardName" placeholder="Name of your Board" onkeyup="stoppedTyping()">
+                </div>
+              </td>
               <td class="expEle">
                 <div class="ele">
                   <select class="selectBox" id="color">
-                    <option value="" disabled selected>Select a Color Theme for your Board</option>
+                    <option value="" disabled selected>Select a Color Theme</option>
                     <option value="salmon">Salmon</option>
                     <option value="dodgerblue">Dodgerblue</option>
                     <option value="darkslategray">Darkslategray</option>
