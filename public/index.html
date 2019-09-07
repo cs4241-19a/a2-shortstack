@@ -116,6 +116,8 @@
     const name = document.querySelector( '#sat-name' ),
           completed = document.querySelector( '#completed' ).className.indexOf("is-active") !== -1,
           orbit = document.querySelector( '#orbit-select' ),
+          launchTime = calendars[0].date.start.getTime(),
+          endTime = calendars[1].date.start === undefined ? undefined : calendars[1].date.start.getTime(),
           json = { name: name.value, mission_start: new Date(calendars[0].date.start), mission_completed: completed, mission_end: new Date(calendars[1].date.start), orbit_type: orbit.value},
           body = JSON.stringify( json )
 
