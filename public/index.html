@@ -10,7 +10,7 @@
     <nav>
       <ul>
         <li><button onclick="displayNewForm()">Add New</button></li>
-        <li><button>Modify Existing</button></li>
+        <li><button onclick="displayModForm()">Modify Existing</button></li>
         <li><button id="viewButton">View Data</button></li>
       </ul>
     </nav>
@@ -78,8 +78,11 @@
     <div id="modForm" style="display: none">
       <form action="">
       <label for="fName">First Name:</label>
-      <input type="text" class="fName" value="your name here"><br>
-      <label for="lName">Last Name: Name</label>
+      <select name="fName" class="fName">
+        populateFromDatabase()
+      </select>
+      <br>
+      <label for="lName">Last Name: </label>
       <input type="text" class="lName" value="your name here"><br>
       <label for="day">Day of Birth</label>
       <select name="Days" class="day">
@@ -131,8 +134,6 @@
         <option value="Decemeber">December</option>
       </select><br>
       <div class="Buttons">
-        <button id="subButton">submit</button>
-        <button id="printAllButton">Print All</button>
       </div>
     </form>
     </div>
@@ -210,6 +211,28 @@
   const printAllButton = document.querySelector( '#printAllButton' )
    printAllButton.onclick = printAll
   }
+    
+    function populateFromDatabase(){
+    fetch( '/populate', {
+      method:'GET',
+    })
+    .then( function( response ) {
+      console.log(response)
+      response.text()
+      .then(function(message){
+       let allData = JSON.parse(message)
+       console.log(allData)
+        let nameSelector = document.querySelector(".fName");
+        for(let i = 0; i<Object.keys(allData).length; i++){
+          var opt = document.createElement('option');
+          opt.appendChild(document.createTextNode(allData[i].fName));
+          opt.value = allData[i].fName;
+          nameSelector.appendChild(opt)
+        }
+     })
+    })
+    return false
+    }
 
   </script>
 </html>

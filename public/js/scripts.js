@@ -14,7 +14,7 @@
     }
  
 //Function to control hide-show of MOD DATA FORM
-  function displayModifyForm(){
+  function displayModForm(){
     var newForm = document.getElementById("newForm");
     newForm.style.display = 'none'
     var modForm = document.getElementById("modForm");
