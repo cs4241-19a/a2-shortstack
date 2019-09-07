@@ -57,8 +57,28 @@ function displayModForm(){
 
 //Controls EDIT DATA FORM
 function showEditDataForm(){
-  var parentInfo = document.getElementById("modForm").forms[].elements['modList'];
-  console.log(parentInfo)
+  var parentInfo = document.getElementById("modForm");
+  var editFormExists = document.forms['EDIT']
+  if(editFormExists){
+    //update Data
+  }
+  else{
+    var html = "<legend>EDIT</legend>"
+    html += "<label for=\"fName\">First Name:</label>"
+    html += "<input type=\"text\" class=\"fName\" value="
+    var selectInfo = document.getElementsByName('modList')[0]
+    //your name here"><br>
+
+    /*
+    <legend>Add New Entry</legend>
+        <label for="fName">First Name:</label>
+        <input type="text" class="fName" value="your name here"><br>
+        <label for="lName">Last Name: Name</label>
+        <input type="text" class="lName" value="your name here"><br>
+        
+    */
+  }
+
 }
 
 //Function to control hide-how of entire database table
