@@ -46,17 +46,16 @@ const handlePost = function( request, response ) {
     var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
     keyAPI = "trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd";
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-    let xhr = new XMLHttpRequest(),
-        textAPI = body.word,
+    var xhr = new XMLHttpRequest(),
+        textAPI = encodeURI(body.word),
         langAPI = body.lang
         let req = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
-        let test = encodeURI('key=trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd&text=hello&lang=en-ru')
     xhr.open("POST",url,true);
-    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    console.log(test);
-    xhr.send(test);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(req);
+    console.log(req);
     xhr.onreadystatechange = function() {
-        if (this.readyState==4) {
+        if (this.readyState==4  && this.status==200) {
             console.log("response recieved")
             var res = this.responseText;
             console.log(res)
