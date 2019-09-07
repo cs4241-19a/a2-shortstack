@@ -6,8 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-]
+const appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -58,6 +57,7 @@ const handlePost = function( request, response ) {
                 payload.alldata = ""
                 appdata.push(JSON.stringify(payload))
                 payload.alldata = appdata.join()
+               //console.log(JSON.stringify(payload))
                 response.end(JSON.stringify(payload))
             }
         }

@@ -45,9 +45,9 @@
   <h2>
     Server Contents
   </h2>
-  <textarea>
-    
-  </textarea>
+  <p id="guts">
+    "Server contents will go here"
+  </p>
   </body>
   <script>
 
@@ -82,6 +82,7 @@
         trNode.appendChild(tdNode2);
         trNode.appendChild(tdNode3);
         document.getElementById("results").appendChild(trNode);
+        document.getElementById('guts').innerHTML = data.alldata
     })
 
     return false
