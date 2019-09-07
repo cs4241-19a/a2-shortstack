@@ -38,13 +38,24 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
+   console.log("Request is " + request.url.slice(1))
+    const data = request.url.slice(1)
+    actions[data](data)
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
+}
+
+const actions = 
+{
+  
+  submit()
+  {
+    appdata.push( {})
+  console.log("Successfully submitted")  
+  }
 }
 
 const sendFile = function( response, filename ) {
