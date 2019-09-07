@@ -67,16 +67,20 @@ const handlePost = function( request, response ) {
           response.end()
         }        
         break
-        /*Modify  Case*/
+        /*Modify  Case MAXIMUM EFFICENCY*/
       case "modify":
         console.log("modify")
-        
+        const modData = JSON.parse(dataString)
+        modData(modData)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
         response.end()
         break
       case "delete":
-        console.log("deleteOriginal")
+        console.log("delete")
+        const removalData = JSON.parse(dataString)
+        removalData.sign = starSign(removalData)
+        removeGiven(removalData)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
         response.end()
@@ -227,4 +231,19 @@ function starSign(personalInfo){
     default:
       return "Error"
   }
+}
+
+function removeGiven(original){
+  for(let i = 0; i< Object.keys(appdata).length; i++){
+    if((original.fName === appdata[i].fName) && (original.lName === appdata[i].lName)){
+      if((original.day === appdata[i].day) && (original.month === appdata[i].month)){
+        appdata.splice(i, 1);
+        i--;
+      }
+    }
+  }
+}
+
+function modData(toChange){
+  console.log(modData)
 }

@@ -100,9 +100,19 @@
     newInput.push(document.querySelector( '.lNameE' ).value)
     newInput.push(document.querySelector( '.monthE' ).value)
     newInput.push(document.querySelector( '.daysE' ).value)
+    var body = []
+    body
+    /*e.preventDefault()
+    let originalData = document.getElementById('modHolder').innerHTML
+    console.log(originalData)
+    console.log(JSON.parse(originalData))
+    let newInput = []
+    newInput.push(document.querySelector( '.fNameE' ).value)
+    newInput.push(document.querySelector( '.lNameE' ).value)
+    newInput.push(document.querySelector( '.monthE' ).value)
+    newInput.push(document.querySelector( '.daysE' ).value)
     var body = originalData
-    console.log(jsonOriginal)
-    fetch( '/remove', {
+    fetch( '/delete', {
       method:'POST',
       body
     })
@@ -131,7 +141,7 @@
      })
       
     })
-    return false
+    return false*/
   }
 
   //Deletes value from database
@@ -147,7 +157,7 @@
     valInput.push(document.querySelector( '.days' ).value)
     const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
           body = JSON.stringify( json )*/
-    fetch( '/deleteOriginal', {
+    fetch( '/delete', {
       method:'POST',
       body
     })
