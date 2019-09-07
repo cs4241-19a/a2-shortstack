@@ -8,8 +8,7 @@
   },
   "dependencies": {
     "mime": "^2.4.4",
-    "gson": "^0.1.5",
-    "gson-query": "^2.0.0"
+    "jquery": "^3.4.1"
   },
   "engines": {
     "node": "^12.10.0"

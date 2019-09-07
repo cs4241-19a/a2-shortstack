@@ -44,3 +44,6 @@ function updateDatabaseDisplayTable(data){
     
     document.getElementById("Containter").innerHTML = html
   }
+
+//Handle modification later
+function dynamicDropDown(){}
