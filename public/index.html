@@ -19,8 +19,9 @@
     e.preventDefault()
 
     const inputName = document.querySelector( '#yourname' ),
-          //inputYear = document.querySelector('#classyear'),
-          //inputInches document.querySelector('#height'),
+          inputYear = document.querySelector('#classyear'),
+          inputInches = document.querySelector('#height'),
+          //json = { name: inputName.value, year: inputYear.value, inches: inputInches.value },
           json = { name: inputName.value, year: inputYear.value, inches: inputInches.value },
           body = JSON.stringify( json )
     
