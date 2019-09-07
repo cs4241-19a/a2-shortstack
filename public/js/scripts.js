@@ -110,6 +110,34 @@ function showEditDataForm(){
 
 }
 
+function displayData(){
+  console.log("DISPLAY DATA CALLED")
+  fetch('/getData', {
+      method: 'GET',
+  })
+  .then(function(response){
+    response.text()
+    .then(function(message){
+      let allData = JSON.parse(message)
+      console.log(message)
+      var html = "<table><tr><th" + " align=" + ">Existing Data</th></tr>"
+      html += "<tr><td>Index</td><td>First Name</td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
+      for(let i = 0; i< Object.keys(allData).length; i++){
+        html += "<tr>" 
+        html += "<td>" + i + "</td>"
+        html += "<td>" + allData[i].fName + "</td>"
+        html += "<td>" + allData[i].lName + "</td>"
+        html += "<td>" + allData[i].day + "</td>"
+        html += "<td>" + allData[i].month + "</td>"
+        html += "<td>" + allData[i].sign + "</td>"
+        html +="</tr>"
+      }
+      html += "</table>"
+      document.getElementById("Containter").innerHTML = html
+    })
+  })
+}
+
 //Function to control hide-how of entire database table
 function diplayDataTable(data){
   document.getElementById("Containter").innerHTML = ""

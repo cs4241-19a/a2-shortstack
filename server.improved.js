@@ -122,7 +122,6 @@ server.listen( process.env.PORT || port )
 //Checks if given input os already in database
 function noDuplicates(dataToAdd){
   for(let i = 0; i< Object.keys(appdata).length; i++){
-    console.log("TEST")
     if((dataToAdd.fName === appdata[i].fName) && (dataToAdd.lName === appdata[i].lName)){
       if((dataToAdd.day === appdata[i].day) && (dataToAdd.month === appdata[i].month)){
         return false;
