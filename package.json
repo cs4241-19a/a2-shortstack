@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "cs-4241-2nd-assignment",
+  "version": "0.1.0",
+  "description": "WPI CS 4241 second assignment",
+  "author": "Rui Huang",
   "scripts": {
     "start": "node server.improved.js"
   },
