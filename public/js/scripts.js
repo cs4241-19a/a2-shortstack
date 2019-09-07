@@ -1,27 +1,5 @@
 // Add some Javascript code here, to run on the front end.
 
-
-//Print all info in database
-  const printAll = function(e){
-    console.log("PRINTING")
-  // prevent default form action from being carried out
-    e.preventDefault()
-
-    fetch( '/getData', {
-      method:'GET',
-    })
-    .then( function( response ) {
-      console.log(response)
-      response.text()
-      .then(function(message){
-       let allData = JSON.parse(message)
-       console.log(allData)
-       updateDatabaseDisplayTable(allData)
-     })
-    })
-    return false
-  }
-
 //******** HIDE-SHOW *******//
 //Controls ADD NEW FORM
 function displayNewForm(){
