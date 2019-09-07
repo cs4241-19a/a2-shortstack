@@ -7,7 +7,9 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4",
-    "xmlhttprequest": "^1.8.0"
+    "mime": "^2.4.4"
+  },
+  "engine": {
+    "node": "^12.8.1"
   }
 }

@@ -38,7 +38,7 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    //console.log( JSON.parse( dataString ) )
     let body = JSON.parse( dataString )
 
     // ... do something with the data here!!!
@@ -48,29 +48,29 @@ const handlePost = function( request, response ) {
     keyAPI = "trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd";
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     var xhr = new XMLHttpRequest(),
-        textAPI = request.word,
-        langAPI = request.lang
+        textAPI = body.word,
+        langAPI = body.lang
         let data = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send(data);
     xhr.onreadystatechange = function() {
-        if (this.readyState==4 && this.status==200) {
-            var res = this.responseText;
-            document.querySelector('#json').innerHTML = res;
+        if (xhr.readyState==4 && xhr.status==200) {
+            console.log("response recieved")
+            var res = xhr.responseText;
             var json = JSON.parse(res);
             if(json.code == 200) {
                 body += json.text[0];
+                console.log(json.text[0]);
             }
             else {
                 body += "Error Code: " + json.code;
             }
         }
     }
-    console.log('body' + str(body))
   
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end(body)
+    response.end(JSON.stringify(body))
   })
 }
 
