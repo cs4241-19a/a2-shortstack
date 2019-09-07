@@ -1,48 +1,48 @@
 // Add some Javascript code here, to run on the front end.
 
 //Function to control hide-show of ADD NEW FORM
-    function displayNewForm(){
-      var newForm = document.getElementById("newForm");
-      var modForm = document.getElementById("modForm");
-      modForm.style.display = 'none'
-      if(newForm.style.display === 'none'){
-        newForm.style.display = 'inline';
-        var form = document.forms['CHANGE'];
+function displayNewForm(){
+  var newForm = document.getElementById("newForm");
+  var modForm = document.getElementById("modForm");
+  modForm.style.display = 'none'
+  if(newForm.style.display === 'none'){
+    newForm.style.display = 'inline';
+    var form = document.forms['CHANGE'];
+
+    // reference to controlling select box
+    var sel = form.elements['month'];
+    sel.selectedIndex = 0;
     
-        // reference to controlling select box
-        var sel = form.elements['month'];
-        sel.selectedIndex = 0;
-      
-        // name of associated select box
-         var relName = 'day';
-        // reference to associated select box
-        var rel = form.elements[ relName ];
+    // name of associated select box
+    var relName = 'day';
+    // reference to associated select box
+    var rel = form.elements[ relName ];
     
-        // get data for associated select box passing its name
-        // and value of selected in controlling select box
-        var data = DateDataForDropdown[ relName ][ sel.value ];
-    
-      // add options to associated select box
-      appendDataToSelect(rel, data);
-      }
-      else{
-        newForm.style.display = 'none';
-      }
-    }
+    // get data for associated select box passing its name
+    // and value of selected in controlling select box
+    var data = DateDataForDropdown[ relName ][ sel.value ];
+
+    // add options to associated select box
+    appendDataToSelect(rel, data);
+  }
+  else{
+    newForm.style.display = 'none';
+  }
+}
  
 //Function to control hide-show of MOD DATA FORM
-  function displayModForm(){
-    var newForm = document.getElementById("newForm");
-    newForm.style.display = 'none'
-    var modForm = document.getElementById("modForm");
-    if(modForm.style.display === 'none'){
-        modForm.style.display = 'inline';
-      }
-      else{
-        modForm.style.display = 'none';
-      }
-    populateFromDatabase()
+function displayModForm(){
+  var newForm = document.getElementById("newForm");
+  newForm.style.display = 'none'
+  var modForm = document.getElementById("modForm");
+  if(modForm.style.display === 'none'){
+    modForm.style.display = 'inline';
   }
+  else{
+    modForm.style.display = 'none';
+  }
+  populateFromDatabase()
+}
 
 //Function to control hide-how of entire database table
 function diplayDataTable(data){
@@ -52,20 +52,20 @@ function diplayDataTable(data){
 
 //Runs everytime the database is updated
 function updateDatabaseDisplayTable(data){
-    var html = "<table><tr><th" + " align=" + ">Existing Data</th></tr>"
-    html += "<tr><td>Index</td><td>First Name</td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
-    for(let i = 0; i< Object.keys(data).length; i++){
-      html += "<tr>" 
-      html += "<td>" + i + "</td>"
-      html += "<td>" + data[i].fName + "</td>"
-      html += "<td>" + data[i].lName + "</td>"
-      html += "<td>" + data[i].day + "</td>"
-      html += "<td>" + data[i].month + "</td>"
-      html += "<td>" + data[i].sign + "</td>"
-      html +="</tr>"
-    }
-    html += "</table>"
-    document.getElementById("Containter").innerHTML = html
+  var html = "<table><tr><th" + " align=" + ">Existing Data</th></tr>"
+  html += "<tr><td>Index</td><td>First Name</td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
+  for(let i = 0; i< Object.keys(data).length; i++){
+    html += "<tr>" 
+    html += "<td>" + i + "</td>"
+    html += "<td>" + data[i].fName + "</td>"
+    html += "<td>" + data[i].lName + "</td>"
+    html += "<td>" + data[i].day + "</td>"
+    html += "<td>" + data[i].month + "</td>"
+    html += "<td>" + data[i].sign + "</td>"
+    html +="</tr>"
+  }
+  html += "</table>"
+  document.getElementById("Containter").innerHTML = html
 }
 
 //Populates first name drop down
@@ -113,45 +113,7 @@ function removeAllOptions(selection, removalGroup){
 
 //EDIT FOR CLARITY
 function appendDataToSelect(sel, obj) {
-    var f = document.createDocumentFragment();
-    var labels = [], group, opts;
-    
-    function addOptions(obj) {
-        var f = document.createDocumentFragment();
-        var o;
-        
-        for (var i=0, len=obj.text.length; i<len; i++) {
-            o = document.createElement('option');
-            o.appendChild( document.createTextNode( obj.text[i] ) );
-            
-            if ( obj.value ) {
-                o.value = obj.value[i];
-            }
-            
-            f.appendChild(o);
-        }
-        return f;
-    }
-    
-    if ( obj.text ) {
-        opts = addOptions(obj);
-        f.appendChild(opts);
-    } else {
-        for ( var prop in obj ) {
-            if ( obj.hasOwnProperty(prop) ) {
-                labels.push(prop);
-            }
-        }
-        
-        for (var i=0, len=labels.length; i<len; i++) {
-            group = document.createElement('option');
-            group.label = labels[i];
-            f.appendChild(group);
-            opts = addOptions(obj[ labels[i] ] );
-            group.appendChild(opts);
-        }
-    }
-    sel.appendChild(f);
+    for(let i = 0; i<data)
 }
 
 const DateDataForDropdown = {

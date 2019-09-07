@@ -14,7 +14,7 @@
         <li><button id="viewButton">View Data</button></li>
       </ul>
     </nav>
-    <div id="newForm">
+    <div id="newForm" style="display: none">
       <form action="" class="CHANGE" id="CHANGE">
       <label for="fName">First Name:</label>
       <input type="text" class="fName" value="your name here"><br>
@@ -120,9 +120,9 @@
     let valInput = []
     valInput.push(document.querySelector( '.fName' ).value)
     valInput.push(document.querySelector( '.lName' ).value)
-    valInput.push(document.querySelector( '.day' ).value)
     valInput.push(document.querySelector( '.month' ).value)
-    const json = { fName: valInput[0], lName: valInput[1], day: valInput[2], month: valInput[3] },
+    valInput.push(document.querySelector( '.day' ).value)
+    const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
@@ -170,15 +170,6 @@
     node.appendChild(t)
     document.body.appendChild(t)
   }
-    
-    //Handling Dyanmic Form Filling
-    document.forms['CHANGE'].elements['month'].onchange = function(e){
-      var relName = 'day'
-      var relList = this.form.elements[relName]
-      var obj = DateDataForDropdown[relName][this.value]
-      removeAllOptions(relList, true);
-      appendDataToSelect(relList, obj);
-    }
   
     //Assign Button Functions On Load
     window.onload = function() {
@@ -187,8 +178,6 @@
       const printAllButton = document.querySelector( '#printAllButton' )
      printAllButton.onclick = printAll
     }
-    
   
-
   </script>
 </html>
