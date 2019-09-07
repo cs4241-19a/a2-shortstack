@@ -59,16 +59,25 @@ const handlePost = function( request, response ) {
     const req = JSON.parse( dataString );
     switch(req.type) {
       case 'getData':
+        console.log('Getting data');
         response.setHeader('Content-Type', 'application/json');
         response.writeHead(200);
         response.end(JSON.stringify({ itemsStore }))
         break;
       case 'addItem':
+        console.log(`Adding ${req.data.id}`)
         itemsStore[req.data.id] = req.data;
         response.writeHead(200);
         response.end();
         break;
+      case 'modifyItem':
+        console.log(`Modifying ${req.data.id}`)
+        itemsStore[req.data.id] = Object.assign({}, itemsStore[req.data.id], req.data);
+        response.writeHead(200);
+        response.end();
+        break;
       case 'deleteItem':
+        console.log(`Deleting ${req.data.id}`)
         delete itemsStore[req.data.id];
         response.setHeader('Content-Type', 'application/json');
         response.writeHead(200);
