@@ -1,1 +1,55 @@
-/*Style your own assignment! This is fun! */
+body{
+ background-image:url('ac8c900b-49be-4128-8edb-e64905679f74%2FWPI_logo.png?v=1567371575005');
+ background-color: #ac2b37;
+}
+p{
+  color: yellow;
+  background-color: grey;
+  font-size: 400px;
+}
+#submit:hover{
+  background-color: blue;
+}
+#results{
+  background-color: #b5b5b5;
+  width : 100%;
+  color : #28fc03;
+} 
+.testing{
+  background-color: green;
+}
+/* #category{
+  visibility: hidden;
+}
+#action{
+  visibility: hidden;
+} */
+#subForm{
+  margin-top : 10px;
+}
+#addDept{
+  width : 210px;
+  visibility : hidden;
+}
+#addProf{
+  width : 210px;
+  visibility : hidden;
+}
+#addName{
+  width : 210px;
+  visibility : hidden;
+}
+#category{
+  visibility : hidden;
+}
+#secCategory{
+  visibility : hidden;
+}
+td:hover{
+  color:white;
+  border: 2px solid black;
+}
+
+
+
+
