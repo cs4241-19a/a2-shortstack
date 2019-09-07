@@ -1,10 +1,6 @@
 // Add some Javascript code here, to run on the front end.
 
 console.log("Welcome to assignment 2!")
-//var Tabulator = require('tabulator-tables');
-
-// array to hold all inputs
-var tableData = []
 
 // flags to keep track of filled inputs
 var amountFlag = false;
@@ -33,25 +29,37 @@ const submit = function( e ) {
     .then( function( response ) {
       // do something with the reponse 
       console.log( response )
-      // append to array of input - CHANGE THIS TO SERVER SIDE
-      tableData.push(json)
-      console.log(tableData.length)
-      table.setData(tableData);
+      // get table data from server and parse it
+      getTableData()
     })
 
     return false
 }
+
+// get table data from server
+const getTableData = function() {
+    let data
+    fetch('/tabledata')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        table.setData(data)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+// init table data upon refresh
+getTableData()
+
+
 // submit button saves data
 window.onload = function() {
 const button = document.getElementById( 'button' )
 button.onclick = submit
 }
 
-/* hide $ on amount
-var amount = document.getElementById("amount")
-amount.addEventListener("click", function hide() {
-    amount.value = "";
-}) */
 
 // download csv
 var dnCSV = document.getElementById("dnCSV")
@@ -94,14 +102,13 @@ dnXSLX.addEventListener("click", function download() {
 
 // make table
 var table = new Tabulator("#expense-table", {
-    data:tableData,           //load row data from array
 	layout:"fitColumns",      //fit columns to width of table
 	responsiveLayout:"hide",  //hide columns that dont fit on the table
 	tooltips:true,            //show tool tips on cells
 	addRowPos:"top",          //when adding a new row, add it to the top of the table
 	history:true,             //allow undo and redo actions on the table
 	pagination:"local",       //paginate the data
-	paginationSize:7,         //allow 7 rows per page of data
+	paginationSize:50,         //allow 7 rows per page of data
 	movableColumns:true,      //allow column order to be changed
 	resizableRows:true,       //allow row order to be changed
 	initialSort:[             //set the initial sort order of the data
@@ -120,9 +127,15 @@ amount.oninput = function() { changeAmountNotification() }
 
 function changeAmountNotification() {
     if (amount.value != '$') {
-        document.getElementById("amountBox").classList.add("is-success")
-        amountFlag = true
-        enableButton()
+        // check to make sure value is int
+        if (isNaN(amount.value)) {
+            console.log("Entered value is not a number")
+        } else {
+            document.getElementById("amountBox").classList.add("is-success")
+            amountFlag = true
+            enableButton()            
+        }
+        
     }
     if (amount.value == '') {
         document.getElementById("amountBox").classList.remove("is-success")
@@ -142,7 +155,7 @@ function changeMonthNotification() {
         enableButton()
     }
 }
-// change month notification on input
+// change category notification on input
 var category = document.getElementById('category')
 category.oninput = function() { changeCategoryNotification() }
 
@@ -154,6 +167,7 @@ function changeCategoryNotification() {
     }
 }
 
+// enable submit button when all fields are filled
 function enableButton() { 
     if (amountFlag == true && monthFlag == true && categoryFlag == true) {
         console.log("button enabled")
@@ -162,6 +176,7 @@ function enableButton() {
     }
 }
 
+// disable submit button if any fields are left empty
 function disableButton() {
     if (amountFlag == false || monthFlag == false || categoryFlag == false) {
         console.log("button disabled")
@@ -169,3 +184,5 @@ function disableButton() {
         buttonStatus = false
     }
 }
+
+
