@@ -92,15 +92,16 @@
   //Changes information in database to given
   const submitChanges = function(e){
     e.preventDefault()
-    let originalData = document.getElementById('modHolder').value
+    let originalData = document.getElementById('modHolder').innerHTML
+    console.log(originalData)
+    console.log(JSON.parse(originalData))
     let newInput = []
     newInput.push(document.querySelector( '.fNameE' ).value)
     newInput.push(document.querySelector( '.lNameE' ).value)
     newInput.push(document.querySelector( '.monthE' ).value)
     newInput.push(document.querySelector( '.daysE' ).value)
-    const jsonOriginal = { fName: originalData[0], lName: originalData[1], month: originaData[2], day: originalData[3] },
-          body = JSON.stringify( json )
-    console.log(body)
+    var body = originalData
+    console.log(jsonOriginal)
     fetch( '/remove', {
       method:'POST',
       body
@@ -114,6 +115,9 @@
      })
       
     })
+    const jsonNew = { fName: newInput[0], lName: newInput[1], month: newInput[2], day: newInput[3] }
+    body = JSON.stringify( jsonNew )
+    console.log(body)
     fetch( '/submit', {
       method:'POST',
       body
@@ -133,13 +137,16 @@
   //Deletes value from database
   const remove = function(e){
     e.preventDefault()
-    let valInput = []
-    valInput.push(document.querySelector( '.fName' ).value)
-    valInput.push(document.querySelector( '.lName' ).value)
+    let originalData = document.getElementById('modHolder').value
+    const jsonOriginal = { fName: originalData[0], lName: originalData[1], month: originaData[2], day: originalData[3] },
+          body = JSON.stringify( jsonOriginal )
+    /*let valInput = []
+    valInput.push(document.querySelector( '.fNameE' ).value)
+    valInput.push(document.querySelector( '.lNameE' ).value)
     valInput.push(document.querySelector( '.month' ).value)
     valInput.push(document.querySelector( '.days' ).value)
     const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
-          body = JSON.stringify( json )
+          body = JSON.stringify( json )*/
     fetch( '/deleteOriginal', {
       method:'POST',
       body

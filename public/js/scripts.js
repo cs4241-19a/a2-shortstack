@@ -94,8 +94,8 @@ function showEditDataForm(){
         let allData = JSON.parse(message)
         if(selectedIndex > 0){
           selectedIndex--;
-          html += "<p id=\"modHolder\" style=\"display:none\">" + allData[selectedIndex] + "</p>"
           html += allData[selectedIndex].fName + "\"><br>"
+          html += "<p id=\"modHolder\" style=\"display:none\">" + JSON.stringify(allData[selectedIndex]) + "</p>"
           html += "<label for=\"lName\">Last Name:</label>"
           html += "<input type=\"text\" class=\"lNameE\" value=\""
           html += allData[selectedIndex].lName + "\"><br>"
