@@ -6,12 +6,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -25,22 +19,36 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if ( request.url === '/data' ) {
+    // send persistent data to client
+    response.writeHead(200, {'Content-type': 'text/plain'})
+    response.end(JSON.stringify(persistantData))
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
+// persistent parking data
+let persistantData = []
+
 const handlePost = function( request, response ) {
   let dataString = ''
 
+  // collect all sent data into one string
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data
   })
 
+  // once there is no more data
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
+    // store it
+    persistantData.push(dataString);
+    console.log("---------")
+    for (var i = 0; i < persistantData.length; i++) {
+      console.log( JSON.parse(persistantData[i]));
+    }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -69,4 +77,5 @@ const sendFile = function( response, filename ) {
    })
 }
 
+console.log("Starting server on port " + port + "...")
 server.listen( process.env.PORT || port )
