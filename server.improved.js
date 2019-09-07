@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'name': 'Jusitn', 'year': 2020, 'inches': 23 },
+  { 'name': 'Bob', 'year': 2021, 'inches': 30 },
+  { 'name': 'Andy', 'year': 2022, 'inches': 14} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -39,8 +39,9 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
    console.log("Request is " + request.url.slice(1))
-    const data = request.url.slice(1)
-    actions[data](data)
+    console.log("dataString is " + dataString)
+    const data = JSON.parse(dataString)
+    actions[request.url.slice(1)](data)
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -51,10 +52,12 @@ const handlePost = function( request, response ) {
 const actions = 
 {
   
-  submit()
+  submit(json)
   {
-    appdata.push( {})
+    console.log("passed item is " + JSON.stringify(json))
+    appdata.push( json)
   console.log("Successfully submitted")  
+    console.log(appdata)
   }
 }
 
