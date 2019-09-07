@@ -41,7 +41,9 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
-
+    //SEND API REQUEST
+    
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
