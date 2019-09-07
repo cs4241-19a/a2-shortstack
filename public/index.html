@@ -100,8 +100,22 @@
     newInput.push(document.querySelector( '.lNameE' ).value)
     newInput.push(document.querySelector( '.monthE' ).value)
     newInput.push(document.querySelector( '.daysE' ).value)
-    var body = []
-    body
+    let modBod = {original: originalData, modData: newInput}
+    modBod = JSON.stringify(modBod)
+    console.log(modBod)
+    fetch( '/modify', {
+      method:'POST',
+      modBod
+    }) 
+    .then( function( response) {
+      // do something with the reponse
+      //display horoscope on screen
+     response.text()
+      .then(function(message){
+       console.log(message)
+     })
+      
+    })
     /*e.preventDefault()
     let originalData = document.getElementById('modHolder').innerHTML
     console.log(originalData)

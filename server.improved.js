@@ -70,8 +70,9 @@ const handlePost = function( request, response ) {
         /*Modify  Case MAXIMUM EFFICENCY*/
       case "modify":
         console.log("modify")
-        const modData = JSON.parse(dataString)
-        modData(modData)
+        //const modData = JSON.parse(dataString)
+        //modData(modData)
+        console.log(JSON.parse)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
         response.end()
