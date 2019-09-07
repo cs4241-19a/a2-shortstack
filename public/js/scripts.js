@@ -12,17 +12,15 @@ function displayNewForm(){
     // reference to controlling select box
     var sel = form.elements['month'];
     sel.selectedIndex = 0;
-    
     // name of associated select box
-    var relName = 'day';
+    var relName = 'days';
     // reference to associated select box
     var rel = form.elements[ relName ];
-    
     // get data for associated select box passing its name
     // and value of selected in controlling select box
     var data = DateDataForDropdown[ relName ][ sel.value ];
-
     // add options to associated select box
+    console.log(data)
     appendDataToSelect(rel, data);
   }
   else{
@@ -112,12 +110,17 @@ function removeAllOptions(selection, removalGroup){
 }
 
 //EDIT FOR CLARITY
-function appendDataToSelect(sel, obj) {
-    for(let i = 0; i<data)
+function appendDataToSelect(sel, data) {
+  console.log(data.size)
+  for(let i = 0; i<data.length; i++){
+      var opt = document.createElement("option")
+      opt.innerHTML = opt.value = data[i]
+      sel.appendChild(opt)
+  }
 }
 
 const DateDataForDropdown = {
-  'day' : {
+  'days' : {
     January:{
       text:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31' ]
     },
