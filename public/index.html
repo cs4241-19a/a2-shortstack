@@ -59,9 +59,10 @@
       body 
     })
     .then( function( response ) {
+      console.log( response )
       var tdNode = document.createElement("td");
       var trNode = document.createElement("tr");
-      tdNode.appendChild(document.createTextNode(response));
+      tdNode.appendChild(document.createTextNode(JSON.stringify(response)));
       trNode.appendChild(tdNode);
       document.getElementById("results").appendChild(trNode);
       console.log( response );
