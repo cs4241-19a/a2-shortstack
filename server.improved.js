@@ -43,6 +43,7 @@ const handlePost = function( request, response ) {
 
     // ... do something with the data here!!!
     //SEND API REQUEST
+    var payload = {word:body.word, lang: body.lang, translation: ""};
     var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
     keyAPI = "trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd";
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -53,7 +54,7 @@ const handlePost = function( request, response ) {
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(req);
-    console.log(req);
+    //console.log(req);
     xhr.onreadystatechange = function() {
         if (this.readyState==4) {
             console.log("response recieved")
@@ -61,17 +62,15 @@ const handlePost = function( request, response ) {
            // console.log(res)
             var json = JSON.parse(res);
             if(json.code == 200) {
-                body += json.text[0];
-               // console.log(json.text[0]);
-            }
-            else {
-                body += "Error Code: " + json.code;
+               payload.translation += json.text[0];
+                response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+                console.log(payload)
+                response.end(JSON.stringify(payload))
             }
         }
     }
   
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end(JSON.stringify(body))
+  
   })
 }
 

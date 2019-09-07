@@ -59,13 +59,12 @@
       body 
     })
     .then( function( response ) {
-      response = JSON.stringify(response)
       var tdNode = document.createElement("td");
       var trNode = document.createElement("tr");
-      tdNode.appendChild(document.createTextNode(response.word));
+      tdNode.appendChild(document.createTextNode(response));
       trNode.appendChild(tdNode);
       document.getElementById("results").appendChild(trNode);
-     // console.log( response );
+      console.log( response );
     })
 
     return false
