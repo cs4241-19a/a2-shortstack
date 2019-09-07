@@ -24,12 +24,11 @@ function displayNewForm(){
     
     //Add onchange function to live update to new month
     sel.onchange = function(e){
-      var monName = 'month'
-      console.log()
-      var dates = document.forms['NEW'].element[monName]
-      var newData = DateDataForDropdown[monName][this.value]
+      var subName = 'days'
+      var dates = document.forms['NEW'].elements[subName]
+      var newData = DateDataForDropdown[subName][this.value]
       removeAllOptions(dates)
-      appendDataToSelect(rel, newData)
+      appendDataToSelect(dates, newData)
     }
   }
   else{
@@ -44,6 +43,14 @@ function displayModForm(){
   var modForm = document.getElementById("modForm");
   if(modForm.style.display === 'none'){
     modForm.style.display = 'inline';
+    //Add onchange function to live update to new month
+    /*sel.onchange = function(e){
+      var subName = 'days'
+      var dates = document.forms['NEW'].elements[subName]
+      var newData = DateDataForDropdown[subName][this.value]
+      removeAllOptions(dates)
+      appendDataToSelect(dates, newData)
+    }*/
   }
   else{
     modForm.style.display = 'none';
