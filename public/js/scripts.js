@@ -80,10 +80,103 @@ function populateFromDatabase(){
     return false
     }
 
-//Handle modification later
+//FUNCTIONS FOR DYNAMIC SELECTION BOXES
 function removeAllOptions(selection, removalGroup){
   var len, groups, par;
   if(removalGroup){
-    groups = selection.getElementsByTagName()
+    groups = selection.getElementsByTagName('optgroup')
+    len = groups.length;
+    for(var i = len; i; i--){
+      selection.removeChild(groups[i-1])
+    }
+  }
+  len = selection.options.length
+  for(var i=len; i; i--){
+    par = selection.options[i-1].parentNode;
+    par.removeChild(selection.options[i-1])
+  }
+}
+
+//EDIT FOR CLARITY
+function appendDataToSelect(sel, obj) {
+    var f = document.createDocumentFragment();
+    var labels = [], group, opts;
+    
+    function addOptions(obj) {
+        var f = document.createDocumentFragment();
+        var o;
+        
+        for (var i=0, len=obj.text.length; i<len; i++) {
+            o = document.createElement('option');
+            o.appendChild( document.createTextNode( obj.text[i] ) );
+            
+            if ( obj.value ) {
+                o.value = obj.value[i];
+            }
+            
+            f.appendChild(o);
+        }
+        return f;
+    }
+    
+    if ( obj.text ) {
+        opts = addOptions(obj);
+        f.appendChild(opts);
+    } else {
+        for ( var prop in obj ) {
+            if ( obj.hasOwnProperty(prop) ) {
+                labels.push(prop);
+            }
+        }
+        
+        for (var i=0, len=labels.length; i<len; i++) {
+            group = document.createElement('optgroup');
+            group.label = labels[i];
+            f.appendChild(group);
+            opts = addOptions(obj[ labels[i] ] );
+            group.appendChild(opts);
+        }
+    }
+    sel.appendChild(f);
+}
+
+const dateDataForDropdown = {
+  'monthChoices' : {
+    jan:{
+      text:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31' ]
+    },
+    feb:{
+      text:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29']
+    },
+    mar:{
+      text:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31' ]
+    },
+    apr:{
+      text:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31' ]
+    },
+    may:{
+      
+    },
+    jun:{
+      
+    },
+    jul:{
+      
+    },
+    aug:{
+      
+    },
+    sep:{
+      
+    },
+    oct:{
+      
+    },
+    nov:{
+      
+    },
+    dec:{
+      
+    }
   }
 }
