@@ -9,7 +9,7 @@ const http = require( 'http' ),
 const appdata = [
   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'model': 'ford', 'year': 1987, 'mpg': 14}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -53,15 +53,14 @@ const handlePost = function( request, response ) {
     xhr.send(req);
     xhr.onreadystatechange = function() {
         if (this.readyState==4) {
-            //console.log("response recieved")
             var res = this.responseText;
             var json = JSON.parse(res);
             if(json.code == 200) {
                 payload.translation += json.text[0];
-                response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+                appdata.push(JSON.stringify(payload))
+                response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
                 //console.log(JSON.stringify(payload));
                 response.end(JSON.stringify(payload))
-                return true
             }
         }
     }
