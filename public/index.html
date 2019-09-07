@@ -56,21 +56,36 @@
         </div>
         
         <div class="field">
-          <div class="control has-icons-left">
-            <input type="date" id="mission_start">
-            <span class="icon is-small is-left">
-              <i class="fas fa-satellite"></i>
-            </span>
+          <div class="control">
+            <input type="date" class="button is-large is-fullwidth" placeholder="Select Launch Date">
           </div>
         </div>
         
+        <div class="tabs is-toggle is-fullwidth is-large">
+          <ul>
+            <li class="is-active">
+              <a>
+                <span>Mission Not Completed</span>
+              </a>
+            </li>
+            <li>
+              <a>
+                <span>Mission Completed</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="field">
+          <div class="control">
+            <input type="date" class="button is-large is-fullwidth" disabled placeholder="Select End Date">
+          </div>
+        </div>
+        
+        <a class="button is-large is-fullwidth is-rounded" disabled>Submit</a>
+        
       </div>
     </div>
-<!--     <form action="">
-      <input type="text" id="name" placeholder="your name here">
-      <input type="date" id="mission_start">
-      <button class="button">Submit</button>
-    </form> -->
   </body>
   
   
@@ -87,8 +102,8 @@
   
   
   <script>
-// Initialize all input of date type.
-const calendars = bulmaCalendar.attach('[type="date"]', {"type": "date", "displayMode": "dialog"});
+  // Initialize all input of date type.
+  const calendars = bulmaCalendar.attach('[type="date"]', {"type": "date", "displayMode": "dialog"});
 //   const submit = function( e ) {
 //     // prevent default form action from being carried out
 //     e.preventDefault()
