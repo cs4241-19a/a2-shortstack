@@ -33,5 +33,6 @@ header {
   font-size: 19px;
   font-family: monospace;
   color: white;
-  background-color: black
+  background-color: black;
+  margin-top: 5px;
 }
