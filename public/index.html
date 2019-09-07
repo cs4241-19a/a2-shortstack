@@ -84,7 +84,7 @@
   
   const fetchMH = async function() {
       try {
-        const resp = await fetch('/orders', { method: 'GET' });
+        const resp = await fetch('/matchHistory', { method: 'GET' });
         const data = await resp.json();
         const orders = data.data;
         let htmlDiv = document.getElementById('orders');
