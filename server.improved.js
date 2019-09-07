@@ -7,9 +7,8 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'red1': 8192, 'blue1': 7146, 'redSocre': 25, 'blueScore':25},
+  { 'red1': 6439, 'blue1': 359, 'redSocre': 23, 'blueScore':32 } 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -41,11 +40,23 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    
+  switch ( request.url ) {
+      case '/submit':
+      const MR = JSON.parse(dataString); //match result
+      const newMR ={
+        'red1': MR.red1, 
+        'blue1': MR.blue1, 
+        'redSocre': MR.redScore, 
+        'blueScore':MR.blueScore
+      }
+      
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+      response.end();
 
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+      break;
+  
+  }
   })
 }
 

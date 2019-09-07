@@ -28,7 +28,7 @@
           <td class="blue"><input type="text" id="blueScore" class="score"></td>
         </tr>
         </table>
-      <button>submit</button>
+      <button id="submit">submit</button>
     </form>
   </body>
   <script>
@@ -64,10 +64,10 @@
   }
     
   const reset = function(){
-     document.getElementById( 'red1' ).value,
-     document.getElementById( 'blue1' ).value,
-     document.getElementById( 'redScore' ).value,
-     document.getElementById( 'blueScore' ).value
+     document.getElementById( 'red1' ).value='';
+     document.getElementById( 'blue1' ).value='';
+     document.getElementById( 'redScore' ).value='';
+     document.getElementById( 'blueScore' ).value='';
   }
 
   </script>
