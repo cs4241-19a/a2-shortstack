@@ -25,7 +25,12 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if(request.url === '/data')
+    {
+      response.add()
+    }
+  else{
     sendFile( response, filename )
   }
 }
