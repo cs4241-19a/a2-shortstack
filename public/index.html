@@ -1,41 +1,47 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
-  </body>
-  <script>
+   <head>
+      <title>CS4241 Assignment 2</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="styles/main.css" type="text/css">
+      <script src="scripts/game.js"></script>
+   </head>
+   <body onload='setUpGame()'>
+      <div id="gridContainer" class="gridContainer">
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+      </div>
+      <div id="score">
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
+      </div>
+      <button onclick='setUpGame()'>New Game</button>
+   </body>
+   <script>
+      /*
+        const submit = function( e ) {
+          // prevent default form action from being carried out
+          e.preventDefault()
+      
+          const input = document.querySelector( '#yourname' ),
+                json = { yourname: input.value },
+                body = JSON.stringify( json )
+      
+          fetch( '/submit', {
+            method:'POST',
+            body 
+          })
+          .then( function( response ) {
+            // do something with the reponse 
+            console.log( response )
+          })
+      
+          return false
+        }
+      
+        window.onload = function() {
+          //const button = document.querySelector( 'button' )
+          //button.onclick = submit
+        }
+      */
+        
+   </script>
 </html>
