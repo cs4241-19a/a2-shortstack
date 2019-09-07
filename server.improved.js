@@ -28,7 +28,8 @@ const handleGet = function( request, response ) {
   }
   else if(request.url === '/data')
     {
-      response.add()
+      response.send(appdata)
+      
     }
   else{
     sendFile( response, filename )
