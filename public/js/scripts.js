@@ -1,6 +1,6 @@
 // Add some Javascript code here, to run on the front end.
 
- //Function to control hide-show of ADD NEW FORM
+//Function to control hide-show of ADD NEW FORM
     function displayNewForm(){
       var newForm = document.getElementById("newForm");
       var modForm = document.getElementById("modForm");
@@ -52,7 +52,7 @@ function updateDatabaseDisplayTable(data){
     document.getElementById("Containter").innerHTML = html
   }
 
-
+//Populates first name drop down
 function populateFromDatabase(){
     fetch( '/getData', {
       method:'GET',
@@ -64,6 +64,10 @@ function populateFromDatabase(){
        let allData = JSON.parse(message)
        console.log(allData)
         let nameSelector = document.querySelector(".fNameM");
+          var opt = document.createElement('option');
+          opt.innerHTML = ""
+          opt.value = ""
+          nameSelector.appendChild(opt)
         for(let i = 0; i<Object.keys(allData).length; i++){
           var opt = document.createElement('option');
           opt.innerHTML = allData[i].fName
