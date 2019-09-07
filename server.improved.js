@@ -142,20 +142,62 @@ function noDuplicates(dataToAdd){
 function starSign(personalInfo){
   switch(personalInfo.month){
     case "January":
+      if(personalInfo.day < 21){
+        return "Capricorn"
+      }
+      else{
+        return "Aquarius"
+      }
       break;
     case "February":
+      if(personalInfo.day < 19){
+        return "Aquarius"
+      }
+      else{
+        return "Pisces"
+      }
       break;
     case "March":
+      if(personalInfo.day < 21){
+        return "Pisces"
+      }
+      else{
+        return "Aries"
+      }
       break;
     case "April":
+      if(personalInfo.day < 21){
+        return "Aries"
+      }
+      else{
+        return "Tarus"
+      }
       break;
     case "May":
+      if(personalInfo.day < 22){
+        return "Tarus"
+      }
+      else{
+        return "Gemini"
+      }
       break;
     case "June":
+      if(personalInfo.day < 22){
+        return "Gemini"
+      }
+      else{
+        return "Virgo"
+      }
       break;
     case "July":
       break;
     case "August":
+      if(personalInfo.day < 24){
+        return "Leo"
+      }
+      else{
+        return "Virgo"
+      }
       break;
     case "September":
       break;
@@ -164,6 +206,6 @@ function starSign(personalInfo){
     case "December":
       break;
     default:
-      per
+      return "Error"
   }
 }
