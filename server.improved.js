@@ -25,7 +25,9 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else if (request.url === '/public/css/style.css'){
+    sendFile( response, 'public/css/style.css' )
+  } else{
     sendFile( response, filename )
   }
 }
