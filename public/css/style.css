@@ -4,7 +4,19 @@ html, body {
 
 body  {
   background-image: url("https://www.nasa.gov/sites/default/files/thumbnails/image/earth_and_limb_m1199291564l_color_2stretch_mask_0.jpg");
-  background-color: #cccccc;
+  background-color: #000;
   background-size: auto 100%;
   background-repeat: no-repeat;
+  background-position: center;
+}
+
+#title-txt {
+  font-size: 24px;
+  font-family: monospace;
+  font-weight: bold;
+  color: white;
+}
+
+.center-txt {
+  text-align: center;
 }
