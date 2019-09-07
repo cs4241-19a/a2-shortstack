@@ -16,7 +16,6 @@ const submit = function( e ) {
 
     window.localStorage
 
-
     if(inputName.value === '' && signName.value !== '') {
         body = JSON.stringify( jsonSign )
         localStorage.setItem('myName', signName.value)

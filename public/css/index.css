@@ -436,10 +436,10 @@ p {
     padding-bottom: 10px;
     padding-left: 35px;
     padding-right: 30px;
-    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
     text-decoration: none;
-    font-size: 1.4em;
-    font-weight: 500;
+    font-size: 1.6em;
+    font-weight: 700;
 }
 
 .expEle {
@@ -458,10 +458,10 @@ p {
     padding-bottom: 10px;
     padding-left: 35px;
     padding-right: 30px;
-    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
     text-decoration: none;
-    font-size: 1.4em;
-    font-weight: 500;
+    font-size: 1.6em;
+    font-weight: 700;
     border-right: 5px groove #c9c9c9;
 }
 
@@ -540,8 +540,3 @@ p {
 .selectBox option {
     font-weight:normal;
 }
-
-.selectBox.salmon, option[value="salmon"] { background: salmon; color:white; }
-.selectBox.dodgerblue, option[value="dodgerblue"] { background: dodgerblue; color:white; }
-.selectBox.darkslategray, option[value="darkslategray"] { background: darkslategray; color:white; }
-.selectBox.orangered, option[value="orangered"] { background: orangered; color:white; }
