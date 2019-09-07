@@ -113,8 +113,10 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const name = document.querySelector( '#name' ),
-          mission_start = document.querySelector( '#mission_start')
+    const name = document.querySelector( '#sat-anme' ),
+          mission_start = document.querySelector( '#mission_start'),
+          completed = document.querySelector( '#completed' ),
+          orbit = document.querySelector( '#orbit' ),
           json = { name: name.value, mission_start: mission_start.value },
           body = JSON.stringify( json )
 
@@ -138,6 +140,8 @@
     notCompleted.className = ""
     completed.className = "is-active"
     endDate.disabled = false
+    
+    checkInput()
   }
   
   const notCompletedClicked = function( e ) {
@@ -148,6 +152,32 @@
     completed.className = ""
     notCompleted.className = "is-active"
     endDate.disabled = true
+    
+    checkInput()
+  }
+  
+  const checkInput = function ( e ) {
+    console.log('check')
+    const button = document.querySelector( 'button' )
+    const satName = document.querySelector( '#sat-name' )
+    const completed = document.querySelector( '#completed' )
+    
+    if (satName.value === "") {
+      button.disabled = true
+      return
+    }
+    
+    if (calendars[0].date.start === undefined) {
+      button.disabled = true
+      return
+    }
+    
+    if (completed.className.indexOf("is-active") !== -1 && calendars[1].date.start === undefined) {
+      button.disabled = true
+      return
+    }
+    
+    button.disabled = false
   }
 
   window.onload = function() {
@@ -161,13 +191,11 @@
     
     const satName = document.querySelector( '#sat-name' )
     const orbit = document.querySelector( '#orbit' )
-    const launchDate = document.querySelector( '#launch-date' )
     
     satName.onchange = checkInput
     
-    element.bulmaCalendar.on('select', datepicker => {
-		console.log(datepicker.data.value());
-	});
+    calendars[0].on('hide', checkInput)
+    calendars[1].on('hide', checkInput)
   }
 
   </script>
