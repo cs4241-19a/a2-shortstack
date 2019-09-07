@@ -1,0 +1,49 @@
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .parallax-boat {
+        /* The image used */
+        background-image: url("water.jpg");
+    
+        /* Create the parallax scrolling effect */
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .white {
+        color: white;
+    }
+
+    .form-style {
+        margin: 15px;
+        height: 30px;
+        width: 250px;
+        font-size: 20px;
+    }
+
+    .submit-style {
+        height: 30px;
+        width: 100%;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .no-padding {
+        padding: 0px;
+    }
+
+    .columns-style {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+    }

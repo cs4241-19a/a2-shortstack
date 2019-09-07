@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Boat Race</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+    <link href="css/tabulator.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Hero -->
+    <section class="hero center parallax-boat">
+      <div class="hero-body">
+        <div class = "container">
+          <h1 class = "white is-size-1 title">Boat Race Tracker</h1>
+        </div>
+      </div>
+  </section>
+  <br>
+
+    <!-- columns: https://bulma.io/documentation/columns/basics/ -->
+    <div class="columns columns-style">
+        <div class="column">
+            <form action="" class = "center notification has-background-light">
+              <h2>Name</h2>
+                <input type='text' id='yourname' value="" class = "form-style">
+              </form>
+        </div>
+        <div class="column">
+            <form action="" class = "center notification has-background-light">
+                <h2>Time</h2>
+                <input type='text' id='time' value="" class = "form-style">
+              </form>
+        </div>
+        <div class="column">
+            <form action="" class = "center notification has-background-light">
+                <h2>Boat Type</h2>
+                <input type='text' id='id' value="" class = "form-style">
+              </form>
+        </div>
+    </div>
+
+    <!-- section: https://bulma.io/documentation/layout/section/ -->
+    <section class="section no-padding">
+        <div class="container center">
+            <button class = "submit-style white has-background-danger">Submit Time</button>
+        </div>
+    </section>
+
+    <div id = "example-table"></div>
+
+
+    <div id="example-table"></div>
+  <script src="js/scripts.js"></script>
+  <script type="text/javascript" src="js/tabulator.js"></script>
+  </body>
+  </html>
+    
