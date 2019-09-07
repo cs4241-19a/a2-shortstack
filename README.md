@@ -1,3 +1,8 @@
+https://codepen.io/iamjoshellis/pen/yaAXmr?editors=1100
+https://uigradients.com/#DarkOcean
+https://developer.mozilla.org/en-US/docs/Web/CSS/linear-gradient
+
+
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 

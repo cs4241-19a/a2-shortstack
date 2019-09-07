@@ -1,1 +1,98 @@
-/*Style your own assignment! This is fun! */
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-feature-settings: "liga", "kern";
+            font-feature-settings: "liga", "kern";
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+	/* background: linear-gradient(210deg, #9adbbe, #4fc08d); */
+	background: linear-gradient(90deg, #435275, #2860bb);
+}
+  
+body {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	font-family: "Source Sans Pro", sans-serif;
+	/* font-weight: 700; */
+}
+
+li {
+    list-style-type: none;
+}
+
+button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}
+button:focus {
+	outline: none;
+}
+button:hover {
+ 	cursor: pointer;
+}
+
+.btn {
+	font-size: 14px;
+	margin: 0 .5em;
+	border-radius: 2em;
+	padding: 0.75em 1.5em;
+	cursor: pointer;
+	background: none;
+	color: #2d7c58;
+	letter-spacing: 1px;
+	font-family: "Source Sans Pro", sans-serif;
+	color: #4fc08d;
+	border: #4fc08d 1px solid;
+	transition: 250ms ease-out;
+}
+.btn:hover {
+	color: #fff;
+	background: #4fc08d;
+}
+
+/* .rm_btn, .done_btn {
+    margin-left: .5em;
+    margin-right: .5em;
+    background: none;
+    border: 1px solid;
+    color: inherit;
+    padding: 0;
+    line-height: 1;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 80%;
+} */
+
+i {
+	margin-left: 1px;
+}
+
+input {
+    /* width: 100%; */
+    font-size: 14px;
+    margin: 0 .5em;
+    border-radius: 2em;
+    padding: 0.75em 1.5em;
+    background: none;
+	font-family: "Source Sans Pro", sans-serif;
+	/* font-weight: 600; */
+    border: #1a3752 1px solid;
+	transition: border 250ms ease-out;
+	color: #4fc08d;
+}
+input:focus {
+	border: #4fc08d 1px solid;
+	outline: none;
+  }
