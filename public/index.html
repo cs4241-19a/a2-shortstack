@@ -45,6 +45,7 @@
   <script>
 
   const submit = function( e ) {
+    console.log("hello?")
     // prevent default form action from being carried out
     e.preventDefault()
 
@@ -52,19 +53,19 @@
     const inputlang = document.querySelector('#lang')
           json = { word: inputword.value , lang:inputlang.value},
           body = JSON.stringify( json )
-
+    console.log("pre fetch")
     fetch( '/submit', {
       method:'POST',
       body
     })
     .then( function( response ) {
-      console.log(response)
+      console.log( response )
       var tdNode = document.createElement("td");
       var trNode = document.createElement("tr");
       tdNode.appendChild(document.createTextNode(response);
       trNode.appendChild(tdNode);
       document.getElementById("results").appendChild(trNode);
-      console.log(response);
+      console.log( response );
     })
 
     return false

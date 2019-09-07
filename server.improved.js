@@ -38,7 +38,7 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    
+    console.log("server")
     let body = JSON.parse( dataString )
     var payload = {word:body.word, lang: body.lang, translation: ""};
     var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
@@ -58,8 +58,8 @@ const handlePost = function( request, response ) {
             if(json.code == 200) {
                 payload.translation += json.text[0];
                 appdata.push(JSON.stringify(payload))
-                response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-                //console.log(JSON.stringify(payload));
+                response.writeHead( 200, "OK", {'Content-Type': 'text/plain'})
+                console.log(JSON.stringify(payload));
                 response.end(JSON.stringify(payload))
             }
         }
