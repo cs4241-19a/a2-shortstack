@@ -39,6 +39,7 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    let body = JSON.parse( dataString )
 
     // ... do something with the data here!!!
     //SEND API REQUEST
@@ -59,16 +60,17 @@ const handlePost = function( request, response ) {
             document.querySelector('#json').innerHTML = res;
             var json = JSON.parse(res);
             if(json.code == 200) {
-                document.querySelector('#output').innerHTML = json.text[0];
+                body += json.text[0];
             }
             else {
-                document.querySelector('#output').innerHTML = "Error Code: " + json.code;
+                body += "Error Code: " + json.code;
             }
         }
     }
-
+    console.log('body' + str(body))
+  
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(body)
   })
 }
 
