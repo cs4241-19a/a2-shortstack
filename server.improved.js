@@ -136,17 +136,13 @@ const handleDelete = function( request, response ) {
     let params = {
       TableName:'todont-list',
       Key:{
-          unixtime: dataJSON.time,
-          priority: dataJSON.priority
-        }
+          unixtime: {N: dataJSON.time }
+        },
       };
     console.log( params )
-    docClient.delete(params, function(err, data) {
-      if (err) {
-          console.error("Unable to delete item. Error JSON:", JSON.stringify(err, null, 2));
-      } else {
-          console.log("DeleteItem succeeded:", JSON.stringify(data, null, 2));
-      }
+  ddb.deleteItem(params, function(err, data) {
+    if (err) console.log(err, err.stack); // an error occurred
+    else     console.log(data);           // successful response
   });
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
