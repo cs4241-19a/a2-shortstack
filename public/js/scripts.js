@@ -75,7 +75,8 @@ function showEditDataForm(){
   var parentInfo = document.getElementById("modForm");
   var editFormExists = document.forms['EDIT']
   if(editFormExists){
-    //update Data
+    editFormExists = null;
+    showEditDataForm()
   }
   else{
     var html = "<form action=\"\" id=\"editForm\"><legend>EDIT</legend>"
@@ -97,7 +98,30 @@ function showEditDataForm(){
           html += "<label for=\"lName\">Last Name:</label>"
           html += "<input type=\"text\" class=\"lName\" value=\""
           html += allData[selectedIndex].lName + "\"><br>"
-          
+          var month = allData[selectedIndex].month
+          month = monthNameToNum(month)
+          html += "<select name=\"month\" class=\"month\" selectedIndex=\"" + month + "\">"
+          html += "<option value=\"January\">January</option>"
+          html += "<option value=\"February\">February</option>"
+          html += "<option value=\"March\">March</option>"
+          html += "<option value=\"April\">April</option>"
+          html += "<option value=\"May\">May</option>"
+          html += "<option value=\"June\">June</option>"
+          html += "<option value=\"July\">July</option>"
+          html += "<option value=\"August\">August</option>"
+          html += "<option value=\"September\">September</option>"
+          html += "<option value=\"October\">October</option>"
+          html += "<option value=\"November\">Novemeber</option>"
+          html += "<option value=\"December\">December</option></select><br>"
+
+          /*
+           
+        <br>
+        <label for="days">Day of Birth</label>
+        <select name="days" class="days">  
+        </select>
+        <br>
+          */
           html += "</form>"
           document.getElementById("Container").innerHTML = ""
           document.getElementById("Container").innerHTML = html
@@ -264,4 +288,43 @@ const DateDataForDropdown = {
   }
 }
 
-
+function monthNameToNum(month){
+  switch(month){
+      case "January":
+      return 0;
+      break;
+    case "February":
+      return 1;
+      break;
+    case "March":
+      return 2;
+      break;
+    case "April":
+      return 3;
+      break;
+    case "May":
+      return 4;
+      break;
+    case "June":
+      return 5;
+      break;
+    case "July":
+      return 6;
+      break;
+    case "August":
+      return 7;
+      break;
+    case "September":
+      return 8;
+      break;
+    case "October":
+      return 9;
+      break;
+    case "November":
+      return 10;
+      break;
+    case "December":
+      return 11;
+      break;
+  }
+}
