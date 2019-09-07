@@ -28,7 +28,7 @@
           </ul>
         </div>
         
-        <form id="new-sat-form">
+        <form id="new-sat-form" style="display:none">
           
           <div class="field">
             <div class="control has-icons-left">
@@ -87,17 +87,17 @@
           <button class="button is-large is-fullwidth is-rounded" disabled>Submit</button>
         </form>
         
+        <div>
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr><td>Name</td><td>Orbit</td><td>Launch Date</td></tr>
+            </thead>            
+          </table>
+        </div>
+        
       </div>
     </div>
   </body>
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -118,7 +118,7 @@
           orbit = document.querySelector( '#orbit-select' ),
           launchTime = calendars[0].date.start.getTime(),
           endTime = calendars[1].date.start === undefined ? undefined : calendars[1].date.start.getTime(),
-          json = { name: name.value, mission_start: new Date(calendars[0].date.start), mission_completed: completed, mission_end: new Date(calendars[1].date.start), orbit_type: orbit.value},
+          json = { name: name.value, mission_start: launchTime, mission_completed: completed, mission_end: endTime, orbit_type: orbit.value},
           body = JSON.stringify( json )
 
     fetch( '/add_spacecraft', {
@@ -126,8 +126,10 @@
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+      name.value = ""
+      calendars[0].clear()
+      calendars[1].clear()
+      notCompletedClicked()
     })
 
     return false

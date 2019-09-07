@@ -1,11 +1,6 @@
 dependencies:
-  bulma: 0.7.5
   mime: 2.4.4
 packages:
-  /bulma/0.7.5:
-    dev: false
-    resolution:
-      integrity: sha512-cX98TIn0I6sKba/DhW0FBjtaDpxTelU166pf7ICXpCCuplHWyu6C9LYZmL5PEsnePIeJaiorsTEzzNk3Tsm1hw==
   /mime/2.4.4:
     dev: false
     engines:
@@ -17,5 +12,4 @@ registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
-  bulma: 0.7.5
   mime: ^2.4.4

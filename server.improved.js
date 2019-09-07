@@ -19,12 +19,18 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
-const refreshElapsed = function (data) {
+const refreshCalculated = function (data) {
   for (let i = 0; i < appdata.length; i++) {
     if (appdata[i].mission_completed === false) {
       appdata[i].elapsed = Date.now() - appdata[i].mission_start
     } else {
       appdata[i].elapsed = appdata[i].mission_end - appdata[i].mission_start
+    }
+    
+    if (appdata[i].mission_start > new Date()) {
+      appdata[i].has_launched = false
+    } else {
+      appdata[i].has_launched = true
     }
   }
 }
@@ -34,7 +40,7 @@ const addSpacecraft = function (data) {
   new_spacecraft.id = next_id
   next_id += 1
   appdata.push(new_spacecraft)
-  refreshElapsed()
+  refreshCalculated()
   console.log(appdata)
 }
 
@@ -56,7 +62,7 @@ const endMission = function (data) {
     }
   }
   
-  refreshElapsed()
+  refreshCalculated()
 }
 
 const handleGet = function( request, response ) {
