@@ -19,10 +19,10 @@
       <div class="column is-half">
         <div class="tabs is-centered is-toggle">
           <ul>
-            <li class="is-active">
+            <li id="add-tab" class="is-active">
               <a onclick="toggleView(0)">Add a Satellite</a>
             </li>
-            <li>
+            <li id="view-tab">
               <a onclick="toggleView(1)">View Satellites</a>
             </li>
           </ul>
@@ -86,6 +86,7 @@
 
           <button class="button is-large is-fullwidth is-rounded" disabled>Submit</button>
         </form>
+        
         <div id="table-view" style="display:none">
           <h1 class="center-txt table-lable">Future Satellites</h1>
           <div style="height:150px; overflow-y: auto;">
@@ -138,12 +139,18 @@
     fetch( '/end_mission', {
       method:'POST',
       body: JSON.stringify({ id: sat_id })
+    }).then(function (response) {
+      window.location.hash = "#view";
+      location.reload();
     })
   }
   const removeSat = function ( sat_id ) {
     fetch( '/remove_spacecraft', {
       method:'POST',
       body: JSON.stringify({ id: sat_id })
+    }).then(function (response) {
+      window.location.hash = "#view";
+      location.reload();
     })
   }
     
@@ -277,16 +284,30 @@
   const toggleView = function(view) {
     const form = document.querySelector( '#new-sat-form' )
     const tables = document.querySelector( '#table-view' )
+    const addTab = document.querySelector( '#add-tab' )
+    const viewTab = document.querySelector( '#view-tab' )
     
     switch (view) {
       case 0:
         form.style.display = "block"
-        tables.sytle.display = "none"
+        tables.style.display = "none"
+        addTab.className = "is-active"
+        viewTab.className = ""
+        window.location.hash = "#add";
         break
       case 1:
         form.style.display = "none"
-        tables.sytle.display = "block"
-      
+        tables.style.display = "block"
+        addTab.className = ""
+        viewTab.className = "is-active"
+        window.location.hash = "#view";
+        break
+      default:
+        form.style.display = "block"
+        tables.style.display = "none"
+        addTab.className = "is-active"
+        viewTab.className = ""
+        break
     }
   }
 
@@ -308,6 +329,18 @@
     calendars[1].on('hide', checkInput)
     loadData()
   }
+    
+    
+    
+    if(window.location.hash) {
+      if (window.location.hash="view") {
+        toggleView(1)
+      } else {
+        toggleView(0)
+      }
+    } else {
+      toggleView(0)
+    }
 
   </script>
 </html>
