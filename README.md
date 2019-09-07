@@ -60,7 +60,7 @@ Do the following to complete this assignment:
 4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
 5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
 6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
+7. Create and submit a Pull Request to the original repo. Label the pull request as follows: a2-gitusername-firstname-lastname
 
 Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
 ---
