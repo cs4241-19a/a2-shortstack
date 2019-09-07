@@ -99,21 +99,10 @@ function showEditDataForm(){
           html += "<input type=\"text\" class=\"lName\" value=\""
           html += allData[selectedIndex].lName + "\"><br>"
           var month = allData[selectedIndex].month
-          month = monthNameToNum(month)
-          html += "<select name=\"month\" class=\"month\" selectedIndex=\"" + month + "\">"
-          html += "<option value=\"January\">January</option>"
-          html += "<option value=\"February\">February</option>"
-          html += "<option value=\"March\">March</option>"
-          html += "<option value=\"April\">April</option>"
-          html += "<option value=\"May\">May</option>"
-          html += "<option value=\"June\">June</option>"
-          html += "<option value=\"July\">July</option>"
-          html += "<option value=\"August\">August</option>"
-          html += "<option value=\"September\">September</option>"
-          html += "<option value=\"October\">October</option>"
-          html += "<option value=\"November\">Novemeber</option>"
-          html += "<option value=\"December\">December</option></select><br>"
-
+          html += monthNameToNum(month)
+          var day = allData[selectedIndex].day
+          html += daysToHTML(month, day)
+          
           /*
            
         <br>
@@ -288,43 +277,202 @@ const DateDataForDropdown = {
   }
 }
 
+
+//**
 function monthNameToNum(month){
+  let html = ""
   switch(month){
-      case "January":
-      return 0;
+    case "January":
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option selected=\"selected\" value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "February":
-      return 1;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option selected=\"selected\" value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "March":
-      return 2;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option selected=\"selected\" value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "April":
-      return 3;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option selected=\"selected\" value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "May":
-      return 4;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option selected=\"selected\" value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "June":
-      return 5;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option selected=\"selected\" value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "July":
-      return 6;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option selected=\"selected\" value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "August":
-      return 7;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option selected=\"selected\" value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "September":
-      return 8;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option selected=\"selected\" value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "October":
-      return 9;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option selected=\"selected\" value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "November":
-      return 10;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option selected=\"selected\" value=\"November\">Novemeber</option>"
+      html += "<option value=\"December\">December</option></select><br>"
+      return html;
       break;
     case "December":
-      return 11;
+      html += "<select name=\"month\" class=\"month\">"
+      html += "<option value=\"January\">January</option>"
+      html += "<option value=\"February\">February</option>"
+      html += "<option value=\"March\">March</option>"
+      html += "<option value=\"April\">April</option>"
+      html += "<option value=\"May\">May</option>"
+      html += "<option value=\"June\">June</option>"
+      html += "<option value=\"July\">July</option>"
+      html += "<option value=\"August\">August</option>"
+      html += "<option value=\"September\">September</option>"
+      html += "<option value=\"October\">October</option>"
+      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option selected=\"selected\" value=\"December\">December</option></select><br>"
+      return html;
       break;
   }
 }
