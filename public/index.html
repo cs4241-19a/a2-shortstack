@@ -33,7 +33,6 @@
     </form>
     </div>
   <h2>
-    Results
   </h2>
   <table id="results" style="width:100%">
   <tr>
@@ -59,13 +58,13 @@
       body
     })
     .then( function( response ) {
-      console.log( response.body )
+      console.log(response)
       var tdNode = document.createElement("td");
       var trNode = document.createElement("tr");
-      tdNode.appendChild(document.createTextNode(response.body);
+      tdNode.appendChild(document.createTextNode(response);
       trNode.appendChild(tdNode);
       document.getElementById("results").appendChild(trNode);
-      console.log( response );
+      console.log(response);
     })
 
     return false
