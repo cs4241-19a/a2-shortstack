@@ -24,8 +24,7 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
-    console.log("IN RETREVIAL")
-    sendData(response, appdata)
+    sendData(response)
   }
   else if( request.url == '/printAll'){
     printAll(request, response)
@@ -35,10 +34,9 @@ const handleGet = function( request, response ) {
   }
 }
 
-const sendData = function(res, horoscope){
-  const mimeType = mime.getType(horoscope)
-  res.writeHeader(200, {'Content-Type': mimeType})
-  res.write(JSON.stringify({data: horoscope}))
+const sendData = function(res){
+  res.writeHeader(200, {'Content-Type': 'plain/text'})
+  res.write(JSON.stringify(appdata))
   res.end()
 }
 

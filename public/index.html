@@ -78,8 +78,7 @@
     <div id="modForm" style="display: none">
       <form action="">
       <label for="fName">First Name:</label>
-      <select name="fName" class="fName">
-        populateFromDatabase()
+      <select name="fName" class="fNameM">
       </select>
       <br>
       <label for="lName">Last Name: </label>
@@ -178,7 +177,7 @@
   // prevent default form action from being carried out
     e.preventDefault()
 
-    fetch( '/printAll', {
+    fetch( '/getData', {
       method:'GET',
     })
     .then( function( response ) {
@@ -212,27 +211,6 @@
    printAllButton.onclick = printAll
   }
     
-    function populateFromDatabase(){
-    fetch( '/populate', {
-      method:'GET',
-    })
-    .then( function( response ) {
-      console.log(response)
-      response.text()
-      .then(function(message){
-       let allData = JSON.parse(message)
-       console.log(allData)
-        let nameSelector = document.querySelector(".fName");
-        for(let i = 0; i<Object.keys(allData).length; i++){
-          var opt = document.createElement('option');
-          opt.appendChild(document.createTextNode(allData[i].fName));
-          opt.value = allData[i].fName;
-          nameSelector.appendChild(opt)
-        }
-     })
-    })
-    return false
-    }
 
   </script>
 </html>

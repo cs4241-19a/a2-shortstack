@@ -24,6 +24,7 @@
       else{
         modForm.style.display = 'none';
       }
+    populateFromDatabase()
   }
 
 //Function to control hide-how of entire database table
@@ -50,6 +51,30 @@ function updateDatabaseDisplayTable(data){
     
     document.getElementById("Containter").innerHTML = html
   }
+
+
+function populateFromDatabase(){
+    fetch( '/getData', {
+      method:'GET',
+    })
+    .then( function( response ) {
+      console.log(response)
+      response.text()
+      .then(function(message){
+       let allData = JSON.parse(message)
+       console.log(allData)
+        let nameSelector = document.querySelector(".fNameM");
+        for(let i = 0; i<Object.keys(allData).length; i++){
+          var opt = document.createElement('option');
+          opt.innerHTML = allData[i].fName
+          opt.value = allData[i].fName;
+          nameSelector.appendChild(opt)
+        }
+        console.log(nameSelector)
+     })
+    })
+    return false
+    }
 
 //Handle modification later
 function dynamicDropDown(){}
