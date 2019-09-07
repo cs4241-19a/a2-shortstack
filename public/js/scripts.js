@@ -65,8 +65,28 @@ function showEditDataForm(){
   else{
     var html = "<legend>EDIT</legend>"
     html += "<label for=\"fName\">First Name:</label>"
-    html += "<input type=\"text\" class=\"fName\" value="
+    html += "<input type=\"text\" class=\"fName\" value=\""
     var selectInfo = document.getElementsByName('modList')[0]
+    var selectedIndex = selectInfo.selectedIndex
+    //selected index -1
+    fetch('getData', {
+      method: 'GET',
+    })
+    .then(function(response){
+      response.text()
+      .then(function(message){
+        let allData = JSON.parse(message)
+        if(selectedIndex > 0){
+          selectedIndex--;
+          html += allData[selectedIndex].fName + "\"><br>"
+          document.getElementById("Container").innerHTML = ""
+          document.getElementById("Container").innerHTML = html
+
+        }
+      })
+    })
+    
+    
     //your name here"><br>
 
     /*
