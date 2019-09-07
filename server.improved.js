@@ -8,7 +8,7 @@ const http = require( 'http' ),
 
 let next_id = 1
 const appdata = [
-  { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'mission_start': 911520000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
+  { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'has_launched': true, 'mission_start': 911520000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -18,6 +18,46 @@ const server = http.createServer( function( request,response ) {
     handlePost( request, response ) 
   }
 })
+
+const refreshElapsed = function (data) {
+  for (let i = 0; i < appdata.length; i++) {
+    if (appdata[i].mission_completed === false) {
+      appdata[i].elapsed = Date.now() - appdata[i].mission_start
+    } else {
+      appdata[i].elapsed = appdata[i].mission_end - appdata[i].mission_start
+    }
+  }
+}
+
+const addSpacecraft = function (data) {
+  const new_spacecraft = data
+  new_spacecraft.id = next_id
+  next_id += 1
+  appdata.push(new_spacecraft)
+  refreshElapsed()
+  console.log(appdata)
+}
+
+const removeSpacecraft = function (data) {
+  const id = data.id
+  for (let i = 0; i < appdata.length; i++) {
+    if (appdata[i].id === id) {
+      appdata.splice(i, 1)
+    }
+  }
+}
+
+const endMission = function (data) {
+  const id = data.id
+  for (let i = 0; i < appdata.length; i++) {
+    if (appdata[i].id === id) {
+      appdata[i].mission_completed = true
+      appdata[i].mission_end = Date.now()
+    }
+  }
+  
+  refreshElapsed()
+}
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
@@ -60,45 +100,6 @@ const handlePost = function( request, response ) {
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
-}
-
-const refreshElapsed = function (data) {
-  for (let i = 0; i < appdata.length; i++) {
-    if (appdata[i].mission_completed === false) {
-      appdata[i].elapsed = Date.now() - appdata[i].mission_start
-    } else {
-      appdata[i].elapsed = appdata[i].mission_end - appdata[i].mission_start
-    }
-  }
-}
-
-const addSpacecraft = function (data) {
-  const new_spacecraft = data
-  new_spacecraft.id = next_id
-  next_id += 1
-  appdata.push(new_spacecraft)
-  refreshElapsed()
-}
-
-const removeSpacecraft = function (data) {
-  const id = data.id
-  for (let i = 0; i < appdata.length; i++) {
-    if (appdata[i].id === id) {
-      appdata.splice(i, 1)
-    }
-  }
-}
-
-const endMission = function (data) {
-  const id = data.id
-  for (let i = 0; i < appdata.length; i++) {
-    if (appdata[i].id === id) {
-      appdata[i].mission_completed = true
-      appdata[i].mission_end = Date.now()
-    }
-  }
-  
-  refreshElapsed()
 }
 
 const sendFile = function( response, filename ) {

@@ -113,11 +113,10 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const name = document.querySelector( '#sat-anme' ),
-          mission_start = document.querySelector( '#mission_start'),
-          completed = document.querySelector( '#completed' ),
-          orbit = document.querySelector( '#orbit' ),
-          json = { name: name.value, mission_start: mission_start.value },
+    const name = document.querySelector( '#sat-name' ),
+          completed = document.querySelector( '#completed' ).className.indexOf("is-active") !== -1,
+          orbit = document.querySelector( '#orbit-select' ),
+          json = { name: name.value, mission_start: new Date(calendars[0].date.start), mission_completed: completed, mission_end: new Date(calendars[1].date.start), orbit_type: orbit.value},
           body = JSON.stringify( json )
 
     fetch( '/add_spacecraft', {
@@ -190,7 +189,7 @@
     completed.onclick = completedClicked
     
     const satName = document.querySelector( '#sat-name' )
-    const orbit = document.querySelector( '#orbit' )
+    const orbit = document.querySelector( '#orbit-select' )
     
     satName.onchange = checkInput
     
