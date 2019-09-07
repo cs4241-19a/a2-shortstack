@@ -94,6 +94,7 @@ function showEditDataForm(){
         let allData = JSON.parse(message)
         if(selectedIndex > 0){
           selectedIndex--;
+          html += "<p id=\"modHolder\" style=\"display:none\">" + allData[selectedIndex] + "</p>"
           html += allData[selectedIndex].fName + "\"><br>"
           html += "<label for=\"lName\">Last Name:</label>"
           html += "<input type=\"text\" class=\"lNameE\" value=\""
@@ -271,10 +272,9 @@ const DateDataForDropdown = {
 
 //******* UTILITY DATE FUNCTIONS *******//
 function monthToHTML(month){
-  let html = ""
+  let html = "<select name=\"month\" class=\"monthE\">"
   switch(month){
     case "January":
-      html += "<select name=\"month\" class=\"monthE\">"
       html += "<option selected=\"selected\" value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -289,7 +289,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "February":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option selected=\"selected\" value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -304,7 +303,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "March":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option selected=\"selected\" value=\"March\">March</option>"
@@ -319,7 +317,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "April":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -334,7 +331,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "May":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -349,7 +345,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "June":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -364,7 +359,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "July":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -379,7 +373,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "August":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -394,7 +387,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "September":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -409,7 +401,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "October":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -424,7 +415,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "November":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"
@@ -439,7 +429,6 @@ function monthToHTML(month){
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "December":
-      html += "<select name=\"month\" class=\"month\">"
       html += "<option value=\"January\">January</option>"
       html += "<option value=\"February\">February</option>"
       html += "<option value=\"March\">March</option>"

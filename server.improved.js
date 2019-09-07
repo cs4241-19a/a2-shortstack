@@ -48,6 +48,7 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     const reqURL = request.url.slice(1)
     switch(reqURL){
+      /*Submit Case*/
       case "submit":
         console.log("submit")
         const convertedData = JSON.parse(dataString)
@@ -69,6 +70,7 @@ const handlePost = function( request, response ) {
         /*Modify  Case*/
       case "modify":
         console.log("modify")
+        
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
         response.end()

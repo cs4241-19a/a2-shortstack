@@ -92,15 +92,29 @@
   //Changes information in database to given
   const submitChanges = function(e){
     e.preventDefault()
-    let valInput = []
-    valInput.push(document.querySelector( '.fNameE' ).value)
-    valInput.push(document.querySelector( '.lNameE' ).value)
-    valInput.push(document.querySelector( '.monthE' ).value)
-    valInput.push(document.querySelector( '.daysE' ).value)
-    const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
+    let originalData = document.getElementById('modHolder').value
+    let newInput = []
+    newInput.push(document.querySelector( '.fNameE' ).value)
+    newInput.push(document.querySelector( '.lNameE' ).value)
+    newInput.push(document.querySelector( '.monthE' ).value)
+    newInput.push(document.querySelector( '.daysE' ).value)
+    const jsonOriginal = { fName: originalData[0], lName: originalData[1], month: originaData[2], day: originalData[3] },
           body = JSON.stringify( json )
     console.log(body)
-    fetch( '/modify', {
+    fetch( '/remove', {
+      method:'POST',
+      body
+    })
+    .then( function( response) {
+      // do something with the reponse
+      //display horoscope on screen
+     response.text()
+      .then(function(message){
+       console.log(message)
+     })
+      
+    })
+    fetch( '/submit', {
       method:'POST',
       body
     })
