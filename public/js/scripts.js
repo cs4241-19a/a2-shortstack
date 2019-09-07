@@ -6,10 +6,13 @@ function displayNewForm(){
   var newForm = document.getElementById("newForm");
   var modForm = document.getElementById("modForm");
   var editForm = document.getElementById("editForm");
+  modForm.style.display = 'none'
   if(editForm !== null){
       editForm.style.display = 'none'
   }
-  modForm.style.display = 'none'
+  if(document.getElementById("resultsTable") !== null){
+    document.getElementById("Container").innerHTML = ''
+  }
   if(newForm.style.display === 'none'){
     newForm.style.display = 'inline';
     var form = document.forms['NEW'];
@@ -45,10 +48,14 @@ function displayNewForm(){
 function displayModForm(){
   var newForm = document.getElementById("newForm");
   var editForm = document.getElementById("editForm");
+  newForm.style.display = 'none'
   if(editForm !== null){
       editForm.style.display = 'none'
   }
-  newForm.style.display = 'none'
+  if(document.getElementById("resultsTable") !== null){
+    document.getElementById("Container").innerHTML = ''
+  }
+    
   var modForm = document.getElementById("modForm");
   if(modForm.style.display === 'none'){
     modForm.style.display = 'inline';
@@ -87,6 +94,10 @@ function showEditDataForm(){
         if(selectedIndex > 0){
           selectedIndex--;
           html += allData[selectedIndex].fName + "\"><br>"
+          html += "<label for=\"lName\">Last Name:</label>"
+          html += "<input type=\"text\" class=\"lName\" value=\""
+          html += allData[selectedIndex].lName + "\"><br>"
+          
           html += "</form>"
           document.getElementById("Container").innerHTML = ""
           document.getElementById("Container").innerHTML = html
@@ -111,30 +122,43 @@ function showEditDataForm(){
 }
 
 function displayData(){
-  /*fetch('/getData', {
-      method: 'GET',
-  })
-  .then(function(response){
-    response.text()
-    .then(function(message){
-      let allData = JSON.parse(message)
-      console.log(message)
-      var html = "<table><tr><th" + " align=" + ">Existing Data</th></tr>"
-      html += "<tr><td>Index</td><td>First Name</td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
-      for(let i = 0; i< Object.keys(allData).length; i++){
-        html += "<tr>" 
-        html += "<td>" + i + "</td>"
-        html += "<td>" + allData[i].fName + "</td>"
-        html += "<td>" + allData[i].lName + "</td>"
-        html += "<td>" + allData[i].day + "</td>"
-        html += "<td>" + allData[i].month + "</td>"
-        html += "<td>" + allData[i].sign + "</td>"
-        html +="</tr>"
-      }
-      html += "</table>"
-      document.getElementById("Containter").innerHTML = html
+  var newForm = document.getElementById("newForm");
+  var modForm = document.getElementById("modForm");
+  var editForm = document.getElementById("editForm");
+  newForm.style.display = 'none'
+  modForm.style.display = 'none'
+  if(editForm !== null){
+      editForm.style.display = 'none'
+  }
+  if(document.getElementById("resultsTable") !== null){
+    document.getElementById("Container").innerHTML = ''
+  }
+  else{
+    fetch('/getData', {
+        method: 'GET',
     })
-  })*/
+    .then(function(response){
+      response.text()
+      .then(function(message){
+        let allData = JSON.parse(message)
+        console.log(message)
+        var html = "<table id=\"resultsTable\"><tr><th" + " align=" + ">Existing Data</th></tr>"
+        html += "<tr><td>Index</td><td>First Name</td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
+        for(let i = 0; i< Object.keys(allData).length; i++){
+          html += "<tr>" 
+          html += "<td>" + i + "</td>"
+          html += "<td>" + allData[i].fName + "</td>"
+          html += "<td>" + allData[i].lName + "</td>"
+          html += "<td>" + allData[i].day + "</td>"
+          html += "<td>" + allData[i].month + "</td>"
+          html += "<td>" + allData[i].sign + "</td>"
+          html +="</tr>"
+        }
+        html += "</table>"
+        document.getElementById("Container").innerHTML = html
+      })
+    })
+  }
 }
 
 //Function to control hide-how of entire database table
@@ -241,6 +265,3 @@ const DateDataForDropdown = {
 }
 
 
-
-
-function TEST()

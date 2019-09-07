@@ -11,7 +11,7 @@
       <ul>
         <li><button onclick="displayNewForm()">Add New</button></li>
         <li><button onclick="displayModForm()">Modify Existing</button></li>
-        <li><button onclick="TEST()">View Data</button></li>
+        <li><button onclick="displayData()">View Data</button></li>
       </ul>
     </nav>
     <div id="newForm" style="display: none">
@@ -112,14 +112,6 @@
      })
     })
     return false
-  }
-  
-  
-  function displayData(response){
-    var node = document.createElement("P")
-    var t = document.createTextNode(response)
-    node.appendChild(t)
-    document.body.appendChild(t)
   }
   
     //Assign Button Functions On Load
