@@ -49,13 +49,13 @@ const handlePost = function( request, response ) {
     var xhr = new XMLHttpRequest(),
         textAPI = encodeURI(body.word),
         langAPI = body.lang
-        let req = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
+        let req = 'key='+keyAPI+'&text='+textAPI+'&lang='+langAPI;
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send(req);
     console.log(req);
     xhr.onreadystatechange = function() {
-        if (this.readyState==4  && this.status==200) {
+        if (this.readyState==4) {
             console.log("response recieved")
             var res = this.responseText;
             console.log(res)
