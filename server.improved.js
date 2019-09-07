@@ -12,7 +12,7 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14}
 ]
 
-const itemsStore = {}
+let itemsStore = {}
 
 const server = http.createServer( function( request,response ) {
   writeCorsHeaders(request, response);
@@ -112,6 +112,34 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+process.on('SIGTERM', shutdown);
+process.on('SIGINT', shutdown);
+
+function shutdown() {
+  console.log("ahh you bitch");
+  const jsonContent = JSON.stringify({
+    itemsStore
+  });
+
+  fs.writeFile("./data.json", jsonContent, 'utf8', function (err) {
+    if (err) {
+      console.error("An error occured while writing JSON Object to File.", err);
+      process.exit(1);
+    } else {
+      console.log("JSON file has been saved.");
+      process.exit(0);
+    }
+  });
+}
+
+// Before we start listening, let's load any data written to disk.
+if (fs.existsSync('./data.json')) {
+  const contents = fs.readFileSync('./data.json', 'utf8');
+  const dataStore = JSON.parse(contents);
+  console.log('Recovered memory from data.json:', dataStore)
+  itemsStore = dataStore.itemsStore || {};
 }
 
 server.listen( process.env.PORT || port )
