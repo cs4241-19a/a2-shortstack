@@ -1,1 +1,149 @@
 /*Style your own assignment! This is fun! */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+
+}
+
+#left {
+    float: left;
+    width: 50%;
+    height: 100%;
+    background: #f4f7f8;
+    background: #f4f7f8;
+}
+
+#title {
+    font-size: 48px;
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+}
+
+#form {
+    margin-top: 80px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#form input {
+    background: rgba(255, 255, 255, .1);
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    padding: 10px;
+    width: 100%;
+    background-color: #e8eeef;
+    margin-bottom: 30px;
+}
+
+#form input:focus {
+    background: #d2d9dd;
+}
+
+#submit {
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 0 auto;
+    background: #4347bc;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 100%;
+    border: 1px solid #2526a0;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+
+#submit:hover {
+    background: #161658;
+}
+
+#edit {
+    position: relative;
+    display: block;
+    color: #FFF;
+    margin: 0 auto;
+    background: #44bc8d;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #2a7a5d;
+    border-width: 1px 1px 3px;
+}
+
+#edit:hover {
+    background: #15583d;
+}
+
+#delete {
+    position: relative;
+    display: block;
+    color: #FFF;
+    margin: 0 auto;
+    background: #bc383a;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #7a2227;
+    border-width: 1px 1px 3px;
+}
+
+#delete:hover {
+    background: #580b0f;
+}
+
+#links {
+    float: right;
+    width: 50%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: auto;
+}
+
+#linkstable {
+    width: 100%;
+
+}
+
+img {
+    height: 25px;
+}
+
+td {
+    height: 60px;
+    vertical-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#reset {
+    position: relative;
+    display: block;
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    margin: 5px auto;
+    background: #d2b900;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    width: 90%;
+    border: 1px solid #a59c00;
+    border-width: 1px 1px 3px;
+    margin-bottom: 10px;
+}
+
+#reset:hover {
+    background: #675002;
+}
+

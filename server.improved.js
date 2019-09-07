@@ -1,72 +1,116 @@
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
+const express = require('express'),
+    bodyParser = require('body-parser'),
+    server = express(),
+    dir = '/public/',
+    port = 3000;
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+let links = [
+    {'name': 'Vue.js', 'tags': ['library', 'javascript', 'typescript', 'programming'], 'url': 'http://vuejs.org'},
+    {'name': 'React.js', 'tags': ['library', 'javascript', 'typescript', 'programming'], 'url': 'http://reactjs.org'},
+    {'name': 'Angular', 'tags': ['library', 'javascript', 'typescript', 'programming'], 'url': 'http://angular.io'},
+    {'name': 'Facebook', 'tags': ['social media', 'news'], 'url': 'http://facebook.com'},
+    {'name': 'Feedly', 'tags': ['rss', 'news'], 'url': 'http://feedly.com'},
+];
 
-const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
-  }
-})
+server.set('port', process.env.PORT || port);
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+server.use(bodyParser.json()); // support json encoded bodies
+server.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
+server.use(express.static(__dirname + '/public'));
 
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  }else{
-    sendFile( response, filename )
-  }
-}
+server.get('/', function (req, res) {
+    res.sendFile(__dirname + dir + 'index.html');
+});
 
-const handlePost = function( request, response ) {
-  let dataString = ''
+server.get('/links', (request, response) => {
+    let links = getLinks();
+    response.json(links);
+});
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+server.post('/api/addLink', function (req, res) {
+    let link = req.body;
+    let duplicate = false;
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    if (!link.name || !link.url) {
+        res.send('empty');
+        return;
+    }
 
-    // ... do something with the data here!!!
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
-}
+    if (!/^https?:\/\//i.test(link.url)) {
+        link.url = 'http://' + link.url;
+    }
+    link.name = link.name.charAt(0).toUpperCase() + link.name.slice(1);
+    link.tags = link.tags.split(',');
+    links.filter(l => {
+        if ((l.name.toLowerCase() === link.name.toLowerCase() || l.url.toLowerCase() === link.url.toLowerCase()) && !link.isEdit) {
+            res.send('duplicate');
+            duplicate = true;
+        }
+    });
 
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+    if (duplicate) {
+        return;
+    }
 
-   fs.readFile( filename, function( err, content ) {
+    if (link.isEdit) {
+        console.log(`editing ${link.name}`);
+        links[link.isEdit] = link;
+        res.send(true);
+    }
 
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
+    if (!duplicate && !link.isEdit) {
+        links.push(link);
+        res.send(true);
+    }
+});
 
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
+server.post('/api/deleteLink', function (req, res) {
+    let index = parseInt(req.body.index);
+    links.splice(index, 1);
+    res.send(true);
+});
 
-     }else{
+server.get('/links/:tag', function (req, res) {
+    console.log("tag is " + req.params.tag);
+    let links = getLinks(req.params.tag);
+    res.json(links);
+});
 
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
+server.listen(port, function () {
+    console.log(`Bookmarker app listening on port ${port}!`);
+});
 
-     }
-   })
-}
+server.use(function (req, res, next) {
+    res.status(404).sendFile(__dirname + dir + '404.html');
+});
 
-server.listen( process.env.PORT || port )
+const getLinks = (tag) => {
+    if (tag) {
+        let filteredLinks = links.filter(data => {
+            let hasTag = data.tags.filter(t => {
+                return t.trim().toLowerCase() === tag.trim().toLowerCase();
+            });
+            return (hasTag !== undefined && hasTag.length > 0);
+        });
+        for (let i = 0; i < filteredLinks.length; i++) {
+            let url = filteredLinks[i].url;
+            let icon = 'https://findicons.com/files/icons/1036/function/48/warning.png';
+            if (url) {
+                icon = `https://s2.googleusercontent.com/s2/favicons?domain=${url}`;
+            }
+            filteredLinks[i]['icon'] = icon;
+        }
+        return filteredLinks;
+    } else {
+        for (let i = 0; i < links.length; i++) {
+            let url = links[i].url;
+            let icon = 'https://findicons.com/files/icons/1036/function/48/warning.png';
+            if (url) {
+                icon = `https://s2.googleusercontent.com/s2/favicons?domain=${url}`;
+            }
+            links[i]['icon'] = icon;
+        }
+        return links;
+    }
+};
