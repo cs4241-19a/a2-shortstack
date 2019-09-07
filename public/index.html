@@ -2,14 +2,21 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="utf-8">
   </head>
   <body>
+    <h1>
+      JOE'S TRANSLATOR APP
+    </h1>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
+      <input type="text" id="yourname" value="your name here">
       <button>submit</button>
     </form>
-  <table style="width:100%">
+  <h2>
+    Results
+  </h2>
+  <table id="results" style="width:100%">
   <tr>
     <th>Firstname</th>
     <th>Lastname</th> 
@@ -42,7 +49,15 @@
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
+      
+      rep = JSON.parse( response )
+      
+      
+      var tdNode = document.createElement("td");
+      var trNode = document.createElement("tr");
+      tdNode.appendChild(document.createTextNode(rep));
+      trNode.appendChild(tdNode);
+      document.getElementById("results").appendChild(trNode); 
       console.log( response )
     })
 
