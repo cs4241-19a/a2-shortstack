@@ -7,6 +7,9 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "express": "^4.17.1",
+    "firebase-admin": "^8.4.0",
+    "mime": "^2.4.4",
+    "myscript": "^4.3.0"
   }
 }
