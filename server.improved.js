@@ -68,6 +68,12 @@ const handlePost = function( request, response ) {
         response.writeHead(200);
         response.end();
         break;
+      case 'deleteItem':
+        delete itemsStore[req.data.id];
+        response.setHeader('Content-Type', 'application/json');
+        response.writeHead(200);
+        response.end(JSON.stringify({ itemsStore }))
+        break;
       default:
         console.error(`Don't know what to do with`, req);
         response.writeHead(400);
