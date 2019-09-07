@@ -95,13 +95,6 @@
             </thead>    
             <tbody>
               <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>OK</td></tr>
             </tbody>
           </table>
         </div>
@@ -114,11 +107,6 @@
             </thead>    
             <tbody>
               <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>12 days</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>12 days</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>12 days</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>12 days</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>12 days</td><td>OK</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>12 days</td><td>OK</td></tr>
             </tbody>
           </table>
         </div>
@@ -130,11 +118,6 @@
               <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>End Date</th><th>Total Time</th></tr>
             </thead>    
             <tbody>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>May 12th, 2019</td><td>7 days</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>May 12th, 2019</td><td>7 days</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>May 12th, 2019</td><td>7 days</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>May 12th, 2019</td><td>7 days</td></tr>
-              <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>May 12th, 2019</td><td>7 days</td></tr>
               <tr><td>ISS</td><td>Low Earth Orbit</td><td>May 5th, 2019</td><td>May 12th, 2019</td><td>7 days</td></tr>
             </tbody>
           </table>
@@ -153,6 +136,15 @@
   // Initialize all input of date type.
   const calendars = bulmaCalendar.attach('[type="date"]', {"type": "date", "displayMode": "dialog"});
     
+  const loadData = function( e ) {
+    fetch( '/spacecraft_data', {
+      method:'GET',
+    })
+    .then( function( response ) {
+      console.log(response)
+      console.log(response.body)
+    })
+  }
     
   const submit = function( e ) {
     // prevent default form action from being carried out
@@ -244,6 +236,8 @@
     
     calendars[0].on('hide', checkInput)
     calendars[1].on('hide', checkInput)
+    
+    loadData()
   }
 
   </script>
