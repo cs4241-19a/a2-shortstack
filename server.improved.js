@@ -39,7 +39,7 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log("server")
-    let body = JSON.parse( dataString )
+    let body = JSON.parse( dataString );
     var payload = {word:body.word, lang: body.lang, translation: ""};
     var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
     keyAPI = "trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd";
