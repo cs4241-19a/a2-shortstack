@@ -47,7 +47,7 @@
 
   window.onload = function() {
     const button = document.querySelector( 'button' )
-    button.onclick = submit
+    button.onclick = showData
   }
     
     /*const myDelete = function( e ) {
@@ -71,6 +71,29 @@
 
     return false
   }*/
+    
+    
+    
+    const showData = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+
+    
+    
+
+    fetch( '/data', {
+      method:'GET'
+       
+    })
+    .then( function( response ) {
+      // do something with the reponse 
+      alert(response.blob)
+      console.log( response )
+      
+    })
+
+    return false
+  }
     
 
   </script>

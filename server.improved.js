@@ -28,7 +28,8 @@ const handleGet = function( request, response ) {
   }
   else if(request.url === '/data')
     {
-      response.send(appdata)
+      
+      response.end(appdata)
       
     }
   else{
@@ -64,6 +65,7 @@ const actions =
     appdata.push( json)
   console.log("Successfully submitted")  
     console.log(appdata)
+    
   }/*,
   
   Ondelete(json)
