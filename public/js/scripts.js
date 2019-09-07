@@ -1,6 +1,7 @@
 // Add some Javascript code here, to run on the front end.
 
-//Function to control hide-show of ADD NEW FORM
+//******** HIDE-SHOW *******//
+//Controls ADD NEW FORM
 function displayNewForm(){
   var newForm = document.getElementById("newForm");
   var modForm = document.getElementById("modForm");
@@ -36,7 +37,7 @@ function displayNewForm(){
   }
 }
  
-//Function to control hide-show of MOD DATA FORM
+//Controls MOD DATA FORM
 function displayModForm(){
   var newForm = document.getElementById("newForm");
   newForm.style.display = 'none'
@@ -44,18 +45,20 @@ function displayModForm(){
   if(modForm.style.display === 'none'){
     modForm.style.display = 'inline';
     //Add onchange function to live update to new month
-    /*sel.onchange = function(e){
-      var subName = 'days'
-      var dates = document.forms['NEW'].elements[subName]
-      var newData = DateDataForDropdown[subName][this.value]
-      removeAllOptions(dates)
-      appendDataToSelect(dates, newData)
-    }*/
+    modForm.onchange = function(e){
+      showEditDataForm()
+    }
   }
   else{
     modForm.style.display = 'none';
   }
   populateFromDatabase()
+}
+
+//Controls EDIT DATA FORM
+function showEditDataForm(){
+  var parentInfo = document.getElementById("modForm").forms[].elements['modList'];
+  console.log(parentInfo)
 }
 
 //Function to control hide-how of entire database table
@@ -82,7 +85,37 @@ function updateDatabaseDisplayTable(data){
   document.getElementById("Containter").innerHTML = html
 }
 
-//Populates first name drop down
+
+
+
+//******* DYNAMIC DROPDOWNS ******//
+//Removes all options from given select element
+function removeAllOptions(selection, removalGroup){
+  var len, groups, par;
+  if(removalGroup){
+    groups = selection.getElementsByTagName('option')
+    len = groups.length;
+    for(var i = len; i; i--){
+      selection.removeChild(groups[i-1])
+    }
+  }
+  len = selection.options.length
+  for(var i=len; i; i--){
+    par = selection.options[i-1].parentNode;
+    par.removeChild(selection.options[i-1])
+  }
+}
+
+//Adds given data as options to given select element
+function appendDataToSelect(sel, data) {
+  for(let i = 0; i<data.length; i++){
+      var opt = document.createElement("option")
+      opt.innerHTML = opt.value = data[i]
+      sel.appendChild(opt)
+  }
+}
+
+//Populates initial modify dropdown will all information from database
 function populateFromDatabase(){
   fetch( '/getData', {
     method:'GET',
@@ -108,32 +141,8 @@ function populateFromDatabase(){
   return false
 }
 
-//FUNCTIONS FOR DYNAMIC SELECTION BOXES
-function removeAllOptions(selection, removalGroup){
-  var len, groups, par;
-  if(removalGroup){
-    groups = selection.getElementsByTagName('option')
-    len = groups.length;
-    for(var i = len; i; i--){
-      selection.removeChild(groups[i-1])
-    }
-  }
-  len = selection.options.length
-  for(var i=len; i; i--){
-    par = selection.options[i-1].parentNode;
-    par.removeChild(selection.options[i-1])
-  }
-}
-
-//EDIT FOR CLARITY
-function appendDataToSelect(sel, data) {
-  for(let i = 0; i<data.length; i++){
-      var opt = document.createElement("option")
-      opt.innerHTML = opt.value = data[i]
-      sel.appendChild(opt)
-  }
-}
-
+//******* HARD CODED DATA *******//
+//HARD CODED VAR FOR ALL OD DATE INFORMATION
 const DateDataForDropdown = {
   'days' : {
     January:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31' ],
