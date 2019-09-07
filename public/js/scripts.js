@@ -111,8 +111,7 @@ function showEditDataForm(){
 }
 
 function displayData(){
-  console.log("DISPLAY DATA CALLED")
-  fetch('/getData', {
+  /*fetch('/getData', {
       method: 'GET',
   })
   .then(function(response){
@@ -135,7 +134,7 @@ function displayData(){
       html += "</table>"
       document.getElementById("Containter").innerHTML = html
     })
-  })
+  })*/
 }
 
 //Function to control hide-how of entire database table
@@ -159,7 +158,7 @@ function updateDatabaseDisplayTable(data){
     html +="</tr>"
   }
   html += "</table>"
-  document.getElementById("Containter").innerHTML = html
+  document.getElementById("Container").innerHTML = html
 }
 
 
@@ -240,3 +239,8 @@ const DateDataForDropdown = {
     December:['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31' ]      
   }
 }
+
+
+
+
+function TEST()
