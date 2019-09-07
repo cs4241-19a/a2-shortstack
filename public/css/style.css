@@ -2,6 +2,8 @@
 body {
     padding: 20px;
     font: 1em Helvetica Neue, Helvetica, Arial, sans-serif;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(30,30,158,0.16600143475358897) 29%, rgba(0,212,255,1) 100%);
 }
 
 * {box-sizing: border-box;}
@@ -11,23 +13,39 @@ p {
 }
 
 .formContainer{
-    width: 400px;
     border: 2px solid rgb(4, 28, 71);
+    height: 900px;
+    width:820px;
+    text-align: center;
+    align-content: center;
+    margin: 0 auto;
     background-color: rgb(4, 28, 71);
     border-radius: .5em;
     padding: 10px;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .nameForm{
+    order:2;
+    width:400px;
     color:rgb(240, 245, 255);
+    align-self: center;
+}
+
+.atable{
+    order:1;
+}
+
+.rtable{
+    order:3;
 }
 
 input, select, button {
     font: .9em arial;
     padding: 5px;
-    width:370px;
+    width:400px;
     margin: 2px;
     border: none;
     background-color: rgb(240, 245, 255);

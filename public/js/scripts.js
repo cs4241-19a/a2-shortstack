@@ -1,17 +1,16 @@
 console.log("Welcome to assignment 2!")
 
 const genTable = function(data){
-    console.log("About to create table")
     console.log(data)
     var table = new Tabulator("#readings-table", {
-        height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+        margin:40,
         data:data, //assign data to table
         layout:"fitColumns", //fit columns to width of table (optional)
         columns:[ //Define Table Columns
-            {title:"Speed", field:"speed", width:150},
-            {title:"Rotations per Minute", field:"rpm", formatter:"progress"},
-            {title:"Gear", field:"gear"},
-            {title:"Timestamp", field:"datetime", sorter:"date", align:"center"},
+            {title:"Speed", field:"speed", width:120},
+            {title:"Rotations per Minute", field:"rpm", width:250},
+            {title:"Gear", field:"gear", width:120},
+            {title:"Timestamp", field:"datetime", sorter:"date", align:"center", width:290},
         ],
         rowClick:function(e, row){ //trigger an alert message when the row is clicked
             alert("Row " + row.getData().id + " Clicked!!!!");
@@ -19,6 +18,32 @@ const genTable = function(data){
    });    
 }
 
+const agrTable = function(data){
+    var agrTable = new Tabulator("#aggregate-table",{
+        height: 200,
+        margin: 50,
+        data:data,
+        layout:"fitColumns",
+        columns:[
+            {title:"Gear", field:"gear"},
+            {title:"Average Speed", field:"avgspeed"},
+        ]
+    })
+}
+
+const getReadings = function(){
+
+    fetch('data/carreadings.json')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        genTable(data.readings)
+        agrTable(data.aggregate)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
 
 const submit = function( e ) {
     // prevent default form action from being carried out
@@ -40,19 +65,8 @@ const submit = function( e ) {
         body 
     })
     .then( function( response ) {
-        let reader = response.body.getReader()
-        reader.read().then(function processReadings({done, data}){
-            if(done){
-                console.log(data)
-                try{
-                    let obj = JSON.parse(data)
-                    genTable(obj.readings)
-                }catch(err){
-                    console.log(err)
-                    genTable(data.readings)
-                }
-            }
-        })
+        console.log(response)
+        getReadings()
     })
 
     return false
@@ -61,5 +75,6 @@ const submit = function( e ) {
 window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = submit
+    getReadings()
 }
 

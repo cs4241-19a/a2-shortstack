@@ -4,8 +4,7 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
-      port = 3000,
-      Tabulator = require('tabulator-tables');
+      port = 3000
 
 console.log("Starting server on default port")
 
@@ -17,16 +16,45 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+const calculateAggr = function(data){
+  let aggregate = {
+    "park":{"sum":0,"count":0},
+    "rear":{"sum":0,"count":0},
+    "gear1":{"sum":0,"count":0},
+    "gear2":{"sum":0,"count":0},
+    "gear3":{"sum":0,"count":0},
+    "gear4":{"sum":0,"count":0},
+    "gear5":{"sum":0,"count":0},
+    "gear6":{"sum":0,"count":0},
+  }
+
+  data.readings.forEach(re => {
+    aggregate[re.gear].sum = aggregate[re.gear].sum + re.speed
+    aggregate[re.gear].count = aggregate[re.gear].count + 1 
+  });
+
+  let aggr_data = []
+
+  let gears = ["park", "rear", "gear1", "gear2", "gear3", "gear4", "gear5", "gear6"]
+  gears.forEach(g => {
+    aggr_data.push({"gear":g, "avgspeed":(aggregate[g].sum/aggregate[g].count)})
+  })
+  return aggr_data
+
+}
+
 const updateRecord = function(reading){
   return new Promise(resolve =>{
-    fs.readFile('data/carreadings.json', 'utf8', function updateFile(err, readings){
+    fs.readFile('public/data/carreadings.json', 'utf8', function updateFile(err, readings){
       if (err){
         console.log(err);
       } else {
         let readingsObj = JSON.parse(readings);
         readingsObj.readings.push(reading);
+        aggr = calculateAggr(readingsObj)
+        readingsObj.aggregate = aggr
         let json = JSON.stringify(readingsObj);
-        fs.writeFile('data/carreadings.json', json, 'utf8', function writeCallback(err){
+        fs.writeFile('public/data/carreadings.json', json, 'utf8', function writeCallback(err){
           if (err){
             console.log(err);
           }
@@ -35,7 +63,6 @@ const updateRecord = function(reading){
       }
     });
   })
-  
 }
 
 const handleGet = function( request, response ) {
@@ -43,7 +70,8 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else{
     console.log("Loading to client: " + filename)
     sendFile( response, filename )
   }
@@ -63,8 +91,8 @@ const handlePost = function( request, response ) {
     updateRecord(reading).then(function(resolve){
       console.log(resolve)
 
-      response.writeHeader( 200, { 'Content-Type': 'application/json' })
-      response.end(JSON.stringify(resolve));
+      response.writeHeader( 200, { 'Content-Type': 'text/plain' })
+      response.end("Ok");
     });
   })
 }
