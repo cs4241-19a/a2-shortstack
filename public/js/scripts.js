@@ -79,7 +79,7 @@ function showEditDataForm(){
     showEditDataForm()
   }
   else{
-    var html = "<form action=\"\" id=\"editForm\"><legend>EDIT</legend>"
+    var html = "<form action=\"\" id=\"editForm\" class=\"editForm\"><legend>EDIT</legend>"
     html += "<label for=\"fName\">First Name:</label>"
     html += "<input type=\"text\" class=\"fName\" value=\""
     var selectInfo = document.getElementsByName('modList')[0]
@@ -103,24 +103,23 @@ function showEditDataForm(){
           var day = allData[selectedIndex].day
           html += daysToHTML(month, day)
           html += "</form>"
+          html += "<button>SubmitChanges</button>"
+          html +="<button>Delete Original</button>"
           document.getElementById("Container").innerHTML = ""
           document.getElementById("Container").innerHTML = html
-
+          var form = document.forms['editForm'];
+          var sel = form.elements['month'];
+          sel.onchange = function(e){
+            var subName = 'days'
+            var dates = document.forms['editForm'].elements[subName]
+            var newData = DateDataForDropdown[subName][this.value]
+            removeAllOptions(dates)
+            appendDataToSelect(dates, newData)
+          }
         }
       })
     })
     
-    
-    //your name here"><br>
-
-    /*
-    <legend>Add New Entry</legend>
-        <label for="fName">First Name:</label>
-        <input type="text" class="fName" value="your name here"><br>
-        <label for="lName">Last Name: Name</label>
-        <input type="text" class="lName" value="your name here"><br>
-        
-    */
   }
 
 }
@@ -231,10 +230,6 @@ function populateFromDatabase(){
       let allData = JSON.parse(message)
       console.log(allData)
       let nameSelector = document.querySelector(".modList");
-      console.log(nameSelector.childNodes.length)
-      for(let i = nameSelector.childNodes.length; i; --i){
-        nameSelector.removeChild[i-1]
-      }
       var opt = document.createElement('option');
       opt.innerHTML = opt.value = ""
       nameSelector.appendChild(opt)
@@ -462,9 +457,13 @@ function daysToHTML(month, day){
   html += "<select name=\"days\" class=\"days\">"
   for(let i = 1; i <= totalDays; i++){
     html += "<option "
-    if
+    if(i === day){
+      html += "selected=\"selected\" "
+    }
+    html += "value=\"" + i + "\">"+ i + "</option>"
   }
   html += "</select><br>"
+  return html;
 }
 
 function monthToNum(month){
@@ -523,5 +522,5 @@ function hasDays(month){
       return 30;
     case 11:
       return 31;
-\  }
+  }
 }
