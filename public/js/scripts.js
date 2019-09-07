@@ -6,7 +6,17 @@ console.log("Welcome to assignment 2!")
 // array to hold all inputs
 var tableData = []
 
+// flags to keep track of filled inputs
+var amountFlag = false;
+    categoryFlag = false;
+    monthFlag = false;
+    buttonStatus = false;
+
 const submit = function( e ) {
+
+    if (buttonStatus == false) {
+        return;
+    }
     // prevent default form action from being carried out
     e.preventDefault()
 
@@ -23,7 +33,7 @@ const submit = function( e ) {
     .then( function( response ) {
       // do something with the reponse 
       console.log( response )
-      // append to array of input
+      // append to array of input - CHANGE THIS TO SERVER SIDE
       tableData.push(json)
       console.log(tableData.length)
       table.setData(tableData);
@@ -37,10 +47,49 @@ const button = document.getElementById( 'button' )
 button.onclick = submit
 }
 
-// hide $ on amount
+/* hide $ on amount
 var amount = document.getElementById("amount")
 amount.addEventListener("click", function hide() {
-amount.value = "";
+    amount.value = "";
+}) */
+
+// download csv
+var dnCSV = document.getElementById("dnCSV")
+dnCSV.addEventListener("click", function download() {
+    table.download("csv", "expense_report.csv");
+})
+
+// download json
+var dnJSON = document.getElementById("dnJSON")
+dnJSON.addEventListener("click", function download() {
+    table.download("json", "expense_report.json");
+})
+
+// download pdf
+var dnPDF = document.getElementById("dnPDF")
+dnPDF.addEventListener("click", function download() {
+    table.download("pdf", "expense_report.pdf", {
+        orientation:"portrait", //set page orientation to portrait
+        autoTable:function(doc){
+            //doc - the jsPDF document object
+    
+            //add some text to the top left corner of the PDF
+            doc.text("SOME TEXT", 1, 1);
+    
+            //return the autoTable config options object
+            return {
+                styles: {
+                    fillColor: [0, 255, 255]
+                },
+            };
+        },
+    });
+})  
+
+// download xslx
+var dnXSLX = document.getElementById("dnXLSX")
+dnXSLX.addEventListener("click", function download() {
+    table.download("xlsx", "expense_report.xlsx", {sheetName:"MyExpenses"});
 })
 
 // make table
@@ -59,8 +108,64 @@ var table = new Tabulator("#expense-table", {
 		{column:"name", dir:"asc"},
 	],
     columns:[                  //define the table columns
-        {title:"Amount", field:"amount", editor:"input"},
-		{title:"Category", field:"category", align:"left", editor:true, editorParams:{values:["Merchandise", "Restaurants", "Gasoline", "Travel/Ent", "Supermarkets"]}},
-		{title:"Month", field:"month", width:95, editor:"select", editorParams:{values:["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]}}
+        {title:"Amount", field:"amount", editor:"input", formatter:"money", bottomCalc:"sum"},
+		{title:"Category", field:"category", align:"left", editor:"select", editorParams:{values:["Merchandise", "Restaurants", "Gasoline", "Travel/Ent", "Supermarkets"]}},
+		{title:"Month", field:"month", editor:"select", editorParams:{values:["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]}}
 	],
 });
+
+// change amount notification on input
+var amount = document.getElementById('amount')
+amount.oninput = function() { changeAmountNotification() }
+
+function changeAmountNotification() {
+    if (amount.value != '$') {
+        document.getElementById("amountBox").classList.add("is-success")
+        amountFlag = true
+        enableButton()
+    }
+    if (amount.value == '') {
+        document.getElementById("amountBox").classList.remove("is-success")
+        amountFlag = false
+        disableButton()
+    }
+}
+
+// change month notification on input
+var month = document.getElementById('month')
+month.oninput = function() { changeMonthNotification() }
+
+function changeMonthNotification() {
+    if (month.value != '$') {
+        document.getElementById("monthBox").classList.add("is-success")
+        monthFlag = true
+        enableButton()
+    }
+}
+// change month notification on input
+var category = document.getElementById('category')
+category.oninput = function() { changeCategoryNotification() }
+
+function changeCategoryNotification() {
+    if (category.value != '$') {
+        document.getElementById("categoryBox").classList.add("is-success")
+        categoryFlag = true
+        enableButton()
+    }
+}
+
+function enableButton() { 
+    if (amountFlag == true && monthFlag == true && categoryFlag == true) {
+        console.log("button enabled")
+        document.getElementById('button').removeAttribute("disabled");
+        buttonStatus = true
+    }
+}
+
+function disableButton() {
+    if (amountFlag == false || monthFlag == false || categoryFlag == false) {
+        console.log("button disabled")
+        document.getElementById('button').setAttribute("disabled", "")
+        buttonStatus = false
+    }
+}
