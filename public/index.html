@@ -28,61 +28,64 @@
           </ul>
         </div>
         
-        <div class="field">
-          <div class="control has-icons-left">
-            <input class="input is-large" type="email" placeholder="Satellite Name">
-            <span class="icon is-small is-left">
-              <i class="fas fa-satellite"></i>
-            </span>
+        <form id="new-sat-form">
+          
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input is-large" type="email" placeholder="Satellite Name">
+              <span class="icon is-small is-left">
+                <i class="fas fa-satellite"></i>
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="field">
-          <div class="control has-icons-left">
-            <div class="select is-large is-fullwidth">
-              <select>
-                <option>Low Earth Orbit</option>
-                <option>Medium Earth Orbit</option>
-                <option>Geostationary Orbit</option>
-                <option>Lunar Orbit</option>
-                <option>Mars Orbit</option>
-                <option>Other</option>
-              </select>
+          <div class="field">
+            <div class="control has-icons-left">
+              <div class="select is-large is-fullwidth">
+                <select>
+                  <option>Low Earth Orbit</option>
+                  <option>Medium Earth Orbit</option>
+                  <option>Geostationary Orbit</option>
+                  <option>Lunar Orbit</option>
+                  <option>Mars Orbit</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="icon is-small is-left">
+                <i class="fas fa-globe"></i>
+              </div>
             </div>
-            <div class="icon is-small is-left">
-              <i class="fas fa-globe"></i>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <input type="date" class="button is-large is-fullwidth" placeholder="Select Launch Date">
             </div>
           </div>
-        </div>
-        
-        <div class="field">
-          <div class="control">
-            <input type="date" class="button is-large is-fullwidth" placeholder="Select Launch Date">
+
+          <div class="tabs is-toggle is-fullwidth is-large">
+            <ul>
+              <li id="not-completed" class="is-active">
+                <a>
+                  <span>Mission Not Completed</span>
+                </a>
+              </li>
+              <li id="completed">
+                <a>
+                  <span>Mission Completed</span>
+                </a>
+              </li>
+            </ul>
           </div>
-        </div>
-        
-        <div class="tabs is-toggle is-fullwidth is-large">
-          <ul>
-            <li class="is-active">
-              <a>
-                <span>Mission Not Completed</span>
-              </a>
-            </li>
-            <li>
-              <a>
-                <span>Mission Completed</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="field">
-          <div class="control">
-            <input type="date" class="button is-large is-fullwidth" disabled placeholder="Select End Date">
+
+          <div class="field">
+            <div class="control">
+              <input id="end-date" type="date" class="button is-large is-fullwidth" disabled placeholder="Select End Date">
+            </div>
           </div>
-        </div>
-        
-        <a class="button is-large is-fullwidth is-rounded" disabled>Submit</a>
+
+          <button class="button is-large is-fullwidth is-rounded" disabled>Submit</button>
+        </form>
         
       </div>
     </div>
@@ -104,31 +107,46 @@
   <script>
   // Initialize all input of date type.
   const calendars = bulmaCalendar.attach('[type="date"]', {"type": "date", "displayMode": "dialog"});
-//   const submit = function( e ) {
-//     // prevent default form action from being carried out
-//     e.preventDefault()
+    
+    
+  const submit = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
 
-//     const name = document.querySelector( '#name' ),
-//           mission_start = document.querySelector( '#mission_start')
-//           json = { name: name.value, mission_start: mission_start.value },
-//           body = JSON.stringify( json )
+    const name = document.querySelector( '#name' ),
+          mission_start = document.querySelector( '#mission_start')
+          json = { name: name.value, mission_start: mission_start.value },
+          body = JSON.stringify( json )
 
-//     fetch( '/add_spacecraft', {
-//       method:'POST',
-//       body 
-//     })
-//     .then( function( response ) {
-//       // do something with the reponse 
-//       console.log( response )
-//     })
+    fetch( '/add_spacecraft', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the reponse 
+      console.log( response )
+    })
 
-//     return false
-//   }
+    return false
+  }
+  
+  const toggleCompleted = function( e ) {
+    const endDate = document.querySelector( '#end-date' )
+    const notCompleted = document.querySelector( '#not-completed' )
+    const completed = document.querySelector( '#completed' )
+    
+    if (notCompleted."is-active")
+  }
 
-//   window.onload = function() {
-//     const button = document.querySelector( 'button' )
-//     button.onclick = submit
-//   }
+  window.onload = function() {
+    const button = document.querySelector( 'button' )
+    button.onclick = submit
+    
+    const notCompleted = document.querySelector( '#not-completed' )
+    const completed = document.querySelector( '#completed' )
+    notCompleted.onclick = toggleCompleted
+    completed.onclick = toggleCompleted
+  }
 
   </script>
 </html>
