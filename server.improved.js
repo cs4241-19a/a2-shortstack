@@ -43,23 +43,22 @@ const handlePost = function( request, response ) {
 
     // ... do something with the data here!!!
     //SEND API REQUEST
-    
     var url = "https://translate.yandex.net/api/v1.5/tr.json/translate",
     keyAPI = "trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd";
-    //keyAPI = "trnsl.1.1.20130922T110455Z.4a9208e68c61a760.f819c1db302ba637c2bea1befa4db9f784e9fbb8";
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     let xhr = new XMLHttpRequest(),
         textAPI = body.word,
         langAPI = body.lang
-        req = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
+        let req = "key="+keyAPI+"&text="+textAPI+"&lang="+langAPI;
+        let test = encodeURI('key=trnsl.1.1.20190907T141217Z.e39e2bd5353a5df3.d131c190bafbb7bf7eaf7b11c9c2122ea683c7dd&text=hello&lang=en-ru')
     xhr.open("POST",url,true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    console.log(req);
-    xhr.send(req);
+    console.log(test);
+    xhr.send(test);
     xhr.onreadystatechange = function() {
-        if (xhr.readyState==4) {
+        if (this.readyState==4) {
             console.log("response recieved")
-            var res = xhr.responseText;
+            var res = this.responseText;
             console.log(res)
             var json = JSON.parse(res);
             if(json.code == 200) {
