@@ -72,7 +72,7 @@ const handlePost = function( request, response ) {
         console.log("modify")
         //const modData = JSON.parse(dataString)
         //modData(modData)
-        console.log(JSON.parse)
+        console.log()
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
         response.end()

@@ -100,12 +100,12 @@
     newInput.push(document.querySelector( '.lNameE' ).value)
     newInput.push(document.querySelector( '.monthE' ).value)
     newInput.push(document.querySelector( '.daysE' ).value)
-    let modBod = {original: originalData, modData: newInput}
-    modBod = JSON.stringify(modBod)
-    console.log(modBod)
+    let body = {original: originalData, modData: newInput}
+    body = JSON.stringify(body)
+    console.log(body)
     fetch( '/modify', {
       method:'POST',
-      modBod
+      body
     }) 
     .then( function( response) {
       // do something with the reponse
