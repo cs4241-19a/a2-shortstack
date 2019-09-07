@@ -1,1 +1,15 @@
 /*Style your own assignment! This is fun! */
+
+html, body{
+    background-color: yellow;
+    overflow-x: hidden;
+}
+
+h1, h2, h3{
+    text-align: center;
+}
+
+.dat-boi-right{
+    transform: scaleX(-1);
+}
+
