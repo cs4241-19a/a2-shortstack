@@ -5,9 +5,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'fName': 'Bob', 'lName': 'Smith', 'day': 23, 'month':'August', 'sign':"AHH"},
-  { 'fName': 'Suzy', 'lName': 'Ng', 'day': 30 , 'month':'September', 'sign':"AHH"},
-  { 'fName': 'Jim', 'lName': 'Hopper', 'day': 14, 'month': 'July', 'sign':"AHH"} 
+  { 'fName': 'Bob', 'lName': 'Smith', 'month':'August', 'day': 23, 'sign':"AHH"},
+  { 'fName': 'Suzy', 'lName': 'Ng', 'month':'September','day': 30 , 'sign':"AHH"},
+  { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"AHH"} 
 ]
 
 const server = http.createServer( function( request,response ) {

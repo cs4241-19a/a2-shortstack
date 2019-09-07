@@ -63,15 +63,15 @@ function populateFromDatabase(){
       .then(function(message){
        let allData = JSON.parse(message)
        console.log(allData)
-        let nameSelector = document.querySelector(".fNameM");
+        let nameSelector = document.querySelector(".modList");
           var opt = document.createElement('option');
           opt.innerHTML = ""
           opt.value = ""
           nameSelector.appendChild(opt)
         for(let i = 0; i<Object.keys(allData).length; i++){
           var opt = document.createElement('option');
-          opt.innerHTML = allData[i].fName
-          opt.value = allData[i].fName;
+          opt.innerHTML = allData[i].fName + " " + allData[i].lName + ", " + allData[i].month + " " + allData[i].day
+          opt.value = allData[i].fName + " " + allData[i].lName + ", " + allData[i].month + " " + allData[i].day
           nameSelector.appendChild(opt)
         }
         console.log(nameSelector)
@@ -81,4 +81,9 @@ function populateFromDatabase(){
     }
 
 //Handle modification later
-function dynamicDropDown(){}
+function removeAllOptions(selection, removalGroup){
+  var len, groups, par;
+  if(removalGroup){
+    groups = selection.getElementsByTagName()
+  }
+}
