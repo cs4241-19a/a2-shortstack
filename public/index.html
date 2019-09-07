@@ -32,7 +32,7 @@
           
           <div class="field">
             <div class="control has-icons-left">
-              <input class="input is-large" type="email" placeholder="Satellite Name">
+              <input class="input is-large" type="email" placeholder="Satellite Name" id="sat-name">
               <span class="icon is-small is-left">
                 <i class="fas fa-satellite"></i>
               </span>
@@ -42,7 +42,7 @@
           <div class="field">
             <div class="control has-icons-left">
               <div class="select is-large is-fullwidth">
-                <select>
+                <select id="orbit-select">
                   <option>Low Earth Orbit</option>
                   <option>Medium Earth Orbit</option>
                   <option>Geostationary Orbit</option>
@@ -59,7 +59,7 @@
 
           <div class="field">
             <div class="control">
-              <input type="date" class="button is-large is-fullwidth" placeholder="Select Launch Date">
+              <input type="date" class="button is-large is-fullwidth" placeholder="Select Launch Date" id="launch-date">
             </div>
           </div>
 
@@ -130,12 +130,24 @@
     return false
   }
   
-  const toggleCompleted = function( e ) {
+  const completedClicked = function( e ) {
     const endDate = document.querySelector( '#end-date' )
     const notCompleted = document.querySelector( '#not-completed' )
     const completed = document.querySelector( '#completed' )
     
-    if (notCompleted."is-active")
+    notCompleted.className = ""
+    completed.className = "is-active"
+    endDate.disabled = false
+  }
+  
+  const notCompletedClicked = function( e ) {
+    const endDate = document.querySelector( '#end-date' )
+    const notCompleted = document.querySelector( '#not-completed' )
+    const completed = document.querySelector( '#completed' )
+    
+    completed.className = ""
+    notCompleted.className = "is-active"
+    endDate.disabled = true
   }
 
   window.onload = function() {
@@ -144,8 +156,18 @@
     
     const notCompleted = document.querySelector( '#not-completed' )
     const completed = document.querySelector( '#completed' )
-    notCompleted.onclick = toggleCompleted
-    completed.onclick = toggleCompleted
+    notCompleted.onclick = notCompletedClicked
+    completed.onclick = completedClicked
+    
+    const satName = document.querySelector( '#sat-name' )
+    const orbit = document.querySelector( '#orbit' )
+    const launchDate = document.querySelector( '#launch-date' )
+    
+    satName.onchange = checkInput
+    
+    element.bulmaCalendar.on('select', datepicker => {
+		console.log(datepicker.data.value());
+	});
   }
 
   </script>
