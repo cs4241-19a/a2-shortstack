@@ -20,11 +20,18 @@ const generate = function(e) {
     method:'POST',
     body 
   })
-  .then( function( response ) {
+  .then( function( response) {
     // do something with the reponse 
     console.log( response )
   })
-
+  
+  fetch( '/getDrawings', {
+    method: 'GET'
+  })
+  .then( function( response) {
+    
+  })
+  
   return false
 }
 

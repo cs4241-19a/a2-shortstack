@@ -25,7 +25,14 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if( request.url === '/getDrawings'){
+    const type = mime.getType( appdata ) 
+    response.writeHeader(200, { 'Content-Type': type });
+    response.write(JSON.stringify({ data: appdata }));
+    response.end();
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -52,9 +59,6 @@ const handlePost = function( request, response ) {
         }
         
         appdata.push(drawing)
-        
-        console.log("Hello")
-        console.log(appdata)
         
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
