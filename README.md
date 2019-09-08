@@ -4,6 +4,17 @@ Lost words is a web app that allows users to make a account and store writing en
 will give user feedback, such as word frequency, synonyms and rhyming words, as well as tools for
 searching for definitions. A writer's toolkit in attempt to never be lost for words!
 
+http://a2-kitzeller.glitch.me
+
+Here is a sample formula for summarizing your activities, talk about:
+- the domain area the project pertains to
+- the main challenges or problems the application addresses
+- the key innovations that make it possible to address the problem
+- the main results of the implementation, does it really address the problem?
+- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+
+(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
+
 Below is the top of the UI for the main dashboard which makes up most of the app's components.
 ![Top UI](img/top_ui_img.png)
 
@@ -15,17 +26,6 @@ Below is an example of hovering over a word in the bubble chart.
 
 Below is an example of OCR recognition for post submission.
 ![Text OCR](img/text_recog_img.png)
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-kitzeller.glitch.me
 
 ## Technical Achievements
 - **Tech Achievement 1**: Used Firebase Admin SDK for database access through the server. In the handle get/post/delete/put requests,
@@ -42,4 +42,5 @@ and access to personal dashboard sites is dependent on being authenticated. Crea
 - **Design Achievement 1**: Used and modified a bootstrap admin theme from [here](https://startbootstrap.com/themes/sb-admin-2/)
 - **Design Achievement 2**: Designed the data visualizations and the interaction for submitting new posts
 - **Design Achievement 3**: Came up with the idea
+- **Design Achievement 4**: Collapsible cards
 

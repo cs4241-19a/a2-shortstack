@@ -28,3 +28,17 @@ function login() {
     });
 
 }
+
+function loginGuest(){
+
+    firebase.auth().signInWithEmailAndPassword("guest@guest.com", "password").catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        window.alert("Error : " + errorMessage);
+
+        // ...
+    });
+
+}

@@ -71,7 +71,7 @@
                                            placeholder="Search for..." aria-label="Search"
                                            aria-describedby="basic-addon2">
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
+                                        <button class="btn btn-info" type="button">
                                             <i class="fas fa-search fa-sm"></i>
                                         </button>
                                     </div>
@@ -94,8 +94,8 @@
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
                             <!--<a class="dropdown-item" href="#">-->
-                                <!--<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>-->
-                                <!--Profile-->
+                            <!--<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>-->
+                            <!--Profile-->
                             <!--</a>-->
                             <!--<div class="dropdown-divider"></div>-->
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -204,7 +204,7 @@
                     <!-- Card Header - Accordion -->
                     <a href="#collapseAddLog" class="d-block card-header py-3" data-toggle="collapse"
                        role="button" aria-expanded="true" aria-controls="collapseAddLog">
-                        <h6 class="m-0 font-weight-bold text-primary">Add Entry</h6>
+                        <h6 class="m-0 font-weight-bold text-info">Add Entry</h6>
                     </a>
                     <div class="collapse show" id="collapseAddLog">
                         <div class="card-body">
@@ -229,7 +229,7 @@
                                     <textarea name="entry-post" class="form-control" rows="5" id="comment"></textarea>
                                 </div>
                             </form>
-                            <button id="form-submit" type="submit" class="btn btn-primary">Add Entry</button>
+                            <button id="form-submit" type="submit" class="btn btn-info">Add Entry</button>
                             <hr>
                             Or upload an image.
                             <br>
@@ -264,7 +264,7 @@
                     <!-- Card Header - Accordion -->
                     <a href="#tableCollapse" class="d-block card-header py-3" data-toggle="collapse"
                        role="button" aria-expanded="true" aria-controls="tableCollapse">
-                        <h6 class="m-0 font-weight-bold text-primary">All Entries</h6>
+                        <h6 class="m-0 font-weight-bold text-info">All Entries</h6>
                     </a>
                     <!-- Card Content - Collapse -->
                     <div class="collapse show" id="tableCollapse">
@@ -296,7 +296,7 @@
                     <!-- Card Header - Accordion -->
                     <a href="#collapseBubble" class="d-block card-header py-3" data-toggle="collapse"
                        role="button" aria-expanded="true" aria-controls="collapseBubble">
-                        <h6 class="m-0 font-weight-bold text-primary">Word Bubble</h6>
+                        <h6 class="m-0 font-weight-bold text-info">Word Bubble</h6>
                     </a>
                     <!-- Card Content - Collapse -->
                     <div class="collapse show" id="collapseBubble">
@@ -333,28 +333,16 @@
 
                 <!-- Bar Chart -->
                 <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Your Top 20 Words</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                 aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                    <a href="#collpaseTop20" class="d-block card-header py-3" data-toggle="collapse"
+                       role="button" aria-expanded="true" aria-controls="collpaseTop20">
+                        <h6 class="m-0 font-weight-bold text-info">Your Top 20 Words</h6>
+                    </a>
+                    <div class="collapse show" id="collpaseTop20">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <div id="chart-bar-container" class="chart-bar">
+                                <canvas id="myBarChart"></canvas>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div id="chart-bar-container" class="chart-bar">
-                            <canvas id="myBarChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -369,7 +357,7 @@
                         <!-- Project Card Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Word Definitions</h6>
+                                <h6 class="m-0 font-weight-bold text-info">Word Definitions</h6>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -401,7 +389,7 @@
                         <!-- Approach -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">About</h6>
+                                <h6 class="m-0 font-weight-bold text-info">About</h6>
                             </div>
                             <div class="card-body">
                                 <p>Welcome to LostWords. An web app that works as your personal writing assistant.
@@ -464,7 +452,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-primary" ng-click="logout()">Logout</button>
+                <button class="btn btn-info" ng-click="logout()">Logout</button>
             </div>
         </div>
     </div>

@@ -3,8 +3,10 @@
  */
 
 /**
- * TODO: Empty messages glow red form control
  * TODO: Zoom/pan word bubble
+ * TODO: Make all word map lowercase
+ * TODO: Definitions "no results" message
+ * TODO: Password not long enough?
  */
 
 var app = angular.module("dashboardApp", []);
