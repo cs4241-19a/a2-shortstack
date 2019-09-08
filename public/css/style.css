@@ -40,17 +40,22 @@ button.translate:hover {
 }
 
 button.deleteButton{
-  background-color:red;
+  background-color: #eb4034;
   border-radius:4px;
   color:white;
   transition-duration: 0.4s;
-  border: 2px solid red;
+  border: 2px solid #eb4034;
+  padding: 3px 3px;
+  font-size: 12px
+
 }
 
 button.deleteButton:hover {
   color:black;
   background-color:white;
-  border: 2px solid red;
+  border: 2px solid #eb4034;
+  padding: 3px 3px;
+
 }
 
 button.editButton{
@@ -66,4 +71,6 @@ button.editButton:hover {
   color:black;
   background-color:white;
   border: 2px solid green;
+    padding: 3px 3px;
+
 }

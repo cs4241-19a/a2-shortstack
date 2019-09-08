@@ -3,7 +3,7 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">\
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
     <meta charset="utf-8">
   </head>
@@ -49,6 +49,7 @@
   </table>
   </body>
   <script>
+    
 
   const submit = function( e ) {
     // prevent default form action from being carried out
@@ -78,13 +79,14 @@
         var deleteButton = document.createElement("button")
         deleteButton.className = "pure-button deleteButton"
         deleteButton.innerHTML = "Delete";
-        var editButton = document.createElement("button")
-        editButton.className = "pure-button editButton"
-        editButton.innerHTML = "Edit";
+        deleteButton.onclick =  function deleteRow() {
+       var p=this.parentNode.parentNode;
+           p.parentNode.removeChild(p);
+      }
         tdNode.appendChild(document.createTextNode(data.word));
         tdNode2.appendChild(document.createTextNode(data.translation));
         tdNode3.appendChild(document.createTextNode(selectedText));
-        tdNode4.appendChild(editButton);
+        //tdNode4.appendChild(editButton);
         tdNode4.appendChild(deleteButton);
         trNode.appendChild(tdNode);
         trNode.appendChild(tdNode2);
