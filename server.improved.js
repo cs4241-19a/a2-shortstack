@@ -67,7 +67,19 @@ const handlePost = function( request, response ) {
         console.log("submit")
         const convertedData = JSON.parse(dataString)
         convertedData.sign = starSign(convertedData)
-        if(noDuplicates(convertedData)){
+        if(noDuplicatesFirebase(convertedData)){
+          addItemToFirebase(convertedData)
+          let json = JSON.stringify(returnFirebaseAsArray())
+          response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+          response.write(json)
+          response.end()
+        }
+        else{
+          response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+          response.write("Duplicate Information, Not Added!")
+          response.end()
+        }
+        /*if(noDuplicates(convertedData)){
           appdata.push(convertedData)
           let json = JSON.stringify(appdata)
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -79,16 +91,17 @@ const handlePost = function( request, response ) {
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
           response.write("Duplicate Information, Not Added!")
           response.end()
-        }        
+        } */       
         break
         /*Modify  Case MAXIMUM EFFICENCY*/
       case "modify":
         console.log("modify")
         const Data = JSON.parse(dataString)
-        modData(Data)
+        
+        /*modData(Data)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
-        response.end()
+        response.end()*/
         break
       case "delete":
         console.log("delete")
@@ -301,22 +314,38 @@ function addItemToFirebase(itemToAdd){
   })
 }
 
+//Takes given original object and then sets equal to new object
 function modifyItemInFirebase(itemToModify, newInfo){
+  let id = getFirebaseKey(itemToModify)
+  firebase.database().ref('/' + id).set({
+    fName: newInfo.fName,
+    lName: newInfo.lName,
+    month: newInfo.month,
+    day: newInfo.day,
+    sign: newInfo.sign
+  })
+}
+
+//Delets object from firebase
+function deleteInFirebase(itemToDelete){
+  let id = getFirebaseKey(itemToDelete)
+  firebase.database().ref('/' + id).remove()
+}
+
+//Gets Key for JSON object
+function getFirebaseKey(item){
   let key = ""
   firebase.database().ref().once("value")
   .then(function( response) {
     response.forEach(function(childSnapshot){
       var childKey = childSnapshot.key()
       var childData = childSnapshot.val()
-      if(noDuplicates)
+      if(!noDuplicatesFirebase(childData)){
+        key = childKey()
+      }
     })
     return key
   })
-}
-
-//Gets Key for JSON object
-function getFirebaseKey(item){
-  
 }
 
 
