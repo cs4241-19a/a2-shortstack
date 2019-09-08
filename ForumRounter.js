@@ -81,18 +81,6 @@ const db = firebaseAdmin.firestore();
 //             console.log('Error getting documents', err);
 //         });
 
-function snapshotToArray(snapshot) {
-    let returnArr = [];
-
-    snapshot.forEach(function(childSnapshot) {
-        let item = childSnapshot.val();
-        item.key = childSnapshot.key;
-
-        returnArr.push(item);
-    });
-
-    return returnArr;
-}
 
 async function getForum(forumId) {
     let forumData = {};
@@ -108,35 +96,33 @@ async function getForum(forumId) {
         });
     let messagesPromise = messageQuery.get()
         .then(async snapshot => {
-            let messages = [];
-
-            snapshot.forEach(function(doc) {
-                return (async function() {
-                    const messageData = {};
-                    // console.log(doc.id, '=>', doc.data());
-                    // console.log("+++ +++");
-                    // console.log(doc.data().poster);
-                    let userPromise = doc.data().poster.get()
-                        .then(userSnapshot => {
-                            // console.log("--- ---");
-                            // console.log(userSnapshot);
-                            // console.log(userSnapshot.data());
-                            // console.log(doc.child());
-                            return userSnapshot.data();
-                        })
-                        .catch(err => {
-                            console.log('Error getting documents', err);
-                        });
-                    messageData.message = doc.data().message;
-                    messageData.date = doc.data().date;
-                    let userData = await userPromise;
-                    messageData.name = `${userData.firstName} ${userData.middleName} ${userData.lastName}`;
-                    messageData.username = userData.username;
-                    console.log("message data:", messageData);
-                    return messageData;
-                })();
+            const msgsPromises = snapshot.docs.map(async function(doc) {
+                const messageData = {};
+                // console.log(doc.id, '=>', doc.data());
+                // console.log("+++ +++");
+                // console.log(doc.data().poster);
+                let userPromise = doc.data().poster.get()
+                    .then(userSnapshot => {
+                        // console.log("--- ---");
+                        // console.log(userSnapshot);
+                        // console.log(userSnapshot.data());
+                        // console.log(doc.child());
+                        return userSnapshot.data();
+                    })
+                    .catch(err => {
+                        console.log('Error getting documents', err);
+                    });
+                messageData.message = doc.data().message;
+                messageData.date = doc.data().date;
+                let userData = await userPromise;
+                messageData.name = `${userData.firstName} ${userData.middleName} ${userData.lastName}`;
+                messageData.username = userData.username;
+                return messageData;
             });
-            return messages;
+            await Promise.all(msgsPromises)
+                .then(function (msgs) {
+                    return msgs;
+                });
         })
         .catch(err => {
             console.log('Error getting documents', err);
@@ -165,7 +151,7 @@ async function getForum(forumId) {
 
 
 
-    // console.log("where is the forum data????:",forumData);
+    console.log("waiting on forumdata");
     return {
         forumTitle: await forumPromise,
         messages: await messagesPromise,
@@ -368,9 +354,9 @@ forumRouter.get('/forum/1', function(req, res, next) {
 });
 
 // forum messages view
-forumRouter.get('/forum/2', function(req, res, next) {
+forumRouter.get('/forum/2', async function(req, res, next) {
     // TODO: specify a user nane and full name field
-    let context = getForum('NJz79Jck1irrZe8AEMd8');
+    let context = await getForum('NJz79Jck1irrZe8AEMd8');
     console.log(context);
     res.render('forum', context)
 });
