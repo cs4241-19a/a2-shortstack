@@ -1,6 +1,7 @@
 /*Style your own assignment! This is fun! */
 #CarData {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  color: white;
   border-collapse: collapse;
   width: 100%;
 }
