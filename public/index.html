@@ -39,6 +39,9 @@
         body
       }).then(function( response ) {
           console.log(response)
+      }).then(function(data) {
+        let info = data.results
+        console.log(info)
       });
 
       
