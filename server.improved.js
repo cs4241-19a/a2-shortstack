@@ -6,7 +6,11 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000,
       Express = require('express'),
-      app = Express()
+      app = Express(),
+      bodyParser = require('body-parser')
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded())
 
 const appdata = [
   { 'name': 'Jusitn', 'year': 2020, 'inches': 23 },
@@ -27,21 +31,10 @@ app.get("/", function(request, response){
   sendFile(response, 'public/index.html')
 });
 
-app.get("/submit", function(request, response){
-  let dataString = ''
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
-  const data = JSON.parse(dataString)
-  console.log("passed item is " + JSON.stringify(data))
-    appdata.push( data)
-  console.log("Successfully submitted")  
-    console.log(appdata)
-});
 
 app.post("/submit", function(request, response){
-  console.log(response.body)
+  console.log(request.body)
 })
 /*const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 

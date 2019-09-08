@@ -6,20 +6,21 @@
   </head>
   <body>
     <form action="/submit" method = "POST">
-      <input type="text" id="yourname" value="your name here"><br>
-      <input type ="text" id="classyear" value="Your class year"><br>
-      <input type = "text" id="height" value="Your height in inches"><br>
-      <button name ="submit">submit</button><br>
+      <input type="text" name="yourname" value="your name here"><br>
+      <input type ="text" name="classyear" value="Your class year"><br>
+      <input type = "text" name="height" value="Your height in inches"><br>
+      <!--<button name ="submit">submit</button><br>-->
       
      <!-- <input type="text" id="delname" value="delete name"><br>
       <button onclick="myDelete()">delete</button>-->
     </form>
+    <button id = "submit" class = "inputbutton" onclick = "submit()">submit     
+    </button>
   </body>
   <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+  function submit(  ) {
+    
 
     const inputName = document.querySelector( '#yourname' ),
           inputYear = document.querySelector('#classyear'),
