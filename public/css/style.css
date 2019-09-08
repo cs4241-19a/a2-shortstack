@@ -1,7 +1,6 @@
 body {
-  margin: 5%;
-  background: #000000;
-  color: #FFFFFF;
+  background: black;
+  color: white;
   font-family: 'Comic Sans MS';
   text-align: center;
 }
@@ -9,6 +8,20 @@ body {
 h1 {
   font-family: 'Brush Script MT';
   font-size: 60px;
+}
+
+input, select {
+  background: black;
+  color: white;
+  border: 3px double;
+  width: 200px;
+  height: 25px;
+  padding: 5px;
+}
+
+select{
+  width: 200px;
+  height: 50px;
 }
 
 .layout{
@@ -41,6 +54,7 @@ h1 {
   justify-self: center;
   width: 600px;
   height: 600px;
-  border: 5px solid;
+  border: 5px dotted;
+  margin-right: 20px;
 }
 
