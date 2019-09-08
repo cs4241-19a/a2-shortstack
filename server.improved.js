@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'name': 'Yeezy 350', 'Categroy': 'Fashion', 'rating': 5, 'usd': 200, 'eur': 182 },
+  { 'name': 'Macbook Pro', 'Categroy': 'Tech', 'rating': 3, 'usd': 200, 'eur': 182 },
+  { 'name': 'Yeezy 350', 'Categroy': 'Fashion', 'rating': 2, 'usd': 200, 'eur': 182 },
 ]
 
 const server = http.createServer( function( request,response ) {
