@@ -89,7 +89,7 @@
     };
   
   const fetchMH = async function() {
-        const fMH = await fetch('/matchHistory', { method: 'GET' });
+        const fMH = await fetch('/m', { method: 'GET' });
         const data = await fMH.json();
         const match = data.data;
         let htmlDiv = document.getElementById('matchTable');

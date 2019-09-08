@@ -26,7 +26,7 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   } else if (request.url === '/public/css/style.css'){
     sendFile( response, 'public/css/style.css' )
-  } else if ( request.url === '/matchHistory' ){
+  } else if ( request.url === '/m' ){
     sendData( response, appdata )
    } else {
     sendFile( response, filename )
