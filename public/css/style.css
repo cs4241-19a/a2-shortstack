@@ -2,7 +2,7 @@
 #CarData {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 50%;
+  width: 100%;
   position: absolute;
   top: 64%;
 }
@@ -35,7 +35,9 @@ h1{
 }
 
 h3{
-  color: #7921D1;
+  position: absolute;
+  top: 55%;
+  color: white;
 }
 
 body, html {
