@@ -3,21 +3,21 @@ var serviceAccount=require("./serviceKey.json")
 
 admin.initializeApp({
   credential:admin.credential.cert(serviceAccount),
-      databaseURL:'https://cs4241-a2.firebaseio.com'
+  databaseURL:'https://cs4241-a2.firebaseio.com'
 });
 var db = admin.database();
 var usersRef = db.ref('/');
 
 const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 8000;
+    fs   = require( 'fs' ),
+    mime = require( 'mime' ),
+    dir  = 'public/',
+    port = 3000;
 
 const appdata = [ //can add/edit/ delete any object in here
-  { 'currentGrade': 'toyota', 'desired': 1999, 'finalWorth': 23, 'finalExam':undefined},
-  { 'currentGrade': 'honda', 'desired': 2004, 'finalWorth': 30,'finalExam':undefined },
-  { 'currentGrade': 'ford', 'desired': 1987, 'finalWorth': 14 ,'finalExam':undefined}
+  {'token':'lemon', 'currentGrade': 'toyota', 'desired': 1999, 'finalWorth': 23, 'finalExam':undefined},
+  { 'token':'greenmatch','currentGrade': 'honda', 'desired': 2004, 'finalWorth': 30,'finalExam':undefined },
+  { 'token':'draven','currentGrade': 'ford', 'desired': 1987, 'finalWorth': 14 ,'finalExam':undefined}
 ]
 
 
@@ -53,30 +53,31 @@ const handleGet = function( request, response ) {
 const handlePost = function( request, response ) {
   let dataString = '';
   request.on( 'data', function( data ) {
-      dataString += data
+    dataString += data
   });
   request.on( 'end', function() {
     const data = JSON.parse(dataString);
-    writeUserData(data.currentGrade, data.currentGrade, data.desired,data.finalWorth);
-      //For validation
-/*    if( request.url === '/add') {
-      let foundName=false //figuring out if something already exists
-      for (let i=0; i<appdata.length; i++){
-       if(appdata[i],name === data.name) foundName = true
-      }
-      if(foundName == false){
-       appdata.push(data)
-      }
-  }*/
+    writeUserData(data.token,data.token,data.currentGrade, data.desired,data.finalWorth);
+    //For validation
+    /*    if( request.url === '/add') {
+          let foundName=false //figuring out if something already exists
+          for (let i=0; i<appdata.length; i++){
+           if(appdata[i],name === data.name) foundName = true
+          }
+          if(foundName == false){
+           appdata.push(data)
+          }
+      }*/
 
     switch( request.url ) {
       case '/submit':
-      //server logic
+        //server logic
         let desiredPercentage=parseInt(data.desired)*0.01;
         let finalWorthPercentage=parseInt(data.finalWorth)*0.01;
         let currentGradePercentage=parseInt(data.currentGrade)*0.01;
         let finalExam=(desiredPercentage-(1-finalWorthPercentage)*currentGradePercentage)/finalWorthPercentage;
         const grades = {
+            'token':data.token,
           'currentGrade': data.currentGrade,
           'desired': data.desired,
           'finalWorth': data.finalWorth,
@@ -95,7 +96,7 @@ const handlePost = function( request, response ) {
         break;
       default:
         response.end( '404 Error: File Not Found' )
-  }
+    }
   })
 };
 
@@ -107,26 +108,26 @@ const sendData = function(response, gradeDataset){
 };
 
 const sendFile = function( response, filename ) {
-   const type = mime.getType( filename );
+  const type = mime.getType( filename );
 
-   fs.readFile( filename, function( err, content ) {
-     if( err === null ) {
-       response.writeHeader( 200, { 'Content-Type': type });
-       response.end( content )
-     }else{
-       response.writeHeader( 404 );
-       response.end( '404 Error: File Not Found' )
-     }
-   })
+  fs.readFile( filename, function( err, content ) {
+    if( err === null ) {
+      response.writeHeader( 200, { 'Content-Type': type });
+      response.end( content )
+    }else{
+      response.writeHeader( 404 );
+      response.end( '404 Error: File Not Found' )
+    }
+  })
 };
 
-function writeUserData(ref, currentGrade, desired/*,finalWorth*/) {
-  var usernameRef = usersRef.child(ref);
-  usernameRef.set({
-    currentGrade: currentGrade,
-    desired: desired,
-
-    //finalWorth:finalWorth,
+function writeUserData(ref,token,currentGrade, desired,finalWorth) {
+    var usernameRef = usersRef.child(ref);
+     usernameRef.set({
+        token:token,
+        currentGrade: currentGrade,
+        desired: desired,
+        finalWorth:finalWorth
   });
 }
 

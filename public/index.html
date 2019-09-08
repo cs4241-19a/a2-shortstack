@@ -1,36 +1,32 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-    <link href="js/scripts.js" rel="stylesheet"  type="text/html">
-    <link href="css/style.css" rel="stylesheet"  type="text/css">
-    <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet"  type="text/css">
-    <link href="lib/bootstrap/css/bootstrap-newer.min.css" rel="stylesheet"  type="text/css">
-  </head>
-  <body>
-  <!--
-  <div class="preloader">
-    <div class="preloader-img">
-      <span class="loading-animation animate-flicker"><img src="img/loading.GIF" alt="loading" /></span>
-    </div>
-  </div>
--->
+<head>
+  <title>CS4241 Assignment 2</title>
+  <meta charset="utf-8">
+  <link href="js/scripts.js" rel="stylesheet"  type="text/html">
+  <link href="css/style.css" rel="stylesheet"  type="text/css">
+  <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet"  type="text/css">
+  <link href="lib/bootstrap/css/bootstrap-newer.min.css" rel="stylesheet"  type="text/css">
+</head>
+<body>
 
-  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-      <!-- Slide One - Set the background image for this slide in the line below -->
-      <div class="carousel-item active" style="background-image: url('img/bg01.jpg')">
-        <div class="carousel-caption d-none d-md-block">
 
-          <form class="'form" action="">
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+  </ol>
+  <div class="carousel-inner" role="listbox">
+    <!-- Slide One - Set the background image for this slide in the line below -->
+    <div class="carousel-item active" style="background-image: url('img/bg01.jpg')">
+      <div class="carousel-caption d-none d-md-block">
+        <form class="'form" action="">
           <div class='form__container'>
-
-          <h1>Final Grade Calculator</h1>
+            <h1>Final Grade Calculator</h1>
+            <div>
+              <label for="token">Your personal token for this entry is</label>
+              <input  class="input" type="text" id="token" placeholder="Field cannot be empty." required/>
+            </div>
             <div>
               <label for="currentGrade">Your current number grade is</label>
               <input  class='input' type="text" id="currentGrade" placeholder="Field cannot be empty."required/>
@@ -44,83 +40,82 @@
               <input class='input' type="text" id="finalWorth" placeholder="Field cannot be empty." required/>
             </div>
             <br><button class="button">submit</button>
-          </form>
-          <br>
-          <table id="grades" class="display nowrap" style="width:100%">
-          </table>
+        </form>
+        <br>
+        <table id="grades" class="display nowrap" style="width:100%">
+        </table>
       </div>
 
-      </div>
     </div>
-
-      <!-- Slide Two - Set the background image for this slide in the line below -->
-      <div class="carousel-item" style="background-image: url('img/bg02.jpg')">
-        <div class="carousel-caption d-none d-md-block">
-          <h2 class="display-4">Second Slide</h2>
-          <p class="lead">This is a description for the third slide.</p>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
   </div>
 
+  <!-- Slide Two - Set the background image for this slide in the line below -->
+  <div class="carousel-item" style="background-image: url('img/bg02.jpg')">
+    <div class="carousel-caption d-none d-md-block">
+      <h2 class="display-4">Second Slide</h2>
+      <p class="lead">This is a description for the third slide.</p>
+    </div>
+  </div>
+</div>
+<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="sr-only">Next</span>
+</a>
 
-
-  </body>
-  <script>
-    window.localStorage;
-    localStorage.setItem('currentGrade',currentGrade.value);
-    localStorage.setItem('desired',desired.value);
-    localStorage.setItem('finalWorth',finalWorth.value);
-    //testing
-    //localStorage.setItem('finalExam',finalExam.value);
+</body>
+<script>
+  window.localStorage;
+  localStorage.setItem('token',token.value);
+  localStorage.setItem('currentGrade',currentGrade.value);
+  localStorage.setItem('desired',desired.value);
+  localStorage.setItem('finalWorth',finalWorth.value);
+  //testing
+  //localStorage.setItem('finalExam',finalExam.value);
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault();
 
     const currentGrade = document.querySelector( '#currentGrade' ),
-          desired = document.querySelector( '#desired' ),
+            desired = document.querySelector( '#desired' ),
             finalWorth=document.querySelector('#finalWorth'),
-          json = { currentGrade: currentGrade.value, desired: desired.value//,finalWorth:finalWorth.value
-                 //mpg: mpg.value, tripDistance: distance.value,
-                 //gasPrice: gas.value
-    };
-          body = JSON.stringify( json );
+            token=document.querySelector('#token'),
+            json = { token:token.value, currentGrade: currentGrade.value, desired: desired.value,finalWorth:finalWorth.value
+              //mpg: mpg.value, tripDistance: distance.value,
+              //gasPrice: gas.value
+            };
+    body = JSON.stringify( json );
 
     fetch( '/submit', { //url name = /submit
       method:'POST',
       body //same as saying->body:body
     })
-    .then( function( response ) {
-        getData();
-      // response = body
-      //console.log( response )
-      //showData();
-    });
-      window.location="/2ndpage.html";
+            .then( function( response ) {
+              getData();
+              // response = body
+              //console.log( response )
+              //showData();
+            });
+    window.location="/2ndpage.html";
     return false
   }
-function getData(){
+  function getData(){
     fetch('/getdata')
-        .then(function(response) {
-            // The response is a Response instance.
-            // You parse the data into a usable format using .json()
-            return response.json();
-        }).then(function(data) {
-        // data is the parsed version of the JSON returned from the above endpoint.
-        console.log(data);  // { "userId": 1, "id": 1, "title": "...", "body": "..." }
-        let entry=document.createElement("div");
-        entry.innerHTML=JSON.stringify(data);
-        document.body.appendChild(entry);
+            .then(function(response) {
+              // The response is a Response instance.
+              // You parse the data into a usable format using .json()
+              return response.json();
+            }).then(function(data) {
+      // data is the parsed version of the JSON returned from the above endpoint.
+      console.log(data);  // { "userId": 1, "id": 1, "title": "...", "body": "..." }
+      let entry=document.createElement("div");
+      entry.innerHTML=JSON.stringify(data);
+      document.body.appendChild(entry);
     });
-}
+  }
 
   window.onload = function() {
     const button = document.querySelector( 'button' );
@@ -128,11 +123,11 @@ function getData(){
   }
 
 </script>
-  <!--
-  <script src="lib/jquery/jquery.magnific-popup.js"></script>
-  -->
-  <script src="lib/jquery/jquery.js"></script>
-  <script src="lib/jquery/jquery.slim.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--
+<script src="lib/jquery/jquery.magnific-popup.js"></script>
+-->
+<script src="lib/jquery/jquery.js"></script>
+<script src="lib/jquery/jquery.slim.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </html>
