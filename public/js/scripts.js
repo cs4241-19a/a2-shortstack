@@ -46,17 +46,19 @@ function genTable(dataList) {
               "<th></th>"
             "</tr>"
   
+  let i = 0
   for(let d of dataList){
     str += "<tr>"+
               "<td>"+ d.vertices +"</td>" + 
               "<td>"+ d.drawType +"</td>" + 
               "<td>"+ d.name +"</td>" +
               "<td>" + 
-                "<button>View</button>" +
-                "<button>Edit</button>" +
-                "<button>Delete</button>" +
+                "<button id='v" + i + "'>View</button>" +
+                "<button id='e" + i + "'>Edit</button>" +
+                "<button id='d" + i + "'>Delete</button>" +
               "</td>"
             "</tr>"
+    i++;
   }
   
   document.getElementById("dataTable").innerHTML = str
