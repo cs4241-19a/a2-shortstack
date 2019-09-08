@@ -49,6 +49,10 @@ table {
   border-spacing: 50px 0;
 }
 
+#instruction {
+  padding: 0 15%;
+}
+
 #generate {
   margin: 20px;
 }
