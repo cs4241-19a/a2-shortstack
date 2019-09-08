@@ -9,9 +9,10 @@
       <span id="question"> What is 2 + 2? </span>
       <input type="text" id="response" value="answer here">
       <button>submit</button>
+      <span id="answer">Your Answer</span>
     </form>
     <br />
-    <span id="answer">Your Answer</span>
+    
   </body>
   
   <script>
@@ -22,7 +23,7 @@
     const input = document.querySelector( '#response' ),
           json = { yourresponse: input.value },
           body = JSON.stringify( json ),
-          text = document.getElementById( '#answer' )
+          text = document.querySelector( '#answer' );
             
 
     fetch( '/submit', {
@@ -31,7 +32,7 @@
     })
     .then( function( response, text ) {
       // do something with the reponse 
-      //console.log(text)
+      console.log(text)
       //text.textContent = response;
       console.log( response )
     })
