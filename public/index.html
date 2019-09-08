@@ -127,6 +127,13 @@
         return true;
       }
     };
+    
+    const viewOrderTable  = function () {
+      document.getElementById('book-table').style.display = "flex";
+      document.getElementById('error').style.display = "none";
+      fetchBooks();
+      return false;
+    };
 
   window.onload = function() {
     const addBookbutton = document.querySelector( 'submit-btn' )
