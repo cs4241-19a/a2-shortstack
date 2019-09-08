@@ -33,7 +33,6 @@ function getData(idx = -1){
       return response.json()
     })
     .then( function(data){
-      console.log(data)
       genTable(data, idx)
     })
 }
@@ -48,19 +47,37 @@ function genTable(dataList, idx) {
   
   let i = 0
   for(let d of dataList){
-    str += "<tr>"+
-              "<td>"+ d.vertices +"</td>" + 
-              "<td>"+ d.drawType +"</td>" + 
-              "<td>"+ d.name +"</td>" +
-              "<td>" + 
-                "<button id='v" + i + "' onclick='drawData(" + i + ")'>View</button>" +
-                "<button id='e" + i + "' onclick='editData(" + i + ")'>Edit</button>" +
-                "<button id='d" + i + "'onclick='deleteData(" + i +")'>Delete</button>" +
-              "</td>"
-            "</tr>"
-    i++;
+    if(idx === i){
+      str += "<tr>"+
+                "<td>" + 
+                  "<input type='number' id='vertices' value="+ d.vertices +"></td>" + 
+                "<td>            <select id="drawType">
+              <option>Line</option>
+              <option>Triangle</option>
+              <option>Dots</option>
+            </select>"+ d.drawType +"</td>" + 
+                "<td>"+ d.name +"</td>" +
+                "<td>" + 
+                  "<button id='v" + i + "' onclick='drawData(" + i + ")'>View</button>" +
+                  "<button id='e" + i + "' onclick='editData(" + i + ")'>Edit</button>" +
+                  "<button id='d" + i + "'onclick='deleteData(" + i +")'>Delete</button>" +
+                "</td>"
+              "</tr>"
+    }
+    else{
+      str += "<tr>"+
+                "<td>"+ d.vertices +"</td>" + 
+                "<td>"+ d.drawType +"</td>" + 
+                "<td>"+ d.name +"</td>" +
+                "<td>" + 
+                  "<button id='v" + i + "' onclick='drawData(" + i + ")'>View</button>" +
+                  "<button id='e" + i + "' onclick='editData(" + i + ")'>Edit</button>" +
+                  "<button id='d" + i + "'onclick='deleteData(" + i +")'>Delete</button>" +
+                "</td>"
+              "</tr>"
+    }
+    i++
   }
-  
   document.getElementById("dataTable").innerHTML = str
 }
 
@@ -69,7 +86,7 @@ function drawData(index){
 }
 
 function editData(index){
-  console.log("edit", index)
+  getData(index)
 }
 
 function deleteData(index){
