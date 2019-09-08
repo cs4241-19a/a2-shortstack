@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- Book Submission Form -->
-    <form action="/add-a-book" method= "post">
+    <form action="/addBook" method= "post">
       <fieldset>
         <legend>
           Have Any Books You Want To Read?
@@ -19,10 +19,8 @@
         <input type="text" id="authorName"><br>
         Comments: <br>
         <input type="text" id="comments"><br>
-        Rating: <br>
-        <input type="radio" name="rating" value="canNotRate"> Can't rate<br>
-        <input type="radio" name="rating" value="wouldRead"> Would read again<br>
-        <input type="radio" name="rating" value="wouldNotRead"> Would not read again <br>
+        Rating (1-5): <br>
+        <input type="text" id="rating"><br>
       <div id="submit-btn">
         <button>Add My Book</button>
       </div>

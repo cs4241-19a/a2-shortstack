@@ -49,7 +49,7 @@
     
       if (orderValidation(newBook.bookName, newBook.authorName, newBook.rating)) {
         const body = JSON.stringify( newBook );
-        fetch( '/submit', {
+        fetch( '/addBook', {
           method:'POST',
           body
         }).then( function( response ) {

@@ -30,7 +30,7 @@ const handleGet = function( request, response ) {
   }else{
     sendFile( response, filename )
   }
-}
+};
 
 const handlePost = function( request, response ) {
   let dataString = ''
@@ -40,14 +40,30 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    switch ( request.url ) {
+      case '/addBook':
+        const book = JSON.parse( dataString );
 
-    // ... do something with the data here!!!
+        const newBook = {
+          'bookName': book.bookName,
+          'authorName': book.authorName,
+          'comments': book.comments,
+          'rating': book.rating,
+          'status': book.status,
+        };
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+        appdata.push(newBook);
+
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+        response.end();
+        break;
+
+      default:
+        response.end('404 Error: File not found');
+        break;
+    }
   })
-}
+};
 
 const sendData = function( response, books) {
   const type = mime.getType( books );
