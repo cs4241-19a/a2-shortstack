@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif|Righteous&display=swap');
 
 body {
+  font-family: 'Noto Serif', serif;
   background-color: #DBE0C5;
 }
 
@@ -9,12 +10,17 @@ h1 {
   font-size: 60px;
 }
 
-#instructions {
-  width: 80%;
-  margin:0 auto;
+h2 {
+  font-family: 'Righteous', cursive;
 }
 
-#guess
+#instructions {
+  font-size: 16px;
+}
+
+#guess {
+  
+}
 
 #previous {
   width:50%;
