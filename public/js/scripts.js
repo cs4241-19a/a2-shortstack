@@ -39,7 +39,7 @@ const generate = function(e) {
   };
   const body = JSON.stringify( input )
   
-  console.log(body)
+  console.log(input)
   
   fetch( '/generate', {
     method:'POST',
@@ -54,6 +54,6 @@ const generate = function(e) {
 }
 
 window.onload = function() {
-  const button = document.getElementById("generate")
-  button.onclick = generate
+  const genBtn = document.getElementById("generate")
+  genBtn.onclick = generate
 }
