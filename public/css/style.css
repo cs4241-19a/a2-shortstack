@@ -36,3 +36,15 @@ header {
   background-color: black;
   margin-top: 5px;
 }
+
+.tabs.is-toggle a {
+  background-color: grey;
+}
+
+.tabs a {
+  color: white
+}
+
+.tabs a {
+  border-width: 0px !important;
+}
