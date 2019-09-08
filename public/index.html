@@ -7,7 +7,16 @@
   </head>
   <body>
     <form action="/add-a-book">
-      <input type="text" id="yourname" value="your name here">
+      Book Name: <br>
+      <input type="text" id="bookName"><br>
+      Author: <br>
+      <input type="text" id="authorName"><br>
+      Comments: <br>
+      <input type="text" id="comments"><br>
+      Rating: <br>
+      <input type="radio" name="rating" value="haveNotRead" checked> Haven't read yet<br>
+      <input type="radio" name="rating" value="wouldRead"> Would read again<br>
+      <input type="radio" name="rating" value="wouldNotRead"> Would not read again <br>
       <button>submit</button>
     </form>
   </body>
