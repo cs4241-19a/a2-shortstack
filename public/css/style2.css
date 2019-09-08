@@ -1,0 +1,26 @@
+body{
+  background: linear-gradient(40deg,lightblue,yellow,#ff571a)fixed;
+  font-family: 'Kanit', sans-serif;
+}
+
+td, th {
+  border: 2px solid black;
+  background-color:white;
+  text-align: center;
+  padding: 8px;
+}
+
+#backButton:hover{
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+#allContent{
+  margin:auto;
+  text-align:center;
+  display:block;
+}
+
+#table {
+  margin:auto;
+}

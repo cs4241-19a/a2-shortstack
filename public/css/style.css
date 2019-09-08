@@ -1,1 +1,46 @@
-/*Style your own assignment! This is fun! */
+body{
+  background: linear-gradient(40deg,lightblue,yellow,#ff571a)fixed;
+  font-family: 'Kanit', sans-serif;
+  height:100%;
+}
+
+#main_heading{
+  position: relative;
+  top: 5px;
+  text-align:center;
+    
+}
+
+.form1{ /*class selector*/ 
+  background-color: coral;
+  border:3px solid black;
+  display: inline-block;
+  flex:0 0 50%;
+}
+
+.form2{
+  background-color:coral;
+  border: 3px solid black;
+  display: inline-block;
+  flex:1;
+}
+
+.button:hover{
+  border:2px solid black;
+  cursor: pointer;
+}
+
+#mainContent{
+  text-align:center;
+  vertical-align: top;
+  width:60%;
+  margin:auto;
+  display:flex;
+  
+}
+
+#viewBtn{
+  position:relative;
+  margin: 0 auto;
+  display: block;
+}

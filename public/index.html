@@ -1,41 +1,61 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
+    <title>Online Shopping Calculator</title>
     <meta charset="utf-8">
+    
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <h1 id="main_heading"> Online Shopping Calculator</h1>
+    
+    <div id = "mainContent">
+    <form class = "form1">
+      <fieldset>
+        <legend id="legend1">
+          <h2 id ="subheading1" name = "Add a Product"> Add a Product</h2>
+        </legend>
+        
+      <label for= "productName"> Product Name:</label><br>
+      <input type="text" name= "productName" id="productName">
+        
+        <br><br><label for= "numProducts"> Number of Products:</label><br>
+      <input type="text" name="numProducts" id="numProducts">
+      
+        <br><br><label for= "price">Price:</label><br>
+        <input type="text" name="price" id="price">
+        <br><br>
+        
+      <button id = "addProductBtn" class = "button">Add Product</button>
+        </fieldset>
     </form>
+    <br><br>
+    
+    <form class ="form2">
+      <fieldset>
+        <legend id="legend2">
+          <h2 id= "subheading2" name="Remove a Product">
+            Remove a Product</h2>
+        </legend>
+        
+        <label for= "productName2">Product Name: </label><br>
+      <input type="text" name= "productName2" id="productName2">
+        
+      <br><br>
+        <label for= "numProducts2">Number of Products to Remove:</label>
+        <br>
+      <input type="text" name="numProducts2" id="numProducts2">
+        <br><br><br><br><br>
+        
+        <button id = "removeBtn" class = "button">Remove Product</button>
+      </fieldset>
+    </form>
+    </div>
+    <br>
+    <button id = "viewBtn" class = "button"><a href ="index2.html">View Shopping List</a></button>
+  
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
+  <script src = "./js/scripts.js" type="text/javascript">
+    
   </script>
 </html>

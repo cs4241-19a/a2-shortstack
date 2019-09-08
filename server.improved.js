@@ -1,3 +1,5 @@
+let dataArray = []
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -6,18 +8,16 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
+    handleGet( request, response)    
+  }
+  else if( request.method === 'POST' ){
     handlePost( request, response ) 
   }
+  else if(request.method === 'DELETE'){
+    handleDelete(request, response)
+}
 })
 
 const handleGet = function( request, response ) {
@@ -25,26 +25,89 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+    
+  }else if (request.url === '/getrequest'){ //added this get request
+    handleGetRequest(request, response) 
+  } 
+  else{
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
-  let dataString = ''
-
+    let dataString = ""
   request.on( 'data', function( data ) {
       dataString += data 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
+    let dataVar = JSON.parse( dataString );
+    dataArray.push(dataVar);
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.write(JSON.stringify(dataArray) )
+    response.end();
   })
+}
+
+//made this so that it does not take in an empty string
+const handleGetRequest = function( request, response ) { 
+  request.on( 'data', function( data ) {
+  })
+
+  request.on( 'end', function() {
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.write(JSON.stringify(dataArray) )
+    response.end();
+  })
+}
+
+const handleDelete = function( request, response ) {
+    let dataVar ={}
+    
+  request.on( 'data', function( data ) {
+    dataVar = JSON.parse( data);
+    
+  })
+  
+  request.on( 'end', function() {
+    /*loop through array to try to match with data given the same product name. 
+    Once matched, the index will be saved and depending on the desired amount of product to remove,
+    it will delete the entire row or adjust the quantity of products.  */
+    
+    let matched = false;
+    let matchedIndex = 0;
+    
+    for (let i =0; i < dataArray.length; i++){
+      let info = dataArray[i];
+      
+      if(info.productName === dataVar.productName){ //dont match with quantity dataVar.num is the input subtract input from info.num
+        matchedIndex = i;
+        matched = true;
+        
+        if (info.numProducts > dataVar.numProducts){ 
+          info.numProducts = info.numProducts - dataVar.numProducts;
+        }
+        
+        //if input is greater than output that would be zero or less so it will delete the entire row
+        else{ 
+          dataArray.splice(matchedIndex,1) 
+        }
+      }  
+    }
+    
+    if (matched){
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.write(JSON.stringify(dataVar) )
+    response.end()
+    }
+    else{
+    
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.write(JSON.stringify(dataArray) )
+    response.end();}
+  })
+  
 }
 
 const sendFile = function( response, filename ) {

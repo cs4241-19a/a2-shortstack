@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Online Shopping Calculator",
+  "version": "1.0",
+  "description": "Creates a Shopping list using the user's input and calculates the overall total of all the products in the list. The user is also given the option to remove products from the list.",
+  "author": "Randy Agudelo",
   "scripts": {
     "start": "node server.improved.js"
   },
