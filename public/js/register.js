@@ -27,7 +27,10 @@ function register() {
     var email = document.getElementById("email_field").value;
     var password = document.getElementById("password_field").value;
 
-    console.log(email, password);
+    if (password.length < 6){
+        alert("Your password must be more than six characters!");
+        return;
+    }
 
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
         // Handle Errors here.

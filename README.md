@@ -34,13 +34,14 @@ used to get only their data from the database. The server calculates the word co
 - **Tech Achievement 2**: Implemented a user authentication system using firebase auth client library. Authentication is checked
 and access to personal dashboard sites is dependent on being authenticated. Created login and register pages for this.
 - **Tech Achievement 3**: Using d3.js, created visualizations. Used chart.js too.
-- **Tech Achievement 4**: Using http requests to the datamuse api, get word synonym data.
+- **Tech Achievement 4**: Using http requests to the [datamuse](https://www.datamuse.com/api/) api, get word synonym data.
 - **Tech Achievement 5**: Used angular.js for better dynamic generation
 - **Tech Achievement 6**: Use tesseract.js and myscript.js for OCR and handwriting recognition
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Used and modified a bootstrap admin theme from [here](https://startbootstrap.com/themes/sb-admin-2/)
 - **Design Achievement 2**: Designed the data visualizations and the interaction for submitting new posts
-- **Design Achievement 3**: Came up with the idea
-- **Design Achievement 4**: Collapsible cards
+- **Design Achievement 3**: Desgined multiple text entry methods for accessibility: file upload OCR recognition, realtime handwriting recognition, typing.
+- **Design Achievement 4**: Attention to minor detail. For instance, "no results" message on definition searches. Alert messages for form validation. Collapsible cards.
+
 

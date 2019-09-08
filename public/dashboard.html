@@ -22,6 +22,9 @@
     <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
 
 
+    <!--Data Tables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/cr-1.5.0/r-2.2.2/sl-1.3.0/datatables.min.css"/>
+
     <!-- Custom styles for this template-->
     <link href="./css/sb-admin-2.css" rel="stylesheet">
     <link href="./css/style.css" rel="stylesheet">
@@ -287,6 +290,11 @@
                                     </tfoot>
                                 </table>
                             </div>
+                            <hr>
+                            <button ng-disabled="!selectedRow"
+                                    class="btn btn-info">Update</button>
+                            <button ng-disabled="!selectedRow" ng-click="deleteRow()"
+                                    class="btn btn-info">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -372,6 +380,7 @@
                                 </div>
                                 <hr>
                                 <div>
+                                    <div ng-if="!defs">No results</div>
                                     <ul ng-repeat="word in defs">
                                         <li>{{word}}</li>
                                     </ul>
@@ -401,10 +410,8 @@
 
                         <div class="card shadow mb-4">
                             <div class="card-body">
-                                <iframe style="border: 0; width: 100%; height: 42px;"
-                                        src="https://bandcamp.com/EmbeddedPlayer/track=2172435603/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/"
-                                        seamless><a href="http://marianapachon.bandcamp.com/track/arteria-mujeriega">arteria
-                                    mujeriega by Mariana Pachon</a></iframe>
+                                <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/295234908&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                                <!--<iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/162047121&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>-->
                             </div>
                         </div>
                     </div>
@@ -467,8 +474,10 @@
 <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/cr-1.5.0/r-2.2.2/sl-1.3.0/datatables.min.js"></script>
+
 
 <!-- Core plugin JavaScript-->
 <script src="./vendor/jquery-easing/jquery.easing.min.js"></script>

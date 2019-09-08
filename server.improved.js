@@ -33,6 +33,8 @@ const server = http.createServer(function (request, response) {
         handleGet(request, response)
     } else if (request.method === 'POST') {
         handlePost(request, response)
+    } else if (request.method === 'DELETE') {
+        handleDelete(request, response)
     }
 });
 
@@ -56,6 +58,11 @@ const handleGet = function (request, response) {
 
 const handlePost = function (request, response) {
     console.log("Handling post..");
+
+    if (request.url === '/') {
+        // maybe not
+    }
+
     let dataString = '';
 
     request.on('data', function (data) {
@@ -79,6 +86,13 @@ const handlePost = function (request, response) {
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
         response.end()
     })
+};
+
+const handleDelete = function (request, response) {
+    console.log("DELETE: ", request.url);
+    ref.child(request.url).set({});
+    response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+    response.end();
 };
 
 const sendFile = function (response, filename) {

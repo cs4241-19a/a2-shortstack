@@ -5,8 +5,9 @@
 /**
  * TODO: Zoom/pan word bubble
  * TODO: Make all word map lowercase
- * TODO: Definitions "no results" message
- * TODO: Password not long enough?
+ * TODO: Make word bubble prettier
+ * TODO: Make login/register prettier
+ * TODO: Add modify options
  */
 
 var app = angular.module("dashboardApp", []);
@@ -110,6 +111,17 @@ app.controller("dashboardCtrl", function ($scope) {
         });
     }
 
+    $scope.deleteRow = function () {
+        console.log('woooo');
+        console.log($scope.selectedRow);
+        fetch('/' + currentUser.uid + '/' + $scope.selectedRow['entry-key'], {
+            method: 'DELETE',
+        }).then(function (response) {
+            updateStats();
+            repopulateTable();
+        })
+    };
+
     $('#form-submit').click(function () {
         // get all the inputs into an array.
         var $inputs = $('#add-log :input');
@@ -157,7 +169,7 @@ app.controller("dashboardCtrl", function ($scope) {
                 return response.json();
             }).then(function (data) {
 
-            if (data[currentUser.uid] == undefined){
+            if (data[currentUser.uid] == undefined) {
                 return;
             }
 
@@ -200,24 +212,42 @@ app.controller("dashboardCtrl", function ($scope) {
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
-                if (data[currentUser.uid] == undefined){
-                    return;
-                }
+            if (data[currentUser.uid] == undefined) {
+                return;
+            }
             // USE data
             let tableArray = [];
-            for (let obj of Object.values(data[currentUser.uid])) {
-                let values = Object.values(obj);
+            for (let obj in data[currentUser.uid]) {
+                let nestedOBj = data[currentUser.uid][obj];
+                let values = Object.values(nestedOBj);
                 let array = [];
                 array.push(values[0]);
                 array.push(values[3]);
                 array.push(values[2]);
+                array.push(obj);
                 tableArray.push(array);
             }
 
             if (firstTime) {
-                $('#dataTable').DataTable({
-                    data: tableArray
-                })
+                let dt = $('#dataTable').DataTable({
+                    data: tableArray,
+                    select: true
+                });
+
+                dt.on('select', function (e, dt, type, indexes) {
+                    if (type === 'row') {
+                        let log = dt.rows(indexes).data()[0];
+                        let obj = {
+                            'entry-post': log[2],
+                            'entry-title': log[1],
+                            'entry-date': log[0],
+                            'entry-key': log[3]
+                        };
+                        $scope.selectedRow = obj;
+                        $scope.$apply();
+                    }
+                });
+
             } else {
                 $('#dataTable').DataTable().clear();
                 $('#dataTable').DataTable().rows.add(tableArray).draw();
@@ -374,7 +404,7 @@ app.controller("dashboardCtrl", function ($scope) {
 
     $scope.showWordDefinition = function () {
         let word = $("#inputWord").val();
-        fetch('http://api.datamuse.com/words?sp=' + word + '&qe=sp&md=d&max=1')
+        fetch('https://api.datamuse.com/words?sp=' + word + '&qe=sp&md=d&max=1')
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
