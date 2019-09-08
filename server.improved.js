@@ -21,21 +21,6 @@ const server = http.createServer( function( request,response ) {
 })
 
 const handleGet = function( request, response ) {
-  
-  switch( request.url ) {
-    case '/script.js':
-      sendFile( response, 'DrawMode.js' )
-      break
-    case '/MV.js':
-      sendFile( response, 'MV.js' )
-      break
-    case '/initShaders.js':
-      sendFile( response, 'initShaders.js' )
-      break
-    case '/webgl-utils.js':
-      sendFile( response, 'webgl-utils.js' )
-      break
-  
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {

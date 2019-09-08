@@ -27,69 +27,6 @@ var width;
 
 var x, y, z;  //x, y, z, values of the center of object
 
-//Read the inputted file
-function readFile(event) {
-    //check to see if browser supports FileReader
-    if (window.FileReader) {
-        var reader = new FileReader();
-        reader.onload = parseFile;
-        reader.readAsText(event.target.files[0]);
-    } else
-        alert('Browser does not support FileReader');
-}
-
-//parse file data and store values in appropriate variables
-function parseFile(event){
-
-    reset();  //ensure no value from previous read file remains in variables
-
-    var plyFile = event.target.result;
-    var plyLines = plyFile.split(/\r\n|\n/g);
-
-    //check for "ply" in file, if not present exit
-    if(!plyLines[0].toLowerCase().includes("ply")){
-        alert("Sorry, File cannot be read. Please check your file and try again.");
-        return 1;
-    }
-
-    var end = false;  //check for end of header
-    var line;         //temp variable to a single line
-    var ele;          //each element in a line
-    var counter = 0;
-
-    //iterate through each line of the file
-    for(var i = 1; i < plyLines.length; i++) {
-        line = plyLines[i].toLowerCase();
-        ele = line.split(" ").filter(Boolean);
-
-        if(line.includes("element")){      //read value from element lines
-            if(line.includes("vertex"))
-                numVertices = parseFloat(ele[ele.length - 1]);
-            else if(line.includes("face"))
-                numPolygons = parseFloat(ele[ele.length -1]);
-        }
-        else if(line.includes("end_header")) {
-            end = true;
-        }
-        else if(end && !(line === "")){     //end of header, parse all vertices and indexes
-            if(counter < numVertices){
-                counter++;
-                vertices.push(vec4(parseFloat(ele[0]), parseFloat(ele[1]), parseFloat(ele[2]), 1.0))
-            }
-            else if(counter < numVertices + numPolygons){
-                counter++;
-                vertexIndx.push(parseFloat(ele[1]));
-                vertexIndx.push(parseFloat(ele[2]));
-                vertexIndx.push(parseFloat(ele[3]));
-            }
-        }
-    }
-
-    for(var p = 0; p < numPolygons; p++)
-        calcNormal(p);
-
-    draw();
-}
 
 //reset variables used to store values parsed from file to zero or empty array
 function reset(){
