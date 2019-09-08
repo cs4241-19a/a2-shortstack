@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-Alexander-Rus",
+  "version": "1.0",
+  "description": "This is going to be some kind of thing that does something",
+  "author": "Alexadner Rus",
   "scripts": {
     "start": "node server.improved.js"
   },
