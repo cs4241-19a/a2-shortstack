@@ -28,6 +28,7 @@ const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
+    // When you first enter the page
     sendFile( response, 'public/index.html' )
   }else{
     sendFile( response, filename )
@@ -74,11 +75,10 @@ const sendFile = function( response, filename ) {
    })
 }
 
-var board;
+var board = [-1, -1, -1, -1];
 
 // Create a random array of 4 numbers, each from 0 to 5
 const generateBoard = function() {
-  board = [-1, -1, -1, -1];
   for (var i = 0; i < 5; i++) {
     board[i] = Math.floor(6 * Math.random())
   }
