@@ -32,11 +32,11 @@ body {
   border: 1px solid white;
   display: flex;
   flex-direction: column;
+  animation: nextbody 1s forwards;
 }
 
 .boardsection:first-child{
-  flex-direction: column;
-  animation: next 6s;
+  animation: next 3s forwards;
 }
 
 .board[data-board] .tasklist  {
@@ -63,36 +63,24 @@ body {
 
 @keyframes next {
   10% {
-    transform: translateX(-150%);
+    transform: translateX(-150%) translateY(0%);
   }
   25% {
-    transform: translateY(-300%);
+    transform: translateX(-150%) translateY(-300%);
   }
   50% {
-    transform: translateX(1000%);
+    transform: translateX(1000%) translateY(-300%);
   }
   75% {
-    transform: translateY(0%);
+    transform: translateX(1000%) translateY(0%);
   }
   100% {
-    transform: translateX(0%);
+    transform: translateX(600%) translateY(0%);
   }
 }
 
 @keyframes nextbody {
-  10% {
-    transform: translateX(0%;
-  }
-  25% {
-    transform: translateY(-300%);
-  }
-  50% {
-    transform: translateX(1000%);
-  }
-  75% {
-    transform: translateY(0%);
-  }
   100% {
-    transform: translateX(0%);
+    transform: translateX(-100%) translateY(0%);
   }
 }
