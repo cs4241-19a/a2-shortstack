@@ -34,11 +34,15 @@ select{
 }
 
 button {
-  background: var(--btnColor);
-  border: 3px outset #D70026;
+  background: var(--backColor);
+  font-family: 'Comic Sans MS';
+  font-weight: Bold;
+  border: 3px solid #D70026;
+  border-radius: 5px; 
   margin: 3px;
   padding: 5px;
-  color: var(--backColor);
+  color: var(--borderColor);
+  width: 100px;
 }
 
 #generate {
@@ -66,6 +70,7 @@ button {
   grid-area: d;
   display:flex;
   justify-self: center;
+  justify-contents: flex-between;
 }
 
 #canvas {
