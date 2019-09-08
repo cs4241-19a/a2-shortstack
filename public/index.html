@@ -21,7 +21,7 @@
         <input type="text" class="fName" value="your name here"><br>
         <label for="lName">Last Name: Name</label>
         <input type="text" class="lName" value="your name here"><br>
-        <label for="month">Month of birth</label>
+        <label for="month">Month of Birth</label>
         <select name="month" class="month">
           <option value="January">January</option>
           <option value="February">February</option>
@@ -93,14 +93,18 @@
   const submitChanges = function(e){
     e.preventDefault()
     let originalData = document.getElementById('modHolder').innerHTML
-    console.log(originalData)
-    console.log(JSON.parse(originalData))
+    originalData = JSON.parse(originalData)
     let newInput = []
     newInput.push(document.querySelector( '.fNameE' ).value)
     newInput.push(document.querySelector( '.lNameE' ).value)
     newInput.push(document.querySelector( '.monthE' ).value)
     newInput.push(document.querySelector( '.daysE' ).value)
-    let body = {original: originalData, modData: newInput}
+    let originalArr = []
+    originalArr.push(originalData.fName)
+    originalArr.push(originalData.lName)
+    originalArr.push(originalData.month)
+    originalArr.push(origina)
+    let body = {original: originalArr, modData: newInput}
     body = JSON.stringify(body)
     console.log(body)
     fetch( '/modify', {

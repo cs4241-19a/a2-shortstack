@@ -22,10 +22,17 @@ nav ul li{
 
 nav ul li button{
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
 #NEW{
   background: blue;
+  display: flex;
+  flex-direction: column;
 }
+
+
+#NEW form label{
+  color: green;
+}
+
