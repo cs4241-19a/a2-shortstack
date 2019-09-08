@@ -29,7 +29,10 @@
   function submit(  ) {
     
     document.getElementById('info').submit()
-    getData()
+    setTimeout(function(){
+      getData()
+    },1000)
+    
 
     
 
@@ -77,7 +80,7 @@
       $.get('/data',function(response){
         //clearTable(document.getElementById("dataTable"))
         response.forEach(function(item){
-          console.log(item)
+          console.log("item is " +item)
           $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td></tr>')
         })
       })
