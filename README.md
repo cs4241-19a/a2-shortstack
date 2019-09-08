@@ -1,89 +1,45 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
-===
-
-Due: September 9th, by 11:59 AM.
-
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
-
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
-
-Baseline Requirements
 ---
 
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
+# WPI Track and Field Diet Tracker
+##### -   https://a2-mjadiletta.glitch.me
 
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
+## Domain
+This project contains a design for an online diet tracker, specifically used for the WPI track and field team. At the beginning of the year my coach asked me if I could design an application that would allow his track athletes to record all
+of the food they ate during the day. He specifically wanted to have an easy system that is user friendly. This is the prototype. It allows a user to log in, create a new user, or remove a user.
+It allows the user to log information for a single day, and maintain that information in a permanent database. The information a user can add is pretty simple. The interface allows a user to record if he or she
+ate carbohydrates, proteins, oils, etc by checking a box. If the user checks the box and clicks submit, the information is updated in the database. A derived field is created called "score" which is the total number of checked boxes, representing how many of
+the healthy food groups my coach has specified. 
 
-Your application is required to implement the following functionalities:
+## Main Challenges and Key Innovations
+There were a few main challenges associated with this project. First, I did not know how to do a "single page" web app so I learned how to show and hide html elements. As simple as that sounds, it took me forever to figure it out.
+I also had a major issue with passing data from the front end to the back end. Again, this seems pretty simple, but I was using "GET" instead of "POST" trying to pass data, but I could not figure out how to use GET to pass data.
+I spent a few hours switching all my code to POST and it finally started working. A final major challenge I encountered was trying to save data. I realize it was out of the scope of the assignment to use a database, but
+since this application was for my track coach, I figured it would be best if I just hooked up a database anyway. I tried useing a WPI SQL database, but I ran into serious connection issues because you need to be SSH'd into a 
+WPI server to access the SQL database. Then I tried using an external import for a sql database but I couldn't get that working the way I wanted it too. So I resulted to coding my own database and database commands. 
+Essentially, I created a JSON database, that responds similarly to SQL. I coded some basic query commands to retreive data. All data is stored in a .json file in the public folder. This innovation for the database, made it
+possible for this application to run properly and store data. Another key innovation was an innovation I made for passing data between the front end and the back end. I used api endpoints that essentially acted like query
+commands for the database. The system I used was essentially a switch-case statement for all the query commands, but it got the job done. 
 
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
+## Results and Future Work
+The results of this application are very good for a preliminary design. It meets the requirement of storing data, retreiving data, editing data, deleting data. However, it falls short in terms of storing lots of data. 
+First, everytime the database is accessed, the entire json file is read in. This means that if I get lots of users with lots of data, it will take a while to quickly read all the data and find the relevant info. Next,
+a user can only store a single day of information. Here is the general formatat for the database: {User: {food: true or false, food: true or false, ...}, User2: {food: t or f, food: t or f}, ...}
+What I really wanted to see was more like this... {User: {date:{food: true or false, food: true or false}, date: {food: true or false, food: true or false}}, User 2 ...}
+This would allow dates to be stored. The only issue I had with implementign this was time. Adding another layer of database management to this project wouldve taken a lot of time that I didn't have. Overall, it's
+very doable, it would just take more time. In the future, I will add this functionality. I also think it would be important to encode the database so users can't "steal" track athelets information. It might also be valuable
+to add a password when signing in. Again, I could do this myself, but it would take time - future work. 
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Created JSON Database with Query Commands**: I created a method for storing and retreiving information for users using a JSON database. I setup the database by reading and writing to a JSON file. The file is only one
+object, all the data residing in the database. I wrote commands that query the database and retreive the required information and returns the information to the user. 
+- **Wrote a whole lot of Java Script for User Interface**: I wrote a lot of javascript that accesses elements by ID, class ect. to have them show and hide at correct times. This allows the user to have a single page website
+that has lots of builtin functionality. 
+- **Implemented Server logic for handling API endpoint requests**: Whenever a user requests data from the server, the front end sends a request for an API endpoint. Then the server does the correct action based on the 
+requested endpoint. This allows for scalability for future additons to the project.
 
-### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+### Design Achievements
+- **Cool CSS Button**: I added some really cool css for all the buttons making them change color and shape when you hover over them. The button functinality is all connected with javascript but the visual is controlled
+by CSS. I found a version of this button online and I redesigned some of the features to make it my own. 
+- **Cool Layout**: I made a really cool layout for the web application with a header, navigation pannel, and information pannel. These are all "buckets" that can have pictures added, text, etc very easily. The pannels 
+all have associated css that allows them to look the way they do. 
+

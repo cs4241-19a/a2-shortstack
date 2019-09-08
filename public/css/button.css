@@ -1,0 +1,77 @@
+button.navButton{
+  background:#B22222;
+  color:#fff;
+  border:none;
+  position:relative;
+  height: 60px;
+  width: 90px;
+  font-size:16px;
+  margin: 3px;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button.navButton:hover{
+  background:#fff;
+  color:#B22222;
+}
+button.navButton:before,button.navButton:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #B22222;
+  transition:400ms ease all;
+}
+button.navButton:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button.navButton:hover:before,button.navButton:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
+
+button.articleButton{
+  background:#B22222;
+  color:#fff;
+  border:none;
+  position:relative;
+  height: 40px;
+  width: 120px;
+  font-size:14px;
+  margin: 3px;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button.articleButton:hover{
+  background:#fff;
+  color:#B22222;
+}
+button.articleButton:before,button.articleButton:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #B22222;
+  transition:400ms ease all;
+}
+button.articleButton:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button.articleButton:hover:before,button.articleButton:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
