@@ -37,9 +37,11 @@
       console.log( response )
 
       
-      fetch('server.improved.js')
-      .then(function( response ) {
-          response.json();
+      fetch('server.improved.js', {
+        method:'POST',
+        body
+      }).then(function( response ) {
+          //response.json();
           console.log(response)
       }).then(function(data) {
         let info = data
