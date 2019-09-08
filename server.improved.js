@@ -249,11 +249,13 @@ function modData(toChange){
   let replace = toChange.newInput
   for(let i = 0; i < appdata.length; i++){
     if((original[0] === appdata[i].fName) && (original[1] === appdata[i].lName) && (original[2] === appdata[i].month) && (original[3] === appdata[i].day)){
-      appdata[i].fName = original[0];
-      appdata[i].lName = original[1];
-      appdata[i].month = original[2];
-      appdata[i].day = original[3];
+      console.log(appdata[i])
+      appdata[i].fName = replace[0];
+      appdata[i].lName = replace[1];
+      appdata[i].month = replace[2];
+      appdata[i].day = replace[3];
       appdata[i].sign = starSign(appdata[i])
+      console.log(appdata[i])
     }
   }
 }
