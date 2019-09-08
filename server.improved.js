@@ -12,7 +12,7 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
-const quizdata = [
+const data = [
   { 'question': 'one', 'answer': '4', response: ''},
   { 'question': 'two', 'answer': '2', response: ''}
 ]
@@ -30,7 +30,10 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }else if( request.url === '/information') {
+    sendFile( response, appdata )
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -45,7 +48,7 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
     // ... do something with the data here!!!
     //response.write(JSON.parse( dataString ))
-    //quizdata.push({'question':'three', 'answer': '3', 'response':'4'});
+    data.push({'question':'three', 'answer': '3', 'response':'4'});
     
     //response.write(quizdata.toString())
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })

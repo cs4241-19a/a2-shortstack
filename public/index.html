@@ -31,7 +31,7 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const url = '?appdata=model',
+    const url = '/information',
           input = document.querySelector( '#response' ),
           json = { yourresponse: input.value },
           body = JSON.stringify( json ),
@@ -49,6 +49,9 @@
       //text.textContent = response;
       console.log( response )
       
+      
+      
+      /*
       fetch(url)
         .then(function( response ) {
           //response.json();
@@ -59,12 +62,20 @@
         //answer.innerHTML = data
         //console.log(info)
       });
-      
+      */
 
       
     })
 
     return false
+  }
+  
+  const occupyText = function() {
+    fetch( '/information' )
+    .then( function( response ) {
+      response.json()
+      answer.innerHTML = ''
+    })
   }
 
   window.onload = function() {
