@@ -34,10 +34,11 @@
     .then( function( response ) {
       // do something with the reponse 
       //text.textContent = response;
-      fetch('/server.improved.js').then(function(response) {
-        response.text().then(function(text) {
-          console.log(text)
-        });
+      fetch('server.improved.js', {
+        method:'POST',
+        body
+      }).then(function( response ) {
+          console.log(response)
       });
 
       

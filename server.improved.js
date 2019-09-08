@@ -38,6 +38,8 @@ const handlePost = function( request, response ) {
   })
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    
+    response.write( dataString );
 
     // ... do something with the data here!!!
 
