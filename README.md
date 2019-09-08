@@ -17,6 +17,12 @@ To fulfill the requirements:
 - I used element, ID and class selectors throughout my code. 
 
 
+Goals:
+---
+- This website is designed to help students better understand their grades and keep things organized so they can balance their workload particularly during the final exam time. 
+- Currently this website does fulfill what it is designed for but unfortunately I really could not figure out how to make the delete/modify work with Firebase and it is too late for me to go back.
+
+
 Main Challenges:
 ---
 - I had a hard time understanding the communication between the server and the client.
@@ -27,15 +33,8 @@ Main Challenges:
 Implications:
 ---
 - Right now this website is really meant to be used by one person, because of the way the database is coded. The database takes the course title as the key so any other entry with the same course title will overwrite the database. I don't have enough time to manipulate around with it. However in the future, a password authentication step is surely needed in order to ensure the privacy for different users. 
-- I am not sure why I cannot make certain CSS styles apply to the second HTML page even when I tried with the "!important" tag to override anything else. Namely, I wanted to make he table round-edged, as well as set the header to be relatively higher than the table. Not working though. 
+- I am not sure why I cannot make certain CSS styles apply to the second HTML page even when I tried with the "!important" tag to override anything else. Namely, I wanted to make he table round-edged, as well as set the header to be relatively higher than the table. Not working though. I also attempted to add some animation with either CSS or JS libraries and they are malfunctioning as well. The console did not alert me anything and I am wondering if it is due to the bootstrap slider. 
 
-
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem? 
 
 
 Achievements:

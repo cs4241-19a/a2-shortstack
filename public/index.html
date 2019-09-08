@@ -7,6 +7,10 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
     <link href="lib/bootstrap/css/bootstrap-newer.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+  <script src="lib/jquery/jquery.js"></script>
+  <script src="lib/jquery/jquery.slim.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -22,7 +26,7 @@
             <div class="carousel-caption d-none d-md-block">
                 <form class="'form" action="">
                     <div class='form__container'>
-                        <h1>Final Grade Calculator</h1>
+                        <h1 id="websiteName">Final Grade Calculator</h1>
                         <div>
                             <label for="token">This class is</label>
                             <input class="input" type="text" id="token" placeholder="Field cannot be empty." required/>
@@ -58,7 +62,7 @@
         <div class="carousel-caption d-none d-md-block">
             <div class='form__container' style="background-color: rgba(0,0,0,0.5)">
                 <h2 class="display-4">Fun Fact about This Project</h2>
-                <p class="lead" style="color: white">I had so many failed attempts with this project. I was
+                <p class="lead" style="color: white" id="typed">I had so many failed attempts with this project. I was
                     over-ambitious but failed to learn libraries such as dataTables. I also tried to include a
                     preloading screen and failed. </p>
             </div>
@@ -139,8 +143,7 @@
 <!--
 <script src="lib/jquery/jquery.magnific-popup.js"></script>
 -->
-<script src="lib/jquery/jquery.js"></script>
-<script src="lib/jquery/jquery.slim.min.js"></script>
-<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/typeit@6.0.3/dist/typeit.min.js"></script>
 
 </html>
