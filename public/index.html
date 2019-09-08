@@ -8,15 +8,15 @@
   <body>
     
     <form action="">
-      <span id="question"> What is 2 + 2? </span>
+      <span id="question"> What is 2 + 2? </span> <br/>
       <input type="text" id="response" value="answer here">
       <button>submit</button>
     </form>
     <span id="answer"> text </span>
-    <div class="" data-="previous">
+    <div class="nav" id="previous">
       Previous
     </div>
-    <div id="next">
+    <div class="nav" id="next">
       Next
     </div>
     <br />
@@ -31,7 +31,7 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const url = '/',
+    const url = '?appdata=model',
           input = document.querySelector( '#response' ),
           json = { yourresponse: input.value },
           body = JSON.stringify( json ),
@@ -49,7 +49,7 @@
       //text.textContent = response;
       console.log( response )
       
-      fetch('server.improved.js')
+      fetch(url)
         .then(function( response ) {
           //response.json();
           answer.innerHTML = response.body
