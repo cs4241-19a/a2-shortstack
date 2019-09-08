@@ -47,7 +47,7 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
     // ... do something with the data here!!!
     //response.write(JSON.parse( dataString ))
-    data.push({'question':'three', 'answer': '3', 'response':'4'});
+    //data.push({'question':'three', 'answer': '3', 'response':'4'});
     
     //response.write(quizdata.toString())
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -59,7 +59,7 @@ const sendData = function( response, data ) {
   const type = mime.getType( data )
   
   response.writeHeader( 200, { 'Content-Type': type })
-  response.end( data )
+  response.end( JSON.stringify( { data : data } ))
   
 }
 
