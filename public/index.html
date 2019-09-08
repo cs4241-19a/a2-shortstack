@@ -28,40 +28,46 @@
       </fieldset>
     </form>
     <!-- Haven't Read Table -->
+    <div id="book-table">
+          <h3>My Book List</h3>
+          <table id="books"></table>
+    </div>
     <!-- Completed Table -->
   </body>
   <script>
     
-    //fetch orders for the table
-      const fetchOrders = async function() {
+    //fetch books for the table
+      const fetchBooks = async function() {
       try {
-        const resp = await fetch('/orders', { method: 'GET' });
+        const resp = await fetch('/books', { method: 'GET' });
         const data = await resp.json();
-        const orders = data.data;
-        let htmlDiv = document.getElementById('orders');
+        const books = data.data;
+        let htmlDiv = document.getElementById('books');
         htmlDiv.innerHTML = '<tr>\n' +
-                '              <th>Name</th>\n' +
-                '              <th>Dream</th>\n' +
-                '              <th>Pork</th>\n' +
-                '              <th>Garlic</th>\n' +
-                '              <th>Price</th>\n' +
+                '              <th>Book Name</th>\n' +
+                '              <th>Author</th>\n' +
+                '              <th>Comments</th>\n' +
+                '              <th>Rating</th>\n' +
+                '              <th>Status</th>\n' +
                 '              <th></th>\n' +
                 '              <th></th>\n' +
                 '            </tr>';
-        for (let i = 0; i < orders.length; i++) {
-          const order = orders[i];
-          const stringOrder = JSON.stringify(orders[i]);
-          const garlic = (order.garlic ? 'Yes' : 'No');
+        for (let i = 0; i < books.length; i++) {
+          const book = books[i];
+          const stringBook = JSON.stringify(books[i]);
+          if (book.rating != "canNotRate"){
+              book.status = "completed"
+          }
           let newRow = '<tr>\n';
-          newRow += (`<td> ${order.name} </td>\n`);
-          newRow += (`<td> ${order.dream} </td>\n`);
-          newRow += (`<td> ${order.amountOfPork} pieces</td>\n`);
-          newRow += (`<td> ${garlic} </td>\n`);
-          newRow += (`<td> ${order.price} </td>\n`);
+          newRow += (`<td> ${book.bookName} </td>\n`);
+          newRow += (`<td> ${book.authorName} </td>\n`);
+          newRow += (`<td> ${book.comments} </td>\n`);
+          newRow += (`<td> ${book.rating} </td>\n`);
+          newRow += (`<td> ${book.status} </td>\n`);
           newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
                   + encodeURIComponent(stringOrder) +
                   `>Edit</button> </td>\n`);
-          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteBook(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
         }
