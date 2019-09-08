@@ -1,132 +1,3 @@
-<!--<!doctype html>
-<html lang="en">
-<head>
-  <title>CS4241 Assignment 2</title>
-  <meta charset="utf-8">
-</head>
-<body>
-<h1>Become a Hogwarts Student</h1>
-<form action="">
-  <div>
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName"/>
-  </div>
-  <div>
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName"/>
-  </div>
-  <div>
-    <label for="pronouns">Pronouns:</label>
-    <input type="text" id="pronouns"/>
-  </div>
-  <div>
-    <label for="house">House:</label>
-    <input type="text" id="house"/>
-  </div>
-  <br><button>submit</button>
-</form>
-<br>
-<h3>Students:</h3>
-<table id="HogwartsStudents" style="width:100%"></table>
-</body>
-<script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const firstName = document.querySelector('#firstName'),
-            lastName = document.querySelector('#lastName'),
-            pronouns = document.querySelector('#pronouns'),
-            house = document.querySelector('#house'),
-
-    json = {
-      'firstName': firstName.value,
-      'lastName': lastName.value,
-      'pronouns': pronouns.value,
-      'house': house.value
-    },
-
-    body = JSON.stringify(json)
-
-    fetch( '/submit', { //url name = /submit
-      method:'POST',
-      body //same as saying->body:body
-    })
-            .then( function( response ) {
-              // response = body
-
-              //console.log( response )
-              //showData();
-            })
-
-    showData();
-    return false
-  }
-
-  const deleteRow = function (rowIndex) {
-    const rowData = { rowData: rowIndex};
-    console.log(rowIndex);
-    const body = JSON.stringify(rowData);
-    fetch('/delete', {
-      method: 'POST',
-      body
-    });
-    showData();
-  };
-
-  const showData = function(){
-    fetch('/cars',{
-      method: 'GET'
-    })
-            .then( function (response){
-              return response.json()
-            })
-            .then( function(studentList){
-              console.log(studentList)
-
-              let studentTable = document.querySelector('#HogwartsStudents');
-
-              //setting the header at the top of the table
-              studentTable.innerHTML =
-
-                      '<tr>\n'+
-                      '<th>First Name</th>\n'+
-                      '<th>Last Name</th>\n'+
-                      '<th>Pronouns</th>\n'+
-                      '<th>House</th>\n'+
-                      '<th>Delete</th>\n'+
-                      '</tr>';
-
-              for(let i = 0; i < studentList.length; i++){
-                const currentStudent = studentList[i];
-                let newLine = '<tr>'
-                newLine+=('<td>' + currentStudent.firstName + '</td>\n');
-                newLine+=('<td>' + currentStudent.lastName + '</td>\n');
-                newLine+=('<td>' + currentStudent.pronouns + '</td>\n');
-                newLine+=('<td>' + currentStudent.house + '</td>\n');
-                newLine+=('<td><button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
-                newLine+='</tr>';
-
-                studentTable.innerHTML += newLine
-              }
-
-
-            })
-  }
-
-
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-
-  }
-
-
-</script>
-</html> -->
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -179,11 +50,9 @@
           distance = document.querySelector( '#distance' ),
           gas = document.querySelector( '#gas' )
     
-          json = { 'model': model.value, 
-                  'year': year.value,
-                 'mpg': mpg.value, 
-                  'tripDistance': distance.value,
-                 'gasPrice': gas.value},
+          json = { model: model.value, year: year.value,
+                 mpg: mpg.value, tripDistance: distance.value,
+                 gasPrice: gas.value},
           body = JSON.stringify( json )
 
     fetch( '/submit', { //url name = /submit
@@ -205,8 +74,9 @@
     const carData = JSON.stringify(rowData);
     fetch('/delete', {
       method: 'POST',
-      carData
+      body: carData
     });
+    
     showData();
   };
 
@@ -240,26 +110,6 @@
                 '<th>Delete</th>\n'+
                 '</tr>';
 
-      //console.log("this one: ", typeof(getFetch))
-      //const newData = theCarData.data
-      //console.log("hhhh,   ", data)
-      //console.log("This is Data",typeof(newData))
-     /*theCarData.forEach(cars => {
-        let newLine = '<tr>'
-        newLine+=('<td>' +cars.model+ '</td>')
-        newLine+=('<td>' +cars.year+ '</td>')
-        newLine+=('<td>' +cars.mpg+ '</td>')
-        newLine+=('<td>' +cars.tripDistance+ '</td>')
-        newLine+=('<td>' +cars.gasPrice+ '</td>')
-        newLine+=('<td>' +cars.totalGallons+ '</td>')
-        newLine+=('<td>' +cars.totalCost+ '</td>')
-        newLine+=('<td>' + '<button id="delete"> X </button>' + '</td>')
-        newLine+='</tr>'
-        
-
-        finalCarData.innerHTML += newLine
-
-      })*/
 
       for(let i = 0; i < theCarData.length; i++){
         const cars = theCarData[i];
@@ -272,9 +122,6 @@
         newLine+=('<td>' +cars.totalGallons+ '</td>');
         newLine+=('<td>' +'$'+cars.totalCost+ '</td>');
         newLine+=('<td><button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
-        //newLine+=('<td>' + '<button id="delete-${i}"> X </button>' + '</td>');
-        //newLine+=('<td>'+ "<button id='delete-"+${i}+"' type='button' onclick='deleteRow(" + '"' + + ${i} + '"' + ")' >X</button>" +'</td>');
-        //newLine+=('<td>' + '<button onclick="deleteRow(${i})" id="delete-${i}"> X </button>' + '</td>');
         newLine+='</tr>';
 
         finalCarData.innerHTML += newLine
@@ -306,7 +153,7 @@ const dbData = function(){
   }
 
   </script>
-</html> 
+</html>
 
 <!-- Notes
 
