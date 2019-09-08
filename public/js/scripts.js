@@ -1,30 +1,26 @@
 //fetch books for the table
-// Given a list of satellites, update the tables using the individual functions
-// Also, make sure to clear the tables first
+
+//displayData for the three different tables
 const displayData = function ( data ) {
-  document.querySelector("#future-body").innerHTML = ""
-  document.querySelector("#active-body").innerHTML = ""
-  document.querySelector("#inactive-body").innerHTML = ""
+  document.querySelector("#all-books").innerHTML = ""
+  document.querySelector("#good-books").innerHTML = ""
+  document.querySelector("#bad-books").innerHTML = ""
 
   for (let i = 0; i < data.length; i++) {
-    const sat = data[i]
-    if (!sat.has_launched) {
-      displayFuture(sat)
+    const bkdata = data[i]
+      displayBooks(bkdata)
+    if (bkdata.rating === "1" || bkdata.rating === "2" ) {
+      displayBadBooks(bkdata)
     }
-
-    if (sat.has_launched && !sat.mission_completed) {
-      displayActive(sat)
-    }
-
-    if (sat.has_launched && sat.mission_completed) {
-      displayInactive(sat)
+    if (bkdata.rating === "3" || bkdata.rating === "4" || bkdata.rating === "5") {
+      displayGoodBooks(bkdata)
     }
   }
 }
 
-// Fetch data and then display it
+// Fetch the appdata and then call the display function
 const loadData = function( e ) {
-  fetch( '/spacecraft_data', {
+  fetch( '/books', {
     method:'GET',
   })
   .then( function( response ) {
@@ -32,9 +28,8 @@ const loadData = function( e ) {
   })
 }
 
-
-//ugh
-    const displayBooks = async function() {
+//ughhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+    const displayBooks2 = async function() {
       try {
         const resp = fetch('/books', { method: 'GET' });
         const data = resp.json();
@@ -67,7 +62,7 @@ const loadData = function( e ) {
       return false;
     };
     
-    //add Book function
+//add Book function
     const addBook = function( e ) {
       e.preventDefault();
       
