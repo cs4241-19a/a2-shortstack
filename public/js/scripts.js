@@ -86,9 +86,9 @@ function returnHome(){
   document.getElementById("USER_ENTRY").style.display = "none";
   document.getElementById("VIEW_DATA").innerHTML = "";
   document.getElementById("VIEW_DATA").innerHTML = "<p>This is the WPI Track and Field Diet Tracker Website.</p>\
-    <p>The purpose of this website is to allow WPI athletes to keep track of major food groups in their diet such as carbohydrates, proteins, oils, and more. A user can input data into the database and retreive it at any time.</p>\
-    <p>Select a button on the navigation panel to the left view, edit, or upload data.</p> \
-    <p>To delete a user select 'Sign Out' then select 'Remove User' and submit the user to delete. </p>\
+    <p>The purpose of this website is to allow WPI athletes to keep track of major food groups in their diet such as carbohydrates, proteins, vegetables, oils, and more. A user can input data into the database and retrieve it at any time.</p>\
+    <p>Select a button on the navigation panel to the left to view, edit, or upload data.</p> \
+    <p>To delete a user select 'Sign Out' then select 'Remove User' and submit the user to delete. </p> \
     <p>The current model for this website only allows the user to log a single day of information. In the future, this will be expanded for multiple days, and the 'score' field will be used as a comparison metric for comparing athletes dieting habits.</p>";
   showUserAccess();
 }
