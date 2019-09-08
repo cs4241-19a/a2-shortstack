@@ -35,6 +35,7 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
+    console.log(returnFirebaseAsArray())
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
@@ -47,7 +48,8 @@ const handleGet = function( request, response ) {
 
 const sendData = function(res){
   res.writeHeader(200, "OK", {'Content-Type': 'plain/text'})
-  res.write(JSON.stringify(appdata))
+  res.write(JSON.stringify(returnFirebaseAsArray()))
+  //res.write(JSON.stringify(appdata))
   res.end()
 }
 
@@ -97,7 +99,10 @@ const handlePost = function( request, response ) {
       case "modify":
         console.log("modify")
         const Data = JSON.parse(dataString)
-        
+        modifyItemInFirebase(Data.originalArr, Data.newInput)
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.write(JSON.stringify(returnFirebaseAsArray()))
+        response.end()
         /*modData(Data)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
@@ -106,10 +111,11 @@ const handlePost = function( request, response ) {
       case "delete":
         console.log("delete")
         const removalData = JSON.parse(dataString)
-        removalData.sign = starSign(removalData)
-        removeGiven(removalData)
+        /*removalData.sign = starSign(removalData)
+        removeGiven(removalData)*/
+        deleteInFirebase(removalData)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-        response.write(JSON.stringify(appdata))
+        response.write(JSON.stringify(returnFirebaseAsArray()))
         response.end()
         break
       default:
@@ -296,9 +302,15 @@ function returnFirebaseAsArray(){
     response.forEach(function(childSnapshot){
       var childData = childSnapshot.val()
       returnArray.push(childData)
+      console.log(returnArray)
     })
-    return returnArray
+    .then(function (endData){
+      returnArray = endData
+      return returnArray
+    })
+    
   })
+  
 }
 
 //Takes given JSON object and adds it to the remote database
@@ -316,6 +328,7 @@ function addItemToFirebase(itemToAdd){
 
 //Takes given original object and then sets equal to new object
 function modifyItemInFirebase(itemToModify, newInfo){
+  newInfo.sign = starSign(newInfo)
   let id = getFirebaseKey(itemToModify)
   firebase.database().ref('/' + id).set({
     fName: newInfo.fName,
@@ -348,10 +361,10 @@ function getFirebaseKey(item){
   })
 }
 
-
 //Checks if given JSON object is a duplicate of an exisiting object
 function noDuplicatesFirebase(itemToCheck){
   let dataArray = returnFirebaseAsArray()
+  console.log(dataArray)
   for(let i = 0; i< dataArray.length; i++){
     if((itemToCheck.fName === dataArray[i].fName) && (itemToCheck.lName === dataArray[i].lName)){
       if((itemToCheck.day === dataArray[i].day) && (itemToCheck.month === dataArray[i].month)){
