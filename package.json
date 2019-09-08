@@ -9,6 +9,7 @@
     "build": "npm run bundle; npm start;"
   },
   "dependencies": {
+    "bulma": "^0.7.5",
     "mime": "^2.4.4",
     "pouchdb": "^7.1.1"
   }

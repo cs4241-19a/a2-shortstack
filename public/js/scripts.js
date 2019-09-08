@@ -16,6 +16,12 @@ submit = function (e) {
     if (dbClass === "") {
         window.alert('Please pick a class');
         return false;
+    } else if (dbName === "") {
+        window.alert('Please enter a name');
+        return false;
+    } else if (dbBio === "") {
+        window.alert('Please enter a bio');
+        return false;
     }
 
     const new_character = {
@@ -87,6 +93,7 @@ selectCharacter = function(e) {
   e.preventDefault();
 
   const character = document.querySelector('#character-select');
+  let newClass = "";
   if (character.value !== "") {
       db.get(character.value).catch(function (err){
           console.log(err);
@@ -94,16 +101,68 @@ selectCharacter = function(e) {
           document.querySelector('#character-name').value = result._id;
           document.querySelector('#bio').value = result.bio;
           document.querySelector('#classes').value = result.class;
+          console.log(result.class);
+          newClass = result.class;
+          checkClass(newClass);
       });
+  } else {
+      document.querySelector('#character-name').value = "";
+      document.querySelector('#bio').value = "";
+      document.querySelector('#classes').value = "";
+      checkClass(newClass);
   }
-
-  selectClass();
-
 };
+
+checkClass = function(newClass) {
+    switch(newClass) {
+        case 'Mage':
+            document.querySelector('#strength').innerHTML = 'Strength: 2';
+            document.querySelector('#agility').innerHTML = 'Agility: 2';
+            document.querySelector('#magic').innerHTML = 'Magic: 8';
+            document.querySelector('#intelligence').innerHTML = 'Intelligence: 6';
+            break;
+        case 'Warrior':
+            document.querySelector('#strength').innerHTML = 'Strength: 7';
+            document.querySelector('#agility').innerHTML = 'Agility: 4';
+            document.querySelector('#magic').innerHTML = 'Magic: 2';
+            document.querySelector('#intelligence').innerHTML = 'Intelligence: 3';
+            break;
+        case 'Wizard':
+            document.querySelector('#strength').innerHTML = 'Strength: 4';
+            document.querySelector('#agility').innerHTML = 'Agility: 3';
+            document.querySelector('#magic').innerHTML = 'Magic: 6';
+            document.querySelector('#intelligence').innerHTML = 'Intelligence: 9';
+            break;
+        case 'Assassin':
+            document.querySelector('#strength').innerHTML = 'Strength: 5';
+            document.querySelector('#agility').innerHTML = 'Agility: 8';
+            document.querySelector('#magic').innerHTML = 'Magic: 4';
+            document.querySelector('#intelligence').innerHTML = 'Intelligence: 3';
+            break;
+        default:
+            document.querySelector('#strength').innerHTML = 'Strength: ';
+            document.querySelector('#agility').innerHTML = 'Agility: ';
+            document.querySelector('#magic').innerHTML = 'Magic: ';
+            document.querySelector('#intelligence').innerHTML = 'Intelligence: ';
+            break;
+    }
+}
 
 deleteDB = function(e) {
     e.preventDefault();
     let select = document.getElementById("character-select");
+    let name = document.getElementById("character-name");
+    let bio = document.getElementById("bio");
+    let classes = document.getElementById("classes");
+    name.value = "";
+    bio.value = "";
+    classes.value = "";
+    select.value = "";
+
+    document.querySelector('#strength').innerHTML = 'Strength: ';
+    document.querySelector('#agility').innerHTML = 'Agility: ';
+    document.querySelector('#magic').innerHTML = 'Magic: ';
+    document.querySelector('#intelligence').innerHTML = 'Intelligence: ';
 
     db.allDocs().then(function (result) {
         return Promise.all(result.rows.map(function (row) {
@@ -117,6 +176,8 @@ deleteDB = function(e) {
     for (let i=1; i<=select.length; i++) {
         select.options[i] = null;
     }
+
+
 };
 
 window.onload = function () {

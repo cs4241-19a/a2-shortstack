@@ -3,30 +3,95 @@
     <head>
         <title>CS4241 Assignment 2</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     </head>
     <body>
-        <form action="">
-            <select id="character-select">
-                <option value="">-- New Character --</option>
-            </select>
-            <input id='character-name' type='text' value="Your name here">
-            <input id='bio' type='text' value="Your bio here">
-            <select id="classes">
-                <option value="">Classes</option>
-                <option value="Mage">Mage</option>
-                <option value="Wizard">Wizard</option>
-                <option value="Warrior">Warrior</option>
-                <option value="Assassin">Assasssin</option>
-            </select>
-            <button id='submit'>submit</button>
-            <button id="deleteAll">Delete all characters</button>
-        </form>
-        <h3>Character Stats</h3>
-        <p id="strength">Strength: </p>
-        <p id="agility">Agility: </p>
-        <p id="magic">Magic: </p>
-        <p id="intelligence">Intelligence: </p>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Character Selection</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                            <select id="character-select">
+                                <option value="">-- New Character --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Character Info</label>
+            </div>
+            <div class="field-body">
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input class="input" id='character-name' type='text' value="" placeholder="Your name here">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input class="input" id='bio' type='text' value="" placeholder="Your bio here">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-label is-normal">
+                <label class="label">Class</label>
+            </div>
+            <div class="field-body">
+                <div class="field is-narrow">
+                    <div class="control">
+                        <div class="select is-fullwidth">
+                            <select id="classes">
+                                <option value="">Classes</option>
+                                <option value="Mage">Mage</option>
+                                <option value="Wizard">Wizard</option>
+                                <option value="Warrior">Warrior</option>
+                                <option value="Assassin">Assasssin</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=" field is-horizontal">
+            <div class="field-label"></div>
+            <div class="field-body">
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary" id='submit'>submit</button>
+                        <button class="button is-danger" id="deleteAll">Delete all characters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="hero column is-half is-offset-one-quarter">
+            <div class="hero-body">
+                <div class="container">
+                    <h3 class="title">Character Stats</h3>
+                    <div class="hero">
+                        <p id="strength">Strength: </p>
+                        <p id="agility">Agility: </p>
+                        <p id="magic">Magic: </p>
+                        <p id="intelligence">Intelligence: </p>
+                    </div>
+                </div>
+            </div>
+        </section>
     </body>
     <script src="bundle.js"></script>
 </html>
