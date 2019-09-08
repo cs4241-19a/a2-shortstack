@@ -77,9 +77,9 @@ const sendFile = function( response, filename ) {
 
 var board;
 
-// Create a random array of 6 numbers, each from 1 to 6
+// Create a random array of 4 numbers, each from 0 to 5
 const generateBoard = function() {
-  board = [-1, -1, -1, -1, -1, -1];
+  board = [-1, -1, -1, -1];
   for (var i = 0; i < 5; i++) {
     board[i] = Math.floor(6 * Math.random())
   }
