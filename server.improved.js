@@ -1,3 +1,6 @@
+
+var MN=3;
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -7,8 +10,8 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'red1': 8192, 'blue1': 7146, 'redScore': 25, 'blueScore':25},
-  { 'red1': 6439, 'blue1': 359, 'redScore': 23, 'blueScore':32 } 
+  { 'matchNumber':1,'red1': 8192, 'blue1': 7146, 'redScore': 25, 'blueScore':25},
+  { 'matchNumber':2,'red1': 6439, 'blue1': 359, 'redScore': 23, 'blueScore':32 } 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -47,11 +50,13 @@ const handlePost = function( request, response ) {
       case '/submit':
       const MR = JSON.parse(dataString); //match result
       const newMR ={
+        'matchNumber':MN,
         'red1': MR.red1, 
         'blue1': MR.blue1, 
         'redScore': MR.redScore, 
         'blueScore':MR.blueScore
       }
+      MN++;
       appdata.push(newMR);
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
