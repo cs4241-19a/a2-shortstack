@@ -6,7 +6,7 @@ const submit = function( e ) {
   // prevent default form action from being carried out
   e.preventDefault()
 
-  const inputName = document.querySelector( '#inputName' ),
+  const inputName = document.querySelector( '#inputName' )
   const inputBDay = document.querySelector( '#inputBDay'),
         json = { yourname: inputName.value,
                   BDay: inputBDay.value },
