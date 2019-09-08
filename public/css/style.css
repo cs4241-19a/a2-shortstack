@@ -1,6 +1,6 @@
 body {
-  background: black;
-  color: #E2E0FF;
+  background: #000B19;
+  color: #F8F5F2;
   font-family: 'Comic Sans MS';
   text-align: center;
 }
@@ -11,9 +11,10 @@ h1 {
 }
 
 input, select {
-  background: black;
-  color: white;
-  border: 3px double #1E656D;
+  background: #000B19;
+  font-family: 'Comic Sans MS';
+  color: #F8F5F2;
+  border: 3px double #EDB83D;
   width: 200px;
   height: 25px;
   padding: 5px;
@@ -25,7 +26,8 @@ select{
 }
 
 button {
-  
+  background: #EDB83D;
+  border: 3px solid #D70026;
 }
 
 #generate {
