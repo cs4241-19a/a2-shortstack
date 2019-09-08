@@ -57,7 +57,6 @@ const handlePost = function( request, response ) {
                 payload.alldata = ""
                 appdata.push(JSON.stringify(payload))
                 payload.alldata = appdata.join()
-               //console.log(JSON.stringify(payload))
                 response.end(JSON.stringify(payload))
             }
         }
