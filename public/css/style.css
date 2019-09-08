@@ -1,6 +1,6 @@
 body {
   background: black;
-  color: white;
+  color: #E2E0FF;
   font-family: 'Comic Sans MS';
   text-align: center;
 }
@@ -13,15 +13,23 @@ h1 {
 input, select {
   background: black;
   color: white;
-  border: 3px double;
+  border: 3px double #1E656D;
   width: 200px;
   height: 25px;
   padding: 5px;
 }
 
 select{
-  width: 200px;
-  height: 50px;
+  width: 220px;
+  height: 40px;
+}
+
+button {
+  
+}
+
+#generate {
+  margin: 20px;
 }
 
 .layout{
