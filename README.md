@@ -41,8 +41,9 @@ Here is a sample formula for summarizing your activities, talk about:
 Achievements:
 ---
 ### Technical:
-- I used firebase to store my data.
-- 
+- I used Firebase to store my data while also maintaining a local dataset. 
+- Created a bootstrapped responsive data from scratch which maintained a consistent color scheme. 
+- I learned to use local storage in order to build the bridge between the first and second page (right now this is not necessary because I don't have any password encryption but it can be useful if I implement that).
 
 ### Design:
 - I implemented a slider for the front page. The example slider code is found here: https://startbootstrap.com/snippets/full-slider/
@@ -52,4 +53,4 @@ Achievements:
 
 Special thanks:
 ---
-Kit Zeller and Manas Mehta helped me a lot during the debugging process. 
+Kit Zeller and Manas Mehta helped me a lot through the debugging process. 

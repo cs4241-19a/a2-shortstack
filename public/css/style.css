@@ -26,11 +26,6 @@
     margin-top: -85px;
 }
 
-
-#emptyfield{
-    z-index: 10;
-}
-
 .form {
     width: 100%;
     max-width: 432px;
@@ -39,11 +34,12 @@
     box-shadow: 0 16px 22px -10px rgba(0, 0, 0, 0.1), 0 34px 55px 4px rgba(0, 0, 0, 0.05), 0 13px 66px 12px rgba(0, 0, 0, 0.07);
 
 }
+
 .form__container {
     padding: 52px 36px 38px;
     text-align: center;
-    background:#eaeced;
-    background:rgba(0,0,0, 0.8);
+    background: #eaeced;
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 12px;
 }
 
@@ -58,57 +54,43 @@
 }
 
 
-
-.mfp-close,.mfp-arrow,.mfp-preloader,.mfp-counter {
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    user-select:none
+.mfp-close, .mfp-arrow, .mfp-preloader, .mfp-counter {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none
 }
 
 .mfp-loading.mfp-figure {
-    display:none
+    display: none
 }
 
 .mfp-hide {
-    display:none!important
+    display: none !important
 }
 
 .mfp-preloader {
-    color:#ccc;
-    position:absolute;
-    top:50%;
-    width:auto;
-    text-align:center;
-    margin-top:-.8em;
-    left:8px;
-    right:8px;
-    z-index:1044
+    color: #ccc;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    text-align: center;
+    margin-top: -.8em;
+    left: 8px;
+    right: 8px;
+    z-index: 1044
 }
 
 .mfp-preloader a {
-    color:#ccc
+    color: #ccc
 }
 
 .mfp-preloader a:hover {
-    color:#fff
+    color: #fff
 }
 
 .mfp-s-ready .mfp-preloader {
-    display:none
+    display: none
 }
-
-/**
-* Template Name: GlobalLanding
-* Template URL: https://templatemag.com/globallanding-bootstrap-landing-template/
-* Author: TemplateMag.com
-* License: https://templatemag.com/license/
-*/
-
-/*	################################################################
-	1. GENERAL STRUCTURES
-################################################################# */
-
-/* Import fonts */
 
 
 * {
@@ -277,7 +259,7 @@ input {
 .fieldset {
     margin-bottom: 48px;
     display: inline-block;
-    border:none;
+    border: none;
 }
 
 .input {
@@ -312,8 +294,6 @@ input {
 }
 
 
-
-
 /*
 #blk {
     background: #181818;
@@ -336,12 +316,11 @@ input {
 */
 
 
-
 /* Buttons Configuration */
 .button {
-    background: #f7ca18;
-    color: white;
-    border-radius: 50px;
+    background: rgba(247, 202, 24, 0.7);
+    color: black;
+    border-radius: 100px;
     margin-left: 15px;
     font-size: 11px;
     letter-spacing: 1px;
@@ -356,8 +335,9 @@ input {
     vertical-align: middle;
     border: 1px solid transparent;
 }
-.button:hover{
-    color:black;
+
+.button:hover {
+    color: white;
 }
 
 /* Bootstrap Modification */
@@ -400,7 +380,7 @@ hr {
     position: absolute;
     margin: 0;
     padding: 0;
-    color: #f9f1e9;
+    color: #2B2E31;
     text-align: center;
     top: 55%;
     left: 50%;
@@ -424,7 +404,6 @@ hr {
         font-size: 30px;
     }
 }
-
 
 
 @-webkit-keyframes animate-loading {
@@ -451,4 +430,25 @@ hr {
     }
 }
 
+table {
+    border-radius: 15px;
+!important;
+    color: white;
+    padding: 15px;
+    width: 50%;
+}
 
+tr {
+    background-color: rgba(255, 255, 255, 0.4);
+
+}
+
+td {
+    color: #2B2E31;
+    text-align: center;
+}
+
+th {
+    background-color: rgba(247, 202, 24, 0.6);
+    color: #333;
+}
