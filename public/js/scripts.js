@@ -211,6 +211,7 @@ function removeAllOptions(selection, removalGroup){
 
 //Adds given data as options to given select element
 function appendDataToSelect(sel, data) {
+  console.log(data)
   for(let i = 0; i<data.length; i++){
       var opt = document.createElement("option")
       opt.innerHTML = opt.value = data[i]
@@ -285,7 +286,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "February":
@@ -299,7 +300,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "March":
@@ -313,7 +314,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "April":
@@ -327,7 +328,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "May":
@@ -341,7 +342,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "June":
@@ -355,7 +356,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "July":
@@ -369,7 +370,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "August":
@@ -383,7 +384,7 @@ function monthToHTML(month){
       html += "<option selected=\"selected\" value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "September":
@@ -397,7 +398,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option selected=\"selected\" value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "October":
@@ -411,7 +412,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option selected=\"selected\" value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "November":
@@ -425,7 +426,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option selected=\"selected\" value=\"November\">Novemeber</option>"
+      html += "<option selected=\"selected\" value=\"November\">November</option>"
       html += "<option value=\"December\">December</option></select><br>"
       return html;
     case "December":
@@ -439,7 +440,7 @@ function monthToHTML(month){
       html += "<option value=\"August\">August</option>"
       html += "<option value=\"September\">September</option>"
       html += "<option value=\"October\">October</option>"
-      html += "<option value=\"November\">Novemeber</option>"
+      html += "<option value=\"November\">November</option>"
       html += "<option selected=\"selected\" value=\"December\">December</option></select><br>"
       return html;
   }

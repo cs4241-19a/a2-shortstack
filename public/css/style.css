@@ -46,7 +46,17 @@ nav ul li button{
   width: 100%;
 }
 
+#NEW select{
+  text-indent: 45%;
+}
+
 #NEW button{
   border-radius: 15px;
+}
+
+#NEW option{
+  text-align: center;
+  text-align-last: center;
+  text-indent: 50%;
 }
 
