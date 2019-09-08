@@ -37,6 +37,20 @@ app.post("/submit", function(request, response){
   console.log(request.body)
   console.log("name is " + request.body.yourname)
   let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
+  let index = -1
+  let val = request.body.yourname
+  let filteredObj = appdata.find(function(item,i){
+    if(item.name === val){
+      index = i
+      return i
+    }
+  })
+  console.log()
+  if(index > -1)
+    {
+      console.log("It's in the data already")
+    }
+  
   appdata.push(json)
   console.log(appdata)
 })
