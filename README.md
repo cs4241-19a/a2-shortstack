@@ -19,6 +19,7 @@ The application is on [a2-retat.glitch.me](http://a2-retat.glitch.me)
 ![Edit screenshot](https://i.imgur.com/ZPn7iKE.png)
 - dates get converted to readable english date format
 - assignments get automatically loaded if user refreshes the website
+- used nodemon for automatically reloading files after changes during local testing
 
 ### Design/Evaluation Achievements
 - Selecting elements, ID's and classes with jquery like:
