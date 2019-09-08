@@ -1,6 +1,12 @@
+:root {
+  --backColor: #000B19;
+  --textColor: #F8F5F2;
+  --borderColor: #EDB83D;
+}
+
 body {
-  background: #000B19;
-  color: #F8F5F2;
+  background: var(--backColor);
+  color: var(--textColor);
   font-family: 'Comic Sans MS';
   text-align: center;
 }
@@ -11,9 +17,9 @@ h1 {
 }
 
 input, select {
-  background: #000B19;
+  background: var(--backColor);
   font-family: 'Comic Sans MS';
-  color: #F8F5F2;
+  color: var(--textColor);
   border: 3px double #EDB83D;
   width: 200px;
   height: 25px;
@@ -26,8 +32,11 @@ select{
 }
 
 button {
-  background: #EDB83D;
-  border: 3px solid #D70026;
+  background: #000B19;
+  border: 3px outset var(--borderColor);
+  margin: 3px;
+  padding: 5px;
+  color: var(--textColor);
 }
 
 #generate {
