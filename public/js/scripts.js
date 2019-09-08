@@ -25,7 +25,7 @@ const generate = function(e) {
   return false
 }
 
-function getData(){
+function getData(idx = -1){
     fetch( '/getDrawings', {
       method: 'GET'
     })
@@ -34,11 +34,11 @@ function getData(){
     })
     .then( function(data){
       console.log(data)
-      genTable(data)
+      genTable(data, idx)
     })
 }
 
-function genTable(dataList) {
+function genTable(dataList, idx) {
   let str = "<tr>"+
               "<th>Number of Vertices</th>" + 
               "<th>Draw Type</th>" + 
@@ -73,7 +73,6 @@ function editData(index){
 }
 
 function deleteData(index){
-  console.log("delete", index)
   const body = JSON.stringify( index )
   fetch( '/delete', {
     method: 'POST',
@@ -82,6 +81,10 @@ function deleteData(index){
   .then( function( response) {
     getData()
   })
+}
+
+function updateData(index){
+  console.log("update", index)
 }
 
 
