@@ -35,8 +35,14 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    
-   /*var newItem = firebase.database.ref()
+    //console.log(firebase.database.ref().)
+   /*
+   
+   
+   
+   
+   
+   var newItem = firebase.database.ref()
    var blankItem = newItem.push()
    blankItem.set({
    fName:'Test',
