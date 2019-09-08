@@ -67,3 +67,6 @@ http://a2-percyjiang.glitch.me
     I asked my friends to test the project and give feedback.
     The results of user testing leads to better looking UI design.
     Other feedback lead to more intuitive fields and match score algorithm.
+    
+- **Test Driven Development**:
+    Kept a TODO list along developing and tested each feature once completed an item on TODO list.
