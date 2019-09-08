@@ -58,7 +58,8 @@ const handlePost = function( request, response ) {
       }
     }
     
-    // If valid, check against
+    // If valid, check against solution
+    rightColor(playerGuess)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -115,6 +116,33 @@ const colorToNumber = function(color) {
   else if(color == "purple") { return 4 }
   else if(color == "orange") { return 5 }
   else { return -1 }
+}
+
+const rightColor = function(pGuess) {
+  var solTally = [0, 0, 0, 0, 0, 0]
+  for (var s = 0; s < 6; s++) {
+    for (var b = 0; b < 4; b++) {
+      if (board[b] == s) { solTally[s]++ }
+    }
+  }
+  
+  var guessTally = [0, 0, 0, 0, 0, 0]
+  for (var s = 0; s < 6; s++) {
+    for (var b = 0; b < 4; b++) {
+      if (pGuess[b] == s) { guessTally[s]++ }
+    }
+  }
+  
+  var correct = 0
+  for (var s = 0; s < 6; s++) {
+    correct = correct + Math.min(solTally[s], guessTally[s])
+  }
+  
+  console.log("derp")
+  console.log(solTally)
+  console.log(guessTally)
+  console.log(correct)
+  return correct
 }
 
 server.listen( process.env.PORT || port )
