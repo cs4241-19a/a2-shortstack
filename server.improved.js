@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'bookName': 'In Cold Blood', 'authorName': 'Truman Capote', 'comments': 'This is one of my favorite books! Its a mystery but also a real story', 'rating': '4', 'status': 'completed' },
-  { 'bookName': 'Romeo and Juliet', 'authorName': 'William Shakespeare', 'comments': 'Wasnt a huge fan, this really dragged on', 'rating': '2', 'status': 'completed' },
-  { 'bookName': 'The Secret Chapter', 'authorName': 'Genevieve Cogman', 'comments': 'Comes out Nov. 12, 2019', 'rating': '2', 'status': 'toRead' } oiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii
+  { 'bookName': 'In Cold Blood', 'authorName': 'Truman Capote', 'comments': 'This is one of my favorite books! Its a mystery but also a real story', 'rating': '4', 'status': 'good' },
+  { 'bookName': 'Romeo and Juliet', 'authorName': 'William Shakespeare', 'comments': 'Wasnt a huge fan, this really dragged on', 'rating': '2', 'status': 'bad' },
+  { 'bookName': 'The Secret Chapter', 'authorName': 'Genevieve Cogman', 'comments': 'Comes out Nov. 12, 2019', 'rating': '3', 'status': 'good' }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -27,8 +27,6 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   } else if ( request.url === '/books' ){
     sendData( response, appdata );
-  }else{
-    sendFile( response, filename )
   }
 };
 
@@ -63,13 +61,6 @@ const handlePost = function( request, response ) {
         break;
     }
   })
-};
-
-const sendData = function( response, books) {
-  const type = mime.getType( books );
-  response.writeHeader(200, { 'Content-Type': type });
-  response.write(JSON.stringify({ data: books }));
-  response.end();
 };
 
 const sendFile = function( response, filename ) {
