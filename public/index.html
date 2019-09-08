@@ -6,35 +6,154 @@
   </head>
   <body>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
+      <table>
+        <tr>
+          <th> Your Name </th>
+          <th> Your Birthday </th>
+          <th> Your Favorite Food </th>
+        </tr>
+        <tr>
+          <td><input type='text' id='yourname' placeholder='Enter Your Name Here'></td>
+          <td><input type='date' id='yourBirthdate'></td>
+          <td><input type='text' id='FavoriteFood' placeholder='Enter Your Favorite Food'></td>
+        </tr>
+      </table>
+
       <button>submit</button>
     </form>
+    <a id="response"></a>
+    
+    <center><button onclick="deleteAll();">
+      delete all
+      </button></center>
   </body>
+  <style>
+    .name{
+      background-color: yellow;
+    }
+    .date{
+      background-color:lightgreen
+    }
+    .food{
+      background-color:red
+    }
+    .age{
+      background-color:gray;
+    }
+    #table{
+      background-color:lightblue;
+      text-align: center;
+      margin: auto;
+    }
+  </style>
   <script>
+  const edit = function( i ) {
+    // prevent default form action from being carried out
 
+
+    const name = document.querySelector( '#yourname' ),
+          date = document.querySelector( '#yourBirthdate' ),
+          food = document.querySelector( '#FavoriteFood' );
+    if (name.value === "" || date.value === "" || food.value === ""){
+      alert("please fill out all required information");
+      return false;
+    }
+    const json = { name: name.value, date: date.value, food: food.value, index: i },
+          body = JSON.stringify( json )
+
+    fetch( '/edit', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {      //do something with the reponse 
+      console.log( response )
+      getList();
+    })
+
+
+    return false
+  }
+  
+  const deleteAll = function(){
+    const json = { },
+          body = JSON.stringify( json )
+
+    fetch( '/deleteAll', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {      //do something with the reponse 
+      console.log( response )
+      getList();
+    })
+
+
+    return false
+  }
+  
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+
+    const name = document.querySelector( '#yourname' ),
+          date = document.querySelector( '#yourBirthdate' ),
+          food = document.querySelector( '#FavoriteFood' );
+    if (name.value === "" || date.value === "" || food.value === ""){
+      alert("please fill out all required information");
+      return false;
+    }
+    const json = { name: name.value, date: date.value, food: food.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
       method:'POST',
       body 
     })
-    .then( function( response ) {
-      // do something with the reponse 
+    .then( function( response ) {      //do something with the reponse 
       console.log( response )
+      getList();
     })
 
+
     return false
+  }
+  
+  const getList = function(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("response").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "getAll.json", true);
+  xhttp.send();
   }
 
   window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = submit
+        getList();
+    
+  }
+    
+  const del = function( i ){
+    // prevent default form action from being carried out
+    //e.preventDefault()
+    const json = { delete: i },
+          body = JSON.stringify( json )
+
+    fetch( '/deleteEntry', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {      //do something with the reponse 
+      console.log( response )
+      getList();
+    })
+
+
+    return false
   }
 
   </script>

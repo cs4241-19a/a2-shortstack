@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "People Information Safe",
+  "version": "1.0.0",
+  "description": "store information about people on this website",
+  "author": "James Scherick",
   "scripts": {
     "start": "node server.improved.js"
   },
