@@ -71,17 +71,17 @@
 
   const deleteRow = function (rowIndex) {
     const rowData = { rowData: rowIndex};
-    const carData = JSON.stringify(rowData);
+    const body = JSON.stringify(rowData);
     fetch('/delete', {
       method: 'POST',
-      body: carData
+      body
     });
     
     showData();
   };
 
   const showData = function(){
-    fetch('/cars',{
+    fetch('/car',{
       method: 'GET'
     })
     .then( function (response){

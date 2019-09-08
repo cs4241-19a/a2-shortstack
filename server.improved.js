@@ -40,7 +40,7 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' ) //do sendFile for javascript file
-  }else if(request.url === '/cars'){
+  }else if(request.url === '/car'){
     sendData(response, appdata)
   }else if(request.url==='/getData'){
     usersRef.on('value', function(snapshot) {
