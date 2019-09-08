@@ -5,7 +5,7 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
+    <form action="/submit" method = "POST">
       <input type="text" id="yourname" value="your name here"><br>
       <input type ="text" id="classyear" value="Your class year"><br>
       <input type = "text" id="height" value="Your height in inches"><br>
@@ -47,7 +47,7 @@
 
   window.onload = function() {
     const button = document.querySelector( 'button' )
-    button.onclick = showData
+    button.onclick = submit
   }
     
     /*const myDelete = function( e ) {

@@ -14,18 +14,35 @@ const appdata = [
   { 'name': 'Andy', 'year': 2022, 'inches': 14} 
 ]
 
-const server = http.createServer( function( request,response ) {
+/*const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
+    //handleGet( request, response )    
   }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+    //handlePost( request, response ) 
   }
-})
+})*/
 
 
-express.get("/", function(request, response){
-  sendFile(response, '/index.html')
+app.get("/", function(request, response){
+  sendFile(response, 'public/index.html')
 });
+
+app.get("/submit", function(request, response){
+  let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+  const data = JSON.parse(dataString)
+  console.log("passed item is " + JSON.stringify(data))
+    appdata.push( data)
+  console.log("Successfully submitted")  
+    console.log(appdata)
+});
+
+app.post("/submit", function(request, response){
+  console.log(response.body)
+})
 /*const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
@@ -104,4 +121,5 @@ const sendFile = function( response, filename ) {
    })
 }
 
-server.listen( process.env.PORT || port )
+//server.listen( process.env.PORT || port )
+app.listen(process.env.PORT || port)
