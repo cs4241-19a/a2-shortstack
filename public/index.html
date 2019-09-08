@@ -22,9 +22,10 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#response' ),
+    const url = '/',
+          input = document.querySelector( '#response' ),
           json = { yourresponse: input.value },
-          body = JSON.stringify( json )            
+          body = JSON.stringify( json )          
 
     fetch( '/submit', {
       method:'POST',
@@ -33,8 +34,12 @@
     .then( function( response ) {
       // do something with the reponse 
       //text.textContent = response;
-      var request = new XMLHttpRequest;
-      
+      fetch('/server.improved.js').then(function(response) {
+        response.text().then(function(text) {
+          console.log(text)
+        });
+      });
+
       
       console.log( response.yourresponse )
       console.log( response )
