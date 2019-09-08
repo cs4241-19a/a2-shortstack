@@ -89,7 +89,9 @@
     {
       //$('#dataTable:not(:first)').empty()
       $.get('/data',function(response){
+        
         response.forEach(function(item){
+          console.log("item has " +response.length)
           document.getElementById("dataTable").deleteRow(1)
         })
         
@@ -106,12 +108,14 @@
     {
       $.get('/data',function(response){
         //clearTable(document.getElementById("dataTable"))
-        clearTable()
+        //clearTable()
         response.forEach(function(item){
           console.log("item is " +item)
           $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td></tr>')
+          console.log("wrote " + item.name)
         })
       })
+      console.log("Done writing")
     }
     
     
