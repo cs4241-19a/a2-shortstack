@@ -1,1 +1,24 @@
 /*Style your own assignment! This is fun! */
+
+
+@font-face {
+    font-family: "Kimberley";
+    src: url(http://www.princexml.com/fonts/larabie/kimberle.ttf) format("truetype");
+  }
+body{
+    
+    background-color: #33ccff;
+    font-family: 'Roboto', sans-serif;
+    text-align: center
+}
+
+h1 { color: white;
+    margin: 0 auto;
+    font: arial;
+}
+h2 {color: white
+}
+form{
+    padding-top: 0px;
+    margin: 0 auto;
+}

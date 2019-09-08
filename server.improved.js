@@ -7,9 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'name': 'Name', 'email': "Email", 'comment': "Comment", 'time':'Time' }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -21,11 +19,19 @@ const server = http.createServer( function( request,response ) {
 })
 
 const handleGet = function( request, response ) {
+  console.log(request.url)
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  
+  }
+  else if(request.url === '/appData'){
+    response.writeHeader( 200, { 'Content-Type': 'text/plain' })
+    response.write(JSON.stringify(appdata))
+    response.end()
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -37,10 +43,28 @@ const handlePost = function( request, response ) {
       dataString += data 
   })
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+  const getCurrentDayAndTime = function(){
+    let currentdate = new Date(); 
+    let datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+    return datetime
+  }
 
-    // ... do something with the data here!!!
+  request.on( 'end', function() {
+    const data = JSON.parse(dataString)
+    let date = new Date(Date.now())
+    console.log(getCurrentDayAndTime())
+    time = getCurrentDayAndTime()
+    appdata.push({ 'name': data['name'], 'email': data['email'], 'comment': data['comment'], 'time': time })
+    console.log(data['name'])
+    console.log("App Data: " + JSON.stringify(appdata))
+    console.log("Data: " + dataString)
+      
+    
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()

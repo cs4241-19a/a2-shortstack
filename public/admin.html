@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+      <table id = "results">
+          <thead>
+              <tr>
+                  <th colspan="4">Comments</th>
+              </tr>
+          </thead>
+          <tbody id = tableBody>
+              <tr>
+                  <td ></td>Please Press refresh to see results</td>
+              </tr>
+          </tbody>
+      </table>
+      <button>refresh</button>
+  </body>
+  <script>
+
+  function updateTable(data){
+    let tableRef = document.getElementById("tableBody")
+    tableRef.innerHTML = ""
+    function addNewEntry(name, email, comment, time){
+      let resultsTable = document.getElementById("results");
+      let newRow = tableRef.insertRow(-1)
+      let emailText = document.createTextNode(email);
+      let nameText = document.createTextNode(name);
+      let commentText = document.createTextNode(comment);
+      let timeText = document.createTextNode(time);
+      let nameCell = newRow.insertCell(0)
+      let emailCell = newRow.insertCell(1)
+      let commentCell = newRow.insertCell(2)
+      let timeCell = newRow.insertCell(3)
+      nameCell.appendChild(nameText)
+      emailCell.appendChild(emailText)
+      commentCell.appendChild(commentText)
+      timeCell.appendChild(timeText)
+
+
+    }
+    data.forEach(element => {
+      addNewEntry(element['name'], element['email'], element['comment'], element['time'])
+    });
+}
+  const refresh = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+    fetch("/appData", {method: "GET"}).then(response => {
+      response.text().then(function(value){
+        let data = JSON.parse(value)
+        updateTable(data)
+      })
+    });
+  }
+
+  window.onload = function() {
+    const button = document.querySelector( 'button' )
+    button.onclick = refresh
+  }
+
+  </script>
+</html>
