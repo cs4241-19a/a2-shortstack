@@ -32,6 +32,45 @@
       </fieldset>
     </form>
     <!-- Haven't Read Table -->
+    
+    <div id="table-view" style="display:none">
+          <h1 class="center-txt table-label">Full Book List</h1>
+          <div style="height:150px; overflow-y: auto;">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr><th>Name</th><th>Author</th><th>Comments</th><th>Rating</th></tr>
+              </thead>    
+              <tbody id="all-books">
+              </tbody>
+            </table>
+          </div>
+
+          <h1 class="center-txt table-label">Active Satellites</h1>
+          <div style="height:150px; overflow-y: auto;">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>Time Elapsed</th><th>Mark Complete</th></tr>
+              </thead>    
+              <tbody id="active-body">
+
+              </tbody>
+            </table>
+          </div>
+
+          <h1 class="center-txt table-label">Inactive Satellites</h1>
+          <div style="height:150px; overflow-y: auto;">
+            <table class="table is-fullwidth">
+              <thead>
+                <tr><th>Name</th><th>Orbit</th><th>Launch Date</th><th>End Date</th><th>Total Time</th></tr>
+              </thead>    
+              <tbody id="inactive-body">
+              </tbody>
+            </table>
+          </div>
+        </div>
+    
+    
+    
     <div id="book-table">
           <h3>My Book List</h3>
           <table id="books"></table>

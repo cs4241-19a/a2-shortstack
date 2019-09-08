@@ -1,5 +1,5 @@
 //fetch books for the table
-    const fetchBooks = async function() {
+    const displayBooks = async function() {
       try {
         const resp = fetch('/books', { method: 'GET' });
         const data = resp.json();
@@ -43,8 +43,6 @@
         rating: document.getElementById( 'rating' ).value,
         status: 'inprogress'
       };
-    
-      if (orderValidation(newBook.bookName, newBook.authorName, newBook.rating)) {
         const body = JSON.stringify( newBook );
         fetch( '/addBook', {
           method:'POST',
@@ -55,7 +53,6 @@
           resetOrderForm();
           console.log(response)
         })
-      }
       return false;
     }
     
@@ -65,26 +62,6 @@
       document.getElementById( 'authorName' ).value = '';
       document.getElementById('comments').value = '';
       document.getElementById('rating').value = '';
-    };
-    
-    //validate an order before sending it
-    const orderValidation = function (bookName, authorName, rating) {
-      if (bookName === '') {
-        document.getElementById('error').style.display = "block";
-        document.getElementById('error').focus();
-        return false;
-      } else if (authorName === '') {
-        document.getElementById('error').style.display = "block";
-        document.getElementById('error').focus();
-        return false;
-      } else if (rating === '') {
-        document.getElementById('error').style.display = "block";
-        document.getElementById('error').focus();
-        return false;
-      } else {
-        document.getElementById('error').style.display = "none";
-        return true;
-      }
     };
   
 
