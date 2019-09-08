@@ -18,23 +18,27 @@
               <label for="name">Model:</label>
               <input type="text" id="model" value="Enter your Car Model">
             </div>
+            <br>
             <div>
               <label for="year">Year:</label>
               <input type="text" id="year" name="car_year" />
             </div>
+            <br>
             <div>
               <label for="mpg">MPG:</label>
               <input type="text" id="mpg" name="car_mpg" />
             </div>
+            <br>
             <div>
               <label for="distance">Trip Distance:</label>
               <input type="text" id="distance" name="trip_distance" />
             </div>
+            <br>
             <div>
               <label for="gas">Gas Price:</label>
               <input type="text" id="gas" name="gas_price" />
             </div>
-            <br><button>submit</button>
+            <br><button id="submitForm">submit</button>
           </form>
           
         </div>
@@ -109,6 +113,7 @@
       //setting the header at the top of the table
       finalCarData.innerHTML =
 
+                '<h3>My Saved Trip Details</h3>\n'+
                 '<tr>\n'+
                 '<th>Model</th>\n'+
                 '<th>Year</th>\n'+

@@ -53,14 +53,20 @@ body, html {
   height: 100%;
 } 
 
-div.transbox {
+div.transbox1 {
   margin: 30px;
   background-color: #ffffff;
   border: 1px solid black;
   opacity: 0.6;
   width: 360px;
-  height: 260px;
+  height: 230px;
+  position: absolute;
+  left: 32%;
   
+}
+
+div.transbox1:hover {
+  opacity: 1.0;
 }
 
 div.inputText {
