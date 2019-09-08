@@ -67,7 +67,13 @@ const handlePost = function( request, response ) {
 
     // ... do something with the data here!!!
     if(Object.keys(json).length === 4) {
-      writeUserData(json.name, json.Board, json.name, json.email, json.Color, json.Board)
+      var username = JSON.stringify(json.name).replace(/^"(.*)"$/, '$1');
+      var email = username + "@tasktracker.com"
+      var emailKey = "email"
+
+      json[emailKey] = email
+
+      writeUserData(json.name, json.Board, json.name, json.fullname, json.email, json.Color, json.Board)
     }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -97,11 +103,12 @@ const sendFile = function( response, filename ) {
    })
 }
 
-function writeUserData(ref, refBoard, username, email, color, boardName) {
+function writeUserData(ref, refBoard, username, fullname, email, color, boardName) {
   var usernameRef = usersRef.child(ref);
   var boardRef = usernameRef.child(refBoard);
   boardRef.set({
     username: username,
+    fullname: fullname,
     email: email,
     color: color,
     boardName: boardName

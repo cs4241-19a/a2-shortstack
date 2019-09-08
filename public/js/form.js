@@ -5,10 +5,10 @@ const submit = function( e ) {
     var body;
 
     const inputName = document.querySelector( '#userName'),
-        inputEmail = document.querySelector( '#email'),
+        inputFName = document.querySelector( '#FName'),
         selectColor = document.querySelector('#color'),
         boardName = document.querySelector('#board'),
-        json = { name: inputName.value, email: inputEmail.value, Color: selectColor.value, Board: boardName.value }
+        json = { name: inputName.value, fullname: inputFName.value, Color: selectColor.value, Board: boardName.value }
 
     const signName = document.querySelector('#userN'),
         signBoard = document.querySelector('#boardName'),
