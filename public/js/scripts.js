@@ -26,14 +26,18 @@ const generate = function(e) {
     .then( function( response) {
       return response.json()
     })
-    .then( function(list){
-      console.log(list)
+    .then( function(data){
+      console.log(data)
+      genTable(data)
     })
   })
   
- 
-  
   return false
+}
+
+function genTable(dataList) {
+  let str = ""
+  
 }
 
 window.onload = function() {
