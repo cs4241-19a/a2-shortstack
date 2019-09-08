@@ -62,6 +62,7 @@ div.transbox1 {
   height: 230px;
   position: absolute;
   left: 32%;
+  color: #E2E2E2
   
 }
 
@@ -79,5 +80,8 @@ div.inputText {
 #submitForm {
   background-color: #D121C5;
   color: white;
-  position: center;
+  position: absolute;
+  left: 37%;
+  height: 20px;
+  width: 100px;
 }
