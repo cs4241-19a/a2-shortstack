@@ -28,6 +28,12 @@ const submit = function( e ) {
                   },
           body = JSON.stringify( json )
 
+    if(title.value === '' || notes.value === ''){
+      console.log('missing input')
+      document.querySelector( '#validationBox' ).removeAttribute('hidden');
+      return false;
+    }
+
     console.log(body)
     fetch( '/submit', {
       method:'POST',
