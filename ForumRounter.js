@@ -246,11 +246,13 @@ forumRouter.post('/submit/create', async function(req, res, next) {
     const data = req.body;
     let forumId = data.forumId;
     let messageId = data.messageId;
+    let addTimestamp = firebaseAdmin.firestore.Timestamp.now();
     switch (data.action) {
         case "ADDTHREAD":
             const newForumData = {
                 title: data.title,
                 views: 0,
+                date: addTimestamp,
             };
             let forumDoc = db.collection("forums").add(newForumData)
                 .then(function(docRef) {
@@ -282,7 +284,7 @@ forumRouter.post('/submit/create', async function(req, res, next) {
             console.log((await userDoc));
             const newMessageData = {
                 message: data.message,
-                date: firebaseAdmin.firestore.Timestamp.now(),
+                date: addTimestamp,
                 poster: await userDoc,
             };
             let messageDoc = db.collection("forums").doc(forumId).collection('messages').add(newMessageData)

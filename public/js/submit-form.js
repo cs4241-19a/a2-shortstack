@@ -83,6 +83,7 @@ function parseAddThreadForm() {
         firstName: document.getElementById("first-name").value,
         middleName: document.getElementById("middle-name").value,
         lastName: document.getElementById("last-name").value,
+        title: document.getElementById("title").value,
         message: document.getElementById("message").value,
     }
 }

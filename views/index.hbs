@@ -37,7 +37,7 @@
             {{/each}}
             <tr class="table-add-row">
                 <td colspan="4">
-                    <button class="btn btn-info d-block" data-toggle="modal" data-target="#addFormModal">Start a new Forum</button>
+                    <button class="btn btn-info d-block" data-toggle="modal" data-target="#addThreadFormModal">Start a new Forum</button>
                 </td>
             </tr>
             </tbody>
@@ -47,6 +47,6 @@
 
 {{#> layouts/modal-layout type="addThread" title="Add a Message" submitText="Post Message" }}
     {{#*inline "form-content"}}
-        {{> includes/add-form }}
+        {{> includes/add-thread-form }}
     {{/inline}}
 {{/layouts/modal-layout}}
