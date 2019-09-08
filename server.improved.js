@@ -1,8 +1,23 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       mime = require( 'mime' ),
+      firebase = require('firebase'),
       dir  = 'public/',
       port = 3000
+
+var firebaseConfig = {
+  apiKey: "AIzaSyAuOGEGSNJLe2fxv0iHQwigSY8nIj2pb30",
+    authDomain: "a2-nbloniarz.firebaseapp.com",
+    databaseURL: "https://a2-nbloniarz.firebaseio.com",
+    projectId: "a2-nbloniarz",
+    storageBucket: "",
+    messagingSenderId: "337634055490",
+    appId: "1:337634055490:web:821a136e7f93eff009e4db"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+
 
 const appdata = [
   { 'fName': 'Bob', 'lName': 'Smith', 'month':'August', 'day': 23, 'sign':"AHH"},

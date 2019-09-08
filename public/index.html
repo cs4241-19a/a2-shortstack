@@ -3,6 +3,7 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/6.6.0/firebase-app.js"></script>
     <script src="js/scripts.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -50,7 +51,7 @@
     </div>
     <div id="modForm" style="display: none">
       <form action="">
-        <legend>MODIFY AN EXISTING ENTRY          </legend>
+        <legend>MODIFY AN EXISTING ENTRY</legend>
         <label for="modList">Select a line to modify</label>
         <select name="modList" class="modList">
         </select>
@@ -235,46 +236,7 @@
      })
       
     })
-    /*e.preventDefault()
-    let originalData = document.getElementById('modHolder').innerHTML
-    console.log(originalData)
-    console.log(JSON.parse(originalData))
-    let newInput = []
-    newInput.push(document.querySelector( '.fNameE' ).value)
-    newInput.push(document.querySelector( '.lNameE' ).value)
-    newInput.push(document.querySelector( '.monthE' ).value)
-    newInput.push(document.querySelector( '.daysE' ).value)
-    var body = originalData
-    fetch( '/delete', {
-      method:'POST',
-      body
-    })
-    .then( function( response) {
-      // do something with the reponse
-      //display horoscope on screen
-     response.text()
-      .then(function(message){
-       console.log(message)
-     })
-      
-    })
-    const jsonNew = { fName: newInput[0], lName: newInput[1], month: newInput[2], day: newInput[3] }
-    body = JSON.stringify( jsonNew )
-    console.log(body)
-    fetch( '/submit', {
-      method:'POST',
-      body
-    })
-    .then( function( response) {
-      // do something with the reponse
-      //display horoscope on screen
-     response.text()
-      .then(function(message){
-       console.log(message)
-     })
-      
-    })
-    return false*/
+    
   }
 
   //Deletes value from database
