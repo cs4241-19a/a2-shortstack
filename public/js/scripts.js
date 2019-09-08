@@ -1,4 +1,39 @@
 //fetch books for the table
+// Given a list of satellites, update the tables using the individual functions
+// Also, make sure to clear the tables first
+const displayData = function ( data ) {
+  document.querySelector("#future-body").innerHTML = ""
+  document.querySelector("#active-body").innerHTML = ""
+  document.querySelector("#inactive-body").innerHTML = ""
+
+  for (let i = 0; i < data.length; i++) {
+    const sat = data[i]
+    if (!sat.has_launched) {
+      displayFuture(sat)
+    }
+
+    if (sat.has_launched && !sat.mission_completed) {
+      displayActive(sat)
+    }
+
+    if (sat.has_launched && sat.mission_completed) {
+      displayInactive(sat)
+    }
+  }
+}
+
+// Fetch data and then display it
+const loadData = function( e ) {
+  fetch( '/spacecraft_data', {
+    method:'GET',
+  })
+  .then( function( response ) {
+    response.json().then(displayData)
+  })
+}
+
+
+//ugh
     const displayBooks = async function() {
       try {
         const resp = fetch('/books', { method: 'GET' });
