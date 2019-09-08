@@ -12,6 +12,10 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+var playerData = [
+  {'name': 'Javier', 'moves': 0, 'medal': 'platinum'}
+]
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -69,6 +73,15 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+var board;
+
+const generateBoard = function() {
+  board = [];
+  for (int i = 0; i < 5; i++) {
+    Math.random()
+  }
 }
 
 server.listen( process.env.PORT || port )
