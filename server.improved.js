@@ -58,7 +58,7 @@ const handlePost = function( request, response ) {
   });
   request.on( 'end', function() {
     const data = JSON.parse(dataString);
-    writeUserData(data.currentGrade, data.currentGrade, data.desired);
+    writeUserData(data.currentGrade, data.currentGrade, data.desired,data.finalWorth);
       //For validation
 /*    if( request.url === '/add') {
       let foundName=false //figuring out if something already exists
@@ -73,16 +73,17 @@ const handlePost = function( request, response ) {
     switch( request.url ) {
       case '/submit':
       //server logic
-        let totalGallons = (parseInt(data.tripDistance) / parseInt(data.finalWorth))
-        let totalCost = (totalGallons*(parseInt(data.gasPrice)))
-        const carData = {
+        const grades = {
           'currentGrade': data.currentGrade,
           'desired': data.desired,
           'finalWorth': data.finalWorth,
         };
-        console.log(carData);
-        appdata.push( carData );
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        let desiredPercentage=parseInt(data.desired)*0.01;
+        let finalWorthPercentage=parseInt(data.finalWorth)*0.01;
+        let currentGradePercentage=parseInt(data.currentGrade)*0.01;
+        let finalExam=(desiredPercentage-(1-finalWorthPercentage)*currentGradePercentage)/finalWorthPercentage;
+        appdata.push( grades);
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         response.end();
         break;
       case '/delete':
@@ -97,10 +98,10 @@ const handlePost = function( request, response ) {
   })
 };
 
-const sendData = function(response, carsdata){
-  const type = mime.getType( carsdata ) ;
+const sendData = function(response, gradeDataset){
+  const type = mime.getType( gradeDataset ) ;
   response.writeHeader( 200, { 'Content-Type': type });
-  response.write(JSON.stringify({data: carsdata}));
+  response.write(JSON.stringify({data: gradeDataset}));
   response.end();
 };
 
@@ -118,11 +119,12 @@ const sendFile = function( response, filename ) {
    })
 };
 
-function writeUserData(ref, currentGrade, desired) {
+function writeUserData(ref, currentGrade, desired,finalWorth) {
   var usernameRef = usersRef.child(ref);
   usernameRef.set({
     currentGrade: currentGrade,
     desired: desired,
+    finalWorth:finalWorth,
   });
 }
 

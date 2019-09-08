@@ -43,9 +43,6 @@
               <label for="finalWorth">The percentage worth of your final exam is</label>
               <input class='input' type="text" id="finalWorth" placeholder="Field cannot be empty." required/>
             </div>
-
-
-
             <br><button class="button">submit</button>
           </form>
           <br>
@@ -79,14 +76,17 @@
   </body>
   <script>
     window.localStorage;
-    localStorage.setItem('firstvalue',currentGrade.value);
+    localStorage.setItem('currentGrade',currentGrade.value);
+    localStorage.setItem('desired',desired.value);
+    localStorage.setItem('finalWorth',finalWorth.value);
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault();
 
     const currentGrade = document.querySelector( '#currentGrade' ),
           desired = document.querySelector( '#desired' ),
-          json = { currentGrade: currentGrade.value, desired: desired.value,
+            finalWorth=document.querySelector('#finalWorth'),
+          json = { currentGrade: currentGrade.value, desired: desired.value,finalWorth:finalWorth.value
                  //mpg: mpg.value, tripDistance: distance.value,
                  //gasPrice: gas.value
     };

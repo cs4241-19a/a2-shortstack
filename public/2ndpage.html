@@ -18,6 +18,9 @@
     <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet"  type="text/css">
     <!-- Main Stylesheet File -->
     <link href="css/style.css" rel="stylesheet"  type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css">
+
+
     <!-- =======================================================
       Template Name: GlobalLanding
       Template URL: https://templatemag.com/globallanding-bootstrap-landing-template/
@@ -32,15 +35,32 @@
     <div class="content">
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
-            <h1 class="main-title">Global <span class="thin">Landing</span></h1>
+            <h1 class="main-title">Global
+                <div id="emptyfield"></div> <span class="thin">Landing</span></h1>
+            <table id="table_id" class="display main-tagline">
+                <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th>Column 2</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Row 1 Data 1</td>
+                    <td>Row 1 Data 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2 Data 1</td>
+                    <td>Row 2 Data 2</td>
+                </tr>
+                </tbody>
+            </table>
             <p class="main-tagline">
                 Build & Customize your Landing Pages with Style.<br><br>
-            <div id="emptyfield"></div>
             </p>
         </div>
     </div>
     <!--content-->
-    <div id="emptyfield"></div>
 </div>
 <!-- /intro -->
 <!-- JavaScript Libraries -->
@@ -52,6 +72,14 @@
 <script src="lib/tweenlite/init.js"></script>
 
 <script>
+    /*
+    $(document).ready( function () {
+        $('#table_id').DataTable(
+            {
+                "dom": '<"top"i>rt<"bottom"flp><"clear">'
+            }
+        );
+    } );*/
     window.onload = function() {
         fetch( '/receive')
             .then( function( response ) {
@@ -66,6 +94,9 @@
 
 </script>
 
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 </body>
 
 </html>
