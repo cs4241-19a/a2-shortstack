@@ -1,9 +1,11 @@
 body {
   background: #000000;
   color: #FFFFFF;
+  font-family: Marta
 }
 
 .layout{
+  margin-top: 10%;
   display: grid;
   grid-template-areas: "a b"
                        "c b"
@@ -24,8 +26,11 @@ body {
 
 #canvas {
   grid-area: b;
-  width: 90%;
-  height: 90%;
+  display: flex;
+  align-self: center;
+  justify-self: center;
+  width: 600px;
+  height: 600px;
   border: 5px solid;
 }
 
