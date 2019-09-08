@@ -25,8 +25,11 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  } else if ( request.url === '/books' ){
-    sendData( response, appdata );
+  } else if ( request.url === '/books' ) {
+    response.writeHeader( 200, { 'Content-Type': 'application/json' })
+    response.end( JSON.stringify(appdata) )
+  } else {
+    sendFile( response, filename )
   }
 };
 
