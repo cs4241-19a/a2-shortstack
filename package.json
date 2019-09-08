@@ -4,9 +4,11 @@
   "description": "",
   "author": "",
   "scripts": {
-    "start": "node server.improved.js"
+    "wipe-state": "echo '{\"posts\":[]}' > data/state.json",
+    "start": "node server/server.js"
   },
   "dependencies": {
     "mime": "^2.4.4"
-  }
+  },
+  "devDependencies": {}
 }

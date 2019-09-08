@@ -1,41 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <link rel="favicon" href="" />
+    <link rel="stylesheet" href="/public/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <div class="page">
+      <h1>
+        Write Post
+      </h1>
+      <div class="content-box">
+        <form action="/posts/add" id="form">
+          <div class="form-grid">
+            <label for="title">
+              Title
+            </label>
+            <input type="text" id="title" placeholder="Post Title" />
+            <label for="author">
+              Author
+            </label>
+            <input type="text" id="author" placeholder="Author" />
+            <label for="content">
+              Content
+            </label>
+            <textarea
+              id="content"
+              placeholder="Write your post here"
+              rows="5"
+            ></textarea>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      <h1>
+        Posts
+      </h1>
+      <div id="posts"></div>
+    </div>
   </body>
-  <script>
-
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
+  <script src="/public/js/index.js"></script>
 </html>
