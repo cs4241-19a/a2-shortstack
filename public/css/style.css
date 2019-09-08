@@ -17,6 +17,10 @@
   font-size: 150%;
 }
 
+.btn {
+  font-family: 'Roboto', sans-serif;
+}
+
 body, html {
     height: 100%;
 }
