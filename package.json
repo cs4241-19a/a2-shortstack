@@ -1,8 +1,8 @@
 {
   "name": "",
   "version": "",
-  "description": "",
-  "author": "",
+  "description": "WPI CS4241 Webware Assignment 2",
+  "author": "Janette Fong",
   "scripts": {
     "start": "node server.improved.js"
   },

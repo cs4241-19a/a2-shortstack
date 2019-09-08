@@ -6,14 +6,48 @@ const submit = function( e ) {
 
     const firstName = document.querySelector('#firstName'),
         lastName = document.querySelector('#lastName'),
-        pronouns = document.querySelector('#pronouns'),
-        house = document.querySelector('#house'),
+        pronouns = document.querySelector('input[name="studentPronouns"]:checked').value,
+        mostValued = document.querySelector('input[name="studentValue"]:checked').value
 
-        json = {
+    var preferredPronouns, sortedHouse;
+    console.log(pronouns)
+    switch(pronouns) {
+        case 'he':
+            preferredPronouns = 'He/Him/His'
+            break
+        case 'she':
+            preferredPronouns = 'She/Her/Hers'
+            break
+        case 'they':
+            preferredPronouns = 'They/Them/Theirs'
+            break
+        default:
+            document.getElementById('other').checked ?
+                preferredPronouns = document.getElementById('inputother').value
+                : preferredPronouns = 'No'
+    }
+    switch(mostValued) {
+        case 'bravery':
+            sortedHouse = 'Gryffindor'
+            break
+        case 'loyalty':
+            sortedHouse = 'Hufflepuff'
+            break
+        case 'wisdom':
+            sortedHouse = 'Ravenclaw'
+            break
+        case 'ambition':
+            sortedHouse = 'Slytherin'
+            break
+        default:
+            sortedHouse = 'Slytherin'
+    }
+
+        const json = {
             'firstName': firstName.value,
             'lastName': lastName.value,
-            'pronouns': pronouns.value,
-            'house': house.value
+            'pronouns': preferredPronouns,
+            'house': sortedHouse
         },
 
         body = JSON.stringify(json)
@@ -31,6 +65,18 @@ const submit = function( e ) {
 
     showData();
     return false
+}
+
+function changeradioOther() {
+    var other = document.getElementById("other");
+    other.value = document.getElementById("inputother").value;
+    other.checked = true
+    console.log(other.value)
+}
+
+function clearOther() {
+    document.getElementById("other").value = ""
+    document.getElementById("inputother").value = ""
 }
 
 const deleteRow = function (rowIndex) {
@@ -52,10 +98,7 @@ const showData = function(){
             return response.json()
         })
         .then( function(studentList){
-            console.log(studentList)
-
             let studentTable = document.querySelector('#HogwartsStudents');
-
             //setting the header at the top of the table
             studentTable.innerHTML =
                 '<tr>\n'+
@@ -100,22 +143,6 @@ const showData = function(){
 
 
         })
-}
-
-function setColor() {
-    rgbValue[0] = Math.round(Math.random() * 255);
-    rgbValue[1] = Math.round(Math.random() * 255);
-    rgbValue[2] = Math.round(Math.random() * 255);
-    var color = Math.round(((parseInt(rgbValue[0]) * 299) +
-        (parseInt(rgbValue[1]) * 587) +
-        (parseInt(rgbValue[2]) * 114)) / 1000);
-    var textColor = (color > 125) ? 'black' : 'white';
-    var backColor =
-        'rgb(' + rgbValue[0] + ', ' + rgbValue[1] + ', '
-        + rgbValue[2] + ')';
-
-    $('#backG').css('color', textColor);
-    $('#backG').css('background-color', backColor);
 }
 
 window.onload = function() {

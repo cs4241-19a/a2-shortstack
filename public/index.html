@@ -6,7 +6,7 @@
   <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Become a Hogwarts Student</h1>
+<h1>Create a Harry Potter Character</h1>
 <form action="">
   <div>
     <label for="firstName">First Name:</label>
@@ -17,12 +17,45 @@
     <input type="text" id="lastName"/>
   </div>
   <div>
-    <label for="pronouns">Pronouns:</label>
-    <input type="text" id="pronouns"/>
+    <label for="pronouns">Pronouns:</label><br>
+    <div>
+      <input type="radio" id="he" name="studentPronouns" value="he" onclick="clearOther()"
+      checked>
+      <label for="he">He/Him/His</label>
+    </div>
+    <div>
+      <input type="radio" id="she" name="studentPronouns" value="she" onclick="clearOther()">
+      <label for="she">She/Her/Hers</label>
+    </div>
+    <div>
+      <input type="radio" id="they" name="studentPronouns" value="they" onclick="clearOther()">
+      <label for="they">They/Them/Theirs</label>
+    </div>
+    <div>
+      <input type="radio" id="other" name="studentPronouns" value="other">
+      <label for="other">Other: </label>
+      <input id="inputother" type="text" name="studentPronouns" onclick="changeradioOther()"/>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+    </div>
   </div>
   <div>
-    <label for="house">House:</label>
-    <input type="text" id="house"/>
+    <label for="mostValued">What does your character value most?</label><br>
+    <div>
+      <input type="radio" id="bravery" name="studentValue" value="bravery"
+      checked>
+      <label for="bravery">Bravery</label>
+    </div>
+    <div>
+      <input type="radio" id="loyalty" name="studentValue" value="loyalty">
+      <label for="loyalty">Loyalty</label>
+    </div>
+    <div>
+      <input type="radio" id="wisdom" name="studentValue" value="wisdom">
+      <label for="wisdom">Wisdom</label>
+    </div>
+    <div>
+      <input type="radio" id="ambition" name="studentValue" value="ambition">
+      <label for="ambition">Ambition</label>
+    </div>
   </div>
   <br><button>submit</button>
 </form>

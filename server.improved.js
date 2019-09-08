@@ -88,13 +88,8 @@ const handlePost = function( request, response ) {
   })
 }
 
-const sendData = function(response, carsdata){
-  /*const type = mime.getType( carsdata ) ;
-  response.writeHeader( 200, { 'Content-Type': type });
-  response.write(JSON.stringify({data: carsdata}));
-  response.end()*/
-
-  response.end(JSON.stringify(carsdata));
+const sendData = function(response, studentData){
+  response.end(JSON.stringify(studentData));
 }
 
 
