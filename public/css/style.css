@@ -2,6 +2,7 @@
     font-family: 'Roboto', sans-serif;
 }
 
+/* Examples of Element selectors */
 header {
     padding: 100px 0 50px;
   }
@@ -10,11 +11,20 @@ section {
     padding: 25px 0;
 }
 
-/* footer */
-#sticky-footer {
-    flex-shrink: none;
-  }
+/* Example of ID selector */
+#code-block {
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-left: 3px solid #000000;
+  color: #666;
+  page-break-inside: avoid;
+  font-family: monospace;
+  text-align: left; 
+  padding-left: 20px;
+  font-size: 15px;
+}
 
+  /* Example of Class selector */
 .footer-social i {
     font-size: 24px !important;
     color: #FFFFFA;

@@ -13,7 +13,6 @@ AWS.config.update({region: 'us-east-2'});
 
 // Create the DynamoDB service object
 var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
-var docClient = new AWS.DynamoDB.DocumentClient();
 
 var Entry = function(time, title, notes, priority) {
   return {
@@ -42,16 +41,10 @@ const getDDB = function (user, callback){
       console.log("Error", err);
       return []
     } else {
-      //console.log("Success", data.Items);
       data.Items.forEach(function(e, index, array) {
         entryArray.push(new Entry(e.unixtime.N, e.title.S, e.notes.S, e.priority.N))
-        // console.log(e.title.S + " (" + e.notes.S + ")");
       });
-      // console.log( 'entryArray' )
-      // console.log(entryArray)
       entryString = JSON.stringify( entryArray )
-      // console.log( 'entryString' )
-      // console.log( entryString )
       callback(entryString)
     }
   });

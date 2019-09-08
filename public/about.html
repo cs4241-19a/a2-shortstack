@@ -64,10 +64,19 @@
             <div class="row">
                 <div class="col-lg-8 mx-auto center-div">
                     <p>
-                        THIS IS EXAMPLE content
-
-                        you're welcome
+                        This is an example of a simple node.js app with persistent data store using AWS DynamoDB.
+                        The client side JS is responsible for making requests to the node server, and the server
+                        handles all communication with AWS services for data storage. 
                     </p>
+                    <h2>Example JSON Packet</h2>
+                    <p>This shows how the information for each note is encoded to be sent between the server and client.</p>
+                    <pre id="code-block">
+{
+    notes: "this is a note",
+    priority: "2",
+    title: "Test Title 2",
+    unixtime: "1567881747611", // this is a derived field
+}</pre>
                 </div>
             </div>
         </div>
