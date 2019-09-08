@@ -1,18 +1,8 @@
 const generate = function(e) {
   // prevent default form action from being carried out
   e.preventDefault()
-
-  function getOption(){
-    let element = document.getElementById("drawType");
-    return element.options[element.selectedIndex].text
-  }
   
-  const input = {
-    vertices: document.getElementById("vertices").value,
-    drawType: getOption(),
-    name: document.getElementById("name").value
-  };
-  const body = JSON.stringify( input )
+  const body = grabInput()
   
   fetch( '/generate', {
     method:'POST',
@@ -23,6 +13,20 @@ const generate = function(e) {
   })
   
   return false
+}
+
+function grabInput(){
+  function getOption(){
+    let element = document.getElementById("drawType");
+    return element.options[element.selectedIndex].text
+  }
+  
+  const input = {
+    vertices: document.getElementById("vertices").value,
+    drawType: getOption(),
+    name: document.getElementById("name").value
+  };
+  return JSON.stringify( input )
 }
 
 function getData(idx = -1){
@@ -52,16 +56,18 @@ function genTable(dataList, idx) {
                 "<td>" + 
                   "<input type='number' id='verticesE' value="+ d.vertices +"></td>" + 
                 "<td>"+
-                  "<select id='drawTypeE'>" +
+                  "<select id='drawTypeE' selected = '" + d.dataType + "'>" +
                       "<option>Line</option>" +
                       "<option>Triangle</option>" +
                       "<option>Dots</option>" +
                   "</select>" +
                 "</td>" + 
-                "<td>"+ d.name +"</td>" +
+                "<td>" + 
+                  "<input type='text' id='nameE' value='" + d.name + "'>" +
+                "</td>" +
                 "<td>" + 
                   "<button id='v" + i + "' onclick='drawData(" + i + ")'>View</button>" +
-                  "<button id='e" + i + "' onclick='editData(" + i + ")'>Edit</button>" +
+                  "<button id='u" + i + "' onclick='updateData(" + i + ")'>Update</button>" +
                   "<button id='d" + i + "'onclick='deleteData(" + i +")'>Delete</button>" +
                 "</td>"
               "</tr>"
