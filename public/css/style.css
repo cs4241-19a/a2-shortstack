@@ -6,10 +6,17 @@ body {
 
 h1 {
   font-family: 'Righteous', cursive;
-  font-size: 40px
+  font-size: 60px;
 }
 
 #instructions {
-  align-content:"center"
+  width: 80%;
+  margin:0 auto;
 }
 
+#guess
+
+#previous {
+  width:50%;
+  clear: "both";
+}
