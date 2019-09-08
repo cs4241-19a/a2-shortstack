@@ -75,3 +75,9 @@ div.inputText {
   color: #000000;
   opacity: 1.0;
 }
+
+#submitForm {
+  background-color: #D121C5;
+  color: white;
+  position: center;
+}
