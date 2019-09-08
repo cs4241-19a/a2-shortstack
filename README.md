@@ -107,10 +107,14 @@ http://a2-charlieroberts.glitch.me
 
 express
 firebase
+handelbars with templates for displaying the data from the database
+extensive use of promises with chains and nests all over my backend code in ForumRouter.js
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...
 - **Design Achievement 2**: We tested the application with n=X users, finding that...
 
 bootstrap models
+bootstap general pretiness
+material-icons
 

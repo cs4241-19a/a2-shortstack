@@ -31,6 +31,7 @@ function submit(e, dataParser, handelResponse) {
 }
 
 
+// add model submit button events and model activation events
 window.onload = function() {
     if (document.getElementById("addThreadSubmitBtn")) {
         document.getElementById("addThreadSubmitBtn").onclick = ((e) => submit(e, parseAddThreadForm, handelAddThreadResponse));
@@ -53,6 +54,8 @@ window.onload = function() {
 };
 
 
+// Track current message and forum id so that info can be sent to the backend on a post
+
 let curMessageId;
 let curForumId;
 function addClick(btn) {
@@ -73,6 +76,7 @@ function editClick(btn) {
     console.log(editMotelMessage);
     editMotelMessage.value = curText;
 }
+
 
 // PARSE FORM //
 
@@ -116,6 +120,7 @@ function parseEditForm() {
         message: document.querySelector("#editFormModal textarea#message").value,
     }
 }
+
 
 // HANDEL RESPONSE //
 
