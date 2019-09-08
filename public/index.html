@@ -3,72 +3,77 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
-    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
-    <h1>Mastermind</h1>
-    <br> There is a secret code, made up of a random combination of 4 balls with 6 possible colors.<br>
-    You must try to find the correct combination with a few guesses as you can.<br>
-    Each time you guess you will be told how many of the balls are:
-    <ul>
-      <li>Of the <b>right color</b> and in the <b>right position</b>.</li>
-      or...
-      <li>Of the <b>right color</b> but in the <b>wrong position</b>.</li>
-    </ul>
-    Think carefully! If you haven't cracked the code after your 15th guess, you lose!
-    
-      <form>
-        <h2>Take a guess!</h2>
-        First Ball
-        <select id="firstball" action="">
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="yellow">Yellow</option>
-          <option value="green">Green</option>
-          <option value="purple">Purple</option>
-          <option value="orange">Orange</option>
-        </select>
-        <br>
-        
-        Second Ball
-        <select id="secondball" action="">
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="yellow">Yellow</option>
-          <option value="green">Green</option>
-          <option value="purple">Purple</option>
-          <option value="orange">Orange</option>
-        </select>
-        <br>
-        
-        Third Ball
-        <select id="thirdball" action="">
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="yellow">Yellow</option>
-          <option value="green">Green</option>
-          <option value="purple">Purple</option>
-          <option value="orange">Orange</option>
-        </select>
-        <br>
-        
-        Fourth Ball
-        <select id="fourthball" action="">
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="yellow">Yellow</option>
-          <option value="green">Green</option>
-          <option value="purple">Purple</option>
-          <option value="orange">Orange</option>
-        </select>
-        <br>
-        
-        <button>Check answer</button>
-      </form>
-    <h2>
-      Previous Guesses
-    </h2>
-      No guesses yet
+    <div id="instructions">
+      <h1>Mastermind</h1>
+      <br> There is a secret code, made up of a random combination of 4 balls with 6 possible colors.<br>
+      You must try to find the correct combination with a few guesses as you can.<br>
+      Each time you guess you will be told how many of the balls are:
+      <ul>
+        <li>Of the <b>right color</b> and in the <b>right position</b>.</li>
+        or...
+        <li>Of the <b>right color</b> but in the <b>wrong position</b>.</li>
+      </ul>
+      Think carefully! If you haven't cracked the code after your 15th guess, you lose!
+    </div>
+    <div id="guess">
+        <form>
+          <h2>Take a guess!</h2>
+          First Ball
+          <select id="firstball" action="">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+            <option value="orange">Orange</option>
+          </select>
+          <br>
+
+          Second Ball
+          <select id="secondball" action="">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+            <option value="orange">Orange</option>
+          </select>
+          <br>
+
+          Third Ball
+          <select id="thirdball" action="">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+            <option value="orange">Orange</option>
+          </select>
+          <br>
+
+          Fourth Ball
+          <select id="fourthball" action="">
+            <option value="red">Red</option>
+            <option value="blue">Blue</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="purple">Purple</option>
+            <option value="orange">Orange</option>
+          </select>
+          <br>
+
+          <button>Check answer</button>
+        </form>
+    </div>
+    <div id="previous">
+      <h2>
+        Previous Guesses
+      </h2>
+        No guesses yet
+    </div>
   </body>
   
   <script>

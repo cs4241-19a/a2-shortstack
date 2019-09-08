@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
 
-h1{
-  font-
-};
+body {
+  background-color: #DBE0C5;
+}
+
+h1 {
+  font-family: 'Righteous', cursive;
+  font-size: 40px
+}
+
+#instructions {
+  align-content:"center"
+}
+
