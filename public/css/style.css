@@ -4,7 +4,7 @@
   border-collapse: collapse;
   width: 100%;
   position: absolute;
-  top: 100%;
+  top: 120%;
 }
 
 #CarData td, #CarData th {
