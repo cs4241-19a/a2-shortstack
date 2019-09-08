@@ -7,7 +7,14 @@
 
 .title {
   font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 400%;
+}
 
+.slogan {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 150%;
 }
 
 body, html {
@@ -17,7 +24,7 @@ body, html {
 /* The hero image */
 .header-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1438109491414-7198515b166b?q=80&fm=jpg&s=cbdabf7a79c087a0b060670a6d79726c");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://source.unsplash.com/FK81rxilUXg/1600x900");
 
   /* Set a specific height */
   height: 50%;
