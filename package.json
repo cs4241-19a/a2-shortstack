@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-ktrose1",
+  "version": "1",
+  "description": "WPI CS4241 Assignment 2",
+  "author": "Katherine Thompson",
   "scripts": {
     "start": "node server.improved.js"
   },
