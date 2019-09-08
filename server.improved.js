@@ -30,10 +30,9 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else if( request.url === '/information') {
-    sendFile( response, appdata )
-  }
-  else{
+  } else if( request.url === '/information') {
+    sendData( response, data )
+  } else{
     sendFile( response, filename )
   }
 }
@@ -54,6 +53,14 @@ const handlePost = function( request, response ) {
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
+}
+
+const sendData = function( response, data ) {
+  const type = mime.getType( data )
+  
+  response.writeHeader( 200, { 'Content-Type': type })
+  response.end( data )
+  
 }
 
 const sendFile = function( response, filename ) {

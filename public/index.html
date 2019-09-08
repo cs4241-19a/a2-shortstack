@@ -48,7 +48,7 @@
       // do something with the reponse 
       //text.textContent = response;
       console.log( response )
-      
+      occupyText()
       
       
       /*
@@ -70,12 +70,10 @@
     return false
   }
   
-  const occupyText = function() {
-    fetch( '/information' )
-    .then( function( response ) {
-      response.json()
-      answer.innerHTML = ''
-    })
+  const occupyText = async function() {
+    var response = await fetch( '/information', { method: "GET" });
+    var info = await response.json();
+    answer.innerHTML = info.data;
   }
 
   window.onload = function() {
