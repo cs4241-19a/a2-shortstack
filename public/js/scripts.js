@@ -1,8 +1,8 @@
 //fetch books for the table
-      const fetchBooks = async function() {
+    const fetchBooks = async function() {
       try {
-        const resp = await fetch('/books', { method: 'GET' });
-        const data = await resp.json();
+        const resp = fetch('/books', { method: 'GET' });
+        const data = resp.json();
         const books = data.data;
         let htmlDiv = document.getElementById('books');
         htmlDiv.innerHTML = '<tr>\n' +
@@ -89,15 +89,10 @@
         return true;
       }
     };
-    
-    const viewOrderTable  = function () {
-      document.getElementById('book-table').display;
-      document.getElementById('error').style.display = "none";
-      fetchBooks();
-      return false;
-    };
+  
 
   window.onload = function() {
     const addBookbutton = document.querySelector( 'submit-btn' )
     addBookbutton.onclick = addBook
+    
   }
