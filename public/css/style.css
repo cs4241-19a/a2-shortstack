@@ -2,14 +2,30 @@
 
 body {
   background: #5A5959;
-  
 }
 
+.title {
+  background:#1C1C1D;
+  color: white;
+  width: 98vw;
+  font-family: 'Calibri', sans-serif;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin-bottom: 2vh;
+  
+}
 .board {
+  width: 98vw;
+  height: 20vmin;
+}
+
+.board['data-board'='fullboard'] {
   position: relative;
   background: #1C1C1D;
-  width: 20vw;
-  height: 50;
+  width: 98vw;
+  height: 20vmin;
 }
 
 #previous {
