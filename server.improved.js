@@ -17,9 +17,9 @@ express.use(bodyParser.json());
 express.use(Express.static('public'));
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'rank': 'Boatswain', name: "Edgar", 'year': 1987, rankID: 4},
+  { 'rank': 'Sailor', name: "John John", 'year': 1999, rankID: 9},
+  { 'rank': 'Cabin Boy', name: "Big Eyes", 'year': 2004, rankID: 10}
 ]
 
 
@@ -37,17 +37,20 @@ var sequelize = new Sequelize('database', process.env.DB_USER, process.env.DB_PA
 sequelize.authenticate()
   .then(function(err) {
     dbSeq = sequelize.define('data', {
-      model: {
+      rank: {
+        type: Sequelize.STRING
+      },
+      name: {
         type: Sequelize.STRING
       },
       year: {
         type: Sequelize.STRING
       },
-      mpg: {
-        type: Sequelize.STRING
-      },
       age: {
         type: Sequelize.STRING
+      },
+      rankID: {
+        type: Sequelize.INTEGER
       }
       
     });
@@ -74,9 +77,15 @@ express.get("/", function (request, response) {
 express.get("/data", function (request, response) {
   var dbSend = []
   dbSeq.findAll().then(function(data) {
-    data.forEach(function(car) {
-      dbSend.push([car.model, car.year, car.mpg, car.age])
+    data.forEach(function(member) {
+      dbSend.push([member.rank, member.name, member.year, member.age, member.rankID])
     })
+    
+    dbSend.sort(function(a,b) {
+      console.log(a[4] - b[4])
+      return a[4] - b[4]
+    })
+    
     console.log(dbSend)
     response.send(dbSend)
   })
@@ -134,35 +143,36 @@ const sendFile = function( response, filename ) {
 }
 
 const deleteEntry = function(newData){
-  console.log( newData.model + " is being destroyed" )
+  console.log( newData.name + " is being destroyed" )
   
-    var id = 0;
-    for(var i=0;i<newData.model.length;i++) {
-        id += (newData.model.charCodeAt(i) * i) + (newData.model.charCodeAt(i) + i);
-    }
-  id = parseInt(id, 16);
+  var id = getID(newData);
   
   dbSeq.destroy({where: {id: id}})
   
-    console.log('Successfully destroyed ' +id+ ' ' + newData.model + ' ' +newData.year + ' ' + newData.mpg +' from database');
+    console.log('Successfully destroyed ' +id+ ' ' + newData.rank + ' ' +newData.name + ' ' + newData.year +' from database');
 }
 
 const addData = function(newData){
+  console.log(newData)
+  console.log( newData.rank + ' '+ newData.name + " has been received " + newData.rankID )
   
-  console.log( newData.model + " has been received" )
-  
-    var id = 0;
-    for(var i=0;i<newData.model.length;i++) {
-        id += (newData.model.charCodeAt(i) * i) + (newData.model.charCodeAt(i) + i);
-    }
-  id = parseInt(id, 16);
+  var id = getID(newData);
   var age = (2019 - parseInt(newData.year))
   var ageString = age + " Year(s) Old"
-  dbSeq.create({ id:id, model: newData.model, year: newData.year, mpg: newData.mpg, age: ageString}); 
-  console.log('Successfully added ' +id+ ' ' + newData.model + ' ' +newData.year + ' ' + newData.mpg +' '+ageString+ ' to database');
+  dbSeq.create({ id:id, rank: newData.rank, name: newData.name, year: newData.year, age: ageString, rankID: parseInt(newData.rankID)}); 
+  console.log('Successfully added ' +id+ ' ' + newData.rank + ' ' +newData.name + ' ' + newData.year +' '+ageString+' ' +newData.rankID+' to database');
 }
 
+ function getID(newData){
+  var id = 0;
+  for(var i=0;i<newData.name.length;i++) {
+        id += (newData.name.charCodeAt(i) + i) + (newData.name.charCodeAt(i) * i);
+    }
+  id = parseInt(id, 16);
+   return id
+ }
 
 var listener = express.listen(process.env.PORT, function () {
   console.log('Listening to port ' + listener.address().port);
 });
+

@@ -7,19 +7,33 @@
     
   </head>
   <body>
+    <font size = "6"><h1>Pirate Crew Generator</h1></font>
     <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
     <form id ="data" action="/data" method="POST" target="hiddenFrame">
-      <input type="text" id="model" name="model" placeholder="Model here">
-      <input type="number" id="year" name="year" placeholder="Year here">
-      <input type="number" id="mpg" name="mpg" placeholder="MPG here">
+       <select id = "rank" name="rank">
+        <option value="Captain">Captain</option>
+        <option value="First Mate">First Mate</option>
+        <option value="Sailing Master">Sailing Master</option>
+        <option value="Quartermaster">Quartermaster</option>
+         <option value="Boatswain">Boatswain</option>
+        <option value="Cook">Cook</option>
+         <option value="Doctor">Doctor</option>
+         <option value="Carpenter">Carpenter</option>
+        <option value="Powder Monkey">Powder Monkey</option>
+         <option value="Sailor">Sailor</option>
+         <option value="Cabin Boy">Cabin Boy</option>
+      </select> 
+      <input type="name" id="name" name="name" placeholder="Name Here">
+      <input type="number" id="year" name="year" placeholder="Year of birth here">
+      <input type="hidden" id="rankID" name="rankID" value="">
     </form>
     <button id="submit" class="inputbutton" onclick="submitNClear()" > Submit </button>
     <button id="modify" class="inputbutton" onclick="modify()" > Modify </button>
     <button id="delete" class="inputbutton" onclick="deleteData()" > Delete </button>
     <table id = "table">
-    <th>Model</th>
-    <th>Year</th> 
-    <th>MPG</th>
+    <th>Rank</th>
+    <th>Name</th> 
+    <th>Year Born</th>
     <th>Age</th>
     </table>
     <p><a href="/reset">Reset</a> | <a href="/clear">Clear</a></p>
@@ -28,28 +42,15 @@
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" ></script>
   
   <script>
-
-    function reset(){
-      console.log("Resetting table");
-      document.getElementById('resetForm').submit()
-      reloadData()
-    }
-    
-    function clear(){
-      //<form id ="clearForm" action="/clear" method="POST" target="hiddenFrame"> <button id="clear" onclick="reloadData()"> Clear </button></form>
-      console.log("Clearing Table");
-      document.getElementById('clearForm').submit()
-      reloadData()
-    }
     
   function deleteData(){
-    if(document.querySelector('#model').value == ''){
-      alert("Enter the model you with to delete")
+    if(document.querySelector('#name').value == ''){
+      alert("Enter the member you with to delete")
       return false
     }
     
-      if(!checkIfIn(document.querySelector('#model').value)){
-        alert("That model is already not in the table")
+      if(!checkIfIn(document.querySelector('#name').value)){
+        alert("That member is already not in the table")
         return false
       }
       document.getElementById('data').action = '/delete'
@@ -61,17 +62,17 @@
   }
     
   function modify(){
-    if(document.querySelector('#model').value!= '' && document.querySelector( '#year').value !='' && document.querySelector( '#mpg').value != '') {
-      if(isNaN(document.querySelector( '#year').value) || isNaN(document.querySelector( '#mpg').value)){
-        alert("Year and MPG must be numbers")
+    if(document.querySelector('#name').value!= '' && document.querySelector( '#year').value !='') {
+      if(isNaN(document.querySelector( '#year').value)){
+        alert("Year must be numbers")
         return false
       }else if(document.querySelector( '#year').value > 2019){
-        alert("That year has not occured yet, sorry")
+        alert("Year must be before 2019")
         return false
       }
       
-        if(!checkIfIn(document.querySelector('#model').value)){
-        alert("You can only modify car models that are in the table")
+        if(!checkIfIn(document.querySelector('#name').value)){
+        alert("You can only modify crew members that are in the table")
         return false
       }
       document.getElementById('data').action = '/modify'
@@ -87,21 +88,26 @@
   }
     
   function submitNClear(){
-    console.log(document.querySelector('#model'))
-    if(document.querySelector('#model').value!= '' && document.querySelector( '#year').value !='' && document.querySelector( '#mpg').value != '') {
-      if(isNaN(document.querySelector( '#year').value) || isNaN(document.querySelector( '#mpg').value)){
-        alert("Year and MPG must be numbers")
+    if(document.querySelector('#name').value!= '' && document.querySelector( '#year').value !='') {
+      if(isNaN(document.querySelector( '#year').value) ){
+        alert("Year must be numbers")
         return false
-      } else if(document.querySelector( '#year').value > 2019){
-        alert("That year has not occured yet, sorry")
-        return false
-      }
-      
-      if(checkIfIn(document.querySelector('#model').value)){
-        alert("That model is already in the table")
+      }else if(document.querySelector( '#year').value > 2019){
+        alert("Year must be before 2019")
         return false
       }
       
+      if(checkIfIn(document.querySelector('#name').value)){
+        alert("That person is already in the table")
+        return false
+      }
+      
+        var x = document.getElementById("rank").selectedIndex;
+        var y = document.getElementById("rank").options;
+      
+      document.getElementById("rankID").value = y[x].index
+      console.log(document.getElementById("rankID").value)
+      console.log(document.getElementById('data'))
       document.getElementById('data').submit()
       document.getElementById('data').reset()
       $("#table_of_items tr").remove();
@@ -130,11 +136,11 @@
       document.getElementById("table").deleteRow(1)
   }
     
- function checkIfIn(model){
-   console.log(model)
+ function checkIfIn(name){
+   console.log(name)
     for(let i = 1; i<document.getElementById("table").rows.length;i++){
-      console.log(document.getElementById("table").rows[i].cells[0].innerText)
-      if(document.getElementById("table").rows[i].cells[0].innerText == model)
+      console.log(document.getElementById("table").rows[i].cells[1].innerText)
+      if(document.getElementById("table").rows[i].cells[1].innerText == name)
          return true
     }
       return false;
