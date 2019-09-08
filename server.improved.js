@@ -55,11 +55,11 @@ const handlePost = function( request, response ) {
   })
 }
 
-const sendData = function( response, data ) {
-  const type = mime.getType( data )
+const sendData = function( response, value ) {
+  const type = mime.getType( value )
   
   response.writeHeader( 200, { 'Content-Type': type })
-  response.end( JSON.stringify( { data : data } ))
+  response.end( JSON.stringify( { data : value } ))
   
 }
 
