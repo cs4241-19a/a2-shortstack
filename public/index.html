@@ -9,8 +9,40 @@
       <input type='text' id='yourname' value="your name here">
       <button>submit</button>
     </form>
+    <table id="hogwartsStudents">
+    </table>
   </body>
+
   <script>
+
+    const getTable = async function() {
+      try {
+        const resp = await fetch('/studentData', { method: 'GET' })
+        const data = await resp.json()
+        const students = data.data
+        let htmlDiv = document.getElementById('hogwartsStudents')
+        htmlDiv.innerHTML = '<tr>\n' +
+                '              <th>First Name</th>\n' +
+                '              <th>Last Name</th>\n' +
+                '              <th>Pronouns</th>\n' +
+                '              <th>House</th>\n' +
+                '              <th></th>\n' +
+                '              <th></th>\n' +
+                '            </tr>'
+        for (let i = 0; i < students.length; i++) {
+          const student = students[i]
+          let newRow = '<tr>\n'
+          newRow += (`<td> ${student.firstName} </td>\n`);
+          newRow += (`<td> ${student.lastName} </td>\n`);
+          newRow += (`<td> ${student.pronouns} pieces</td>\n`);
+          newRow += (`<td> ${student.house} </td>\n`);
+          htmlDiv.innerHTML += newRow;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+      return false;
+    }
 
   const submit = function( e ) {
     // prevent default form action from being carried out

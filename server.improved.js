@@ -7,15 +7,17 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'firstName': 'Janette', 'lastName': 'Fong', 'pronouns': 'She/Her/Hers', 'house': 'Slytherin' },
+  { 'firstName': 'Winny', 'lastName': 'Cheng', 'pronouns': 'She/Her/Hers', 'house': 'Ravenclaw' },
+  { 'firstName': 'Jose', 'lastName': 'Li Quiel', 'pronouns': 'He/Him/His', 'house': 'Hufflepuff' },
+  { 'firstName': 'Harry', 'lastName': 'Potter', 'pronouns': 'He/Him/His', 'house': 'Gryffindor' }
 ]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
-  }else if( request.method === 'POST' ){
+  }
+  else if( request.method === 'POST' ){
     handlePost( request, response ) 
   }
 })
@@ -25,12 +27,42 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if( request.url === '/studentData') {
+    sendData(appdata)
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
+const sendData = function( response, students ) {
+  const type = mime.getType( students );
+  response.writeHeader(200, { 'Content-Type': type });
+  response.write(JSON.stringify({ data: students }));
+  response.end();
+};
+
 const handlePost = function( request, response ) {
+  switch ( request.url ) {
+    case '/submit':
+      const studentInfo = JSON.parse(dataString)
+      const newStudent = {
+        'firstName': studentInfo.firstName,
+        'lastName': studentInfo.lastName,
+        'pronouns': studentInfo.pronouns,
+        'house': studentInfo.house
+      }
+      appdata.push(newStudent)
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.end()
+      break
+    case '/delete':
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    default:
+      response.end('404 Error: File not found')
+      break
+  }
   let dataString = ''
 
   request.on( 'data', function( data ) {
