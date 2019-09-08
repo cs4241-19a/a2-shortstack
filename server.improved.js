@@ -45,9 +45,9 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
     // ... do something with the data here!!!
     //response.write(JSON.parse( dataString ))
-    quizdata.push({'question':'three', 'answer': '3', 'response':'4'});
+    //quizdata.push({'question':'three', 'answer': '3', 'response':'4'});
     
-    response.write(quizdata.toString())
+    //response.write(quizdata.toString())
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
