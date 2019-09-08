@@ -12,8 +12,8 @@
       <main>
         <div class="navigationPane">
           <nav class="links">
-            <a id="form-link" aria-label="link to order form">Place an Order</a>
-            <a id="table-link" aria-label="link to order table">View Orders</a>
+            <button>Place an Order</button><a class="nav-buttons" id="form-link" aria-label="link to order form">Place an Order</a>
+            <a class="nav-buttons" id="table-link" aria-label="link to order table">View Orders</a>
           </nav>
         </div>
         <div id="error">
@@ -106,29 +106,156 @@
   
   
   <script>
-    const submit = function( e ) {
-      // prevent default form action from being carried out
-      e.preventDefault()
-
-      const input = document.querySelector( '#yourname' ),
-            json = { yourname: input.value },
-            body = JSON.stringify( json )
-
-      fetch( '/submit', {
-        method:'POST',
-        body 
-      })
-      .then( function( response ) {
-        // do something with the reponse 
-        console.log( response )
-      })
-
-      return false
-    }
-
+    const addOrder = function( e ) {
+      e.preventDefault();
+      const newOrder = {
+        name: document.getElementById( 'name' ).value,
+        dream: document.getElementById( 'dream' ).value,
+        amountOfPork: document.querySelector('input[name="pork"]:checked').value,
+        garlic: document.querySelector('input[name="garlic"]:checked').value
+      };
+      if (orderValidation(newOrder.name, newOrder.dream)) {
+        const body = JSON.stringify( newOrder );
+        fetch( '/submit', {
+          method:'POST',
+          body
+        }).then( function( response ) {
+          document.getElementById('order-confirmation').style.display = "flex";
+          document.getElementById('order-form').style.display = "none";
+          resetOrderForm();
+        });
+      }
+      return false;
+    };
+    const deleteOrder = function (index) {
+      const orderNumber = { orderNumber: index };
+      const body = JSON.stringify(orderNumber);
+      fetch('/delete', {
+        method: 'POST',
+        body
+      });
+      fetchOrders();
+    };
+    const fetchOrders = async function() {
+      try {
+        const resp = await fetch('/orders', { method: 'GET' });
+        const data = await resp.json();
+        const orders = data.data;
+        let htmlDiv = document.getElementById('orders');
+        htmlDiv.innerHTML = '<tr>\n' +
+                '              <th>Name</th>\n' +
+                '              <th>Dream</th>\n' +
+                '              <th>Pork</th>\n' +
+                '              <th>Garlic</th>\n' +
+                '              <th>Price</th>\n' +
+                '              <th></th>\n' +
+                '              <th></th>\n' +
+                '            </tr>';
+        for (let i = 0; i < orders.length; i++) {
+          const order = orders[i];
+          const stringOrder = JSON.stringify(orders[i]);
+          const garlic = (order.garlic ? 'Yes' : 'No');
+          let newRow = '<tr>\n';
+          newRow += (`<td> ${order.name} </td>\n`);
+          newRow += (`<td> ${order.dream} </td>\n`);
+          newRow += (`<td> ${order.amountOfPork} pieces</td>\n`);
+          newRow += (`<td> ${garlic} </td>\n`);
+          newRow += (`<td> ${order.price} </td>\n`);
+          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
+                  + encodeURIComponent(stringOrder) +
+                  `>Edit</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
+          newRow += '</tr>';
+          htmlDiv.innerHTML += newRow;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+      return false;
+    };
+    const updateOrder = ( e ) => {
+      e.preventDefault();
+      const updatedOrder = {
+        index: document.getElementById('update-btn').dataset.index,
+        name: document.getElementById('updateName').value,
+        dream: document.getElementById('updateDream').value,
+        amountOfPork: document.querySelector('input[name="updatePork"]:checked').value,
+        garlic: document.querySelector('input[name="updateGarlic"]:checked').value
+      };
+      if (orderValidation(updatedOrder.name, updatedOrder.dream)) {
+        const body = JSON.stringify(updatedOrder);
+        fetch('/update', {
+          method: 'POST',
+          body
+        }).then(function () {
+          viewOrderTable();
+        });
+      }
+      return false;
+    };
+    const resetOrderForm = () => {
+      document.getElementById( 'name' ).value = '';
+      document.getElementById( 'dream' ).value = '';
+      document.getElementById('3pork').checked = true;
+      document.getElementById('allGarlic').checked = true;
+    };
+    const orderValidation = function (name, dream) {
+      if (name === '') {
+        document.getElementById('error').style.display = "block";
+        document.getElementById('error').focus();
+        return false;
+      } else if (dream === '') {
+        document.getElementById('error').style.display = "block";
+        document.getElementById('error').focus();
+        return false;
+      } else {
+        document.getElementById('error').style.display = "none";
+        return true;
+      }
+    };
+    const viewOrderForm = function() {
+      document.getElementById('error').style.display = "none";
+      document.getElementById('order-table').style.display = "none";
+      document.getElementById('update-order-form').style.display = "none";
+      document.getElementById('order-confirmation').style.display = "none";
+      document.getElementById('order-form').style.display = "block";
+      resetOrderForm();
+    };
+    const viewOrderTable  = function () {
+      document.getElementById('order-table').style.display = "flex";
+      document.getElementById('order-form').style.display = "none";
+      document.getElementById('update-order-form').style.display = "none";
+      document.getElementById('order-confirmation').style.display = "none";
+      document.getElementById('error').style.display = "none";
+      fetchOrders();
+      return false;
+    };
+    const viewUpdateForm = function (index) {
+      let orderToUpdate = decodeURIComponent(document.getElementById(`update-button-${index}`).dataset.string);
+      orderToUpdate = JSON.parse(orderToUpdate);
+      document.getElementById('order-table').style.display = "none";
+      document.getElementById('update-order-form').style.display="block";
+      // load values
+      document.getElementById('update-btn').dataset.index = index;
+      document.getElementById('updateName').value=orderToUpdate.name;
+      document.getElementById('updateDream').value=orderToUpdate.dream;
+      orderToUpdate.amountOfPork === 3 ? document.getElementById('update3pork').checked = true : document.getElementById('update5pork').checked = true;
+      orderToUpdate.garlic ? document.getElementById('updateAllGarlic').checked = true : document.getElementById('updateSansGarlic').checked = true;
+      return false;
+    };
     window.onload = function() {
-      const button = document.querySelector( 'button' )
-      button.onclick = submit
-    }
+      const submitButton = document.getElementById( 'submit-btn' );
+      submitButton.onclick = addOrder;
+      const tableLink = document.getElementById( 'table-link' );
+      tableLink.onclick = viewOrderTable;
+      const formLink = document.getElementById( 'form-link' );
+      formLink.onclick = viewOrderForm;
+      const cancelButton = document.getElementById( 'cancel-btn' );
+      cancelButton.onclick = viewOrderTable;
+      const updateButton = document.getElementById( 'update-btn' );
+      updateButton.onclick = updateOrder;
+      const newOrderButton = document.getElementById( 'new-order-btn' );
+      newOrderButton.onclick = viewOrderForm;
+    };
   </script>
 </html>
