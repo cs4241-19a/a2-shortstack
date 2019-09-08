@@ -5,14 +5,8 @@
 /**
  * TODO: Empty messages glow red form control
  * TODO: Zoom/pan word bubble
- * TODO: Come up with another top block thing
- * TODO: Another graph
  * TODO: Text classification
- * TODO: Fix title
- * TODO: Refactor
- * TODO: View all entries
  * TODO: Fix datatable on login (no data)
- * TODO: Edit login and register css
  * TODO: Add profile edit options
  */
 
@@ -75,7 +69,7 @@ app.controller("dashboardCtrl", function ($scope) {
     $scope.totalEntries = 0;
     $scope.totalUniqueWords = 0;
     $scope.totalWords = 0;
-    $scope.consecutiveDays = 0;
+    $scope.longestWord = "";
     $scope.value = 0;
     $scope.status = "";
 
@@ -170,13 +164,24 @@ app.controller("dashboardCtrl", function ($scope) {
 
             wordFrequencies = {};
 
+            let longestWord = "";
+
             for (let obj of Object.values(data[currentUser.uid])) {
                 // Total words
                 $scope.totalWords += obj["entry-words"];
 
                 // Word frequency
                 wordFrequencies = merge(wordFrequencies, obj["entry-map"]);
+
+                let words = Object.keys(obj["entry-map"]);
+                for (let w of words) {
+                    if (w.length > longestWord.length) {
+                        longestWord = w;
+                    }
+                }
             }
+
+            $scope.longestWord = longestWord;
 
             $scope.totalUniqueWords = Object.keys(wordFrequencies).length;
 
@@ -184,18 +189,6 @@ app.controller("dashboardCtrl", function ($scope) {
 
             createChart();
             createWordCloud();
-
-            // Populate table for the first time
-            // let tableArray = [];
-            // for (let obj of Object.values(data[currentUser.uid])) {
-            //     //console.log(Object.values(obj));
-            //     tableArray.push(Object.values(obj));
-            // }
-            // console.log(tableArray);
-            // //dataTable
-            // $('#dataTable').DataTable({
-            //     data: tableArray
-            // })
         });
     }
 
@@ -215,7 +208,7 @@ app.controller("dashboardCtrl", function ($scope) {
                 tableArray.push(array);
             }
 
-            if (firstTime){
+            if (firstTime) {
                 $('#dataTable').DataTable({
                     data: tableArray
                 })
@@ -351,16 +344,38 @@ app.controller("dashboardCtrl", function ($scope) {
         $scope.wordmuse = {};
         $scope.wordmuse.word = word;
 
-        fetch('https://api.datamuse.com/words?rel_syn=' + word + '&md=d')
+        // Get synonyms
+        fetch('https://api.datamuse.com/words?rel_syn=' + word + '&md=d&max=15')
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
             $scope.wordmuse.words = data;
             $scope.$apply();
         });
+
+        //Get rhyming words
+        fetch('https://api.datamuse.com/words?rel_rhy=' + word + '&md=d&max=15')
+            .then(function (response) {
+                return response.json();
+            }).then(function (data) {
+            $scope.wordmuse.rhymes = data;
+            $scope.$apply();
+        });
+
+
         $scope.$apply();
     }
 
+    $scope.showWordDefinition = function () {
+        let word = $("#inputWord").val();
+        fetch('http://api.datamuse.com/words?sp=' + word + '&qe=sp&md=d&max=1')
+            .then(function (response) {
+                return response.json();
+            }).then(function (data) {
+            $scope.defs = data[0].defs;
+            $scope.$apply();
+        });
+    };
 
     /**
      * Creates a chart
@@ -378,8 +393,8 @@ app.controller("dashboardCtrl", function ($scope) {
             return b - a
         });
 
-        word = word.slice(0, 10);
-        freqCount = freqCount.slice(0, 10);
+        word = word.slice(0, 20);
+        freqCount = freqCount.slice(0, 20);
 
         // Set new default font family and font color to mimic Bootstrap's default styling
         Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -461,6 +476,7 @@ app.controller("dashboardCtrl", function ($scope) {
             }
         });
     };
+
 
     /**
      * File upload from input for tesseract OCR
