@@ -82,7 +82,7 @@ const handlePost = function( request, response ) {
           'mpg': data.mpg,
           'tripDistance': data.tripDistance,
           'gasPrice': data.gasPrice,
-          'totalGallons': totalGallons.toFixed(2),
+          'totalGallons': totalGallons,
           'totalCost': totalCost.toFixed(2)
         }
         
