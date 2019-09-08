@@ -39,8 +39,40 @@ window.onload = function() {
         document.getElementById("addSubmitBtn").onclick = ((e) => submit(e, parseAddForm, handelAddResponse));
         document.getElementById("deleteSubmitBtn").onclick = ((e) => submit(e, parseDeleteForm, handelDeleteResponse));
         document.getElementById("editSubmitBtn").onclick = ((e) => submit(e, parseEditForm, handelEditResponse));
+        // transfer data from button press to forum
+        for (let addBtn of document.getElementsByClassName('add-btn')) {
+            addBtn.onclick = addClick;
+        }
+        for (let deleteBtn of document.getElementsByClassName('delete-btn')) {
+            deleteBtn.onclick = deleteClick;
+        }
+        for (let editBtn of document.getElementsByClassName('edit-btn')) {
+            editBtn.onclick = editClick;
+        }
     }
 };
+
+
+let curMessageId;
+let curForumId;
+function addClick(btn) {
+    let link = btn.target.parentElement;
+    curForumId = link.dataset.forumid;
+}
+function deleteClick(btn) {
+    let link = btn.target.parentElement;
+    curMessageId = link.dataset.messageid;
+}
+function editClick(btn) {
+    let link = btn.target.parentElement;
+    console.log(link);
+    curMessageId = link.dataset.messageid;
+    let curText = link.parentElement.parentElement.parentElement.lastElementChild.textContent.trim();
+    let editMotelMessage = document.querySelector("#editFormModal textarea#message");
+    console.log(curText);
+    console.log(editMotelMessage);
+    editMotelMessage.value = curText;
+}
 
 // PARSE FORM //
 
@@ -59,28 +91,26 @@ function parseAddForm() {
     console.log("ran parse add");
     return {
         action: "ADD",
-        forumId: 1,
+        forumId: curForumId,
         firstName: document.getElementById("first-name").value,
         middleName: document.getElementById("middle-name").value,
         lastName: document.getElementById("last-name").value,
-        message: document.getElementById("message").value,
+        message: document.querySelector("#addFormModal textarea#message").value,
     }
 }
 
 function parseDeleteForm() {
     return {
         action: "DELETE",
-        forumId: 1,
-        messageId: 2,
+        messageId: curMessageId,
     }
 }
 
 function parseEditForm() {
     return {
         action: "EDIT",
-        forumId: 1,
-        messageId: 2,
-        message: document.getElementById("message").value,
+        messageId: curMessageId,
+        message: document.querySelector("#editFormModal textarea#message").value,
     }
 }
 
@@ -88,7 +118,11 @@ function parseEditForm() {
 
 function handelAddThreadResponse(data) {
     // change page to the new forum page
-    location = "/forum/" + data.forumId;
+    if (data.forumId) {
+        location = "/forum/" + data.forumId;
+    } else {
+        location.reload();
+    }
 }
 
 function handelAddResponse(data) {

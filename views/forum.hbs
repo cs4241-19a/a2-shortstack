@@ -18,14 +18,14 @@
                         <div title="{{ message.name }}">{{ message.username }}</div>
                         <div>{{ message.date }}</div>
                         <div>
-                            <a style="color: orange;" title="Edit" data-toggle="modal" data-target="#editFormModal">
+                            <a class="edit-btn" title="Edit" data-messageid="{{ message.messageId }}" data-toggle="modal" data-target="#editFormModal">
                                 <i class="material-icons"></i>
                             </a>
-                            {{#if @first}}{{else}}{{!-- could not find a negator that would work ¯\_(ツ)_/¯ --}}
-                                <a style="color: red;" title="Delete" data-toggle="modal" data-target="#deleteFormModal">
+                            {{#unless @first}}
+                                <a class="delete-btn" title="Delete" data-messageid="{{ message.messageId }}" data-toggle="modal" data-target="#deleteFormModal">
                                     <i class="material-icons"></i>
                                 </a>
-                            {{/if}}
+                            {{/unless}}
 <!--                            {{#if @last}}-->
 <!--                                <a style="color: steelblue;" title="Add" data-toggle="modal" data-target="#addFormModal">-->
 <!--                                    <i class="material-icons"></i>-->
@@ -42,7 +42,7 @@
             {{/each}}
             <tr class="table-add-row">
                 <td colspan="2">
-                    <button class="btn btn-info d-block" data-toggle="modal" data-target="#addFormModal">Add a Message</button>
+                    <button class="btn btn-info d-block" data-forumid="{{ this.forumId }}" data-toggle="modal" data-target="#addFormModal">Add a Message</button>
                 </td>
             </tr>
             </tbody>

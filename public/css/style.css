@@ -13,6 +13,15 @@
     min-width: 8em;
 }
 
+.edit-btn {
+    color: orange!important;
+}
+
+.delete-btn {
+    color: red!important;
+}
+
+
 /* center the title of the forum page */
 #forum-title {
     margin: 0 auto;

@@ -88,7 +88,10 @@ async function getForum(forumId) {
     let forumPromise = forumDoc.get()
         .then(snapshot => {
             // console.log(snapshot.id, '=>', snapshot.data());
-            return snapshot.data().title;
+            return {
+                forumTitle: snapshot.data().title,
+                forumId: snapshot.id,
+            };
         })
         .catch(err => {
             console.log('Error getting documents', err);
@@ -102,6 +105,7 @@ async function getForum(forumId) {
                     })
                     .then(userData => {
                         return {
+                            messageId: doc.id,
                             message: doc.data().message,
                             date: (new Date(doc.data().date.seconds * 1000)).toUTCString(),
                             name: `${userData.firstName} ${userData.middleName} ${userData.lastName}`,
@@ -118,7 +122,7 @@ async function getForum(forumId) {
         });
 
     return {
-        forumTitle: await forumPromise,
+        ... await forumPromise,
         messages: await Promise.all(await messagesPromises),
     };
 }
@@ -129,6 +133,7 @@ async function getForums() {
         .then(snapshot => {
             return snapshot.docs.map(async function(doc) {
                 return {
+                    forumId: doc.id,
                     title: doc.data().title,
                     stats: {
                         views: doc.data().views,
@@ -147,6 +152,7 @@ async function getForums() {
         .then(forums => {
             return forums.map(async function(forum) {
                 return {
+                    forumId: forum.forumId,
                     title: forum.title,
                     shortDesc: (await forum.messageData.firstMessagePromise).shortDesc,
                     stats: forum.stats,
@@ -207,142 +213,7 @@ function getUserData(userRef, timestamp) {
 
 
 // forum list view
-forumRouter.get('/', function(req, res, next) {
-    // TODO: specify a user nane and full name field
-    let forumData = [
-        {
-            title: "Title1",
-            shortDesc: "Short desc",
-            created: {
-                name: "Jimmy Kajon",
-                date: "01 Apr 2017, 13:46"
-            },
-            lastPost: {
-                name: "Jimmy Kajon",
-                date: "01 Apr 2017, 13:46"
-            },
-            stats: {
-                replies: 1,
-                views: 100
-            }
-        },
-        {
-            title: "Title2",
-            shortDesc: "Short desc2",
-            created: {
-                name: "Jimmy Kajon2",
-                date: "02 Apr 2017, 13:46"
-            },
-            lastPost: {
-                name: "Jimmy Kajon2",
-                date: "02 Apr 2017, 13:46"
-            },
-            stats: {
-                replies: 2,
-                views: 200
-            }
-        },
-        {
-            title: "Title3",
-            shortDesc: "Short desc3",
-            created: {
-                name: "Jimmy Kajon3",
-                date: "03 Apr 2017, 13:46"
-            },
-            lastPost: {
-                name: "Jimmy Kajon3",
-                date: "03 Apr 2017, 13:46"
-            },
-            stats: {
-                replies: 3,
-                views: 300
-            }
-        },
-        {
-            title: "TitleN",
-            shortDesc: "Short descN",
-            created: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            lastPost: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            stats: {
-                replies: 90,
-                views: 9000
-            }
-        },
-        {
-            title: "TitleN",
-            shortDesc: "Short descN",
-            created: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            lastPost: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            stats: {
-                replies: 90,
-                views: 9000
-            }
-        },
-        {
-            title: "TitleN",
-            shortDesc: "Short descN",
-            created: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            lastPost: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            stats: {
-                replies: 90,
-                views: 9000
-            }
-        },
-        {
-            title: "TitleN",
-            shortDesc: "Short descN",
-            created: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            lastPost: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            stats: {
-                replies: 90,
-                views: 9000
-            }
-        },
-        {
-            title: "TitleN",
-            shortDesc: "Short descN",
-            created: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            lastPost: {
-                name: "Jimmy KajonN",
-                date: "09 Apr 2017, 13:46"
-            },
-            stats: {
-                replies: 90,
-                views: 9000
-            }
-        },
-    ];
-    forumData = [];
-    res.render('index', {title: "The Forums", forumData: forumData})
-});
-forumRouter.get('/2', async function(req, res, next) {
+forumRouter.get('/', async function(req, res, next) {
     // TODO: specify a user nane and full name field
     let forumData = await getForums();
     console.log(forumData);
@@ -350,50 +221,16 @@ forumRouter.get('/2', async function(req, res, next) {
 });
 
 // forum messages view
-forumRouter.get('/forum/1', function(req, res, next) {
-    // TODO: specify a user nane and full name field
-    let messages = [
-        {
-            name: "Jimmy Kajon1",
-            date: "today1",
-            body: "1111111111111111111fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
-        },
-        {
-            name: "Jimmy Kajon2",
-            date: "today2",
-            body: "2222222222222222222fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
-        },
-        {
-            name: "Jimmy Kajon3",
-            date: "today3",
-            body: "3333333333333333333fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
-        },
-        {
-            name: "Jimmy Kajon4",
-            date: "today4",
-            body: "4444444444444444444fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
-        },
-        {
-            name: "Jimmy Kajon5",
-            date: "today5",
-            body: "5555555555555555555fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
-        },
-        {
-            name: "Jimmy Kajon6",
-            date: "today6",
-            body: "6666666666666666666fdasfdiusafydgnsaioufnuynasdunfynviuds afu ydasufusdyfuasdfiusdaiufiud suif sdaou f dsoyfui iuds fio sduif yuas yfiads yif af aiudy foi udf adyf y syfyi yaoudy fuyhdy ouyfv hy fv uydfa vuoy rafyuov dyuf vyu a f  uy vua huv o aoud hffiu hyaurgf u fa fu udfiuydasiuyfio a  ufu d."
-        },
-    ];
-    res.render('forum', {forumTitle: "Title1", messages: messages})
+forumRouter.get('/forum/:forumId', async function(req, res, next) {
+    let context = await getForum(req.params.forumId);
+    console.log(context);
+    if (context.forumTitle === undefined && context.messages.length === 0) {
+        res.status(404).send('Page Not found')
+    } else {
+        res.render('forum', context)
+    }
 });
 
-// forum messages view
-forumRouter.get('/forum/2', async function(req, res, next) {
-    // TODO: specify a user nane and full name field
-    let context = await getForum('NJz79Jck1irrZe8AEMd8');
-    console.log(context);
-    res.render('forum', context)
-});
 
 
 forumRouter.post('/submit/create', function(req, res, next) {
