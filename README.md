@@ -1,7 +1,7 @@
 ## Artificial Satellite Database
 
 - This application collects and stores a database of artificial satellites.
-- For ease of use, it splits the display three categoris:
+- For ease of use, it splits the display three tables based on launch date and mission status:
   - Scheduled for future launch,
   - currently operational,
   - and inactive.
@@ -10,7 +10,7 @@
 - Users can remove satellites schedule for the future and mark active satellites as inactive/complete.
 
 
-https://a2-samgoldman.glitch.me
+[https://a2-samgoldman.glitch.me](https://a2-samgoldman.glitch.me)
 
 ## Technical Achievements
 - Switching between two views ("add" and "view") within the same webpage
