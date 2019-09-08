@@ -1,27 +1,46 @@
+/*
+TODO:
+add computed field in server
+add ability to remove a record from the server
+add a results html file to display all results
+date inputs are 5px taller than text
+*/
+
 //add btn onclick
-const add_assignment = function(e) {
-    console.log('done')
+function addAssignment(e) {
     e.preventDefault();
+    console.log('abc')
 
     let assignment = document.getElementById("assignment").value;
     let classname = document.getElementById("classname").value;
     let due_date = document.getElementById('due_date').value; 
 
     let row = document.createElement("li");
-    document.getElementById('form').appendChild(row);
+    row.className = 'list';
+    document.getElementById('todo-ol').appendChild(row);
 
     let assign_input = document.createElement('input');
-    assign_input.type = 'text'
+    assign_input.type = 'text';
     assign_input.value = assignment;
 
     let classname_input = document.createElement('input');
     classname_input.value = classname;
 
     let due_date_input = document.createElement('input');
+    due_date_input.type ='date';
     due_date_input.value = due_date;
 
+    let now = new Date();
+    let due_date_date = new Date(due_date + 'GMT-0400');
+    let time_left = due_date_date - now;
+    console.log(time_left)
+    console.log(due_date_date)
+    console.log(now)
+    console.log(due_date)
+
     let time_left_input = document.createElement('input');
-    time_left_input.value = 0;
+    time_left_input.type = 'date';
+    time_left_input.value = time_left;
     time_left_input.readOnly = true;
 
     // let rm_btn = document.createElement('button');
@@ -49,7 +68,6 @@ const add_assignment = function(e) {
         assignment: assignment,
         classname: classname,
         due_date: due_date,
-        time_left: time_left,
     }
     const body = JSON.stringify(json)
 
@@ -64,6 +82,10 @@ const add_assignment = function(e) {
 
 }
 
+
+//how to dynamically add the 'event' argument
+//on call, as this function is added as an onclick prop
+//in js
 const done_click = function(e) {
     e.preventDefault();
 
@@ -72,9 +94,4 @@ const done_click = function(e) {
 const rm_click = function(e) {
     e.preventDefault();
 
-}
-
-window.onload = function() {
-    const button = document.getElementById('add_assignment')
-    button.onclick = add_assignment
 }
