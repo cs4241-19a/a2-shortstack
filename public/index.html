@@ -26,6 +26,7 @@
       <th>Name</th>
       <th>ClassYear</th>
       <th> Height in inches</th>
+      <th> Height in centimeters</th>
     </table>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -58,10 +59,7 @@
     return false
   }
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+ 
     
     /*const myDelete = function( e ) {
     // prevent default form action from being carried out
@@ -116,11 +114,11 @@
           
           response.forEach(function(item){
           console.log("item is " +item)
-          $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td></tr>')
+          $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td><td>' + item.cm + '</td></tr>')
           console.log("wrote " + item.name)
         })
           
-        },1000)
+        },2000)
         
       })
       console.log("Done writing")

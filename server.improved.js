@@ -18,6 +18,8 @@ const appdata = [
   { 'name': 'Andy', 'year': 2022, 'inches': 130} 
 ]
 
+const newData = []
+
 /*const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     //handleGet( request, response )    
@@ -75,9 +77,13 @@ app.post("/delete", function(request,response){
 
 app.get("/data", function(request, response){
   
+  appdata.forEach(function(item){
+    newData.push({name: item.name, year: item.year, inches: item.inches, cm: (item.inches * 2.54)})
+  })
   
   
-  response.send(appdata)
+  
+  response.send(newData)
 })
 /*const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
