@@ -35,11 +35,12 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-   // firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
-   //firebase.database().ref().push([fName:'Test',lName:'TEST', month: 'August', day: 14, sign: 'Leo'])
+   firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
+   //firebase.database().ref().push({fName:'Test',lName:'TEST', month: 'August', day: 14, sign: 'Leo'})
     /*
-      DatabaseReference = firebase.database().ref().push()
-      var 
+      DatabaseReference  newRef= firebase.database().ref().push()
+      var key = newRef.getkey();
+      firebase.database().ref().child(key)
     */
     //firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
 
@@ -100,11 +101,16 @@ const handlePost = function( request, response ) {
         console.log("submit")
         const convertedData = JSON.parse(dataString)
         convertedData.sign = starSign(convertedData)
+        //firebase.database().ref().push(convertedData)
         if(noDuplicates(convertedData)){
           appdata.push(convertedData)
           let json = JSON.stringify(appdata)
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-          response.write(json)
+          let xxx = ""
+          var temp = firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
+          console.log(xxx)
+          //response.write(firebase.database().ref().once('value', function(snap){JSON.stringify(snap.val())}))
+          //response.write(json)
           response.end()
         }
         else{
