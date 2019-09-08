@@ -18,7 +18,6 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-
 const appdata = [
   { 'fName': 'Bob', 'lName': 'Smith', 'month':'August', 'day': 23, 'sign':"AHH"},
   { 'fName': 'Suzy', 'lName': 'Ng', 'month':'September','day': 30 , 'sign':"AHH"},
@@ -36,6 +35,7 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
+    console.log(firebase.database())
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
