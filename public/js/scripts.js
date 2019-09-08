@@ -1,20 +1,19 @@
 // Register HTML elements ==============================================================================================
 const addBtn = document.getElementById('add');
-const deleteBtn = document.getElementById('delete');
-const modifyBtn = document.getElementById('modify');
 const overview = document.getElementById('overview');
-
+const rightHead = document.getElementById('rightHead');
 // =====================================================================================================================
 
-// GET =================================================================================================================
-let tabularFront = "Empty Tabular";
-let bombIndex = 0;
+// GET (shows the dataset in server) ===================================================================================
+let tabularFront;
+
 const createNode = function (element) {
     return document.createElement(element);
 };
 const append = function (parent, el) {
     return parent.appendChild(el);
 };
+
 const makeHeadings = function () {
     let th1 = createNode('th');
     let th2 = createNode('th');
@@ -34,6 +33,30 @@ const makeHeadings = function () {
     append(tr, th5);
     append(overview, tr);
 };
+const gearForm = function (gear, row) {
+    modifyIndex = gear.id[4];
+    rightHead.innerHTML = "Modify Information";
+    addBtn.innerHTML = "Update";
+
+    document.querySelector('#name').value = row.name;
+    document.querySelector('#age').value = row.age;
+
+    let genderS = document.getElementsByName('gender');
+    if (row.gender === "Male") genderS[0].checked = true;
+    else if (row.gender === "Female") genderS[1].checked = true;
+    else genderS[2].checked = true;
+
+    const hobbyS = document.getElementsByName('hobby');
+    if (row.hobby === "Sport") hobbyS[0].checked = true;
+    else if (row.hobby === "Music") hobbyS[1].checked = true;
+    else if (row.hobby === "Gaming") hobbyS[2].checked = true;
+    else hobbyS[3].checked = true;
+};
+
+/**
+ * Loads the items of dataset onto page
+ * Will be called when the dataset is modified
+ */
 const refresh = function () {
     fetch('/refresh', {
         method: 'GET'
@@ -45,13 +68,8 @@ const refresh = function () {
         makeHeadings();
 
         let rowNum = 1;
-        const setBombIndex = function (e) {
-            console.log('hi');
-            bombIndex = rowNum;
-            e.preventDefault();
-            return false;
-        };
         tabularFront.map(function (row) {
+            let tr = createNode('tr');
             let td1 = createNode('th');
             let td2 = createNode('th');
             let td3 = createNode('th');
@@ -59,15 +77,29 @@ const refresh = function () {
             let td5 = createNode('th');
             let td6 = createNode('th');
             let td7 = createNode('th');
-
             let gear = createNode('i');
             gear.id = `gear${rowNum}`;
             gear.className = 'fa fa-gear';
-
+            gear.onclick = function (e) {
+                gearForm(gear, row);
+                e.preventDefault();
+                return false;
+            };
             let bomb = createNode('i');
             bomb.id = `bomb${rowNum}`;
             bomb.className = 'fa fa-bomb';
-            bomb.onclick = setBombIndex;
+            bomb.onclick = function (e) {
+                let body = bomb.id;
+                fetch('/delete', {
+                    method: 'POST',
+                    body
+                }).then(function (response) {
+                    console.log("Post sent to server: " + response);
+                    refresh();
+                });
+                e.preventDefault();
+                return false;
+            };
 
             td1.innerHTML = row.name;
             td2.innerHTML = row.gender;
@@ -77,8 +109,6 @@ const refresh = function () {
             append(td6, gear);
             append(td7, bomb);
 
-            let tr = createNode('tr');
-            tr.className = rowNum;
             append(tr, td1);
             append(tr, td2);
             append(tr, td3);
@@ -88,6 +118,7 @@ const refresh = function () {
             append(tr, td7);
             append(overview, tr);
 
+            tr.className = rowNum;
             rowNum++;
         });
     });
@@ -95,8 +126,10 @@ const refresh = function () {
 refresh();
 // =====================================================================================================================
 
-// POST ================================================================================================================
-let input = 'Empty Input';
+// POST (for add and modify) ===========================================================================================
+let input;
+let modifyIndex = 0;
+
 const makeBody = function () {
     const name = document.querySelector('#name');
     const age = document.querySelector('#age');
@@ -124,7 +157,8 @@ const makeBody = function () {
         age: parseInt(age.value),
         gender: gender,
         hobby: hobby,
-        matchScore: 0
+        matchScore: 0,
+        modifyIndex
     };
     return JSON.stringify(json);
 };
@@ -139,40 +173,28 @@ const handlePost = function () {
     });
 };
 
-const setInputAdd = function (e) {
-    input = 'add';
-    handlePost();
+const setInput = function (e) {
+    if (addBtn.innerHTML === "Submit") {
+        input = 'add';
+        handlePost();
+    }
+    else {
+        input = 'modify';
+        handlePost();
+        rightHead.innerHTML = "Personal Information";
+        addBtn.innerHTML = "Submit";
+
+        document.querySelector('#name').value = "";
+        document.querySelector('#age').value = "";
+
+        let genderS = document.getElementsByName('gender');
+        for (let i = 0; i < genderS.length; i++) {genderS[i].checked = false;}
+
+        let hobbyS = document.getElementsByName('hobby');
+        for (let i = 0; i < hobbyS.length; i++) {hobbyS[i].checked = false;}
+    }
     e.preventDefault();
     return false;
 };
-const setInputDelete = function (e) {
-    input = 'delete';
-    handlePost();
-    e.preventDefault();
-    return false;
-};
-const setInputModify = function (e) {
-    input = 'modify';
-    handlePost();
-    e.preventDefault();
-    return false;
-};
-
-addBtn.onclick = setInputAdd;
-deleteBtn.onclick = setInputDelete;
-modifyBtn.onclick = setInputModify;
-
-let element = document.getElementById('overview').getElementsByTagName('tr');
-console.log(element);
-
-let bo = document.getElementsByClassName('fa fa-bomb');
-console.log(bo);
-
-
-// let i = 1;
-// while (i > 0) {
-//     console.log('hi');
-//     document.getElementById(`bomb${i}`).onclick = foo;
-//     i++;
-// }
+addBtn.onclick = setInput;
 // =====================================================================================================================

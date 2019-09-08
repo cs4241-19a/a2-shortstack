@@ -37,11 +37,10 @@ server.listen(process.env.PORT || port);
 
 // The main dataset ====================================================================================================
 const tabularBack = [
-  {'name': 'SpongeBob', 'gender': 'Male', 'age': 10, 'hobby': 'music', 'matchScore': 0},
-  {'name': 'Patrick', 'gender': 'Male', 'age': 12, 'hobby': 'music', 'matchScore': 0},
-  {'name': 'Mr.Krabs', 'gender': 'Male', 'age': 30, 'hobby': 'sport', 'matchScore': 0},
-  {'name': 'Mrs.Puff', 'gender': 'Female', 'age': 30, 'hobby': 'sport', 'matchScore': 0},
-  {'name': 'Sandy Cheeks', 'gender': 'Female', 'age': 15, 'hobby': 'sport', 'matchScore': 0}
+  {'name': 'SpongeBob', 'gender': 'Male', 'age': 10, 'hobby': 'Jellyfish Hunt', 'matchScore': 0},
+  {'name': 'Patrick', 'gender': 'Male', 'age': 12, 'hobby': 'Jellyfish Hunt', 'matchScore': 0},
+  {'name': 'Mrs.Puff', 'gender': 'Female', 'age': 30, 'hobby': 'Music', 'matchScore': 0},
+  {'name': 'Sandy Cheeks', 'gender': 'Female', 'age': 15, 'hobby': 'Sport', 'matchScore': 0}
 ];
 // =====================================================================================================================
 
@@ -52,37 +51,41 @@ const sendData = function (response, dataset) {
     response.write(JSON.stringify(dataset));
     response.end()
 };
+const calculateScore = function (newRow, oldRow) {
+    let score = 0;
+    if (newRow['gender'] !== oldRow['gender']) score += 50;
+    else score -= 50;
+    score -= Math.abs(newRow['age'] - oldRow['age']) * 3;
+    if (newRow['hobby'] === oldRow['hobby']) score += 20;
+    else score -= 20;
+    return score;
+};
 const addRow = function (str) {
     let json = JSON.parse(str);
     tabularBack.push(json);
 
     for (let i = 0; i < tabularBack.length-1; i++) {
         let row = tabularBack[i];
-        let score = 0;
-        if (json['gender'] !== row['gender']) score += 50;
-        else score -= 50;
-        score -= Math.abs(json['age'] - row['age']) * 3;
-        if (json['hobby'] === row['hobby']) score += 20;
-        else score -= 20;
-        row['matchScore'] = score;
+        row['matchScore'] = calculateScore(json, row);
     }
 };
 const deleteRow = function (str) {
-    let json = JSON.parse(str);
-    console.log('delete called: ' + json['model']);
     for (let i = 0; i < tabularBack.length; i++) {
-        let row = tabularBack[i];
-        // if (row['model'] === json['model']
-        //     && row['year'] === json['year']
-        //     && row['mpg'] === json['mpg']) {
-        //   tabularBack.splice(i,1);
-        //   console.log(tabularBack);
-        // }
+        if ((i+1).toString() === str[4]) tabularBack.splice(i,1);
     }
 };
 const modifyRow = function (str) {
     let json = JSON.parse(str);
-    console.log('modify called: ' + json);
+    for (let i = 0; i < tabularBack.length; i++) {
+        if ((i+1).toString() === json['modifyIndex']) {
+            let row = tabularBack[i];
+            row['name'] = json['name'];
+            row['gender'] = json['gender'];
+            row['age'] = json['age'];
+            row['hobby'] = json['hobby'];
+            row['matchScore'] = calculateScore(tabularBack[tabularBack.length-1], row);
+        }
+    }
 };
 // =====================================================================================================================
 
