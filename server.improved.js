@@ -28,8 +28,8 @@ const handleGet = function( request, response ) {
   }
   else if( request.url === '/getDrawings'){
     const type = mime.getType( appdata ) 
-    response.writeHeader(200, { 'Content-Type': type });
-    response.write(JSON.stringify({ data: appdata }));
+    response.writeHeader(200, { 'Content-Type': type })
+    response.data = JSON.stringify(appdata)
     response.end();
   }
   else{
