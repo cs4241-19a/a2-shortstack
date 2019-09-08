@@ -35,7 +35,7 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-   firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
+   //firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
    //firebase.database().ref().push({fName:'Test',lName:'TEST', month: 'August', day: 14, sign: 'Leo'})
     /*
       DatabaseReference  newRef= firebase.database().ref().push()
@@ -101,16 +101,13 @@ const handlePost = function( request, response ) {
         console.log("submit")
         const convertedData = JSON.parse(dataString)
         convertedData.sign = starSign(convertedData)
-        //firebase.database().ref().push(convertedData)
+        firebase.database().ref().push(convertedData)
         if(noDuplicates(convertedData)){
           appdata.push(convertedData)
           let json = JSON.stringify(appdata)
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-          let xxx = ""
-          var temp = firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
-          console.log(xxx)
           //response.write(firebase.database().ref().once('value', function(snap){JSON.stringify(snap.val())}))
-          //response.write(json)
+          response.write(json)
           response.end()
         }
         else{
@@ -180,6 +177,19 @@ function noDuplicates(dataToAdd){
     }
   }
   return true;
+}
+
+//returns firebase database as an array of json objects
+function returnFirebaseAsArray(){
+  let returnArray = []
+  firebase.database().ref().once("value")
+  .then(function( response) {
+    response.forEach(function(childSnapshot){
+      var childData = childSnapshot.val()
+      returnArray.push(childData)
+    })
+  })
+  return returnArray
 }
 
 //Calculates star sign for given information
@@ -312,3 +322,8 @@ function modData(toChange){
     }
   }
 }
+
+//******** FIREBASE FUNCTIONS *******//
+/*var newItem = firebase.database.ref()
+   var blankItem = newItem.push()
+   blankItem.set({*/
