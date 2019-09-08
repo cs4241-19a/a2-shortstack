@@ -9,10 +9,30 @@ const days = [
 //const nextButton = document.querySelector( '#next' );
 
 const nextAction = function(num) {
+  alert("Hello")
   var day = document.querySelector( '.boardsection[data-board=day_' + num + ']' );
   var body = document.querySelector( ':not(.boardsection[data-board=day_' + num + '])' );
-  day.animate('next', '1s', 'forwards');
+  day.animate([
+    
+  ],{
+    duration: 1,
+    
+  }, 
+              'forwards');
   body.animate('nextbody', '1s', 'forwards');
   
 }
 
+
+/*
+
+document.getElementById("tunnel").animate([
+  // keyframes
+  { transform: 'translateY(0px)' }, 
+  { transform: 'translateY(-300px)' }
+], { 
+  // timing options
+  duration: 1000,
+  iterations: Infinity
+})
+*/
