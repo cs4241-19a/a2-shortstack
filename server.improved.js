@@ -15,9 +15,9 @@ const http = require( 'http' ),
       port = 8000;
 
 const appdata = [ //can add/edit/ delete any object in here
-  { 'currentGrade': 'toyota', 'desired': 1999, 'finalWorth': 23 },
-  { 'currentGrade': 'honda', 'desired': 2004, 'finalWorth': 30 },
-  { 'currentGrade': 'ford', 'desired': 1987, 'finalWorth': 14 }
+  { 'currentGrade': 'toyota', 'desired': 1999, 'finalWorth': 23, 'finalExam':undefined},
+  { 'currentGrade': 'honda', 'desired': 2004, 'finalWorth': 30,'finalExam':undefined },
+  { 'currentGrade': 'ford', 'desired': 1987, 'finalWorth': 14 ,'finalExam':undefined}
 ]
 
 
@@ -44,7 +44,6 @@ const handleGet = function( request, response ) {
       console.log('The read failed: ' + errorObject.code);
     });
   }
-
   else{
     sendFile( response, filename )
   }
@@ -73,15 +72,17 @@ const handlePost = function( request, response ) {
     switch( request.url ) {
       case '/submit':
       //server logic
-        const grades = {
-          'currentGrade': data.currentGrade,
-          'desired': data.desired,
-          'finalWorth': data.finalWorth,
-        };
         let desiredPercentage=parseInt(data.desired)*0.01;
         let finalWorthPercentage=parseInt(data.finalWorth)*0.01;
         let currentGradePercentage=parseInt(data.currentGrade)*0.01;
         let finalExam=(desiredPercentage-(1-finalWorthPercentage)*currentGradePercentage)/finalWorthPercentage;
+        const grades = {
+          'currentGrade': data.currentGrade,
+          'desired': data.desired,
+          'finalWorth': data.finalWorth,
+          'finalExam' :finalExam,
+        };
+        console.log(finalExam);
         appdata.push( grades);
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         response.end();
@@ -119,12 +120,13 @@ const sendFile = function( response, filename ) {
    })
 };
 
-function writeUserData(ref, currentGrade, desired,finalWorth) {
+function writeUserData(ref, currentGrade, desired/*,finalWorth*/) {
   var usernameRef = usersRef.child(ref);
   usernameRef.set({
     currentGrade: currentGrade,
     desired: desired,
-    finalWorth:finalWorth,
+
+    //finalWorth:finalWorth,
   });
 }
 

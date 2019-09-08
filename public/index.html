@@ -79,6 +79,8 @@
     localStorage.setItem('currentGrade',currentGrade.value);
     localStorage.setItem('desired',desired.value);
     localStorage.setItem('finalWorth',finalWorth.value);
+    //testing
+    //localStorage.setItem('finalExam',finalExam.value);
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault();
@@ -86,7 +88,7 @@
     const currentGrade = document.querySelector( '#currentGrade' ),
           desired = document.querySelector( '#desired' ),
             finalWorth=document.querySelector('#finalWorth'),
-          json = { currentGrade: currentGrade.value, desired: desired.value,finalWorth:finalWorth.value
+          json = { currentGrade: currentGrade.value, desired: desired.value//,finalWorth:finalWorth.value
                  //mpg: mpg.value, tripDistance: distance.value,
                  //gasPrice: gas.value
     };

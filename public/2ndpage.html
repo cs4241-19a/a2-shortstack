@@ -35,7 +35,7 @@
     <div class="content">
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
-            <h1 class="main-title">Global
+            <h1 class="main-title">Results
                 <div id="emptyfield"></div> <span class="thin">Landing</span></h1>
             <table id="table_id" class="display main-tagline">
                 <thead>
@@ -87,8 +87,8 @@
                 return json = response.json();
             }). then(function (response){
             console.log( 'post response: ', response );
-            var n=localStorage.getItem('firstvalue');
-            document.getElementById('emptyfield').innerText=JSON.stringify(response[n].currentGrade)
+            var n=localStorage.getItem('finalExam');
+            document.getElementById('emptyfield').innerText=JSON.stringify(response[n].finalExam)
         });
     }
 
