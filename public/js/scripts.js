@@ -6,8 +6,10 @@ const submit = function( e ) {
   // prevent default form action from being carried out
   e.preventDefault()
 
-  const input = document.querySelector( '#yourname' ),
-        json = { yourname: input.value },
+  const inputName = document.querySelector( '#inputName' ),
+  const inputBDay = document.querySelector( '#inputBDay'),
+        json = { yourname: inputName.value,
+                  BDay: inputBDay.value },
         body = JSON.stringify( json )
 
   fetch( '/submit', {

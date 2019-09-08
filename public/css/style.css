@@ -5,6 +5,14 @@ body{
   font-family: Abel;
 }
 
+.snapCont {
+  scroll-snap-type: y mandatory;
+}
+
+.snapChil {
+  scroll-snap-align: start;
+}
+
 .contentBox{
   border-width: 1px;
   border-style: solid;
@@ -53,6 +61,6 @@ body{
   float: right;
 }
 
-.pdbtm{
+.padbtm{
   margin-bottom: 15px;
 }
