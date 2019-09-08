@@ -53,9 +53,9 @@ function genTable(dataList) {
               "<td>"+ d.drawType +"</td>" + 
               "<td>"+ d.name +"</td>" +
               "<td>" + 
-                "<button id='v" + i + "'>View</button>" +
-                "<button id='e" + i + "'>Edit</button>" +
-                "<button id='d" + i + "'>Delete</button>" +
+                "<button id='v" + i + "' onclick='drawData(" + i + ")'>View</button>" +
+                "<button id='e" + i + "' onclick='editData(" + i + ")'>Edit</button>" +
+                "<button id='d" + i + "'onclick='deleteData(" + i +")'>Delete</button>" +
               "</td>"
             "</tr>"
     i++;
@@ -63,6 +63,27 @@ function genTable(dataList) {
   
   document.getElementById("dataTable").innerHTML = str
 }
+
+function drawData(index){
+  console.log("draw", index)
+}
+
+function editData(index){
+  console.log("edit", index)
+}
+
+function deleteData(index){
+  console.log("delete", index)
+  const body = JSON.stringify( index )
+  fetch( '/delete', {
+    method: 'POST',
+    body
+  })
+  .then( function( response) {
+    getData()
+  })
+}
+
 
 window.onload = function() {
   getData()

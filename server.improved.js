@@ -61,7 +61,15 @@ const handlePost = function( request, response ) {
         
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
+        break
         
+      case '/delete':
+        let index = JSON.parse(dataString)
+        appdata.splice(index, 1)
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+        break
+      case '/edit':
         break
     }
     
