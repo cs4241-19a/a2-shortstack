@@ -1,3 +1,15 @@
+//Database Information
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://trip-budget-c8470.firebaseio.com"
+});
+
+var db = admin.database();
+var usersRef = db.ref('/');
 
 const http = require( 'http' ),
       fs   = require( 'fs' ),
@@ -30,6 +42,13 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' ) //do sendFile for javascript file
   }else if(request.url === '/cars'){
     sendData(response, appdata)
+  }else if(request.url==='/getData'){
+    usersRef.on('value', function(snapshot) {
+      console.log(snapshot.val());
+      response.end(JSON.stringify(snapshot.val()))
+    }, function (errorObject) {
+      console.log('The read failed: ' + errorObject.code);
+    });
   }
   else{
     sendFile( response, filename )
