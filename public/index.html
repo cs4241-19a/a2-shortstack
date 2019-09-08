@@ -49,7 +49,7 @@
   function onDelete(){
     document.getElementById('delete').submit()
     setTimeout(function(){
-      clearTable()
+      //clearTable()
       getData()
     },1000)
     
@@ -88,11 +88,17 @@
     function clearTable()
     {
       //$('#dataTable:not(:first)').empty()
-      for(let i=1; i < document.getElementById("dataTable").collumns.length; i++)
+      $.get('/data',function(response){
+        response.forEach(function(item){
+          document.getElementById("dataTable").deleteRow(1)
+        })
+        
+      })
+      /*for(let i=1; i < document.getElementById("dataTable").rows.length; i++)
         {
           document.getElementById("dataTable").deleteRow(i)
-        }
-      
+        }*/
+      //document.getElementById("dataTable").deleteRow(1)
       console.log("Table has been reset")
     }
     
@@ -100,7 +106,7 @@
     {
       $.get('/data',function(response){
         //clearTable(document.getElementById("dataTable"))
-        //clearTable()
+        clearTable()
         response.forEach(function(item){
           console.log("item is " +item)
           $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td></tr>')

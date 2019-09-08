@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded())
 
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 23 },
-  { 'name': 'Bob', 'year': 2021, 'inches': 30 },
+  { 'name': 'Bob', 'year': 2021, 'inches': 32 },
   { 'name': 'Andy', 'year': 2022, 'inches': 14} 
 ]
 
