@@ -36,8 +36,13 @@ app.get("/", function(request, response){
 app.post("/submit", function(request, response){
   console.log(request.body)
   console.log("name is " + request.body.yourname)
-  json = { name: request.body.yourname, year: request.body.value, inches: inputInches.value }
-  appdata.push
+  let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
+  appdata.push(json)
+  console.log(appdata)
+})
+
+app.get("/data", function(request, response){
+  
 })
 /*const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
