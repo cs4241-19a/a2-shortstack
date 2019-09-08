@@ -4,6 +4,10 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <script src="../webgl-utils.js"></script>
+    <script src="../initShaders.js"></script>
+    <script src="../MV.js"></script>
+    <script src="../script.js"></script>
     
     <script id="vshader" type="x-shader/x-vertex">
 
@@ -74,6 +78,7 @@
         <canvas id="webGL"> 
           Please use a brower that supports the "canvas" tag.
         </canvas>
+        <p><input type="file" accept="*.ply" onchange="readFile(event)"></p>
       </div>
       
       <div id="table">
