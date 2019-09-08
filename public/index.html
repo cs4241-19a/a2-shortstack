@@ -141,7 +141,7 @@
         newLine+=('<td>' +cars.totalGallons+ '</td>');
         newLine+=('<td>' +'$'+cars.totalCost+ '</td>');
         //newLine+=('<td>' + '<button id="delete-${i}"> X </button>' + '</td>');
-        newLine+=('<td>'+ "<button id='delete-${i}' type='button' onclick='deleteRow(" + '"' + + {i} + '"' + ")' >X</button>" +'</td>');
+        newLine+=('<td>'+ "<button id='delete-'"+${i}" type='button' onclick='deleteRow(" + '"' + + ${i} + '"' + ")' >X</button>" +'</td>');
         //newLine+=('<td>' + '<button onclick="deleteRow(${i})" id="delete-${i}"> X </button>' + '</td>');
         newLine+='</tr>';
 
