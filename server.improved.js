@@ -76,15 +76,24 @@ app.post("/delete", function(request,response){
 })
 
 app.get("/data", function(request, response){
-  console.log("Pre newData is " + newData)
+  console.log("Pre newData is " )
+  console.log(newData)
   
-  appdata.forEach(function(item){
+  newData.forEach(function(data){
     newData.shift()
-    newData.push({name: item.name, year: item.year, inches: item.inches, cm: (item.inches * 2.54)})
+    
+    
   })
   
   
-  console.log("post newData is " + newData)
+  appdata.forEach(function(item){
+    //newData.shift()
+    newData.push({name: item.name, year: item.year, inches: item.inches, cm: (item.inches * 2.54)})
+  })
+  newData.shift()
+  
+  console.log("Post newData is ")
+  console.log(newData)
   
   response.send(newData)
 })
