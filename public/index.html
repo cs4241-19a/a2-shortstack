@@ -14,8 +14,13 @@
      <!-- <input type="text" id="delname" value="delete name"><br>
       <button onclick="myDelete()">delete</button>-->
     </form>
-    <button id = "submit" class = "inputbutton" onclick = "submit()">submit     
-    </button>
+    <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button>
+    
+    <table id = "dataTable">
+      <th>Name</th>
+      <th>ClassYear</th>
+      <th> Heigh in inches</th>
+    </table>
   </body>
   <script>
 
@@ -76,26 +81,10 @@
     
     
     
-    const showData = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    
-    
-
-    fetch( '/data', {
-      method:'GET'
-       
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      alert(response.blob)
-      console.log( response )
+    function clearTable
+    {
       
-    })
-
-    return false
-  }
+    }
     
 
   </script>

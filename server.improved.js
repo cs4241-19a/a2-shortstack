@@ -42,7 +42,7 @@ app.post("/submit", function(request, response){
 })
 
 app.get("/data", function(request, response){
-  
+  response.send(appdata)
 })
 /*const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
