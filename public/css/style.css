@@ -16,6 +16,10 @@
 
 #CarData tr:hover {background-color: #ddd;}
 
+#CarData tr {
+  background-color: white;
+}
+
 #CarData th {
   padding-top: 12px;
   padding-bottom: 12px;
