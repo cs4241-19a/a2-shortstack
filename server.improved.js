@@ -20,9 +20,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [ //can add/edit/ delete any object in here 
-  { 'model': 'Toyota', 'year': 1999, 'mpg': 23, 'tripDistance': 300, 'gasPrice': 2.39, 'totalGallons': 13.04, 'totalCost': 31.16 },
+  { 'model': 'Toyota', 'year': 2002, 'mpg': 23, 'tripDistance': 300, 'gasPrice': 2.39, 'totalGallons': 13.04, 'totalCost': 31.16 },
   { 'model': 'Honda', 'year': 2004, 'mpg': 30, 'tripDistance': 230, 'gasPrice': 3.40, 'totalGallons': 7.66, 'totalCost': 26.04  },
-  { 'model': 'Ford', 'year': 1987, 'mpg': 14, 'tripDistance': 113, 'gasPrice': 4.50, 'totalGallons': 8.07, 'totalCost': 36.31 } 
+  { 'model': 'Ford', 'year': 2000, 'mpg': 14, 'tripDistance': 113, 'gasPrice': 4.50, 'totalGallons': 8.07, 'totalCost': 36.31 } 
 ]
 
 
@@ -72,9 +72,9 @@ const handlePost = function( request, response ) {
 
       case '/submit':
       //server logic 
-        let totalGallons = (parseInt(data.tripDistance) / parseInt(data.mpg)).toFixed(2)
+        let totalGallons = (parseInt(data.tripDistance) / parseInt(data.mpg))
 
-        let totalCost = (totalGallons*(parseInt(data.gasPrice))).toFixed(2)
+        let totalCost = (totalGallons*(parseInt(data.gasPrice)))
         
         const carData = {
           'model': data.model,
@@ -82,14 +82,16 @@ const handlePost = function( request, response ) {
           'mpg': data.mpg,
           'tripDistance': data.tripDistance,
           'gasPrice': data.gasPrice,
-          'totalGallons': totalGallons,
-          'totalCost': totalCost
+          'totalGallons': totalGallons.toFixed(2),
+          'totalCost': totalCost.toFixed(2)
         }
         
         if( request.url === '/submit') {
           let foundName=false //figuring out if something already exists
           for (let i=0; i<appdata.length; i++){
-            if((appdata[i].model === carData.model)&&(appdata[i].year === carData.year)&&(appdata[i].mpg === carData.mpg)&&(appdata[i].tripDistance === carData.tripDistance)&&(appdata[i].totalGallons === carData.totalGallons)) {
+            if((appdata[i].model === carData.model)&&(appdata[i].year === carData.year)
+               &&(appdata[i].mpg === carData.mpg)&&(appdata[i].tripDistance === carData.tripDistance)
+               &&(appdata[i].totalGallons === carData.totalGallons)) {
               foundName = true
             }
           }
