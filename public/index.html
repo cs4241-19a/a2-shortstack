@@ -4,6 +4,34 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+    
+    <script id="vshader" type="x-shader/x-vertex">
+
+      attribute vec4 vPosition;
+      attribute vec4 vColor;
+      uniform float vPointSize;
+      uniform mat4 projMatrix;
+      uniform mat4 modelMatrix;
+      uniform mat4 viewMatrix;
+      varying vec4 fColor;
+
+      void main() {
+        gl_Position = projMatrix * viewMatrix * modelMatrix * vPosition;
+        gl_PointSize = vPointSize;
+        fColor = vColor;
+      }
+  	</script>
+
+    <script id="fshader" type="x-shader/x-fragment">
+      precision mediump float;
+	    varying vec4 fColor;
+
+    	void main()
+	    {
+	      gl_FragColor = fColor;
+  	  }
+	  </script>
+    
   </head>
   <body>
     <div class="layout">
@@ -43,7 +71,9 @@
       </form>
       
       <div id="canvas">
-        <canvas id="webGL"> </canvas>
+        <canvas id="webGL"> 
+          Please use a brower that supports the "canvas" tag.
+        </canvas>
       </div>
       
       <div id="table">
