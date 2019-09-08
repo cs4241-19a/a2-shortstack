@@ -82,6 +82,7 @@
      document.getElementById( 'blue1' ).value='';
      document.getElementById( 'redScore' ).value='';
      document.getElementById( 'blueScore' ).value='';
+    fetchMH();
   }
   
   const viewMH  = function () {
@@ -94,12 +95,9 @@
         const matchH = data.data;
         let htmlDiv = document.getElementById('matchTable');
         htmlDiv.innerHTML = '<tr>\n' +
-                '              <th>Red1</th>\n' +
-                '              <th>Blue1</th>\n' +
-                '              <th>RedScore</th>\n' +
-                '              <th>BlueScore</th>\n' +
-                '              <th></th>\n' +
-                '              <th></th>\n' +
+                '              <th>Red</th>\n' +
+                '              <th>Blue</th>\n' +
+                '              <th>Score</th>\n' 
                 '            </tr>';
        
         for (let i = 0; i < matchH.length; i++) {
