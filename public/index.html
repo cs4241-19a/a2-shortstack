@@ -1,19 +1,44 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
+<head>
+    <title>Online Dating in Ocean</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="./css/style.css">
-  </head>
-  
-  <body>
-    <form action="">
-      <input type='text' id='model' placeholder="model">
-      <input type='text' id='year' placeholder="year">
-      <input type="text" id="mpg" placeholder="mpg">
-      <button id="submit">submit</button>
-    </form>
-  </body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="./css/style.css" rel="stylesheet">
+</head>
 
-  <script src="./js/scripts.js"></script>
+<body>
+<div class="split left">
+    <h1>Overview</h1>
+    <table id="overview"></table>
+    <table id="trying">
+        <tr>
+            <td><i id="theBomb" class="fa fa-bomb"></i></td>
+        </tr>
+    </table>
+</div>
+<div class="split right">
+    <h1>Personal Information</h1>
+    <form action="">
+        <h3>Name</h3>
+        <label for="name"></label><input id="name" placeholder="Name" type="text"><br>
+        <h3>Age</h3>
+        <label for="age"></label><input id="age" placeholder="Age" type="text"><br>
+        <h3>Gender</h3>
+        <label><input type="radio" name="gender" value="Male"></label> Male
+        <label><input type="radio" name="gender" value="Female"></label> Female
+        <label><input type="radio" name="gender" value="Other"></label> Other <br>
+        <h3>Hobby</h3>
+        <label><input type="radio" name="hobby" value="sport"></label> Sport
+        <label><input type="radio" name="hobby" value="music"></label> Music
+        <label><input type="radio" name="hobby" value="gaming"></label> Gaming
+        <label><input type="radio" name="hobby" value="jellyfishHunt"></label> Jellyfish Hunt
+    </form>
+    <button id="add">Submit</button><br>
+    <button id="delete">Delete</button>
+    <button id="modify">Modify</button>
+</div>
+</body>
+
+<script src="./js/scripts.js"></script>
 </html>

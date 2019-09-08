@@ -1,3 +1,75 @@
-html {
-    background-image: url('../img/Savin-NY-Website-Background-Web.jpg');
+.split {
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.left {
+    width: 55%;
+    left: 0;
+    background-image: url("../img/backgroundLeft.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.right {
+    width: 45%;
+    right: 0;
+    background-image: url("../img/backgroundRight.jpg");
+    background-size: 100% 100%;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 40px;
+    color: azure;
+}
+
+#overview {
+    width: 100%;
+}
+
+th {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    color: azure;
+    font-size: 25px;
+}
+td {
+    color: azure;
+    font-size: 20px;
+}
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+
+form {
+    margin-left: 20px;
+}
+input {
+    margin: 20px;
+    height: 25px;
+}
+h3 {
+    color: azure;
+}
+#add {
+    background-color: #e7e7e7; color: black;
+    border: none;
+    padding: 15px 32px;
+    font-size: 16px;
+    margin-top: 50px;
+    margin-left: 200px;
+    width: 150px;
+}
+#add:hover {
+    background-color: #008CBA;
+    color: white;
 }

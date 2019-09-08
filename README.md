@@ -1,5 +1,5 @@
 
-Your application is required to implement the following functionalities:
+Your application is required to implement the following functionality:
 
 - a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
 - a `Results` functionality which shows the entire dataset residing in the server's memory
