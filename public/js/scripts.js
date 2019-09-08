@@ -36,8 +36,12 @@ const generate = function(e) {
 }
 
 function genTable(dataList) {
-  let str = ""
-  
+  let str = "<tr>"+
+              "<th>Number of Vertices</th>" + 
+              "<th>Draw Type</th>" + 
+              "<th>Name</th>" +
+            "</tr>"
+  document.getElementById("dataTable").innerHTML = str
 }
 
 window.onload = function() {
