@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Globallanding - Bootstrap Landing Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <!-- Favicons -->
+    <link href="img/favicon.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet"  type="text/css">
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"  type="text/css">
+    <!-- Libraries CSS Files -->
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet"  type="text/css">
+    <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet"  type="text/css">
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet"  type="text/css">
+    <!-- =======================================================
+      Template Name: GlobalLanding
+      Template URL: https://templatemag.com/globallanding-bootstrap-landing-template/
+      Author: TemplateMag.com
+      License: https://templatemag.com/license/
+    ======================================================= -->
+</head>
+<body>
+<!-- ********** HEADER ********** -->
+
+<div class="intro">
+    <div class="content">
+        <div id="large-header" class="large-header">
+            <canvas id="demo-canvas"></canvas>
+            <h1 class="main-title">Global <span class="thin">Landing</span></h1>
+            <p class="main-tagline">
+                Build & Customize your Landing Pages with Style.<br><br>
+            <div id="emptyfield"></div>
+            </p>
+        </div>
+    </div>
+    <!--content-->
+    <div id="emptyfield"></div>
+</div>
+<!-- /intro -->
+<!-- JavaScript Libraries -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/easing/easing.js"></script>
+<script src="lib/tweenlite/tweenlite.min.js"></script>
+<script src="lib/tweenlite/easepack.min.js"></script>
+<script src="lib/tweenlite/init.js"></script>
+
+<script>
+    window.onload = function() {
+        fetch( '/receive')
+            .then( function( response ) {
+                // do something with the response
+                return json = response.json();
+            }). then(function (response){
+            console.log( 'post response: ', response );
+            var n=localStorage.getItem('firstvalue');
+            document.getElementById('emptyfield').innerText=JSON.stringify(response[n].currentGrade)
+        });
+    }
+
+</script>
+
+</body>
+
+</html>
