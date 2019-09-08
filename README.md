@@ -6,11 +6,11 @@ This website takes your current overall grade for a particular class, your desir
 
 To fulfill the requirements:
 ---
-###HTML:
+### HTML:
 
 - I have 2 HTML pages, one being the input form and the other being the results page. 
 
-###CSS: 
+### CSS: 
 
 - The input fields as well as the labels (questions) are placed side-by-side using display:inline-block.
 - The shaded text-box is centered in the middle of the page.
@@ -40,11 +40,11 @@ Here is a sample formula for summarizing your activities, talk about:
 
 Achievements:
 ---
-###Technical:
+### Technical:
 - I used firebase to store my data.
 - 
 
-###Design:
+### Design:
 - I implemented a slider for the front page. The example slider code is found here: https://startbootstrap.com/snippets/full-slider/
 - I coded the entry box from scratch. I also tried my best to maintain a consistent style throughout all HTML pages(including color and font choices).
 - I modified this template and turned it into my Results page: https://templatemag.com/demo/GlobalLanding/. It was difficult to make the layering work properly because of the interaction with the particles. P.S.: In A1 I could not accomplish having both the particles interaction in the background as well as the buttons clickable in the front, but this time it is working. 
