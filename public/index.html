@@ -12,58 +12,58 @@
     </div>
     <div class="board" data-board="fullboard"> 
       <div class="boardsection" data-board="day_1">
-        <div class="header">
+        <div class="header" day="1">
           Sunday
         </div>
-        <div class="tasklist">
+        <div class="tasklist" day="1">
           thing
         </div>
       </div>
       <div class="boardsection" data-board="day_2">
-      <div class="header">
+      <div class="header" day="2">
           Monday
         </div>
-        <div class="tasklist">
+        <div class="tasklist" day="2">
           thing
         </div>
       </div>
       <div class="boardsection" data-board="day_3">
-      <div class="header">
+      <div class="header" day="3">
           Tuesday
         </div>
-        <div class="tasklist">
+        <div class="tasklist" day="3">
           thing
         </div>
       </div>      
       <div class="boardsection" data-board="day_4">
-        <div class="header">
+        <div class="header" day="4">
           Wednesday
         </div>
-        <div class="tasklist">
+        <div class="tasklist" day="4">
           thing
         </div>
       </div>
       <div class="boardsection" data-board="day_5">
-        <div class="header">
+        <div class="header" day="5">
           Thursday
         </div>
-        <div class="tasklist">
+        <div class="tasklist" day="5">
           thing
         </div>
       </div>
       <div class="boardsection" data-board="day_6">
-        <div class="header">
+        <div class="header" day="6">
           Friday
         </div>
-        <div class="tasklist">
+        <div class="tasklist" day="6">
           thing
         </div>
       </div>
       <div class="boardsection" data-board="day_7">
-        <div class="header">
+        <div class="header" day="7">
           Saturday
         </div>
-        <div class="tasklist">
+        <div class="tasklist" day="7">
           thing
         </div>
       </div>    
@@ -72,8 +72,15 @@
       <button id="next">
         Next Day
       </button>
+      <span class="subtitle"> Add to Schedule: </span>
       <form action="">
-        <input type="text" id="response" value="answer here">
+        <span> Day: </span>
+        <input type="text" id="task" value="task">
+        <span> Task: </span>
+        <input type="text" id="day" value="1">
+        <span> Time: </span>
+        <input type="text" id="time" value="2:00">
+
         <button id="submit">submit</button>
       </form>
     </div>

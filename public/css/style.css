@@ -3,7 +3,6 @@
 body {
   background: #5A5959;
   font-family: 'Calibri', sans-serif;
-
 }
 
 .title {
@@ -53,10 +52,16 @@ body {
   align-items:center;
 }
 
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2em;
+}
+
+
 #next {
   font-size: 30px;
-  margin-top: .5em;
-  margin-bottom: .5em;
   height: 2em;
   width: 50vw;
   left: 200px;
