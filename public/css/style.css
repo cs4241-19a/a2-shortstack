@@ -1,10 +1,7 @@
 /*Style your own assignment! This is fun! */
 
 
-@font-face {
-    font-family: "Kimberley";
-    src: url(http://www.princexml.com/fonts/larabie/kimberle.ttf) format("truetype");
-  }
+
 body{
     
     background-color: #33ccff;
