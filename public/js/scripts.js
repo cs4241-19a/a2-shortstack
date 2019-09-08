@@ -1,4 +1,31 @@
-//fetch books for the table
+// ***********************************************************************
+// Display functions specific to each table. Use a template row and replace with satellite data
+const displayFuture = function( bkdata ) {
+  const template = '<tr><td>{name}</td><td>{author}</td><td>{comments}</td><td>{rating}</tr>'
+  const row = template.replace("{name}", bkdata.bookName).replace("{author}", bkdata.authorName).replace("{comments}", bkdata.comments).replace("{rating}", bkdata.rating)
+  const tbody = document.querySelector("#all-books")
+  tbody.innerHTML += row
+}
+
+const displayActive = function( sat ) {
+  const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{elapsed} days</td><td><button onclick="markComplete({id})" class="button is-rounded is-success"> \
+  <span class="icon is-small">  <i class="fas fa-check"></i> </span> </button></td></tr>'
+  const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", (new Date(sat.mission_start).toLocaleDateString("en-US")))
+        .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7)).replace("{id}", sat.id)
+  const tbody = document.querySelector("#active-body")
+  tbody.innerHTML += row
+}
+
+const displayInactive = function( sat ) {
+  const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{end}</td><td>{elapsed} days</td></tr>'
+  const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", new Date(sat.mission_start).toLocaleDateString("en-US"))
+        .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7)).replace("{end}", new Date(sat.mission_end).toLocaleDateString("en-US"))
+  const tbody = document.querySelector("#inactive-body")
+  tbody.innerHTML += row
+}
+// End individual display functions
+// ************************************************************************
+
 
 //displayData for the three different tables
 const displayData = function ( data ) {
@@ -98,5 +125,7 @@ const loadData = function( e ) {
   window.onload = function() {
     const addBookbutton = document.querySelector( 'submit-btn' )
     addBookbutton.onclick = addBook
+    
+    loadData();
     
   }
