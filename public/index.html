@@ -11,14 +11,29 @@
     
     body {background: rgb(192,192,192);}
     
-    table, th{  border: 1px solid black;
-    text-align: center;
-      align: center;
+    
+    
+    .input{
+      width:25%;
+      margin-right:1%;
+      float: left;
     }
     
+    table, th{  border: 1px solid black;
+    text-align: center;
+      margin: 25% auto;
+    }
+    
+    #delete,#deleteBtn{
+      
+      
+    }
     
   </style>
   <body>
+    <div class="input">
+      
+    
     <form id = "info" action="/submit" method = "POST">
       <input type="text" name="yourname" placeholder="your name here"><br>
       <input type ="text" name="classyear" placeholder="Your class year"><br>
@@ -29,6 +44,8 @@
       <button onclick="myDelete()">delete</button>-->
     </form>
     <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
+    </div>
+    
     
     <form id = "delete" action = "/delete" method = "POST">
       <input type = "text" name = "delName" placeholder = "Name to delete"><br>
