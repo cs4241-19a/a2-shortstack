@@ -1,104 +1,124 @@
 const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
+    fs   = require( 'fs' ),
+    // IMPORTANT: you must run `npm install` in the directory for this assignment
+    // to install the mime library used in the following line of code
+    mime = require( 'mime' ),
+    dir  = 'public/',
+    port = 3000
 
-const appdata = [
+const appdata = [ //can add/edit/ delete any object in here
   { 'firstName': 'Janette', 'lastName': 'Fong', 'pronouns': 'She/Her/Hers', 'house': 'Slytherin' },
   { 'firstName': 'Winny', 'lastName': 'Cheng', 'pronouns': 'She/Her/Hers', 'house': 'Ravenclaw' },
   { 'firstName': 'Jose', 'lastName': 'Li Quiel', 'pronouns': 'He/Him/His', 'house': 'Hufflepuff' },
-  { 'firstName': 'Harry', 'lastName': 'Potter', 'pronouns': 'He/Him/His', 'house': 'Gryffindor' }
+  { 'firstName': 'Harry', 'lastName': 'Potter', 'pronouns': 'He/Him/His', 'house': 'Gryffindor' },
 ]
+
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }
-  else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+    handleGet( request, response )
+  }else if( request.method === 'POST' ){ //could add more functions like delete here, but could also have just POST and have the urls to determine what to do
+    handlePost( request, response )
   }
 })
 
+//use handleGet to display data structure (server) in UI (server to UI)
 const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+  const filename = dir + request.url.slice( 1 )
 
   if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
+    sendFile( response, 'public/index.html' ) //do sendFile for javascript file
   }
-  else if( request.url === '/studentData') {
-    sendData(appdata)
+  else if(request.url === '/studentData'){
+    sendData(response, appdata)
   }
   else{
     sendFile( response, filename )
   }
 }
-
-const sendData = function( response, students ) {
-  const type = mime.getType( students );
-  response.writeHeader(200, { 'Content-Type': type });
-  response.write(JSON.stringify({ data: students }));
-  response.end();
-};
-
+//communicate from HTML to server
+//change url to look at specific file (same as a1 with switch statement) (if request.url = add, add the data)
 const handlePost = function( request, response ) {
-  switch ( request.url ) {
-    case '/submit':
-      const studentInfo = JSON.parse(dataString)
-      const newStudent = {
-        'firstName': studentInfo.firstName,
-        'lastName': studentInfo.lastName,
-        'pronouns': studentInfo.pronouns,
-        'house': studentInfo.house
-      }
-      appdata.push(newStudent)
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-      response.end()
-      break
-    case '/delete':
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    default:
-      response.end('404 Error: File not found')
-      break
-  }
   let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+    dataString += data
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
 
-    // ... do something with the data here!!!
+    const data = JSON.parse(dataString)
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+
+    switch( request.url ) {
+
+      case '/submit':
+        //server logic
+
+        const newStudent = {
+          'firstName': data.firstName,
+          'lastName': data.lastName,
+          'pronouns': data.pronouns,
+          'house': data.house
+        }
+
+        appdata.push(newStudent)
+
+        console.log(appdata)
+
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+        break
+
+      case '/delete':
+        appdata.splice(data.rowData, 1)
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+        break
+
+      case '/update':
+        appdata.update( data )
+        break
+
+      default:
+        response.end( '404 Error: File Not Found' )
+    }
+
+
   })
 }
 
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+const sendData = function(response, carsdata){
+  /*const type = mime.getType( carsdata ) ;
+  response.writeHeader( 200, { 'Content-Type': type });
+  response.write(JSON.stringify({data: carsdata}));
+  response.end()*/
 
-   fs.readFile( filename, function( err, content ) {
-
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
-
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
-
-     }else{
-
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
-
-     }
-   })
+  response.end(JSON.stringify(carsdata));
 }
+
+
+const sendFile = function( response, filename ) {
+  const type = mime.getType( filename )
+
+  fs.readFile( filename, function( err, content ) {
+
+    // if the error = null, then we've loaded the file successfully
+    if( err === null ) {
+
+      // status code: https://httpstatuses.com
+      response.writeHeader( 200, { 'Content-Type': type })
+      response.end( content )
+
+    }else{
+
+      // file not found, error code 404
+      response.writeHeader( 404 )
+      response.end( '404 Error: File Not Found' )
+
+    }
+  })
+}
+
 
 server.listen( process.env.PORT || port )
