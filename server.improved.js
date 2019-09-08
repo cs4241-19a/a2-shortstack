@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded())
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 230 },
   { 'name': 'Bob', 'year': 2021, 'inches': 320 },
-  { 'name': 'Andy', 'year': 2022, 'inches': 130} 
+  { 'name': 'Andy', 'year': 2022, 'inches': 13} 
 ]
 
 const newData = []
@@ -76,12 +76,15 @@ app.post("/delete", function(request,response){
 })
 
 app.get("/data", function(request, response){
+  console.log("Pre newData is " + newData)
   
   appdata.forEach(function(item){
+    newData.shift()
     newData.push({name: item.name, year: item.year, inches: item.inches, cm: (item.inches * 2.54)})
   })
   
   
+  console.log("post newData is " + newData)
   
   response.send(newData)
 })
