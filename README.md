@@ -12,7 +12,7 @@ To fulfill the requirements:
 
 ### CSS: 
 
-- The input fields as well as the labels (questions) are placed side-by-side using display:inline-block.
+- The input fields as well as the labels (questions) are placed side-by-side.
 - The shaded text-box is centered in the middle of the page.
 - I used element, ID and class selectors throughout my code. 
 
