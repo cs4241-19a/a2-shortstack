@@ -24,7 +24,10 @@ const generate = function(e) {
       method: 'GET'
     })
     .then( function( response) {
-      console.log(response)
+      return response.json()
+    })
+    .then( function(list){
+      console.log(list)
     })
   })
   
