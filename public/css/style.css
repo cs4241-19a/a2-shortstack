@@ -2,40 +2,48 @@
 
 body {
   background: #5A5959;
+  font-family: 'Calibri', sans-serif;
+
 }
 
 .title {
   background:#1C1C1D;
   color: white;
   width: 98vw;
-  font-family: 'Calibri', sans-serif;
   text-align: center;
   font-size: 30px;
   padding-top: 2vh;
   padding-bottom: 2vh;
   margin-bottom: 2vh;
-  
 }
 
 .board {
   display: flex;
   flex-direction: row;
+  width: 98vw;
   height: 70vmin;
   background: #1C1C1D;
-  width: 98vw;
-
 }
 
-.board[data-board] {
+.boardsection{
+  width: 15%;
+  border: 1px solid white;
   display: flex;
   flex-direction: column;
-  border: 1px solid white;
 }
 
 .board[data-board] .header, .board[data-board] .tasklist  {
+  width:100%;
   color: white;
   background-color: blue;
   text-align: center;
+}
+
+.board[data-board] .header {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  justify-content: center;
+  align-items:center;
 }
 
 
