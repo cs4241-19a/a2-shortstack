@@ -5,9 +5,6 @@
 /**
  * TODO: Empty messages glow red form control
  * TODO: Zoom/pan word bubble
- * TODO: Text classification
- * TODO: Fix datatable on login (no data)
- * TODO: Add profile edit options
  */
 
 var app = angular.module("dashboardApp", []);
@@ -129,6 +126,7 @@ app.controller("dashboardCtrl", function ($scope) {
 
         if (emptyFlag) {
             alert("Don't post empty messages!");
+            return;
         }
 
         values['uid-val'] = currentUser.uid;
@@ -140,14 +138,13 @@ app.controller("dashboardCtrl", function ($scope) {
             },
             body: JSON.stringify(values)
         }).then(function (response) {
-            console.log(response);
-            //repopulateTable();
 
             $("#inputDate").val("");
             $("#inputTitle").val("");
             $("#comment").val("");
 
             updateStats();
+            repopulateTable();
         })
     });
 
@@ -157,6 +154,10 @@ app.controller("dashboardCtrl", function ($scope) {
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
+
+            if (data[currentUser.uid] == undefined){
+                return;
+            }
 
             // Total entries
             $scope.totalEntries = Object.values(data[currentUser.uid]).length;
@@ -197,6 +198,9 @@ app.controller("dashboardCtrl", function ($scope) {
             .then(function (response) {
                 return response.json();
             }).then(function (data) {
+                if (data[currentUser.uid] == undefined){
+                    return;
+                }
             // USE data
             let tableArray = [];
             for (let obj of Object.values(data[currentUser.uid])) {

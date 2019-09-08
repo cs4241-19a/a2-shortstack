@@ -2,8 +2,12 @@ Sample Readme (delete the above when you're ready to submit, and modify the belo
 ---
 
 ## Lost Words
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+
+Lost words is a web app that allows users to make a account and store writing entries. The app
+will give user feedback, such as word frequency, synonyms and rhyming words, as well as tools for
+searching for definitions. A writer's toolkit in attempt to never be lost for words!
+
+TODO: ADD IMAGES
 
 Here is a sample formula for summarizing your activities, talk about:
 - the domain area the project pertains to
