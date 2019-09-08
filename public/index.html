@@ -19,7 +19,7 @@
         Comments: <br>
         <input type="text" id="comments"><br>
         Rating: <br>
-        <input type="radio" name="rating" value="canNotRate" checked> Can't rate<br>
+        <input type="radio" name="rating" value="canNotRate"> Can't rate<br>
         <input type="radio" name="rating" value="wouldRead"> Would read again<br>
         <input type="radio" name="rating" value="wouldNotRead"> Would not read again <br>
       <div id="submit-btn">
@@ -34,12 +34,27 @@
     
     const addBook = function( e ) {
       e.preventDefault();
-      const newOrder = {
-        name: document.getElementById( 'name' ).value,
-        dream: document.getElementById( 'dream' ).value,
-        amountOfPork: document.querySelector('input[name="pork"]:checked').value,
-        garlic: document.querySelector('input[name="garlic"]:checked').value
+      
+      const newBook = {
+        bookName: document.getElementById( 'bookName' ).value,
+        authorName: document.getElementById( 'authorName' ).value,
+        comments:document.getElementById( 'comments' ).value,
+        rating: document.querySelector('input[name="rating"]:checked').value,
+        status: 'inprogress'
       };
+    
+      if (orderValidation(newBook.booName, newBook.authorName, newBook.rating)) {
+        const body = JSON.stringify( newBook );
+        fetch( '/submit', {
+          method:'POST',
+          body
+        }).then( function( response ) {
+          document.getElementById('order-confirmation').style.display = "flex";
+          resetOrderForm();
+        })
+      }
+      return false;
+    }
 
 
   const submit = function( e ) {
