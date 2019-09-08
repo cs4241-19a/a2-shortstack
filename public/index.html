@@ -13,16 +13,32 @@
     
       <form action="">
         <div>
-          <input type="number" id="yourname" value="2">
-          <select>
-            <option>Line</option>
-            <option>Triangle</option>
-          </select>
-          <input type="text" id="name" value="name of your master piece">
+          <div>
+            <p>Please enter a value between 3 and 50.</p>
+            <input type="number" id="yourname" placeholder="15">
+          </div>
+          
+          <div>
+            <p>Please choose one of the following options.</p>
+            <select>
+              <option>Line</option>
+              <option>Triangle</option>
+            </select>
+          </div>
+          
+          <div>
+            <p>Please enter a name for your to be generated art piece.</p>
+            <input type="text" id="name" placeholder="The Legendary Scribble">
+          </div>
+          
         </div>
       
         <button>Generate</button>
       </form>
+      
+      <div>
+        <canvas width="600" height="600" style="border:1px solid #000000;"> </canvas>
+      </div>
     </div>
 
   </body>
