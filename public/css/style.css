@@ -3,6 +3,8 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  position: absolute;
+  top: 50%;
 }
 
 #CarData td, #CarData th {
@@ -31,8 +33,15 @@ h3{
   color: #7921D1;
 }
 
-body {
-	background-image: url("https://cdn.glitch.com/af1eb4f5-2b7a-42cc-ad01-14ba86ec56bf%2FRoadTrip.jpg?v=1567922082812");
-        background-repeat:no-repeat;
-       background-size:cover;
+body, html {
+  height: 100%;
+  margin: 0;
 } 
+
+.bg {
+  background-image: url("https://cdn.glitch.com/af1eb4f5-2b7a-42cc-ad01-14ba86ec56bf%2FRoadTrip.jpg?v=1567922082812");
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position: center;
+  height: 100%; 
+}
