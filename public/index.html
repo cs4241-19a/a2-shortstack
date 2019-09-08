@@ -33,10 +33,12 @@
     
     <div class="navigationPane">
        <nav class="links">
-         <a id="matchHistory" >Match History</a>
+         <a id="matchHistoryTag" >Match History</a>
          <a id="table-link">View Orders</a>
        </nav>
-   </div>
+    </div>
+    
+     <table id="matchHistory"></table>
     
   </body>
   <script>
@@ -84,29 +86,26 @@
   
   const fetchMH = async function() {
       try {
-        const resp = await fetch('/matchHistory', { method: 'GET' });
-        const data = await resp.json();
-        const orders = data.data;
-        let htmlDiv = document.getElementById('orders');
+        const fMH = await fetch('/matchHistory', { method: 'GET' });
+        const data = await fMH.json();
+        const match = data.data;
+        let htmlDiv = document.getElementById('matchHistory');
         htmlDiv.innerHTML = '<tr>\n' +
-                '              <th>Name</th>\n' +
-                '              <th>Dream</th>\n' +
-                '              <th>Pork</th>\n' +
-                '              <th>Garlic</th>\n' +
-                '              <th>Price</th>\n' +
+                '              <th>Red1</th>\n' +
+                '              <th>Blue1</th>\n' +
+                '              <th>RedScore</th>\n' +
+                '              <th>BlueScore</th>\n' +
                 '              <th></th>\n' +
                 '              <th></th>\n' +
                 '            </tr>';
-        for (let i = 0; i < orders.length; i++) {
-          const order = orders[i];
-          const stringOrder = JSON.stringify(orders[i]);
-          const garlic = (order.garlic ? 'Yes' : 'No');
+        for (let i = 0; i < match.length; i++) {
+          const match = match[i];
+          const stringOrder = JSON.stringify(match[i]);
           let newRow = '<tr>\n';
-          newRow += (`<td> ${order.name} </td>\n`);
-          newRow += (`<td> ${order.dream} </td>\n`);
-          newRow += (`<td> ${order.amountOfPork} pieces</td>\n`);
-          newRow += (`<td> ${garlic} </td>\n`);
-          newRow += (`<td> ${order.price} </td>\n`);
+          newRow += (`<td> ${match.red1} </td>\n`);
+          newRow += (`<td> ${match.blue1} </td>\n`);
+          newRow += (`<td> ${match.redScore} </td>\n`);
+          newRow += (`<td> ${match.blueScore} </td>\n`);         
           newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
                   + encodeURIComponent(stringOrder) +
                   `>Edit</button> </td>\n`);
