@@ -31,7 +31,7 @@
 
 h1{
   text-align: center;
-  color: purple;
+  color: #D121C5;
 }
 
 h3{
@@ -47,7 +47,7 @@ body, html {
 
 .background {
   background-image: url("https://cdn.glitch.com/af1eb4f5-2b7a-42cc-ad01-14ba86ec56bf%2FRoadTrip.jpg?v=1567922082812");
-  background-repeat:no-repeat;
+  background-repeat:repeat;
   background-size:cover;
   background-position: center;
   height: 100%;
