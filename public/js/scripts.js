@@ -109,14 +109,9 @@ function deleteData(index){
 }
 
 function updateData(index){
-  console.log("update", index)
-  
   const input = grabInput("drawTypeE", "verticesE", "nameE")
   input.idx = index
-  
   const body = JSON.stringify(input)
-  
-  console.log("update idx", input.idx)
   
   fetch( '/update', {
     method:'POST',

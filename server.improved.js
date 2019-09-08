@@ -72,7 +72,12 @@ const handlePost = function( request, response ) {
         
       case '/update':
         let newData = JSON.parse(dataString)
-        appdata9
+        let idx = newData.idx
+        
+        appdata[idx].vertices = newData.vertices
+        appdata[idx].drawType = newData.drawType
+        appdata[idx].name = newData.name
+        
         break
     }
     

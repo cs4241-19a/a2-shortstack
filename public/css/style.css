@@ -1,1 +1,9 @@
 /*Style your own assignment! This is fun! */
+canvas{
+  width: 50%;
+  height: 50%;
+  border: 10px solid;
+}
+.layout{
+  display: grid
+}
