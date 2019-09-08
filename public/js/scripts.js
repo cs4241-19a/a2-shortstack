@@ -27,14 +27,18 @@ const generate = function(e) {
   // prevent default form action from being carried out
   e.preventDefault()
 
-  const input = {
-    vertices: document.getElementById("veritces").value
-    drawType: document.getElementById()
+  function getOption(){
+    let element = document.getElementById("drawType");
+    return element.options[element.selectedIndex].text
   }
-  const input = document.querySelector( '#yourname' ),
-        json = { yourname: input.value },
-        body = JSON.stringify( json )
-
+  
+  const input = {
+    vertices: document.getElementById("veritces").value,
+    drawType: getOption(),
+    name: document.getElementById("name").value
+  };
+  const body = JSON.stringify( input )
+  
   fetch( '/submit', {
     method:'POST',
     body 
@@ -45,4 +49,9 @@ const generate = function(e) {
   })
 
   return false
+}
+
+window.onload = function() {
+  const button = document.getElementById("generate")
+  button.onclick = generate
 }
