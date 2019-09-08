@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { "vertices": 3, "drawType": "Triangle", "name": "Triangle", "points": [5]},
+  { "vertices": 5, "drawType": "Line", "name": "Mountain", "points": [7, 8]},
+  { "vertices": 3, "drawType": "Triangle", "name": "Triangle", "points": [1, 1, 1]},
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -39,15 +39,7 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-    switch(request.url) {
-      case '/generate':
-        let data = JSON.parse(dataString)
-        response.writeHead(200, {"Content-Type": "application/json"});
-        response.end(JSON.stringify(appdata))
-        break
-      default:
-        break
-    }
+    
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
