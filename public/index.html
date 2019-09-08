@@ -64,10 +64,6 @@
           newRow += (`<td> ${book.comments} </td>\n`);
           newRow += (`<td> ${book.rating} </td>\n`);
           newRow += (`<td> ${book.status} </td>\n`);
-          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
-                  + encodeURIComponent(stringOrder) +
-                  `>Edit</button> </td>\n`);
-          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteBook(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
         }

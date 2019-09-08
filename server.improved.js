@@ -25,6 +25,8 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  } else if ( request.url === '/books' ){
+    sendData( response, appdata );
   }else{
     sendFile( response, filename )
   }
@@ -46,6 +48,13 @@ const handlePost = function( request, response ) {
     response.end()
   })
 }
+
+const sendData = function( response, books) {
+  const type = mime.getType( books );
+  response.writeHeader(200, { 'Content-Type': type });
+  response.write(JSON.stringify({ data: books }));
+  response.end();
+};
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
