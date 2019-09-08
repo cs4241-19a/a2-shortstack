@@ -55,7 +55,7 @@ body, html {
 
 div.transbox1 {
   margin: 30px;
-  background-color: #DFB34A;/*#EFDA8A;/*#EEC075;*/
+  background-color: #EFDA8A;/*#EEC075;*/
   border: 1px solid black;
   opacity: 0.6;
   width: 360px;
@@ -73,7 +73,6 @@ div.inputText {
   margin: 5%;
   font-weight: bold;
   color: #000000;
-  opacity: 1.0;
 }
 
 #submitForm {
@@ -83,4 +82,24 @@ div.inputText {
   left: 37%;
   height: 20px;
   width: 100px;
+}
+
+div.transbox2 {
+  margin: 30px;
+  background-color: #7FEDEB;
+  border: 1px solid black;
+  opacity: 0.6;
+  width: 350px;
+  height: 230px;
+  
+}
+
+div.transbox2:hover {
+  opacity: 1.0;
+}
+
+div.transbox2 p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
 }
