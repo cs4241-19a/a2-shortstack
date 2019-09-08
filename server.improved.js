@@ -38,7 +38,29 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    switch(request.url){
+      case '/generate':
+        let data = JSON.parse(dataString)
+        //generate random number for points
+        let points = [2, 5, 7, 8]
+        
+        let drawing = {
+          "vertices": data.vertices, 
+          "drawType": data.drawType, 
+          "name": data.name, 
+          "points": points
+        }
+        
+        appdata.push(drawing)
+        
+        console.log("Hello")
+        console.log(appdata)
+        
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+        
+        break
+    }
     
     // ... do something with the data here!!!
 
