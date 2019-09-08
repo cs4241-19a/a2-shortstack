@@ -8,8 +8,11 @@ const http = require( 'http' ),
 
 let next_id = 1
 const appdata = [
-  { 'id': 0, 'name': 'ISS', 'orbit_type': 'LEO', 'has_launched': true, 'mission_start': 911520000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 },
-  { 'id': 1, 'name': 'ISS2', 'orbit_type': 'Lunar Orbit', 'has_launched': false, 'mission_start': (new Date()).getTime() + 10000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
+  { 'id': 0, 'name': 'ISS', 'orbit_type': 'Low Earth Orbit', 'has_launched': true, 'mission_start': 911520000000, 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 },
+  { 'id': 1, 'name': 'Hubble', 'orbit_type': 'Low Earth Orbit', 'has_launched': true, 'mission_start': new Date("April 25, 1990").getTime(), 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 },
+  { 'id': 2, 'name': 'Cassini', 'orbit_type': 'Other', 'has_launched': true, 'mission_start': new Date("October 15, 1997").getTime(), 'mission_completed': true, 'mission_end': new Date("September 15, 2017").getTime(), 'elapsed': 0 },
+  { 'id': 3, 'name': 'James Web Space Telescope', 'orbit_type': 'Other', 'has_launched': true, 'mission_start': new Date("March 30, 2021").getTime(), 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 },
+  { 'id': 3, 'name': 'Mars Reconnaissance Orbiter', 'orbit_type': 'Mars Orbit', 'has_launched': false, 'mission_start': new Date("August 12, 2005").getTime(), 'mission_completed': false, 'mission_end': 0, 'elapsed': 0 }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -20,6 +23,7 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+// Refresh the elapsed time and the has_launched flag for each mission
 const refreshCalculated = function (data) {
   for (let i = 0; i < appdata.length; i++) {
     if (appdata[i].mission_completed === false) {
@@ -36,6 +40,7 @@ const refreshCalculated = function (data) {
   }
 }
 
+// Add a new spacecraft
 const addSpacecraft = function (data) {
   const new_spacecraft = data
   new_spacecraft.id = next_id

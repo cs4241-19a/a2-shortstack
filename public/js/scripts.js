@@ -47,11 +47,13 @@ const displayInactive = function( sat ) {
 }
 
 const displayData = function ( data ) {
+  document.querySelector("#future-body").innerHTML = ""
+  document.querySelector("#active-body").innerHTML = ""
+  document.querySelector("#inactive-body").innerHTML = ""
+
   for (let i = 0; i < data.length; i++) {
     const sat = data[i]
-    document.querySelector("#future-body")
-    document.querySelector("#active-body")
-    document.querySelector("#inactive-body")
+    
 
     if (!sat.has_launched) {
       displayFuture(sat)
