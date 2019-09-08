@@ -260,11 +260,11 @@ forumRouter.post('/submit/create', async function(req, res, next) {
             break;
 
     }
+    let respData = {};  // send a blank response to have the page reloaded
     if (data.action === "ADDTHREAD") {
-        res.json({"forumId": forumId});
-    } else {
-        res.json();  // send a blank response to have the page reloaded
+        let respData = {"forumId": forumId};
     }
+    res.json(respData);
 });
 
 
