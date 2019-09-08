@@ -19,18 +19,23 @@ body {
 
 .board {
   display: flex;
+  flex-direction: row;
   height: 70vmin;
   background: #1C1C1D;
   width: 98vw;
+
 }
 
 .board[data-board] {
+  display: flex;
+  flex-direction: column;
   border: 1px solid white;
-  flex-direction: row;
 }
 
-.board[data-board].header {
-  
+.board[data-board] .header, .board[data-board] .tasklist  {
+  color: white;
+  background-color: blue;
+  text-align: center;
 }
 
 
