@@ -2,6 +2,7 @@
   --backColor: #000B19;
   --textColor: #F8F5F2;
   --borderColor: #EDB83D;
+  --btnColor: #EDB83D;
 }
 
 body {
@@ -14,13 +15,14 @@ body {
 h1 {
   font-family: 'Brush Script MT';
   font-size: 60px;
+  color: #D70026;
 }
 
 input, select {
   background: var(--backColor);
   font-family: 'Comic Sans MS';
   color: var(--textColor);
-  border: 3px double #EDB83D;
+  border: 3px double var(--borderColor);
   width: 200px;
   height: 25px;
   padding: 5px;
@@ -32,11 +34,11 @@ select{
 }
 
 button {
-  background: #000B19;
-  border: 3px outset var(--borderColor);
+  background: var(--btnColor);
+  border: 3px outset #D70026;
   margin: 3px;
   padding: 5px;
-  color: var(--textColor);
+  color: var(--backColor);
 }
 
 #generate {
@@ -73,7 +75,7 @@ button {
   justify-self: center;
   width: 600px;
   height: 600px;
-  border: 5px dotted;
+  border: 5px dotted var(--borderColor);
   margin-right: 20px;
 }
 
