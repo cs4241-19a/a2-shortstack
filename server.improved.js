@@ -13,9 +13,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 
 const appdata = [
-  { 'name': 'Justin', 'year': 2020, 'inches': 23 },
-  { 'name': 'Bob', 'year': 2021, 'inches': 32 },
-  { 'name': 'Andy', 'year': 2022, 'inches': 14} 
+  { 'name': 'Justin', 'year': 2020, 'inches': 230 },
+  { 'name': 'Bob', 'year': 2021, 'inches': 320 },
+  { 'name': 'Andy', 'year': 2022, 'inches': 140} 
 ]
 
 /*const server = http.createServer( function( request,response ) {

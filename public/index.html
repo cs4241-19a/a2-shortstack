@@ -37,6 +37,7 @@
     console.log("Testing for name " + document.getElementById('yourname') )
     document.getElementById('info').submit()
     setTimeout(function(){
+      clearTable()
       getData()
     },1000)
     
@@ -49,7 +50,7 @@
   function onDelete(){
     document.getElementById('delete').submit()
     setTimeout(function(){
-      //clearTable()
+      clearTable()
       getData()
     },1000)
     
@@ -91,7 +92,7 @@
       $.get('/data',function(response){
         
         response.forEach(function(item){
-          console.log("item has " +response.length)
+          console.log("cleariunug list" )
           document.getElementById("dataTable").deleteRow(1)
         })
         
@@ -109,11 +110,17 @@
       $.get('/data',function(response){
         //clearTable(document.getElementById("dataTable"))
         //clearTable()
-        response.forEach(function(item){
+        
+        setTimeout(function(){
+          
+          response.forEach(function(item){
           console.log("item is " +item)
           $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td></tr>')
           console.log("wrote " + item.name)
         })
+          
+        },3000)
+        
       })
       console.log("Done writing")
     }
