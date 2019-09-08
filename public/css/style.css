@@ -1,27 +1,31 @@
-/*Style your own assignment! This is fun! */
-canvas{
-  width: 50%;
-  height: 50%;
-  border: 10px solid;
+body {
+  background: #000000;
+  color: #FFFFFF;
 }
+
 .layout{
-  grid-template-area: "a b" 
-                      "c b" 
+  display: grid;
+  grid-template-areas: "a b"
+                      "c b"
                       "d b";
 }
 
-#title{
+#title {
   grid-area: a;
 }
 
-#input{
+#input {
   grid-area: c;
-}
-
-#canvas {
-  grid-area: b;
 }
 
 #table {
   grid-area: d;
 }
+
+#canvas {
+  grid-area: b;
+  width: 50%;
+  height: 50%;
+  border: 5px solid;
+}
+
