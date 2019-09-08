@@ -27,7 +27,7 @@ Main Challenges:
 Implications:
 ---
 - Right now this website is really meant to be used by one person, because of the way the database is coded. The database takes the course title as the key so any other entry with the same course title will overwrite the database. I don't have enough time to manipulate around with it. However in the future, a password authentication step is surely needed in order to ensure the privacy for different users. 
-
+- I am not sure why I cannot make certain CSS styles apply to the second HTML page even when I tried with the "!important" tag to override anything else. Namely, I wanted to make he table round-edged, as well as set the header to be relatively higher than the table. Not working though. 
 
 
 

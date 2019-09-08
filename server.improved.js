@@ -76,6 +76,9 @@ const handlePost = function (request, response) {
                 response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
                 response.end();
                 break;
+            case '/delete':
+                removeEntry();
+                break;
             default:
                 response.end('404 Error: File Not Found')
         }
@@ -115,6 +118,12 @@ function writeUserData(ref, token, currentGrade, desired, finalWorth, finalExam)
         finalExam: finalExam
     });
 }
+function removeEntry(ref){
+    var usernameRef = usersRef.child(ref);
+    usernameRef.remove();
+}
+
+
 
 server.listen(process.env.PORT || port);
 

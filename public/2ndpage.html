@@ -32,26 +32,10 @@
     <div class="content">
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
-            <h1 class="main-title" style="margin-top: -70px">Result</h1>
+            <h1 class="main-title" id="resultTitle">Result</h1>
             <div class="table-responsive text-nowrap">
                 <table id="gradeTable" class="table table-small main-tagline table-hover w-auto " style=width:50%>
-
                     <tbody>
-                    <tr>
-                        <td>Row 1 Data 1</td>
-                        <td>Row 1 Data 2</td>
-                        <td>Row 1 Data 3</td>
-                        <td>Row 1 Data 4</td>
-                        <td>Row 1 Data 5</td>
-                    </tr>
-                    <tr>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 2 Data 3</td>
-                        <td>Row 2 Data 4</td>
-                        <td>Row 2 Data 5</td>
-                    </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -70,41 +54,54 @@
 
 <script>
 
-    window.onload = function () {
-        fetch('/receive')
-            .then(function (response) {
-                // do something with the response
-                return json = response.json();
-            }).then(function (response) {
-            console.log('post response: ', response);
-            let DataKey = localStorage.getItem('token');
-            let computedGrades = document.querySelector('#gradeTable');
-            let numOfEntry = Object.keys(response);
-            computedGrades.innerHTML =
-                '<thead>\n' +
-                '<tr>\n' +
-                '<th>Course Title</th>\n' +
-                '<th>Current Overall Grade</th>\n' +
-                '<th>Desired Overall Grade</th>\n' +
-                '<th>Final Exam Weight</th>\n' +
-                '<th>Final Exam Grade Required</th>\n' +
-                '<th></th>\n' +
-                '</tr>\n' +
-                '</thead>\n';
-
-            for (let i = 0; i < numOfEntry.length; i++){
-                const rows=numOfEntry[i];
-                let newRow='<tr>';
-                newRow+=('<td>'+(JSON.stringify(response[rows].token)).replace(/^"(.*)"$/, '$1')+'</td>');
-                newRow+=('<td>'+(JSON.stringify(response[rows].currentGrade)).replace(/^"(.*)"$/, '$1')+'</td>');
-                newRow+=('<td>'+(JSON.stringify(response[rows].desired)).replace(/^"(.*)"$/, '$1')+'</td>');
-                newRow+=('<td>'+(JSON.stringify(response[rows].finalWorth)).replace(/^"(.*)"$/, '$1')+'</td>');
-                newRow+=('<td>'+(JSON.stringify(response[rows].finalExam)).replace(/^"(.*)"$/, '$1')+'</td>');
-                newRow+=('<td><button class="button" id=" ' + i + ' " onclick="deleteRow('+i+')"> X </button></td>\n');
-                newRow+='</tr>';
-                computedGrades.innerHTML+=newRow;
-            }
+    function removeEntry(ref){
+        var usernameRef = usersRef.child(ref);
+        usernameRef.remove();
+    }
+    const deleteEntry = function (n){
+        const rowNum={rowNum:n};
+        fetch('/delete',{
+            method:'POST',
+            body:JSON.stringify({rowNum:n}),
         });
+        fillTable();
+    };
+    window.onload = function () {
+        const fillTable = function(){
+            fetch('/receive')
+                .then(function (response) {
+                    return json = response.json();
+                }).then(function (response) {
+                console.log('post response: ', response);
+                let DataKey = localStorage.getItem('token');
+                let computedGrades = document.querySelector('#gradeTable');
+                let numOfEntry = Object.keys(response);
+                computedGrades.innerHTML =
+                    '<thead>\n' +
+                    '<tr>\n' +
+                    '<th>Course Title</th>\n' +
+                    '<th>Current Overall Grade</th>\n' +
+                    '<th>Desired Overall Grade</th>\n' +
+                    '<th>Final Exam Weight</th>\n' +
+                    '<th>Final Exam Grade Required</th>\n' +
+                    '<th>Remove</th>\n' +
+                    '</tr>\n' +
+                    '</thead>\n';
+                for (let i = 0; i < numOfEntry.length; i++){
+                    const rows=numOfEntry[i];
+                    let newRow='<tr>';
+                    newRow+=('<td>'+(JSON.stringify(response[rows].token)).replace(/^"(.*)"$/, '$1')+'</td>');
+                    newRow+=('<td>'+(JSON.stringify(response[rows].currentGrade)).replace(/^"(.*)"$/, '$1')+'</td>');
+                    newRow+=('<td>'+(JSON.stringify(response[rows].desired)).replace(/^"(.*)"$/, '$1')+'</td>');
+                    newRow+=('<td>'+(JSON.stringify(response[rows].finalWorth)).replace(/^"(.*)"$/, '$1')+'</td>');
+                    newRow+=('<td>'+(JSON.stringify(response[rows].finalExam)).replace(/^"(.*)"$/, '$1')+'</td>');
+                    newRow+=('<td><button class="button" id=" ' + i + ' " onclick="removeEntry (' + i + ')"> X </button></td>\n');
+                    newRow+='</tr>';
+                    computedGrades.innerHTML+=newRow;
+                }
+            })
+        };
+        fillTable();
     }
 </script>
 </body>
