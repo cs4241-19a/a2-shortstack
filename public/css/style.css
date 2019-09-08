@@ -1,1 +1,139 @@
 /*Style your own assignment! This is fun! */
+body {
+    background-color: azure;
+}
+
+h1{
+  font-family: Helvetica;
+  Display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://cdn.glitch.com/01e457de-8a53-439f-be06-464e2599deaa%2Fdice-25637__340.png?v=1567898647168);
+  width: 544px;
+  height: 340px;
+  margin: 50px
+}
+
+#title{
+  background-color: white;
+  border-radius: 5px;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 100px
+}
+
+.heading{
+  display: flex;
+  justify-content: center;
+}
+
+.inputBox{
+  background-color: white;
+  border-radius: 25px;
+  width: 300px;
+  border: 2px solid black;
+  margin: 10px;
+}
+
+#dTable{
+  background-color: white;
+}
+
+.labelInput{
+  font-family: Helvetica;
+  Display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 3px;
+}
+
+#resultLabel{
+  font-weight: bold;
+}
+
+#errorLabel{
+  Display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: red;
+}
+
+#errorBox{
+  display: flex;
+  justify-content: center;
+}
+
+#d1{
+  background-color: black;
+}
+
+#d4{
+  background-color: blue;
+}
+
+#d6{
+  background-color: red;
+}
+
+#d8{
+  background-color: orange;
+}
+
+#d10{
+  background-color: purple;
+}
+
+#d12{
+  background-color: green;
+}
+
+#d20{
+  background-color: grey;
+}
+
+#d100{
+  background-color: gold;
+}
+
+.d{
+  border: 200px;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  color: white;
+}
+
+#dice{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+button{
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid red;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:Helvetica;
+  font-weight:bold;
+  color: white;
+  text-align:center;
+  transition: all 0.2s;
+  background-color: black;
+  border-radius: 8px;
+}
+
+button:hover{
+  color:blue;
+  background-color:#FFFFFF;
+}
