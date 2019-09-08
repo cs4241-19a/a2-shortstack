@@ -3,38 +3,174 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href="css/style.css">
+    <meta name = "Description" content = "Dice Roller">
+    <meta name = "Keywords" content = "Dice, Roll, D&D">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <div class = "heading">
+      <h1>
+        <div id = "title">
+          Dice Roller
+        </div>
+      </h1>
+    </div>
+    <div class = "heading">
+      <div class = "inputBox">
+        <div class = "labelInput">
+          <label for = "typeDice">Dice Type:</label>
+          <form action="">
+            <input type="text" id="typeDice" value="">
+          </form>
+        </div>
+        <div class = "labelInput">
+          <label for = "numDice">Number of Dice:</label>
+          <form action = "">
+            <input type = "number" id = "numDice" value = "Number of Dice">
+          </form>
+        </div>
+        <div class = "labelInput">
+          <form action = "">
+            <input type = "radio" id = "-" name = "add/sub"> 
+            <label for = "-">-</label>
+            <input type = "radio" id = "+" name = "add/sub">
+            <label for = "+">+</label>
+          </form>
+        </div>
+        <div class = "labelInput">
+          <label for = "flatDice">Flat Modifier:</label>
+          <form action = "">
+            <input type = "number" id = "flatDice" value = "Flat Number added to Result">
+          </form>
+        </div>
+        <div id = "errorBox">
+          <div id = "errorLabel">
+            <label>Error Label</label>
+          </div>
+        </div>
+        <div class = "labelInput">
+          <button id = "submitButton">
+            Roll Dice
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class = "heading">
+      <div class = "inputBox">
+        <div id = "dice"></div>
+      </div>
+    </div>
+    <div class = "labelInput">
+      <label id = "resultLabel">Result: </label>
+    </div>
+    <div class = "labelInput">
+      <button id = "resultsButton">
+        Results
+      </button>
+    </div>
   </body>
   <script>
+    
+  
+  const checkErrors = function(input1, input2, input3, input4){
+    const inputs = ["d1", "d4", "d6", "d8", "d10", "d12", "d20", "d100"]
+    if(!inputs.includes(input1.value)){
+      return {error: true, message: "Invalid Dice Type (Valid types are d1, d4, d6, d8, d10, d12, d20, and d100)"}
+    }
+    if(input2.value < 1){
+      return {error: true, message: "Number of dice must be more than 0"}
+    }
+    if(input3 == ""){
+      return {error: true, message: "A radio button option must be selected"}
+    }
+    if(input4.value < 0){
+      return {error: true, message: "Flat modifier must be greater than or equal to 0"}
+    }
+    return {error: false, message: ""}
+  }
 
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const input1 = document.querySelector('#typeDice')
+    const input2 = document.querySelector('#numDice')
+    let input3 = ""
+    if (document.getElementById('+').checked) {
+      input3 = "state1"
+    } else if (document.getElementById('-').checked){
+      input3 = "state2"
+    } else {
+      input3 = ""
+    }
+    const input4 = document.querySelector('#flatDice')
+    
+    let errors = checkErrors(input1, input2, input3, input4)
+    if(errors.error == true){
+      document.getElementById('errorLabel').style.display = 'block'
+      document.getElementById('errorLabel').innerHTML = errors.message
+      document.getElementById('resultLabel').innerHTML = "error"
+      document.getElementById('dice').innerHTML = ""
+    }else{
+      document.getElementById('errorLabel').style.display = 'none'
+      const json = {typeDice: input1.value, 
+                    numDice: input2.value,
+                    addsub: input3,
+                    flatDice: input4.value}
+      const body = JSON.stringify( json )
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
+      fetch( '/submit', {
+        method:'POST',
+        body 
+      })
+      .then( function( response ) {
+        response.json().then((responseData) => {
+          console.log( responseData ) 
+          document.getElementById('resultLabel').innerHTML = "Result: " + responseData.result
+          drawDice(responseData.rolls, responseData.diceNum)
+        })
+      
+        console.log( response )
+      })
+    }
     return false
+  }
+  
+  const drawDice = function(rollList, diceNum){
+    let html = ""
+    for(let i = 0; i < diceNum; i++){
+      if(document.querySelector('#typeDice').value == "d1"){
+        html += "<div id = 'd1' class = 'd'>" + rollList[i] + "</div>"
+      } else if(document.querySelector('#typeDice').value == "d4"){
+        html += "<div id = 'd4' class = 'd'>" + rollList[i] + "</div>"
+      } else if(document.querySelector('#typeDice').value == "d6"){
+        html += "<div id = 'd6' class = 'd'>" + rollList[i] + "</div>"
+      } else if(document.querySelector('#typeDice').value == "d8"){
+        html += "<div id = 'd8' class = 'd'>" + rollList[i] + "</div>"
+      } else if(document.querySelector('#typeDice').value == "d10"){
+        html += "<div id = 'd10' class = 'd'>" + rollList[i] + "</div>"
+      } else if(document.querySelector('#typeDice').value == "d12"){
+        html += "<div id = 'd12' class = 'd'>" + rollList[i] + "</div>"
+      } else if(document.querySelector('#typeDice').value == "d20"){
+        html += "<div id = 'd20' class = 'd'>" + rollList[i] + "</div>"
+      } else if(document.querySelector('#typeDice').value == "d100"){
+        html += "<div id = 'd100' class = 'd'>" + rollList[i] + "</div>"
+      }
+    }
+    document.getElementById('dice').innerHTML = html
+  }
+  
+  const results = function(e) {
+    location.href = "results.html"
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+    document.getElementById('errorLabel').style.display = "none"
+    const button1 = document.querySelector( '#submitButton' )
+    const button2 = document.querySelector( '#resultsButton')
+    button1.onclick = submit
+    button2.onclick = results
   }
 
   </script>
