@@ -9,5 +9,6 @@ const days = [
 //const nextButton = document.querySelector( '#next' );
 
 const nextAction = function() {
-  document.querySelector( '.boardsection' ).css('transform: 50%' );
+  document.querySelector( '.boardsection' ).css();
 }
+

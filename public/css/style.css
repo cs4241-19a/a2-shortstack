@@ -36,7 +36,7 @@ body {
 }
 
 .boardsection:first-child{
-  animation: next 3s forwards;
+  animation: next 1s forwards;
 }
 
 .board[data-board] .tasklist  {
@@ -62,7 +62,7 @@ body {
 }
 
 @keyframes next {
-  10% {
+  20% {
     transform: translateX(-150%) translateY(0%);
   }
   25% {
@@ -80,6 +80,9 @@ body {
 }
 
 @keyframes nextbody {
+  0% {
+    transform: translateX(0%) translateY(0%);
+  }
   100% {
     transform: translateX(-100%) translateY(0%);
   }
