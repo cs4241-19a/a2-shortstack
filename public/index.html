@@ -28,6 +28,7 @@
 
   function submit(  ) {
     
+    console.log("Testing for name " + document.getElementById('yourname').value )
     document.getElementById('info').submit()
     setTimeout(function(){
       getData()
@@ -84,6 +85,16 @@
           $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td></tr>')
         })
       })
+    }
+    
+    
+    function Duplicates()
+    {
+      $.get('/data',function(response){
+        response.forEach(function(item){
+          
+        })
+    })
     }
     
 
