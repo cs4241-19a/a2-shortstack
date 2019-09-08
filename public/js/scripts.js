@@ -9,17 +9,19 @@ const days = [
 
 $(document).ready(function () {
   $("#next").on('click', function() {
-    $(".boardsection[data-board]").css({animation: "nextbody 1s forwards"});
-    $(".boardsection[data-board='day_0']").css({animation: "next 1s forwards"});
+    var tests = $('.boardsection[data]');
+    tests.first().insertAfter(tests.last());
+    //$(".boardsection[data-board]").css({animation: "nextbody 1s forwards"});
+    //$(".boardsection[data-board='day_0']").css({animation: "next 1s forwards"});
+    $(".boardsection[data-board='day_1']").css({
+      'order': "1"
+    });
+    console.log($(".boardsection[data-board='day_1']").order)
   })
-  $(".boardsection[data-board]").on('animationEnd', function() {
-  
-    console.log($(this).order);
-  })
-  
 })
 
 
+// /$(".boardsection[data-board]").style.order + 1 > 7 ? 7 : $(".boardsection[data-board]").style.order + 1
 
 
 

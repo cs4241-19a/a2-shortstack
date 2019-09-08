@@ -33,6 +33,55 @@ body {
   display: flex;
   flex-direction: column;
 }
+.boardsection:nth-child(1){
+  width: 15%;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  order:1;
+}
+.boardsection:nth-child(2){
+  width: 15%;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  order:2;
+}
+.boardsection:nth-child(3){
+  width: 15%;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  order:3;
+}
+.boardsection:nth-child(4){
+  width: 15%;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  order:4;
+}
+.boardsection:nth-child(5){
+  width: 15%;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  order:5;
+}
+.boardsection:nth-child(6){
+  width: 15%;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  order:6;
+}
+.boardsection:nth-child(7){
+  width: 15%;
+  border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  order:7;
+}
 
 .board[data-board] .tasklist  {
   width:100%;
