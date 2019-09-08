@@ -32,6 +32,46 @@
   </body>
   <script>
     
+    //fetch orders for the table
+      const fetchOrders = async function() {
+      try {
+        const resp = await fetch('/orders', { method: 'GET' });
+        const data = await resp.json();
+        const orders = data.data;
+        let htmlDiv = document.getElementById('orders');
+        htmlDiv.innerHTML = '<tr>\n' +
+                '              <th>Name</th>\n' +
+                '              <th>Dream</th>\n' +
+                '              <th>Pork</th>\n' +
+                '              <th>Garlic</th>\n' +
+                '              <th>Price</th>\n' +
+                '              <th></th>\n' +
+                '              <th></th>\n' +
+                '            </tr>';
+        for (let i = 0; i < orders.length; i++) {
+          const order = orders[i];
+          const stringOrder = JSON.stringify(orders[i]);
+          const garlic = (order.garlic ? 'Yes' : 'No');
+          let newRow = '<tr>\n';
+          newRow += (`<td> ${order.name} </td>\n`);
+          newRow += (`<td> ${order.dream} </td>\n`);
+          newRow += (`<td> ${order.amountOfPork} pieces</td>\n`);
+          newRow += (`<td> ${garlic} </td>\n`);
+          newRow += (`<td> ${order.price} </td>\n`);
+          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
+                  + encodeURIComponent(stringOrder) +
+                  `>Edit</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
+          newRow += '</tr>';
+          htmlDiv.innerHTML += newRow;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+      return false;
+    };
+    
+    //add Book function
     const addBook = function( e ) {
       e.preventDefault();
       
@@ -58,6 +98,7 @@
       return false;
     }
     
+    //reset order form after adding book
     const resetOrderForm = () => {
       document.getElementById( 'bookName' ).value = '';
       document.getElementById( 'authorName' ).value = '';
@@ -65,6 +106,7 @@
       document.getElementById('rating').checked = false;
     };
     
+    //validate an order before sending it
     const orderValidation = function (bookName, authorName, rating) {
       if (bookName === '') {
         document.getElementById('error').style.display = "block";
