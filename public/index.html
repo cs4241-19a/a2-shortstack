@@ -86,13 +86,16 @@
     
     function clearTable()
     {
-      
+      //$('#dataTable:not(:first)').empty()
+      document.getElementById("dataTable").deleteRow
+      console.log("Table has been reset")
     }
     
     function getData()
     {
       $.get('/data',function(response){
         //clearTable(document.getElementById("dataTable"))
+        clearTable()
         response.forEach(function(item){
           console.log("item is " +item)
           $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td></tr>')
