@@ -48,7 +48,8 @@
       // do something with the reponse 
       //text.textContent = response;
       console.log( response )
-      occupyText()
+      //occupyText()
+      
       
       
       /*
@@ -78,7 +79,7 @@
     })
       .then( function( myJSON ) {
         var info = myJSON.data
-        answer.innerHTML = info[1].question
+        answer.innerHTML = info[1].value
       
       
         console.log( info[1] )
