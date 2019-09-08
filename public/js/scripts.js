@@ -518,3 +518,107 @@ function hasDays(month){
       return 31;
   }
 }
+
+//******** UTILITY IMAGE FUNCTIONS *******//
+function signToImageURL(sign){
+  switch(sign){
+    case "January":
+      if(personalInfo.day < 21){
+        return "Capricorn"
+      }
+      else{
+        return "Aquarius"
+      }
+      break;
+    case "February":
+      if(personalInfo.day < 19){
+        return "Aquarius"
+      }
+      else{
+        return "Pisces"
+      }
+      break;
+    case "March":
+      if(personalInfo.day < 21){
+        return "Pisces"
+      }
+      else{
+        return "Aries"
+      }
+      break;
+    case "April":
+      if(personalInfo.day < 21){
+        return "Aries"
+      }
+      else{
+        return "Tarus"
+      }
+      break;
+    case "May":
+      if(personalInfo.day < 22){
+        return "Tarus"
+      }
+      else{
+        return "Gemini"
+      }
+      break;
+    case "June":
+      if(personalInfo.day < 22){
+        return "Gemini"
+      }
+      else{
+        return "Cancer"
+      }
+      break;
+    case "July":
+      if(personalInfo.day < 23){
+        return "Cancer"
+      }
+      else{
+        return "Leo"
+      }
+      break;
+    case "August":
+      if(personalInfo.day < 24){
+        return "Leo"
+      }
+      else{
+        return "Virgo"
+      }
+      break;
+    case "September":
+      if(personalInfo.day < 23){
+        return "Virgo"
+      }
+      else{
+        return "Libra"
+      }
+      break;
+    case "October":
+      if(personalInfo.day < 24){
+        return "Libra"
+      }
+      else{
+        return "Scorpio"
+      }
+      break;
+    case "November":
+      if(personalInfo.day < 24){
+        return "Scorpio"
+      }
+      else{
+        return "Sagatarius"
+      }
+      break;
+    case "December":
+      if(personalInfo.day < 22){
+        return "Sagittarius"
+      }
+      else{
+        return "Capricorn"
+      }
+      break;
+    default:
+      return "Error"
+  }
+}

@@ -23,6 +23,7 @@ nav ul li{
 nav ul li button{
   display: flex;
   align-items: center;
+  border-radius:15px;
 }
 
 /*Add New Form Styling */
