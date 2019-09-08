@@ -77,7 +77,13 @@ const handlePost = function( request, response ) {
         break
 
       case '/update':
-        appdata.update( data )
+        let index = data.index
+          appdata[index].firstName = data.firstName
+          appdata[index].lastName = data.lastName
+          appdata[index].pronouns = data.pronouns
+          appdata[index].house = data.house
+          response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+          response.end()
         break
 
       default:

@@ -15,3 +15,11 @@
 #slytherinbg {
     background: green;
 }
+
+#mugglebg {
+    background: white;
+}
+
+#error {
+    display: none;
+}
