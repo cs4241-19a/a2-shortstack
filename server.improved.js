@@ -77,11 +77,13 @@ const sendFile = function( response, filename ) {
 
 var board;
 
+// Create a random array of 6 numbers, each from 1 to 6
 const generateBoard = function() {
-  board = [];
-  for (int i = 0; i < 5; i++) {
-    Math.random()
+  board = [-1, -1, -1, -1, -1, -1];
+  for (var i = 0; i < 5; i++) {
+    board[i] = Math.floor(6 * Math.random())
   }
+  return board;
 }
 
 server.listen( process.env.PORT || port )
