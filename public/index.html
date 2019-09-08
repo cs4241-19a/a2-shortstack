@@ -33,15 +33,7 @@
     <h3>My Trips</h3>
     <table id="CarData" class="display nowrap" style="width:100%">
 <!--         <thead>
-            <tr>
-                <th>Model</th>
-                <th>Year</th>
-                <th>MPG</th>
-                <th>Trip Distance</th>
-                <th>Gas Price</th>
-                <th>Total Distance </th>
-                <th>Total Cost </th>
-            </tr>
+
         </thead> -->
     </table>
   </body>
@@ -68,9 +60,7 @@
       body //same as saying->body:body 
     })
     .then( function( response ) {
-      // response = body
-      
-      //console.log( response )
+ 
       //showData();
     })
 
@@ -146,10 +136,10 @@
         newLine+=('<td>' +cars.model+ '</td>');
         newLine+=('<td>' +cars.year+ '</td>');
         newLine+=('<td>' +cars.mpg+ '</td>');
-        newLine+=('<td>' +cars.tripDistance+ '</td>');
-        newLine+=('<td>' +cars.gasPrice+ '</td>');
+        newLine+=('<td>' +cars.tripDistance+' miles'+ '</td>');
+        newLine+=('<td>' +'$'+cars.gasPrice+ '</td>');
         newLine+=('<td>' +cars.totalGallons+ '</td>');
-        newLine+=('<td>' +cars.totalCost+ '</td>');
+        newLine+=('<td>' +'$'+cars.totalCost+ '</td>');
         //newLine+=('<td>' + '<button id="delete-${i}"> X </button>' + '</td>');
         newLine+=('<td>'+ "<button id='delete-${i}' type='button' onclick='deleteRow(" + '"' + + {i} + '"' + ")' >X</button>" +'</td>');
         //newLine+=('<td>' + '<button onclick="deleteRow(${i})" id="delete-${i}"> X </button>' + '</td>');
@@ -183,18 +173,15 @@ const dbData = function(){
 
   }
 
-
-
-//encodeURIComponent
   </script>
 </html>
 
-<!-- json.stringify() converts a string to a JSON object
+<!-- Notes
+
+json.stringify() converts a string to a JSON object
 json.parse() converts a JSON object to a string
 
-Values inside form that User submits on UI will be JSON object and then gets sent to server.js to be manipulated. Technical achievement: use database (pouchDB or couchDB) or error corrections
-
-window.onload() will make sure window is loaded before adding javascript functionality 
+Values inside form that User submits on UI will be JSON object and then gets sent to server.js to be manipulated. 
 
 <button id=“submitButton”>Submit</button>  
 document.querySelector(‘#submitButton’)
