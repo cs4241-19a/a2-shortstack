@@ -35,40 +35,6 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-   //firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
-   //firebase.database().ref().push({fName:'Test',lName:'TEST', month: 'August', day: 14, sign: 'Leo'})
-    /*
-      DatabaseReference  newRef= firebase.database().ref().push()
-      var key = newRef.getkey();
-      firebase.database().ref().child(key)
-    */
-    //firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
-
-    /*
-   
-   
-   
-   
-   
-   var newItem = firebase.database.ref()
-   var blankItem = newItem.push()
-   blankItem.set({
-   fName:'Test',
-    lName:'TEST',
-    month: 'August',
-    day: 14,
-    sign: 'Leo'
-   })
-   newItem.child(blankItem).set("")
-   
-   /*firebase.database().ref().push({
-    fName:'Test',
-    lName:'TEST',
-    month: 'August',
-    day: 14,
-    sign: 'Leo'
-});*/
-    //console.log(firebase.database().ref())
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
@@ -101,12 +67,10 @@ const handlePost = function( request, response ) {
         console.log("submit")
         const convertedData = JSON.parse(dataString)
         convertedData.sign = starSign(convertedData)
-        firebase.database().ref().push(convertedData)
         if(noDuplicates(convertedData)){
           appdata.push(convertedData)
           let json = JSON.stringify(appdata)
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-          //response.write(firebase.database().ref().once('value', function(snap){JSON.stringify(snap.val())}))
           response.write(json)
           response.end()
         }
@@ -177,19 +141,6 @@ function noDuplicates(dataToAdd){
     }
   }
   return true;
-}
-
-//returns firebase database as an array of json objects
-function returnFirebaseAsArray(){
-  let returnArray = []
-  firebase.database().ref().once("value")
-  .then(function( response) {
-    response.forEach(function(childSnapshot){
-      var childData = childSnapshot.val()
-      returnArray.push(childData)
-    })
-  })
-  return returnArray
 }
 
 //Calculates star sign for given information
@@ -324,6 +275,60 @@ function modData(toChange){
 }
 
 //******** FIREBASE FUNCTIONS *******//
-/*var newItem = firebase.database.ref()
-   var blankItem = newItem.push()
-   blankItem.set({*/
+//returns firebase database as an array of json objects
+function returnFirebaseAsArray(){
+  let returnArray = []
+  firebase.database().ref().once("value")
+  .then(function( response) {
+    response.forEach(function(childSnapshot){
+      var childData = childSnapshot.val()
+      returnArray.push(childData)
+    })
+    return returnArray
+  })
+}
+
+//Takes given JSON object and adds it to the remote database
+function addItemToFirebase(itemToAdd){
+  const dbRef = firebase.database.ref()
+  var templateItem = dbRef.push()
+  templateItem.set({
+    fName: itemToAdd.fName,
+    lName: itemToAdd.lName,
+    month: itemToAdd.month,
+    day: itemToAdd.day,
+    sign: itemToAdd.sign
+  })
+}
+
+function modifyItemInFirebase(itemToModify, newInfo){
+  let key = ""
+  firebase.database().ref().once("value")
+  .then(function( response) {
+    response.forEach(function(childSnapshot){
+      var childKey = childSnapshot.key()
+      var childData = childSnapshot.val()
+      if(noDuplicates)
+    })
+    return key
+  })
+}
+
+//Gets Key for JSON object
+function getFirebaseKey(item){
+  
+}
+
+
+//Checks if given JSON object is a duplicate of an exisiting object
+function noDuplicatesFirebase(itemToCheck){
+  let dataArray = returnFirebaseAsArray()
+  for(let i = 0; i< dataArray.length; i++){
+    if((itemToCheck.fName === dataArray[i].fName) && (itemToCheck.lName === dataArray[i].lName)){
+      if((itemToCheck.day === dataArray[i].day) && (itemToCheck.month === dataArray[i].month)){
+        return false;
+      }
+    }
+  }
+  return true;
+}
