@@ -31,6 +31,16 @@
     <!-- Completed Table -->
   </body>
   <script>
+    
+    const addBook = function( e ) {
+      e.preventDefault();
+      const newOrder = {
+        name: document.getElementById( 'name' ).value,
+        dream: document.getElementById( 'dream' ).value,
+        amountOfPork: document.querySelector('input[name="pork"]:checked').value,
+        garlic: document.querySelector('input[name="garlic"]:checked').value
+      };
+
 
   const submit = function( e ) {
     // prevent default form action from being carried out

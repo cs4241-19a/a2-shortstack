@@ -8,7 +8,7 @@ const http = require( 'http' ),
 
 const appdata = [
   { 'bookName': 'In Cold Blood', 'authorName': 'Truman Capote', 'comments': 'This is one of my favorite books! Its a mystery but also a real story', 'rating': 'wouldRead', 'status': 'completed' },
-  { 'bookName': 'In Cold Blood', 'authorName': 'Truman Capote', 'comments': 'This is one of my favorite books! Its a mystery but also a real story', 'rating': 'wouldRead', 'status': 'completed' },
+  { 'bookName': 'Romeo and Juliet', 'authorName': 'William Shakespeare', 'comments': 'Wasnt a huge fan, this really dragged on', 'rating': 'wouldNotRead', 'status': 'completed' },
   { 'bookName': 'The Secret Chapter', 'authorName': 'Genevieve Cogman', 'comments': 'Comes out Nov. 12, 2019', 'rating': 'canNotRate', 'status': 'toRead' } 
 ]
 
