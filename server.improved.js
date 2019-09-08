@@ -59,7 +59,9 @@ const handlePost = function( request, response ) {
     }
     
     // If valid, check against solution
-    rightColor(playerGuess)
+    var  = rightColor(playerGuess)
+    
+                      
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -147,7 +149,11 @@ const rightColor = function(pGuess) {
 }
 
 const rightPosition = function(pGuess) {
-  
+  var correct = 0;
+  for (var s = 0; s < 6; s++) {
+    if (board[s] == pGuess[s]) { correct++ }
+  }
+  return correct
 }
 
 server.listen( process.env.PORT || port )
