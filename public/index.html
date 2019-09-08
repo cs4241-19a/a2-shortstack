@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
     <meta charset="utf-8">
   </head>
   <body>
@@ -10,7 +10,7 @@
       My Travel Dictionary App
     </h1>
     <div>
-       <form action="">
+       <form class="pure-form" action="">
          How do I say 
       <input type="text" id="word" value="">
          in 
@@ -30,19 +30,20 @@
       <option value="en-ru">Russian</option>
       </select>
          ?
-      <button>Translate!</button>
+      <button class="pure-button">Translate!</button>
     </form>
     </div>
     <h2>
     </h2>
-  <table id="results" style="width:100%">
+  <table id="results"  class="pure-table" style="width:100%">
+    <thead>
   <tr>
     <th>Word</th>
     <th>Translation</th> 
     <th>Lang</th>
   </tr>
+    </thead>
   </table>
-  <a href="something" class="button1">Button</a>
   </body>
   <script>
 
