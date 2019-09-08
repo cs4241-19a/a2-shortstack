@@ -37,12 +37,12 @@
       console.log( response )
 
       
-      fetch('server.improved.js/?quizdata')
+      fetch('server.improved.js')
       .then(function( response ) {
           response.json();
           console.log(response)
       }).then(function(data) {
-        let info = data.body
+        let info = data
         console.log(info)
       });
       
