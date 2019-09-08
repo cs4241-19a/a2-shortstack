@@ -50,12 +50,31 @@
           body
         }).then( function( response ) {
           document.getElementById('order-confirmation').style.display = "flex";
+          //FIX THISSSS
           resetOrderForm();
         })
       }
       return false;
     }
-
+    
+    const orderValidation = function (bookName, authorName, rating) {
+      if (bookName === '') {
+        document.getElementById('error').style.display = "block";
+        document.getElementById('error').focus();
+        return false;
+      } else if (authorName === '') {
+        document.getElementById('error').style.display = "block";
+        document.getElementById('error').focus();
+        return false;
+      } else if (rating === '') {
+        document.getElementById('error').style.display = "block";
+        document.getElementById('error').focus();
+        return false;
+      } else {
+        document.getElementById('error').style.display = "none";
+        return true;
+      }
+    };
 
   const submit = function( e ) {
     // prevent default form action from being carried out
