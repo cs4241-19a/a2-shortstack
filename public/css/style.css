@@ -1,4 +1,4 @@
-/*Style your own assignment! This is fun! */
+/*Navigation Bar Styling */
 nav{
   display: flex;
   justify-content: space-between;
@@ -25,14 +25,28 @@ nav ul li button{
   align-items: center;
 }
 
+/*Add New Form Styling */
 #NEW{
-  background: blue;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 10px;
 }
 
+#NEW legend{
+  font-size: 20px;
+  font-weight: bold;
+  align-self: center;
+  flex-basis: content;
+}
 
-#NEW form label{
-  color: green;
+#NEW input, select{
+  border-radius: 15px;
+  text-align: center;
+  width: 100%;
+}
+
+#NEW button{
+  border-radius: 15px;
 }
 
