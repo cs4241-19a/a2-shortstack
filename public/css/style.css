@@ -1,17 +1,15 @@
 /*Style your own assignment! This is fun! */
 
 body {
-  background: #B0EEB5;
+  background: #5A5959;
   
 }
 
-.nav {
-  position: absolute;
-  background: #82AF51;
-  padding: 10px 20px 10px 20px;
-  top: 80px;
-  box-shadow: 0px 0px 10px 3px rgba(0,0,0,0.4);
-
+.board {
+  position: relative;
+  background: #1C1C1D;
+  width: 20vw;
+  height: 50;
 }
 
 #previous {
