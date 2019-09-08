@@ -70,9 +70,8 @@ const handlePost = function( request, response ) {
         /*Modify  Case MAXIMUM EFFICENCY*/
       case "modify":
         console.log("modify")
-        //const modData = JSON.parse(dataString)
-        //modData(modData)
-        console.log()
+        const Data = JSON.parse(dataString)
+        modData(Data)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
         response.end()
@@ -246,5 +245,15 @@ function removeGiven(original){
 }
 
 function modData(toChange){
-  console.log(modData)
+  let original = toChange.originalArr
+  let replace = toChange.newInput
+  for(let i = 0; i < appdata.length; i++){
+    if((original[0] === appdata[i].fName) && (original[1] === appdata[i].lName) && (original[2] === appdata[i].month) && (original[3] === appdata[i].day)){
+      appdata[i].fName = original[0];
+      appdata[i].lName = original[1];
+      appdata[i].month = original[2];
+      appdata[i].day = original[3];
+      appdata[i].sign = starSign(appdata[i])
+    }
+  }
 }

@@ -103,8 +103,8 @@
     originalArr.push(originalData.fName)
     originalArr.push(originalData.lName)
     originalArr.push(originalData.month)
-    originalArr.push(origina)
-    let body = {original: originalArr, modData: newInput}
+    originalArr.push(originalData.day)
+    let body = {originalArr, newInput}
     body = JSON.stringify(body)
     console.log(body)
     fetch( '/modify', {
