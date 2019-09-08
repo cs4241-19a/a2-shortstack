@@ -92,7 +92,7 @@ var board = [-1, -1, -1, -1]
 
 // Create a random array of 4 numbers, each from 0 to 5
 const generateBoard = function() {
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 4; i++) {
     board[i] = Math.floor(6 * Math.random())
   }
   return board
@@ -118,6 +118,7 @@ const colorToNumber = function(color) {
   else { return -1 }
 }
 
+// Returns the number of ball of the right color, regardless of position
 const rightColor = function(pGuess) {
   var solTally = [0, 0, 0, 0, 0, 0]
   for (var s = 0; s < 6; s++) {
@@ -143,6 +144,10 @@ const rightColor = function(pGuess) {
   console.log(guessTally)
   console.log(correct)
   return correct
+}
+
+const rightPosition = function(pGuess) {
+  
 }
 
 server.listen( process.env.PORT || port )
