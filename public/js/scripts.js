@@ -50,12 +50,14 @@ function genTable(dataList, idx) {
     if(idx === i){
       str += "<tr>"+
                 "<td>" + 
-                  "<input type='number' id='vertices' value="+ d.vertices +"></td>" + 
-                "<td>            <select id="drawType">
-              <option>Line</option>
-              <option>Triangle</option>
-              <option>Dots</option>
-            </select>"+ d.drawType +"</td>" + 
+                  "<input type='number' id='verticesE' value="+ d.vertices +"></td>" + 
+                "<td>"+
+                  "<select id='drawTypeE'>" +
+                      "<option>Line</option>" +
+                      "<option>Triangle</option>" +
+                      "<option>Dots</option>" +
+                  "</select>" +
+                "</td>" + 
                 "<td>"+ d.name +"</td>" +
                 "<td>" + 
                   "<button id='v" + i + "' onclick='drawData(" + i + ")'>View</button>" +
