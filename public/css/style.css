@@ -45,8 +45,8 @@ button {
   width: 100px;
 }
 
-td {
-  
+table {
+  border-spacing: 50px 0;
 }
 
 #generate {
