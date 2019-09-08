@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href="css/style.css">
+    <meta name = "Description" content = "Dice Roller">
+    <meta name = "Keywords" content = "Dice, Roll, D&D">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div class = "heading">
+      <h1>
+        <div id = "title">
+          Results
+        </div>
+      </h1>
+    </div>
+    <div id = "tableBox" class = "labelInput"></div>
+    <div class = "labelInput">
+      <button id = "backButton">
+        Back to Roll
+      </button>
+    </div>
+  </body>
+  <script>
+    let results = []
+    const getResults = function() {
+      // prevent default form action from being carried out
+
+
+
+      fetch( '/getResults', {
+        method:'GET'
+      })
+      .then( function( response ) {
+        response.json().then((res) => {
+          console.log( res ) 
+          results = Object.values(res)
+          console.log(results)
+          makeTable()
+        })
+      
+        console.log( response )
+      })
+      
+      return false
+    }
+    
+    const makeTable = function(){
+      let html = "<table border='1|1' id = 'dTable'>"
+      html+="<tr>"
+      html+="<td>Dice Type</td>"
+      html+="<td>Dice Number</td>"
+      html+="<td>Modifier Symbol</td>"
+      html+="<td>Modifier</td>"
+      html+="<td>Result</td>"
+      html+="</tr>"
+      for (let i = 0; i < results.length; i++) {
+        html+="<tr>"
+        html+="<td>"+results[i].DiceType+"</td>"
+        html+="<td>"+results[i].NumOfDice+"</td>"
+        html+="<td>"+results[i].AddSub+"</td>"
+        html+="<td>"+results[i].Modifier+"</td>"
+        html+="<td>"+results[i].Result+"</td>"
+        
+        html+="</tr>"
+
+      }
+      html+="</table>"
+      document.getElementById('tableBox').innerHTML = html
+    }
+      
+    
+  
+    
+    const back = function(e) {
+      location.href = "index.html"
+    }
+
+    window.onload = function() {
+      getResults()
+      const button1 = document.querySelector( '#backButton' )
+      button1.onclick = back
+      
+    }  
+  </script>
+</html>
