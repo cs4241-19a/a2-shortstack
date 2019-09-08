@@ -71,8 +71,6 @@
   </body>
   
   <script>
-    
-    var previousGuesses = []
 
     const submit = function( e ) {
       // prevent default form action from being carried out
@@ -86,14 +84,9 @@
             json = { firstball: firstBall.value,
                     secondball: secondBall.value, 
                    thirdball: thirdBall.value,
-                   fourthball: fourthBall.value,
-                   previous: previousGuesses},
+                   fourthball: fourthBall.value}
             
             body = JSON.stringify( json )
-      
-            var lastGuess = {firstBall, secondBall, thirdBall, fourthBall}
-            previousGuesses.push(lastGuess)
-            console.log(previousGuesses)
 
       fetch( '/submit', {
         method:'POST',

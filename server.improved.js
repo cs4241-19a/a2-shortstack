@@ -19,8 +19,6 @@ var playerData = [
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )
-    generateBoard()
-    console.log(board)
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
   }
@@ -30,6 +28,9 @@ const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
+    // If page is entered or refreshed, generate a new board
+    generateBoard()
+    console.log(board)
     sendFile( response, 'public/index.html' )
   }else{
     sendFile( response, filename )
@@ -48,6 +49,8 @@ const handlePost = function( request, response ) {
     console.log( obj )
 
     // ... do something with the data here!!!
+    
+    
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -85,5 +88,8 @@ const generateBoard = function() {
   }
   return board;
 }
+
+// Generate
+const 
 
 server.listen( process.env.PORT || port )
