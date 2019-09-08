@@ -46,11 +46,13 @@
     return false
   }
   
-  function delete(){
+  function onDelete(){
     document.getElementById('delete').submit()
     setTimeout(function(){
       getData()
     },1000)
+    
+    return false
   }
 
   window.onload = function() {

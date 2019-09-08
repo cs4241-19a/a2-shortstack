@@ -55,6 +55,24 @@ app.post("/submit", function(request, response){
   console.log(appdata)
 })
 
+
+app.post("/delete", function(request,response){
+  let json = { name: request.body.delName, year: 200, inches: 0}
+  let index = -1
+  let val = request.body.delName
+  let filteredObj = appdata.find(function(item,i){
+    if(item.name === val){
+      index = i
+      return i
+    }
+  })
+  console.log(request.body.delName + " is in position " + index  )
+  if(index > -1)
+    {
+      appdata.splice(index, 1)
+    }
+})
+
 app.get("/data", function(request, response){
   response.send(appdata)
 })
