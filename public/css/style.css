@@ -52,3 +52,20 @@ body, html {
   background-position: center;
   height: 100%;
 } 
+
+div.transbox {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+  width: 360px;
+  height: 260px;
+  
+}
+
+div.inputText {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+  opacity: 1.0;
+}
