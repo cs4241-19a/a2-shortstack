@@ -52,7 +52,7 @@ const handlePost = function( request, response ) {
         'redScore': MR.redScore, 
         'blueScore':MR.blueScore
       }
-      
+      appdata.push(newMR);
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
 
