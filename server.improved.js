@@ -59,8 +59,14 @@ const handlePost = function( request, response ) {
     }
     
     // If valid, check against solution
-    var  = rightColor(playerGuess)
+    var color = rightColor(playerGuess)
+    var colorNpos = rightPosition(playerGuess)
     
+    if (colorNpos = 4) {
+      // You win!
+    }
+    
+    else 
                       
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -136,24 +142,20 @@ const rightColor = function(pGuess) {
     }
   }
   
-  var correct = 0
+  var correctColor = 0
   for (var s = 0; s < 6; s++) {
-    correct = correct + Math.min(solTally[s], guessTally[s])
+    correctColor = correctColor + Math.min(solTally[s], guessTally[s])
   }
   
-  console.log("derp")
-  console.log(solTally)
-  console.log(guessTally)
-  console.log(correct)
-  return correct
+  return correctColor 
 }
 
 const rightPosition = function(pGuess) {
-  var correct = 0;
-  for (var s = 0; s < 6; s++) {
-    if (board[s] == pGuess[s]) { correct++ }
+  var correctPos = 0;
+  for (var j = 0; j < 4; j++) {
+    if (board[j] == pGuess[j]) { correctPos++ }
   }
-  return correct
+  return correctPos
 }
 
 server.listen( process.env.PORT || port )
