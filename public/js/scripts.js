@@ -1,26 +1,23 @@
 // ***********************************************************************
 // Display functions specific to each table. Use a template row and replace with satellite data
-const displayFuture = function( bkdata ) {
+const displayBooks = function( bkdata ) {
   const template = '<tr><td>{name}</td><td>{author}</td><td>{comments}</td><td>{rating}</tr>'
   const row = template.replace("{name}", bkdata.bookName).replace("{author}", bkdata.authorName).replace("{comments}", bkdata.comments).replace("{rating}", bkdata.rating)
   const tbody = document.querySelector("#all-books")
   tbody.innerHTML += row
 }
 
-const displayActive = function( sat ) {
-  const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{elapsed} days</td><td><button onclick="markComplete({id})" class="button is-rounded is-success"> \
-  <span class="icon is-small">  <i class="fas fa-check"></i> </span> </button></td></tr>'
-  const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", (new Date(sat.mission_start).toLocaleDateString("en-US")))
-        .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7)).replace("{id}", sat.id)
-  const tbody = document.querySelector("#active-body")
+const displayGoodBooks = function( bkdata ) {
+  const template = '<tr><td>{name}</td><td>{author}</td><td>{comments}</td><td>{rating}</tr>'
+  const row = template.replace("{name}", bkdata.bookName).replace("{author}", bkdata.authorName).replace("{comments}", bkdata.comments).replace("{rating}", bkdata.rating)
+  const tbody = document.querySelector("#good-books")
   tbody.innerHTML += row
 }
 
-const displayInactive = function( sat ) {
-  const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td>{end}</td><td>{elapsed} days</td></tr>'
-  const row = template.replace("{name}", sat.name).replace("{orbit}", sat.orbit_type).replace("{launch}", new Date(sat.mission_start).toLocaleDateString("en-US"))
-        .replace("{elapsed}", Math.round(sat.elapsed / 8.64e+7)).replace("{end}", new Date(sat.mission_end).toLocaleDateString("en-US"))
-  const tbody = document.querySelector("#inactive-body")
+const displayBadBooks = function( bkdata ) {
+  const template = '<tr><td>{name}</td><td>{author}</td><td>{comments}</td><td>{rating}</tr>'
+  const row = template.replace("{name}", bkdata.bookName).replace("{author}", bkdata.authorName).replace("{comments}", bkdata.comments).replace("{rating}", bkdata.rating)
+  const tbody = document.querySelector("#bad-books")
   tbody.innerHTML += row
 }
 // End individual display functions
@@ -47,47 +44,16 @@ const displayData = function ( data ) {
 
 // Fetch the appdata and then call the display function
 const loadData = function( e ) {
+  e.preventDefault();
+  
   fetch( '/books', {
     method:'GET',
   })
   .then( function( response ) {
     response.json().then(displayData)
+    console.log(response)
   })
 }
-
-//ughhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
-    const displayBooks2 = async function() {
-      try {
-        const resp = fetch('/books', { method: 'GET' });
-        const data = resp.json();
-        const books = data.data;
-        let htmlDiv = document.getElementById('books');
-        htmlDiv.innerHTML = '<tr>\n' +
-                '              <th>Book Name</th>\n' +
-                '              <th>Author</th>\n' +
-                '              <th>Comments</th>\n' +
-                '              <th>Rating</th>\n' +
-                '              <th>Status</th>\n' +
-                '              <th></th>\n' +
-                '              <th></th>\n' +
-                '            </tr>';
-        for (let i = 0; i < books.length; i++) {
-          const book = books[i];
-          const stringBook = JSON.stringify(books[i]);
-          let newRow = '<tr>\n';
-          newRow += (`<td> ${book.bookName} </td>\n`);
-          newRow += (`<td> ${book.authorName} </td>\n`);
-          newRow += (`<td> ${book.comments} </td>\n`);
-          newRow += (`<td> ${book.rating} </td>\n`);
-          newRow += (`<td> ${book.status} </td>\n`);
-          newRow += '</tr>';
-          htmlDiv.innerHTML += newRow;
-        }
-      } catch (err) {
-        console.log(err);
-      }
-      return false;
-    };
     
 //add Book function
     const addBook = function( e ) {
@@ -126,6 +92,7 @@ const loadData = function( e ) {
     const addBookbutton = document.querySelector( 'submit-btn' )
     addBookbutton.onclick = addBook
     
-    loadData();
+    const loadBookData = document.querySelector('load-btn')
+    loadBookDataButton.onclick = loadData
     
   }
