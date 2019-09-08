@@ -35,7 +35,8 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    console.log(firebase.database())
+    console.log(firebase.database().ref('a2-nbloniarz/'))
+    firebase.database().ref('a2-nbloniarz/').push()
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
