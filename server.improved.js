@@ -89,7 +89,14 @@ const generateBoard = function() {
   return board;
 }
 
-// Generate
-const 
+// Extract the user's answer
+const extractAnswer = function(json) {
+  var first = 
+  return answer;
+}
+
+const colorToNumber = function(color) {
+  if (color == "red") { return 0}
+}
 
 server.listen( process.env.PORT || port )
