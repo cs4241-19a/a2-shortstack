@@ -43,3 +43,16 @@ body{
   font-size: 44px;
   color: BlanchedAlmond;
 }
+
+.mainForm{
+  text-align: left;
+  /* margin-bottom: 15px; */
+}
+
+.btnRght{
+  float: right;
+}
+
+.pdbtm{
+  margin-bottom: 15px;
+}
