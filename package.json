@@ -5,5 +5,8 @@
   "author": "Amanda Ezeobiejesi",
   "scripts": {
     "start": "node server.improved.js"
+  },
+  "dependencies": {
+    "mime": "^2.4.4"
   }
 }

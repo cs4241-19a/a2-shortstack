@@ -2,15 +2,14 @@ const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
       // to install the mime library used in the following line of code
-      //mime = require( 'mime' ),
+      mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+  { 'name': 'Carla Duarte', 'dream': 'I want to be famous', 'amountOfPork': 3, 'garlic': 1, 'price': 14},
+  { 'name': 'Izzy Azevedo', 'dream': 'To own an art studio', 'amountOfPork': 5, 'garlic': 1, 'price': 18}
+];
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,10 +24,25 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else if ( request.url === '/orders' ){
+    sendData( response, appdata );
+  } else {
     sendFile( response, filename )
   }
 }
+
+const calculatePrice = function (amountOfPork, ifGarlic) {
+  const baseRamenPrice = 7;
+  const price = (baseRamenPrice + (2*amountOfPork) + ifGarlic);
+  return price;
+};
+
+const sendData = function( response, orders ) {
+  const type = mime.getType( orders );
+  response.writeHeader(200, { 'Content-Type': type });
+  response.write(JSON.stringify({ data: orders }));
+  response.end();
+};
 
 const handlePost = function( request, response ) {
   let dataString = ''
@@ -40,15 +54,66 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
 
-    // ... do something with the data here!!!
+    switch ( request.url ) {
+      case '/submit':
+        const order = JSON.parse( dataString );
+
+        const price = calculatePrice(parseInt(order.amountOfPork), parseInt(order.garlic));
+
+        const newOrder = {
+          'name': order.name,
+          'dream': order.dream,
+          'amountOfPork': parseInt(order.amountOfPork),
+          'garlic': parseInt(order.garlic),
+          'price': price,
+        };
+
+        appdata.push(newOrder);
+
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+        response.end();
+
+        break;
+
+      case '/update':
+        const orderToUpdate = JSON.parse(dataString);
+
+        const newPrice = calculatePrice(parseInt(orderToUpdate.amountOfPork), parseInt(orderToUpdate.garlic));
+
+        const updatedOrder = {
+          'name': orderToUpdate.name,
+          'dream': orderToUpdate.dream,
+          'amountOfPork': parseInt(orderToUpdate.amountOfPork),
+          'garlic': parseInt(orderToUpdate.garlic),
+          'price': newPrice,
+        };
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
+        appdata.splice(orderToUpdate.index, 1, updatedOrder);
+
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
+        response.end();
+
+        break;
+
+      case '/delete':
+        const orderToDelete = JSON.parse(dataString);
+        appdata.splice(orderToDelete.orderNumber, 1);
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
+        response.end();
+
+        break;
+
+      default:
+        response.end('404 Error: File not found');
+        break;
+    }
   })
 }
 
 const sendFile = function( response, filename ) {
-   //const type = mime.getType( filename ) 
+   const type = mime.getType( filename ) 
 
    fs.readFile( filename, function( err, content ) {
 
@@ -56,7 +121,7 @@ const sendFile = function( response, filename ) {
      if( err === null ) {
 
        // status code: https://httpstatuses.com
-       //response.writeHeader( 200, { 'Content-Type': type })
+       response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
 
      }else{
