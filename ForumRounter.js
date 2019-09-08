@@ -94,67 +94,33 @@ async function getForum(forumId) {
         .catch(err => {
             console.log('Error getting documents', err);
         });
-    let messagesPromise = messageQuery.get()
-        .then(async snapshot => {
-            const msgsPromises = snapshot.docs.map(async function(doc) {
-                const messageData = {};
-                // console.log(doc.id, '=>', doc.data());
-                // console.log("+++ +++");
-                // console.log(doc.data().poster);
-                let userPromise = doc.data().poster.get()
+    let messagesPromises = messageQuery.get()
+        .then(snapshot => {
+            return snapshot.docs.map(async function(doc) {
+                return doc.data().poster.get()
                     .then(userSnapshot => {
-                        // console.log("--- ---");
-                        // console.log(userSnapshot);
-                        // console.log(userSnapshot.data());
-                        // console.log(doc.child());
                         return userSnapshot.data();
+                    })
+                    .then(userData => {
+                        return {
+                            message: doc.data().message,
+                            date: (new Date(doc.data().date.seconds * 1000)).toUTCString(),
+                            name: `${userData.firstName} ${userData.middleName} ${userData.lastName}`,
+                            username: userData.username,
+                        }
                     })
                     .catch(err => {
                         console.log('Error getting documents', err);
                     });
-                messageData.message = doc.data().message;
-                messageData.date = doc.data().date;
-                let userData = await userPromise;
-                messageData.name = `${userData.firstName} ${userData.middleName} ${userData.lastName}`;
-                messageData.username = userData.username;
-                return messageData;
             });
-            await Promise.all(msgsPromises)
-                .then(function (msgs) {
-                    return msgs;
-                });
         })
         .catch(err => {
             console.log('Error getting documents', err);
         });
-    // forumDoc.get('messages').then(collections => {
-    //     for (let collection of collections) {
-    //         console.log(`Found subcollection with id: ${collection.id}`);
-    //     }
-    // });
-    // const query = forumRef.collectionGroup('messages').orderBy('date')
-    // query.get();
-    // const query = db.collectionGroup('messages').orderBy('date');
-    //     query.get().then(function(querySnapshot) {
-    //         console.log(querySnapshot.size);
-    //         querySnapshot.forEach(function(doc) {
-    //             console.log(doc.id, ' => ', doc.data());
-    //             doc.data().poster.get().then(function(querySnapshot2) {
-    //                 console.log(querySnapshot2.data());
-    //             });
-    //         });
-    //     });
-    // const query = db.collectionGroup('messages').where('forumID', '==', forumId).orderBy('date');
-    // query.get().then(function(querySnapshot) {
-    //     console.log(querySnapshot.size);
-    // });
 
-
-
-    console.log("waiting on forumdata");
     return {
         forumTitle: await forumPromise,
-        messages: await messagesPromise,
+        messages: await Promise.all(await messagesPromises).then(msgs => {return msgs}),
     };
 }
 
