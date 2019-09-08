@@ -4,7 +4,7 @@
   border-collapse: collapse;
   width: 100%;
   position: absolute;
-  top: 60%;
+  top: 64%;
 }
 
 #CarData td, #CarData th {
@@ -18,7 +18,7 @@
 
 #CarData tr {
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.80;
 }
 
 #CarData th {
