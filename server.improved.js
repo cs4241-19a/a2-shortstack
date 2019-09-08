@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded())
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 230 },
   { 'name': 'Bob', 'year': 2021, 'inches': 320 },
-  { 'name': 'Andy', 'year': 2022, 'inches': 140} 
+  { 'name': 'Andy', 'year': 2022, 'inches': 130} 
 ]
 
 /*const server = http.createServer( function( request,response ) {
@@ -74,6 +74,9 @@ app.post("/delete", function(request,response){
 })
 
 app.get("/data", function(request, response){
+  
+  
+  
   response.send(appdata)
 })
 /*const handleGet = function( request, response ) {

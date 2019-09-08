@@ -51,6 +51,7 @@
     document.getElementById('delete').submit()
     setTimeout(function(){
       clearTable()
+      document.getElementById("dataTable").deleteRow(1)
       getData()
     },1000)
     
@@ -119,7 +120,7 @@
           console.log("wrote " + item.name)
         })
           
-        },3000)
+        },1000)
         
       })
       console.log("Done writing")
