@@ -24,20 +24,20 @@
           <div class='form__container'>
             <h1>Final Grade Calculator</h1>
             <div>
-              <label for="token">Your personal token for this entry is</label>
+              <label for="token">This class is</label>
               <input  class="input" type="text" id="token" placeholder="Field cannot be empty." required/>
             </div>
             <div>
               <label for="currentGrade">Your current number grade is</label>
-              <input  class='input' type="text" id="currentGrade" placeholder="Field cannot be empty."required/>
+              <input  class='input' type="number" id="currentGrade" placeholder="Field cannot be empty."required/>
             </div>
             <div>
               <label for="desired">The number grade you aim to get in this class is</label>
-              <input  class='input' type="text" id="desired" placeholder="Field cannot be empty." required/>
+              <input  class='input' type="number" id="desired" placeholder="Field cannot be empty." required/>
             </div>
             <div>
               <label for="finalWorth">The percentage worth of your final exam is</label>
-              <input class='input' type="text" id="finalWorth" placeholder="Field cannot be empty." required/>
+              <input class='input' type="number" id="finalWorth" placeholder="Field cannot be empty." required/>
             </div>
             <br><button class="button">submit</button>
         </form>
@@ -52,8 +52,10 @@
   <!-- Slide Two - Set the background image for this slide in the line below -->
   <div class="carousel-item" style="background-image: url('img/bg02.jpg')">
     <div class="carousel-caption d-none d-md-block">
-      <h2 class="display-4">Second Slide</h2>
-      <p class="lead">This is a description for the third slide.</p>
+      <div class='form__container' style="background-color: rgba(0,0,0,0.5)">
+      <h2 class="display-4">Fun Fact about This Project</h2>
+      <p class="lead" style="color: white">I had so many failed attempts with this project. I was over-ambitious but failed to learn libraries such as dataTables. I also tried to include a preloading screen and failed. </p>
+    </div>
     </div>
   </div>
 </div>

@@ -1,89 +1,55 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
+You Final Exam Grade Calculator
 ===
+http://a2-eos7l.glitch.me
 
-Due: September 9th, by 11:59 AM.
+This website takes your current overall grade for a particular class, your desired minimum overall grade in class, the final exam weight, and the course title, and computes the minimum percentage grade required on the final exam.
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
-
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
-
-Baseline Requirements
+To fulfill the requirements:
 ---
+###HTML:
 
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
+- I have 2 HTML pages, one being the input form and the other being the results page. 
 
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
+###CSS: 
 
-Your application is required to implement the following functionalities:
+- The input fields as well as the labels (questions) are placed side-by-side using display:inline-block.
+- The shaded text-box is centered in the middle of the page.
+- I used element, ID and class selectors throughout my code. 
 
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
 
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
+Main Challenges:
 ---
+- I had a hard time understanding the communication between the server and the client.
+- I went to all the office hours and am still quite confused. Because I also wanted to use a database for this project, it complicated things even more. 
+- I am also a hard-core UI lover and I spent a lot of time trying to make the page look nicer. Due to the time constraints, I gave up on implementing the pre-loading screen (half of the code is still in here) and I failed to learn how to use dataTables which should have made the styling of the tables easier.
 
-Do the following to complete this assignment:
 
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
+Implications:
 ---
+- Right now this website is really meant to be used by one person, because of the way the database is coded. The database takes the course title as the key so any other entry with the same course title will overwrite the database. I don't have enough time to manipulate around with it. However in the future, a password authentication step is surely needed in order to ensure the privacy for different users. 
 
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+
+
 
 Here is a sample formula for summarizing your activities, talk about:
 - the domain area the project pertains to
 - the main challenges or problems the application addresses
 - the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+- the main results of the implementation, does it really address the problem? 
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
 
-http://a2-charlieroberts.glitch.me
+Achievements:
+---
+###Technical:
+- I used firebase to store my data.
+- 
 
-## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+###Design:
+- I implemented a slider for the front page. The example slider code is found here: https://startbootstrap.com/snippets/full-slider/
+- I coded the entry box from scratch. I also tried my best to maintain a consistent style throughout all HTML pages(including color and font choices).
+- I modified this template and turned it into my Results page: https://templatemag.com/demo/GlobalLanding/. It was difficult to make the layering work properly because of the interaction with the particles. P.S.: In A1 I could not accomplish having both the particles interaction in the background as well as the buttons clickable in the front, but this time it is working. 
 
-### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+
+Special thanks:
+---
+Kit Zeller and Manas Mehta helped me a lot during the debugging process. 

@@ -9,3 +9,4 @@ jQuery('a:not([target="_blank"]):not([href*=#]):not([href^=mailto]):not(.fancybo
     }, 300);
     return false;
 });
+

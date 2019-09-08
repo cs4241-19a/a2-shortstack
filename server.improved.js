@@ -15,9 +15,9 @@ const http = require( 'http' ),
     port = 3000;
 
 const appdata = [ //can add/edit/ delete any object in here
-  {'token':'lemon', 'currentGrade': 'toyota', 'desired': 1999, 'finalWorth': 23, 'finalExam':undefined},
-  { 'token':'greenmatch','currentGrade': 'honda', 'desired': 2004, 'finalWorth': 30,'finalExam':undefined },
-  { 'token':'draven','currentGrade': 'ford', 'desired': 1987, 'finalWorth': 14 ,'finalExam':undefined}
+  {'token':'CS4241', 'currentGrade': 'toyota', 'desired': 1999, 'finalWorth': 23, 'finalExam':undefined},
+  { 'token':'IMGD3000','currentGrade': 'honda', 'desired': 2004, 'finalWorth': 30,'finalExam':undefined },
+  { 'token':'CS3043','currentGrade': 'ford', 'desired': 1987, 'finalWorth': 14 ,'finalExam':undefined}
 ]
 
 
@@ -58,20 +58,8 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     const data = JSON.parse(dataString);
     writeUserData(data.token,data.token,data.currentGrade, data.desired,data.finalWorth);
-    //For validation
-    /*    if( request.url === '/add') {
-          let foundName=false //figuring out if something already exists
-          for (let i=0; i<appdata.length; i++){
-           if(appdata[i],name === data.name) foundName = true
-          }
-          if(foundName == false){
-           appdata.push(data)
-          }
-      }*/
-
     switch( request.url ) {
       case '/submit':
-        //server logic
         let desiredPercentage=parseInt(data.desired)*0.01;
         let finalWorthPercentage=parseInt(data.finalWorth)*0.01;
         let currentGradePercentage=parseInt(data.currentGrade)*0.01;
@@ -87,12 +75,6 @@ const handlePost = function( request, response ) {
         appdata.push( grades);
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         response.end();
-        break;
-      case '/delete':
-        appdata.delete( data );
-        break;
-      case '/update':
-        appdata.update( data );
         break;
       default:
         response.end( '404 Error: File Not Found' )
@@ -132,3 +114,6 @@ function writeUserData(ref,token,currentGrade, desired,finalWorth) {
 }
 
 server.listen( process.env.PORT || port );
+
+
+//http://mariechatfield.com/tutorials/firebase/step5.html
