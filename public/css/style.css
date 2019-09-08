@@ -5,6 +5,8 @@
 /* Examples of Element selectors */
 header {
     padding: 100px 0 50px;
+    /* Horizontally center on page */
+    text-align: center
   }
 
 section {
