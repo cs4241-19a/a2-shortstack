@@ -4,7 +4,9 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
-      port = 3000
+      port = 3000,
+      Express = require('express'),
+      app = Express()
 
 const appdata = [
   { 'name': 'Jusitn', 'year': 2020, 'inches': 23 },
@@ -20,7 +22,11 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
-const handleGet = function( request, response ) {
+
+express.get("/", function(request, response){
+  sendFile(response, '/index.html')
+});
+/*const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
@@ -35,9 +41,9 @@ const handleGet = function( request, response ) {
   else{
     sendFile( response, filename )
   }
-}
+}*/
 
-const handlePost = function( request, response ) {
+/*const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
@@ -54,10 +60,9 @@ const handlePost = function( request, response ) {
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
-}
+}*/
 
-const actions = 
-{
+/*const actions = {
   
   submit(json)
   {
@@ -66,7 +71,7 @@ const actions =
   console.log("Successfully submitted")  
     console.log(appdata)
     
-  }/*,
+  },
   
   Ondelete(json)
   {
@@ -74,8 +79,8 @@ const actions =
     
     console.log("successfully deleted")
     console.log(appdata)
-  }*/
-}
+  }
+}*/
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
