@@ -9,11 +9,14 @@ const days = [
 
 $(document).ready(function () {
   $("#next").on('click', function() {
+    $(".boardsection[data-board]").css({animation: "nextbody 1s forwards"});
     $(".boardsection[data-board='day_0']").css({animation: "next 1s forwards"});
-    $("(.boardsection[data-board])").css({animation: "next 1s forwards"});
-
-    //$(':not(.boardsection[data-board=day_' + num + '])').css({animation: "body 1s forwards"});
   })
+  $(".boardsection[data-board]").on('animationEnd', function() {
+  
+    console.log($(this).order);
+  })
+  
 })
 
 
