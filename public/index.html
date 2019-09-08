@@ -10,6 +10,7 @@
       <input type="text" id="response" value="answer here">
       <button>submit</button>
     </form>
+    <span id="answer"> text </span>
     <br />
     
   </body>
@@ -25,8 +26,12 @@
     const url = '/',
           input = document.querySelector( '#response' ),
           json = { yourresponse: input.value },
-          body = JSON.stringify( json )          
+          body = JSON.stringify( json ),
+          answer = document.querySelector( '#answer')
 
+    //answer.innerHTML = "hi"
+
+    
     fetch( '/submit', {
       method:'POST',
       body
@@ -35,7 +40,6 @@
       // do something with the reponse 
       //text.textContent = response;
       console.log( response )
-
       
       fetch('server.improved.js', {
         method:'POST',
@@ -44,8 +48,8 @@
           //response.json();
           console.log(response)
       }).then(function(data) {
-        let info = data
-        console.log(info)
+        answer.innerHTML = data
+        //console.log(info)
       });
       
 
