@@ -34,15 +34,19 @@
     .then( function( response ) {
       // do something with the reponse 
       //text.textContent = response;
+      
+      /*
       fetch('server.improved.js', {
         method:'POST',
         body
       }).then(function( response ) {
+          response.json();
           console.log(response)
       }).then(function(data) {
-        let info = data.results
+        let info = data
         console.log(info)
       });
+      */
 
       
       console.log( response.yourresponse )
