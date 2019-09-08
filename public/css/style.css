@@ -2,13 +2,16 @@
 nav{
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background: grey;
+  align-items: stretch;
+  background: black;
+  position: sticky;
+  width: 100%;
 }
 nav ul{
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 nav ul li{
   display: flex;
@@ -23,5 +26,6 @@ nav ul li button{
   align-items: center;
 }
 
-#newForm{
+#NEW{
+  background: blue;
 }

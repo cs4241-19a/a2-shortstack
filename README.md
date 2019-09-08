@@ -1,22 +1,8 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
-Due: September 9th, by 11:59 AM.
-
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
-
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
-
 Baseline Requirements
 ---
-
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
-
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
 
 Your application is required to implement the following functionalities:
 
@@ -27,10 +13,6 @@ Your application is required to implement the following functionalities:
     - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
 
 Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
 
 CSS:
 - CSS styling of the primary visual elements in the application
@@ -80,8 +62,8 @@ Here is a sample formula for summarizing your activities, talk about:
 http://a2-nbloniarz.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Dynamic Dropdowns**: When adding or modifying information in the database, the dropdown for the day of the month dynamically changes based on the month selected. 
+- **Synamic Displays**: The buttons on the navigation bar at the top of the page dynamically hide/show the relevant functionalities of the buttons
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...

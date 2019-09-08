@@ -168,7 +168,7 @@ function displayData(){
 }
 
 //Function to control hide-how of entire database table
-function diplayDataTable(data){
+/*function diplayDataTable(data){
   document.getElementById("Containter").innerHTML = ""
   updateDatabaseDisplayTable(data)
 }
@@ -189,7 +189,7 @@ function updateDatabaseDisplayTable(data){
   }
   html += "</table>"
   document.getElementById("Container").innerHTML = html
-}
+}*/
 
 //******* DYNAMIC DROPDOWNS ******//
 //Removes all options from given select element
