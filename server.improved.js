@@ -1,7 +1,5 @@
 const http = require('http'),
     fs = require('fs'),
-    // IMPORTANT: you must run `npm install` in the directory for this assignment
-    // to install the mime library used in the following line of code
     mime = require('mime'),
     dir = 'public/',
     port = 3000;
@@ -35,6 +33,8 @@ const server = http.createServer(function (request, response) {
         handlePost(request, response)
     } else if (request.method === 'DELETE') {
         handleDelete(request, response)
+    } else if (request.method === 'PUT') {
+        handlePut(request, response)
     }
 });
 
@@ -95,6 +95,33 @@ const handleDelete = function (request, response) {
     response.end();
 };
 
+const handlePut = function (request, response) {
+    console.log("PUT");
+
+    let dataString = '';
+
+    request.on('data', function (data) {
+        dataString += data
+    });
+
+    request.on('end', function () {
+        let jsonObj = JSON.parse(dataString);
+
+        let key = jsonObj['uid-val'] + '/' + jsonObj['entry-key'];
+
+        let numWords = jsonObj["entry-post"].split(" ").length;
+        jsonObj["entry-words"] = numWords;
+        jsonObj["entry-map"] = wordFreq(jsonObj["entry-post"]);
+        delete jsonObj['entry-key'];
+
+        // Then post to firebase!
+        ref.child(key).update(jsonObj);
+
+        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+        response.end()
+    });
+};
+
 const sendFile = function (response, filename) {
     const type = mime.getType(filename)
 
@@ -125,11 +152,16 @@ server.listen(process.env.PORT || port);
  */
 function wordFreq(string) {
     var words = string.replace(/[.]/g, '').split(/\s/);
+    console.log(words);
     var freqMap = {};
     let invalid = [".", "#", "$", "/", "[", "]"];
     words.forEach(function (w) {
+
+        // To lower case and remove punctuation
+        w = w.toLowerCase();
+        w = w.replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g,"");
+
         if (!containsAny(w, invalid) && w !== '') {
-            console.log(w);
             if (!freqMap[w]) {
                 freqMap[w] = 0;
             }
@@ -140,13 +172,18 @@ function wordFreq(string) {
     return freqMap;
 }
 
+/**
+ * Check if a string contains any substring
+ * @param str
+ * @param substrings
+ */
 function containsAny(str, substrings) {
     for (var i = 0; i != substrings.length; i++) {
         var substring = substrings[i];
         if (str.indexOf(substring) != -1) {
-            return substring;
+            return true;
         }
     }
-    return null;
+    return false;
 }
 

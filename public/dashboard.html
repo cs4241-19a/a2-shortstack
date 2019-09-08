@@ -23,7 +23,8 @@
 
 
     <!--Data Tables-->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/cr-1.5.0/r-2.2.2/sl-1.3.0/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/cr-1.5.0/r-2.2.2/sl-1.3.0/datatables.min.css"/>
 
     <!-- Custom styles for this template-->
     <link href="./css/sb-admin-2.css" rel="stylesheet">
@@ -291,10 +292,18 @@
                                 </table>
                             </div>
                             <hr>
-                            <button ng-disabled="!selectedRow"
-                                    class="btn btn-info">Update</button>
+                            <div class="mb-2" ng-if="!(!selectedRow)">
+                                <input value="{{selectedRow['entry-title']}}" name="entry-title" type="text" class="my-1 form-control" id="updateTitle">
+                                <input value="{{selectedRow['entry-date']}}" name="entry-date" type="date" class="my-1 form-control" id="updateDate">
+                                <textarea name="entry-post" class="my-1 form-control" id="updateBody">{{selectedRow['entry-post']}}</textarea>
+                            </div>
+                            <button ng-disabled="!selectedRow" ng-click="updateRow()"
+                                    class="btn btn-info">Update
+                            </button>
                             <button ng-disabled="!selectedRow" ng-click="deleteRow()"
-                                    class="btn btn-info">Delete</button>
+                                    class="btn btn-info">Delete
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -410,8 +419,8 @@
 
                         <div class="card shadow mb-4">
                             <div class="card-body">
-                                <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/295234908&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-                                <!--<iframe width="100%" height="450" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/162047121&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>-->
+                                <iframe width="100%" height="166" scrolling="no" frameborder="no"
+                                        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/295234908&color=%23ff5500&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
                             </div>
                         </div>
                     </div>
@@ -476,7 +485,8 @@
 <!-- Page level plugins -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/cr-1.5.0/r-2.2.2/sl-1.3.0/datatables.min.js"></script>
+<script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs4/dt-1.10.18/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/cr-1.5.0/r-2.2.2/sl-1.3.0/datatables.min.js"></script>
 
 
 <!-- Core plugin JavaScript-->

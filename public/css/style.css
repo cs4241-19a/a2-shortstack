@@ -73,3 +73,13 @@ input, button {
     background-position: center;
     background-size: cover;
 }
+
+table.dataTable tbody tr.selected {
+    color: white;
+    background-color: #36b9cc;
+}
+
+.page-item.active .page-link {
+    background-color: #36b9cc;
+    border-color: #36b9cc;
+}

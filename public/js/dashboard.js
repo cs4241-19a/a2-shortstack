@@ -4,10 +4,8 @@
 
 /**
  * TODO: Zoom/pan word bubble
- * TODO: Make all word map lowercase
  * TODO: Make word bubble prettier
- * TODO: Make login/register prettier
- * TODO: Add modify options
+ * TODO: Check why fetch is failing when it's not
  */
 
 var app = angular.module("dashboardApp", []);
@@ -112,10 +110,34 @@ app.controller("dashboardCtrl", function ($scope) {
     }
 
     $scope.deleteRow = function () {
-        console.log('woooo');
         console.log($scope.selectedRow);
         fetch('/' + currentUser.uid + '/' + $scope.selectedRow['entry-key'], {
             method: 'DELETE',
+        }).then(function (response) {
+            updateStats();
+            repopulateTable();
+        })
+    };
+
+    $scope.updateRow = function () {
+        console.log($scope.selectedRow);
+
+        if ($("#updateTitle").val() == "" || $("#updateBody").val() == "" || $("#updateDate").val() == "") {
+            alert("Don't post empty messages!");
+            return;
+        }
+
+        let body = $scope.selectedRow;
+        body['entry-title'] = $("#updateTitle").val();
+        body['entry-post'] = $("#updateBody").val();
+        body['entry-date'] = $("#updateDate").val();
+        body['uid-val'] = currentUser.uid;
+
+        console.log(body);
+
+        fetch('/', {
+            method: 'PUT',
+            body: JSON.stringify(body)
         }).then(function (response) {
             updateStats();
             repopulateTable();
@@ -334,7 +356,6 @@ app.controller("dashboardCtrl", function ($scope) {
             })
             .on("mouseover", function (d, i) {
                 d3.select(this).style("fill", "red");
-                console.log("Showing ", d.data.Name);
                 showWordData(d.data.Name)
             })
             .on("mouseout", function (d, i) {
@@ -447,9 +468,9 @@ app.controller("dashboardCtrl", function ($scope) {
                 labels: word,
                 datasets: [{
                     label: "Frequency",
-                    backgroundColor: "#4e73df",
-                    hoverBackgroundColor: "#2e59d9",
-                    borderColor: "#4e73df",
+                    backgroundColor: "#36b9cc",
+                    hoverBackgroundColor: "#1b606c",
+                    borderColor: "#36b9cc",
                     data: freqCount,
                 }],
             },
