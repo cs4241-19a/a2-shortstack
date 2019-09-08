@@ -112,20 +112,6 @@
       button.onclick = submit
     }
     
-    $(document).ready(function () {
-      var html = "<table border='1|1'>";
-      for (var i = 0; i < rows.length; i++) {
-          html+="<tr>";
-          html+="<td>"+rows[i].name+"</td>";
-          html+="<td>"+rows[i].age+"</td>";
-          html+="<td>"+rows[i].email+"</td>";
-
-          html+="</tr>";
-
-      }
-      html+="</table>";
-      $("div").html(html);
-    });
     
     const url = function() {
       unsplash.search.photos("shopping", 1)

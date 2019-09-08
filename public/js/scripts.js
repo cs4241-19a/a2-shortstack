@@ -17,3 +17,41 @@ const randPhoto = function() {
   });
 }
 
+const loadFavorites = async function() {
+  const resp = await fetch('/orders', { method: 'GET' });
+  const data = await resp.json();
+  const orders = data.data;
+  let htmlDiv = document.getElementById('orders');
+  htmlDiv.innerHTML = '<tr>\n' +
+          '              <th>Name</th>\n' +
+          '              <th>Dream</th>\n' +
+          '              <th>Pork</th>\n' +
+          '              <th>Garlic</th>\n' +
+          '              <th>Price</th>\n' +
+          '              <th></th>\n' +
+          '              <th></th>\n' +
+          '            </tr>';
+  for (let i = 0; i < orders.length; i++) {
+    const order = orders[i];
+    const stringOrder = JSON.stringify(orders[i]);
+    const garlic = (order.garlic ? 'Yes' : 'No');
+    let newRow = '<tr>\n';
+    newRow += (`<td> ${order.name} </td>\n`);
+    newRow += (`<td> ${order.dream} </td>\n`);
+    newRow += (`<td> ${order.amountOfPork} pieces</td>\n`);
+    newRow += (`<td> ${garlic} </td>\n`);
+    newRow += (`<td> ${order.price} </td>\n`);
+    newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
+            + encodeURIComponent(stringOrder) +
+            `>Edit</button> </td>\n`);
+    newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
+    newRow += '</tr>';
+    htmlDiv.innerHTML += newRow;
+  }
+
+  return false;
+};
+
+window.onload = function(){
+  loadFavorites
+}
