@@ -86,9 +86,9 @@
           </div>
         </div>
         <div class="item">
-          <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FTaurus.svg?v=1567965713442" alt="Tarus" style="width:35%; margin-left:auto; margin-right:auto;">
+          <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FTaurus.svg?v=1567965713442" alt="Taurus" style="width:35%; margin-left:auto; margin-right:auto;">
           <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Tarus</h3>
+            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Taurus</h3>
             <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Bull</p>
           </div>
         </div>
@@ -283,13 +283,6 @@
     let originalData = document.getElementById('modHolder').value
     const jsonOriginal = { fName: originalData[0], lName: originalData[1], month: originaData[2], day: originalData[3] },
           body = JSON.stringify( jsonOriginal )
-    /*let valInput = []
-    valInput.push(document.querySelector( '.fNameE' ).value)
-    valInput.push(document.querySelector( '.lNameE' ).value)
-    valInput.push(document.querySelector( '.month' ).value)
-    valInput.push(document.querySelector( '.days' ).value)
-    const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
-          body = JSON.stringify( json )*/
     fetch( '/delete', {
       method:'POST',
       body
