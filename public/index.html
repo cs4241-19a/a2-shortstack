@@ -5,10 +5,10 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="/submit" method = "POST">
-      <input type="text" name="yourname" value="your name here"><br>
-      <input type ="text" name="classyear" value="Your class year"><br>
-      <input type = "text" name="height" value="Your height in inches"><br>
+    <form id = "info" action="/submit" method = "POST">
+      <input type="text" name="yourname" placeholder="your name here"><br>
+      <input type ="text" name="classyear" placeholder="Your class year"><br>
+      <input type = "text" name="height" placeholder="Your height in inches"><br>
       <!--<button name ="submit">submit</button><br>-->
       
      <!-- <input type="text" id="delname" value="delete name"><br>
@@ -21,6 +21,7 @@
 
   function submit(  ) {
     
+    document.getElementById('info').submit()
 
     const inputName = document.querySelector( '#yourname' ),
           inputYear = document.querySelector('#classyear'),
