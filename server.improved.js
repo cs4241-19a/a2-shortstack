@@ -46,7 +46,6 @@ const handlePost = function( request, response ) {
     console.log( obj )
 
     // ... do something with the data here!!!
-    console.log(obj.yourname)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
