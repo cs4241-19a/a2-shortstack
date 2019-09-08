@@ -4,6 +4,7 @@
 <head>
   <title>CS4241 Assignment 2</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
 <body>
@@ -13,6 +14,7 @@
   <div id="main_area">
     <div>
       <p id='counter'>0</p>
+      <p>Lines of Code</p>
       <button type="button" id="clicker">Add Line of Code</button>
     </div>
     <div>
@@ -62,43 +64,59 @@
         <td>Cursor</td>
         <td>15</td>
         <td>1</td>
-        <td>0</td>
+        <td id="purchased_cursors">0</td>
       </tr>
       <tr>
         <td>Hobbyist</td>
         <td>100</td>
         <td>10</td>
-        <td>0</td>
+        <td id="purchased_hobbyists">0</td>
       </tr>
       <tr>
         <td>CS Major</td>
         <td>1200</td>
         <td>30</td>
-        <td>0</td>
+        <td id="purchased_csmajors">0</td>
       </tr>
       <tr>
         <td>Software Engineer</td>
         <td>13000</td>
         <td>50</td>
-        <td>0</td>
+        <td id="purchased_softengs">0</td>
       </tr>
       <tr>
         <td>Server Farm</td>
         <td>30000</td>
         <td>70</td>
-        <td>0</td>
+        <td id="purchased_servers">0</td>
       </tr>
       <tr>
         <td>Quantum Computer</td>
         <td>100000</td>
         <td>110</td>
-        <td>0</td>
+        <td id="purchased_quantum">0</td>
       </tr>
     </table>
   </section>
   <div>
-    <button type="button" id="results_button">View Results</button>
+    <button type="button" id="results_button">Show Results</button>
+  </div>
+  <div id="results_section">
+    <p class="header">Results</p>
+    <table id="results_table">
+      <tr>
+        <td>UID</td>
+        <td>Lines of Code</td>
+        <td>Cursors</td>
+        <td>Hobbyists</td>
+        <td>CS Majors</td>
+        <td>Software Engineers</td>
+        <td>Server Farms</td>
+        <td>Quantum Computers</td>
+        <td>Total Lines of Code Produced</td>
+      </tr>
+    </table>
   </div>
 </body>
-<script src="/public/js/scripts.js"></script>
+<script src="/js/scripts.js"></script>
 </html>
