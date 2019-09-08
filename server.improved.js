@@ -46,11 +46,19 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     var obj = JSON.parse( dataString )
-    console.log( obj )
 
-    // ... do something with the data here!!!
+    // Turn player response into an 4 digit array
+    var playerGuess = extractAnswer(obj)
+    console.log(playerGuess)
     
+    // Check if data is valid
+    for (var i = 0; i < 4; i++) {
+      if (playerGuess[i] == -1) {
+        // Data is invalid, throw 400 error
+      }
+    }
     
+    // If valid, check against
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -79,24 +87,34 @@ const sendFile = function( response, filename ) {
    })
 }
 
-var board = [-1, -1, -1, -1];
+var board = [-1, -1, -1, -1]
 
 // Create a random array of 4 numbers, each from 0 to 5
 const generateBoard = function() {
   for (var i = 0; i < 5; i++) {
     board[i] = Math.floor(6 * Math.random())
   }
-  return board;
+  return board
 }
 
 // Extract the user's answer
 const extractAnswer = function(json) {
-  var first = 
-  return answer;
+  var answer = [colorToNumber(json.firstball),
+                colorToNumber(json.secondball),
+                colorToNumber(json.thirdball),
+                colorToNumber(json.fourthball)]
+  return answer
 }
 
+// Translates each answer from a string to a number
 const colorToNumber = function(color) {
-  if (color == "red") { return 0}
+  if (color == "red") { return 0 }
+  else if(color == "blue") { return 1 }
+  else if(color == "yellow") { return 2 }
+  else if(color == "green") { return 3 }
+  else if(color == "purple") { return 4 }
+  else if(color == "orange") { return 5 }
+  else { return -1 }
 }
 
 server.listen( process.env.PORT || port )
