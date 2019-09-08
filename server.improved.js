@@ -12,6 +12,8 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+const rollData = []
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -25,6 +27,8 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  }if(request.url === '/getResults'){
+    sendResults( response)
   }else{
     sendFile( response, filename )
   }
@@ -38,14 +42,91 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    let data =  JSON.parse( dataString ) 
+    
+    let result = +0
+    let mod = ""
+    let rollList = []
+    
+    
+    if(request.url == '/submit'){
+      for(let i = 0; i < data.numDice; i++){
+        let roll = rollDice(data.typeDice)
+        result += evalMod(roll, data.flatDice, data.addsub)
+        rollList.push(roll)
+      }
+      if(data.addsub == "state1"){mod = "+"}
+      else if(data.addsub == "state2"){mod = "-"}
+      else{mod = ""}
+      rollData.push({'DiceType': data.typeDice, 
+                     'NumOfDice': data.numDice, 
+                     'AddSub': mod, 
+                     'Modifier': data.flatDice,
+                     'Result' : result
+                    })
+      
+      
+    }
+    //need to change to be able to send a list of strings of the randomized dice
+    const json = {
+      'diceType': data.typeDice,
+      'diceNum': data.numDice,
+      'addsub': mod,
+      'diceMod': data.flatDice,
+      'result': result,
+      'rolls': rollList
+    }
+    const responseData = JSON.stringify(json)
+    
+    response.writeHead(200, responseData,  {'Content-Type': 'text/plain' })
+    response.write(responseData)
+    response.addTrailers({'Content-Type': 'application/json'})
     response.end()
   })
 }
+
+const rollDice = function( diceType ){
+  switch(diceType){
+    case "d1":
+      return +Math.floor(Math.random() * Math.floor(2))
+      break
+    case "d4":
+      return +Math.floor(Math.random() * Math.floor(4)) + 1
+      break
+    case "d6":
+      return +Math.floor(Math.random() * Math.floor(6)) + 1
+      break
+    case "d8":
+      return +Math.floor(Math.random() * Math.floor(8)) + 1
+      break
+    case "d10":
+      return +Math.floor(Math.random() * Math.floor(10)) + 1
+      break
+    case "d12":
+      return +Math.floor(Math.random() * Math.floor(12)) + 1
+      break
+    case "d20":
+      return +Math.floor(Math.random() * Math.floor(20)) + 1
+      break
+    case "d100":
+      return +Math.floor(Math.random() * Math.floor(100)) + 1
+      break
+    }
+}
+
+
+  
+const evalMod = function( num, flatMod, state){
+  if(state == "state1"){
+    return +num + +flatMod
+  } else if(state == "state2") {
+    return +num - +flatMod
+  } else {
+    return 0
+  }
+}
+  
+
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
@@ -55,6 +136,7 @@ const sendFile = function( response, filename ) {
      // if the error = null, then we've loaded the file successfully
      if( err === null ) {
 
+       
        // status code: https://httpstatuses.com
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
@@ -67,6 +149,19 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+const sendResults = function( response) {
+
+       //let json = {}
+       //Object.assign(json, rollData)
+       const res = JSON.stringify(rollData)
+       
+       response.writeHeader( 200, { 'Content-Type': 'plain/text' })
+       response.write(res)
+       response.addTrailers({'Content-Type': 'application/json'})
+       response.end()
+
 }
 
 server.listen( process.env.PORT || port )
