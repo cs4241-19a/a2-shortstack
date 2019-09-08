@@ -6,12 +6,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -20,30 +14,88 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+const qs = require('querystring');
+const url = require('url');
+const sqlite3 = require('sqlite3').verbose();
 
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
+let db = new sqlite3.Database('./db/bookings.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the bookings database.');
+});
+
+function bookingsAtDateTime(date, time, response) {
+  const sql = "SELECT * FROM reservations WHERE date='" + date + "' AND time='" + time + "';";
+  
+  console.log("Running DB Query: " + sql);
+
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    let pendingOut = [];
+    rows.forEach((row) => {
+      let result = {username: row.username, seat: row.seat, date: row.date, time: row.time};
+      pendingOut.push(result);
+    });
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' });
+    response.end(JSON.stringify(pendingOut, null, 3));
+  });
+}
+
+const addBooking = function(username, seat, date, time) {
+  let sql = "INSERT INTO reservations (username, seat, date, time) VALUES ('" + username + "', '" + seat + "', '" + date + "', '" + time + "');";
+  
+  console.log("Running DB Query: " + sql);
+
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    rows.forEach((row) => {
+      console.log(row.name);
+    });
+  });
+}
+
+const handleGet = function( request, response ) {
+  const parsedUrl = url.parse(request.url);
+
+  const filename = dir + parsedUrl.pathname;
+
+  if( url.parse(request.url).pathname === '/' ) {
+    sendFile( response, dir + '/view.html' )
+  }else if( url.parse(request.url).pathname === '/api/avail' ) {
+    sendFile( response, dir + '/view.html' )
+    const date = qs.parse(parsedUrl.query).date;
+    const time = qs.parse(parsedUrl.query).time;
+    if (date !== undefined && time !== undefined) {
+      bookingsAtDateTime(date, time, response);
+    }
+    else {
+      sendFile(response, '/api404.html')
+    }
   }else{
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
-  let dataString = ''
+  let dataString = '';
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += data;
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
 
-    // ... do something with the data here!!!
+    data = JSON.parse(dataString);
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    addBooking(data.username, data.seat, data.date, data.time);
+
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    response.end();
   })
 }
 
