@@ -79,21 +79,26 @@ app.get("/data", function(request, response){
   console.log("Pre newData is " )
   console.log(newData)
   
-  newData.forEach(function(data){
-    newData.shift()
+  //newData.forEach(function(data){
+ //   newData.shift()
     
     
-  })
+  //})
   
   
   appdata.forEach(function(item){
     //newData.shift()
     newData.push({name: item.name, year: item.year, inches: item.inches, cm: (item.inches * 2.54)})
   })
-  newData.shift()
+  
+  while(newData.length !== appdata.length)
+    {
+      newData.shift()
+    }
   
   console.log("Post newData is ")
   console.log(newData)
+  console.log(appdata)
   
   response.send(newData)
 })
