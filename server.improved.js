@@ -7,8 +7,8 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'red1': 8192, 'blue1': 7146, 'redSocre': 25, 'blueScore':25},
-  { 'red1': 6439, 'blue1': 359, 'redSocre': 23, 'blueScore':32 } 
+  { 'red1': 8192, 'blue1': 7146, 'redScore': 25, 'blueScore':25},
+  { 'red1': 6439, 'blue1': 359, 'redScore': 23, 'blueScore':32 } 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -49,7 +49,7 @@ const handlePost = function( request, response ) {
       const newMR ={
         'red1': MR.red1, 
         'blue1': MR.blue1, 
-        'redSocre': MR.redScore, 
+        'redScore': MR.redScore, 
         'blueScore':MR.blueScore
       }
       

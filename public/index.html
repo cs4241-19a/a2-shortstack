@@ -70,7 +70,7 @@
 
   window.onload = function() {
     const submitButton = document.getElementById( 'submit' );
-    submitButton.onclick = viewMH;
+    submitButton.onclick = submit;
     
     const matchHistory = document.getElementById( 'viewMatchHistory' );
     matchHistory.onclick = viewMH;
@@ -91,7 +91,7 @@
   const fetchMH = async function() {
         const fMH = await fetch('/m', { method: 'GET' });
         const data = await fMH.json();
-        const match = data.data;
+        const matchH = data.data;
         let htmlDiv = document.getElementById('matchTable');
         htmlDiv.innerHTML = '<tr>\n' +
                 '              <th>Red1</th>\n' +
@@ -101,8 +101,9 @@
                 '              <th></th>\n' +
                 '              <th></th>\n' +
                 '            </tr>';
-        for (let i = 0; i < match.length; i++) {
-          const match = match[i];
+       
+        for (let i = 0; i < matchH.length; i++) {
+          const match = matchH[i];
           const stringOrder = JSON.stringify(match[i]);
           let newRow = '<tr>\n';
           newRow += (`<td> ${match.red1} </td>\n`);
