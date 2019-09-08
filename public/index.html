@@ -9,31 +9,34 @@
       <span id="question"> What is 2 + 2? </span>
       <input type="text" id="response" value="answer here">
       <button>submit</button>
-      <span id="answer">Your Answer</span>
     </form>
     <br />
     
   </body>
   
   <script>
+    
+
+  
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
     const input = document.querySelector( '#response' ),
           json = { yourresponse: input.value },
-          body = JSON.stringify( json ),
-          text = document.querySelector( '#answer' )
-            
+          body = JSON.stringify( json )            
 
     fetch( '/submit', {
       method:'POST',
       body
     })
-    .then( function( response, text ) {
+    .then( function( response ) {
       // do something with the reponse 
-      console.log(text)
       //text.textContent = response;
+      var request = new XMLHttpRequest;
+      
+      
+      console.log( response.yourresponse )
       console.log( response )
     })
 
