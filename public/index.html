@@ -6,19 +6,29 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <form action="/add-a-book">
-      Book Name: <br>
-      <input type="text" id="bookName"><br>
-      Author: <br>
-      <input type="text" id="authorName"><br>
-      Comments: <br>
-      <input type="text" id="comments"><br>
-      Rating: <br>
-      <input type="radio" name="rating" value="haveNotRead" checked> Haven't read yet<br>
-      <input type="radio" name="rating" value="wouldRead"> Would read again<br>
-      <input type="radio" name="rating" value="wouldNotRead"> Would not read again <br>
-      <button>submit</button>
+    <!-- Book Submission Form -->
+    <form action="/add-a-book" method= "post">
+      <fieldset>
+        <legend>
+          Have Any Books You Want To Read?
+        </legend>
+        Book Name: <br>
+        <input type="text" id="bookName"><br>
+        Author: <br>
+        <input type="text" id="authorName"><br>
+        Comments: <br>
+        <input type="text" id="comments"><br>
+        Rating: <br>
+        <input type="radio" name="rating" value="canNotRate" checked> Can't rate<br>
+        <input type="radio" name="rating" value="wouldRead"> Would read again<br>
+        <input type="radio" name="rating" value="wouldNotRead"> Would not read again <br>
+      <div id="submit-btn">
+        <button>Add My Book</button>
+      </div>
+      </fieldset>
     </form>
+    <!-- Haven't Read Table -->
+    <!-- Completed Table -->
   </body>
   <script>
 
