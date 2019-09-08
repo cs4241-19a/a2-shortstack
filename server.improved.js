@@ -36,7 +36,7 @@ const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
     
-   /* var newItem = firebase.database.ref()
+   /*var newItem = firebase.database.ref()
    var blankItem = newItem.push()
    blankItem.set({
    fName:'Test',
@@ -45,7 +45,9 @@ const handleGet = function( request, response ) {
     day: 14,
     sign: 'Leo'
    })
-   firebase.database().ref().push({
+   newItem.child(blankItem).set("")
+   
+   /*firebase.database().ref().push({
     fName:'Test',
     lName:'TEST',
     month: 'August',
