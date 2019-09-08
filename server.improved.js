@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 
 const appdata = [
-  { 'name': 'Jusitn', 'year': 2020, 'inches': 23 },
+  { 'name': 'Justin', 'year': 2020, 'inches': 23 },
   { 'name': 'Bob', 'year': 2021, 'inches': 30 },
   { 'name': 'Andy', 'year': 2022, 'inches': 14} 
 ]
@@ -45,10 +45,10 @@ app.post("/submit", function(request, response){
       return i
     }
   })
-  console.log()
+  console.log(request.body.yourname + "is in position " + index  )
   if(index > -1)
     {
-      console.log("It's in the data already")
+      appdata.splice(index, 1)
     }
   
   appdata.push(json)

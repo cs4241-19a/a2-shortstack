@@ -14,7 +14,13 @@
      <!-- <input type="text" id="delname" value="delete name"><br>
       <button onclick="myDelete()">delete</button>-->
     </form>
-    <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button>
+    <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
+    
+    <form id = "delete" action = "/delete" method = "POST">
+      <input type = "text" name = "delName" placeholder = "Name to delete"><br>
+      
+    </form>
+    <button id = "deleteBtn" class = "inputbutton" onclick = "onDelete()">delete</button><br><br>
     
     <table id = "dataTable">
       <th>Name</th>
@@ -40,7 +46,12 @@
     return false
   }
   
-  
+  function delete(){
+    document.getElementById('delete').submit()
+    setTimeout(function(){
+      getData()
+    },1000)
+  }
 
   window.onload = function() {
     const button = document.querySelector( 'button' )
@@ -88,14 +99,7 @@
     }
     
     
-    function Duplicates()
-    {
-      $.get('/data',function(response){
-        response.forEach(function(item){
-          
-        })
-    })
-    }
+  
     
 
   </script>
