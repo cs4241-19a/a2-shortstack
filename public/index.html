@@ -38,7 +38,7 @@
        </nav>
     </div>
     
-     <table id="matchHistory"></table>
+     <table id="matchTable"></table>
     
   </body>
   <script>
@@ -85,14 +85,14 @@
   }
   
   const viewMH  = function () {
-      fetchOrders();
+      fetchMH();
     };
   
   const fetchMH = async function() {
         const fMH = await fetch('/matchHistory', { method: 'GET' });
         const data = await fMH.json();
         const match = data.data;
-        let htmlDiv = document.getElementById('matchHistory');
+        let htmlDiv = document.getElementById('matchTable');
         htmlDiv.innerHTML = '<tr>\n' +
                 '              <th>Red1</th>\n' +
                 '              <th>Blue1</th>\n' +
@@ -109,10 +109,10 @@
           newRow += (`<td> ${match.blue1} </td>\n`);
           newRow += (`<td> ${match.redScore} </td>\n`);
           newRow += (`<td> ${match.blueScore} </td>\n`);         
-          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
-                  + encodeURIComponent(stringOrder) +
-                  `>Edit</button> </td>\n`);
-          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
+          // newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
+          //         + encodeURIComponent(stringOrder) +
+          //         `>Edit</button> </td>\n`);
+          // newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
         }

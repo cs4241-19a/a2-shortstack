@@ -27,10 +27,10 @@ const handleGet = function( request, response ) {
   } else if (request.url === '/public/css/style.css'){
     sendFile( response, 'public/css/style.css' )
   } else if ( request.url === '/matchHistory' ){
-    sendData( response, appdata );
-  } else{
+    sendData( response, appdata )
+   } else {
     sendFile( response, filename )
-  }
+   }
 }
 
 const handlePost = function( request, response ) {
