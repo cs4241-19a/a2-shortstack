@@ -10,14 +10,19 @@ const days = [
 $(document).ready(function () {
   $("#next").on('click', function() {
     //$(".boardsection[data-board]").css({animation: "nextbody 1s forwards"});
-    $(".boardsection[data-board]:first-child").css({animation: "next 1s forwards"});
+    //$(".boardsection[data-board]:first-child").css({animation: "next 1s forwards"});
     var sections = $('.boardsection[data-board]');
-    sections.first().insertAfter(sections.last()).animate({
-      
-    }, 'slow');
+    sections.css({
+      animation: "nextbody 1s forwards"
+    });
+    $.when( sections ).done( function() {
+    console.log( 'Task finished.' );
+} );
+    sections.promise().done.first().insertAfter(sections.last());
     //$(".boardsection[data-board='day_1']").css({
     //  'order': "1"
     //});
+  
   })
 })
 
