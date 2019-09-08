@@ -31,6 +31,7 @@ body {
   border: 1px solid white;
   display: flex;
   flex-direction: column;
+  animation-name
 }
 
 .board[data-board] .tasklist  {
@@ -53,4 +54,18 @@ body {
 
 #next {
   left: 200px;
+}
+
+@keyframes dailyTransition {
+  0% {
+    translateX: -100%;
+    translateY: -100%
+  }
+  50% {
+    translateX: 300%;
+  }
+  100% {
+    translateY: 100%;
+    translateX: -200%
+  }
 }

@@ -6,5 +6,8 @@ const days = [
   "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
 ]
 //.boardsection[data-board]
-const nextButton = document.querySelector( '' );
-console.log(nextButton)
+//const nextButton = document.querySelector( '#next' );
+
+const nextAction = function() {
+  document.querySelector( '.boardsection' ).css('transform: 50%' );
+}
