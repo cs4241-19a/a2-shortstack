@@ -40,8 +40,12 @@ h3{
 body, html {
   height: 100%;
   margin: 0;
+}
+
+.bg {
   background-image: url("https://cdn.glitch.com/af1eb4f5-2b7a-42cc-ad01-14ba86ec56bf%2FRoadTrip.jpg?v=1567922082812");
   background-repeat:no-repeat;
   background-size:cover;
   background-position: center;
+  height: 100%;
 } 
