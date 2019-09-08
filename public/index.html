@@ -34,9 +34,7 @@
     <br>
     <h3>My Saved Trips</h3>
     <table id="CarData" class="display nowrap" style="width:100%">
-<!--         <thead>
 
-        </thead> -->
     </table>
   </body>
   <script>
@@ -52,9 +50,9 @@
           distance = document.querySelector( '#distance' ),
           gas = document.querySelector( '#gas' )
     
-          json = { model: model.value, year: year.value,
-                 mpg: mpg.value, tripDistance: distance.value,
-                 gasPrice: gas.value},
+          json = { 'model': model.value, 'year': year.value,
+                 'mpg': mpg.value, 'tripDistance': distance.value,
+                 'gasPrice': gas.value},
           body = JSON.stringify( json )
 
     fetch( '/submit', { //url name = /submit
@@ -142,7 +140,8 @@
         newLine+=('<td>' +'$'+cars.gasPrice+ '</td>');
         newLine+=('<td>' +cars.totalGallons+ '</td>');
         newLine+=('<td>' +'$'+cars.totalCost+ '</td>');
-        newLine+=('<td>' + '<button id="delete-${i}"> X </button>' + '</td>');
+        newLine+=('<td><button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
+        //newLine+=('<td>' + '<button id="delete-${i}"> X </button>' + '</td>');
         //newLine+=('<td>'+ "<button id='delete-"+${i}+"' type='button' onclick='deleteRow(" + '"' + + ${i} + '"' + ")' >X</button>" +'</td>');
         //newLine+=('<td>' + '<button onclick="deleteRow(${i})" id="delete-${i}"> X </button>' + '</td>');
         newLine+='</tr>';
