@@ -1,15 +1,23 @@
 body {
+  margin: 5%;
   background: #000000;
   color: #FFFFFF;
-  font-family: Marta
+  font-family: 'Comic Sans MS';
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Brush Script MT';
+  font-size: 60px;
 }
 
 .layout{
-  margin-top: 10%;
+  margin-top: 100px;
   display: grid;
   grid-template-areas: "a b"
                        "c b"
                        "d b";
+  grid-gap: 20px;
 }
 
 #title {
@@ -22,6 +30,8 @@ body {
 
 #table {
   grid-area: d;
+  display:flex;
+  justify-self: center;
 }
 
 #canvas {
