@@ -7,13 +7,13 @@
   </head>
   <body>
     <div class="layout">
-      <div>
+      <div id="title">
         <h1>Title</h1>
         <p> Hello this is where the web page describes what it is.</p>
       </div>
     
       <form action="">
-        <div>
+        <div id="input">
           <div>
             <p>Please enter a value between 1 and 50.</p>
             <input type="number" id="vertices" placeholder="15">
@@ -32,17 +32,15 @@
             <p>Please enter a name for your to be generated art piece.</p>
             <input type="text" id="name" placeholder="The Legendary Scribble">
           </div>
-          
+          <button id="generate">Generate</button>
         </div>
-      
-        <button id="generate">Generate</button>
       </form>
       
-      <div>
+      <div id="canvas">
         <canvas width="600" height="600"> </canvas>
       </div>
       
-      <div>
+      <div id="table">
         <table id="dataTable"></table>
       </div>
     </div>
