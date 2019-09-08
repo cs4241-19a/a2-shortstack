@@ -31,7 +31,6 @@ h1 {
 #overview {
     width: 100%;
 }
-
 th {
     font-family: "Times New Roman", Times, serif;
     font-weight: bold;
@@ -45,8 +44,6 @@ td {
 table, th, td {
     border: 1px solid white;
     border-collapse: collapse;
-}
-th, td {
     padding: 15px;
 }
 
@@ -60,6 +57,7 @@ input {
 h3 {
     color: azure;
 }
+
 #add {
     background-color: #e7e7e7; color: black;
     border: none;
@@ -72,4 +70,10 @@ h3 {
 #add:hover {
     background-color: #008CBA;
     color: white;
+}
+
+#hint {
+    display: flex;
+    justify-content: center;
+    color: red;
 }

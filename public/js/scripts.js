@@ -77,6 +77,7 @@ const refresh = function () {
             let td5 = createNode('th');
             let td6 = createNode('th');
             let td7 = createNode('th');
+
             let gear = createNode('i');
             gear.id = `gear${rowNum}`;
             gear.className = 'fa fa-gear';
@@ -160,25 +161,36 @@ const makeBody = function () {
         matchScore: 0,
         modifyIndex
     };
+
     return JSON.stringify(json);
 };
 const handlePost = function () {
     let body = makeBody();
-    fetch(`/${input}`, {
-        method: 'POST',
-        body
-    }).then(function (response) {
-        console.log("Post sent to server: " + response);
-        refresh();
-    });
+    let checkBody = JSON.parse(body);
+    let hint = document.getElementById('hint');
+
+    if (checkBody['name'] === ""
+        || checkBody['age'] === ""
+        || checkBody['gender'] === ""
+        || checkBody['hobby'] === "") {
+        hint.innerHTML = "There are missing fields!";
+    } else {
+        hint.innerHTML = "";
+        fetch(`/${input}`, {
+            method: 'POST',
+            body
+        }).then(function (response) {
+            console.log("Post sent to server: " + response);
+            refresh();
+        });
+    }
 };
 
 const setInput = function (e) {
     if (addBtn.innerHTML === "Submit") {
         input = 'add';
         handlePost();
-    }
-    else {
+    } else {
         input = 'modify';
         handlePost();
         rightHead.innerHTML = "Personal Information";
@@ -188,10 +200,14 @@ const setInput = function (e) {
         document.querySelector('#age').value = "";
 
         let genderS = document.getElementsByName('gender');
-        for (let i = 0; i < genderS.length; i++) {genderS[i].checked = false;}
+        for (let i = 0; i < genderS.length; i++) {
+            genderS[i].checked = false;
+        }
 
         let hobbyS = document.getElementsByName('hobby');
-        for (let i = 0; i < hobbyS.length; i++) {hobbyS[i].checked = false;}
+        for (let i = 0; i < hobbyS.length; i++) {
+            hobbyS[i].checked = false;
+        }
     }
     e.preventDefault();
     return false;
