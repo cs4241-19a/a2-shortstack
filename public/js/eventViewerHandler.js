@@ -41,10 +41,18 @@ const TableManager = {
             for (let j = 0; j < row[i].cells.length; j++) {
                 row[i].cells[j].addEventListener('click', function () {
                     console.log('clicked on (' + i + "," + j + ")");
+                    if (this.style.backgroundColor == "green") {
+                        this.style.backgroundColor = "";
+                    } else {
+                        this.style.backgroundColor = "green";
+                    }
                 })
             }
         }
-    }
+    },
+    currentUserAvailability: [
+
+    ]
 };
 
 const EventDetails = {

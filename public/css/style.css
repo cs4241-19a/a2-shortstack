@@ -1,4 +1,6 @@
-/* Input for the event */
+/*
+FORMS
+*/
 input[type=text].eventCreationField {
     border-radius: 10px;
     color: #ffffff;
@@ -35,6 +37,14 @@ button.submit {
     left: 15%;
 }
 
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange,
+ .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, 
+ .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, 
+ .flatpickr-day.endRange.nextMonthDay{
+    background: #091c17 !important;
+}
+
+/* Nav Bar (Bootstrap) */
 .bg-light {
     background-color: #091c17 !important;
 }
@@ -55,6 +65,7 @@ a.nav-link:hover {
     width: auto;
 }
 
+/*Index.html banner logo*/
 .bannerLogo {
     margin: 40px;
     width: 20%;
@@ -63,17 +74,15 @@ a.nav-link:hover {
     position: relative;
 }
 
-.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange,
- .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, 
- .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, 
- .flatpickr-day.endRange.nextMonthDay{
-    background: #091c17 !important;
-}
-
 body {
-    background-color: #61feba ; 
+    height: 100%;
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-image: linear-gradient(#61feba, green);
 }
 
+/* Event Viewer */
 table.eventTable {
     border: 3px solid #091c17;
     width: 95%;
@@ -108,8 +117,4 @@ td:hover {
     font-size: 24px;
     margin: 10px;
     margin-left: 2.5%;
-}
-
-.banner-container {
-    width:100%;
 }

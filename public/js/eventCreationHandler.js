@@ -15,7 +15,7 @@ $(document).ready(function() {
         enableTime: true,
         noCalendar: true,
         dateFormat: "H",
-    });
+    });  
 });
 
 // Javascript
@@ -82,3 +82,9 @@ const FormValidation = {
         return eventJSON;
     }
 };
+
+const FormHandler = {
+    viewJustCreatedEvent() {
+        console.log("Fire!");
+    }
+}
