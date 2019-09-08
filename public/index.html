@@ -34,23 +34,20 @@
     .then( function( response ) {
       // do something with the reponse 
       //text.textContent = response;
+      console.log( response )
+
       
-      /*
-      fetch('server.improved.js', {
-        method:'POST',
-        body
-      }).then(function( response ) {
+      fetch('server.improved.js/?quizdata')
+      .then(function( response ) {
           response.json();
           console.log(response)
       }).then(function(data) {
-        let info = data
+        let info = data.body
         console.log(info)
       });
-      */
+      
 
       
-      console.log( response.yourresponse )
-      console.log( response )
     })
 
     return false

@@ -12,6 +12,11 @@ const appdata = [
   { 'model': 'ford', 'year': 1987, 'mpg': 14} 
 ]
 
+const quizdata = [
+  { 'question': 'one', 'answer': '4', response: ''},
+  { 'question': 'two', 'answer': '2', response: ''}
+]
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -40,7 +45,7 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
     // ... do something with the data here!!!
     //response.write(JSON.parse( dataString ))
-    appdata.add()
+    quizdata.push({'question':'three', 'answer': '3', 'response':'4'});
     
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
