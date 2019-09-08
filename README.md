@@ -1,13 +1,20 @@
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
 ## Lost Words
 
 Lost words is a web app that allows users to make a account and store writing entries. The app
 will give user feedback, such as word frequency, synonyms and rhyming words, as well as tools for
 searching for definitions. A writer's toolkit in attempt to never be lost for words!
 
-TODO: ADD IMAGES
+Below is the top of the UI for the main dashboard which makes up most of the app's components.
+![Top UI](img/top_ui_img.png)
+
+Below is a snippet of the firebase layout
+![Firebase Layout](img/firebase_img.png)
+
+Below is an example of hovering over a word in the bubble chart.
+![Word Bubble](img/word_bubble_img.png)
+
+Below is an example of OCR recognition for post submission.
+![Text OCR](img/text_recog_img.png)
 
 Here is a sample formula for summarizing your activities, talk about:
 - the domain area the project pertains to
@@ -22,7 +29,8 @@ http://a2-kitzeller.glitch.me
 
 ## Technical Achievements
 - **Tech Achievement 1**: Used Firebase Admin SDK for database access through the server. In the handle get/post/delete/put requests,
-the data gets sent/retrieve from a cloud database as a means of persistant storage.
+the data gets sent/retrieve from a cloud database as a means of persistent storage. I designed the database so that each unique UID associated with the logged in user is
+used to get only their data from the database. The server calculates the word count and frequency map before posting it to the database.
 - **Tech Achievement 2**: Implemented a user authentication system using firebase auth client library. Authentication is checked
 and access to personal dashboard sites is dependent on being authenticated. Created login and register pages for this.
 - **Tech Achievement 3**: Using d3.js, created visualizations. Used chart.js too.
