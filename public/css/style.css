@@ -16,17 +16,24 @@ body {
   margin-bottom: 2vh;
   
 }
-.board {
-  width: 98vw;
-  height: 20vmin;
-}
 
-.board['data-board'='fullboard'] {
-  position: relative;
+.board {
+  display: flex;
+  height: 70vmin;
   background: #1C1C1D;
   width: 98vw;
-  height: 20vmin;
 }
+
+.board[data-board] {
+  border: 1px solid white;
+  flex-direction: row;
+}
+
+.board[data-board].header {
+  
+}
+
+
 
 #previous {
   
