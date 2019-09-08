@@ -62,6 +62,14 @@ const handlePost = function( request, response ) {
   })
 }
 
+const sendData = function( response, MHs ) {
+  const type = mime.getType( MHs );
+  response.writeHeader(200, { 'Content-Type': type });
+  response.write(JSON.stringify({ data: MHs }));
+  response.end();
+}
+
+
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
 
