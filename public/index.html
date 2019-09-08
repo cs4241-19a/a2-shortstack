@@ -30,8 +30,9 @@
       <br><button>submit</button>
     </form>
     <br>
+    <h3>My Trips</h3>
     <table id="CarData" class="display nowrap" style="width:100%">
-        <thead>
+<!--         <thead>
             <tr>
                 <th>Model</th>
                 <th>Year</th>
@@ -41,11 +42,12 @@
                 <th>Total Distance </th>
                 <th>Total Cost </th>
             </tr>
-        </thead>
+        </thead> -->
     </table>
   </body>
   <script>
-
+    /*window.localStorage;
+    localStorage.setItem('firstvalue', model.value);*/
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
@@ -57,8 +59,8 @@
           gas = document.querySelector( '#gas' )
     
           json = { model: model.value, year: year.value,
-                 mpg: mpg.value, distance: distance.value,
-                 gas: gas.value},
+                 mpg: mpg.value, tripDistance: distance.value,
+                 gasPrice: gas.value},
           body = JSON.stringify( json )
 
     fetch( '/submit', { //url name = /submit
@@ -69,16 +71,121 @@
       // response = body
       
       //console.log( response )
+      //showData();
     })
 
+    //window.location = "index.html";
+    showData();
     return false
   }
+
+  const deleteRow = function (rowIndex) {
+    const rowData = { rowData: rowIndex};
+    const carData = JSON.stringify(rowData);
+    fetch('/delete', {
+      method: 'POST',
+      carData
+    });
+    showData();
+  };
+
+  const showData = function(){
+    fetch('/cars',{
+      method: 'GET'
+    })
+    .then( function (response){
+        return response.json()
+    })
+    .then( function(theCarData){
+      console.log(theCarData)
+
+      /*let entry=document.createElement("div");
+      entry.innerHTML=JSON.stringify(theCarData);
+      document.body.appendChild(entry);*/
+
+      let finalCarData = document.querySelector('#CarData');
+
+      //setting the header at the top of the table
+      finalCarData.innerHTML =
+
+                '<tr>\n'+
+                '<th>Model</th>\n'+
+                '<th>Year</th>\n'+
+                '<th>MPG</th>\n'+
+                '<th>Trip Distance</th>\n'+
+                '<th>Gas Price</th>\n'+
+                '<th>Total Gallons</th>\n'+
+                '<th>Total Cost</th>\n'+
+                '<th>Delete</th>\n'+
+                '</tr>';
+
+      //console.log("this one: ", typeof(getFetch))
+      //const newData = theCarData.data
+      //console.log("hhhh,   ", data)
+      //console.log("This is Data",typeof(newData))
+     /*theCarData.forEach(cars => {
+        let newLine = '<tr>'
+        newLine+=('<td>' +cars.model+ '</td>')
+        newLine+=('<td>' +cars.year+ '</td>')
+        newLine+=('<td>' +cars.mpg+ '</td>')
+        newLine+=('<td>' +cars.tripDistance+ '</td>')
+        newLine+=('<td>' +cars.gasPrice+ '</td>')
+        newLine+=('<td>' +cars.totalGallons+ '</td>')
+        newLine+=('<td>' +cars.totalCost+ '</td>')
+        newLine+=('<td>' + '<button id="delete"> X </button>' + '</td>')
+        newLine+='</tr>'
+        
+
+        finalCarData.innerHTML += newLine
+
+      })*/
+
+      for(let i = 0; i < theCarData.length; i++){
+        const cars = theCarData[i];
+        let newLine = '<tr>'
+        newLine+=('<td>' +cars.model+ '</td>');
+        newLine+=('<td>' +cars.year+ '</td>');
+        newLine+=('<td>' +cars.mpg+ '</td>');
+        newLine+=('<td>' +cars.tripDistance+ '</td>');
+        newLine+=('<td>' +cars.gasPrice+ '</td>');
+        newLine+=('<td>' +cars.totalGallons+ '</td>');
+        newLine+=('<td>' +cars.totalCost+ '</td>');
+        //newLine+=('<td>' + '<button id="delete-${i}"> X </button>' + '</td>');
+        newLine+=('<td>'+ "<button id='delete-${i}' type='button' onclick='deleteRow(" + '"' + + i + '"' + ")' >X</button>" +'</td>');
+        //newLine+=('<td>' + '<button onclick="deleteRow(${i})" id="delete-${i}"> X </button>' + '</td>');
+        newLine+='</tr>';
+
+        finalCarData.innerHTML += newLine
+      }
+
+
+    })
+  }
+
+const dbData = function(){
+      fetch( '/getData')
+      .then( function( response ) {
+        return json = response.json();
+        })
+      .then(function (response){
+            console.log( 'post response: ', response );
+            var n=localStorage.getItem('firstvalue');
+            document.getElementById('emptyfield').innerText=JSON.stringify(response[n].model)
+        });
+}
+
 
   window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = submit
+
+    //dbData();
+
   }
 
+
+
+//encodeURIComponent
   </script>
 </html>
 
@@ -92,4 +199,11 @@ window.onload() will make sure window is loaded before adding javascript functio
 <button id=“submitButton”>Submit</button>  
 document.querySelector(‘#submitButton’)
 
-button.addEventListener(‘click”, submit) -> can add multiple listeners or remove them -->
+button.addEventListener(‘click”, submit) -> can add multiple listeners or remove them 
+
+can use cookies to send data back and forth 
+
+can use createElement to form your data (ie add in a table)
+-->
+
+

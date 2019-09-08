@@ -1,3 +1,4 @@
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -7,14 +8,11 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [ //can add/edit/ delete any object in here 
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23, 'tripDistance': 300, gasPrice: 2.39, 'totalGallons': 13.04, 'totalCost': 31.16 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30, 'tripDistance': 230, gasPrice: 3.40, 'totalGallons': 13.04, 'totalCost': 31.16  },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14, 'tripDistance': 113, gasPrice: 4.50, 'totalGallons': 13.04, 'totalCost': 31.16 } 
+  { 'model': 'Toyota', 'year': 1999, 'mpg': 23, 'tripDistance': 300, 'gasPrice': 2.39, 'totalGallons': 13.04, 'totalCost': 31.16 },
+  { 'model': 'Honda', 'year': 2004, 'mpg': 30, 'tripDistance': 230, 'gasPrice': 3.40, 'totalGallons': 7.66, 'totalCost': 26.04  },
+  { 'model': 'Ford', 'year': 1987, 'mpg': 14, 'tripDistance': 113, 'gasPrice': 4.50, 'totalGallons': 8.07, 'totalCost': 36.31 } 
 ]
 
-//const appdata =[
-//  {"name":"charlie"}
-//]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -38,7 +36,7 @@ const handleGet = function( request, response ) {
   }
 }
 //communicate from HTML to server
-//change url to look at specific file (same as a1 with switch statement) (if request.url = delete, delete the data)
+//change url to look at specific file (same as a1 with switch statement) (if request.url = add, add the data)
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -47,27 +45,17 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) ) //instead of this, store object in variable
     
     const data = JSON.parse(dataString)
     
-      //For validation
-/*    if( request.url === '/add') {
-      let foundName=false //figuring out if something already exists
-      for (let i=0; i<appdata.length; i++){
-       if(appdata[i],name === data.name) foundName = true
-      }
-      if(foundName == false){
-       appdata.push(data)
-      }
-  }*/
 
-    // ... do something with the data here!!! have switch statement here
-    switch( request.url ) {
+    switch( request.url ) {      
+
       case '/submit':
       //server logic 
-        let totalGallons = (parseInt(data.tripDistance) / parseInt(data.mpg))
-        let totalCost = (totalGallons*(parseInt(data.gasPrice)))
+        let totalGallons = (parseInt(data.tripDistance) / parseInt(data.mpg)).toFixed(2)
+
+        let totalCost = (totalGallons*(parseInt(data.gasPrice))).toFixed(2)
         
         const carData = {
           'model': data.model,
@@ -79,40 +67,51 @@ const handlePost = function( request, response ) {
           'totalCost': totalCost
         }
         
-        appdata.push( carData )
-        console.log(appdata)
+        if( request.url === '/submit') {
+          let foundName=false //figuring out if something already exists
+          for (let i=0; i<appdata.length; i++){
+            if((appdata[i].model === carData.model)&&(appdata[i].year === carData.year)&&(appdata[i].mpg === carData.mpg)&&(appdata[i].tripDistance === carData.tripDistance)&&(appdata[i].totalGallons === carData.totalGallons)) {
+              foundName = true
+            }
+          }
+          if(foundName == false){
+            appdata.push(carData) //creates new row of data in JSON file
+          }
+        }
+
+        console.log(appdata) 
         
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
         break
-      case '/add':
-        
-        break
+
       case '/delete':
-        appdata.delete( data )
+        appdata.splice(data.rowData, 1)
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
         break
+
       case '/update':
         appdata.update( data )
         break
+
       default:
         response.end( '404 Error: File Not Found' )
   }
     
-    //appdata.push( JSON.parse( dataString)) //creates new row of data in JSON file
-    //have a return statement to return all data to UI
-    console.log(appdata)
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    //error message with 404 -> that name is already found 
-    response.end()
+  
   })
 }
 
-const sendData = function(response, data){
-  const type = mime.getType( data ) 
-  response.writeHeader( 200, { 'Content-Type': type })
-  response.write(JSON.stringify({data:data}))
-  response.end( 'File Found!' )
+const sendData = function(response, carsdata){
+  /*const type = mime.getType( carsdata ) ;
+  response.writeHeader( 200, { 'Content-Type': type });
+  response.write(JSON.stringify({data: carsdata}));
+  response.end()*/
+
+  response.end(JSON.stringify(carsdata));
 }
+
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
