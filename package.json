@@ -1,12 +1,9 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
+  "name": "a2-amandaeze97",
+  "version": "0.1.0",
+  "description": "CS4241 - Assignment 2",
   "author": "Amanda Ezeobiejesi",
   "scripts": {
     "start": "node server.improved.js"
-  },
-  "dependencies": {
-    "mime": "^2.4.4"
   }
 }

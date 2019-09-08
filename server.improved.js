@@ -2,7 +2,7 @@ const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
       // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
+      //mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
 
@@ -48,7 +48,7 @@ const handlePost = function( request, response ) {
 }
 
 const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+   //const type = mime.getType( filename ) 
 
    fs.readFile( filename, function( err, content ) {
 
@@ -56,7 +56,7 @@ const sendFile = function( response, filename ) {
      if( err === null ) {
 
        // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
+       //response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
 
      }else{
