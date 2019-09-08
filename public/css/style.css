@@ -58,11 +58,11 @@ table {
 }
 
 .layout{
-  margin-top: 100px;
+  margin-top: 30px;
   display: grid;
-  grid-template-areas: "a b"
-                       "c b"
-                       "d b";
+  grid-template-areas: "a b b"
+                       "c b b"
+                       "d b b";
   grid-gap: 20px;
 }
 
@@ -88,6 +88,6 @@ table {
   width: 600px;
   height: 600px;
   border: 5px dotted var(--borderColor);
-  margin-right: 20px;
+  margin-right: 20%;
 }
 
