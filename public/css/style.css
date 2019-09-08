@@ -6,8 +6,8 @@ body {
 .layout{
   display: grid;
   grid-template-areas: "a b"
-                      "c b"
-                      "d b";
+                       "c b"
+                       "d b";
 }
 
 #title {
@@ -24,8 +24,8 @@ body {
 
 #canvas {
   grid-area: b;
-  width: 50%;
-  height: 50%;
+  width: 90%;
+  height: 90%;
   border: 5px solid;
 }
 
