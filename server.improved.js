@@ -36,12 +36,10 @@ const handlePost = function( request, response ) {
   request.on( 'data', function( data ) {
       dataString += data 
   })
-
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
-    console.log(appdata.model)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()

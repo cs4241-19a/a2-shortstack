@@ -23,12 +23,12 @@
     const input = document.querySelector( '#response' ),
           json = { yourresponse: input.value },
           body = JSON.stringify( json ),
-          text = document.querySelector( '#answer' );
+          text = document.querySelector( '#answer' )
             
 
     fetch( '/submit', {
       method:'POST',
-      body 
+      body
     })
     .then( function( response, text ) {
       // do something with the reponse 
