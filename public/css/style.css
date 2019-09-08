@@ -4,21 +4,32 @@
 table, th, td {
   border: 1px solid black;
   padding: 5px;
+  align:center;
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1, h2, p {
   display: flex;
-  font-family: helvetica;
+  font-family: 'Open Sans', sans-serif;
   justify-content: center;
 }
 
 
 div{
   display: flex;
-  font-family: helvetica;
+  font-family: 'Open Sans', sans-serif;
   justify-content: center;
 }
 
 table{
-  font-family: helvetica;
+  font-family: 'Open Sans', sans-serif;
+}
+
+button.pure-button{
+  background-color:blue;
+  border-radius:4px;
+}
+
+button.pure-button:hover {
+  
 }
