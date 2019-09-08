@@ -45,6 +45,10 @@ button {
   width: 100px;
 }
 
+td {
+  
+}
+
 #generate {
   margin: 20px;
 }
@@ -70,7 +74,6 @@ button {
   grid-area: d;
   display:flex;
   justify-self: center;
-  justify-contents: flex-between;
 }
 
 #canvas {
