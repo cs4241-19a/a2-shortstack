@@ -32,7 +32,7 @@
       <option value="en-ru">Russian</option>
       </select>
          ?
-      <button class="pure-button">Translate!</button>
+      <button class="pure-button translate">Translate!</button>
     </form>
     </div>
     <h2>
@@ -43,6 +43,7 @@
     <th>Word</th>
     <th>Translation</th> 
     <th>Language</th>
+    <th>Options</th>
   </tr>
     </thead>
   </table>
@@ -70,15 +71,25 @@
         var tdNode = document.createElement("td");
         var tdNode2 = document.createElement("td");
         var tdNode3 = document.createElement("td");
+        var tdNode4 = document.createElement("td");
         var trNode = document.createElement("tr");
         var langSelect = document.getElementById("lang");
         var selectedText = langSelect.options[langSelect.selectedIndex].text;
+        var deleteButton = document.createElement("button")
+        deleteButton.className = "pure-button deleteButton"
+        deleteButton.innerHTML = "Delete";
+        var editButton = document.createElement("button")
+        editButton.className = "pure-button editButton"
+        editButton.innerHTML = "Edit";
         tdNode.appendChild(document.createTextNode(data.word));
         tdNode2.appendChild(document.createTextNode(data.translation));
         tdNode3.appendChild(document.createTextNode(selectedText));
+        tdNode4.appendChild(editButton);
+        tdNode4.appendChild(deleteButton);
         trNode.appendChild(tdNode);
         trNode.appendChild(tdNode2);
         trNode.appendChild(tdNode3);
+        trNode.appendChild(tdNode4);
         document.getElementById("results").appendChild(trNode);
     })
 
