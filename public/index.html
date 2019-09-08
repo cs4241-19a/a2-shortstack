@@ -29,6 +29,7 @@
   function submit(  ) {
     
     document.getElementById('info').submit()
+    getData()
 
     
 
@@ -66,17 +67,18 @@
     
     
     
-    function clearTable
+    function clearTable()
     {
-      //for(let)
+      
     }
     
     function getData()
     {
       $.get('/data',function(response){
-        clearTable()
-        data.forEach(function(item){
-          $('#dataTable').append('<tr><td>' + item[0] + '</td><td>')
+        //clearTable(document.getElementById("dataTable"))
+        response.forEach(function(item){
+          console.log(item)
+          $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td></tr>')
         })
       })
     }
