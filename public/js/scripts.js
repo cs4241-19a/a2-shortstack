@@ -8,8 +8,7 @@ const markComplete = function ( sat_id ) {
     method:'POST',
     body: JSON.stringify({ id: sat_id })
   }).then(function (response) {
-    window.location.hash = "#view"
-    location.reload();
+    loadData()
   })
 }
 
@@ -20,8 +19,7 @@ const removeSat = function ( sat_id ) {
     method:'POST',
     body: JSON.stringify({ id: sat_id })
   }).then(function (response) {
-    window.location.hash = "#view"
-    location.reload();
+    loadData()
   })
 }
 
@@ -79,6 +77,7 @@ const displayData = function ( data ) {
   }
 }
 
+// Fetch data and then display it
 const loadData = function( e ) {
   fetch( '/spacecraft_data', {
     method:'GET',
@@ -88,6 +87,8 @@ const loadData = function( e ) {
   })
 }
 
+
+// Add a new spacecraft based on form data
 const submit = function( e ) {
   // prevent default form action from being carried out
   e.preventDefault()
@@ -139,6 +140,7 @@ const notCompletedClicked = function( e ) {
   checkInput()
 }
 
+// Basic form validation: don't let the user submit if field are incomplete
 const checkInput = function ( e ) {
   console.log('check')
   const button = document.querySelector( 'button' )
@@ -163,6 +165,8 @@ const checkInput = function ( e ) {
   button.disabled = false
 }
 
+// Toggle between the add form and the table view
+// Update the hash fragment to match
 const toggleView = function(view) {
   const form = document.querySelector( '#new-sat-form' )
   const tables = document.querySelector( '#table-view' )
@@ -194,6 +198,7 @@ const toggleView = function(view) {
   }
 }
 
+// Initial setup of callbacks
 window.onload = function() {
   const button = document.querySelector( 'button' )
   button.onclick = submit
@@ -214,13 +219,13 @@ window.onload = function() {
 }
 
 
-
-  if(window.location.hash) {
-    if (window.location.hash === "#view") {
-      toggleView(1)
-    } else {
-      toggleView(0)
-    }
+// Switch views on inital viewing based on hash fragment
+if(window.location.hash) {
+  if (window.location.hash === "#view") {
+    toggleView(1)
   } else {
     toggleView(0)
   }
+} else {
+  toggleView(0)
+}
