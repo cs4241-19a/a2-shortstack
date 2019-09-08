@@ -15,7 +15,7 @@
             {{#each this.messages as |message|}}
                 <tr>
                     <td>
-                        <div title="{{ message.name }}">{{ message.name }}</div>
+                        <div title="{{ message.name }}">{{ message.username }}</div>
                         <div>{{ message.date }}</div>
                         <div>
                             <a style="color: orange;" title="Edit" data-toggle="modal" data-target="#editFormModal">
@@ -35,7 +35,7 @@
                     </td>
                     <td>
                         <p>
-                            {{ message.body }}
+                            {{ message.message }}
                         </p>
                     </td>
                 </tr>
@@ -51,17 +51,17 @@
 </div>
 
 {{#> layouts/modal-layout type="add" title="Add a Message" submitText="Post Message" }}
-    {{#*inline "form-block"}}
+    {{#*inline "form-content"}}
         {{> includes/add-form }}
     {{/inline}}
 {{/layouts/modal-layout}}
 {{#> layouts/modal-layout type="edit" title="Edit a Message" submitText="Save changes" }}
-    {{#*inline "form-block"}}
+    {{#*inline "form-content"}}
         {{> includes/edit-form }}
     {{/inline}}
 {{/layouts/modal-layout}}
 {{#> layouts/modal-layout type="delete" title="Delete a Message" submitText="Delete Message" }}
-    {{#*inline "form-block"}}
+    {{#*inline "form-content"}}
         {{> includes/delete-form }}
     {{/inline}}
 {{/layouts/modal-layout}}

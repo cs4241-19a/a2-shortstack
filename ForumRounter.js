@@ -1,7 +1,196 @@
 const express = require('express');
 const forumRouter = express.Router();
+const firebaseAdmin = require("firebase-admin");
 
-// const User = require('./User');
+const serviceAccount = require("./cs4241-a2-shortstack-firebase-adminsdk-aa3z5-27e0f7d0b8.json");
+
+firebaseAdmin.initializeApp({
+    credential: firebaseAdmin.credential.cert(serviceAccount),
+    databaseURL: "https://cs4241-a2-shortstack.firebaseio.com"
+});
+
+const db = firebaseAdmin.firestore();
+
+// function getForum(forumId) {
+//     let forumData = {};
+//     let forumRef = db.collection('forums').doc(forumId);
+//     let forumDoc = forumRef.get()
+//         .then(doc => {
+//             if (!doc.exists) {
+//                 console.log('No such document!');
+//             } else {
+//                 console.log('Document data:', doc.numChildren());
+//
+//                 // forumData.title = doc.data().title;
+//                 // forumData.views = doc.data().views;
+//                 // forumData = {...forumData, ...getForumMessages(forumId)};
+//             }
+//         })
+//         .catch(err => {
+//             console.log('Error getting document', err);
+//         });
+// }
+// getForum("NJz79Jck1irrZe8AEMd8");
+//
+// function getForumMessages(forumId) {
+//     let messagesData = {messages: []};
+//     let messagesRef = db.collection('messages');
+//     let query = messagesRef.where('forum', '==', forumId).get()
+//         .then(snapshot => {
+//             if (snapshot.empty) {
+//                 console.log('No matching documents.');
+//                 return;
+//             }
+//
+//             snapshot.forEach(doc => {
+//                 console.log(doc.id, '=>', doc.data());
+//                 messagesData.messages[doc.id] = {
+//                     date: doc.data().date,
+//                     message: doc.data().message,
+//                 }
+//             });
+//         })
+//         .catch(err => {
+//             console.log('Error getting documents', err);
+//         });
+//
+//
+// }
+
+// function getForum(forumId) {
+//     let forumData = {};
+//     let forumDoc = db.collection('forums').doc(forumId);
+//     let messageQuery = forumDoc.collection('messages').orderBy('date');
+//     forumDoc.get()
+//         .then(snapshot => {
+//             console.log(snapshot.id, '=>', snapshot.data());
+//             forumData.title = snapshot.data().title;
+//             forumData.stats.views = snapshot.data().views;
+//         })
+//         .catch(err => {
+//             console.log('Error getting documents', err);
+//         });
+//     messageQuery.get()
+//         .then(snapshot => {
+//             forumData.stats.replies = snapshot.size;
+//             snapshot.forEach(doc => {
+//                 console.log(doc.id, '=>', doc.data());
+//             });
+//         })
+//         .catch(err => {
+//             console.log('Error getting documents', err);
+//         });
+
+function snapshotToArray(snapshot) {
+    let returnArr = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        let item = childSnapshot.val();
+        item.key = childSnapshot.key;
+
+        returnArr.push(item);
+    });
+
+    return returnArr;
+}
+
+async function getForum(forumId) {
+    let forumData = {};
+    let forumDoc = db.collection('forums').doc(forumId);
+    let messageQuery = forumDoc.collection('messages').orderBy('date');
+    let forumPromise = forumDoc.get()
+        .then(snapshot => {
+            // console.log(snapshot.id, '=>', snapshot.data());
+            return snapshot.data().title;
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+    let messagesPromise = messageQuery.get()
+        .then(async snapshot => {
+            let messages = [];
+
+            snapshot.forEach(function(doc) {
+                return (async function() {
+                    const messageData = {};
+                    // console.log(doc.id, '=>', doc.data());
+                    // console.log("+++ +++");
+                    // console.log(doc.data().poster);
+                    let userPromise = doc.data().poster.get()
+                        .then(userSnapshot => {
+                            // console.log("--- ---");
+                            // console.log(userSnapshot);
+                            // console.log(userSnapshot.data());
+                            // console.log(doc.child());
+                            return userSnapshot.data();
+                        })
+                        .catch(err => {
+                            console.log('Error getting documents', err);
+                        });
+                    messageData.message = doc.data().message;
+                    messageData.date = doc.data().date;
+                    let userData = await userPromise;
+                    messageData.name = `${userData.firstName} ${userData.middleName} ${userData.lastName}`;
+                    messageData.username = userData.username;
+                    console.log("message data:", messageData);
+                    return messageData;
+                })();
+            });
+            return messages;
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+    // forumDoc.get('messages').then(collections => {
+    //     for (let collection of collections) {
+    //         console.log(`Found subcollection with id: ${collection.id}`);
+    //     }
+    // });
+    // const query = forumRef.collectionGroup('messages').orderBy('date')
+    // query.get();
+    // const query = db.collectionGroup('messages').orderBy('date');
+    //     query.get().then(function(querySnapshot) {
+    //         console.log(querySnapshot.size);
+    //         querySnapshot.forEach(function(doc) {
+    //             console.log(doc.id, ' => ', doc.data());
+    //             doc.data().poster.get().then(function(querySnapshot2) {
+    //                 console.log(querySnapshot2.data());
+    //             });
+    //         });
+    //     });
+    // const query = db.collectionGroup('messages').where('forumID', '==', forumId).orderBy('date');
+    // query.get().then(function(querySnapshot) {
+    //     console.log(querySnapshot.size);
+    // });
+
+
+
+    // console.log("where is the forum data????:",forumData);
+    return {
+        forumTitle: await forumPromise,
+        messages: await messagesPromise,
+    };
+}
+
+
+console.log(getForum("NJz79Jck1irrZe8AEMd8"));
+
+// let allCities = messagesRef.get()
+//     .then(snapshot => {
+//         snapshot.forEach(doc => {
+//             console.log(doc.id, '=>', doc.data().message);
+//             doc.data().forum.get()
+//                 .then(snapshot => {
+//                     console.log(doc.id, '=>', snapshot.data().title);
+//                 })
+//         });
+//     })
+//     .catch(err => {
+//         console.log('Error getting documents', err);
+//     });
+
+
+
 
 // forum list view
 forumRouter.get('/', function(req, res, next) {
@@ -136,6 +325,7 @@ forumRouter.get('/', function(req, res, next) {
             }
         },
     ];
+    forumData = [];
     res.render('index', {title: "The Forums", forumData: forumData})
 });
 
@@ -177,9 +367,54 @@ forumRouter.get('/forum/1', function(req, res, next) {
     res.render('forum', {forumTitle: "Title1", messages: messages})
 });
 
+// forum messages view
+forumRouter.get('/forum/2', function(req, res, next) {
+    // TODO: specify a user nane and full name field
+    let context = getForum('NJz79Jck1irrZe8AEMd8');
+    console.log(context);
+    res.render('forum', context)
+});
+
 
 forumRouter.post('/submit/create', function(req, res, next) {
     console.log(req.body);
+    const data = req.body;
+    let forumId = data.forumId;
+    switch (data.action) {
+        case "ADDTHREAD":
+            const newForumData = {
+                title: data.title,
+                views: 0,
+            };
+            let forumDoc = db.collection('forums').doc().set(newForumData);
+            forumId = forumDoc.id;
+            // adding message and user handled in ADD case
+        case "ADD":
+            const newUserData = {
+                firstName: data.firstName,
+                middleName: data.middleName,
+                lastName: data.lastName,
+                username: (data.firstName.substring(0, 1) + data.middleName.substring(0, 1) + data.lastName).toLowerCase(),
+            };
+            let userDoc = db.collection('users').doc().set(newUserData);
+            const newMessageData = {
+                message: data.message,
+                date: (new Date()).toGMTString(),
+                poster: "users/" + userDoc.id,
+            };
+            let messageDoc = db.collection('forums').doc(forumId).collection('messages').doc().set(newUserData);
+
+
+    }
+    if (data.action === "ADDTHREAD") {
+
+    } else if (data.action === "ADD") {
+        let setDoc = db.collection('forums').doc().set(data);
+    } else if (data.action === "DELETE") {
+
+    } else if (data.action === "EDIT") {
+
+    }
     res.json({"worked?": "finally"});
 });
 

@@ -7,15 +7,17 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                {{#> form-block}}
-                {{!-- Custom content can be added here. --}}
-                {{/form-block}}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">{{ submitText }}</button>
-            </div>
+            <form action="">
+                <div class="modal-body">
+                    {{#> form-content}}
+                    {{!-- Custom content can be added here. --}}
+                    {{/form-content}}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="{{ type }}SubmitBtn" class="btn btn-primary">{{ submitText }}</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

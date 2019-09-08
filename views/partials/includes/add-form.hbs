@@ -1,14 +1,12 @@
-<form action="">
-    <div class="form-group">
-        <label for="name">Name</label>
-        <div id="add-names">
-            <input type="text" class="form-control" placeholder="First name">
-            <input type="text" class="form-control" placeholder="Middle name">
-            <input type="text" class="form-control" placeholder="Last name">
-        </div>
+<div class="form-group">
+    <label for="name">Name</label>
+    <div id="add-names">
+        <input type="text" class="form-control" id="first-name" placeholder="First name" required>
+        <input type="text" class="form-control" id="middle-name" placeholder="Middle name">
+        <input type="text" class="form-control" id="last-name" placeholder="Last name" required>
     </div>
-    <div class="form-group">
-        <label for="messageTextarea">Message</label>
-        <textarea class="form-control" id="messageTextarea" rows="4"></textarea>
-    </div>
-</form>
+</div>
+<div class="form-group">
+    <label for="message">Message</label>
+    <textarea class="form-control" id="message" rows="4" required></textarea>
+</div>
