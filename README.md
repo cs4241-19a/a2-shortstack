@@ -1,9 +1,9 @@
 # Assignment app
-With the Assignments Application an easy way is provided how students keep track of all their assignemnts and due dates.
+With the Assignments Application an easy way is provided to how students keep track of all their assignemnts and due dates.
 ![Application screenshot](https://i.imgur.com/nwNvtYJ.png)
 - the application mostly pertains to students, although everyone else that needs to keep track of assignemnts could use it too
 - the application addresses the challenge that many students face of organizing all their tasks and assignments and a quick way of seeing what assignment only has critical time left (colored red) and which assignment can still be done later (colored green)
-- the key innovations are that assignments get color coded depending on when they are due. Currently every assignment that's due within 5 days is colored red, erverything else green. Moreover a feature that is currently not fully implemented is, that users can share their assignment list with others for group projects or something similar. Right now every user sees the same assignments and work with the same list.
+- the key innovations are that assignments get color coded depending on when they are due. Currently every assignment that's due within 5 days is colored red, erverything else green. Moreover a feature that is currently not fully implemented is, that users can share their assignment list with others for group projects or something similar. Right now every user sees the same assignments and works with the same list.
 - the result of the implementation can solve many of the problems that students are facing with organizing assignments 
 - although the application does not cover sharing options or a user management yet
 
@@ -16,6 +16,7 @@ The application is on [a2-retat.glitch.me](http://a2-retat.glitch.me)
 - accesibility features like alt for images and responsive design
 - jQuery for selesting elements
 - edit and delete function for already created assignments
+![Edit screenshot](https://i.imgur.com/ZPn7iKE.png)
 - dates get converted to readable english date format
 - assignments get automatically loaded if user refreshes the website
 
