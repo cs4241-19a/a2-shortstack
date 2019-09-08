@@ -7,12 +7,14 @@ const days = [
 ];
 */
 
-  
-  $('#next').on('click', function() {
-    alert("Hello");
-    $(".boardsection[data-board='day_1']").css({animation: "body 1s forwards"});
+$(document).ready(function () {
+  $("#next").on('click', function() {
+    $(".boardsection[data-board='day_0']").css({animation: "next 1s forwards"});
+    $("(.boardsection[data-board])").css({animation: "next 1s forwards"});
+
     //$(':not(.boardsection[data-board=day_' + num + '])').css({animation: "body 1s forwards"});
   })
+})
 
 
 
