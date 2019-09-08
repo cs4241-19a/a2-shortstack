@@ -3,39 +3,80 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    <div id = "indexPage">
+    <h1>
+      Let's get your sh*t together!
+    </h1>
+    <p class = "instruct">
+      Enter your username to access your to-do list: 
+    </p>
+    <form action="" class = "usr-info">
+      <input type="text" id="username" value="">
+      <button id="Submit">Submit</button>
     </form>
+    <p class = "opt1">
+      Looking for inspiration? Check out this <a href="https://www.youtube.com/watch?v=-tGL-buZ94Y" target="_blank"> video</a>
+    </p>
+    <p class = "opt2">
+      Prefer pen and paper? Hop over <a href="https://knockknockstuff.com/products/get-shit-together-pad" target="_blank"> here</a>
+    </p>
+    <button id="Dump">Data Dump</button>
+   <p id = "Data_Dump">
+    </p>
+    </div>
   </body>
   <script>
 
   const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const input = document.querySelector( '#username' ),
+          json = { username: input.value },
           body = JSON.stringify( json )
-
+    
+    setCookie('username', input.value, 2)
+    
     fetch( '/submit', {
       method:'POST',
       body 
+      
     })
     .then( function( response ) {
-      // do something with the reponse 
+      location.href = 'userpage.html'
       console.log( response )
     })
 
-    return false
   }
 
+// This is the function called to get all the information in the server and put it on the page
+  const dataDump = function( ){ 
+    fetch( '/dataDump', { 
+      method:'GET'
+    })
+    
+    .then( function( response ) {
+  //how to get the JSON data was found at https://developer.mozilla.org/en-US/docs/Web/API/Body/json
+      response.json().then(data => {
+      document.getElementById("Data_Dump").innerHTML = JSON.stringify(data)
+      })   
+      })
+    }
+    
   window.onload = function() {
-    const button = document.querySelector( 'button' )
+    const button = document.getElementById('Submit' )
     button.onclick = submit
+    const button2 = document.getElementById( 'Dump' )
+    button2.onclick = dataDump
   }
 
+// Used to set the username as a cookie
+//Code from https://plainjs.com/javascript/utilities/set-cookie-get-cookie-and-delete-cookie-5/, this sets the user input as a cookie to be sent to the new page
+  function setCookie(name, value, days) {
+    var d = new Date;
+    d.setTime(d.getTime() + 24*60*60*1000*days);
+    document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+    }
   </script>
 </html>

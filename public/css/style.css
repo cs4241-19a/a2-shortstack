@@ -1,1 +1,43 @@
 /*Style your own assignment! This is fun! */
+body{
+  font-family: 'Optima', sans-serif;
+  font-size: 15px;
+  background-color:#DFFFED;
+}
+
+h1 {
+  font-family: 'Snell Roundhand', cursive;
+  font-size: 40px;
+}
+
+button{
+  font-family: 'Optima', sans-serif;
+  font-size: 15px;
+}
+
+table { 
+  border-collapse: collapse;
+   width: 100%;
+}
+
+table, th, td {
+  border: 2px solid black;
+  text-align: left;
+}
+
+.user-page {
+  font-family: 'Optima', sans-serif;
+  font-size: 20px;
+}
+
+.usr-info, .instruct{ 
+  display: inline; 
+} 
+
+#indexPage { 
+  text-align: center; 
+}
+
+#to-do { 
+  background-color:#D1FFFF;
+}
