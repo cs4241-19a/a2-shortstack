@@ -56,17 +56,17 @@ window.onload = function() {
 let curMessageId;
 let curForumId;
 function addClick(btn) {
-    let link = btn.target.parentElement;
-    curForumId = link.dataset.forumid;
+    curForumId = btn.target.dataset.forumid;
 }
 function deleteClick(btn) {
     let link = btn.target.parentElement;
     curMessageId = link.dataset.messageid;
+    curForumId = document.querySelector('.add-btn').dataset.forumid;
 }
 function editClick(btn) {
     let link = btn.target.parentElement;
-    console.log(link);
     curMessageId = link.dataset.messageid;
+    curForumId = document.querySelector('.add-btn').dataset.forumid;
     let curText = link.parentElement.parentElement.parentElement.lastElementChild.textContent.trim();
     let editMotelMessage = document.querySelector("#editFormModal textarea#message");
     console.log(curText);
@@ -103,6 +103,7 @@ function parseDeleteForm() {
     return {
         action: "DELETE",
         messageId: curMessageId,
+        forumId: curForumId,
     }
 }
 
@@ -110,6 +111,7 @@ function parseEditForm() {
     return {
         action: "EDIT",
         messageId: curMessageId,
+        forumId: curForumId,
         message: document.querySelector("#editFormModal textarea#message").value,
     }
 }

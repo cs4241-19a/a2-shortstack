@@ -227,24 +227,40 @@ forumRouter.get('/forum/:forumId', async function(req, res, next) {
     if (context.forumTitle === undefined && context.messages.length === 0) {
         res.status(404).send('Page Not found')
     } else {
+        db.collection("forums").doc(req.params.forumId).update({views: firebaseAdmin.firestore.FieldValue.increment(1)})
+            .then(function() {
+                console.log("Document successfully updated!");
+            })
+            .catch(function(error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+            });
         res.render('forum', context)
     }
 });
 
 
 
-forumRouter.post('/submit/create', function(req, res, next) {
+forumRouter.post('/submit/create', async function(req, res, next) {
     console.log(req.body);
     const data = req.body;
     let forumId = data.forumId;
+    let messageId = data.messageId;
     switch (data.action) {
         case "ADDTHREAD":
             const newForumData = {
                 title: data.title,
                 views: 0,
             };
-            let forumDoc = db.collection('forums').doc().set(newForumData);
-            forumId = forumDoc.id;
+            let forumDoc = db.collection("forums").add(newForumData)
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                    return docRef;
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
+            forumId = (await forumDoc).id;
             // adding message and user handled in ADD case
         case "ADD":
             const newUserData = {
@@ -253,20 +269,74 @@ forumRouter.post('/submit/create', function(req, res, next) {
                 lastName: data.lastName,
                 username: (data.firstName.substring(0, 1) + data.middleName.substring(0, 1) + data.lastName).toLowerCase(),
             };
-            let userDoc = db.collection('users').doc().set(newUserData);
+
+            let userDoc = db.collection("users").add(newUserData)
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                    return docRef;
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
+
+            console.log((await userDoc));
             const newMessageData = {
                 message: data.message,
-                date: (new Date()).toGMTString(),
-                poster: "users/" + userDoc.id,
+                date: firebaseAdmin.firestore.Timestamp.now(),
+                poster: await userDoc,
             };
-            let messageDoc = db.collection('forums').doc(forumId).collection('messages').doc().set(newUserData);
-
+            let messageDoc = db.collection("forums").doc(forumId).collection('messages').add(newMessageData)
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                    return docRef;
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
+            db.collection("forums").doc(forumId).update({replies: firebaseAdmin.firestore.FieldValue.increment(1)})
+                .then(function() {
+                    console.log("Document successfully updated!");
+                })
+                .catch(function(error) {
+                    console.error("Error updating document: ", error);
+                });
+            await messageDoc;
+            break;
+        case "DELETE":
+            console.log("Deleting " + messageId);
+            db.collection("forums").doc(forumId).update({replies: firebaseAdmin.firestore.FieldValue.increment(-1)})
+                .then(function() {
+                    console.log("Document successfully updated!");
+                })
+                .catch(function(error) {
+                    console.error("Error updating document: ", error);
+                });
+            await db.collection(`forums/${forumId}/messages`).doc(messageId).delete()
+                .then(function() {
+                    console.log("Document successfully deleted!");
+                })
+                .catch(function(error) {
+                    console.error("Error removing document: ", error);
+                });
+            break;
+        case "EDIT":
+            console.log("Editing " + messageId);
+            await db.collection(`forums/${forumId}/messages`).doc(messageId).update({
+                message: data.message,
+            })
+                .then(function() {
+                    console.log("Document successfully deleted!");
+                })
+                .catch(function(error) {
+                    console.error("Error removing document: ", error);
+                });
+            break;
 
     }
     if (data.action === "ADDTHREAD") {
 
     } else if (data.action === "ADD") {
-        let setDoc = db.collection('forums').doc().set(data);
+
     } else if (data.action === "DELETE") {
 
     } else if (data.action === "EDIT") {
