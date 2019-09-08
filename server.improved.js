@@ -35,8 +35,15 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    //console.log(firebase.database.ref().)
-   /*
+   // firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
+   //firebase.database().ref().push([fName:'Test',lName:'TEST', month: 'August', day: 14, sign: 'Leo'])
+    /*
+      DatabaseReference = firebase.database().ref().push()
+      var 
+    */
+    //firebase.database().ref().once('value', function(snap){console.log(JSON.stringify(snap.val()))})
+
+    /*
    
    
    
