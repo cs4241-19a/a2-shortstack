@@ -211,7 +211,6 @@ function removeAllOptions(selection, removalGroup){
 
 //Adds given data as options to given select element
 function appendDataToSelect(sel, data) {
-  console.log(data)
   for(let i = 0; i<data.length; i++){
       var opt = document.createElement("option")
       opt.innerHTML = opt.value = data[i]
