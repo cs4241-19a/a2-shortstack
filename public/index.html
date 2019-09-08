@@ -14,9 +14,10 @@
     
     
     .input{
-      width:25%;
+      
       margin-right:1%;
       float: left;
+      
     }
     
     table, th{  border: 1px solid black;
@@ -24,9 +25,13 @@
       margin: 25% auto;
     }
     
-    #delete,#deleteBtn{
+    #delete{
+      float: right;
+      margin-left: 5%;
       
-      
+    }
+    #deleteBtn, #submit{
+      width:100%
     }
     
   </style>
@@ -38,10 +43,7 @@
       <input type="text" name="yourname" placeholder="your name here"><br>
       <input type ="text" name="classyear" placeholder="Your class year"><br>
       <input type = "text" name="height" placeholder="Your height in inches"><br>
-      <!--<button name ="submit">submit</button><br>-->
       
-     <!-- <input type="text" id="delname" value="delete name"><br>
-      <button onclick="myDelete()">delete</button>-->
     </form>
     <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
     </div>
@@ -49,9 +51,9 @@
     
     <form id = "delete" action = "/delete" method = "POST">
       <input type = "text" name = "delName" placeholder = "Name to delete"><br>
-      
+      <button id = "deleteBtn" class = "inputbutton" onclick = "onDelete()">delete</button><br><br>
     </form>
-    <button id = "deleteBtn" class = "inputbutton" onclick = "onDelete()">delete</button><br><br>
+    
     
     <table id = "dataTable">
       <th>Name</th>
@@ -92,33 +94,11 @@
 
  
     
-    /*const myDelete = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const deleteName = document.querySelector( '#delname' ),
-          name = deleteName.value
-    
-
-    fetch( '/Ondelete', {
-      method:'POST',
-      name 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      alert(name)
-      console.log( response )
-      
-    })
-
-    return false
-  }*/
-    
     
     
     function clearTable()
     {
-      //$('#dataTable:not(:first)').empty()
+      
       $.get('/data',function(response){
         
         response.forEach(function(item){
@@ -127,21 +107,14 @@
         })
         
       })
-      /*for(let i=1; i < document.getElementById("dataTable").rows.length; i++)
-        {
-          document.getElementById("dataTable").deleteRow(i)
-        }*/
-      //document.getElementById("dataTable").deleteRow(1)
+     
       console.log("Table has been reset")
     }
     
     function getData()
     {
       $.get('/data',function(response){
-        //clearTable(document.getElementById("dataTable"))
-        //clearTable()
-        
-       // setTimeout(function(){
+       
           
           response.forEach(function(item){
           console.log("item is " +item)
@@ -149,7 +122,7 @@
           console.log("wrote " + item.name)
         })
           
-        //},2000)
+      
         
       })
       console.log("Done writing")
