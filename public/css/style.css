@@ -32,11 +32,6 @@ body {
   border: 1px solid white;
   display: flex;
   flex-direction: column;
-  animation: nextbody 1s forwards;
-}
-
-.boardsection:first-child{
-  animation: next 1s forwards;
 }
 
 .board[data-board] .tasklist  {
