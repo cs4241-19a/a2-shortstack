@@ -83,7 +83,6 @@ const db = firebaseAdmin.firestore();
 
 
 async function getForum(forumId) {
-    let forumData = {};
     let forumDoc = db.collection('forums').doc(forumId);
     let messageQuery = forumDoc.collection('messages').orderBy('date');
     let forumPromise = forumDoc.get()
@@ -120,28 +119,91 @@ async function getForum(forumId) {
 
     return {
         forumTitle: await forumPromise,
-        messages: await Promise.all(await messagesPromises).then(msgs => {return msgs}),
+        messages: await Promise.all(await messagesPromises),
     };
 }
 
+async function getForums() {
+    let forumsQuery = db.collection('forums').orderBy('date');
+    let forumsPromises = forumsQuery.get()
+        .then(snapshot => {
+            return snapshot.docs.map(async function(doc) {
+                return {
+                    title: doc.data().title,
+                    stats: {
+                        views: doc.data().views,
+                        replies: doc.data().replies,
+                    },
+                    messageData: getMessageData(doc),
+                }
+            });
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
 
-console.log(getForum("NJz79Jck1irrZe8AEMd8"));
+    console.log("waiting for data to finish loading");
+    let data = await Promise.all(await forumsPromises)
+        .then(forums => {
+            return forums.map(async function(forum) {
+                return {
+                    title: forum.title,
+                    shortDesc: (await forum.messageData.firstMessagePromise).shortDesc,
+                    stats: forum.stats,
+                    created: await (await forum.messageData.firstMessagePromise).created,
+                    lastPost: await (await forum.messageData.lastMessagePromise).lastPost,
 
-// let allCities = messagesRef.get()
-//     .then(snapshot => {
-//         snapshot.forEach(doc => {
-//             console.log(doc.id, '=>', doc.data().message);
-//             doc.data().forum.get()
-//                 .then(snapshot => {
-//                     console.log(doc.id, '=>', snapshot.data().title);
-//                 })
-//         });
-//     })
-//     .catch(err => {
-//         console.log('Error getting documents', err);
-//     });
+                };
+            });
+        });
+    return await Promise.all(data);
+}
 
+// returns two promises
+function getMessageData(forumDoc) {
+    let firstMessageQuery = forumDoc.ref.collection('messages').orderBy('date').limit(1);
+    let lastMessageQuery = forumDoc.ref.collection('messages').orderBy('date', "desc").limit(1);
+    let firstMessagePromise = firstMessageQuery.get()
+        .then(snapshot => {return snapshot.docs[0].data()})
+        .then(data => {
+            return {
+                shortDesc: data.message,
+                created: getUserData(data.poster, data.date),
+            }
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+    let lastMessagePromise = lastMessageQuery.get()
+        .then(snapshot => {return snapshot.docs[0].data()})
+        .then(data => {
+            return {
+                lastPost: getUserData(data.poster, data.date),
+            }
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+    return {firstMessagePromise, lastMessagePromise}
+}
 
+// returns promise
+function getUserData(userRef, timestamp) {
+    return userRef.get()
+        .then(userSnapshot => {
+            return userSnapshot.data();
+        })
+        .then(userData => {
+            return {
+                date: (new Date(timestamp.seconds * 1000)).toUTCString(),
+                name: `${userData.firstName} ${userData.middleName} ${userData.lastName}`,
+                username: userData.username,
+            }
+        })
+        .catch(err => {
+            console.log('Error getting documents', err);
+        });
+}
 
 
 // forum list view
@@ -278,6 +340,12 @@ forumRouter.get('/', function(req, res, next) {
         },
     ];
     forumData = [];
+    res.render('index', {title: "The Forums", forumData: forumData})
+});
+forumRouter.get('/2', async function(req, res, next) {
+    // TODO: specify a user nane and full name field
+    let forumData = await getForums();
+    console.log(forumData);
     res.render('index', {title: "The Forums", forumData: forumData})
 });
 
