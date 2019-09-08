@@ -19,33 +19,18 @@
     <table id = "dataTable">
       <th>Name</th>
       <th>ClassYear</th>
-      <th> Heigh in inches</th>
+      <th> Height in inches</th>
     </table>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
   <script>
 
   function submit(  ) {
     
     document.getElementById('info').submit()
 
-    const inputName = document.querySelector( '#yourname' ),
-          inputYear = document.querySelector('#classyear'),
-          inputInches = document.querySelector('#height'),
-          //json = { name: inputName.value, year: inputYear.value, inches: inputInches.value },
-          json = { name: inputName.value, year: inputYear.value, inches: inputInches.value },
-          body = JSON.stringify( json )
     
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      alert(body)
-      console.log( response )
-      
-    })
 
     return false
   }
@@ -83,7 +68,17 @@
     
     function clearTable
     {
-      
+      //for(let)
+    }
+    
+    function getData()
+    {
+      $.get('/data',function(response){
+        clearTable()
+        data.forEach(function(item){
+          $('#dataTable').append('<tr><td>' + item[0] + '</td><td>')
+        })
+      })
     }
     
 
