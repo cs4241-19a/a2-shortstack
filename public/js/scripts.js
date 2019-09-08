@@ -2,7 +2,7 @@ const generate = function(e) {
   // prevent default form action from being carried out
   e.preventDefault()
   
-  const body = grabInput()
+  const body = JSON.stringify(grabInput("drawType", "vertices", "name"))
   
   fetch( '/generate', {
     method:'POST',
@@ -15,18 +15,18 @@ const generate = function(e) {
   return false
 }
 
-function grabInput(){
+function grabInput(draw, ver, name){
   function getOption(){
-    let element = document.getElementById("drawType");
+    let element = document.getElementById(draw);
     return element.options[element.selectedIndex].text
   }
   
   const input = {
-    vertices: document.getElementById("vertices").value,
+    vertices: document.getElementById(ver).value,
     drawType: getOption(),
-    name: document.getElementById("name").value
+    name: document.getElementById(name).value
   };
-  return JSON.stringify( input )
+  return input
 }
 
 function getData(idx = -1){
@@ -110,6 +110,22 @@ function deleteData(index){
 
 function updateData(index){
   console.log("update", index)
+  
+  const input = grabInput("drawTypeE", "verticesE", "nameE")
+  input.idx = index
+  
+  const body = JSON.stringify(input)
+  
+  console.log("update idx", input.idx)
+  
+  fetch( '/update', {
+    method:'POST',
+    body 
+  })
+  .then( function( response) {
+    getData()
+  })
+  return false
 }
 
 

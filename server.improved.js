@@ -70,7 +70,9 @@ const handlePost = function( request, response ) {
         response.end()
         break
         
-      case '/edit':
+      case '/update':
+        let newData = JSON.parse(dataString)
+        appdata9
         break
     }
     
