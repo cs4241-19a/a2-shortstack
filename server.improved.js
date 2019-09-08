@@ -11,10 +11,10 @@ admin.initializeApp({
 var db = admin.database();
 var usersRef = db.ref('/');
 
+// IMPORTANT: you must run `npm install` in the directory for this assignment
+// to install the mime library used in the following line of codek
 const http = require( 'http' ),
       fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
@@ -40,7 +40,7 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' ) //do sendFile for javascript file
-  }else if(request.url === '/car'){
+  }else if(request.url === '/carData'){
     sendData(response, appdata)
   }else if(request.url==='/getData'){
     usersRef.on('value', function(snapshot) {
