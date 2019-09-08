@@ -1,6 +1,8 @@
 // Initialize all input of date type.
 const calendars = bulmaCalendar.attach('[type="date"]', {"type": "date", "displayMode": "dialog"});
 
+// When a user presses the check button on an active mission,
+// make a POST request to update that mission
 const markComplete = function ( sat_id ) {
   fetch( '/end_mission', {
     method:'POST',
@@ -10,6 +12,9 @@ const markComplete = function ( sat_id ) {
     location.reload();
   })
 }
+
+// When a user presses the X button on a future mission,
+// remove that mission using a POSt request
 const removeSat = function ( sat_id ) {
   fetch( '/remove_spacecraft', {
     method:'POST',
@@ -20,6 +25,8 @@ const removeSat = function ( sat_id ) {
   })
 }
 
+// ***********************************************************************
+// Display functions specific to each table. Use a template row and replace with satellite data
 const displayFuture = function( sat ) {
   const template = '<tr><td>{name}</td><td>{orbit}</td><td>{launch}</td><td><button onclick="removeSat({id})" class="button is-rounded is-danger"> \
   <span class="icon is-small">  <i class="fas fa-times"></i> </span> </button></td></tr>'
@@ -45,7 +52,12 @@ const displayInactive = function( sat ) {
   const tbody = document.querySelector("#inactive-body")
   tbody.innerHTML += row
 }
+// End individual display functions
+// ************************************************************************
 
+
+// Given a list of satellites, update the tables using the individual functions
+// Also, make sure to clear the tables first
 const displayData = function ( data ) {
   document.querySelector("#future-body").innerHTML = ""
   document.querySelector("#active-body").innerHTML = ""
@@ -53,8 +65,6 @@ const displayData = function ( data ) {
 
   for (let i = 0; i < data.length; i++) {
     const sat = data[i]
-    
-
     if (!sat.has_launched) {
       displayFuture(sat)
     }

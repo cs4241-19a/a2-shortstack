@@ -40,16 +40,16 @@ const refreshCalculated = function (data) {
   }
 }
 
-// Add a new spacecraft
+// Add a new spacecraft: make sure to refresh stats and increment id
 const addSpacecraft = function (data) {
   const new_spacecraft = data
   new_spacecraft.id = next_id
   next_id += 1
   appdata.push(new_spacecraft)
   refreshCalculated()
-  console.log(appdata)
 }
 
+// Remove a spacecraft given its ID
 const removeSpacecraft = function (data) {
   const id = data.id
   for (let i = 0; i < appdata.length; i++) {
@@ -59,6 +59,7 @@ const removeSpacecraft = function (data) {
   }
 }
 
+// Mark a mission as completed and mark the completion time as now. Refresh stats
 const endMission = function (data) {
   const id = data.id
   for (let i = 0; i < appdata.length; i++) {
@@ -78,13 +79,14 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   } else if ( request.url === '/spacecraft_data' ) {
     response.writeHeader( 200, { 'Content-Type': 'application/json' })
-    refreshCalculated()
+    refreshCalculated() // Refresh before sending new data
     response.end( JSON.stringify(appdata) )
   } else {
     sendFile( response, filename )
   }
 }
 
+// Handle the various POST requests: add, remove, end
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -126,7 +128,7 @@ const sendFile = function( response, filename ) {
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
 
-     }else{
+     } else{
 
        // file not found, error code 404
        response.writeHeader( 404 )
