@@ -39,14 +39,16 @@ const generate = function(e) {
   };
   const body = JSON.stringify( input )
   
-  fetch( '/submit', {
-    method:'POST',
-    body 
-  })
-  .then( function( response ) {
-    // do something with the reponse 
-    console.log( response )
-  })
+  console.log(body)
+  
+  // fetch( '/generate', {
+  //   method:'POST',
+  //   body 
+  // })
+  // .then( function( response ) {
+  //   // do something with the reponse 
+  //   console.log( response )
+  // })
 
   return false
 }

@@ -39,7 +39,17 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-
+    switch(request.url) {
+      case '/generate':
+        let data = JSON.parse(dataString)
+        appdata.push("Hello")
+        response.writeHead(200, {"Content-Type": "application/json"});
+        response.end(JSON.stringify(appdata))
+        break
+      default:
+        response.end('404 Error: File not found')
+        break
+    }
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
