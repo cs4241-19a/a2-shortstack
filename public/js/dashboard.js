@@ -5,6 +5,7 @@
 
 /**
  * TODO: Zoom word bubble, make prettier
+ * TODO: All css requirmements
  */
 
 var app = angular.module("dashboardApp", []);
