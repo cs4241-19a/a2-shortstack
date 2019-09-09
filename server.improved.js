@@ -36,6 +36,7 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
+    console.log(appdata.length)
     sendData(response)
   }
   else{
@@ -45,7 +46,6 @@ const handleGet = function( request, response ) {
 
 const sendData = function(res){
   res.writeHeader(200, "OK", {'Content-Type': 'plain/text'})
-  //res.write(JSON.stringify(returnFirebaseAsArray()))
   res.write(JSON.stringify(appdata))
   res.end()
 }
@@ -308,6 +308,7 @@ function loadFromFirebase(){
   .then(function(data){
     data.forEach(function(child){
       appdata.push(child.val())
+      console.log(appdata.length + " 311")
     })
   })
 }

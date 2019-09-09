@@ -222,6 +222,7 @@ function appendDataToSelect(sel, data) {
 function populateFromDatabase(){
   let nameSelector = document.querySelector(".modList");
   if(nameSelector !== null){
+    console.log("IN REMOVE CHILDREN")
     var i;
     for(i = nameSelector.options.length - 1; i >= 0; i--){
       nameSelector.remove(i)
