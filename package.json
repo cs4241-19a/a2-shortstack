@@ -7,6 +7,11 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "passport": "^0.4.0",
+    "mime": "^2.4.4",
+    "passport-google-oauth": "^2.0.0",
+    "taffy": "^2.6.2"
   }
 }

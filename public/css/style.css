@@ -1,1 +1,141 @@
-/*Style your own assignment! This is fun! */
+body{
+/*  background-image:url('ac8c900b-49be-4128-8edb-e64905679f74%2FWPI_logo.png?v=1567371575005'); */
+/*  background-repeat: no-repeat; */
+ background-color: #ac2b37 !important; 
+cursor: vertical-text;
+}
+h1{
+  text-align: center;  
+  animation-duration: 1s;
+  animation-name: slidein;
+  animation: pulse 5s infinite;
+}
+select{
+/*   animation: pulse 1s infinite; */
+}
+.form-control{
+  width : 100% !important;
+}
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #001F3F;
+    color: #FF4136;
+  }
+  100% {
+    background-color: #FF4136;
+    color: #001F3F;
+  }
+}
+
+@keyframes pulseTwo {
+  0% {
+    background-color: ##1251e3;
+  }
+  75%{
+    background-color : #ff9d00
+  }
+  100% {
+    background-color: #ffffff
+  }
+  25%{
+    background-color : #1251e3
+  }
+}
+
+@keyframes pulseThree {
+  0% {
+    background-color: red;
+  }
+
+  100% {
+    background-color: purple;
+  }
+}
+@keyframes pulseFour {
+  0% {
+    background-color: white;
+  }
+
+  100% {
+    background-color: #663399;
+  }
+}
+
+663399
+p{
+  color: yellow;
+  background-color: grey;
+  font-size: 400px;
+}
+#submit:hover{
+  background-color: blue;
+}
+#results{
+/*   background-color: #b5b5b5; */
+/*   animation: pulseTwo 3s infinite; */
+/*   background-color : grey; */
+  width : 100%;
+  color : #28fc03;
+} 
+.testing{
+  background-color: green;
+}
+
+#subForm{
+  margin-top : 10px;
+}
+#addDept{
+  width : 210px;
+  visibility : hidden;
+}
+#addProf{
+  width : 210px;
+  visibility : hidden;
+}
+#addName{
+  width : 210px;
+  visibility : hidden;
+}
+#category{
+  visibility : hidden;
+}
+#secCategory{
+  visibility : hidden;
+}
+td:hover{
+  color:pink;
+  border: 2px solid black;
+}
+td{
+  border: 1px solid black;
+  text-align : center;
+  text-shadow: 0px 3px 0px #b2a98f,
+                 0px 4px 5px rgba(0,0,0,0.15),
+                 0px 14px 1px rgba(0,0,0,0.1),
+                 0px 14px 20px rgba(0,0,0,0.1);
+}
+div#subForm.container{
+  margin : 0px 0px 0px;
+}
+#form-control{
+  padding : 0px 0px;
+}
+.myImg{
+  display: block;
+  margin-left : auto;
+  margin-right : auto;
+  width : 50%;
+}
+
+
