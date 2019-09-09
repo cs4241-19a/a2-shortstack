@@ -12,6 +12,6 @@ $(document).ready(function () {
     $(this).css({'color':'#1C1C1D'})
   }, function () {
     $(this).css({'background-color':'#1C1C1D'})
-    $(this).css({'color':'#1C1C1D'})
+    $(this).css({'color':'white'})
   })
 })
