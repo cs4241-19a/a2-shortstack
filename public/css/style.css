@@ -34,6 +34,10 @@ h1{
   color: #D121C5;
 }
 
+h2{
+  text-align: center;
+}
+
 h3{
   position: absolute;
   top: 55%;
@@ -58,7 +62,7 @@ div.transbox1 {
   background-color: #EFDA8A;/*#EEC075;*/
   border: 1px solid black;
   opacity: 0.6;
-  width: 360px;
+  width: 310px;
   height: 230px;
   position: absolute;
   left: 32%;
