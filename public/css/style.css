@@ -1,1 +1,162 @@
-/*Style your own assignment! This is fun! */
+body {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fcebd9;
+    font-family: 'Manjari', sans-serif;
+
+}
+
+header {
+    position: relative;
+    width: 100%;
+    float: left;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+nav {
+    font-size: 18px;
+    font-size: 1.75vw;
+    display: inline;
+}
+
+h1 {
+    font-style: italic;
+    font-size: 74px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-family: 'Manjari', sans-serif;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.75vw;
+}
+
+h3 {
+    font-style: normal;
+    font-size: 40px;
+    font-size: 5vw;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+form {
+    float: left;
+    width: 100%;
+}
+
+th, td {
+    border-bottom: 1px solid;
+    padding: 7px;
+}
+
+label {
+    margin-right: 30px;
+}
+
+button {
+    background-color: white;
+    padding: 15px 30px;
+    border-radius: 20px;
+    border: 2px solid black;
+  font-family: 'Manjari', sans-serif;
+
+}
+
+.container {
+    width: 100%;
+}
+
+.navigationPane {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    width: 100%;
+    text-align: right;
+    margin-top: 20px;
+    justify-content: absolute;
+    white-space: nowrap;
+}
+
+.topButton {
+    display: inline;
+    margin-left: 200px;
+    justify-content: absolute;
+    border-radius: 20px;
+}
+
+#order-table {
+    display: none;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#update-order-form {
+    display: none;
+    width: 80%;
+}
+
+.form-input {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.form-input .text-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 25px;
+    font-size: 2vw;
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+
+[type="text"], textarea {
+    width: 95%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    resize: vertical;
+    font-size: 18px;
+    font-size: 1.75vw;
+}
+
+#submit-btn, #update-form-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+#cancel-btn {
+    background-color: white;
+    margin-right: 20px;
+    border: 2px solid;
+}
+
+#new-order-btn {
+    background-color: #005600;
+    border: 2px solid #005600;
+    align-self: flex-end;
+}
+
+table button {
+    padding: 5px 7px;
+    width: 100%;
+}
