@@ -5,21 +5,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-
-var firebaseConfig = {
-  apiKey: "AIzaSyAuOGEGSNJLe2fxv0iHQwigSY8nIj2pb30",
-    authDomain: "a2-nbloniarz.firebaseapp.com",
-    databaseURL: "https://a2-nbloniarz.firebaseio.com",
-    projectId: "a2-nbloniarz",
-    storageBucket: "",
-    messagingSenderId: "337634055490",
-    appId: "1:337634055490:web:821a136e7f93eff009e4db"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-
-const appdata = [
+var appdata = [
   { 'fName': 'Bob', 'lName': 'Smith', 'month':'August', 'day': 23, 'sign':"Leo"},
   { 'fName': 'Suzy', 'lName': 'Ng', 'month':'September','day': 30 , 'sign':"Libra"},
   { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"Cancer"} 
@@ -93,11 +79,9 @@ const handlePost = function( request, response ) {
         response.end()
         break
       case "delete":
-        console.log(appdata)
         const removalData = JSON.parse(dataString)
         removalData.sign = starSign(removalData)
         removeGiven(removalData)
-        console.log(appdata)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
         response.end()
@@ -251,14 +235,20 @@ function starSign(personalInfo){
 }
 
 function removeGiven(original){
+  console.log(original)
+  var index = -1
   for(let i = 0; i< Object.keys(appdata).length; i++){
     if((original.fName === appdata[i].fName) && (original.lName === appdata[i].lName)){
       if((original.day === appdata[i].day) && (original.month === appdata[i].month)){
-        appdata.splice(i, 1);
-        i--;
+        index = i
+        console.log("Match")
       }
     }
   }
+  if(index > -1){
+    appdata.splice(index, 1)
+  }
+  console.log(appdata)
 }
 
 function modData(toChange){
@@ -275,35 +265,4 @@ function modData(toChange){
   }
 }
 
-//******** FIREBASE FUNCTIONS *******//
-
-//Takes given JSON object and adds it to the remote database
-function addItemToFirebase(itemToAdd){
-  const dbRef = firebase.database().ref()
-  var templateItem = dbRef.push().set(
-    {fName: itemToAdd.fName,
-    lName: itemToAdd.lName,
-    month: itemToAdd.month,
-    day: itemToAdd.day,
-    sign: itemToAdd.sign
-    })
-  console.log("Added To Firebase")
-}
-
-//Delets object from firebase
-function deleteInFirebase(){
-  let db = firebase.database().ref('/')
-  db.remove()
-  console.log("Deleted")
-}
-
-function loadFromFirebase(){
-  firebase.database().ref().once('value')
-  .then(function(data){
-    data.forEach(function(child){
-      appdata.push(child.val())
-      console.log(appdata.length + " 311")
-    })
-  })
-}
 
