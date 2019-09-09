@@ -97,7 +97,7 @@
                     newRow+=('<td>'+(JSON.stringify(response[rows].desired)).replace(/^"(.*)"$/, '$1')+'</td>');
                     newRow+=('<td>'+(JSON.stringify(response[rows].finalWorth)).replace(/^"(.*)"$/, '$1')+'</td>');
                     newRow+=('<td>'+(JSON.stringify(response[rows].finalExam)).replace(/^"(.*)"$/, '$1')+'</td>');
-                    newRow+=('<td><ul><li><input id="updateInput" type="number" id="desired" placeholder="Number only"/></li><li><button class="button" id=" ' + i + ' " onclick="updateEntry (' + i + ')"> √ </button></li></ul></td>\n');
+                    newRow+=('<td><ul><li><input id="updateInput" type="number" id="desired" placeholder=" Number only"/></li><li><button class="button" id=" ' + i + ' " onclick="updateEntry (' + i + ')"> √ </button></li></ul></td>\n');
                     newRow+=('<td><button class="button" id=" ' + i + ' " onclick="removeEntry (' + i + ')"> X </button></td>\n');
                     newRow+='</tr>';
                     computedGrades.innerHTML+=newRow;
