@@ -8,11 +8,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -39,6 +34,7 @@ const sequelize = new Sequalize({
 db_util.Reservation.init({
   id: {
     type: Sequalize.INTEGER,
+    primaryKey: true,
     autoIncrement: true,
   },
   stall: {
@@ -46,11 +42,11 @@ db_util.Reservation.init({
     allowNull: false,
   },
   start: {
-    type: Sequalize.INTEGER,
+    type: Sequalize.DATE,
     allowNull: false,
   },
   end: {
-    type: Sequalize.INTEGER,
+    type: Sequalize.DATE,
     allowNull: false,
   },
   fulfilled: {
@@ -60,14 +56,15 @@ db_util.Reservation.init({
   name: {
     type: Sequalize.STRING,
   }
-})
+},{sequelize: sequelize, modelName: 'reservation'});
 
 sequelize.authenticate()
   .then( () => {
-    console.log("We in here");
+    console.log("We in here...creating tables if necessary.");
+    db_util.Reservation.sync();
   }).catch(err => {
     console.log("F");
-  })
+  });
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
@@ -117,5 +114,7 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+// db_util.makeRes(1, 5, "Occupied!");
 
 server.listen( process.env.PORT || port )
