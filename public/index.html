@@ -81,8 +81,8 @@
           <span> Time: </span>
           <input type="time" id="time" value="02:00">
         </div>
-
         <button id="submit">Add to Schedule</button>
+        <button id="remove">Remove from Schedule</button>
       </form>
     </div>
     
@@ -134,7 +134,7 @@
     return false
   }
   
-  const deleteEvent = function(e) {
+  const deleteEvents = function(e) {
     e.preventDefault();
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
     var i;
@@ -151,14 +151,13 @@
     console.log(indices)
     
     if(indices !== []) {
-        removeEvent(indices)
+        delEvent(indices)
     }
   }
   
   
-  const removeEvent = function(indices) {
+  const delEvent = function(indices) {
     var body = JSON.stringify( indices )
-    console.log("removeEvent")
     fetch('/delete',{
       method: 'POST',
       body
@@ -166,6 +165,17 @@
       console.log(response)
       updateSchedule()
     })
+  }
+  
+  const removeEvent = function(e) {
+    e.preventDefault()
+    var day = document.querySelector("#day").value
+    var task = document.querySelector("#task").value
+    var time = document.querySelector("#time").value
+    var eventID = day + task + time
+    var index = [eventID]
+    
+    delEvent(index);
   }
   
   
@@ -227,17 +237,16 @@
   window.onload = function() {
     occupySchedule();
     
-    const button = document.querySelector( '#submit' )
-    button.onclick = addEvent
+    const addbutton = document.querySelector( '#submit' )
+    addbutton.onclick = addEvent
     
     const nextButton = document.querySelector( '#next' )
-    nextButton.onclick = deleteEvent
+    nextButton.onclick = deleteEvents
     
-     
-    $('.boardsection[data-board] .tasklist div').on('click', function() {
-      console.log($(this).attr('id'))
-      removeEvent([$(this).attr('id')]);
-    });
+    const rembutton = document.querySelector( '#remove' )
+    rembutton.onclick = removeEvent
+    
+ 
     
   }
     

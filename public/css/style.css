@@ -88,14 +88,12 @@ button {
 }
 
 #next {
-  width: 40vw;
+  width: 35vw;
 }
 
-#submit {
-  width: 50vw;
+#submit, #remove  {
+  width: 30vw;
 }
-
-
 
 @keyframes next {
   0% {

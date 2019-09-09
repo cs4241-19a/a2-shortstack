@@ -51,7 +51,7 @@ const handlePost = function( request, response ) {
         data.push(newEvent);
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
-        break
+        break 
       case '/delete': 
         while(info.length > 0) {
           var split = data.findIndex(x => x.index === info[0])
