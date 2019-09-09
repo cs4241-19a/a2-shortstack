@@ -137,11 +137,12 @@
   const deleteEvent = function(e) {
     e.preventDefault();
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
-    var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :first-child[index]')
     var i;
     var indices = [];
-    for(i = 0; i < pointer.hasChildNodes(); i++){
-      console.log(pointerChild)
+    console.log("Child Nodes = " + pointer.hasChildNodes()+1)
+    for(i = 1; i < pointer.childNodes.length+1; i++){
+      var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :nth-child('+i+')')
+      console.log("Child = " + pointerChild)
       if(pointerChild !== null) {
         console.log(pointerChild.getAttribute('index'))
         indices.push(pointerChild.getAttribute('index'))
