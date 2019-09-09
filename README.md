@@ -24,23 +24,24 @@ Below is an example of OCR recognition for post submission.
 ![Text OCR](img/text_recog_img.png)
 
 ## Technical Achievements
-- **Tech Achievement 1**: Used Firebase Admin SDK for database access through the server. In the handle get/post/delete/put requests,
-the data gets sent/retrieve from a cloud database as a means of persistent storage. I designed the database so that each unique UID associated with the logged in user is
+- **Tech Achievement 1**: I used Firebase Admin SDK for database access through the server. In the handle get/post/delete/put requests,
+the data gets sent/retrieved from a cloud database as a means of persistent storage. I designed the database so that each unique UID associated with the logged in user is
 used to get only their data from the database. The server calculates the word count and frequency map before posting it to the database.
-- **Tech Achievement 2**: Implemented a user authentication system using firebase auth client library. Authentication is checked
-and access to personal dashboard sites is dependent on being authenticated. Created login and register pages for this.
-- **Tech Achievement 3**: Using d3.js, created visualizations. Used chart.js too.
-- **Tech Achievement 4**: Using http requests to the [datamuse](https://www.datamuse.com/api/) api, get word synonym data.
-- **Tech Achievement 5**: Used angular.js for better dynamic generation
-- **Tech Achievement 6**: Use tesseract.js and myscript.js for OCR and handwriting recognition
+- **Tech Achievement 2**: I implemented a user authentication system using firebase auth client library. Authentication is checked
+and access to personal dashboard sites is dependent on being authenticated. I adapted login/register pages from a bootstrap template.
+- **Tech Achievement 3**: Using d3.js I created a bubble chart for displaying word frequency. I also used chart.js to make the top 10 word bar chart.
+- **Tech Achievement 4**: I made http requests to the [datamuse](https://www.datamuse.com/api/) api in order to get word synonym data and integrate it with other features on the site, like on-hover actions over bubble chart nodes.
+- **Tech Achievement 5**: I used angular.js for better dynamic generation of the website.
+- **Tech Achievement 6**: I used tesseract.js and myscript.js for OCR and handwriting recognition.
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Used and modified a bootstrap admin theme from [here](https://startbootstrap.com/themes/sb-admin-2/). 
-Modifications were made within the html files as well as custom overrides in styles.css
-- **Design Achievement 2**: Designed the data visualizations and the interaction for submitting new posts
-- **Design Achievement 3**: Designed multiple text entry methods for accessibility: file upload OCR recognition, realtime handwriting recognition, typing.
-- **Design Achievement 4**: Paid attention to minor detail. For instance, "no results" message on definition searches. 
+- **Design Achievement 1**: I used and modified a bootstrap admin theme from [here](https://startbootstrap.com/themes/sb-admin-2/). 
+Modifications were made within the html files as well as custom overrides in styles.css.
+- **Design Achievement 2**: I designed all of the individual card content, like data visualizations and the interaction for submitting new posts, as well as which information
+to show on the top cards.
+- **Design Achievement 3**: I designed multiple text entry methods for accessibility: file upload OCR recognition, realtime handwriting recognition, typing.
+- **Design Achievement 4**: I paid attention to minor detail. For instance, "no results" message on definition searches. 
 Alert messages for form validation. Collapsible cards. Only enabling delete/update buttons when a table row is selected. 
 Re-disabling the delete/update buttons when a row is deleted.
-
+- **Design Achievement**: I used DataTables for a nicer looking table.
 
