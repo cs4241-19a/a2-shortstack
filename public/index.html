@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
-  <body>
+  <body onload="occupySchedule()">
     <div class="title">
       Daily Schedule
     </div>
@@ -79,7 +79,7 @@
           <span> Task: </span>
           <input type="text" id="task" value="HW">
           <span> Time: </span>
-          <input type="time" id="time" value="2:00">
+          <input type="time" id="time" value="02:00">
         </div>
 
         <button id="submit">Add to Schedule</button>
@@ -132,6 +132,7 @@
   }
   
   const occupySchedule = function() {
+    alert("Running");
     fetch( '/info' )
       .then( function( response ) {
         console.log( response )
@@ -139,8 +140,9 @@
     })
       .then( function( myJSON ) {
         var info = myJSON.data
-        document.querySelector(".data")
-        answer.innerHTML = info[1].value
+        var task = document.createTextNode(info[0].task)
+        document.querySelector("boardsection[data_board[day='1']")
+        //answer.innerHTML = info[1].value
         
       
         console.log( info[1] )
@@ -173,7 +175,6 @@
   }) 
 
   window.onload = function() {
-    occupySchedule()
     
     const button = document.querySelector( '#submit' )
     button.onclick = addEvent
