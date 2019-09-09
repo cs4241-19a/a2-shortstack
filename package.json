@@ -1,10 +1,10 @@
 {
-  "name": "",
-  "version": "",
+  "name": "a2-bwhetherington",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "Benjamin Hetherington",
   "scripts": {
-    "wipe-state": "echo '{\"posts\":[]}' > data/state.json",
+    "wipe-state": "cp data/base-state.json data/state.json",
     "start": "node server/server.js"
   },
   "dependencies": {

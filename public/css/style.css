@@ -1,6 +1,8 @@
 :root {
-  --text-color: rgb(32, 32, 32);
-  --primary-accent: rgb(128, 128, 128);
+  --text-color: rgb(32, 32, 36);
+  --primary-accent: rgb(128, 128, 136);
+  --content-background: rgba(0, 0, 30, 0.03);
+  --border-thickness: 2px;
 }
 
 body {
@@ -18,13 +20,13 @@ h1,
 h2,
 h3,
 h4 {
-  border-bottom: 2px solid var(--primary-accent);
+  border-bottom: var(--border-thickness) solid var(--primary-accent);
   padding-left: 5px;
   padding-right: 5px;
 }
 
 table {
-  border: 2px solid var(--primary-accent);
+  border: var(--border-thickness) solid var(--primary-accent);
   border-radius: 5px;
   border-collapse: collapse;
   overflow: hidden;
@@ -38,13 +40,15 @@ td {
 
 thead {
   font-weight: bold;
-  border-bottom: 2px solid var(--primary-accent);
+  border-bottom: var(--border-thickness) solid var(--primary-accent);
 }
 
 .content-box {
-  border: 2px solid var(--primary-accent);
+  border: var(--border-thickness) solid var(--primary-accent);
   border-radius: 10px;
   padding: 10px;
+  overflow: hidden;
+  background: var(--content-background);
 }
 
 .form-grid {
@@ -63,4 +67,11 @@ textarea {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
+  font-family: inherit;
+  font-size: 0.8em;
+}
+
+button[type="submit"] {
+  float: right;
+  margin-top: 10px;
 }
