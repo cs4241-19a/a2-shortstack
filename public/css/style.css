@@ -90,20 +90,22 @@ table.eventTable {
     left: 2.5%;
 }
 
-td, th {
+th {
+    border: 2px solid #091c17;
     text-align: center;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+td {
+    text-align: center;
+    border: 1px solid #091c17;
 }
 
-tr:nth-child(odd) {
-    background-color: #ffffff;
+tr {
+    background-color: #ffffff;   
 }
 
 td:hover {
-    background-color: #61feba;
+    background-color: #61feba !important;
 }
 
 .eventName {

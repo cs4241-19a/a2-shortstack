@@ -31,11 +31,17 @@ const handlePost = function( request, response ) {
   request.on( 'data', function( data ) {
       dataString += data 
   })
-
   request.on( 'end', function() {
     console.log("Server received\n" + dataString);
     const obj = JSON.parse(dataString);
-    if (PostValidation.validate(obj)) FileManager.saveJSON(obj)
+
+    if (obj.type != null && obj.type === "update") {
+      FileManager.updateEventAvailibilty(obj.eventID, obj.availability, obj.name);
+    }
+    else if (PostValidation.validate(obj)) {
+      FileManager.saveJSON(obj)
+    }
+
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
@@ -101,9 +107,8 @@ const PostValidation = {
 
 const FileManager = {
   saveJSON: function(jsonFile) {
-    const eventHash = "testHash"; // TODO: SWITHC this
+    const eventHash = "testHash"; // TODO: SWITCH this
     jsonFile.potentialDates = this.converDayRangeToArray(jsonFile.potentialDates); 
-    jsonFile = JSON.stringify(jsonFile);
     fs.writeFile('./public/events/' + eventHash + '.json', JSON.stringify(jsonFile), function (err) {
       if (err) throw err;
     });
@@ -122,6 +127,26 @@ const FileManager = {
     }
 
     return dates;
+  },
+  updateEventAvailibilty: function(eventID, availability, name){
+    console.log("Loading >>> " + "./public/events/" + eventID + ".json");
+    let jsonFile = fs.readFileSync("./public/events/" + eventID + ".json", {encoding: "utf-8"}, function (err) {
+      if (err) throw err;
+    });
+    const event = JSON.parse(jsonFile);
+
+    console.log("The event name is " + event.eventName);
+    event.participants.push({
+      "name": name,
+      "availability": availability
+    });
+    console.log(event.participants);
+    const newJsonFile = JSON.stringify(event)
+    console.log("Saving as " + newJsonFile);
+    fs.writeFile('./public/events/' + eventID+ '.json',newJsonFile, function (err) {
+      if (err) throw err;
+    });
+    console.log('Event updated at to ' + './public/events/' + eventID + ".json");
   }
 }
 
