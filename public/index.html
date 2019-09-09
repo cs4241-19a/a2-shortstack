@@ -144,8 +144,8 @@
       var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :nth-child('+i+')')
       console.log("Child = " + pointerChild)
       if(pointerChild !== null) {
-        console.log(pointerChild.getAttribute('index'))
-        indices.push(pointerChild.getAttribute('index'))
+        console.log(pointerChild.getAttribute('id'))
+        indices.push(pointerChild.getAttribute('id'))
       }
     }
     console.log(indices)
@@ -178,7 +178,7 @@
       var divNode = document.createElement("div")
       var breakNode = document.createElement("br")
       var breakNode1 = document.createElement("br")
-      divNode.setAttribute('index', index)
+      divNode.setAttribute('id', index)
       divNode.appendChild(timeNode)
       divNode.appendChild(breakNode1)
       divNode.appendChild(textNode)
@@ -234,8 +234,9 @@
     nextButton.onclick = deleteEvent
     
      
-    $('.boardsection[data-board] .tasklist').on('click', function() {
-      removeEvent([$(this).index]);
+    $('.boardsection[data-board] .tasklist div').on('click', function() {
+      console.log($(this).attr('id'))
+      removeEvent([$(this).attr('id')]);
     });
     
   }

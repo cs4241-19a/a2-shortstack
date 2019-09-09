@@ -14,7 +14,7 @@ $(document).ready(function () {
     $(this).css({'background-color':'#1C1C1D'})
     $(this).css({'color':'white'})
   });
-  $('div.boardsection[data-board] div.tasklist div[index]').hover( function() {
+  $('div.boardsection[data-board] div.tasklist div.index').hover( function() {
     $(this).css({'background-color':'#FCA0A3'})
     $(this).css({'color':'#1C1C1D'})
   }, function () {
