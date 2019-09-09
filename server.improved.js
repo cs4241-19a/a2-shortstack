@@ -143,7 +143,7 @@ const sendData = function( response, items ) {
 };
 
 function calcEuroPrice(usd) {
-  return usd * 0.91;
+  return (usd * 0.91).toFixed(2);
 }
 
 function sortData() {
