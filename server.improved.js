@@ -6,12 +6,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
 var playerData = [
   {'name': 'Javier', 'moves': 0, 'medal': 'platinum'}
 ]
@@ -66,7 +60,14 @@ const handlePost = function( request, response ) {
       // You win!
     }
     
-    else 
+    else {
+      if (obj.guesscount >= 15) {
+        // You lose...
+      }
+      var json = { color: color,
+             colorNpos: colorNpos }
+      
+    }
                       
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
