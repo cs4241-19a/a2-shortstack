@@ -6,29 +6,46 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
   </head>
   <body>
-    <form action="/">
-      <input type='text' id='seat' placeholder="Seat ID" required>
-      <input type='text' id='username' placeholder="WPI username" required>
-      <input type='date' id='date' required>
-      <select id='time'>
-        <option value="8">8:00am-8:50am</option>
-        <option value="9">9:00am-9:50am</option>
-        <option value="10">10:00am-10:50am</option>
-        <option value="11">11:00am-11:50am</option>
-        <option value="12">12:00pm-12:50pm</option>
-        <option value="13">1:00pm-1:50pm</option>
-        <option value="14">2:00pm-2:50pm</option>
-        <option value="15">3:00pm-3:50pm</option>
-        <option value="16">4:00pm-4:50pm</option>
-      </select>
-      <button id="submit">Claim seat</button>
-    </form>
-
-    <table id="reservations">
-    </table>
-
-    <img src="chart.jpeg" class="rotateimg90">
+      <form action="/">
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <input class="col-sm-4" type='date' id='date'>
+          <select class="col-sm-4" id='time'>
+            <option value="8">8:00am-8:50am</option>
+            <option value="9">9:00am-9:50am</option>
+            <option value="10">10:00am-10:50am</option>
+            <option value="11">11:00am-11:50am</option>
+            <option value="12">12:00pm-12:50pm</option>
+            <option value="13">1:00pm-1:50pm</option>
+            <option value="14">2:00pm-2:50pm</option>
+            <option value="15">3:00pm-3:50pm</option>
+            <option value="16">4:00pm-4:50pm</option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div id="empty-alert" class="col-md-6 align-center"></div>
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-sm-3"></div>
+            <table class="col-sm-6" id="reservations"></table>
+            </div>
+          
+              <p class="align-center">
+                <img src="chart.png" width="500px"><br>
+                <small>Where rows across go down A to G, columns go left to right 1 to 20<br>(Ex: The bottom right seat is 'G20')</small>
+              </p>
+        </div>
+        <div class="row form-control-group">
+          <div class="col-sm-2"></div>
+          <input class="col-sm-3" type='text' id='seat' placeholder="Seat ID">
+          <input class="col-sm-3" type='text' id='username' placeholder="WPI username">
+          <button class="col-sm-2 button-primary" id="submit">Claim seat</button>
+        </div>
+      </form>
   </body>
 </html>

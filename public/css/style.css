@@ -1,20 +1,14 @@
 /*Style your own assignment! This is fun! */
 
-body {
-    background-color: lightblue;
-}
-
-.seat {
-    height: 50px;
-    width: 50px;
-    text-align: center;
-    border: 1px solid black;
-}
-
-.rotateimg90 {
+.rotateimg {
     -webkit-transform:rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
   }
+
+#empty-alert > p{
+    background-color: lightgreen;
+    border: 1px solid green;
+}

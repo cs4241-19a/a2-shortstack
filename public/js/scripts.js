@@ -11,6 +11,7 @@ const tableLoad = function(){
     let apiData = [];
 
     $("#reservations").empty();
+    $("#empty-alert").empty();
     $("#reservations").append("<tr><th>Seat</th><th>Username</th><th>Email</th><th></th></tr>")
 
   fetch('/api/avail?date=' + viewDate.value + '&time=' + viewTime.value, {
@@ -27,10 +28,10 @@ const tableLoad = function(){
     apiData = Array.from(apiJson);
     if (apiData.length < 1) {
         $("#reservations").empty();
-        $("#reservations").append("<tr><th>No results for this time.</th><th>Select a new time/date</th><th>(Or add one for this time!)</th><th></th></tr>")
+        $("#empty-alert").append("<p class='alert alert-success'>Nice! This section has no reservations. Add one or view another section.</p>")
     }
     apiData.forEach(function(reservation) {
-        $("#reservations").append("<tr><td>" + reservation.seat + "</td><td>" + reservation.username + "</td><td>" + reservation.email + "</td><td><button onclick='delBooking(" + reservation.id + ")'>Delete</button></td></li>")
+        $("#reservations").append("<tr><td>" + reservation.seat + "</td><td>" + reservation.username + "</td><td>" + reservation.email + "</td><td class='alight-right'><button onclick='delBooking(" + reservation.id + ")'>Delete</button></td></li>")
     });
   });
   };
