@@ -66,17 +66,17 @@
       const data = await resp.json();
       const favs = data.data;
       
-      let htmlCard = document.getElementById("favorites").innerHTML;
-
+      let htmlCard = "";
+          
       for (let i = 0; i < 3; i++) {
         htmlCard += `<div class="card"> 
                        <div class="card-body">
                         <h5 class="card-title">${favs[i].name}</h5>
                         <p class="card-text"><small class="text-muted">${favs[i].category}</small></p>
-                        <p class="card-text">${favs[i].usd}</p>
-                        <p class="card-text">${favs[i].eur}</p>
+                        <p class="card-text">$${favs[i].usd} - USD</p>
+                        <p class="card-text">$${favs[i].eur} - EURO</p>
                     </div>
-                    <div class="card-footer bg-transparent">${favs[i].rating}</div>
+                    <div class="card-footer bg-transparent">${favs[i].rating} Stars</div>
                   </div>`;
       }
 
