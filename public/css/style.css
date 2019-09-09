@@ -1,1 +1,238 @@
-/*Style your own assignment! This is fun! */
+body {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background-color: #1e1e7b;
+    color: #ffffff
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+}
+
+h {
+    font-family: 'Crafty Girls', sans-serif;
+    text-align: center;
+    font-size: 1.75vw;
+    color:#1e1e7b;
+}
+
+h1 {
+    font-family: 'Crafty Girls';
+    font-style: italic;
+    font-size: 74px;
+    font-size: 6vw;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Crafty Girls', sans-serif;
+    text-align: center;
+    font-size: 1.75vw;
+}
+
+h3 {
+    font-family: 'Crafty Girls';
+    font-style: italic;
+    font-size: 5vw;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+nav {
+    width: 100%;
+    font-family: 'Crafty Girls';
+    font-style: italic;
+    font-size: 2vw;
+    background-color: black;
+    color:white
+}
+
+form {
+   float: left;
+    width: 100%;
+}
+
+
+
+table {
+    display: block;
+    overflow: auto;
+    white-space: nowrap;
+    font-size: 1.25vw;
+}
+
+label, button, #error{
+    font-family: 
+    font-size: 18px;
+    font-size: 1.75vw;
+}
+
+label {
+    margin-right: 30px;
+}
+
+button:hover {
+    border: 5px solid ;
+    background-color: #1e1e7b;
+    color: yellow;
+}
+
+footer{
+  font-size: 3vw;
+  
+}
+
+#error {
+    display: none;
+    color: black;
+    margin-bottom: 0px;
+    padding: 0px;
+    width: 50%;
+    background: yellow;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.menuBar {
+    display: flex;
+    flex-direction: column;
+    height: 17%;
+    width: 100%;
+    text-align: center;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    justify-content: left;}
+
+.tabsOnTop a {
+    display: inline;
+    margin-left: 20px;
+}
+
+.tabsOnTop a:hover {
+    color: pink;
+}
+
+#html-booking {
+    display: block;
+    width: 80%;
+    background-color: white;
+    color: black
+}
+
+#left-form{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+#thankyou {
+    display: none;
+    flex-direction: column;
+    height: 50%;
+    align-items: center;
+}
+
+#booking-table {
+    font-size: 0.5vw;
+    display: none;
+    width: 70%;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    background:white
+}
+
+#update-html-booking {
+    display: none;
+    width: 70%;
+}
+
+.html-form-details {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.html-form-details .text-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 25px;
+    font-size: 2vw;
+    margin-top: 18px;
+    margin-bottom: 7px;
+}
+
+[type="text"], textarea {
+    width: 95%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    resize: vertical;
+    font-family: 
+    font-size: 18px;
+    font-size: 1.75vw;
+}
+
+#submit-btn, #update-form-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+
+#new-booking-button {
+    background-color: black;
+    color: white;
+    border: 4px solid white;
+    align-self: center;
+}
+
+table button {
+    padding: 8px 9px;
+    width: 100%;
+}
+<head>
+<style>
+table {
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 7px;
+}
+
+th {
+  background-color: #1e1e7b;
+  color: white;
+}
+</style>
+</head>
+
