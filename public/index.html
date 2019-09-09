@@ -84,9 +84,7 @@
     var guessCount
     
     const submit = function( e ) {
-      // prevent default form action from being carried out
-      e.preventDefault()
-
+      
       const firstBall = document.querySelector( '#firstball' ),
             secondBall = document.querySelector( '#secondball'),
             thirdBall = document.querySelector( '#thirdball'),
@@ -103,7 +101,7 @@
             
             body = JSON.stringify( json )
 
-      fetch( '/submit', {
+      fetch( '/index.html', {
         method:'POST',
         body 
       })
