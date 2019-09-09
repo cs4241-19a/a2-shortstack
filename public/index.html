@@ -144,7 +144,8 @@
         var i;
         for(i = 0; i < info.length; i++){
           var dayNum = dayFinder(info[i].day)
-          var textNode = document.createTextNode(info[i].task)
+          var textNode = document.createTextNode(info[i].time + " " + info[i].task)
+          var
           var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
           dayCol.appendChild(textNode);
 
