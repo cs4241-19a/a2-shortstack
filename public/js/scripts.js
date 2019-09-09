@@ -94,21 +94,51 @@ const loadData = function( e ) {
       return false;
     }
     
-    //reset order form after adding book
+//edit book based on name and new rating
+    const editBook = function(e){
+      
+      const newBook2 = {
+        bookName: document.getElementById( 'editBookName' ).value,
+        authorName: 'does not matter',
+        comments:'does not matter',
+        rating: document.getElementById( 'editBookRating' ).value,
+        status: 'none'
+      };
+      
+      const body = JSON.stringify( newBook2 );
+      fetch( '/editBook', {
+        method:'POST',
+        body
+      }).then( function( response ) {
+          resetOrderForm();
+          loadData();
+        })
+      resetOrderForm();
+      loadData();
+      return false;
+    }
+    
+//reset order form after adding book
     const resetOrderForm = () => {
       document.getElementById( 'bookName' ).value = '';
       document.getElementById( 'authorName' ).value = '';
       document.getElementById('comments').value = '';
       document.getElementById('rating').value = '';
       document.getElementById('delBookName').value = '';
+      document.getElementById('editBookName').value = '';
+      document.getElementById('editBookRating').value = '';
     };
 
+//window.onload function
   window.onload = function() {
     const addBookbutton = document.getElementById( 'submit-btn' )
     addBookbutton.onclick = addBook
     
     const delBookbutton = document.getElementById( 'del-btn' )
     delBookbutton.onclick = delBook
+    
+    const editBookbutton = document.getElementById( 'edit-btn' )
+    editBookbutton.onclick = editBook
     
     loadData()
   }

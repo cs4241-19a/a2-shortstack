@@ -81,7 +81,7 @@ const handlePost = function( request, response ) {
         const delData = dataString
         bookDeletion(delData)
         break;
-      case 'editBook':
+      case '/editBook':
         const editData = JSON.parse( dataString )
         bookEdition(editData)
         break;
