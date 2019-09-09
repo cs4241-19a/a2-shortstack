@@ -138,7 +138,8 @@
         
         var i;
         for(i = 0; i < info.length; i++){
-          createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
+          if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null)
+            createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
         }
 
         console.log( JSON.stringify( myJSON ) )

@@ -43,6 +43,7 @@ const handlePost = function( request, response ) {
     switch(request.url) {
       case '/submit':
         var newEvent = {
+          'index': info.day+info.task+info.time,
           'day': info.day,
           'task' : info.task,
           'time': info.time
@@ -53,10 +54,16 @@ const handlePost = function( request, response ) {
         break
       case '/delete':
         var delEvent = {
+          'index': info.day+info.task+info.time,
           'day': info.day,
           'task' : info.task,
           'time': info.time
         }
+        var split = data.indexOf(delEvent)
+        data.splice(split, 1)
+      
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
         console.log(data.indexOf(delEvent));
         break
       default:
