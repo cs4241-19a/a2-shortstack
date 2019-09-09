@@ -44,4 +44,4 @@ This is an app where users can log their travels. Users input their name, place 
 - **Design Achievement 10**: The return trip check box used as a reminder for users to count that trip twice
 - **Design Achievement 11**: Used flexbox to arrange many elements in the form including the primary and secondary buttons, input fields and radio buttons
 
-https://petrakumi12-a2-shortstack.glitch.me/
+https://a2-petrakumi12-petra-kumi.glitch.me/
