@@ -151,9 +151,11 @@
     var day = document.querySelector("#day").value
     var task = document.querySelector("#task").value
     var time = document.querySelector("#time").value
+    var index = day + task + time
     console.log("Day: " + day + " Time: " + time + " Task: "+ task);
 
     var newEvent = {
+      index : index,
       day : document.querySelector("#day").value,
       task : document.querySelector("#task").value,
       time : document.querySelector("#time").value,
@@ -164,7 +166,7 @@
       method: 'POST',
       body
     }).then( function( response ) {
-      createEvent(day, task, time);
+      createEvent(index, day, task, time);
 
       document.querySelector("#day").value = '';
       document.querySelector("#task").value = '';
@@ -176,19 +178,23 @@
   
   const deleteEvent = function(e) {
     e.preventDefault();
+    var delEvent;
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
     while(pointer.hasChildNodes()){
       pointer.removeChild(pointer.firstChild)
-      if(pointer.firstChild) {
+      if(pointer.firstChild.getAttribute('index')) {
+        delEvent = pointer.firstChild.getAttribute('index');
         
+        removeEvent()
       }
     }
+    
     
   }
   
   
   
-  const createEvent = function(day, task, time){
+  const createEvent = function(index, day, task, time){
       var dayNum = dayFinder(day)
       var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
       var timeNode = document.createTextNode(time)
@@ -196,6 +202,7 @@
       var divNode = document.createElement("div")
       var breakNode = document.createElement("br")
       var breakNode1 = document.createElement("br")
+      divNode.setAttribute('index', index)
       divNode.appendChild(timeNode)
       divNode.appendChild(breakNode1)
       divNode.appendChild(textNode)
@@ -224,6 +231,7 @@
     }
   }
 
+  
   window.onload = function() {
     occupySchedule();
     
