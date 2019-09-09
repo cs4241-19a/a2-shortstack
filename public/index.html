@@ -128,7 +128,6 @@
   }
   
   const occupySchedule = function() {
-    alert("Running");
     fetch( '/info' )
       .then( function( response ) {
         console.log( response )
@@ -180,15 +179,13 @@
     e.preventDefault();
     var eventInd;
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
-    var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist:first-child[index]')
-
+    var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :first-child[index]')
     while(pointer.hasChildNodes()){
-      //pointer.removeChild(pointer.firstChild)
       if(pointerChild !== null) {
-        //eventInd = pointer.firstChild.getAttribute('index');
-        
-        removeEvent(eventInd)
+        removeEvent(pointerChild.getAttribute('index'))
       }
+      console.log(pointerChild.getAttribute('index'))
+      pointer.removeChild(pointer.firstChild)
     }
     
     
@@ -203,6 +200,7 @@
       body
     }).then(function(response) {
       //occupySchedule()
+      console.log("made it")
     })
   }
   
