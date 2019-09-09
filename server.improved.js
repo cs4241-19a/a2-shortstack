@@ -72,17 +72,18 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    const data = JSON.parse( dataString )
-    
     switch ( request.url ) {
       case '/addBook':
-        bookAddition(data)
+        const addData = JSON.parse( dataString )
+        bookAddition(addData)
         break;
       case '/delBook':
-        bookDeletion(data)
+        const delData = dataString
+        bookDeletion(delData)
         break;
       case 'editBook':
-        bookEdition(data)
+        const editData = JSON.parse( dataString )
+        bookEdition(editData)
         break;
       default:
         response.end('404 Error: File not found');

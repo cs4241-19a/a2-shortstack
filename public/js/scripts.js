@@ -78,9 +78,20 @@ const loadData = function( e ) {
       loadData();
       return false;
     }
-    
+
+//delete book based on name
     const delBook = function(e){
-      console.log("del book")
+      const body = document.getElementById( 'delBookName' ).value
+      fetch( '/delBook', {
+        method:'POST',
+        body
+      }).then( function( response ) {
+          resetOrderForm();
+          loadData();
+        })
+      resetOrderForm();
+      loadData();
+      return false;
     }
     
     //reset order form after adding book
@@ -89,6 +100,7 @@ const loadData = function( e ) {
       document.getElementById( 'authorName' ).value = '';
       document.getElementById('comments').value = '';
       document.getElementById('rating').value = '';
+      document.getElementById('delBookName').value = '';
     };
 
   window.onload = function() {
