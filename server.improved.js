@@ -76,6 +76,8 @@ const handleDelete = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    
+    debugger
 
     appdata.splice(dataString.index, 1);
     

@@ -162,7 +162,8 @@
       const data = await resp.json();
       const favs = data.data;
       
-      
+      debugger
+
       let htmlCard = "";
           
       for (let i = 0; i < 3; i++) {
@@ -246,13 +247,17 @@
     
     const deleteItem = function ( arrPosition ) {
       const indexJson = { index: arrPosition };
-      debugger
       const body = JSON.stringify(indexJson);
+      debugger
       fetch('/delete', {
           method: 'DELETE',
           body
-        });
-        refresh();
+        })
+      .then( function( response ) {
+        refresh()
+        console.log( response )
+      })
+      return false
     }
     
     const editItem = function ( e ) {
@@ -266,7 +271,6 @@
             json = { name: inName.value, category: inCategory.value, rating: inRating.value, usd: inPrice.value, link: inLink.value, index: currEditIndex},
             body = JSON.stringify( json )
       
-      debugger
       fetch( '/update', {
         method:'PUT',
         body 
