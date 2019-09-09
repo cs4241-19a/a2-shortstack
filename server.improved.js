@@ -7,24 +7,26 @@ const http = require( 'http' ),
       port = 3000;
 
 const appdata = [
-  { 'name_id': 'Clifford', 'pupper_id':'dog1', 'groomingDescription': 'Haircut', 'massage': 0, 'dogsize': 0, 'price': 25},
-  { 'name_id': 'Pal', 'pupper_id':'dog2','groomingDescription': 'Nails Done', 'massage': 5, 'dogsize': 0, 'price': 35}
+  { 'name_id': 'Emily', 'pupper_id':'Clifford', 'groomingDescription': 'Haircut', 'massage': 0, 'dogsize': 0, 'price': 25},
+  { 'name_id': 'Arthur Read', 'pupper_id':'Pal','groomingDescription': 'Nails Done', 'massage': 5, 'dogsize': 0, 'price': 35},
+  { 'name_id': 'Sunyukta', 'pupper_id':'Jingle', 'groomingDescription': 'Haircut', 'massage': 0, 'dogsize': 0, 'price': 25},
+  { 'name_id': 'DW Read', 'pupper_id':'Pal','groomingDescription': 'Nails Done', 'massage': 5, 'dogsize': 0, 'price': 35}
 ];
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
   } else if ( request.method === 'POST' ){
-    handlePost( request, response ) 
+    handlePost( request, response ) //communicate from HTML to server
   }
 });
 
+//use handleGet to display data structure (server) in UI (server to UI)
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 );
-
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  } else if ( request.url === '/orders' ){
+  } else if ( request.url === '/bookings' ){
     sendData( response, appdata );
   } else {
     sendFile( response, filename );
@@ -40,24 +42,22 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     switch ( request.url ) {
-        
-        
+               
       case '/submit':
-        const order = JSON.parse( dataString );
+        const booking = JSON.parse( dataString );
         //const groomingPrice=
-        const price = calculatePrice(parseInt(order.massage), parseInt(order.dogsize));
+        const price = addingServices(parseInt(booking.massage), parseInt(booking.dogsize));
 
-        const newOrder = {
-          'name_id': order.name_id,
-          'pupper_id':order.pupper_id,
-          'groomingDescription': order.groomingDescription,
-          'massage': parseInt(order.massage),
-          'dogsize': parseInt(order.dogsize),
-          
+        const newbooking = {
+          'name_id': booking.name_id,
+          'pupper_id':booking.pupper_id,
+          'groomingDescription': booking.groomingDescription,
+          'massage': parseInt(booking.massage),
+          'dogsize': parseInt(booking.dogsize),
           'price': price,
         };
 
-        appdata.push(newOrder);
+        appdata.push(newbooking);
 
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         response.end();
@@ -65,21 +65,21 @@ const handlePost = function( request, response ) {
         break;
 
       case '/update':
-        const orderToUpdate = JSON.parse(dataString);
+        const bookingToUpdate = JSON.parse(dataString);
 
-        const newPrice = calculatePrice(parseInt(orderToUpdate.massage),parseInt(orderToUpdate.dogsize));
+        const editedPrice = addingServices(parseInt(bookingToUpdate.massage),parseInt(bookingToUpdate.dogsize));
 
-        const updatedOrder = {
-          'parent_id':orderToUpdate.parent_id,
-          'name_id': orderToUpdate.name_id,
-          'pupper_id': orderToUpdate.pupper_id,
-          'groomingDescription': orderToUpdate.groomingDescription,
-          'massage': parseInt(orderToUpdate.massage),
-          'dogsize': parseInt(orderToUpdate.dogsize),
-          'price': newPrice,
+        const updatedbooking = {
+          'parent_id':bookingToUpdate.parent_id,
+          'name_id': bookingToUpdate.name_id,
+          'pupper_id': bookingToUpdate.pupper_id,
+          'groomingDescription': bookingToUpdate.groomingDescription,
+          'massage': parseInt(bookingToUpdate.massage),
+          'dogsize': parseInt(bookingToUpdate.dogsize),
+          'price': editedPrice,
         };
 
-        appdata.splice(orderToUpdate.index, 1, updatedOrder);
+        appdata.splice(bookingToUpdate.index, 1, updatedbooking);
 
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
         response.end();
@@ -87,8 +87,8 @@ const handlePost = function( request, response ) {
         break;
 
       case '/delete':
-        const orderToDelete = JSON.parse(dataString);
-        appdata.splice(orderToDelete.orderNumber, 1);
+        const bookingToDelete = JSON.parse(dataString);
+        appdata.splice(bookingToDelete.bookingNumber, 1);
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
         response.end();
 
@@ -101,17 +101,17 @@ const handlePost = function( request, response ) {
   })
 };
 
-const calculatePrice = function (wantsMassage, needsMassage) {
-  const baseGroomingPrice = 25;
-  const price = (baseGroomingPrice + wantsMassage + needsMassage);
-  return price;
+const sendData = function( response, bookings ) {
+  const type = mime.getType( bookings );
+  response.writeHeader(200, { 'Content-Type': type });
+  response.write(JSON.stringify({ data: bookings }));
+  response.end();
 };
 
-const sendData = function( response, orders ) {
-  const type = mime.getType( orders );
-  response.writeHeader(200, { 'Content-Type': type });
-  response.write(JSON.stringify({ data: orders }));
-  response.end();
+const addingServices = function (wantsMassage, bigDog) {
+  const baseGroomingPrice = 25;
+  const price = (baseGroomingPrice + wantsMassage + bigDog);
+  return price;
 };
 
 const sendFile = function( response, filename ) {
@@ -121,7 +121,6 @@ const sendFile = function( response, filename ) {
 
      // if the error = null, then we've loaded the file successfully
      if( err === null ) {
-
        // status code: https://httpstatuses.com
        response.writeHeader( 200, { 'Content-Type': type });
        response.end( content )
