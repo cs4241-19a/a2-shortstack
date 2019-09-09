@@ -7,9 +7,11 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'title': 'Avengers: Endgame', 'year': 2019, 'direct': 'Russo' },
+  { 'title': 'Pay It Forward', 'year': 2004, 'direct': 'Lender'},
+  { 'title': 'The Princess Bride', 'year': 1987, 'direct': 'Reiner'},
+   { 'title': 'A Beautiful Mind', 'year': 2001, 'direct': 'Howard'},
+   { 'title': 'Black Panther', 'year': 2018, 'direct': 'Coogler'} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -32,18 +34,21 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
+  let flag = 0;
 
   request.on( 'data', function( data ) {
       dataString += data 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
+    let inputData = ( JSON.parse( dataString ) )
+    let action = inputData.action
+  
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    //movies().each(function (r){json = {title:r = titlesArr, year:r = yearArr, direct:r = directArr}})
+    //send={objs:finaljson} JSON.stringify(jsonSend)
+    response.end();
   })
 }
 
