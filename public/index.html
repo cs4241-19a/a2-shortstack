@@ -40,19 +40,19 @@
       <h2>Step 2: Select An Open Stall</h2>
       <div id="stalls">
         <div class="card-panel green lighten-2">
-          <p id="stall-0">Hello World</p>
+          <p id="stall-0">Available for use!</p>
           <button id="stall-0-btn" class="btn-flat green">Reserve</button>
         </div>
         <div class="card-panel green lighten-2">
-          <p id="stall-1">Hello World</p>
+          <p id="stall-1">Available for use!</p>
           <button id="stall-1-btn" class="btn-flat green">Reserve</button>
         </div>
         <div class="card-panel green lighten-2">
-          <p id="stall-2">Hello World</p>
+          <p id="stall-2">Available for use!</p>
           <button id="stall-2-btn" class="btn-flat green">Reserve</button>
         </div>
         <div class="card-panel green lighten-2">
-          <p id="stall-3">Hello World</p>
+          <p id="stall-3">Available for use!</p>
           <button id="stall-3-btn" class="btn-flat green">Reserve</button>
         </div>
       </div>
@@ -84,9 +84,9 @@
   const setOccupied = function(stall, button, end, name) {
     let occupied_string = "Currently Ocuppied";
     if(name){
-      occupied_string += " by " + name;
+      occupied_string += " by " + name + ".  ";
     }
-    occupied_string +="\nAvailable in " + moment(end).subtract(moment()).format("HH:mm");
+    occupied_string +="Available in " + moment.utc(moment(end).diff(moment())).add(1, "m").format("HH:mm");
     stall.textContent = occupied_string;
     button.classList.add("disabled");
   }
@@ -125,23 +125,26 @@
     buttons[3].onclick = (e) => {
       submit(e, 3);
     }
-    //setOccupied(document.querySelector('#stall-0'), button_0, "2019-09-09T02:25:40.968", "AAAA")
-    // Check for updates
-    setInterval(function(){
-      fetch('/status', {method: "GET"})
+
+    const checkUpdates = function(){
+    fetch('/status', {method: "GET"})
         .then(function(response){
           return response.json();
         })
         .then(function(json){
           for(let i=0; i<4; i+=1){
             if(json[i].active){
-              setOccupied(stalls[i], buttons[i], json.i.end, json.i.name);
+              setOccupied(stalls[i], buttons[i], json[i].end, json[i].name);
             }else{
               setVacant(stalls[i], buttons[i]);
             }
           }
         })
-    }, 5000);
+      }
+    
+    // Set an interval to check
+    checkUpdates();
+    setInterval(checkUpdates, 5000);
   }
 
   </script>

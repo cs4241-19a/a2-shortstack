@@ -71,7 +71,7 @@ sequelize.authenticate()
     console.log("F");
   });
 
-// db_util.makeRes(1, 5, "Occupied!");
+//db_util.makeRes(1, 5, "Occupied!");
 
 // ----------------------------
 // ---- Server Logistics
@@ -100,6 +100,16 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
+    const reserve_request = JSON.parse(dataString);
+    const length_map = {
+      express: 2,
+      standard: 5,
+      facebook: 10,
+    }
+    db_util.makeRes(reserve_request.stall, length_map[reserve_request.length], reserve_request.name)
+      .catch(function(e){
+        console.log(e);
+      });
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -135,17 +145,19 @@ const sendStatus = function(response) {
     2: {active: false},
     3: {active: false},
   }
-  const actives = db_util.fetchActiveRevs();
-  for(let i=0; i<actives.length; i+=1){
-    content[actives[i].stall] = {
-      active: true,
-      name: actives[i].name,
-      end: actives[i].end,
-    }
-  }
+  db_util.fetchActiveRevs()
+    .then(function(result){
+      for(let i=0; i<result.length; i+=1){
+        content[result[i].stall] = {
+          active: true,
+          name: result[i].name,
+          end: result[i].end,
+        }
+      }
 
-  response.writeHead(200, "OK", {"Content-Type": "application/json"});
-  response.end(JSON.stringify(content));
+      response.writeHead(200, "OK", {"Content-Type": "application/json"});
+      response.end(JSON.stringify(content))
+  });
 }
 
 server.listen( process.env.PORT || port )
