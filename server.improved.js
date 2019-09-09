@@ -7,7 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 var playerData = [
-  {'name': 'Javier', 'moves': 0, 'medal': 'platinum'}
+  {'name': "Javier", 'moves': 0, 'medal': "Platinum"}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -48,7 +48,8 @@ const handlePost = function( request, response ) {
     // Check if data is valid
     for (var i = 0; i < 4; i++) {
       if (playerGuess[i] == -1) {
-        // Data is invalid, throw 400 error
+        response.writeHead( 400, "Bad response", {'Content-Type': 'text/plain' })
+        response.end()
       }
     }
     
@@ -57,10 +58,13 @@ const handlePost = function( request, response ) {
     var colorNpos = rightPosition(playerGuess)
     
     if (colorNpos = 4) {
-      // You win!
+      const newEntry = { 'name': obj.playername,
+                         'moves': obj. guessCount}
     }
     
-    else 
+    else {
+      // send color & colorNpos
+    }
                       
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -150,6 +154,13 @@ const rightPosition = function(pGuess) {
     if (board[j] == pGuess[j]) { correctPos++ }
   }
   return correctPos
+}
+
+const giveMedal = function(guessCount) {
+  if (guessCount <= 6) { return "platinum" }
+  else if (guessCount <= 8) { return "gold" }
+  else if (guessCount <= 12) { return "silver" }
+  else { return "bronze" }
 }
 
 server.listen( process.env.PORT || port )

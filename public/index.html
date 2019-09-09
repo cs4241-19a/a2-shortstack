@@ -20,7 +20,7 @@
     </div>
     <div id="pName">
       <h2>Name:</h2>  
-      <input id="name" type="text" value="Clippy">
+      <input id="pname" type="text" value="Clippy">
     </div>
     <div id="guess">
         <form>
@@ -84,20 +84,23 @@
     var guessCount
     const submit = function( e ) {
 
+      guessCount++
       const firstBall = document.querySelector( '#firstball' ),
             secondBall = document.querySelector( '#secondball'),
             thirdBall = document.querySelector( '#thirdball'),
             fourthBall = document.querySelector( '#fourthball' ),
-            playerName = document.querySelector( '#')
-
-            json = { firstball: firstBall.value,
-                    secondball: secondBall.value, 
-                   thirdball: thirdBall.value,
-                   fourthball: fourthBall.value,
-                   guesscount: guessCount,
-                   }
+            playerName = document.querySelector( '#pname' ).value
+      
+      json = { firstball: firstBall.value,
+              secondball: secondBall.value, 
+             thirdball: thirdBall.value,
+             fourthball: fourthBall.value,
+             guesscount: guessCount,
+             playername: playerName}
             
-            body = JSON.stringify( json )
+      body = JSON.stringify( json )
+      console.log(json)
+      console.log(body)
 
       fetch( '/submit', {
         method:'POST',
