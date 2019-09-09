@@ -160,7 +160,7 @@ const rm_click = function(e) {
     }
     const body = JSON.stringify(json);
 
-    fetch('delete', {
+    fetch('/delete', {
         method: 'POST',
         body
     }).then(function(response) {
@@ -169,4 +169,16 @@ const rm_click = function(e) {
     
 
     parent.parentNode.removeChild(this.parentNode)
+}
+
+function results() {
+    fetch('/results.html', {
+        method: 'GET'
+    }).then(function(response) {
+
+    })
+}
+
+function showResults(text) {
+    document.body.innerHTML = text
 }

@@ -104,12 +104,15 @@ const handleDelete = function(request, response) {
 }
 
 const sendFile = function(response, filename) {
-	const type = mime.getType(filename) 
+	const type = mime.getType(filename)
+	console.log(filename)
 
 	fs.readFile(filename, function(err, content) {
+		console.log('1')
 		 // if the error = null, then we've loaded the file successfully
 		if (err === null) {
 			 // status code: https://httpstatuses.com
+			 console.log('2')
 			 response.writeHeader(200, {'Content-Type': type})
 			 response.end(content)
 		} else {

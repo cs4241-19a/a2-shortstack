@@ -87,6 +87,11 @@ button:hover {
 	color: #fff;
 	background: #6A82FB;
 }
+#results_btn {
+    color: #fff;
+    background: #6A82FB;
+    margin-bottom: 2vh;
+}
 
 /* .rm_btn, .done_btn {
     margin-left: .5em;
