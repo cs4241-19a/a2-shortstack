@@ -26,7 +26,7 @@ const appdata = [
 ]
 
 const horoscopes = [
-  {'horoscope': }
+  {'horoscope': ""}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -93,9 +93,11 @@ const handlePost = function( request, response ) {
         response.end()
         break
       case "delete":
+        console.log(appdata)
         const removalData = JSON.parse(dataString)
         removalData.sign = starSign(removalData)
         removeGiven(removalData)
+        console.log(appdata)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
         response.end()
