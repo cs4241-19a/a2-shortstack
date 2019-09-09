@@ -1,89 +1,49 @@
+a2-mmdanke-Manasi-Danke
+Manasi Danke-mmdanke
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
-===
 
-Due: September 9th, by 11:59 AM.
+Deployed on Glitch:
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
-
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
-
-Baseline Requirements
----
-
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
-
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
-
-Your application is required to implement the following functionalities:
-
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
 
 Deliverables
----
 
-Do the following to complete this assignment:
+## Puppy Pals!-by Manasi Danke
+Puppy Pals is a service that provides grooming services for dogs. The website enables owners to fill out their name, their dog's name, enter in special details for the order, indicate the size of their dog, add on a massage, and be able to view the price!
 
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
+The website, with the help of a html form and table, help the pet owners effectively communicate the above details to the groomers by filling out a form.The owners can simply fill out a form each time and have those details organized neatly in a table.
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
+The "Update Booking" and "Delete Booking" are key innovations that help communicate the booking details to the pet owner's satisfaction. The pet owner can simply edit booking details or delete a booking. It really helps to provdide flexibility and comfort for the pet owner.
 
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+The website offers an easy way for the pet owners to book pampering services while having greater control of the details they communicate.
 
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+Ideas for the future: 
+- Include a time and date stamp.
+- Mark orders are completed, in progress, or processing
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
-
-## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+### Technical Achievements
+- hhh
+- jhgh
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- 
+- 
+
+### Resources Used:
+- I was able to browse a lot of code from other Github https://github.com/ and CodePen https://codepen.io/ projects and used snippets of code I found on these; however, I was able to use those snippets to personalize this website and delete/add elements of my own.
+-HTML Forms: https://www.w3schools.com/html/html_forms.asp
+- glitch.com to deploy the code
+- Learning more about CSS and HTML: https://marksheet.io/css-basics.html
+- Understanding more about fetch, GET, and POST https://l.facebook.com/l.php?u=https%3A%2F%2Fdev.to%2Fdev_amaz%2Fusing-fetch-api-to-get-and-post--1g7d%3Ffbclid%3DIwAR0GPdjWtMBU7RJDK03SsObGqO1y9K7aBOVSxX8qjMXuygCeE9_kkbK7VM0&h=AT0DNGOf60spSn9KhAIq7WS6Pr83t9oLiRQGZGN8QbR9jNIQNVsru3lc65eVKcBVGO0sVsdps7AhGM_lCzha7xb9jb--03Ao6uvfnTNnKfVl4HGW6YpeXVLZfmePc6jvXzmzbQ
+- CSS and Flexbox Styling: https://medium.com/@sashatran/check-out-the-page-here-7d71a2c43a10?fbclid=IwAR0ed_IDki7Yr5_mmd7aqTaQQUD7YIGTxiyqTdx-CczOZEbEVW5cIZ-wPJk
+-CSS and Flexbox Styling:https://www.developerdrive.com/responsive-image-gallery-flexbox/?fbclid=IwAR3NioNnFOmDtjSeHdIunLz-J7bmB9tdP63PRv4tE4YcG7AXrlNIPkkAPkI
+
+# Pictures From These Sites:
+- http://ibiyaya.com/en/news/
+- http://www.litlepups.net/d7c6bb6376e96960.html
+- https://steemit.com/funny/@funnyquotes/little-puppys-spa-day
+- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwi_qufy2sPkAhUsT98KHQ-cC5gQjB16BAgBEAM&url=https%3A%2F%2Fwww.pawparazzishop.com%2F&psig=AOvVaw0Pch3dyjwTnQ2iVVuGM9MP&ust=1568117455900069
+- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwitoISD28PkAhWyTt8KHVqVCKoQjB16BAgBEAM&url=http%3A%2F%2Fabsri.com%2Fcompassion-is-mans-best-friend%2F&psig=AOvVaw3un4KfgYBrnBMPwSSRUdMT&ust=1568117493857506
+- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjR0buV28PkAhXGnuAKHT0gC3MQjB16BAgBEAM&url=https%3A%2F%2Fbesthqwallpapers.com%2Fpt%2Fdownload%2Foriginal%2F35690&psig=AOvVaw1SEztdObA-KLjqH2FNHCq4&ust=1568117531987780
+
+
+
