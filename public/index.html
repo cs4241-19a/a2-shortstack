@@ -16,7 +16,11 @@
         or...
         <li>Of the <b>correct color</b> but in the <b>wrong position</b>.</li>
       </ul>
-      Think carefully! If you fail to crack the code by your 15th guess, you lose!
+      Think carefully! If you fail to crack the code by your 15th guess, you lose! <br>
+      <form>
+        Name: 
+        <input id="playername" type="name" value="Clippy">
+      </form>
     </div>
     <div id="guess">
         <form>
@@ -86,13 +90,16 @@
       const firstBall = document.querySelector( '#firstball' ),
             secondBall = document.querySelector( '#secondball'),
             thirdBall = document.querySelector( '#thirdball'),
-            fourthBall = document.querySelector( '#fourthball' )
+            fourthBall = document.querySelector( '#fourthball' ),
+            playername = document.querySelector( '#playername' )
 
             json = { firstball: firstBall.value,
                     secondball: secondBall.value, 
                    thirdball: thirdBall.value,
                    fourthball: fourthBall.value,
-                   guesscount: guessCount}
+                   guesscount: guessCount,
+                   playername = playername }
+            console.log(playername)
             
             body = JSON.stringify( json )
 
@@ -101,13 +108,13 @@
         body 
       })
       .then( function( response ) {
-        
+        /*
         //var rjson = 
         var correctColor = 
-        var correctColorNPos =
+        var correctColorNPos = 
         
-        
-        
+        //TODO
+        */
         console.log( response )
       })
 

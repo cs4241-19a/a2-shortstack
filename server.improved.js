@@ -55,25 +55,26 @@ const handlePost = function( request, response ) {
     // If valid, check against solution
     var color = rightColor(playerGuess)
     var colorNpos = rightPosition(playerGuess)
+    var guessCount = playerGuess.guesscount
     
     if (colorNpos = 4) {
       var medal
-      if (guessCount <= 5)  { medal = 'platinum'
-      }
+      if (guessCount <= 5)  { medal = 'platinum' }
+      else if (guessCount <= 7) { medal = 'gold' }
+      else if (guessCount <= 10) { medal = 'silver' }
+      else { medal = 'bronze' }
     }
-    
+      
     else {
       if (obj.guesscount >= 14) {
         // You lose...
       }
       
-      var newGuessCount = obj.guesscount + 1
+    var newGuessCount = obj.guesscount + 1
       
-      const rjson = { color: color,
-                    colornpos: colorNpos,
-                    guesscount: newGuessCount }
-      
-      
+    const rjson = { color: color,
+                  colornpos: colorNpos,
+                  guesscount: newGuessCount }
     }
                       
 
