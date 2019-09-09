@@ -61,6 +61,17 @@
     
   </body>
   <script>
+    const displayStars = function(rating) {
+      let div = `<div class="stars">`;
+      
+      for(let i = 0; i < rating; i++){
+        div += `<i class="fas fa-star"></i>`
+      }
+      div += 
+      
+      return div;
+    }
+    
     const loadFavorites = async function() {
       const resp = await fetch('/items', { method: 'GET' });
       const data = await resp.json();
@@ -76,11 +87,9 @@
                         <p class="card-text">$${favs[i].usd} - USD</p>
                         <p class="card-text">$${favs[i].eur} - EURO</p>
                     </div>
-                    <div class="card-footer bg-transparent">${favs[i].rating} Stars</div>
+                    <div class="card-footer bg-transparent">${displayStars()}</div>
                   </div>`;
       }
-
-      debugger
 
       document.getElementById("favorites").innerHTML = htmlCard;
     };
