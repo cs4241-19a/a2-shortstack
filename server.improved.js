@@ -6,6 +6,12 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+const appdata = [
+  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
+  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
+  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+]
+
 var playerData = [
   {'name': 'Javier', 'moves': 0, 'medal': 'platinum'}
 ]
@@ -55,27 +61,12 @@ const handlePost = function( request, response ) {
     // If valid, check against solution
     var color = rightColor(playerGuess)
     var colorNpos = rightPosition(playerGuess)
-    var guessCount = playerGuess.guesscount
     
     if (colorNpos = 4) {
-      var medal
-      if (guessCount <= 5)  { medal = 'platinum' }
-      else if (guessCount <= 7) { medal = 'gold' }
-      else if (guessCount <= 10) { medal = 'silver' }
-      else { medal = 'bronze' }
+      // You win!
     }
-      
-    else {
-      if (obj.guesscount >= 14) {
-        // You lose...
-      }
-      
-    var newGuessCount = obj.guesscount + 1
-      
-    const rjson = { color: color,
-                  colornpos: colorNpos,
-                  guesscount: newGuessCount }
-    }
+    
+    else 
                       
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -85,7 +76,6 @@ const handlePost = function( request, response ) {
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
-   console.log(filename)
 
    fs.readFile( filename, function( err, content ) {
 

@@ -16,11 +16,7 @@
         or...
         <li>Of the <b>correct color</b> but in the <b>wrong position</b>.</li>
       </ul>
-      Think carefully! If you fail to crack the code by your 15th guess, you lose! <br>
-      <form>
-        Name: 
-        <input id="playername" type="name" value="Clippy">
-      </form>
+      Think carefully! If you fail to crack the code by your 15th guess, you lose!
     </div>
     <div id="guess">
         <form>
@@ -81,38 +77,29 @@
   </body>
   
   <script>
-    var guessCount
-    
+
     const submit = function( e ) {
-      
+      // prevent default form action from being carried out
+      e.preventDefault()
+
       const firstBall = document.querySelector( '#firstball' ),
             secondBall = document.querySelector( '#secondball'),
             thirdBall = document.querySelector( '#thirdball'),
-            fourthBall = document.querySelector( '#fourthball' ),
-            playername = document.querySelector( '#playername' )
+            fourthBall = document.querySelector( '#fourthball' )
 
             json = { firstball: firstBall.value,
                     secondball: secondBall.value, 
                    thirdball: thirdBall.value,
-                   fourthball: fourthBall.value,
-                   guesscount: guessCount,
-                   playername = playername }
-            console.log(playername)
+                   fourthball: fourthBall.value}
             
             body = JSON.stringify( json )
 
-      fetch( '/index.html', {
+      fetch( '/submit', {
         method:'POST',
         body 
       })
       .then( function( response ) {
-        /*
-        //var rjson = 
-        var correctColor = 
-        var correctColorNPos = 
-        
-        //TODO
-        */
+        // do something with the reponse 
         console.log( response )
       })
 
@@ -120,7 +107,7 @@
     }
 
     window.onload = function() {
-      guessCount = 0
+      previousGuesses = {}
       const button = document.querySelector( 'button' )
       button.onclick = submit
     }
