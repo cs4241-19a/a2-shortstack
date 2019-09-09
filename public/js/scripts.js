@@ -54,7 +54,7 @@ const loadTable = function(data){
         x = data[i].firstNumber;
         y = data[i].secondNumber;
         operator = data[i].operator;  
-      console.log(operator);
+      console.log(x);
 
         //see what type of action we want to perform
         switch(operator){ //option in dropdown 
@@ -71,7 +71,7 @@ const loadTable = function(data){
             operator = 'X';
             break;
             case "4":  //divide 
-            if(y === 0){ //cannot divide by zero 
+            if(y == 0){ //cannot divide by zero 
               result = "undefined";
             }else {
               result = x/y;
@@ -79,7 +79,7 @@ const loadTable = function(data){
             operator = '/';
             break;
             default: 
-            result = "cases are not working";
+            result = "cases are not working ";
             break; 
           }
           console.log(operator)

@@ -26,7 +26,7 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else if(request.url === '/cal'){ //should change this 
+  }else if(request.url === '/cal'){
     response.writeHeader( 200, 'OK', {'Content-Type': 'text/plain' })
     response.end(JSON.stringify(appData))
     
