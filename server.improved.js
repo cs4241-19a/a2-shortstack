@@ -6,8 +6,9 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000;
 
+//handicapped actually means smoking free room due to last min error
 const appdata = [
-  { 'name': 'Anagha Late', 'specialRequest': 'Extra towels please', 'smokingRoom': 'yes', 'handicapped': 'no'},
+  { 'name': 'Anagha Late', 'specialRequest': 'Extra towels please', 'handicapped': 'no'},
 ];
 
 const server = http.createServer( function( request, response ) {
@@ -44,34 +45,12 @@ const handlePost = function( request, response ) {
         const booking = JSON.parse( dataString );
 
         const newBooking = {
-          'name': booking.name,
-          'specialRequest': booking.specialRequest,
-          'smokingRoom': parseInt(booking.smokingRoom),
-          'handicapped': parseInt(booking.handicapped),
+          'name': booking.name, 'specialRequest': booking.specialRequest, 'handicapped': parseInt(booking.handicapped),
         };
 
         appdata.push(newBooking);
-
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         response.end();
-
-        break;
-
-      case '/update':
-        const bookingToUpdate = JSON.parse(dataString);
-
-        const updatedBooking = {
-          'name': bookingToUpdate.name,
-          'specialRequest': bookingToUpdate.specialRequest,
-          'smokingRoom': parseInt(bookingToUpdate.smokingRoom),
-          'handicapped': parseInt(bookingToUpdate.handicapped),
-        };
-
-        appdata.splice(bookingToUpdate.index, 1, updatedBooking);
-
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
-        response.end();
-
         break;
 
       case '/delete':
@@ -79,7 +58,20 @@ const handlePost = function( request, response ) {
         appdata.splice(bookingToDelete.bookingNumber, 1);
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
         response.end();
+        break;
+        
+      case '/update':
+        const bookingToUpdate = JSON.parse(dataString);
 
+        const updatedBooking = {
+          'name': bookingToUpdate.name,
+          'specialRequest': bookingToUpdate.specialRequest,
+          'handicapped': parseInt(bookingToUpdate.handicapped),
+        };
+
+        appdata.splice(bookingToUpdate.index, 1, updatedBooking);
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
+        response.end();
         break;
 
       default:
