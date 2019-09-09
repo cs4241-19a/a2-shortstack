@@ -103,9 +103,8 @@
         var i;
         for(i = 0; i < info.length; i++){
           if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null){
-            
             createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
-          console.log("yes")
+            console.log("yes")
         }
                     console.log("no")
 
@@ -154,9 +153,10 @@
     for(i = pointer.hasChildNodes(); i > 0; i--){
       if(pointerChild !== null) {
         removeEvent(pointerChild.getAttribute('index'))
+        //pointer.removeChild(pointerChild.getAttribute('index'))
       }
       //console.log(pointerChild.getAttribute('index'))
-      //pointer.removeChild(pointer.firstChild)
+      
     }
     
     
@@ -171,6 +171,7 @@
       body
     }).then(function(response) {
       //occupySchedule()
+      updateSchedule(day)
       console.log("made it")
     })
   }
@@ -192,6 +193,14 @@
 
       dayCol.appendChild(divNode)
       dayCol.appendChild(breakNode)
+  }
+  
+  const updateSchedule = function( day ) {
+    var num = 0;
+    var pointer = document.querySelector('.boardsection[data-board]:nth-child('+num+') .tasklist')
+    var pointerChild = document.querySelector('.boardsection[data-board]:nth-child('+num+') .tasklist :first-child[index]')
+    
+    while(num = 0; num < document.querySelector('.boardsection[data-board]').has
   }
   
   const dayFinder = function(str) {
