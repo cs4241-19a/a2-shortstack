@@ -1,1 +1,60 @@
-/*Style your own assignment! This is fun! */
+body {
+    background-color: #FFFFFF;
+    font-family: Arial, Helvetica, sans-serif;
+    background-position: center;
+    background-size: cover;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    margin-top: 80px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom:-10px;
+}
+
+h2 {
+    color: black;
+    font-style: normal;
+    font-weight: bold;
+}
+
+h3 {
+    text-align: center;
+    color: black;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.columns {
+    column-count: 2;
+    column-gap: 50px;
+    column-rule-style: solid;
+    column-rule-width: 3px;
+    column-rule-color: black;
+    column-fill:balance;
+    column-width: 100px;
+    margin-top: 30px;
+}
+
+.space {
+    break-inside: avoid-column;
+}
+
+/* Lowers the 2nd column's content to align with the top of the 1st's */
+.space:nth-of-type(2){
+    break-after:column;
+    display:block;
+}
+
+.information {
+  text-align: right;
+}
+
+.fries {
+  text-align: left;
+}

@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
+  "name": "a2-jhyuen",
+  "version": "0.1.0",
   "description": "",
-  "author": "",
+  "author": "Joseph Yuen",
   "scripts": {
     "start": "node server.improved.js"
   },
