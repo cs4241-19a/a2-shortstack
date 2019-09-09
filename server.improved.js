@@ -8,7 +8,7 @@ const http = require('http'),
 
 const appdata = []
 
-const server = http.createServer(function(request,response) {
+const server = http.createServer(function(request, response) {
 	if (request.method === 'GET') {
 		handleGet(request, response)
 	} else if (request.method === 'POST'){
@@ -27,20 +27,71 @@ const handleGet = function(request, response) {
 }
 
 const handlePost = function(request, response) {
-	let dataString = ''
+	if (request.url === '/add') {
+		handleAdd(request, response)
+	} //else if (request.url === '/change') {
+		//handleChange(request, response)} 
+	else if (request.url === '/checkDone') {
+		checkDone(request, response)
+	} else if (request.url === '/delete') {
+		handleDelete(request, response)
+	}
+}
 
+const handleAdd = function(request, response) {
+
+	let datastr = ''
 	request.on('data', function(data) {
-			dataString += data 
+		datastr += data	
 	})
-
+	
 	request.on('end', function() {
-		console.log(JSON.parse(dataString))
-		
-		// ... do something with the data here!!!
-		appdata.push(dataString);
-		//console.log(appdata);
-		response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
-		response.end()
+		let exists = ''
+		if (findData(JSON.parse(datastr)) == -1) {
+			exists = 'no'
+			datastr = JSON.parse(datastr)
+			datastr.done = "no"
+			appdata.push(datastr)
+		} else exists = 'yes'
+
+		response.writeHead(200, exists, {'Content-Type': 'text/plain'})
+		response.end();
+	})
+}
+
+const checkDone = function(request, response) {
+	let datastr = ''
+	request.on('data', function(data) {
+		datastr += data	
+	})
+	
+	request.on('end', function() {
+		let done = ''
+		let find = findData(JSON.parse(datastr));
+		if (appdata[find].done == 'yes') {
+			appdata[find].done = 'no'
+			done = 'no'
+		} else {
+			appdata[find].done = 'yes'
+			done = 'yes'
+		}
+
+		response.writeHead(200, done, {'Content-Type': 'text/plain'})
+		response.end();
+	})
+}
+
+const handleDelete = function(request, response) {
+	let datastr = ''
+	request.on('data', function(data) {
+		datastr += data	
+	})
+	
+	request.on('end', function() {
+		let find = findData(JSON.parse(datastr))
+		delete appdata[find]
+		response.writeHead(200, done, {'Content-Type': 'text/plain'})
+		response.end();
 	})
 }
 
@@ -59,6 +110,22 @@ const sendFile = function(response, filename) {
 			response.end('404 Error: File Not Found')
 		}
 	})
+}
+
+const findData = function(data) {
+	const found = appdata.findIndex(function(i) {
+		//let obj = JSON.parse(i);
+		return(
+			i.assignment === data.assignment &&
+			i.classname === data.classname &&
+			i.due_date === data.due_date
+		)
+	})
+	// if(!found) return 0;
+	// else return 1;
+	return found;
+	//if DNE, return true, else false
+	//we don't want it to exist
 }
 
 server.listen(process.env.PORT || port)

@@ -12,16 +12,21 @@
 </head>
 
 <body>
-	<div id="card">
+	<div class="card small">
 	<form id="form">
 		<li>
-			<input type='text' id='assignment' value="assignment">
-			<input type='text' id='classname' value="class">
-			<input type='date' id='due_date' value="2019-09-08">
+			<input type='text' id='assignment' class='assignment' value="assignment" size="1">
+			<input type='text' id='classname' class='classname' value="class" size="1">
+			<input type='date' id='due_date' class='due_date'>
 			<button id='add_assignment' class='btn' onclick="addAssignment(event)">
 				<i class="fa fa-plus"></i>
 			</button>
 		</li>
+	</form>
+	</div>
+
+	<div class="card">
+	<form class="form">
 		<ol id="todo-ol" class="todo-ol"></ol>
 	</form>
 	</div>

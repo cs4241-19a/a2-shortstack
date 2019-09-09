@@ -19,14 +19,17 @@ body {
     overflow: hidden;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 	font-family: "Source Sans Pro", sans-serif;
 	/* font-weight: 700; */
 }
 
-#card {
+.card {
     min-height: 50vh;
+    width: 70vw;
+    max-width: 70vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,11 +38,18 @@ body {
     background: #fff;
     overflow: hidden;
     box-shadow: 0 0 5px rgba(25,25,25,.25);
-  }
+}
+.small {
+    min-height: 10vh;
+    margin-bottom: 2vh;
+}
 
 li {
     list-style-type: none;
-    border: red 1px solid;
+    display: flex; /*added*/
+    justify-content: space-between; /*added*/
+    flex-grow: 1; /*added*/
+    /* border: red 1px solid; */
 }
 
 button {
@@ -103,6 +113,7 @@ input {
     /* width: 100%; */
     font-size: 14px;
     margin: 0 .5em;
+
     border-radius: 2em;
     padding: 0.75em 1.5em;
     background: none;
@@ -116,6 +127,10 @@ input {
 input:focus {
 	border: #2860bb 1px solid;
 	outline: none;
+}
+
+.li_input {
+    width: 25%;
 }
 
 form {
@@ -134,7 +149,7 @@ form {
     /* padding: 0 1rem; */
     flex: 1;
     padding-inline-start: 0px; /*added*/
-    border: red 1px solid;
+    /* border: red 1px solid; */
 }
 
 .list {
@@ -146,4 +161,33 @@ form {
     border-radius: 3px;
     transition: 200ms;
     color: #4fc08d;
+}
+
+.assignment {
+    /* width: 33%; */
+    flex-grow: 4;
+}
+.classname {
+    /* width: 33%; */
+    flex-grow: 4;
+}
+.due_date {
+    /* width: 33%; */
+    flex-shrink: 1;
+}
+.time_left {
+    flex-shrink: 1;
+}
+
+hr { 
+    display: block;
+    width: 80%;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+    color: inherit;
 }
