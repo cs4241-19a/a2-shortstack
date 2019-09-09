@@ -20,7 +20,9 @@ header{
 #table1{
 text-align:center;
   margin: auto;
-  fontsize:18px;
+  font-size:32px;
+  width:800px;
+  height:500px;
 }
 
 .blue{
@@ -28,11 +30,41 @@ text-align:center;
 }
 
 input{
+  font-size:32px;
   width:60px;
+  background-color:rgba(0, 0, 255,0);
+   border-style:none none double none; 
+}
+
+#submit{
+  margin:7px;
+  width:200px;
+   font-size:30px;
+   background-color:rgba(0,0,0,0);
+  color:black;
+  border-radius:3em;
+  border:3px solid;
+}
+
+#submit:hover {
+  background-color: #555555; /* Grey */
+  color: white;
+  cursor: pointer;
 }
 
 #matchN{
   width:50px;
+}
+
+nav{
+  text-align:center;
+  font-size:50px;
+  
+}
+
+a{
+  width:800px;
+  margin:auto;
 }
 
 .matchTable{
