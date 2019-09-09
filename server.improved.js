@@ -24,9 +24,9 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     // If page is entered or refreshed, generate a new board
     generateBoard()
+    console.log(board)
     sendFile( response, 'public/index.html' )
-  }
-  else{
+  }else{
     sendFile( response, filename )
   }
 }
@@ -35,7 +35,7 @@ const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += playerData 
+      dataString += data 
   })
 
   request.on( 'end', function() {
@@ -49,7 +49,7 @@ const handlePost = function( request, response ) {
     for (var i = 0; i < 4; i++) {
       if (playerGuess[i] == -1) {
         response.writeHead( 400, "Bad response", {'Content-Type': 'text/plain' })
-        response.end("Data was invalid!")
+        response.end()
       }
     }
     
@@ -57,7 +57,7 @@ const handlePost = function( request, response ) {
     var color = rightColor(playerGuess)
     var colorNpos = rightPosition(playerGuess)
     
-    if (colorNpos == 4) {
+    if (colorNpos = 4) {
       var medal = giveMedal(obj.guesscount)
       var newEntry = { 'name': obj.playername,
                        'moves': obj.guesscount,
@@ -65,7 +65,9 @@ const handlePost = function( request, response ) {
       playerData.push(newEntry)
       
       response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
-      response.end("You got a " + medal + " medal!")
+      response.write("You got a " + medal + " medal!")
+      response.end()
+      console.log()
     }
     
     else {
@@ -75,7 +77,8 @@ const handlePost = function( request, response ) {
       var cbody = JSON.stringify(clues)
       
       response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
-      response.end(cbody)
+      response.json(cbody)
+      response.end()
     }
   })
 }
