@@ -7,16 +7,21 @@ var amountFlag = false;
     categoryFlag = false;
     monthFlag = false;
     buttonStatus = false;
-    taxFlag = false;
+    taxFlag = true;
 
 // variable to keep track of inputted tax
 var tax = document.getElementById("tax")
+var amount = document.getElementById('amount')
+var category = document.getElementById('category')
+var month = document.getElementById('month')
 
 const submit = function( e ) {
 
+    // lock button if not all fields are inserted
     if (buttonStatus == false) {
         return;
     }
+
     // prevent default form action from being carried out
     e.preventDefault()
 
@@ -32,7 +37,7 @@ const submit = function( e ) {
     })
     .then( function( response ) {
       // do something with the reponse 
-      console.log( response )
+      //console.log( response )
       // get table data from server and parse it
       getTableData()
     })
@@ -46,6 +51,7 @@ const getTableData = function() {
     fetch('/tabledata')
     .then(response => response.json())
     .then(data => {
+        console.log("Data from server: ")
         console.log(data)
         // add new field to data (total) & load to table
         modifyData(data)
@@ -103,9 +109,9 @@ var table = new Tabulator("#expense-table", {
 		{column:"name", dir:"asc"},
 	],
     columns:[                  //define the table columns
-		{title:"Month", field:"month", editor:"select", headerFilter: "input", editorParams:{values:["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]}},
-        {title:"Category", field:"category", align:"left", editor:"select", headerFilter: "input", editorParams:{values:["Merchandise", "Restaurants", "Gasoline", "Travel/Ent", "Supermarkets"]}},
-        {title:"Raw Amount", field:"amount", editor:"input", formatter:"money", bottomCalc:"sum", bottomCalcFormatter: "money", headerFilter: "input", 
+		{title:"Month", field:"month", headerFilter: "input"},
+        {title:"Category", field:"category", align:"left", headerFilter: "input"},
+        {title:"Raw Amount", field:"amount", formatter:"money", bottomCalc:"sum", bottomCalcFormatter: "money", headerFilter: "input", 
         bottomCalcFormatterParams:  {
           decimal: ".",
           thousand: ",",
@@ -115,7 +121,7 @@ var table = new Tabulator("#expense-table", {
             thousand: ",",
             symbol: "$"
         }},
-        {title:"Total Amount", field:"total", editor:"input", formatter:"money", bottomCalc:"sum", bottomCalcFormatter: "money", headerFilter: "input", 
+        {title:"Total Amount", field:"total", formatter:"money", bottomCalc:"sum", bottomCalcFormatter: "money", headerFilter: "input", 
         bottomCalcFormatterParams:  {
           decimal: ".",
           thousand: ",",
@@ -167,7 +173,6 @@ dnXSLX.addEventListener("click", function download() {
 })
 
 // change amount notification on input
-var amount = document.getElementById('amount')
 amount.oninput = function() { changeAmountNotification() }
 
 function changeAmountNotification() {
@@ -212,7 +217,6 @@ function changeTaxNotification() {
 }
 
 // change month notification on input
-var month = document.getElementById('month')
 month.oninput = function() { changeMonthNotification() }
 
 function changeMonthNotification() {
@@ -223,7 +227,6 @@ function changeMonthNotification() {
     }
 }
 // change category notification on input
-var category = document.getElementById('category')
 category.oninput = function() { changeCategoryNotification() }
 
 function changeCategoryNotification() {
