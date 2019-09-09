@@ -88,7 +88,7 @@
             <form>
               <div class="form-group">
                 <label for="editName" class="col-form-label">Name</label>
-                <input id="editName" type="text" class="form-control" >
+                <input id="editName" type="text" class="form-control" value="John" >
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4">
@@ -218,6 +218,11 @@
       document.getElementById("table").innerHTML = htmlTable;
     };
     
+    const refresh = function() {
+      loadFavorites();
+      loadAllResults();
+    }
+    
     const newItem = function( e ) {
       // prevent default form action from being carried out
       e.preventDefault()
@@ -249,11 +254,6 @@
         });
         refresh();
     }
-
-    const refresh = function() {
-      loadFavorites();
-      loadAllResults();
-    }
     
     const editItem = function ( e ) {
       e.preventDefault();
@@ -265,6 +265,8 @@
             inLink = document.querySelector( '#editLink' ),
             json = { name: inName.value, category: inCategory.value, rating: inRating.value, usd: inPrice.value, link: inLink.value, index: currEditIndex},
             body = JSON.stringify( json )
+      
+      debugger
       fetch( '/update', {
         method:'PUT',
         body 
@@ -275,8 +277,7 @@
       })
       return false
     }
-    
-    
+
     window.onload = function() {
       refresh()
 
@@ -284,7 +285,7 @@
       button.onclick = newItem
       
       const editButton = document.getElementById( 'editBtn' )
-      button.onclick = editItem
+      editButton.onclick = editItem
     
     }
 
