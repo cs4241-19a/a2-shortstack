@@ -1,0 +1,17 @@
+{
+  "suedoenym": {
+    "name": "John Doe",
+    "shipping address": "123 Fakeaddress st, Worcester, MA",
+    "cart": {
+      "items": [],
+      "total": 0
+    }
+  },
+  "bigbeardedfellow": {
+    "name": "Santa Claus",
+    "shipping address": "325 S. Santa Claus Lane, North Pole, Alaska",
+    "cart": {
+      "items": [],
+      "total": 0
+    }}
+}
