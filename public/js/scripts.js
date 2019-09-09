@@ -6,12 +6,20 @@ const submit = function( e ) {
   // prevent default form action from being carried out
   e.preventDefault()
 
-  const inputName = document.querySelector( '#inputName' )
-  const inputBDay = document.querySelector( '#inputBDay'),
+  const inputName = document.querySelector( '#inputName' ),
+        inputBDay = document.querySelector( '#inputBDay'),
         json = { yourname: inputName.value,
                   BDay: inputBDay.value },
         body = JSON.stringify( json )
+        //create json from fields
+        //stringify json to send
 
+        console.log(json)
+
+    // setCookie(inputName.value, inputBDay.value, 1);
+
+  //fetch sends the stringified json, body, via POST method
+  //then handles the respose
   fetch( '/submit', {
     method:'POST',
     body
@@ -19,6 +27,11 @@ const submit = function( e ) {
   .then( function( response ) {
     // do something with the reponse
     console.log( response )
+    let rtxt = response.text().then(function(text){
+      console.log(text)
+      setCookie(inputName.value, text, 1);
+      //cookie is set to the table value stored in the temporary server, now cached for a day
+    })
   })
 
   return false
@@ -27,4 +40,17 @@ const submit = function( e ) {
 window.onload = function() {
   const button = document.querySelector( 'button' )
   button.onclick = submit
+}
+
+function getCookie() {
+  const name = document.querySelector('#inputName').value;
+  let v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+  console.log( v );
+  return v ? v[2] : null;
+}
+
+function setCookie(name, value, days) {
+  let d = new Date;
+  d.setTime(d.getTime() + 24*60*60*1000*days);
+  document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
 }
