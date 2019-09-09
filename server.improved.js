@@ -33,6 +33,14 @@ const handleGet = function( request, response ) {
   }
 };
 
+//add a book to app data
+const bookAddition = function (data) {
+  const new_book = data
+  appdata.push(new_book)
+}
+
+
+
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -41,9 +49,27 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
+    const data = JSON.parse( dataString )
+    
     switch ( request.url ) {
       case '/addBook':
-        const book = JSON.parse( dataString );
+        bookAddition(data)
+        break;
+      case '/delBook':
+        bookDeletion(data)
+        break;
+      case 'editBook':
+        bookEdition(data)
+        break;
+      default:
+        response.end('404 Error: File not found');
+        break;
+    }
+  })
+};
+
+/*
+const book = JSON.parse( dataString );
 
         const newBook = {
           'bookName': book.bookName,
@@ -57,14 +83,7 @@ const handlePost = function( request, response ) {
 
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
         response.end();
-        break;
-
-      default:
-        response.end('404 Error: File not found');
-        break;
-    }
-  })
-};
+*/
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
@@ -76,11 +95,9 @@ const sendFile = function( response, filename ) {
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
      }else{
-
        // file not found, error code 404
        response.writeHeader( 404 )
        response.end( '404 Error: File Not Found' )
-
      }
    })
 }
