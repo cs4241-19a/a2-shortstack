@@ -1,54 +1,6 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
-Due: September 9th, by 11:59 AM.
-
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
-
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
-
-Baseline Requirements
----
-
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
-
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
-
-Your application is required to implement the following functionalities:
-
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
 Deliverables
 ---
 
@@ -65,25 +17,30 @@ Do the following to complete this assignment:
 Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
 ---
 
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
+## Todo Application
+  For my project, I decided to put together a simple todo list. 
+  The user is able to create a task giving it a person, the task itself, and its priority.
+  I wanted to get a better understanding of how the server communicates with the client, and be able to pass data between them so that my page can
+  be more responsive. The main challenges I faced were actually implementing the server logic with using a framework like Express. Because this data
+  isn't being persisted, the application is pretty much just a prototype, but I was happy to get a much better grasp on the CSS side of the app.
+  If I were to keep working on this, I would want the user to be able to create different lists and have a seperate tasks that pertain to each list.
+  I will say, the fields are not used to compute an additional field, but all the other requirements are met.
+https://a2-brandon-m-navarro-brandon-navarro.glitch.me/
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Form Submission**: The user is able to fill out a task and have it added to the table displayed on their screen.
+- **Form Validation**: The user will not be able to submit a todo if all fields do not contain at least one character.
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Table Styling**: I styled a table so that new todo's are appended. The background color of the children also alternate to 
+                     improve the tables readability.
+- **Responsive Text Fields**: The text fields will change their border, opacity, and color when the user interacts
+- **Styled Input Button**: I styled the input button to give it a more a modern look. I kept in mind the idea of user friendlyness,
+                           and made sure to change the mouse to hover, and changed the opacity so the user knows they are on a clickable element.
+- **Used Grid Layout**: Originally, I wanted to implement what I mentioned above (tasks and lists), so I thought a grid layout would fit best,
+                        but after realizing the time-constraint, I had to pivot to only have one task list. I read up about grids and grid templates
+                        on the MDN (https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template) where I was able to quickly style my grid in CSS.
+- **Repeating Linear Gradients**: For my websites background, I used CSS property that I had never heard of before. I spent quite a bit of time just 
+                                  messing around with different colors and angles. MDN page used for reference: 
+                                  (https://developer.mozilla.org/en-US/docs/Web/CSS/repeating-linear-gradient.)
+- **Color Pallete**: Used the Adobe color wheel to create the color pallete I used on my site.
