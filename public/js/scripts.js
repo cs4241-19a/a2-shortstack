@@ -15,13 +15,13 @@ $(document).ready(function () {
     $(this).css({'background-color':'#1C1C1D'})
     $(this).css({'color':'white'})
   })
-  $('.boardsection[data-board] .tasklist').hover( function() {
+  $('.boardsection[data-board] .tasklist div').hover( function() {
     $(this).css({'background-color':'#FCA0A3'})
     $(this).css({'color':'#1C1C1D'})
   }, function () {
     $(this).css({'background-color':'#1C1C1D'})
     $(this).css({'color':'white'})
-  $('.boardsection[data-board] .tasklist').on('click', function() {
+  $('.boardsection[data-board] .tasklist div').on('click', function() {
     $(this).remove();
   })
   })

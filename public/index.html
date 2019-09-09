@@ -149,12 +149,11 @@
           var divNode = document.createElement("div")
           var breakNode = document.createElement("br")
           var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
-          day
-          dayCol.appendChild(breakNode)
-          dayCol.appendChild(timeNode)
-          dayCol.appendChild(breakNode)
-          dayCol.appendChild(textNode)
-
+          divNode.appendChild(breakNode)
+          divNode.appendChild(timeNode)
+          divNode.appendChild(breakNode)
+          divNode.appendChild(textNode)
+          dayCol.appendChild(divNode)
         }
         
           //.appendChild(textnode);
