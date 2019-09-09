@@ -18,6 +18,10 @@
       </ul>
       Think carefully! If you fail to crack the code by your 15th guess, you lose!
     </div>
+    <div id="pName">
+      <h2>Name:</h2>  
+      <input id="name" type="text" value="Clippy">
+    </div>
     <div id="guess">
         <form>
           <h2>Take a guess!</h2>
@@ -77,20 +81,21 @@
   </body>
   
   <script>
-
+    var guessCount
     const submit = function( e ) {
-      // prevent default form action from being carried out
-      e.preventDefault()
 
       const firstBall = document.querySelector( '#firstball' ),
             secondBall = document.querySelector( '#secondball'),
             thirdBall = document.querySelector( '#thirdball'),
-            fourthBall = document.querySelector( '#fourthball' )
+            fourthBall = document.querySelector( '#fourthball' ),
+            playerName = document.querySelector( '#')
 
             json = { firstball: firstBall.value,
                     secondball: secondBall.value, 
                    thirdball: thirdBall.value,
-                   fourthball: fourthBall.value}
+                   fourthball: fourthBall.value,
+                   guesscount: guessCount,
+                   }
             
             body = JSON.stringify( json )
 
@@ -107,7 +112,7 @@
     }
 
     window.onload = function() {
-      previousGuesses = {}
+      guessCount = 0
       const button = document.querySelector( 'button' )
       button.onclick = submit
     }
