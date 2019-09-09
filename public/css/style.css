@@ -5,6 +5,7 @@ header {
 }
 h1{
     padding: 30px;
+    text-align: center;
 }
 body {
     padding: 20px;
@@ -17,6 +18,11 @@ body {
 
 p {
     margin: 0 0 1em 0;
+}
+
+img[name=carpicture]{
+    float:left;
+    width:500px;
 }
 
 .formContainer{
