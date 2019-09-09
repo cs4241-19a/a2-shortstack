@@ -61,7 +61,7 @@ const handlePost = function( request, response ) {
         r = 0;
       } else if(MR.red1 > MR.blue1){
         r = 1;
-      } else if(MR.red1 < MR.blue1){
+      } else{
         r = 2;
       }
       const newMR ={
@@ -122,31 +122,33 @@ const sendData = function( response, MHs ) {
 }
 
 const rank = function(){
+  for(let j=0; j<appdata2.length;j++){
+    appdata2[j].WP = 0; 
+  }
+  
   for(let i=0; i<appdata.length;i++){
-    if(appdata[i].r==1){
+    if(appdata[i].result===1){
       for(let j=0; j<appdata2.length;j++){
         if(appdata2[j].team == appdata[i].red1){
           appdata2[j].WP+=2;
         }
       }
-      appdata2[1].WP=100;
-    } else if (appdata[i].r===2){
+    } else if (appdata[i].result===2){
       for(let j=0; j<appdata2.length;j++){
-        if(appdata2[j].team == appdata[i].blue1){
+        if(appdata2[j].team === appdata[i].blue1){
           appdata2[j].WP+=2;
         }
       }
     } else{
-      if(appdata[i].r===0){
       for(let j=0; j<appdata2.length;j++){
-        if(appdata2[j].team == appdata[i].red1){
+        if(appdata2[j].team === appdata[i].red1){
           appdata2[j].WP++;
         }
-        if(appdata2[j].team == appdata[i].blue1){
+        if(appdata2[j].team === appdata[i].blue1){
           appdata2[j].WP++;
         }
       }
-    } 
+    
     }
      
   }
@@ -155,11 +157,11 @@ const rank = function(){
 const addTeam = function(t){
   let exist = 0;
   for(let i=0; i<appdata2.length;i++){
-    if(appdata2[i].team === t){
+    if(appdata2[i].team == t){
       exist = 1;
     }
   }
-  if(exist ===0){
+  if(exist === 0){
     const newteam ={
       'team':t,
       'WLP':"0-0-0",

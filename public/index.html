@@ -142,7 +142,8 @@
           newRow += (`<td style="background-color:rgba(0, 0, 255,0.4)"> ${match.blueScore} </td>\n`);      
           } else {
           newRow += (`<td> ${match.redScore} </td>\n`);
-          newRow += (`<td> ${match.blueScore} </td>\n`);      
+          newRow += (`<td> ${match.blueScore} </td>\n`); 
+            newRow += (`<td> ${match.te} </td>\n`); 
           }
           newRow += (`<td> <button id="edit-button-${i}" class="table-button" onclick="editMatch(${i})" >Edit</button> </td>\n`);
           newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
