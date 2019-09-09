@@ -12,7 +12,7 @@ html {
     height: 100%;
 	/* background: linear-gradient(210deg, #9adbbe, #4fc08d); */
     /* background: linear-gradient(90deg, #435275, #2860bb); */
-    background: linear-gradient(90deg, #b92b27, #1565C0);
+    background: linear-gradient(90deg, #FC5C7D, #6A82FB);
 }
   
 body {
@@ -79,13 +79,13 @@ button:hover {
 	font-family: "Source Sans Pro", sans-serif;
 	/* color: #4fc08d;
     border: #4fc08d 1px solid; */
-    color: #2860bb;
-	border: #2860bb 1px solid;
+    color: #6A82FB;
+	border: #6A82FB 1px solid;
 	transition: 250ms ease-out;
 }
 .btn:hover {
 	color: #fff;
-	background: #2860bb;
+	background: #6A82FB;
 }
 
 /* .rm_btn, .done_btn {
@@ -122,10 +122,10 @@ input {
     /* border: #1a3752 1px solid; */
     border: #e3e3e3 1px solid;
 	transition: border 250ms ease-out;
-	color: #2860bb;
+	color: #6A82FB;
 }
 input:focus {
-	border: #2860bb 1px solid;
+	border: #6A82FB 1px solid;
 	outline: none;
 }
 
@@ -176,7 +176,7 @@ form {
     flex-shrink: 1;
 }
 .time_left {
-    flex-shrink: 1;
+    flex-shrink: 4;
 }
 
 hr { 

@@ -72,14 +72,13 @@ function addAssignmentRow(assignment, classname, due_date) {
     let now = new Date();
     let due_date_date = new Date(due_date + 'GMT-0400');
     let time_left = due_date_date - now;
-    console.log(time_left)
-    console.log(due_date_date)
-    console.log(now)
-    console.log(due_date)
+    let days = Math.round(time_left / 8.64e7)
+    if (days < 1) days='Today'
 
     let time_left_input = document.createElement('input');
-    time_left_input.type = 'date';
-    time_left_input.value = time_left;
+    time_left_input.type = 'text';
+    time_left_input.size = "1"
+    time_left_input.value = days;
     time_left_input.readOnly = true;
     time_left_input.className = "time_left";
 

@@ -51,6 +51,14 @@ const handleAdd = function(request, response) {
 			exists = 'no'
 			datastr = JSON.parse(datastr)
 			datastr.done = "no"
+
+			let now = new Date();
+			let due_date_date = new Date(datastr.due_date + 'GMT-0400');
+			let time_left = due_date_date - now;
+			let days = Math.round(time_left / 8.64e7)
+			if (days < 1) days='Today'
+	
+			datastr.time_left = days
 			appdata.push(datastr)
 		} else exists = 'yes'
 
