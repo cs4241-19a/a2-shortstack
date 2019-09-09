@@ -379,7 +379,7 @@ p {
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
 }
 
-.button:enabled {
+.button {
     background-color: dodgerblue;
     border: none;
     border-radius: 40px;
@@ -399,22 +399,6 @@ p {
     background-color: #006eda;
     box-shadow: 0 1px 10px darkslategray;
     cursor: pointer;
-}
-
-.button:disabled {
-    background-color: gray;
-    color: darkgray;
-    border: none;
-    border-radius: 40px;
-    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    padding: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    width: 200px;
-    font-size: 1.4em;
-    font-weight: 500;
-    box-shadow: 0 1px 10px darkslategray;
 }
 
 .btn {
@@ -541,4 +525,24 @@ p {
 }
 .selectBox option {
     font-weight:normal;
+}
+
+#resBtn {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 30px;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 150px;
+    font-size: 1em;
+    font-weight: 500;
+    box-shadow: 0 1px 10px black;
+    position: absolute;
+    right: 0;
+    margin-top: -39px;
+    margin-right: 10px;
 }

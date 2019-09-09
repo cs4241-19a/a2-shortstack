@@ -41,7 +41,16 @@ const submit = function( e ) {
     return true
 }
 
+const res = function( e ) {
+    e.preventDefault();
+    window.location = "/results.html"
+    return true
+}
+
 window.onload = function() {
-        const button = document.querySelector( 'button' )
-        button.onclick = submit
+    const button = document.getElementById('continueBtn')
+    button.onclick = submit
+
+    const button1 = document.getElementById('resBtn')
+    button1.onclick = res
     }

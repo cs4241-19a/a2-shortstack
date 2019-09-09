@@ -24,8 +24,14 @@ changes on the screen
 - **Tech Achievement 9**: Used server logic to create custom email for user based on the username provided
 - **Tech Achievement 10**: Loop through the list of tasks and display them every time window is loaded, task is modified, added or deleted to display the most recent update
 - **Tech Achievement 11**: Allow the user to delete tasks using just the task IDs because of the way the tasks are stored in the database
+- **Tech Achievement 12**: User data divided by username and board name, ensuring some data abstraction and encapsulation
+- **Tech Achievement 13**: Added database button on front page to view the database by iterating through all of its content and the nested JSON objects to view all the data
 
-NOTE: To get access to the database on firebase, slack me your gmail IDs so I can add you to the project.
+NOTE: To get access to the database on firebase, slack me your Gmail IDs so I can add you to the project.
+NOTE: If the first time you enter the name, username, etc. and it doesnt work, (and a gray title bar is displayed with no list name and tasks, and nothing 
+output on the server side console), click on the logout button and try doing it again. Worst case scenario: 3 tries, Best Case: 1 try
+NOTE: Sign in only works after a board and username has been used to register before. Different sign in for each user and for each board for a user
+NOTE: Not much error handling involved so make sure data entered is right, same for the second page
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Hardcoded all the css stylesheets from scratch with animations and pretty design elements 
