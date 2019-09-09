@@ -12,7 +12,7 @@ Here is a sample formula for summarizing your activities, talk about:
 - Yes this solves the problem, users can easily see the length of the third side of their triangles
 - Note: the submit data function must be clicked in order for the results table on the right hand side to update
 
-https://a2-cenright7192.glitch.me/ 
+https://a2-cenright71925.glitch.me/ 
 
 ## Technical Achievements
 - **Editable Form Table**: Shown in `index.html` the page uses editable text boxes. This makes it easy and straightforward for the user to edit certain triangle's side lengths. Also, the delete buttons are dynamically created which allows each triangle to be delted at any time, regardless of the order.
