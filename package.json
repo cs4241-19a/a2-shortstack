@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-jeemie-jimmy-tran",
+  "version": "v1.0",
+  "description": "CS4241 Assignment 2",
+  "author": "Jimmy Tran",
   "scripts": {
     "start": "node server.improved.js"
   },
