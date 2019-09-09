@@ -15,6 +15,11 @@ body {
 
 #left-edit{
   float: left;
+  width: 75%;
+}
+#right-edit{
+  float: left;
+  width: 15%;
 }
 
 .content {
