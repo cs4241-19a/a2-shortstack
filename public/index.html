@@ -199,6 +199,7 @@
      response.text()
       .then(function(message){
        console.log(message)
+       displayNewForm()
      })
       
     })
@@ -272,8 +273,7 @@
     }
     
     window.beforeonunload = function(){
-      console.log("ON REMOTE")
-      let body = ""
+      let body = "LEAVING PAGE"
       fetch( '/remote', {
       method:'POST',
       body

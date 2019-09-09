@@ -19,7 +19,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-const appdata = []
+var appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -32,11 +32,12 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    loadFromFirebase()
+    if(appdata.length === 0){
+      loadFromFirebase()
+    }
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
-    console.log(appdata.length)
     sendData(response)
   }
   else{
@@ -62,7 +63,6 @@ const handlePost = function( request, response ) {
     switch(reqURL){
       /*Submit Case*/
       case "submit":
-        console.log("submit")
         const convertedData = JSON.parse(dataString)
         convertedData.sign = starSign(convertedData)
         if(noDuplicates(convertedData)){
@@ -81,7 +81,6 @@ const handlePost = function( request, response ) {
         break
         /*Modify  Case MAXIMUM EFFICENCY*/
       case "modify":
-        console.log("modify")
         const Data = JSON.parse(dataString)
         modData(Data)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -89,7 +88,6 @@ const handlePost = function( request, response ) {
         response.end()
         break
       case "delete":
-        console.log("delete")
         const removalData = JSON.parse(dataString)
         removalData.sign = starSign(removalData)
         removeGiven(removalData)
@@ -98,6 +96,7 @@ const handlePost = function( request, response ) {
         response.end()
         break
       case "remote":
+        console.log(dataString)
         deleteInFirebase()
         for(let i = 0; i< appdata.length; i++){
           addItemToFirebase(appdata[i])
@@ -272,13 +271,11 @@ function modData(toChange){
   let replace = toChange.newInput
   for(let i = 0; i < appdata.length; i++){
     if((original[0] === appdata[i].fName) && (original[1] === appdata[i].lName) && (original[2] === appdata[i].month) && (original[3] === appdata[i].day)){
-      console.log(appdata[i])
       appdata[i].fName = replace[0];
       appdata[i].lName = replace[1];
       appdata[i].month = replace[2];
       appdata[i].day = replace[3];
       appdata[i].sign = starSign(appdata[i])
-      console.log(appdata[i])
     }
   }
 }
@@ -295,12 +292,14 @@ function addItemToFirebase(itemToAdd){
     day: itemToAdd.day,
     sign: itemToAdd.sign
     })
+  console.log("Added To Firebase")
 }
 
 //Delets object from firebase
 function deleteInFirebase(){
   let db = firebase.database().ref('/')
   db.remove()
+  console.log("Deleted")
 }
 
 function loadFromFirebase(){
