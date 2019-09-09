@@ -1,6 +1,4 @@
 
-var MN=3;
-
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -50,13 +48,12 @@ const handlePost = function( request, response ) {
       case '/submit':
       const MR = JSON.parse(dataString); //match result
       const newMR ={
-        'matchNumber':MN,
+        'matchNumber':MR.matchN,
         'red1': MR.red1, 
         'blue1': MR.blue1, 
         'redScore': MR.redScore, 
         'blueScore':MR.blueScore
       }
-      MN++;
       appdata.push(newMR);
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
@@ -90,7 +87,7 @@ const handlePost = function( request, response ) {
         'blueScore':MRupdate.blueScore          
         };
 
-        appdata.splice(1, 1, updatedMR);
+        appdata.splice(MRupdate.index, 1, updatedMR);
 
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
         response.end();

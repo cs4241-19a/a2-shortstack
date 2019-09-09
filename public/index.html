@@ -13,7 +13,7 @@
       <h2>Match Result</h2>
       <table border="1">
         <tr>
-          <th></th>
+          <th>Q<input type="text" id="matchN"></th>
           <th class="red">Red</th>
           <th class="blue">Blue</th>
         </tr>
@@ -48,6 +48,7 @@
     e.preventDefault()
 
     const matchResult = {
+      matchN:document.getElementById( 'matchN' ).value,
       red1:document.getElementById( 'red1' ).value,
       blue1:document.getElementById( 'blue1' ).value,
       redScore:document.getElementById( 'redScore' ).value,
