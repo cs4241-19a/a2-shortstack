@@ -95,9 +95,12 @@ const sendFile = function( response, filename ) {
        response.writeHeader( 404 )
        response.end( '404 Error: File Not Found' )
        
-     }})}
+     }
+   }
+  )
+}
        
      
-     server.listen(process.env.PORT || port )
+server.listen(process.env.PORT || port )
      
   
