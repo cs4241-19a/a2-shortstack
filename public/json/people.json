@@ -1,0 +1,5 @@
+[
+    { "name": "Jhon Lee", "birthday": "1998-03-27", "major": "CS", "age": 21 },
+    { "name": "Akali Smith", "birthday": "1999-05-21", "major": "CS", "age": 20 },
+    { "name": "Iris Five", "birthday": "2000-08-29", "major": "CS", "age": 19 }
+]
