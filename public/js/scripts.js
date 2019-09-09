@@ -1,3 +1,8 @@
-// Add some Javascript code here, to run on the front end.
-
 console.log("Welcome to assignment 2!")
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        "ajax": 'fullOrders.json'
+    } );
+} );
+
