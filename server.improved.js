@@ -48,6 +48,20 @@ const handleGet = function( request, response ) {
   }
 }
 
+/*
+Source for parseDate and datediff: https://stackoverflow.com/a/543152
+ */
+function parseDate(str) {
+  var mdy = str.split('/');
+  return new Date(mdy[2], mdy[0]-1, mdy[1]);
+}
+
+function datediff(first, second) {
+  // Take the difference between the dates and divide by milliseconds per day.
+  // Round to nearest whole number to deal with DST.
+  return Math.round((second-first)/(1000*60*60*24));
+}
+
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -72,9 +86,49 @@ const handlePost = function( request, response ) {
         break;
       case 'modifyItem':
         console.log(`Modifying ${req.data.id}`)
-        itemsStore[req.data.id] = Object.assign({}, itemsStore[req.data.id], req.data);
+        const newItem = Object.assign({}, itemsStore[req.data.id], req.data);
+        let priorityPoints = 0;
+        /*
+        priority points = Difficulty (None=1, hard = 2, easy = 4) * Importance (mission critical = 6, hard = 4, ''=1) - (daysUntilRecommendedDeadline + daysUntilHardDeadline)
+         */
+        const now = new Date();
+
+        let daysUntilRecommendedDeadline = 0;
+        if (newItem.recommendedDeadline.length > 0) {
+          daysUntilRecommendedDeadline = Math.floor(( Date.parse(newItem.recommendedDeadline) - Date.now() ) / 86400000);
+        }
+
+        let daysUntilHardDeadline = 0;
+        if (newItem.hardDeadline.length > 0) {
+          daysUntilHardDeadline = Math.floor(( Date.parse(newItem.hardDeadline) - Date.now() ) / 86400000);
+        }
+
+        let difficultyPoints = 1;
+        if (newItem.difficulty === 'Easy') {
+          difficultyPoints = 4;
+        } else if (newItem.difficulty === 'Medium') {
+          difficultyPoints = 3;
+        } else if (newItem.difficulty === 'Hard') {
+          difficultyPoints = 2;
+        }
+
+        let importancePoints = 1;
+        if (newItem.importance === 'Low') {
+          importancePoints = 2;
+        } else if (newItem.importance === 'Medium') {
+          importancePoints = 4;
+        } else if (newItem.importance === 'High') {
+          importancePoints = 8;
+        } else if (newItem.importance === 'Mission Critical') {
+          importancePoints = 12;
+        }
+
+        priorityPoints = difficultyPoints * importancePoints - (daysUntilRecommendedDeadline + daysUntilHardDeadline);
+        newItem.priorityPoints = priorityPoints
+        itemsStore[req.data.id] = newItem;
+        response.setHeader('Content-Type', 'application/json');
         response.writeHead(200);
-        response.end();
+        response.end(JSON.stringify({ id: newItem.id, priorityPoints }));
         break;
       case 'deleteItem':
         console.log(`Deleting ${req.data.id}`)
