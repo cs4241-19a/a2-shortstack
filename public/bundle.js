@@ -12244,12 +12244,17 @@ submit = function (e) {
     // prevent default form action from being carried out
     e.preventDefault();
 
+    let select = document.getElementById("character-select");
     const name = document.querySelector('#character-name');
     const bio = document.querySelector('#bio');
     const newClass = document.querySelector('#classes');
     const dbClass = newClass.value;
     const dbName = name.value;
     const dbBio = bio.value;
+    name.value = "";
+    bio.value = "";
+    newClass.value = "";
+    select.value = "";
 
     if (dbClass === "") {
         window.alert('Please pick a class');
@@ -12272,8 +12277,6 @@ submit = function (e) {
         window.alert("There is already a character with that name");
     });
 
-    let select = document.getElementById("character-select");
-
     for (let i=1; i<select.length; i++) {
             select.options[i] = null;
     }
@@ -12284,6 +12287,10 @@ submit = function (e) {
             select.options[select.options.length] = new Option(entry.id, entry.id);
         }
     });
+
+    window.alert('Successfully saved character');
+
+    checkClass(newClass.value);
 
     return false
 };
@@ -12349,6 +12356,8 @@ selectCharacter = function(e) {
       document.querySelector('#classes').value = "";
       checkClass(newClass);
   }
+
+  let title = document.querySelector('#title').value;
 };
 
 checkClass = function(newClass) {
@@ -12384,7 +12393,7 @@ checkClass = function(newClass) {
             document.querySelector('#intelligence').innerHTML = 'Intelligence: ';
             break;
     }
-}
+};
 
 deleteDB = function(e) {
     e.preventDefault();
