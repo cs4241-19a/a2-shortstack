@@ -82,13 +82,16 @@ label, button, #error-msg{
 label {
     margin-right: 30px;
 }
+p{
+  
+}
 
 button {
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     -webkit-appearance: none;
-    background-color: #black;
-  color: white;
+    background-color: black;
+    color: white;
     padding: 12px 12px 12px 12px;
     border-radius: 4px;
     border: 1px solid black;
