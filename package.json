@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Dice Roller",
+  "version": "1.1",
+  "description": "Webware Assignment 2: Rolling Dice",
+  "author": "Andrew Bonaventura",
   "scripts": {
     "start": "node server.improved.js"
   },
