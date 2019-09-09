@@ -126,11 +126,27 @@
   }
     
   const updateRow = function(rowIndex){
-    let newModel = document.getElementById("model"+rowIndex).value;
+    let newModel = document.getElementById('model'+rowIndex).value;
     let newYear = document.getElementById('year'+rowIndex).value;
     let newMPG = document.getElementById('mpg'+rowIndex).value;
     let newDistance = document.getElementById('tripDistance'+rowIndex).value;
     let newGasPrice = document.getElementById('gasPrice'+rowIndex).value;
+    
+    if(newModel === '') {
+        newModel = '(Redacted)'
+    }
+    if(newYear === '') {
+        newYear = '(Redacted)'
+    }
+    if(newMPG === '') {
+        newMPG = '(Redacted)'
+    }
+     if(newDistance === '') {
+        newDistance = '(Redacted)'
+    }
+     if(newGasPrice === '') {
+        newGasPrice = '(Redacted)'
+    }
     
     const json ={
       'model': newModel,
