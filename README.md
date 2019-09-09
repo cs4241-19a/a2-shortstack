@@ -42,14 +42,17 @@ Achievements:
 ---
 ### Technical:
 - I used Firebase to store my data while also maintaining a local dataset. 
-- I created a bootstrapped responsive data from scratch which maintained a consistent color scheme. 
+- I created a bootstrapped responsive data from scratch which maintained a consistent color scheme. The data is hoverable as well. 
 - I was able to maintain 2 separate HTML pages without losing data. 
 - I learned to use local storage in order to build the bridge between the first and second page (right now this is not necessary because I don't have any password encryption but it can be useful if I implement that).
+- Table is dynamically generated.
+
 
 ### Design:
 - I implemented a slider for the front page. The example slider code is found here: https://startbootstrap.com/snippets/full-slider/
-- I coded the form entry textbox and table from scratch. I also tried my best to maintain a consistent style throughout all HTML pages (including color and font choices).
+- I coded the form entry text-box and table from scratch. I also tried my best to maintain a consistent style throughout all HTML pages (including color and font choices).
 - I modified this template and turned it into my Results page: https://templatemag.com/demo/GlobalLanding/. It was difficult to make the layering work properly because of the interaction with the particles. P.S.: In A1 I could not accomplish having both the particles interaction in the background as well as the buttons clickable in the front, but this time it is working. 
+- I customized most of the CSS styling from the original template. 
 
 
 Special thanks:
