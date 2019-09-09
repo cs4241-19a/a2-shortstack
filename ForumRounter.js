@@ -56,7 +56,7 @@ async function getForum(forumId) {
 }
 
 async function getForums() {
-    let forumsQuery = db.collection('forums').orderBy('date');
+    let forumsQuery = db.collection('forums').orderBy('views', 'desc');
     let forumsPromises = forumsQuery.get()
         .then(snapshot => {
             return snapshot.docs.map(async function(doc) {
