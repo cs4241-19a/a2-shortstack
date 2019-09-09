@@ -5,7 +5,6 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-var returnArray = []
 
 var firebaseConfig = {
   apiKey: "AIzaSyAuOGEGSNJLe2fxv0iHQwigSY8nIj2pb30",
@@ -37,9 +36,8 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    var temp = await waitForIt()
     //console.log(returnFirebaseAsArray())
-    //returnFirebaseAsArray()
+    returnFirebaseAsArray()
     //console.log(returnArray)
     sendFile( response, 'public/index.html' )
   }
@@ -300,29 +298,28 @@ function modData(toChange){
 //******** FIREBASE FUNCTIONS *******//
 //returns firebase database as an array of json objects
 function returnFirebaseAsArray(){
-  //let returnArray = []
-  firebase.database().ref().once("value", function(data){
+  let returnArray = []
+  let ref = firebase.database().ref()
+  ref.once('value')
+  .then(function(dataSnapshot){
+    
+  })
+  /*firebase.database().ref().once("value", function(data){
     data.forEach(function(childSnapshot){
         var childData = childSnapshot.val()
         returnArray.push(childData)
-        //console.log(returnArray
+        return returnArray
       })
+    return returnArray
   })
+  return returnArray*/
+  console.log(firebase.database().ref().toJSON())
   
 }
 
 async function waitForIt(){
-  return new Promise(function(){
-    let returnArray = []
-    firebase.database().ref().once("value", function(data){
-    data.forEach(function(childSnapshot){
-        var childData = childSnapshot.val()
-        returnArray.push(childData)
-      })
-    })
-    return returnArray
-    
-  })
+ var newArray = await returnFirebaseAsArray()
+ console.log(newArray)
 }
 
 //Takes given JSON object and adds it to the remote database
