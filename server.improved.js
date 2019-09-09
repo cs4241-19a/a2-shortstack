@@ -6,7 +6,9 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-var playerData = [["Javier", 0, "Platinum"]]
+var playerData = [
+  {'name': "Javier", 'moves': 0, 'medal': "Platinum"}
+]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
