@@ -53,7 +53,6 @@ const sendData = function(res){
   res.end()
 }
 
-
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -298,13 +297,18 @@ function modData(toChange){
 function returnFirebaseAsArray(){
   let returnArray = []
   firebase.database().ref().once("value", function(data){
-      data.forEach(function(childSnapshot){
+    data.forEach(function(childSnapshot){
         var childData = childSnapshot.val()
         returnArray.push(childData)
         console.log(returnArray)
-      })   
-      return returnArray
+      })
+    
+      
+  
   })
+  .all(function(){
+      return returnArray
+    })
   
   
 }
