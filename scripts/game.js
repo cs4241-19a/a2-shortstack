@@ -1,3 +1,9 @@
+/*
+ * 2047++ By Michael Bosik
+ * This is the game for Assignment 2 in Webware
+ * Everything in this code was created by Michael Bosik
+ */
+
 const N = 5;
 let score = 0,
     rank = null;
@@ -7,6 +13,9 @@ let score = 0,
     keyVals = [],
     modal = null;
 
+/*
+ * setUpGame() - created game grid and generates HTML elements
+ */
 function setUpGame(){
     modal = document.getElementById("gameOver");
     done = false;
@@ -40,8 +49,7 @@ function setUpGame(){
     coolDown = false;
     updateGrid();
 
-    endGame();
-
+    //Key press event listeners WASD
     window.onkeydown = function(event){
         switch(event.key){
             case 's':
@@ -64,6 +72,10 @@ function setUpGame(){
     }
 }
 
+/*
+ * move(direction) - event handler for WASD keypresses
+ * re-orients grid for movement, calculates cell values
+ */
 const move = function(direction){
     let moved = false;
     switch(direction){
@@ -157,6 +169,17 @@ const move = function(direction){
     updateGrid();
 }
 
+/*
+ * getScore() - returns score
+ */
+function getScore(){
+    return score;
+}
+
+/*
+ * checkFull() - checks if the grid is full, calls endGame() if full
+ * (THIS IS AN INVALID WAY TO TEST IF THE GAME IS OVER BUT I RAN OUT OF TIME)
+ */
 function checkFull(){
     let avail = 0;
     for(let i = 0; i < N; i++){
@@ -176,6 +199,10 @@ function checkFull(){
         return 1;
 }
 
+/*
+ * placeNew() - places new cells 2 or 4 at random locations every
+ * time cells are moved
+ */
 function placeNew(){
     coolDown = true;
     let newSlots = checkFull();
@@ -192,6 +219,9 @@ function placeNew(){
     }
 }
 
+/*
+ * printGrid() - for debug purposes, prints grid to console
+ */
 function printGrid(){
     console.clear();
     for(let i = 0; i < N; i++){
@@ -205,6 +235,9 @@ function printGrid(){
     }
 }
 
+/*
+ * updateGrid() - renders new grid with updated values to the page
+ */
 function updateGrid(){
     let cells = document.getElementsByClassName('gridCell');
     let j = 0, k = 0;
@@ -222,33 +255,67 @@ function updateGrid(){
     }
 }
 
+/*
+ * endGame() - displays the game over modal
+ * Key press values are commented out because I didn't look into visualizing them :(
+ */
 function endGame(){
-    if(!done)
-        document.getElementById('keyData').innerHTML = "S: "+keyVals[0]+
-                                                "<br/>A: "+keyVals[1]+
-                                                "<br/>W: "+keyVals[2]+
-                                                "<br/>D: "+keyVals[3];
+    //if(!done)
+    //    document.getElementById('keyData').innerHTML = "S: "+keyVals[0]+
+    //                                            "<br/>A: "+keyVals[1]+
+    //                                            "<br/>W: "+keyVals[2]+
+    //                                            "<br/>D: "+keyVals[3];
     done = true;
     modal.style.display = "block";                                            
 }
 
-function recordScore(){
-    let name = document.querySelector('#name').value;
+/*
+ * rankScores(scoreArr) - assigns appropriate ranks
+ */
+function rankScores(scoreArr){
+    for(let i = 0; i < scoreArr.length; i++){
+        scoreArr[i][2] = (i+1).toString();
+    }
+    return scoreArr;
+}
 
-    if(!name){
-      name = "Null";
+/*
+ * compare(a, b) - sorting algorithm to sort scores highest to lowest
+ */
+function compare(a, b) {
+    const scoreA = parseInt(a[0]);
+    const scoreB = parseInt(b[0]);
+  
+    let comparison = 0;
+    if (scoreA > scoreB) {
+      comparison = -1;
+    } else if (scoreA < scoreB) {
+      comparison = 1;
+    }
+    return comparison;
+}
+
+/*
+ * updateScores(scores) - parses GET response from server to populate scoreArr
+ * sorts scoreArr and re-ranks it before rendering to page
+ */
+function updateScores(scores){
+    let scoreboard = document.getElementById('scoreboard'),
+        scoreArr = [],
+        ct = 0;
+
+    scoreboard.innerHTML = "<thead><td class='tRank'>Rank</td><td class='tName'>Name</td><td class='tScore'>Score</td><td class='tDelete'>Delete</td></thead><tbody>"
+
+    while(scores.length > 1){
+        scoreArr[ct] = scores.substring(0, scores.indexOf(';')).split(',');
+        scores = scores.substring(scores.indexOf(';')+1);
+        ct++;
     }
 
-    const input = "<tr><td>"+name+"</td><td>"+score+"</td><td>"+rank+"</td></tr>",
-        json = { entry: input },
-        body = JSON.stringify( json );
+    scoreArr.sort(compare);
+    scoreArr = rankScores(scoreArr);
 
-    fetch( '/submit', {
-      method:'POST',
-      body
-    })
-    .then(response => response.json())
-    .then(response => {
-      console.log(response);
-    })
+    for(let i = 0; i < scoreArr.length; i++){
+        scoreboard.childNodes[1].innerHTML += "<tr><td class='tRank'>"+scoreArr[i][2]+"</td><td class='tName'>"+scoreArr[i][1]+"</td><td class=tScore'>"+scoreArr[i][0]+"</td><td class='tDelete'><span class='deleteItem' id=rank"+scoreArr[i][2]+">&times;</span></td></tr>"
+    }
 }

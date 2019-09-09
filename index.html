@@ -1,3 +1,12 @@
+<!--
+  Assignment 2 - a2-shortstack
+  By Michael Bosik
+  a2-michaelbosik.glitch.me
+
+  This project uses a back end javascript server to store game data on a scoreboard
+  The front end requests data from the back end to display this data
+-->
+
 <!doctype html>
 <html lang="en">
    <head>
@@ -6,21 +15,82 @@
       <link rel="stylesheet" href="styles/main.css" type="text/css">
       <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
       <script src="scripts/game.js"></script>
-   </head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script>
+        $(document).ready(function(){
+          let scores = '';
+          $.get("/getScores", {}, function(data, status){
+            if(status == 'success'){
+              scores = data;
+              updateScores(scores);
+            }
+          });
+        })
+        
+        /*
+         * #subScore.click() - sends a POST request to the server
+         * to /submit an object to the scoreboard.
+         * updates scoreboard afterwards
+         */
+        $(document).on('click', '#subScore', function(event){
+          let scores = '';
+          $.post("/submit", 
+            {
+              name: document.getElementById('name').value,
+              score: getScore(),
+              rank: ''
+            },
+            function(data, status){
+              if(status == 'success'){
+                document.getElementById('gameOver').style.display = "none";
+              }
+            }
+          );
+          $.get("/getScores", {}, function(data, status){
+            if(status == 'success'){
+              scores = data;
+              updateScores(scores);
+            }
+          });
+          event.preventDefault();
+        });
+        
+        /*
+         * .deleteItem.click() - sends a POST request to the server
+         * to /delete an object from the scoreboard using its ID.
+         * updates scoreboard afterwards
+         */
+        $(document).on('click', '.deleteItem', function(event){
+          let scores = '';
+          $.post("/delete",
+            {
+              place: event.currentTarget.id
+            },
+            function(data, status){
+              if(status === 'success'){
+                alert("Deleted item from scoreboard");
+              }
+            });
+          $.get("/getScores", {}, function(data, status){
+            if(status == 'success'){
+              scores = data;
+              updateScores(scores);
+            }
+          });
+          event.preventDefault();
+        });
+      </script>
+    </head>
    <body onload='setUpGame()'>
       <header>
-        <h1>A2 - Michael Bosik</h1>
+        <h1>A2 - Michael Bosik - 2047++</h1>
       </header>
       <main>
         <div id="gameOver" class="modal">
           <div class="modal-content">
             <h1>Game Over :(</h1>
-            <form>
-              <input input="text" id="name" placeholder="Enter your name">
-            </form>
-            <form action="/">
-              <input class="button" onclick="recordScore()" type="submit" value="SUBMIT"/>
-            </form>
+            <input type="name" input="text" id="name" placeholder="Enter your name">
+            <button id="subScore">Submit</button>
           </div>
         </div>
         <div class="data">
@@ -29,8 +99,18 @@
               <p>Controls: WASD</p>
               <div id="score"></div>
           </div>
-          <div id="gridContainer"></div>
-          <div id="keyData"></div>
+          <div class="dataRow">
+            <div id="gridContainer"></div>
+          </div>     
+          <div class="dataRow">
+            <table id="scoreboard">
+            </table>
+          </div>
+          <!-- Key press data would be rendered here
+          <div class="dataRow">
+            <div id="keyData"></div>
+          </div>
+          -->
         </div>
       </main>
    </body>
