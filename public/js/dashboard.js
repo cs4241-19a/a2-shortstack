@@ -1,45 +1,14 @@
 /**
+ * Kit Zellerbach A2 Dashboard
  * Angular.js App
  */
 
 /**
- * TODO: Zoom/pan word bubble
- * TODO: Make word bubble prettier
- * TODO: Check why fetch is failing when it's not
+ * TODO: Zoom word bubble, make prettier
  */
 
 var app = angular.module("dashboardApp", []);
 app.controller("dashboardCtrl", function ($scope) {
-    // //Video recording
-    // var video = document.querySelector("#videoElement");
-    //
-    // (function() {
-    //     var $image = $("#capturedimage");
-    //     var video = $("#videoElement").get(0);
-    //
-    //     var getImage = function() {
-    //         var canvas = document.createElement("canvas");
-    //         canvas.getContext('2d')
-    //             .drawImage(video, 0, 0, canvas.width, canvas.height);
-    //
-    //         var img = document.createElement("img");
-    //         img.src = canvas.toDataURL();
-    //         $image.prepend(img);
-    //     };
-    //
-    //     $("#take-pic").click(getImage);
-    // })();
-    //
-    //
-    // if (navigator.mediaDevices.getUserMedia) {
-    //     navigator.mediaDevices.getUserMedia({ video: true })
-    //         .then(function (stream) {
-    //             video.srcObject = stream;
-    //         })
-    //         .catch(function (err0r) {
-    //             console.log("Something went wrong!");
-    //         });
-    // }
 
     /** MyScript Handwriting Recognition **/
     const editorElement = document.getElementById('editor');
@@ -76,7 +45,6 @@ app.controller("dashboardCtrl", function ($scope) {
     let currentUser;
 
     $scope.logout = function () {
-        console.log("LOGGING OUT");
         firebase.auth().signOut();
     };
 
@@ -97,9 +65,7 @@ app.controller("dashboardCtrl", function ($scope) {
             } else {
                 // Populate everything
                 currentUser = user;
-                console.log(user);
 
-                //$("#user-name-span").text(user.displayName);
                 $scope.name = user.displayName;
                 $scope.$apply();
 
@@ -110,17 +76,17 @@ app.controller("dashboardCtrl", function ($scope) {
     }
 
     $scope.deleteRow = function () {
-        console.log($scope.selectedRow);
         fetch('/' + currentUser.uid + '/' + $scope.selectedRow['entry-key'], {
             method: 'DELETE',
         }).then(function (response) {
+            $scope.selectedRow = undefined;
+            $scope.$apply();
             updateStats();
             repopulateTable();
         })
     };
 
     $scope.updateRow = function () {
-        console.log($scope.selectedRow);
 
         if ($("#updateTitle").val() == "" || $("#updateBody").val() == "" || $("#updateDate").val() == "") {
             alert("Don't post empty messages!");
@@ -132,8 +98,6 @@ app.controller("dashboardCtrl", function ($scope) {
         body['entry-post'] = $("#updateBody").val();
         body['entry-date'] = $("#updateDate").val();
         body['uid-val'] = currentUser.uid;
-
-        console.log(body);
 
         fetch('/', {
             method: 'PUT',

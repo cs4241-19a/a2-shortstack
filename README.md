@@ -1,22 +1,18 @@
 ## Lost Words
 
-Lost words is a web app that allows users to make a account and store writing entries. The app
-will give user feedback, such as word frequency, synonyms and rhyming words, as well as tools for
-searching for definitions. A writer's toolkit in attempt to never be lost for words!
+Lost words is a web app that allows users to make an account and store writing entries. The app
+gives user feedback, such as word frequency, synonyms and rhyming words, as well as tools for
+searching for word definitions. It is meant to be a writer's toolkit and ensure that words are never lost, made possible by
+cloud database storage, text recognition libraries, and various UI elements. Hopefully, this app allows users to 
+be more aware of their writing and the words they use.
+
+Future work could include text classification, such as active/passive voice, spelling mistakes, and grammatical structure.
+There is also the possibility for implementing group collaboration, such as for co-authoring.
 
 http://a2-kitzeller.glitch.me
 
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-Below is the top of the UI for the main dashboard which makes up most of the app's components.
-![Top UI](img/top_ui_img.png)
+Below is the top of the UI for the main dashboard which makes up most of the app's components. The cards are open on window load, but I have collapsed them in this screenshot.
+![Cards UI](img/collapsible_cards_img.png)
 
 Below is a snippet of the firebase layout
 ![Firebase Layout](img/firebase_img.png)
@@ -39,9 +35,12 @@ and access to personal dashboard sites is dependent on being authenticated. Crea
 - **Tech Achievement 6**: Use tesseract.js and myscript.js for OCR and handwriting recognition
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Used and modified a bootstrap admin theme from [here](https://startbootstrap.com/themes/sb-admin-2/)
+- **Design Achievement 1**: Used and modified a bootstrap admin theme from [here](https://startbootstrap.com/themes/sb-admin-2/). 
+Modifications were made within the html files as well as custom overrides in styles.css
 - **Design Achievement 2**: Designed the data visualizations and the interaction for submitting new posts
-- **Design Achievement 3**: Desgined multiple text entry methods for accessibility: file upload OCR recognition, realtime handwriting recognition, typing.
-- **Design Achievement 4**: Attention to minor detail. For instance, "no results" message on definition searches. Alert messages for form validation. Collapsible cards.
+- **Design Achievement 3**: Designed multiple text entry methods for accessibility: file upload OCR recognition, realtime handwriting recognition, typing.
+- **Design Achievement 4**: Paid attention to minor detail. For instance, "no results" message on definition searches. 
+Alert messages for form validation. Collapsible cards. Only enabling delete/update buttons when a table row is selected. 
+Re-disabling the delete/update buttons when a row is deleted.
 
 

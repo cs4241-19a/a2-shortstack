@@ -39,11 +39,11 @@ const server = http.createServer(function (request, response) {
 });
 
 const handleGet = function (request, response) {
-    const filename = dir + request.url.slice(1)
+    console.log("GET");
+    const filename = dir + request.url.slice(1);
     if (request.url === '/') {
         sendFile(response, 'public/index.html')
     } else if (request.url === '/getData') {
-        console.log("Get Request....");
         ref.on("value", function (snapshot) {
             response.end(JSON.stringify(snapshot.val()))
         }, function (errorObject) {
@@ -57,11 +57,7 @@ const handleGet = function (request, response) {
 };
 
 const handlePost = function (request, response) {
-    console.log("Handling post..");
-
-    if (request.url === '/') {
-        // maybe not
-    }
+    console.log("POST");
 
     let dataString = '';
 
@@ -84,7 +80,7 @@ const handlePost = function (request, response) {
         postsRef.push().set(jsonObj);
 
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
-        response.end()
+        response.end("OK")
     })
 };
 
@@ -92,7 +88,7 @@ const handleDelete = function (request, response) {
     console.log("DELETE: ", request.url);
     ref.child(request.url).set({});
     response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-    response.end();
+    response.end("OK");
 };
 
 const handlePut = function (request, response) {
@@ -118,7 +114,7 @@ const handlePut = function (request, response) {
         ref.child(key).update(jsonObj);
 
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-        response.end()
+        response.end("OK")
     });
 };
 
