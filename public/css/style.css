@@ -1,1 +1,44 @@
-/*Style your own assignment! This is fun! */
+table {
+    margin: 5px;
+}
+table, th, tr {
+    border: 2px solid black;
+}
+td {
+    border: 1px solid black;
+}
+
+body {
+    justify-content: center;
+}
+.readout {
+    display: flex;
+    justify-content: center;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 25px;
+}
+h2 {
+    margin: 10px;
+}
+h3 {
+    margin-bottom: 10px;
+}
+h5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#jobForm {
+    display: block;
+    text-align: center;
+}
+
+input, select, button {
+    margin: 5px;
+}

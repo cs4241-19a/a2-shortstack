@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "job_tracker",
+  "version": "0.1.0",
+  "description": "A tracker created for AXP house jobs",
+  "author": "Sam Talpey",
   "scripts": {
     "start": "node server.improved.js"
   },
