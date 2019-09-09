@@ -13,22 +13,22 @@
       <h2>Match Result</h2>
       <table border="1">
         <tr>
-          <th>Q<input type="number" id="matchN" οnkeyup="checkInput"></th>
+          <th>Q<input type="number" id="matchN" onkeyup="checkInput()"></th>
           <th class="red">Red</th>
           <th class="blue">Blue</th>
         </tr>
         <tr>
           <td>Teams</td>
-          <td class="red"><input type="text" id="red1" class="team" ></td>
-          <td class="blue"><input type="text" id="blue1" class="team"></td>
+          <td class="red"><input type="text" id="red1" class="team" onkeyup="checkInput()"></td>
+          <td class="blue"><input type="text" id="blue1" class="team" onkeyup="checkInput()"></td>
         </tr>
         <tr>
           <td>Score</td>
-          <td class="red"><input type="number" id="redScore" class="score"></td>
-          <td class="blue"><input type="number" id="blueScore" class="score"></td>
+          <td class="red"><input type="number" id="redScore" class="score" onkeyup="checkInput()"></td>
+          <td class="blue"><input type="number" id="blueScore" class="score" onkeyup="checkInput()"></td>
         </tr>
         </table>
-      <button id="submit" >submit</button>
+      <button id="submit" disabled="true" >submit</button>
     </form>
     
     <div class="navigationPane">
@@ -220,14 +220,16 @@
     fetchMH();   
   }
   
-  checkInput(){
-    // if(document.getElementById( 'updatedMN' ).value
-    //   && document.getElementById( 'updatedRed1' ).value
-    //   && document.getElementById( 'updatedBlue1' ).value
-    //   && document.getElementById( 'updatedRedScore' ).value
-    //   && document.getElementById( 'updatedBlueScore' ).value{
-       document.getElementById( 'blueScore' ).value=88;
-      // }
+   const checkInput = function(){
+    if(document.getElementById( 'matchN' ).value 
+      && document.getElementById( 'red1' ).value 
+      && document.getElementById( 'blue1' ).value 
+      && document.getElementById( 'redScore' ).value 
+      && document.getElementById( 'blueScore' ).value ){
+       document.getElementById( 'submit' ).disabled=false;
+      } else{
+        document.getElementById( 'submit' ).disabled=true;
+      }
   }
   
   const deleteMatch = function (index) {
