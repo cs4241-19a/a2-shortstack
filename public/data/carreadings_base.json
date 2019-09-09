@@ -1,0 +1,14 @@
+{
+    "aggregate":[
+        {"gear":"Park","avgspeed":null},
+        {"gear":"Reverse","avgspeed":null},
+        {"gear":"1st Gear","avgspeed":null},
+        {"gear":"2nd Gear","avgspeed":null},
+        {"gear":"3rd Gear","avgspeed":null},
+        {"gear":"4th Gear","avgspeed":null},
+        {"gear":"5th Gear","avgspeed":null},
+        {"gear":"6th Gear","avgspeed":null}
+    ],
+    "readings":[
+    ]
+}

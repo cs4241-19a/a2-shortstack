@@ -7,26 +7,29 @@ const genTable = function(data){
         data:data, //assign data to table
         layout:"fitColumns", //fit columns to width of table (optional)
         columns:[ //Define Table Columns
-            {title:"Speed", field:"speed", width:120},
-            {title:"Rotations per Minute", field:"rpm", width:250},
+            {title:"Speed (MPH)", field:"speed", width:140},
+            {title:"Rotations per Minute (0-1000)", field:"rpm", width:250, formatter: "progress", formatterParams: {
+                min:0,
+                max:1000,
+                color:["red","orange","green","blue", "green","orange", "red"],
+                legendColor:"#000000",
+                legendAlign:"center",
+            }},
             {title:"Gear", field:"gear", width:120},
             {title:"Timestamp", field:"datetime", sorter:"date", align:"center", width:290},
         ],
-        rowClick:function(e, row){ //trigger an alert message when the row is clicked
-            alert("Row " + row.getData().id + " Clicked!!!!");
-        },
    });    
 }
 
 const agrTable = function(data){
     var agrTable = new Tabulator("#aggregate-table",{
-        height: 200,
+        height: 280,
         margin: 50,
         data:data,
         layout:"fitColumns",
         columns:[
             {title:"Gear", field:"gear"},
-            {title:"Average Speed", field:"avgspeed"},
+            {title:"Average Speed", field:"avgspeed"}
         ]
     })
 }

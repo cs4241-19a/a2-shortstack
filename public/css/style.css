@@ -1,4 +1,11 @@
 /*Style your own assignment! This is fun! */
+header {
+    padding: 20px;
+    font: 1.2em Arial;
+}
+h1{
+    padding: 30px;
+}
 body {
     padding: 20px;
     font: 1em Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -14,14 +21,13 @@ p {
 
 .formContainer{
     border: 2px solid rgb(4, 28, 71);
-    height: 900px;
     width:820px;
     text-align: center;
     align-content: center;
     margin: 0 auto;
     background-color: rgb(4, 28, 71);
     border-radius: .5em;
-    padding: 10px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -32,6 +38,7 @@ p {
     width:400px;
     color:rgb(240, 245, 255);
     align-self: center;
+    margin: 30px;
 }
 
 .atable{

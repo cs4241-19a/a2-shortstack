@@ -18,26 +18,26 @@ const server = http.createServer( function( request,response ) {
 
 const calculateAggr = function(data){
   let aggregate = {
-    "park":{"sum":0,"count":0},
-    "rear":{"sum":0,"count":0},
-    "gear1":{"sum":0,"count":0},
-    "gear2":{"sum":0,"count":0},
-    "gear3":{"sum":0,"count":0},
-    "gear4":{"sum":0,"count":0},
-    "gear5":{"sum":0,"count":0},
-    "gear6":{"sum":0,"count":0},
+    "Park":{"sum":0,"count":0},
+    "Reverse":{"sum":0,"count":0},
+    "1st Gear":{"sum":0,"count":0},
+    "2nd Gear":{"sum":0,"count":0},
+    "3rd Gear":{"sum":0,"count":0},
+    "4th Gear":{"sum":0,"count":0},
+    "5th Gear":{"sum":0,"count":0},
+    "6th Gear":{"sum":0,"count":0},
   }
 
   data.readings.forEach(re => {
-    aggregate[re.gear].sum = aggregate[re.gear].sum + re.speed
-    aggregate[re.gear].count = aggregate[re.gear].count + 1 
+    aggregate[re.gear].sum = Number(aggregate[re.gear].sum) + Number(re.speed)
+    aggregate[re.gear].count = Number(aggregate[re.gear].count) + 1 
   });
 
   let aggr_data = []
 
-  let gears = ["park", "rear", "gear1", "gear2", "gear3", "gear4", "gear5", "gear6"]
+  let gears = ["Park", "Reverse", "1st Gear", "2nd Gear", "3rd Gear", "4th Gear", "5th Gear", "6th Gear"]
   gears.forEach(g => {
-    aggr_data.push({"gear":g, "avgspeed":(aggregate[g].sum/aggregate[g].count)})
+    aggr_data.push({"gear":g, "avgspeed":(Number(aggregate[g].sum)/Number(aggregate[g].count))})
   })
   return aggr_data
 
