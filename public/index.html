@@ -89,43 +89,6 @@
   </body>
   <script type="text/javascript" src="js/scripts.js"></script>
   <script>
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const url = '/information',
-          input = document.querySelector( '#response' ),
-          json = { yourresponse: input.value },
-          body = JSON.stringify( json ),
-          answer = document.querySelector( '#answer')
-    
-    fetch( '/submit', {
-      method:'POST',
-      body
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      //text.textContent = response;
-      console.log( response )
-      //occupyText()
-      
-    
-      fetch(url)
-        .then(function( response ) {
-          //response.json();
-
-          console.log(response)
-      }).then(function(data) {
-        //answer.innerHTML = data
-        //console.log(info)
-      });
-      
-
-      
-    })
-
-    return false
-  }
   
   const occupySchedule = function() {
     fetch( '/info' )
@@ -135,13 +98,19 @@
     })
       .then( function( myJSON ) {
         var info = myJSON.data
-        
+        console.log(info)
+
         var i;
         for(i = 0; i < info.length; i++){
-          if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null)
+          if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null){
+            
             createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
+          console.log("yes")
         }
+                    console.log("no")
 
+        }
+      
         console.log( JSON.stringify( myJSON ) )
     })
   }
@@ -181,12 +150,13 @@
     var eventInd;
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
     var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :first-child[index]')
-    while(pointer.hasChildNodes()){
+    var i;
+    for(i = pointer.hasChildNodes(); i > 0; i--){
       if(pointerChild !== null) {
         removeEvent(pointerChild.getAttribute('index'))
       }
-      console.log(pointerChild.getAttribute('index'))
-      pointer.removeChild(pointer.firstChild)
+      //console.log(pointerChild.getAttribute('index'))
+      //pointer.removeChild(pointer.firstChild)
     }
     
     

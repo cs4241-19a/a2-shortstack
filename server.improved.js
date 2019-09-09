@@ -48,6 +48,7 @@ const handlePost = function( request, response ) {
           'task' : info.task,
           'time': info.time
         }
+        //console.log(newEvent);
         data.push(newEvent);
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
