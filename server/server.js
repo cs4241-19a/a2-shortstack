@@ -2,6 +2,23 @@ const http = require("http");
 const fs = require("fs");
 const mime = require("mime");
 
+/**
+ * Determines the IP from which the specified request came from. This accounts
+ * for whether or not the request came through a proxy, e.g. nginx.
+ * @param req the request object
+ */
+const getIP = req => {
+  const forward = req.headers["x-forward-for"];
+  const defaultIP = req.connection.remoteAddress;
+  if (forward) {
+    const ips = forward.split(",");
+    const ip = ips[0];
+    return ip || defaultIP;
+  } else {
+    return defaultIP;
+  }
+};
+
 const send401 = res => {
   res.writeHeader(401);
   res.end("401: Not authorized.");
@@ -239,7 +256,7 @@ const GET_ROUTES = {
  * @param res the response object
  */
 const handleGet = (req, res) => {
-  const ip = req.connection.remoteAddress;
+  const ip = getIP(req);
   const handler = GET_ROUTES[req.url];
   if (handler) {
     handler(ip, res);
@@ -262,7 +279,7 @@ const handlePost = (req, res) => {
   req.on("end", () => {
     const data = JSON.parse(dataText);
 
-    const ip = req.connection.remoteAddress;
+    const ip = getIP(req);
     const handler = POST_ROUTES[req.url];
     if (handler) {
       handler(ip, data, res);
