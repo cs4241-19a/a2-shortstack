@@ -114,6 +114,22 @@
     
     showData();
   };
+    
+  const updateRow = function(rowIndex){
+    let newModel = document.querySelector('model'+rowIndex).value
+    let newYear = document.querySelector('year'+rowIndex).value
+    let newMPG = document.querySelector('mpg'+rowIndex).value
+    let newDistance = document.querySelector('tripDistance'+rowIndex).value
+    let newGasPrice = document.querySelector('gasPrice'+rowIndex).value
+    
+    const json ={
+      'model': data.model,
+      'year': data.year,
+      'mpg': data.mpg,
+      'tripDistance': data.tripDistance,
+      'gasPrice': data.gasPrice,
+    }
+  }
 
   const showData = function(){
     fetch('/carData',{

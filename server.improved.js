@@ -119,6 +119,8 @@ const handlePost = function( request, response ) {
         appdata[index].mpg = data.mpg
         appdata[index].tripDistance = data.tripDistance
         appdata[index].gasPrice = data.gasPrice
+        //appdata[index].totalGallons = data.totalGallons
+        //appdata[index].totalCost = data.totalCost
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
         break
