@@ -9,7 +9,7 @@ admin.initializeApp({
 });
 
 var db = admin.database();
-var usersRef = db.ref('/');
+var users = db.ref('/');
 
 // IMPORTANT: you must run `npm install` in the directory for this assignment
 // to install the mime library used in the following line of codek
@@ -43,11 +43,10 @@ const handleGet = function( request, response ) {
   }else if(request.url === '/carData'){
     sendData(response, appdata)
   }else if(request.url==='/getData'){
-    usersRef.on('value', function(snapshot) {
-      console.log(snapshot.val());
-      response.end(JSON.stringify(snapshot.val()))
-    }, function (errorObject) {
-      console.log('The read failed: ' + errorObject.code);
+    users.on('value', function(findVal) {
+      response.end(JSON.stringify(findVal.val()))
+    }, function (err) {
+      console.log('The read failed: ' + err.code);
     });
   }
   else{
@@ -134,10 +133,6 @@ const handlePost = function( request, response ) {
 }
 
 const sendData = function(response, carsdata){
-  /*const type = mime.getType( carsdata ) ;
-  response.writeHeader( 200, { 'Content-Type': type });
-  response.write(JSON.stringify({data: carsdata}));
-  response.end()*/
 
   response.end(JSON.stringify(carsdata));
 }
