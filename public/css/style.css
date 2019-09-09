@@ -1,1 +1,96 @@
 /*Style your own assignment! This is fun! */
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+:root{
+    --primary-color: #66ADE8;
+    --dark-color: #0D0A14;
+    --light-color: #FFFFF2;
+    --lose-color: #EB4444;
+    --win-color: #75F73B;
+    --modal-duration: 1s;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background: #FFFFF2;
+    color: #333333;
+}
+
+.container{
+    max-width: 1100px;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.restart-btn{
+    display: inline-block;
+    background: var(--light-color);
+    color: var(--dark-color);
+    padding: 0.4rem 1.3rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    border-radius: 70px;
+}
+
+.restart-btn:hover {
+    background: var(--primary-color);
+    color: #FFFFF2;
+}
+
+.header {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.header h1 {
+    margin-bottom: 1rem;
+}
+
+.score {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 1.2rem;
+    color: #FFFFF2;
+}
+
+.score p:first-child {
+    background: var(--primary-color);
+}
+
+.score p:last-child {
+    background: var(--dark-color);
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.choice {
+    cursor: pointer;
+}
+.choice:hover {
+    color: var(--primary-color);
+}
+
+.text-win {
+    color: var(--win-color);
+}
+
+.text-lose {
+    color: var(--lose-color);
+}
