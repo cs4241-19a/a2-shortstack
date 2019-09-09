@@ -14,15 +14,15 @@
       <div class="header-text">
         <h1 class="title">shopr</h1>
         <p class="slogan">your online wishlist</p>
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">Add item</button>
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#addItem">Add item</button>
       </div>
     </div>
     
-    <div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="addItemLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Add to your wishlist</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -30,18 +30,38 @@
           <div class="modal-body">
             <form>
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                <input type="text" class="form-control" id="recipient-name">
+                <label for="name" class="col-form-label">Name</label>
+                <input type="text" class="form-control" id="rname">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="price">Price</label>
+                  <input type="text" class="form-control" id="price" placeholder="$ USD">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputState">Category</label>
+                  <select id="inputState" class="form-control">
+                    <option selected>Fashion</option>
+                    <option selected>Tech</option>
+                    <option selected>Sports</option>
+                    <option selected>Gaming</option>
+                    <option selected>Other</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="rating">Rating</label>
+                  <input type="text" class="form-control" id="rating">
+                </div>
               </div>
               <div class="form-group">
-                <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control" id="message-text"></textarea>
+                <label for="link">Link</label>
+                <input type="text" class="form-control" id="link">
               </div>
             </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Send message</button>
+            <button type="button" class="btn btn-success">Add</button>
           </div>
         </div>
       </div>
