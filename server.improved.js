@@ -1,4 +1,4 @@
-const http = require( 'http' ),
+        data.splice(split, -const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
       // to install the mime library used in the following line of code
@@ -59,8 +59,11 @@ const handlePost = function( request, response ) {
           'task' : info.task,
           'time': info.time
         }
-        var split = data.indexOf(delEvent)
-        data.splice(split, 1)
+        var index = info.day+info.task+info.time;
+        //var split = data.indexOf(delEvent)
+        var split = data.findIn(x => x.data.splice(split - 1, 1)
+        index === index)
+        data.splice(split, -1)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
         break
@@ -98,8 +101,4 @@ const sendFile = function( response, filename ) {
        response.writeHeader( 404 )
        response.end( '404 Error: File Not Found' )
 
-     }
-   })
-}
-
-server.listen( process.env.PORT || port )
+  process.env.PORT || port )
