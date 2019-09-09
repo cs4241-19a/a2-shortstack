@@ -1,1 +1,41 @@
-/*Style your own assignment! This is fun! */
+body {
+    background-image: url("https://media.istockphoto.com/photos/picture-of-people-running-on-treadmill-in-gym-picture-id879180126?k=6&m=879180126&s=612x612&w=0&h=81vgt7by52wvcmU56mqKuObm8DeB7qtWqI8y3S-zTqI=");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-color: darkseagreen;
+}
+
+h1{
+     padding-left: 700px;
+     font-family: American Typewriter, serif;
+ }
+h2{
+    padding-left: 700px;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+.function{
+    padding-left: 700px;
+}
+p{
+    padding-left: 700px;
+}
+form{
+    padding-left: 700px;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+}
+button{
+    align-content: flex-end;
+}
+div {
+    display: block;
+    padding-left: 700px;
+}
+label{
+    padding-left: 700px;
+}
+output{
+    display: inline;
+}
+submit{
+    padding-left: 700px;
+}
