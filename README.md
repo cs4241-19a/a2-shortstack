@@ -1,89 +1,52 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
+CS Clicker
 ===
+James Plante
+September 9, 2019
 
-Due: September 9th, by 11:59 AM.
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
+## Summary and Plot
+CS Clicker is a game inspired by idle games such as Cookie Clicker and Paperclips, where the main objective is to 
+push one button to increment a counter, and this counter can be used to purchase other items to increase this counter by a set rate. The main objective and plot 
+of this game is to generate lines of code which then can be used to help feed data to a newly-developed machine learning algorithm. This algorithm could then be used
+to generate the perfect coding style so computer scientists could agree on one coding standard that works for everyone. As more and more lines of code are generated,
+it gains the attention of local user groups in the area, who start contributing their own code. This eventually accelerates to the point where people are willing to donate machines
+hardware such as servers and even quantum computers to generate code for the cause of creating the perfect coding style.
 
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
+This project mainly focused on the interaction between the front-end, which updates the UI and does minor calculations and sends the data
+to the back-end server for storage and to calculate/verify purchases. This was mainly done through custom GET and POST requests in which the UI can request
+data given a specific UID, and using localStorage to implement state across browser refreshes.
 
-Baseline Requirements
----
-
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
-
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
-
-Your application is required to implement the following functionalities:
-
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
+https://a2-jamesplante.glitch.me/
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Purchasing System**: Purchases are sent to the server backend as POST requests after a user fills out the HTML form containing "delta objects" that consist of the current balance and what the user wants to purchase. The server then makes
+the appropriate calculations (and does error checking), then sends whether the purchase was successful to the front end. Afterwards a GET request is sent to the server to get the updated
+fields.
+- **Dynamic Temporary "Database"**: Whenever a user uses the page for the first time, a unique UID is requested by the user and generated by the server and sent to the user. In the background, 
+a new field for the newly generated ID is created in the local database (which is just a global array of objects). The user also stores the UID in localStoage to be used across sessions.
+If a query is made to the server requesting data from a specific UID (in the case of a server restart), the server will generate a new object with that ID to prevent the website from 
+crashing.
+- **Autosave**: Game progress is persistent across sessions due to the implementation of localStorage. Whenever the application refreshes and the user has an ID in storage, it will 
+request the user data with a specific URL, then updates the UI to "restore" the save file. The front-end also sends a blank "delta object" with only the current lines of code to the server every thirty seconds to update the
+server to update this 'save file'. This was done to reduce the amount of traffic to the server. Additionally, the game state is saved every time a purchase is made.
+- **Extra Field**: The game also keeps track of the total amount of lines of code produced overall as a derived field of the current balance along with the costs of 
+all of the items purchased and is shown on the results screen.
 
-### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+## Design/Evaluation Achievements
+- **Terminal Theme**: Shown in `style.css`, the layout of the website takes on a dark theme with white text on a black background, reminiscent of a computer terminal.
+- **Buttons Change Color when Hovered Over**: With the help of a tutorial, I learned how to change the style of individual buttons to include a transition animation to
+a different color when hovered over. The buttons were done in the style of the Metro UI of later versions of Windows, which fits the theme of the page well.
+Here is the link to the tutorial: https://www.w3schools.com/css/css3_buttons.asp.
+- **Animated Header Logo**: While the server does not have a command line interface, it has an animated header bar that is reminscent of the interface with a blinking
+cursor animated in JavaScript with a custom monospaced font.
+- **Custom Fonts**: This website uses custom fonts via the Google Fonts Website. Here are the links to the fonts used:
+  + **VT323 Font** - https://fonts.google.com/specimen/VT323?selection.family=VT323
+  + **OpenSans** - https://fonts.google.com/specimen/Open+Sans
+
+### Other Aspects to Note
+- I based the table CSS theme on one from my submission for Assignment 1, since they had defaults that I preferred on the existing website. Any changes I made are commented
+in `style.css`.
+- This webpage when displayed in Firefox has a larger "Add line of Code" button than it does on Google Chrome.
+- I spoke with Professor Roberts about the requirements about "a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the 
+server's memory" and he indicated that automatically adding users and modifying their data is sufficient for this assignment. The server does not currently delete user
+records.

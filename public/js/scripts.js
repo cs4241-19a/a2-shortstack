@@ -24,6 +24,7 @@ let rates = {
 
 let resultsShown = false;
 let shownIds = [0]; // Array of elements shown in the results table already
+let headerState = true;
 
 /**
  * Increment the counter by a specific amount. Default value = 1.
@@ -33,7 +34,7 @@ let shownIds = [0]; // Array of elements shown in the results table already
 const incrementCounter = function (e, i = 1) {
   const currentLOC = document.getElementById('counter');
   currentState.currentLOC += i;
-  currentLOC.innerHTML = currentState.currentLOC;
+  currentLOC.innerHTML = currentState.currentLOC.toLocaleString('en') + " Lines of Code";
 }
 
 /**
@@ -49,7 +50,9 @@ const linesPerSecond = function () {
     (currentState.quantum * rates.quantum)
 }
 
-
+/***
+* Submit only the current lines of code to the server to save.
+*/
 const updateLOCOnly = function () {
   const json = {
     action: "modifyData",
@@ -118,7 +121,7 @@ const purchaseItems = function (e) {
           getDataFromServer(uid);
         } else {
           console.log(recieveText)
-          alert("Not enough lines of code to recruit code generators.")
+          alert("Not enough lines of code to recruit code contributors.")
           console.log("Transaction Failed");
         }
         getDataFromServer(uid)
@@ -153,16 +156,26 @@ const getDataFromServer = function (uid) {
     })
 }
 
+/***
+* Updates the user interface given the current cached values
+* in the client
+*/
 const updateUI = function () {
-  document.querySelector('#counter').innerHTML = String(currentState.currentLOC);
+  document.querySelector('#counter').innerHTML = currentState.currentLOC.toLocaleString('en') + " Lines of Code";
   document.querySelector('#purchased_cursors').innerHTML = String(currentState.cursors);
   document.querySelector('#purchased_hobbyists').innerHTML = String(currentState.hobbyists);
   document.querySelector('#purchased_csmajors').innerHTML = String(currentState.csMajors);
   document.querySelector('#purchased_softengs').innerHTML = String(currentState.softEng);
   document.querySelector('#purchased_servers').innerHTML = String(currentState.server);
   document.querySelector('#purchased_quantum').innerHTML = String(currentState.quantum);
+  let lps = linesPerSecond()
+  document.querySelector('#rate_disp').innerHTML = "Current rate: " + lps.toLocaleString('en') + " lines of code / second"
 }
 
+/***
+* Sets a cell in a table DOM element given the row of the table (must be already created)
+* and the cell number
+*/
 const setCell = function (row, cellNo, element) {
   let cell = row.insertCell(cellNo);
   cell.innerHTML = element;
@@ -202,7 +215,7 @@ const showResults = function (e) {
               setCell(row, 6, obj.server);
               setCell(row, 7, obj.quantumComputers);
               setCell(row, 8, obj.totalLoc);
-              shownIds.push(ogetAllDatabj.uid);
+              shownIds.push(obj.uid);
             }
             resultsButton.innerHTML = "Hide Results"
             resultsSection.style.display = "block";
@@ -255,4 +268,16 @@ window.setInterval(function () {
 /* Save the game every ten seconds */
 window.setInterval(function () {
   updateLOCOnly();
-}, 10000)
+}, 30000)
+
+/* Update Header every second */
+window.setInterval(function () {
+  let title = document.querySelector("#cs_clicker_title")
+  if(headerState) {
+    title.innerHTML = "$CS-Clicker "
+    headerState = false;
+  } else {
+    title.innerHTML = "$CS-Clicker_"
+    headerState = true;
+  }
+}, 500)

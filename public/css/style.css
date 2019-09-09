@@ -1,3 +1,102 @@
+
+/* Element Selectors */
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  color:white;
+}
+
+header {
+    font-size: 75px;
+    text-align:center;
+    font-family: 'VT323', monospace;
+    color:green;
+}
+
+caption {
+  font-size:30px;
+  margin: 10px;
+}
+
+/* Table formatting modified from Project 1 */
+table, th, td {
+	border: 1px solid white; /* Changed from black to white */
+	text-align:center;
+	table-layout:auto;
+  font-family: 'Open Sans', sans-serif;
+  font-size:20px; /* Changed font size */
+  /* Added padding to the sides */
+  padding-left:10px;
+  padding-right: 10px;
+  color:white; /* Changed text color to white */
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th {
+	background-color:dimgray; /* Changed background to a dark grey */
+}
+
+legend {
+  font-size:20px;
+  font-family: 'Open Sans', sans-serif;
+  color:white;
+}
+
+body {
+  display: flex;
+  background:black;
+  margin:0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width:75%;
+}
+
+button {
+  margin: 0 auto;
+  color:white;
+  background:black;
+  border: 2px solid white;
+  transition-duration:0.3s;
+}
+
+button:hover {
+  background: white;
+  color:black;
+}
+
+/* ID Selectors */
 #results_section {
     display: none
+}
+
+#store_area {
+  display: flex;
+  flex-direction: row; 
+}
+
+#counter {
+  font-size: 50px;
+  text-align: center;
+}
+
+/* Class Selectors */
+.column {
+  	margin:20px;
+}
+
+.small_button {
+  height:5%;
+  width:15%;
+  margin: 0 auto;
+}
+
+.large_button {
+  height: 15%;
+  width: 100%;
+  font-size:30px;
 }

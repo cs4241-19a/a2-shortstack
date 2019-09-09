@@ -12,12 +12,12 @@ let appdata = [
 ]
 
 const costs = {
-  cursors: 15,
-  hobbyists: 100,
-  csMajors: 1200,
-  softEngs: 13000,
-  serverFarm: 30000,
-  quantumComputers: 100000
+  cursors: 150,
+  hobbyists: 1000,
+  csMajors: 12000,
+  softEngs: 150000,
+  serverFarm: 500000,
+  quantumComputers: 3000000
 }
 
 let rates = {
@@ -73,10 +73,11 @@ const handleGet = function (request, response) {
         }
       }
       if (!foundUID) {
-
-        // If cannot find UID, then print an error
-        console.log("Cannot find UID!")
-        response.end('404 Error: File Not Found')
+        // If cannot find UID, add to array and pretend nothing happened 
+        let newUID = {uid: uid, loc: 0, cursors: 0, hobbyists: 0, csMajors: 0, softEngs: 0, server: 0, quantumComputers: 0, totalLoc: 0} 
+        appdata.push(newUID)
+        console.log("New UID Created!")
+        response.end(JSON.stringify(newUID))
       }
     }
   }
@@ -188,12 +189,12 @@ const addDeltaToAppData = function (delta) {
       console.log("Purchase UID: " + delta.uid );
       // If the cost is too great, return false
       if ((delta.currentLOC - totalCost) < 0) {
-        appdata[i].totalLoc += (appdata[i].loc - delta.currentLOC)
+        appdata[i].totalLoc += (delta.currentLOC - appdata[i].loc)
         appdata[i].loc = delta.currentLOC;
         return false;
         // Else, store all of the delta values in the existing database
       } else {
-        appdata[i].totalLoc += (appdata[i].loc - delta.currentLOC)
+        appdata[i].totalLoc += (delta.currentLOC - appdata[i].loc)
         appdata[i].loc = delta.currentLOC - totalCost;
         appdata[i].cursors += delta.cursors;
         appdata[i].hobbyists += delta.hobbyists;

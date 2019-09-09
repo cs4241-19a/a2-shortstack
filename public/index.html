@@ -1,122 +1,124 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-  <title>CS4241 Assignment 2</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-</head>
+	<head>
+		<title>CS4241 Assignment 2</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<link href="https://fonts.googleapis.com/css?family=DM+Serif+Text|Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">	</head>
 
-<body>
-  <header>CS Clicker</header>
+	<body>
+		<header id="cs_clicker_title">$CS_Clicker_</header>
+		<div id="main_body">
+			<div>
+				<p id="counter">0 Lines of Code</p>
+			</div>
+      <button class="large_button" type="button" id="clicker">Add Line of Code</button>
+			<!--Interactive Area-->
+			<div id="store_area">
 
-  <!--Interactive Area-->
-  <div id="main_area">
-    <div>
-      <p id='counter'>0</p>
-      <p>Lines of Code</p>
-      <button type="button" id="clicker">Add Line of Code</button>
-    </div>
-    <div>
-      <form id="form1" action="submit">
-        <fieldset>
-          <legend>Store</legend>
-          <p class="store_item">
-            <label for='cursors'>Cursors: </label>
-            <input type='text' id='cursors' value="0">
-          </p>
-          <p class="store_item">
-            <label for='hobbyists'>Hobbyists: </label>
-            <input type='text' id='hobbyists' value="0">
-          </p>
-          <p class="store_item">
-            <label for='cs_maj'>CS Majors: </label>
-            <input type='text' id='cs_maj' value="0">
-          </p>
-          <p class="store_item">
-            <label for='soft_eng'>Software Engineers: </label>
-            <input type='text' id='soft_eng' value="0">
-          </p>
-          <p class="store_item">
-            <label for='server_farm'>Server Farms: </label>
-            <input type='text' id='server_farm' value="0">
-          </p>
-          <p class="store_item">
-            <label for='quantum'>Quantum Computers: </label>
-            <input type='text' id='quantum' value="0">
-          </p>
-        <button type="button" id='purchase'>Purchase</button>
-        </fieldset>
-      </form>
-    </div>
-  </div>
+				<!-- Table of Values -->
+				<div class="column">
+					<table>
+						<caption>Code Contributors</caption>
+						<tr>
+							<th>Type</th>
+							<th>Cost (loc)</th>
+							<th>Speed (loc/s)</th>
+							<th>Number Purchased</th>
+						</tr>
+						<tr>
+							<td>Cursor</td>
+							<td>150</td>
+							<td>1</td>
+							<td id="purchased_cursors">0</td>
+						</tr>
+						<tr>
+							<td>Hobbyist</td>
+							<td>1,000</td>
+							<td>10</td>
+							<td id="purchased_hobbyists">0</td>
+						</tr>
+						<tr>
+							<td>CS Major</td>
+							<td>12,000</td>
+							<td>30</td>
+							<td id="purchased_csmajors">0</td>
+						</tr>
+						<tr>
+							<td>Software Engineer</td>
+							<td>150,000</td>
+							<td>50</td>
+							<td id="purchased_softengs">0</td>
+						</tr>
+						<tr>
+							<td>Server Farm</td>
+							<td>500,000</td>
+							<td>70</td>
+							<td id="purchased_servers">0</td>
+						</tr>
+						<tr>
+							<td>Quantum Computer</td>
+							<td>3,000,000</td>
+							<td>110</td>
+							<td id="purchased_quantum">0</td>
+						</tr>
+					</table>
+          <p id="rate_disp">Current rate: 0 loc/s</p>
+				</div>
+				<div class = "column">
+					<form id="form1" action="submit">
+						<fieldset>
+							<legend>Store</legend>
+							<p class="store_item">
+							<label for="cursors">Cursors: </label>
+							<input type="text" id="cursors" value="0">
+							</p>
+							<p class="store_item">
+							<label for="hobbyists">Hobbyists: </label>
+							<input type="text" id="hobbyists" value="0">
+							</p>
+							<p class="store_item">
+							<label for="cs_maj">CS Majors: </label>
+							<input type="text" id="cs_maj" value="0">
+							</p>
+							<p class="store_item">
+							<label for="soft_eng">Software Engineers: </label>
+							<input type="text" id="soft_eng" value="0">
+							</p>
+							<p class="store_item">
+							<label for="server_farm">Server Farms: </label>
+							<input type="text" id="server_farm" value="0">
+							</p>
+							<p class="store_item">
+							<label for="quantum">Quantum Computers: </label>
+							<input type="text" id="quantum" value="0">
+							</p>
+							<button type="button" id="purchase">Recruit</button>
+						</fieldset>
+					</form>
+				</div>
+			</div>
 
-  <!-- Table of Values -->
-  <section>
-    <table>
-      <tr>
-        <th>Type</th>
-        <th>Cost (loc)</th>
-        <th>Speed (loc/s)</th>
-        <th>Number Purchased</th>
-      </tr>
-      <tr>
-        <td>Cursor</td>
-        <td>15</td>
-        <td>1</td>
-        <td id="purchased_cursors">0</td>
-      </tr>
-      <tr>
-        <td>Hobbyist</td>
-        <td>100</td>
-        <td>10</td>
-        <td id="purchased_hobbyists">0</td>
-      </tr>
-      <tr>
-        <td>CS Major</td>
-        <td>1200</td>
-        <td>30</td>
-        <td id="purchased_csmajors">0</td>
-      </tr>
-      <tr>
-        <td>Software Engineer</td>
-        <td>13000</td>
-        <td>50</td>
-        <td id="purchased_softengs">0</td>
-      </tr>
-      <tr>
-        <td>Server Farm</td>
-        <td>30000</td>
-        <td>70</td>
-        <td id="purchased_servers">0</td>
-      </tr>
-      <tr>
-        <td>Quantum Computer</td>
-        <td>100000</td>
-        <td>110</td>
-        <td id="purchased_quantum">0</td>
-      </tr>
-    </table>
-  </section>
-  <div>
-    <button type="button" id="results_button">Show Results</button>
-  </div>
-  <div id="results_section">
-    <p class="header">Results</p>
-    <table id="results_table">
-      <tr>
-        <td>UID</td>
-        <td>Lines of Code</td>
-        <td>Cursors</td>
-        <td>Hobbyists</td>
-        <td>CS Majors</td>
-        <td>Software Engineers</td>
-        <td>Server Farms</td>
-        <td>Quantum Computers</td>
-        <td>Total Lines of Code Produced</td>
-      </tr>
-    </table>
-  </div>
-</body>
-<script src="/js/scripts.js"></script>
+			<button class="small_button" type="button" id="results_button">Show Results</button>
+			<div id="results_section">
+				<table id="results_table">
+					<caption>Results</caption>
+					<tr>
+						<th>User ID</th>
+						<th>Lines of Code</th>
+						<th>Cursors</th>
+						<th>Hobbyists</th>
+						<th>CS Majors</th>
+						<th>Software Engineers</th>
+						<th>Server Farms</th>
+						<th>Quantum Computers</th>
+						<th>Total Lines of Code Produced</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</body>
+	<script src="/js/scripts.js"></script>
 </html>
