@@ -176,7 +176,6 @@ function displayData(){
 }
 
 function generateHoroscope(){
-  console.log("ADK")
   var newForm = document.getElementById("newForm");
   var modForm = document.getElementById("modForm");
   var editForm = document.getElementById("editForm");
@@ -196,6 +195,7 @@ function generateHoroscope(){
   if(document.getElementById("resultsTable") !== null){
     document.getElementById("Container").innerHTML = ''
   }
+  populateFromDatabaseHoro()
     
 }
 
@@ -259,6 +259,37 @@ function populateFromDatabase(){
   return false
 }
 
+function populateFromDatabaseHoro(){
+  let nameSelector = document.querySelector(".horoList");
+  if(nameSelector !== null){
+    console.log("IN REMOVE CHILDREN")
+    var i;
+    for(i = nameSelector.options.length - 1; i >= 0; i--){
+      nameSelector.remove(i)
+    }    
+  }
+  fetch( '/getData', {
+    method:'GET',
+  })
+  .then( function( response ) {
+    console.log(response)
+    response.text()
+    .then(function(message){
+      let allData = JSON.parse(message)
+      console.log(allData)
+      var opt = document.createElement('option');
+      opt.innerHTML = opt.value = ""
+      nameSelector.appendChild(opt)
+      for(let i = 0; i<Object.keys(allData).length; i++){
+        var opt = document.createElement('option');
+        opt.innerHTML = opt.value = allData[i].fName + " " + allData[i].lName + ", " + allData[i].month + " " + allData[i].day
+        nameSelector.appendChild(opt)
+      }
+      console.log(nameSelector)
+    })
+  })
+  return false
+}
 //******* HARD CODED DATA *******//
 //HARD CODED VAR FOR ALL OD DATE INFORMATION
 const DateDataForDropdown = {
@@ -558,79 +589,3 @@ function signToImageURL(sign){
     
   }
 }
-
-/*
-  
-        
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FGemini.svg?v=1567965712921" alt="Gemini" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Gemini</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Twins</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FCancer.svg?v=1567965712850" alt="Cancer" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Cancer</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Crab</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FLeo.svg?v=1567965713061" alt="Leo" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Leo</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Lion</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FVirgo.svg?v=1567965713478" alt="Virgo" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Virgo</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Maiden</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FLibra.svg?v=1567965713150" alt="Libra" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Libra</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Scales</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FScorpio.svg?v=1567965713399" alt="Scorpio" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Scorpio</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Scorpion</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FSagittarius.svg?v=1567965713247" alt="Sagittarius" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Sagittarius</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Archer</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FCapricorn.svg?v=1567965712954" alt="Capricorn" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Capricorn</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Goat-Fish Hybrid</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FAquarius.svg?v=1567965713506" alt="Aquarius" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h3 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Aquarius</h3>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Water-Bearer</p>
-          </div>
-        </div>
-        <div class="item">
-         <img src="https://cdn.glitch.com/de12d0f3-3352-44ef-b62c-3acd45afc445%2FPisces.svg?v=1567965713107" alt="Pisces" style="width:35%; margin-left:auto; margin-right:auto;">
-          <div class="carousel-caption">
-            <h4 style="-webkit-text-stroke-width: 1px;   -webkit-text-stroke-color: black; align-self:flex-end">Pisces</h4>
-            <p style="-webkit-text-stroke-width: .5px;   -webkit-text-stroke-color: black; align-self:flex-end">The Fishes</p>
-          </div>
-        </div>
-  
-*/
