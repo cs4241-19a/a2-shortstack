@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
   </head>
   <p hidden=True>Like Uber, but for pooping</p>
   <body class="">
@@ -80,23 +81,67 @@
     return false
   }
 
+  const setOccupied = function(stall, button, end, name) {
+    let occupied_string = "Currently Ocuppied";
+    if(name){
+      occupied_string += " by " + name;
+    }
+    occupied_string +="\nAvailable in " + moment(end).subtract(moment()).format("HH:mm");
+    stall.textContent = occupied_string;
+    button.classList.add("disabled");
+  }
+
+  const setVacant = function(stall, button) {
+    stall.textContent("Available for use!")
+    button.classList.remove("disabled");
+  }
+
   window.onload = function() {
-    const button_0 = document.querySelector( '#stall-0-btn' )
-    button_0.onclick = (e) => {
+    const buttons = [
+      document.querySelector( '#stall-0-btn' ),
+      document.querySelector( '#stall-1-btn' ),
+      document.querySelector( '#stall-2-btn' ),
+      document.querySelector( '#stall-3-btn' ),
+    ]
+    const stalls = [
+      document.querySelector('#stall-0'),
+      document.querySelector('#stall-1'),
+      document.querySelector('#stall-2'),
+      document.querySelector('#stall-3'),
+    ]
+
+    buttons[0].onclick = (e) => {
       submit(e, 0);
     }
-    const button_1 = document.querySelector( '#stall-1-btn' )
-    button_1.onclick = (e) => {
+
+    buttons[1].onclick = (e) => {
       submit(e, 1);
     }
-    const button_2 = document.querySelector( '#stall-2-btn' )
-    button_2.onclick = (e) => {
+
+    buttons[2].onclick = (e) => {
       submit(e, 2);
     }
-    const button_3 = document.querySelector( '#stall-3-btn' )
-    button_3.onclick = (e) => {
+
+    buttons[3].onclick = (e) => {
       submit(e, 3);
     }
+    //setOccupied(document.querySelector('#stall-0'), button_0, "2019-09-09T02:25:40.968", "AAAA")
+    // Check for updates
+    setInterval(function(){
+      fetch('/status', {method: "GET"})
+        .then(function(response){
+          return response.json();
+        })
+        .then(function(json){
+          for(let i=0; i<4; i+=1){
+            if(json.i.active){
+              setOccupied(stalls[i], buttons[i], json.i.end, json.i.name);
+            }else{
+              setVacant(stalls[i], buttons[i]);
+            }
+          }
+        })
+    }, 5000);
   }
 
   </script>
