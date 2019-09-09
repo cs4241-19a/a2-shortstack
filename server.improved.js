@@ -14,38 +14,43 @@ const appdata = [
   { 'yourname': 'Shine', 'dish': "duck", 'ingredient': "orange"} 
 ]
 
-const recipe = function(data){
+const recipe = function (data, callback) {
   const new_recipe = data;
   const str = ""
-  request(str.concat('https://www.allrecipes.com/search/results/?wt=',new_recipe.dish,'&ingIncl=',new_recipe.ingredient,'&sort=re'), (error, response, html) => {
-  if (!error && response.statusCode == 200) {
-    const $ = cheerio.load(html);
-    
-    const link = $('.fixed-recipe-card__h3 a').first().attr('href');
-    return recipeview(link);
+  let url = str.concat('https://www.allrecipes.com/search/results/?wt=', new_recipe.dish, '&ingIncl=', new_recipe.ingredient, '&sort=re')
+  console.log("Recipe site url:", url)
+  request(url, (error, response, html) => {
+    if (!error && response.statusCode == 200) {
+      const $ = cheerio.load(html);
+
+      const link = $('.fixed-recipe-card__h3 a').first().attr('href');
+      recipeview(link, data => {
+        callback(data)
+      });
     }
   })
 }
 
-const recipeview = function(link){
+const recipeview = function (link, callback) {
+  console.log("Recipe url:", link)
   const new_recipe = link;
   const str = ""
   request(link, (error, response, html) => {
-  if (!error && response.statusCode == 200) {
-    const $ = cheerio.load(html);
-    
-    const ingredients = $('.checkList__item').each((i, el) => {
-      const title = $(el).attr('title')
-    }
-  );
-    const instructions = $('.recipe-directions__list--item').each((i, el) => {
-      const title = $(el).text()
-      });
-    
-    return {
-      ingredients: ingredients,
-      instructions: instructions
-      }
+    if (!error && response.statusCode == 200) {
+      const $ = cheerio.load(html);
+
+      const ingredients = $('#polaris-app li > label[title]').map((i, el) => {
+        return $(el).attr('title')
+      }).get();
+
+      const instructions = $('ol.list-numbers:nth-child(2) > li .recipe-directions__list--item').map((i, el) => {
+        return $(el).text()
+      }).get();
+
+      callback({
+        ingredients: ingredients,
+        instructions: instructions
+      })
     }
   })
 }
@@ -79,16 +84,17 @@ const handlePost = function( request, response ) {
       dataString += data 
   })
 
-  request.on( 'end', function() {
-    const data = JSON.parse( dataString )
+  request.on('end', function () {
+    const data = JSON.parse(dataString)
+    console.log("Client sent:", data)
     addLog(data);
-    const answer = recipe(data)
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
-    response.end(answer)
-    console.log(answer);
-    
+    recipe(data, answer => {
+      console.log(answer);
+      response.writeHead(200, "OK", {
+        'Content-Type': 'application/json'
+      })
+      response.end(JSON.stringify(answer))
+    });
   })
 }
 

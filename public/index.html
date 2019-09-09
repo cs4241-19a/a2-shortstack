@@ -7,12 +7,6 @@
 * {
   box-sizing: border-box;
 }
-
-tr {
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit;
-}
   
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -47,7 +41,6 @@ article {
   padding: 20px;
   width: 70%;
   background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
 }
 
 /* Clear floats after the columns */
@@ -65,7 +58,7 @@ footer {
   color: white;
 }
 
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+/* makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
 @media (max-width: 600px) {
   nav, article {
     width: 100%;
@@ -73,11 +66,12 @@ footer {
   }
 }
 </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 </head>
 <body>
 
 <header>
-  <h2>Food app</h2>
+  <h2>Foodify</h2>
 </header>
 
 <section>
@@ -103,17 +97,38 @@ footer {
   </nav>
   
   <article>
-    <div id="ingredients">
-      
-    </div>
-    <div id="instructions">
-      
-    </div>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+       <tr>
+      <th scope="col" id="hidden" style="display:none;">Ingredients List</th>
+    </tr>
+      </thead>
+      <tbody id="ingredients">
+      </tbody>
+    </table>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+       <tr>
+      <th scope="row" id="hidden1" style="display:none;">Instructions List</th>
+    </tr>
+      </thead>
+      <tbody id="instructions">
+      </tbody>
+    </table>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+       <tr>
+      <th scope="col">Past Searches</th>
+    </tr>
+      </thead>
+      <tbody id="search">
+      </tbody>
+    </table>
   </article>
 </section>
 
 <footer>
-  <p>Footer</p>
+  <p>Made by Rafael Pimentel</p>
 </footer>
 
 </body>
@@ -122,6 +137,8 @@ footer {
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
+    document.getElementById('hidden').style.display = 'block';
+    document.getElementById('hidden1').style.display = 'block';
     const input = document.querySelector( '#yourname' );
     const input2 = document.querySelector( '#dish' );
     const input3 = document.querySelector( '#ingredient' );
@@ -136,13 +153,10 @@ footer {
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
-    window.location.reload();
-      
-    displayData(response)
-      
-    debugger;
-      
+    response.json().then(data => {
+          console.log("Response received", data)
+          displayData(data)
+        });
       })
     return false
   }
@@ -154,13 +168,17 @@ footer {
   }
   
   const displayData = function(arrays){
-    for (let i = 0; i < arrays.ingredient; i++) {
-      const ing = arrays.ingredient;
+    
+    document.querySelector("#ingredients").innerHTML = ""
+    document.querySelector("#instructions").innerHTML = ""
+    
+    for (let i = 0; i < arrays.ingredients.length; i++) {
+      const ing = arrays.ingredients[i];
       displayIngredients(ing);
     }
     
-    for (let i = 0; i < arrays.instruction; i++) {
-      const ins = arrays.dish;
+    for (let i = 0; i < arrays.instructions.length; i++) {
+      const ins = arrays.instructions[i];
       displayInstructions(ins);
     }
   }
@@ -197,9 +215,9 @@ const displayDataApp = function ( data ) {
 }
 
 const displayOrder = function(order) {
-   const template = '<tr><td>{name} </td><td>{orbit} </td><td>{launch} </td><td></td></tr><br>'
+   const template = '<tr scope="row"><td>{name}</td><td>{orbit}</td><td>{launch}</td><td></td></tr><br>'
   const row = template.replace("{name}", order.yourname).replace("{orbit}", order.dish).replace("{launch}", order.ingredient)
-  const tbody = document.querySelector("#ingredients")
+  const tbody = document.querySelector("#search")
   tbody.innerHTML += row
 }
   
