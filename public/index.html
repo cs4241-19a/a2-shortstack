@@ -18,6 +18,7 @@
       </div>
     </div>
     
+    <!–– NEW MODAL ––>
     <div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="addItemLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -73,6 +74,62 @@
       </div>
     </div>
     
+    <!–– EDIT MODAL ––>
+    <div class="modal fade" id="editItem" tabindex="-1" role="dialog" aria-labelledby="editItemLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit an Item</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="editName" class="col-form-label">Name</label>
+                <input id="editName" type="text" class="form-control" >
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label for="editPrice">Price</label>
+                  <input id="editPrice" type="text" class="form-control"  placeholder="$ USD">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="editCategory">Category</label>
+                  <select id="editCategory" class="form-control">
+                    <option selected>Fashion</option>
+                    <option>Tech</option>
+                    <option>Sports</option>
+                    <option>Gaming</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="editRating">Rating</label>
+                  <select id="editRating" class="form-control">
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="editLink">Link</label>
+                <input id="editLink" type="text" class="form-control" >
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="editBtn" type="button" class="btn btn-success" data-dismiss="modal">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div class="container">
       <h2 class="mt-3">Favorites</h2>
       <div id="favorites" class="card-deck mt-3"></div>
@@ -97,6 +154,7 @@
       const resp = await fetch('/items', { method: 'GET' });
       const data = await resp.json();
       const favs = data.data;
+      
       
       let htmlCard = "";
           
@@ -142,7 +200,7 @@
                         <td>$${favs[i].usd}</td>
                         <td>€${favs[i].eur}</td>
                         <td>${stars}</td>
-                        <td> <button id="editBtn" type="button" class="btn btn-light"> <i class="fas fa-edit"></i></button>
+                        <td> <button id="editBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#editItem"> <i class="fas fa-edit"></i></button>
                         <td> <button id="deleteBtn" type="button" class="btn btn-light" onclick="deleteItem(${i})"> <i class="fas fa-trash"></i></button>
                       </tr>
         `;
@@ -188,6 +246,25 @@
     const refresh = function() {
       loadFavorites();
       loadAllResults();
+    }
+    
+    const editItem = function (arrPosition) {
+      const inName = document.querySelector( '#name' ),
+            inCategory = document.querySelector( '#category' ),
+            inRating = document.querySelector( '#rating' ),
+            inPrice = document.querySelector( '#price' ),
+            inLink = document.querySelector( '#link' ),
+            json = { name: inName.value, category: inCategory.value, rating: inRating.value, usd: inPrice.value, link: inLink.value  },
+            body = JSON.stringify( json )
+      fetch( '/update', {
+        method:'PUT',
+        body 
+      })
+      .then( function( response ) {
+        refresh()
+        console.log( response )
+      })
+      return false
     }
     
     
