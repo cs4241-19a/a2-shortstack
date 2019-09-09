@@ -2,97 +2,292 @@
 <html lang="en">
 
 <head>
-  <title>CS4241 Assignment 2</title>
+  <title>Magic: the Gathering Club</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="css/style.css">
+  <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <form method="post">
-    <!--<form action="/form-handling" method="post">-->
-    <div>
-      <label for="firstnameLabel">First Name:</label>
-      <input type="text" id="firstname" value="">
-    </div>
-    <div>
-      <label for="lastnameLabel">Last Name:</label>
-      <input type="text" id="lastname" value="">
-    </div>
-    <div>
-      <label for="majorLabel">Major:</label>
-      <input type="text" id="major" value="">
-    </div>
-    <div>
-      <label for="numberLabel">Favorite Number:</label>
-      <input type="text" id="number" value="">
-    </div>
-    <div class="button">
-      <button type="submit" id="submitButton">Submit</button>
-    </div>
-    <div class="button">
-      <button type="submit" id="databaseButton">Database</button>
-    </div>
-  </form>
-  <p id="result" />
-</body>
-<script>
-const getdata = function() {
-  document.getElementById("result").innerHTML = "hi"
-  fetch("/getdata", {
-      method: "GET",
-    })
-    .then(function(response) {
-      console.log("get response: ", response);
-        document.getElementById("result").innerHTML = JSON.parse(response)
-    })
-}
+  <h1>WPI Magic: the Gathering Club Application</h1>
 
-  const submit = function(e) {
-    // prevent default form action from being carried out
+  <main>
+    <button id="switchModeButton">View Members</button>
+
+    <div id="application">
+      <h2>Stop! Who would cross the Bridge of Death must answer me these questions <del>three</del> five, 'ere the other side they see.</h2>
+      <form action="">
+        <div class="input">
+          <label for="firstname" class="label">
+            What is your first name?</label>
+          <input type="text" id="firstname">
+        </div>
+        <div class="input">
+          <label for="lastname" class="label">
+            What is your last name?</label>
+          <input type="text" id="lastname">
+        </div>
+        <div class="input">
+          <label for="major" class="label">
+            What is your major?</label>
+          <input type="text" id="major">
+        </div>
+        <div class="input">
+          <label for="year" class="label">
+            What is your graduation year?</label>
+          <input type="text" id="year">
+        </div>
+        <div class="input">
+          <label for="velocity" class="label">
+            What is the airspeed velocity of an unladen swallow?</label>
+          <input type="text" id="velocity">
+        </div>
+
+        <p id="errorBox">Please respond to all questions and ensure you have entered a valid year</p>
+
+        <div id="submitButton">
+          <button>Submit Application</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="updateApplication">
+      <h2>Update Information</h2>
+      <form action="">
+        <div class="input">
+          <label for="updatefirstName" class="label">
+            What is your first name?</label>
+          <input type="text" id="updatefirstName">
+        </div>
+        <div class="input">
+          <label for="updatelastName" class="label">
+            What is your last name?</label>
+          <input type="text" id="updatelastName">
+        </div>
+        <div class="input">
+          <label for="updateMajor" class="label">
+            What is your major?</label>
+          <input type="text" id="updateMajor">
+        </div>
+        <div class="input">
+          <label for="updateYear" class="label">
+            What is your graduation year?</label>
+          <input type="text" id="updateYear">
+        </div>
+        <div class="input">
+          <label for="updateVelocity" class="label">
+            What is the airspeed velocity of an unladen swallow?</label>
+          <input type="text" id="updateVelocity">
+        </div>
+
+        <p id="updateErrorBox">Please respond to all questions and ensure you have entered a valid year</p>
+
+        <div id="updateButtons">
+          <button id="cancelButton">Cancel Update</button>
+          <button id="updateButton">Submit Update</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="confirmation">
+      <h2>Your Application Has Been Received</h2>
+      <button id="newApplicationButton">Submit Another Application</button>
+    </div>
+
+    <div id="memberTableDiv">
+      <h2>Members</h2>
+      <table id="memberTable"></table>
+    </div>
+
+  </main>
+</body>
+
+<script>
+  const addMember = function(e) {
     e.preventDefault();
 
-    const firstname = document.querySelector("#firstname");
-    const lastname = document.querySelector("#lastname");
-    const major = document.querySelector("#major");
-    const number = document.querySelector("#number");
+    const newMember = {
+      firstname: document.getElementById("firstname").value,
+      lastname: document.getElementById("lastname").value,
+      major: document.getElementById("major").value,
+      year: document.getElementById("year").value,
+      velocity: document.getElementById("velocity").value
+    };
 
-    if (!isNaN(number.value)) {
-      document.getElementById("result").innerHTML =
-        firstname.value + ", " + lastname.value + ", " + major.value + ", " +
-        number.value;
-      json = {
-          firstname: firstname.value,
-          lastname: lastname.value,
-          major: major.value,
-          number: number.value
-        },
-        body = JSON.stringify(json)
-
-      fetch("/submit", {
-          method: "POST",
-          body
-        })
-        .then(function(response) {
-          // do something with response
-          console.log(response)
-        })
-
-      return false
-    } else {
-      document.getElementById("result").innerHTML = "Please enter a valid number."
+    if (!validate(newMember.firstname, newMember.lastname, newMember.major,
+        newMember.year, newMember.velocity)) {
+      document.getElementById("errorBox").style.display = "block";
+      return false;
     }
+    document.getElementById("errorBox").style.display = "none";
 
-    return false
+    const body = JSON.stringify(newMember);
+    fetch("/submit", {
+      method: "POST",
+      body
+    }).then(function(response) {
+      document.getElementById("confirmation").style.display = "flex";
+      document.getElementById("application").style.display = "none";
+      clear();
+    });
+    return false;
+  };
+
+  const updateMember = function(e) {
+    e.preventDefault();
+
+    const updatedMember = {
+      index: document.getElementById("updateButton").dataset.index,
+      firstname: document.getElementById("updatefirstName").value,
+      lastname: document.getElementById("updatelastName").value,
+      major: document.getElementById("updateMajor").value,
+      year: document.getElementById("updateYear").value,
+      velocity: document.getElementById("updateVelocity").value
+    };
+
+    if (!validate(updatedMember.firstname, updatedMember.lastname,
+        updatedMember.major, updatedMember.year, updatedMember.velocity)) {
+      document.getElementById("updateErrorBox").style.display = "block";
+      return false;
+    }
+    document.getElementById("updateErrorBox").style.display = "none";
+
+    const body = JSON.stringify(updatedMember);
+    fetch("/update", {
+      method: "POST",
+      body
+    }).then(function() {
+      showMemberTable();
+    });
+    return false;
+  };
+
+  const validate = function(fName, lName, major, year, velocity) {
+    if (fName === "" || lName === "" || major === "" ||
+      year === "" || velocity === "") return false;
+    else if (isNaN(year)) return false;
+    else if (parseInt(year) < 1000 || parseInt(year) > 2100) return false;
+    else return true;
   }
+
+  const deleteMember = function(index) {
+    const memberNum = {
+      memberNum: index
+    };
+
+    const body = JSON.stringify(memberNum);
+    fetch("/delete", {
+      method: "POST",
+      body
+    });
+    getMembers();
+  };
+
+  const getMembers = async function() {
+    const resp = await fetch("/getdata", {
+      method: "GET"
+    });
+    const data = await resp.json();
+    const memberList = data.data;
+
+    let table = document.getElementById("memberTable");
+    table.innerHTML = "<tr>\n" +
+      "<th>First Name</th>\n" +
+      "<th>Last Name</th>\n" +
+      "<th>Major</th>\n" +
+      "<th>Grad. Year</th>\n" +
+      "<th>Graduated</th>\n" +
+      "<th>Velocity</th>\n" +
+      "<th>Update</th>\n" +
+      "<th>Delete</th>\n" +
+      "</tr>";
+
+    for (let i = 0; i < memberList.length; i++) {
+      const member = memberList[i];
+      const str = JSON.stringify(memberList[i]);
+      table.innerHTML += "<tr>\n" +
+        `<td> ${member.firstname} </td>\n` +
+        `<td> ${member.lastname} </td>\n` +
+        `<td> ${member.major} </td>\n` +
+        `<td> ${member.year} </td>\n` +
+        `<td> ${member.graduated} </td>\n` +
+        `<td> ${member.velocity} </td>\n` +
+        `<td> <button id="updateMemberButton-${i}" style="font-size: 1vw" onclick="showUpdate(${i})" data-string=` +
+        encodeURIComponent(str) + `>Update</button> </td>\n` +
+        `<td> <button id="deleteMemberButton-${i}" style="font-size: 1vw" onclick="deleteMember(${i})">Delete</button> </td>\n` +
+        "</tr>";
+    }
+    return false;
+  };
+
+  const clear = function() {
+    document.getElementById("firstname").value = "";
+    document.getElementById("lastname").value = "";
+    document.getElementById("major").value = "";
+    document.getElementById("year").value = "";
+    document.getElementById("velocity").value = "";
+    return false;
+  };
+
+  const showApplication = function() {
+    document.getElementById("errorBox").style.display = "none";
+    document.getElementById("updateErrorBox").style.display = "none";
+    document.getElementById("memberTableDiv").style.display = "none";
+    document.getElementById("updateApplication").style.display = "none";
+    document.getElementById("confirmation").style.display = "none";
+    document.getElementById("application").style.display = "block";
+
+    document.getElementById("switchModeButton").innerHTML = "View Members";
+    document.getElementById("switchModeButton").onclick = showMemberTable;
+    document.getElementById("switchModeButton").style.display = "block";
+    clear();
+    return false;
+  };
+
+  const showMemberTable = function() {
+    document.getElementById("memberTableDiv").style.display = "flex";
+    document.getElementById("application").style.display = "none";
+    document.getElementById("updateApplication").style.display = "none";
+    document.getElementById("confirmation").style.display = "none";
+    document.getElementById("errorBox").style.display = "none";
+    document.getElementById("updateErrorBox").style.display = "none";
+
+    document.getElementById("switchModeButton").innerHTML = "New Application";
+    document.getElementById("switchModeButton").onclick = showApplication;
+    document.getElementById("switchModeButton").style.display = "block";
+    getMembers();
+    return false;
+  };
+
+  const showUpdate = function(index) {
+    member = JSON.parse(decodeURIComponent(document.getElementById(`updateMemberButton-${index}`).dataset.string));
+
+    document.getElementById("memberTableDiv").style.display = "none";
+    document.getElementById("updateApplication").style.display = "block";
+    document.getElementById("switchModeButton").style.display = "none";
+
+    document.getElementById("updateButton").dataset.index = index;
+    document.getElementById("updatefirstName").value = member.firstname;
+    document.getElementById("updatelastName").value = member.lastname;
+    document.getElementById("updateMajor").value = member.major;
+    document.getElementById("updateYear").value = member.year;
+    document.getElementById("updateVelocity").value = member.velocity;
+    return false;
+  };
 
   window.onload = function() {
-    const submitButton = document.querySelector("#submitButton")
-    const databaseButton = document.querySelector("#databaseButton")
-    submitButton.onclick = submit
-    databaseButton.onclick = getdata
-  }
-
-
+    const submitButton = document.getElementById("submitButton");
+    submitButton.onclick = addMember;
+    let switchModeButton = document.getElementById("switchModeButton");
+    switchModeButton.innerHTML = "View Members";
+    switchModeButton.onclick = showMemberTable;
+    switchModeButton.style.display = "block";
+    const cancelButton = document.getElementById("cancelButton");
+    cancelButton.onclick = showMemberTable;
+    const updateButton = document.getElementById("updateButton");
+    updateButton.onclick = updateMember;
+    const newApplicationButton = document.getElementById("newApplicationButton");
+    newApplicationButton.onclick = showApplication;
+  };
 </script>
 
 </html>
