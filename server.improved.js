@@ -84,6 +84,7 @@ const handlePost = function (request, response) {
         }
         console.log(data.finalExam);
         writeUserData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
+        updateEntry(data.token,data.currentGrade);
     })
 };
 
@@ -118,11 +119,20 @@ function writeUserData(ref, token, currentGrade, desired, finalWorth, finalExam)
         finalExam: finalExam
     });
 }
-function removeEntry(ref){
-    var usernameRef = usersRef.child(ref);
-    usernameRef.remove();
+
+function updateEntry(ref, currentGrade) {
+    let usernameRef = usersRef.child(ref);
+    usernameRef.update({
+        currentGrade: currentGrade
+})
 }
 
+function removeEntry(ref, currentGrade) {
+    let usernameRef = usersRef.child(ref);
+    usernameRef.update({
+        currentGrade:FieldValue.delete()
+    })
+}
 
 
 server.listen(process.env.PORT || port);

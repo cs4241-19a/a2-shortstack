@@ -62,7 +62,7 @@
         <div class="carousel-caption d-none d-md-block">
             <div class='form__container' style="background-color: rgba(0,0,0,0.5)">
                 <h2 class="display-4">Fun Fact about This Project</h2>
-                <p class="lead" style="color: white" id="typed">I had so many failed attempts with this project. I was
+                <p class="lead" style="color: white">I had so many failed attempts with this project. I was
                     over-ambitious but failed to learn libraries such as dataTables. I also tried to include a
                     preloading screen and failed. </p>
             </div>
@@ -85,10 +85,7 @@
     localStorage.setItem('currentGrade', currentGrade.value);
     localStorage.setItem('desired', desired.value);
     localStorage.setItem('finalWorth', finalWorth.value);
-    //testing
-    //localStorage.setItem('finalExam',finalExam.value);
     const submit = function (e) {
-        // prevent default form action from being carried out
         e.preventDefault();
 
         const currentGrade = document.querySelector('#currentGrade'),
@@ -100,20 +97,15 @@
                 currentGrade: currentGrade.value,
                 desired: desired.value,
                 finalWorth: finalWorth.value
-                //mpg: mpg.value, tripDistance: distance.value,
-                //gasPrice: gas.value
             };
         body = JSON.stringify(json);
 
-        fetch('/submit', { //url name = /submit
+        fetch('/submit', {
             method: 'POST',
-            body //same as saying->body:body
+            body
         })
             .then(function (response) {
                 getData();
-                // response = body
-                //console.log( response )
-                //showData();
             });
         window.location = "/2ndpage.html";
         return false
@@ -122,12 +114,9 @@
     function getData() {
         fetch('/getdata')
             .then(function (response) {
-                // The response is a Response instance.
-                // You parse the data into a usable format using .json()
                 return response.json();
             }).then(function (data) {
-            // data is the parsed version of the JSON returned from the above endpoint.
-            console.log(data);  // { "userId": 1, "id": 1, "title": "...", "body": "..." }
+            console.log(data);
             let entry = document.createElement("div");
             entry.innerHTML = JSON.stringify(data);
             document.body.appendChild(entry);
@@ -140,10 +129,4 @@
     }
 
 </script>
-<!--
-<script src="lib/jquery/jquery.magnific-popup.js"></script>
--->
-
-<script src="https://cdn.jsdelivr.net/npm/typeit@6.0.3/dist/typeit.min.js"></script>
-
 </html>
