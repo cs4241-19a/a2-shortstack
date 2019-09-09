@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Candy Order",
+  "version": "0.1.0",
+  "description": "Assignment 2 for Webware",
+  "author": "Jialin Song",
   "scripts": {
     "start": "node server.improved.js"
   },
