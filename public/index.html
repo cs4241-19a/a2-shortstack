@@ -62,8 +62,7 @@
   </body>
   <script>
     const loadFavorites = async function() {
-      debugger
-      const resp = await fetch('/', { method: 'GET' });
+      const resp = await fetch('/items', { method: 'GET' });
       const data = await resp.json();
       const favs = data.data;
 
