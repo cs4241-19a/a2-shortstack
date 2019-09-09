@@ -7,9 +7,18 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { "vertices": 3, "drawType": "Triangle", "name": "Triangle", "points": [5]},
-  { "vertices": 5, "drawType": "Line", "name": "Mountain", "points": [7, 8]},
-  { "vertices": 3, "drawType": "Triangle", "name": "Triangle", "points": [1, 1, 1]},
+  { "vertices": 8, 
+    "numPoly": 12,
+    "name": "Cube",
+    "points": [5]},
+  { "vertices": 5, 
+    "numPoly": 10, 
+    "name": "Mountain", 
+    "points": [7, 8]},
+  { "vertices": 3, 
+    "numPoly": 5, 
+    "name": "Triangle", 
+    "points": [1, 1, 1]},
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -52,7 +61,7 @@ const handlePost = function( request, response ) {
         
         let drawing = {
           "vertices": data.vertices, 
-          "drawType": data.drawType, 
+          "numPoly": data.numPoly, 
           "name": data.name, 
           "points": points
         }
@@ -75,7 +84,7 @@ const handlePost = function( request, response ) {
         let idx = newData.idx
         
         appdata[idx].vertices = newData.vertices
-        appdata[idx].drawType = newData.drawType
+        appdata[idx].numPoly = newData.numPoly
         appdata[idx].name = newData.name
         
         break

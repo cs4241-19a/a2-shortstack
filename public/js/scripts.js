@@ -2,7 +2,7 @@ const generate = function(e) {
   // prevent default form action from being carried out
   e.preventDefault()
   
-  const body = JSON.stringify(grabInput("drawType", "vertices", "name"))
+  const body = JSON.stringify(grabInput("numPoly", "vertices", "name"))
   
   fetch( '/generate', {
     method:'POST',
@@ -15,15 +15,11 @@ const generate = function(e) {
   return false
 }
 
-function grabInput(draw, ver, name){
-  function getOption(){
-    let element = document.getElementById(draw);
-    return element.options[element.selectedIndex].text
-  }
+function grabInput(poly, ver, name){
   
   const input = {
     vertices: document.getElementById(ver).value,
-    drawType: getOption(),
+    drawType: document.getElementById(poly).value,
     name: document.getElementById(name).value
   };
   return input
@@ -44,7 +40,7 @@ function getData(idx = -1){
 function genTable(dataList, idx) {
   let str = "<tr>"+
               "<th>Number of Vertices</th>" + 
-              "<th>Draw Type</th>" + 
+              "<th>Number of Triangles</th>" + 
               "<th>Name</th>" +
               "<th></th>"
             "</tr>"
@@ -56,12 +52,7 @@ function genTable(dataList, idx) {
                 "<td>" + 
                   "<input type='number' id='verticesE' value="+ d.vertices +"></td>" + 
                 "<td>"+
-                  "<select id='drawTypeE' selected = '" + d.dataType + "'>" +
-                      "<option>Line</option>" +
-                      "<option>Triangle</option>" +
-                      "<option>Dots</option>" +
-                  "</select>" +
-                "</td>" + 
+                  "<input type='number' id='numPolyE' value=" + d.numPoly + "></td>" + 
                 "<td>" + 
                   "<input type='text' id='nameE' value='" + d.name + "'>" +
                 "</td>" +
@@ -75,7 +66,7 @@ function genTable(dataList, idx) {
     else{
       str += "<tr>"+
                 "<td>"+ d.vertices +"</td>" + 
-                "<td>"+ d.drawType +"</td>" + 
+                "<td>"+ d.numPoly +"</td>" + 
                 "<td>"+ d.name +"</td>" +
                 "<td>" + 
                   "<button id='v" + i + "' onclick='drawData(" + i + ")'>View</button>" +
@@ -109,7 +100,7 @@ function deleteData(index){
 }
 
 function updateData(index){
-  const input = grabInput("drawTypeE", "verticesE", "nameE")
+  const input = grabInput("numPolyE", "verticesE", "nameE")
   input.idx = index
   const body = JSON.stringify(input)
   
