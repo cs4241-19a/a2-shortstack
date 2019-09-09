@@ -58,12 +58,21 @@ const handlePost = function( request, response ) {
     var colorNpos = rightPosition(playerGuess)
     
     if (colorNpos = 4) {
-      const newEntry = { 'name': obj.playername,
-                         'moves': obj. guessCount}
+      var medal = giveMedal(obj.guesscount)
+      var newEntry = { 'name': obj.playername,
+                       'moves': obj.guesscount,
+                       'medal': obj.medal}
+      playerData.push(newEntry)
     }
     
     else {
       // send color & colorNpos
+      var clues = {'color': color,
+                  'colornpos': colorNpos}
+      var cbody = JSON.stringify( clues )
+      
+      response.writeHead(200, "OK", { 'Content-Type': 'application/json' })
+      response.bod
     }
                       
 
