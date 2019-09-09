@@ -9,31 +9,92 @@
   </head>
   <body>
     <h1>Fantastic Fries</h1>
-    <h3>Online Order Form</h3>
+    <h3>In-Store Kiosk</h3>
+    <div class="instructions">
+      <p>Welcome to Fantastic Fries! Create your fantastic fries on the left, and see your order and everybody else's orders on the right. Once your order is done, we'll call you up to the register to pay.</p>
+    </div>
 
     <div class="columns">
 
-      <div class="information">
+      <div class="order">
+
         <h2>Information</h2>
-        <p>fun fun info</p>
+
+        <h4>Name</h4>
+        <form action="">
+          <input type='text' id='yourname' value="John Doe">
+        </form>
+
+        <h4>Phone Number</h4>
+        <form action="">
+          <input type='text' id='yourname' value="(123)-456-7890">
+        </form>
+
+        <h2>Fries</h2>
+
+        <h4>Potato</h4>
+        <form action="">
+          <select name="potato" dir="rtl">
+            <option value="yellow">Yellow Potato | $3</option>
+            <option value="red">Red Potato | $4</option>
+            <option value="idaho">Idaho Potato | $5</option>
+            <option value="sweet">Sweet Potato | $6</option>
+          </select>
+        </form>
+
+        <h4>Seasoning</h4>
+        <form action="">
+          <select name="seasoning" dir="rtl">
+            <option value="none">None +$0</option>
+            <option value="salt">Just Salt +$1</option>
+            <option value="pepper">Just Pepper +$1</option>
+            <option value="snp">Salt and Pepper +$2</option>
+            <option value="cajun">Cajun +$3</option>
+            <option value="guys">7 Guys Style +$3</option>
+            <option value="original">Original Recipie +$3</option>
+          </select>
+        </form>
+
+        <h4>Size</h4>
+        <form action="">
+          <select name="size" dir="rtl">
+            <option value="small">Small x1</option>
+            <option value="medium">Medium x1.5</option>
+            <option value="large">Large x2</option>
+          </select>
+        </form>
+
+        <div class="right">
+          <button type="button">Place Your Fantastic Order</button>
+        </div>
+
       </div>
 
       <div class="space"> </div>
 
-      <div class="fries">
-        <h2>Fries</h2>
-        <p>fries</p>
+      <div class="queue">
+        <h2>Queue</h2>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Fries</th>
+            <th>Cost</th>
+            <th>Order Number</th>
+          </tr>
+        </table>
+
       </div>
 
     </div>
 
-    <button type="button">Click Me!</button>
+    <div class="center">
 
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    </div>
+
+
+
     <script src="js/scripts.js"></script>
+
   </body>
 
 </html>

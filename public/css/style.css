@@ -30,13 +30,46 @@ h3 {
     font-weight: bold;
 }
 
+p {
+  font-weight: normal ;
+}
+
+input {
+  text-align: right;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+button {
+  margin-top: 30px;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .columns {
     column-count: 2;
-    column-gap: 50px;
+    column-gap: 80px;
     column-rule-style: solid;
     column-rule-width: 3px;
     column-rule-color: black;
-    column-fill:balance;
+    column-fill: balance;
     column-width: 100px;
     margin-top: 30px;
 }
@@ -51,10 +84,16 @@ h3 {
     display:block;
 }
 
-.information {
+.order {
   text-align: right;
 }
 
-.fries {
+.queue {
   text-align: left;
+}
+
+.instructions {
+  margin-left: 150px;
+  margin-right: 150px;
+  text-align: center;
 }
