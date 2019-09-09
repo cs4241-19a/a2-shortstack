@@ -1,29 +1,40 @@
 /*Style your own assignment! This is fun! */
 
 body {
-    background: silver;
+    background: gainsboro;
+    font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
 }
 
 .container {
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
+}
+
+.twocolumn {
+    display: flex;
+    justify-content: space-around;
+}
+
+.formdisplay {
+    positon: absolute;
 }
 
 #gryffindorbg {
-    background: red;
+    background: darksalmon;
 }
 
 #hufflepuffbg {
-    background: yellow;
+    background: lightyellow;
 }
 
 #ravenclawbg {
-    background: blue;
+    background: lightblue;
 }
 
 #slytherinbg {
-    background: green;
+    background: palegreen;
 }
 
 #mugglebg {
@@ -31,5 +42,26 @@ body {
 }
 
 #error {
+    color: red;
     display: none;
+}
+
+table {
+    font-size: 20px;
+    width: 75%;
+}
+
+th {
+    background: black;
+    color: #fff;
+}
+
+tbody:hover td {
+    color: transparent;
+    text-shadow: 0 0 3px #aaa;
+}
+
+tbody:hover tr:hover td {
+    color: #444;
+    text-shadow: 0 1px 0 #fff;
 }

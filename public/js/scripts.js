@@ -23,9 +23,9 @@ const submit = function (e) {
                 preferredPronouns = 'They/Them/Theirs'
                 break
             default:
-                document.getElementById('other').checked ?
+                if(document.getElementById('other').checked) {
                     preferredPronouns = document.getElementById('inputother').value
-                    : preferredPronouns = 'No'
+                }
         }
         switch (mostValued) {
             case 'bravery':
@@ -41,7 +41,7 @@ const submit = function (e) {
                 sortedHouse = 'Slytherin'
                 break
             default:
-                sortedHouse = 'Slytherin'
+                sortedHouse = 'Muggle'
         }
 
         const json = {
@@ -56,13 +56,7 @@ const submit = function (e) {
         fetch('/submit', { //url name = /submit
             method: 'POST',
             body //same as saying->body:body
-        })
-            .then(function (response) {
-                // response = body
-
-                //console.log( response )
-                //showData();
-            })
+        }).then(function (response) {})
 
         showData();
         return false
@@ -99,6 +93,16 @@ const updateRow = function (rowIndex) {
     let updateLastName = document.getElementById('lastName' + rowIndex).value
     let pronouns = document.getElementById('pronouns' + rowIndex).value
     let house = document.getElementById('house' + rowIndex).value
+
+    if(updateFirstName === '') {
+        updateFirstName = '(Redacted)'
+    }
+    if(updateLastName === '') {
+        updateLastName = '(Redacted)'
+    }
+    if(pronouns === '') {
+        pronouns = '(Redacted)'
+    }
 
     const json = {
         'firstName': updateFirstName,
@@ -144,12 +148,12 @@ const genTable = function (studentList, editIndex) {
     //setting the header at the top of the table
     studentTable.innerHTML =
         '<tr>\n' +
-        '<th>First Name</th>\n' +
-        '<th>Last Name</th>\n' +
-        '<th>Pronouns</th>\n' +
-        '<th>House</th>\n' +
-        '<th>Edit</th>\n' +
-        '<th>Delete</th>\n' +
+        '<th align="center">First Name</th>\n' +
+        '<th align="center">Last Name</th>\n' +
+        '<th align="center">Pronouns</th>\n' +
+        '<th align="center">House</th>\n' +
+        '<th align="center">Edit</th>\n' +
+        '<th align="center">Delete</th>\n' +
         '</tr>';
 
     for (let i = 0; i < studentList.length; i++) {
@@ -157,36 +161,41 @@ const genTable = function (studentList, editIndex) {
         let newLine = '<tr>\n';
         var houseColor;
         if(currentStudent.house === 'Gryffindor' || currentStudent.house === 'gryffindor') {
+            currentStudent.house = 'Gryffindor'
             houseColor = '<div id="gryffindorbg">'
         }
         else if(currentStudent.house === 'Hufflepuff' || currentStudent.house === 'hufflepuff') {
+            currentStudent.house = 'Hufflepuff'
             houseColor = '<div id="hufflepuffbg">'
         }
         else if(currentStudent.house === 'Ravenclaw' || currentStudent.house === 'ravenclaw') {
+            currentStudent.house = 'Ravenclaw'
             houseColor = '<div id="ravenclawbg">'
         }
-        else if(currentStudent.house === 'Slytherin' || currentStudent.house === 'Slytherin') {
+        else if(currentStudent.house === 'Slytherin' || currentStudent.house === 'slytherin') {
+            currentStudent.house = 'Slytherin'
             houseColor = '<div id="slytherinbg">'
         }
         else {
+            currentStudent.house = 'Muggle'
             houseColor = '<div id="mugglebg">'
         }
         if(i === editIndex) {
-            newLine += ('<td>' + houseColor + '<input id="firstName' + i + '" type="text" value="' + currentStudent.firstName + '"> </div></td>\n');
-            newLine += ('<td>' + houseColor + '<input id="lastName' + i + '" type="text" value="' + currentStudent.lastName + '"> </div></td>\n');
-            newLine += ('<td>' + houseColor + '<input id="pronouns' + i + '" type="text" value="' + currentStudent.pronouns + '"> </div></td>\n');
-            newLine += ('<td>' + houseColor + '<input id="house' + i + '" type="text" value="' + currentStudent.house + '"></div></td>\n');
-            newLine += ('<td>' + houseColor + '<button id="' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
-            newLine += ('<td>' + houseColor + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<input id="firstName' + i + '" type="text" value="' + currentStudent.firstName + '"> </div></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<input id="lastName' + i + '" type="text" value="' + currentStudent.lastName + '"> </div></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<input id="pronouns' + i + '" type="text" value="' + currentStudent.pronouns + '"> </div></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<input id="house' + i + '" type="text" value="' + currentStudent.house + '"></div></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<button id="' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
             newLine += '</tr>';
         }
         else {
-            newLine += ('<td>' + houseColor + currentStudent.firstName + '</div></td>\n');
-            newLine += ('<td>' + houseColor + currentStudent.lastName + '</div></td>\n');
-            newLine += ('<td>' + houseColor + currentStudent.pronouns + '</td>\n');
-            newLine += ('<td>' + houseColor+ currentStudent.house + '</td>\n');
-            newLine += ('<td>' + houseColor + '<button id="' + i + '" onclick="editRow(' + i + ')"> Edit </button></td>\n');
-            newLine += ('<td>' + houseColor + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
+            newLine += ('<td align="center">' + houseColor + currentStudent.firstName + '</div></td>\n');
+            newLine += ('<td align="center">' + houseColor + currentStudent.lastName + '</div></td>\n');
+            newLine += ('<td align="center">' + houseColor + currentStudent.pronouns + '</td>\n');
+            newLine += ('<td align="center">' + houseColor+ currentStudent.house + '</td>\n');
+            newLine += ('<td align="center">' + houseColor + '<button id="' + i + '" onclick="editRow(' + i + ')"> Edit </button></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
             newLine += '</div>' + '</tr>';
         }
 

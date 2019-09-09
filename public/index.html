@@ -1,73 +1,79 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>CS4241 Assignment 2</title>
-  <meta charset="utf-8">
-  <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="container">
- <h1>Create a Harry Potter Character</h1>
-  <p>Disclaimer: The Harry Potter universe belongs to J.K. Rowling</p>
-  <img src="/images/houseshogwarts.png" alt="Hogwarts Houses" width="15%">
+<div class="twocolumn">
+    <div class="container">
+        <h1>Create a Harry Potter Character</h1>
+        <p>Disclaimer: The Harry Potter universe belongs to J.K. Rowling</p>
+        <img src="/images/houseshogwarts.png" alt="Hogwarts Houses" width="50%">
+    </div>
+    <div class="container">
+        <form action="">
+          <p><b>Enter your character's information:</b></p>
+            <div>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName"/>
+            </div>
+            <div>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName"/>
+            </div>
+            <div>
+                <label for="pronouns">Pronouns:</label><br>
+                <div>
+                    <input type="radio" id="he" name="studentPronouns" value="he" onclick="clearOther()"
+                           checked>
+                    <label for="he">He/Him/His</label>
+                </div>
+                <div>
+                    <input type="radio" id="she" name="studentPronouns" value="she" onclick="clearOther()">
+                    <label for="she">She/Her/Hers</label>
+                </div>
+                <div>
+                    <input type="radio" id="they" name="studentPronouns" value="they" onclick="clearOther()">
+                    <label for="they">They/Them/Theirs</label>
+                </div>
+                <div>
+                    <input type="radio" id="other" name="studentPronouns" value="other">
+                    <label for="other">Other: </label>
+                    <input id="inputother" type="text" name="studentPronouns" onclick="changeradioOther()"/>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                </div>
+            </div>
+            <div>
+                <label for="mostValued">What does your character value most?</label><br>
+                <div>
+                    <input type="radio" id="bravery" name="studentValue" value="bravery"
+                           checked>
+                    <label for="bravery">Bravery</label>
+                </div>
+                <div>
+                    <input type="radio" id="loyalty" name="studentValue" value="loyalty">
+                    <label for="loyalty">Loyalty</label>
+                </div>
+                <div>
+                    <input type="radio" id="wisdom" name="studentValue" value="wisdom">
+                    <label for="wisdom">Wisdom</label>
+                </div>
+                <div>
+                    <input type="radio" id="ambition" name="studentValue" value="ambition">
+                    <label for="ambition">Ambition</label>
+                </div>
+            </div>
+            <br>
+            <button>Submit</button>
+        </form>
+        <br>
+        <div id="error">**Please fill out the form completely**</div>
+    </div>
 </div>
-<form action="">
-  <div>
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName"/>
-  </div>
-  <div>
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName"/>
-  </div>
-  <div>
-    <label for="pronouns">Pronouns:</label><br>
-    <div>
-      <input type="radio" id="he" name="studentPronouns" value="he" onclick="clearOther()"
-      checked>
-      <label for="he">He/Him/His</label>
-    </div>
-    <div>
-      <input type="radio" id="she" name="studentPronouns" value="she" onclick="clearOther()">
-      <label for="she">She/Her/Hers</label>
-    </div>
-    <div>
-      <input type="radio" id="they" name="studentPronouns" value="they" onclick="clearOther()">
-      <label for="they">They/Them/Theirs</label>
-    </div>
-    <div>
-      <input type="radio" id="other" name="studentPronouns" value="other">
-      <label for="other">Other: </label>
-      <input id="inputother" type="text" name="studentPronouns" onclick="changeradioOther()"/>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-    </div>
-  </div>
-  <div>
-    <label for="mostValued">What does your character value most?</label><br>
-    <div>
-      <input type="radio" id="bravery" name="studentValue" value="bravery"
-      checked>
-      <label for="bravery">Bravery</label>
-    </div>
-    <div>
-      <input type="radio" id="loyalty" name="studentValue" value="loyalty">
-      <label for="loyalty">Loyalty</label>
-    </div>
-    <div>
-      <input type="radio" id="wisdom" name="studentValue" value="wisdom">
-      <label for="wisdom">Wisdom</label>
-    </div>
-    <div>
-      <input type="radio" id="ambition" name="studentValue" value="ambition">
-      <label for="ambition">Ambition</label>
-    </div>
-  </div>
-  <br><button>Submit</button>
-</form>
-<br>
-<div id="error">Please fill out the form completely</div>
-<h3>Students:</h3>
-<table id="HogwartsStudents"style="width:100%">
-</table>
+<div class="container">
+    <table id="HogwartsStudents"></table>
+</div>
 <script src="js/scripts.js"></script>
 </body>
 </html>
