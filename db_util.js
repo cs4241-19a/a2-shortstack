@@ -6,9 +6,9 @@ const SQLITE_DATESTR = "YYYY-MM-DD HH:mm:ss"
 
 class Reservation extends Sequalize.Model {}
 
-const fetchActiveRevs = function(){
+const fetchActiveRevs = async function(){
   const currentTime = moment().format(SQLITE_DATESTR);
-  const actives = Reservation.findAll({
+  return await Reservation.findAll({
     where: {
       [Op.and]: {
         start: {
@@ -20,7 +20,6 @@ const fetchActiveRevs = function(){
       }
     }
   });
-  return actives;
 }
 
 const makeRes = function(stall, length, name){

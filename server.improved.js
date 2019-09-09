@@ -82,6 +82,8 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  }else if( request.url === '/status'){
+    sendStatus( response )
   }else{
     sendFile( response, filename )
   }
@@ -124,6 +126,26 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+const sendStatus = function(response) {
+  let content = {
+    0: {active: false},
+    1: {active: false},
+    2: {active: false},
+    3: {active: false},
+  }
+  const actives = db_util.fetchActiveRevs();
+  for(let i=0; i<actives.length; i+=1){
+    content[actives[i].stall] = {
+      active: true,
+      name: actives[i].name,
+      end: actives[i].end,
+    }
+  }
+
+  response.writeHead(200, "OK", {"Content-Type": "application/json"});
+  response.end(JSON.stringify(content));
 }
 
 server.listen( process.env.PORT || port )

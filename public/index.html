@@ -92,7 +92,7 @@
   }
 
   const setVacant = function(stall, button) {
-    stall.textContent("Available for use!")
+    stall.textContent = "Available for use!";
     button.classList.remove("disabled");
   }
 
@@ -134,7 +134,7 @@
         })
         .then(function(json){
           for(let i=0; i<4; i+=1){
-            if(json.i.active){
+            if(json[i].active){
               setOccupied(stalls[i], buttons[i], json.i.end, json.i.name);
             }else{
               setVacant(stalls[i], buttons[i]);
