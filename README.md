@@ -5,15 +5,13 @@ Readme
 ---
 
 ## Budget Your Next Roadtrip!
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+This project aims to help people who want to plan for a roadtrip be more codt efficient and save money, particularly on gas. 
 
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
+- The project pertains to saving money on gas while on a road trip 
+- The problem is that many people do not realize how much they could save on gas during a long road trip. This application does all the math for you.
 - the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+- All you have to do is enter data about your vehicle and you can compare the best vehicle to either take from your own car collection or rent to be more fuel efficient and for those on a budget.
+- Future work: Ask for starting point and destinations to calculate the number of miles of the trip.  
 
 
 https://a2-vanand23.glitch.me
@@ -47,11 +45,12 @@ Node.js:
 - An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository. ✓
 
 ## Technical Achievements
-- **Tech Achievement 1**: Created a function to verify that the user does not add the same exact data for a car to the data table 
+- **Tech Achievement 1**: Created a function to verify that the user does not add the same exact data for a car to the data table. 
 - **Tech Achievement 2**: Implemented two server logic calculations, one for calculating the total gallons and the other for total cost using the user input and the already existing columns of data. 
-- **Tech Achievement 3**: Data is persistant 
-- **Tech Achievement 2**:
+- **Tech Achievement 3**: Data is persistant. When you go back on your browser, refresh, or even close your browser, the data that you previously inputted on the site will still be there. 
+- **Tech Achievement 4**: Set up a connection and learned how to use the Firebase Database. 
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Design Achievement 1**: I tested my website with 4 users and found that they really liked the use of colors. I used a color palatte and theme to find the best suitable colors which are pink, green, blue, and gold. 
+- **Design Achievement 2**: Shown in `style.css`, I created the stylesheet myself from scratch. I implemented the containers based on the user input from above for more information and better usability.
+- **Design Achievement 3**: For adding data to the data table, I created my own table and added some CSS to make it look more presentable and user friendly. 
