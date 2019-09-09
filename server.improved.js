@@ -60,7 +60,7 @@ const handlePost = function( request, response ) {
         for(int = 0; int < info.length; int++) {
           var split = data.findIndex(x => x.index === info[int])
           data.splice(split, 1)
-          info.splice()
+          info.splice(int, 1)
         }
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()

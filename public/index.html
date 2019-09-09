@@ -93,10 +93,8 @@
   const occupySchedule = function() {
     fetch( '/info' )
       .then( function( response ) {
-        console.log( response )
         return response.json()
-    })
-      .then( function( myJSON ) {
+    }).then( function( myJSON ) {
         var info = myJSON.data
         var i;
         for(i = 0; i < info.length; i++){
@@ -142,31 +140,30 @@
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
     var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :first-child[index]')
     var i;
-    var indices;
-    for(i = pointer.hasChildNodes(); i > 0; i--){
+    var indices = [];
+    for(i = pointer.hasChildNodes(); i >= 0; i--){
       if(pointerChild !== null) {
-        indices = [];
         console.log(pointerChild.getAttribute('index'))
         indices.push(pointerChild.getAttribute('index'))
-        console.log(indices)
       }
     }
+    console.log(indices)
     
-    if(indices !== null) {
+    if(indices !== []) {
         removeEvent(indices)
     }
   }
   
   
-  const removeEvent = function(index) {
-    var body = JSON.stringify( index )
-    console.log("Here")
+  const removeEvent = function(indices) {
+    var body = JSON.stringify( indices )
+    console.log("removeEvent")
     fetch('/delete',{
       method: 'POST',
       body
     }).then(function(response) {
-      updateSchedule()
       console.log(response)
+      updateSchedule()
     })
   }
   
@@ -192,7 +189,7 @@
   
   const updateSchedule = function( ) {
     var int = 0;
-    console.log("Here")
+    console.log("update")
     var pointer = document.querySelector('.boardsection[data-board]:nth-child('+int+') .tasklist ')
     for(int = 0; int < 8; int++) {   
         var pointer = document.querySelector('.boardsection[data-board]:nth-child('+int+') .tasklist ')
