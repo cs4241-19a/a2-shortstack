@@ -1,1 +1,177 @@
-/*Style your own assignment! This is fun! */
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	height: 100%;
+	position: relative;
+}
+
+body {
+	width: 100%
+	margin: 0px;
+	padding: 0px;
+	background-color: #262626;
+	color: #e0e0e0; 
+  
+	
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+button {
+  font-family: 'Merriweather', serif;
+  border: none;
+  border-radius: 2px;
+}
+td button {
+  margin: 3px;
+}
+
+.mod-button { 
+  padding: 5px;
+}
+
+#edit-character-button {
+  background-color: #4CAF50;
+}
+
+#delete-character {
+  background-color: #f44336;
+}
+.gen-button {
+  background-color: #e0e0e0;
+  color: #262626;
+  padding: 10px;
+}
+#gen-buttons {
+  margin: 3px;
+  display:  
+}
+
+.action-button {
+  background-color: #e0e0e0;
+  color: #262626;
+  padding: 5px;
+  margin: 10px;
+}
+form {
+	margin: 0 auto;
+	width: 400px;
+	padding: 1em;
+}
+
+form div {
+	margin-top: 1em;
+}
+
+#characters td, th {
+  font-family: 'Merriweather', serif;
+  padding: 5px;
+  text-align: center;
+}
+#character-form {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#form-inner {
+  font-family: 'Merriweather', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#form-inner label {
+  display: flex;
+  justify-content: left;
+}
+
+.descriptor {
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#editing-character {
+  
+}
+#editing-character #form-inner2 {
+  font-family: 'Merriweather', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#editing-character #form-inner2 label {
+  display: flex;
+  justify-content: left;
+}
+h1 {
+  font-family: 'Monserrat', sans-serif;
+  align: center;
+}
+/* Typing Effect Inspiration: https://usefulangle.com/post/85/css-typewriter-animation#targetText=CSS%20Properties%20Being%20Animated,a%20solid%20color%20to%20transparent. */
+#typing-title {
+  text-align: center;
+  display: inline-block;
+  font-family: 'Monserrat', sans-serif, monospace;
+}
+
+#typing-text {
+    display: inline-block;
+  	overflow: hidden;
+  	letter-spacing: 2px;
+ 	  animation: typing 4s steps(19,end), blink .75s step-end infinite;
+    white-space: nowrap;
+    
+    font-weight: 700;
+    border-right: 4px solid orange;
+    box-sizing: border-box;
+}
+#typing-text2 {
+    display: inline-block;
+  	overflow: hidden;
+  	letter-spacing: 2px;
+ 	  animation: typing 3s steps(19,end), blink .75s step-end infinite;
+    white-space: nowrap;
+    
+    font-weight: 700;
+    border-right: 4px solid orange;
+    box-sizing: border-box;
+}
+#typing-text3 {
+    display: inline-block;
+  	overflow: hidden;
+  	letter-spacing: 2px;
+ 	  animation: typing 4s steps(20,end), blink .75s step-end infinite;
+    white-space: nowrap;
+    
+    font-weight: 700;
+    border-right: 4px solid orange;
+    box-sizing: border-box;
+}
+
+@keyframes typing {
+    from { 
+        width: 0% 
+    }
+    to { 
+        width: 100% 
+    }
+}
+
+@keyframes blink {
+    from, to { 
+        border-color: transparent 
+    }
+    50% { 
+        border-color: orange; 
+    }
