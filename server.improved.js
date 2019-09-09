@@ -36,7 +36,7 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    //returnFirebaseAsArray()
+    console.log(returnFirebaseAsArray())
     //console.log(returnArray)
     //returnFirebaseAsArray()
     //console.log(returnArray)
@@ -299,21 +299,23 @@ function modData(toChange){
 //******** FIREBASE FUNCTIONS *******//
 //returns firebase database as an array of json objects
 function returnFirebaseAsArray(){
-  /*firebase.database().ref().once("value", function(data){
+  let returnArray = []
+  firebase.database().ref().once("value", function(data){
     data.forEach(function(childSnapshot){
         var childData = childSnapshot.val()
         returnArray.push(childData)
-        console.log(childData)
     })
-    //return returnArray
-  })*/
-  //return returnArray
-  //console.log(firebase.database().ref().toJSON())
-  firebase.database.ref().once('value'.then(function(largeSnap){
-    console.log(largeSna)
-  }))
+  })
+    .then(function(result){
+    //console.log(result)
+    //console.log(returnArray)
+    return returnArray;
+  })
+  
   
 }
+
+
 
 
 //Takes given JSON object and adds it to the remote database
