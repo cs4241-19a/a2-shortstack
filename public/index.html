@@ -180,10 +180,12 @@
     e.preventDefault();
     var eventInd;
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
+    var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist:first-child[index]')
+
     while(pointer.hasChildNodes()){
       //pointer.removeChild(pointer.firstChild)
-      if(pointer.firstChild.getAttribute('index') !== null) {
-        eventInd = pointer.firstChild.getAttribute('index');
+      if(pointerChild !== null) {
+        //eventInd = pointer.firstChild.getAttribute('index');
         
         removeEvent(eventInd)
       }
