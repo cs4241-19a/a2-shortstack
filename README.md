@@ -2,88 +2,36 @@ Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and
 ===
 
 Due: September 9th, by 11:59 AM.
+Katherine Thompson
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
+## Book Tracker
 
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
+I love to read but I often find myself forgetting the book suggestions that people tell me, or vice versa not being able to provide suggestions on the spot.
+This project is an organizational tool to keep track of all the books you have read and you want to read, showing not only the name of the books and authors
+but also a comments section and ratings which furthermore sort the books into sections based on if you did or didn't like them. I've personally already started
+using the website, transitioning over from keeping my "To Read" list in my Notes on my phone, which was hard to visualize unlike my website.
+While this is a personal organizational tool at this time, in the future I could envision it as a forum for book lovers to share their best/worst book picks.
 
-Baseline Requirements
----
+Note: Almost all the time, clicking the buttons will automatically update the tables (I have my loadData function for the tables called in all of the onclick functions) but sometimes
+if the website has been sitting open for a while you need to refresh the page if a button was pressed but the tables aren't automatically updating.
 
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
-
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
-
-Your application is required to implement the following functionalities:
-
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Label the pull request as follows: a2-gitusername-firstname-lastname
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
+Link:
+https://a2-ktrose1.glitch.me/
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **getElement vs. Query**: In my script I used getElementById for most of the things including all the input but I also decided to try using querySelector for the table body data.
+I have no prior experience using either of these functionalites so I tried to learn more about/use both.
+- **Variety Of Posts**: With my POST handling, I sent and handled different types of body every time. In some cases I sent JSON and in others merely a string of the book name.
+I was able to handle different types of POSTs other than just the standard, and only post as much data as I actually needed to carry out the functionality.
+- **Form Reset**: Everytime I do something involving a form I not only load the new data but I also reset all the forms. So after you submit a form the data in the input
+boxes is reset/taken away. I think this is more visually appealing and it gets a clean slate each time showing that whatever was sent through the form was successful.
+- **Status**: My derived data field was status which is one of two values good/bad. The status is derived from the rating where anything 3 or over is good, and under is bad and these are used to sort into the good/bad tables.
+I chose this as a way to update books so I can show not only the rating being changed but also the status being updated when the edit function is used, showing it moving tables if the rating changes from good to bad or vice versa.
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **User Testing**: While working on this project I had both of my roommates play around with it (without direction from me) so that I could be sure that people would understand the flow and functionality of the website intrinsically.
+- **Flex**: For creating the side-by-side elements I decided to try out a bit of what we learned in the frog game and used flex.
+- **Button CSS**: The buttons all change color with hover. I think this adds a little bit of color to my otherwise rather standard colored page. I also looked into contrast (like we talked about in class) with the color of the button,
+the color of the background, and also the color of the text and elements within the page making sure there was enough contrast to be easily readable and visually attractive.
+- **Tables**: I not only have one big table showing all of the data, I also have two other tables that, based on my derived field, sort the books into books that the user liked and those that 
+they didn't like. They update, as books are edited and ratings are updated. This feature was important to me because in my head I tend to organize books like this so I really wanted it visualized as well.
