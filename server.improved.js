@@ -145,13 +145,13 @@ const zodiac = function(yr){
 }
 
 const handleRetrieve = function( request, response){
-  console.log('run')
-  request.on( 'end', function() {
-    console.log('returning following datalog:')
-    console.log(scopeData2)
+  // console.log('run')
+  // request.on( 'end', function() {
+  //   console.log('returning following datalog:')
+  //   console.log(scopeData2)
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end(JSON.stringify(scopeData2))
-  })
+  // })
 }
 
 server.listen( process.env.PORT || port )

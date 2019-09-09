@@ -38,7 +38,7 @@ const submit = function( e ) {
 
 const retrieveAll = function() {
   fetch( '/retrieve', {
-    method:'POST',
+    method:'GET',
   })
   .then( function( response ) {
     console.log('retrieving')
