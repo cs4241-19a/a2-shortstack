@@ -243,6 +243,7 @@
   const remove = function(e){
     e.preventDefault()
     let originalData = document.getElementById('modHolder').value
+    console.log(document.getElementById('modHolder'))
     const jsonOriginal = { fName: originalData[0], lName: originalData[1], month: originaData[2], day: originalData[3] },
           body = JSON.stringify( jsonOriginal )
     fetch( '/delete', {
