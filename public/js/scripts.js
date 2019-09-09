@@ -79,6 +79,10 @@ const loadData = function( e ) {
       return false;
     }
     
+    const delBook = function(e){
+      console.log("del book")
+    }
+    
     //reset order form after adding book
     const resetOrderForm = () => {
       document.getElementById( 'bookName' ).value = '';
@@ -90,6 +94,9 @@ const loadData = function( e ) {
   window.onload = function() {
     const addBookbutton = document.getElementById( 'submit-btn' )
     addBookbutton.onclick = addBook
+    
+    const delBookbutton = document.getElementById( 'del-btn' )
+    delBookbutton.onclick = delBook
     
     loadData()
   }
