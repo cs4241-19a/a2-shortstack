@@ -88,7 +88,7 @@
             <form>
               <div class="form-group">
                 <label for="editName" class="col-form-label">Name</label>
-                <input id="editName" type="text" class="form-control" value="John" >
+                <input id="editName" type="text" class="form-control">
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4">
@@ -165,8 +165,9 @@
       let htmlCard = "";
           
       for (let i = 0; i < 3; i++) {
-        let stars = displayStars(favs[i].rating);
-        htmlCard += `<div class="card"> 
+        if (favs[i]){
+          let stars = displayStars(favs[i].rating);
+          htmlCard += `<div class="card"> 
                        <div class="card-body">
                         <h5 class="card-title">${favs[i].name}</h5>
                         <p class="card-text"><medium class="text-muted">${favs[i].category}</medium></p>
@@ -176,8 +177,9 @@
                     </div>
                     <div class="card-footer bg-transparent">${stars}</div>
                   </div>`;
+        }
       }
-
+      
       document.getElementById("favorites").innerHTML = htmlCard;
     };
     
