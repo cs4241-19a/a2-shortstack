@@ -6,13 +6,8 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-// const appdata = [
-//   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-//   { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-//   { 'model': 'ford', 'year': 1987, 'mpg': 14}
-// ]
-
-let scopeData = [];
+// let scopeData = [];
+let scopeData2 = [];
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -56,15 +51,27 @@ const handlePost = function( request, response ) {
     let hscp=horoscope(mon,day);
     let zdc=zodiac(yr);
 
-            // { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-    let newData="{ 'name': "+name+", 'bday': "+date+", 'zodiac': "+zdc+", 'horoscope': "+hscp+" },";
-    console.log(newData);
-    scopeData+=newData;
-    console.log('scopeData:');
-    console.log(scopeData);
+    // let newData="{ name: "
+    //     newData+=name
+    //     newData+=", bday: "
+    //     newData+=date
+    //     newData+=", zodiac: "
+    //     newData+=zdc
+    //     newData+=", horoscope: "
+    //     newData+=hscp+" },";
+    // console.log(newData);
+    // scopeData+=newData;
+    // console.log('scopeData:');
+    // console.log(scopeData);
+
+    let newData2={ 'name': name, 'bday': date, 'zodiac': zdc, 'horoscope': hscp }
+    console.log(newData2);
+    scopeData2.push(newData2);
+    console.log('scopeData2:');
+    console.log(scopeData2);
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end(newData)
+    response.end(JSON.stringify(newData2))
   })
 }
 

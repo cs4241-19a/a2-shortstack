@@ -13,11 +13,7 @@ const submit = function( e ) {
         body = JSON.stringify( json )
         //create json from fields
         //stringify json to send
-
-        console.log(json)
-
-    // setCookie(inputName.value, inputBDay.value, 1);
-
+        // console.log(json)
   //fetch sends the stringified json, body, via POST method
   //then handles the respose
   fetch( '/submit', {
@@ -27,9 +23,31 @@ const submit = function( e ) {
   .then( function( response ) {
     // do something with the reponse
     console.log( response )
-    let rtxt = response.text().then(function(text){
+    response.text().then(function(text){
       console.log(text)
       setCookie(inputName.value, text, 1);
+      let jOBJ = JSON.parse(text)
+      alert("congrats! you are a "+jOBJ['horoscope']+" in the year of the "+jOBJ['zodiac']+"!")
+      //cookie is set to the table value stored in the temporary server, now cached for a day
+    })
+  })
+
+  return false
+}
+
+const retreiveAll = function() {
+  fetch( '/retrieve', {
+    method:'GET',
+    body
+  })
+  .then( function( response ) {
+    console.log('retrieving')
+    // do something with the reponse
+    console.log( response )
+    response.text().then(function(text){
+      console.log(text)
+      setCookie(inputName.value, text, 1);
+      let jOBJ = JSON.parse(text)
       //cookie is set to the table value stored in the temporary server, now cached for a day
     })
   })
