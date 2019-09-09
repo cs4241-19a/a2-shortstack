@@ -42,14 +42,14 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    let data =  JSON.parse( dataString ) 
-    
-    let result = +0
-    let mod = ""
     let rollList = []
     
-    
     if(request.url == '/submit'){
+      let data =  JSON.parse( dataString ) 
+    
+      let result = +0
+      let mod = ""
+      
       for(let i = 0; i < data.numDice; i++){
         let roll = rollDice(data.typeDice)
         result += evalMod(roll, data.flatDice, data.addsub)
@@ -64,24 +64,29 @@ const handlePost = function( request, response ) {
                      'Modifier': data.flatDice,
                      'Result' : result
                     })
-      
-      
-    }
-    //need to change to be able to send a list of strings of the randomized dice
-    const json = {
-      'diceType': data.typeDice,
-      'diceNum': data.numDice,
-      'addsub': mod,
-      'diceMod': data.flatDice,
-      'result': result,
-      'rolls': rollList
-    }
-    const responseData = JSON.stringify(json)
+      const json = {
+        'diceType': data.typeDice,
+        'diceNum': data.numDice,
+        'addsub': mod,
+        'diceMod': data.flatDice,
+        'result': result,
+        'rolls': rollList
+      }
+      const responseData = JSON.stringify(json)
     
-    response.writeHead(200, responseData,  {'Content-Type': 'text/plain' })
-    response.write(responseData)
-    response.addTrailers({'Content-Type': 'application/json'})
-    response.end()
+      response.writeHead(200, responseData,  {'Content-Type': 'text/plain' })
+      response.write(responseData)
+      response.addTrailers({'Content-Type': 'application/json'})
+      response.end()
+    }
+    
+    if(request.url == '/clear'){
+      rollData.length = 0;
+      response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
+      response.write(JSON.stringify({message: "Clear Successful"}))
+      response.addTrailers({'Content-Type': 'application/json'})
+      response.end;
+    }
   })
 }
 
