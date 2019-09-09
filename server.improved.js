@@ -33,6 +33,11 @@ const handleGet = function( request, response ) {
   else if (request.url == '/getData'){
     sendData(response)
   }
+  else if(request.url == '/getHoro'){
+    response.writeHeader(200, "OK", {'Content-Type': 'plain/text'})
+    response.write(JSON.stringify(horoscopes))
+    response.end()
+  }
   else{
     sendFile( response, filename )
   }

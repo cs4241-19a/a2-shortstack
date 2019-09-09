@@ -185,11 +185,12 @@ function generateHoroscope(){
       editForm.style.display = 'none'
   }
   var horo = document.getElementById("horo");
-  if(horo !== null){
-      horo.style.display = 'none'
+  console.log(horo.style.display)
+  if(horo.style.display === 'none'){
+      horo.style.display = 'inline'
   }
   else{
-    horo.style.display = 'inline'
+    horo.style.display = 'none'
   }
   
   if(document.getElementById("resultsTable") !== null){
@@ -588,4 +589,22 @@ function signToImageURL(sign){
       return
     
   }
+}
+
+
+function doGeneration(){
+  fetch( '/getHoro', {
+    method:'GET',
+  })
+  .then( function( response ) {
+    console.log(response)
+    response.text()
+    .then(function(message){
+      let allData = JSON.parse(message)
+      console.log(allData)
+      var randHoro = Math.random() * (Object.keys(allData).length+1);
+      document.getElementById("horoResult").innerHTML = allData[randHoro].horoscope
+    })
+  })
+  return false
 }
