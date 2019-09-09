@@ -34,7 +34,7 @@
     <div class="navigationPane">
        <nav class="links">
          <a id="viewMatchHistory" >Match History</a>
-         <a id="table-link">View Orders</a>
+         <a id="viewRank">View Rank</a>
        </nav>
     </div>
     
@@ -76,6 +76,18 @@
     const matchHistory = document.getElementById( 'viewMatchHistory' );
     matchHistory.onclick = viewMH;
     
+    const matchHistory = document.getElementById( 'viewRank' );
+    matchHistory.onclick = viewRank;
+    
+  }
+    
+  const viewRank = function(){
+    let htmlDiv = document.getElementById('matchTable');
+    htmlDiv.innerHTML = '<tr>\n' +
+                '<th>Team #</th>\n' + 
+                 '<th>W-L-T</th>\n' +
+                '<th>WP</th>\n' +
+                '</tr>';
   }
     
   const reset = function(){
@@ -110,10 +122,16 @@
           newRow += (`<td> ${match.matchNumber} </td>\n`);
           newRow += (`<td> ${match.red1} </td>\n`);
           newRow += (`<td> ${match.blue1} </td>\n`);
-          if(match.redScore>){
+          if(match.redScore > match.blueScore){
           newRow += (`<td style="background-color:rgba(255, 0, 0,0.6)"> ${match.redScore} </td>\n`);
           newRow += (`<td id="blueScore{i}"> ${match.blueScore} </td>\n`);      
-        }
+          } else if(match.redScore < match.blueScore){
+          newRow += (`<td> ${match.redScore} </td>\n`);
+          newRow += (`<td style="background-color:rgba(0, 0, 255,0.4)"> ${match.blueScore} </td>\n`);      
+          } else {
+          newRow += (`<td> ${match.redScore} </td>\n`);
+          newRow += (`<td> ${match.blueScore} </td>\n`);      
+          }
           newRow += (`<td> <button id="edit-button-${i}" class="table-button" onclick="editMatch(${i})" >Edit</button> </td>\n`);
           newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
