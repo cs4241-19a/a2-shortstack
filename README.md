@@ -14,6 +14,7 @@ This is an app where users can log their travels. Users input their name, place 
     - Showing trips on Google Maps as pins 
     - Adding button to calculate total miles traveled
 
+**Note:** The video will take a while to load in the background the first time the server starts
 
 ## Technical Achievements
 - **Tech Achievement 1**: Custom CSS for Bootstrap to change the labels of input text boxes to be bigger and more visible
@@ -29,6 +30,7 @@ This is an app where users can log their travels. Users input their name, place 
 - **Tech Achievement 11**: Table content can be edited at any point and will right after update the database
 
 
+
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Used bootstrap to lay out the form in a visually pleasing way
 - **Design Achievement 2**: Added floating letters for the title text
@@ -41,4 +43,5 @@ This is an app where users can log their travels. Users input their name, place 
 - **Design Achievement 9**: User can click view places in new page button to go to a new page and only get the place table without other distractions. This can be used for accessibility or simply for cleaner printing of data
 - **Design Achievement 10**: The return trip check box used as a reminder for users to count that trip twice
 - **Design Achievement 11**: Used flexbox to arrange many elements in the form including the primary and secondary buttons, input fields and radio buttons
-- **Design Achievement 12**: Secondary buttons adjust dynamically in size on window size change independently of the bootstrap css
+
+https://petrakumi12-a2-shortstack.glitch.me/
