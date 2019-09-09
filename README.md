@@ -12,7 +12,8 @@ THe "Computer Health" section shows your PC's health based on a simple algorithm
 
 My website implements my initial goals well. In the future I want to calculate computer health based on
 a better algorithm. I also would like to improve the computer health section style to make it more pleasing. 
-I could also add more statistics. Lastly, I want to add a button that can populate the fields automatically 
+I could also add more statistics. I should also force a certain kind of input, and not allow incorrect
+entries. Lastly, I want to add a button that can populate the fields automatically 
 (by getting the current fps, cpu temp, and gpu temp).
 
 http://a2-andrewrm98.glitch.me
