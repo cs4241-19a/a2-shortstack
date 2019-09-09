@@ -63,21 +63,23 @@ const handlePost = function( request, response ) {
                        'moves': obj.guesscount,
                        'medal': obj.medal}
       playerData.push(newEntry)
+      
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
+      response.write("You got a " + medal + " medal!")
+      response.end()
+      console.log()
     }
     
     else {
       // send color & colorNpos
       var clues = {'color': color,
                   'colornpos': colorNpos}
-      var cbody = JSON.stringify( clues )
+      var cbody = JSON.stringify(clues)
       
-      response.writeHead(200, "OK", { 'Content-Type': 'application/json' })
-      response.bod
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
+      response.json(cbody)
+      response.end()
     }
-                      
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
   })
 }
 
