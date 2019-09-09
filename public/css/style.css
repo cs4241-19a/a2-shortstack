@@ -119,6 +119,11 @@ button:hover {
     color: white;
 }
 
+#success-pic {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .img-text {
     color: white;
     width: 100%;
@@ -155,7 +160,7 @@ button:hover {
     display: none;
     flex-direction: column;
     height: 50%;
-    justify-content: space-around;
+    align-items: center;
 }
 
 #order-table {
