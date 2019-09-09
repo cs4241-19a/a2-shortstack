@@ -1,1 +1,211 @@
 /*Style your own assignment! This is fun! */
+
+body {
+  margin: 0;
+  font-family: 'Manjari', sans-serif;;
+  font-weight: 300;
+  font-size: 1.5rem;
+  height: 100vh;
+  background: linear-gradient(135deg, #6F83BD 0%, #6F83BD 5%, transparent),
+              repeating-linear-gradient(45deg, #6B8AA7 0%,
+                                        #6B8AA7 5%, 
+                                        transparent 5%, transparent 10%, #6B8AA7 10%, #6B8AA7 11%, transparent 11%, transparent 13%),
+              #9BC8F2 repeating-linear-gradient(-45deg, #7293B3 0%,
+                                       #7293B3 5%,
+                                       transparent 5%, transparent 10%);  
+  display: grid;
+  grid:
+    "header header header header" auto
+    "...... lists  active ......" auto /
+    1fr minmax(100px, 300px) minmax(250px, 500px) 1fr;
+}
+
+.title {
+  grid-area: header;
+  text-align: center;
+  font-size: 75px;
+  font-weight: 800;
+  width: 100%;
+  height: 25vh;
+  color: #black;
+  letter-spacing: 1.5px;
+  margin: 0.25em 0 0 0;
+}
+
+form {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 25px;
+  color: #EAF28F;
+  font-weight: 500;
+}
+
+.btn {
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  width: 25px;
+  font-size: 2rem;
+
+}
+
+.btn:hover {
+  opacity: 0.5;
+  
+}
+
+.task-list {
+  font-size: 1.2rem;
+  line-height: 1.7;
+}
+
+.new {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  border-bottom: 1px solid #f4f4f4;
+  font-size: inherit;
+  outline: none;
+}
+
+.new:focus {
+  border-bottom-width: 3px;
+  color: #EAF28F;
+}
+
+.new:focus::placeholder {
+  opacity: 0.2;
+}
+
+.active-list {
+  font-weight: 900;
+}
+
+.todo-list {
+  grid-area: active;
+  height: 50vh;
+  background: #304559;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px #6A89A6;
+}
+
+.todo-header {
+  padding-left: 1em;
+  padding-right: 1em;
+  color: #EAF28F;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-body {
+  padding: 0 0 .25em 1.25em;
+/*   position: relative; */
+}
+
+.all-tasks {
+    display: inline-block;
+    position: absolute;
+    top: 25%;
+    left: 10%;
+    right: 10%;
+  width: relative;
+  height: relative;
+  min-height: 500px;
+  background: #304559;
+  border-radius: 15px;
+  box-shadow: 10px 5px 5px #6A89A6;
+}
+
+.task-list-title {
+  text-align: center;
+  color: #EAF28F;
+}
+
+.task-list {
+  margin-left: 1em;
+  color: #EAF28F;
+}
+
+.list-name {
+  cursor: pointer;
+}
+
+.list-name:hover {
+  opacity: 50%;
+}
+
+.results {
+  border-collapse: collapse;
+  margin: 1em 0;  
+  font-size: 0.9em;
+  min-width: 100%;
+}
+
+.results thead tr{
+  background: #EAF28F;
+  font-weight: 700;
+  text-align: left;
+  border-left: 7px solid;
+  border-right: 7px solid;
+}
+
+.results th, .results td {
+  padding: 15px 20px;
+}
+
+.results tbody tr{
+  border-bottom: 2px solid black;
+  color: whitesmoke;
+}
+
+.results tbody tr:nth-of-type(even){
+  background: #6A89A6;
+}
+
+
+/* 
+.task-count {
+  font-size: 1rem;
+}
+
+ [type="checkbox"] {
+  position: absolute;
+} 
+
+.task label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.25em;
+  position: relative;
+} */
+/* 
+.task::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.5em;
+  height: 3px;
+  background: #000000;
+} */
+
+/* .task {
+  position: relative;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 0.50em;
+  height: 0.50em;
+  margin-right:.5em;
+  cursor: pointer;
+  border: 3px solid #f4f4f4;
+   border-radius: 10px;
+} 
+
+[type="checkbox"]:checked + label {
+  opacity:0.5;
+} */
