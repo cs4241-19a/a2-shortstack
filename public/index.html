@@ -61,14 +61,15 @@
     
   </body>
   <script>
+    
     const displayStars = function(rating) {
       let div = `<div class="stars">`;
       
       for(let i = 0; i < rating; i++){
         div += `<i class="fas fa-star"></i>`
       }
-      div += 
-      
+      div += `</div>`
+            
       return div;
     }
     
@@ -80,6 +81,7 @@
       let htmlCard = "";
           
       for (let i = 0; i < 3; i++) {
+        let stars = displayStars(favs[i].rating);
         htmlCard += `<div class="card"> 
                        <div class="card-body">
                         <h5 class="card-title">${favs[i].name}</h5>
@@ -87,7 +89,30 @@
                         <p class="card-text">$${favs[i].usd} - USD</p>
                         <p class="card-text">$${favs[i].eur} - EURO</p>
                     </div>
-                    <div class="card-footer bg-transparent">${displayStars()}</div>
+                    <div class="card-footer bg-transparent">${stars}</div>
+                  </div>`;
+      }
+
+      document.getElementById("favorites").innerHTML = htmlCard;
+    };
+    
+    const loadAllResults = async function() {
+      const resp = await fetch('/items', { method: 'GET' });
+      const data = await resp.json();
+      const favs = data.data;
+      
+      let htmlTable = "";
+          
+      for (let i = 0; i < favs.length ; i++) {
+        let stars = displayStars(favs[i].rating);
+        htmlCard += `<div class="card"> 
+                       <div class="card-body">
+                        <h5 class="card-title">${favs[i].name}</h5>
+                        <p class="card-text"><small class="text-muted">${favs[i].category}</small></p>
+                        <p class="card-text">$${favs[i].usd} - USD</p>
+                        <p class="card-text">$${favs[i].eur} - EURO</p>
+                    </div>
+                    <div class="card-footer bg-transparent">${stars}</div>
                   </div>`;
       }
 

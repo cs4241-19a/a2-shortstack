@@ -1,4 +1,7 @@
 /*Style your own assignment! This is fun! */
+body, html {
+    height: 100%;
+}
 
 .icon {
   margin-top: 20px;
@@ -21,8 +24,8 @@
   font-family: 'Roboto', sans-serif;
 }
 
-body, html {
-    height: 100%;
+.stars {
+  color: 	#FFD700;
 }
 
 /* The hero image */
