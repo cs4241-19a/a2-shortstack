@@ -1,0 +1,34 @@
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div class = "centralize">
+      <i class="fa fa-spinner w3-spin" style="font-size:400px; margin: 30px"></i>
+    </div>
+    <div class ="centralize">
+      <h1>Which Programming Language are <b><u> You?</u></b></h1>
+    </div>
+    <div class="stack-btns">
+      <button type="button" onclick="openPage('quiz.html')">Take the Quiz</button>
+      <button type="button" onclick="openPage('scores.html')">See other's results</button>
+    </div>
+  </body>
+  <script>
+    function openPage(page){
+      let link = document.createElement('a');
+      link.href = "/"+ page;
+      link.click();
+    }
+    
+  </script>
+</html>

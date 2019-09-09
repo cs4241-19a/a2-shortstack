@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+  <div>
+    <nav id="headbar">
+      <div>
+        <button id = "goback" type="button" onclick="window.location.href='index.html'">Back</button>
+        <h2>
+          Programming Language Quiz
+        </h2>
+        <button id = "submissionbtn" type="button" onclick="tallyScore()" >Answer Below</button>
+      </div>
+    </nav>
+    
+  <form action="" id = "questPage">
+    <p>
+      Which programming language are you? Answer the questions below, then click submit to find out!
+    </p>
+  <div id = "namePicker" class = "picker">
+    <label for="namer" style = "padding-top: 5px">Please Input your Name:</label>
+    <input type="text" id="namer" class="form-control" onkeyup="checkAll()">
+  </div>
+  <div id = "bdayPicker" class ="picker">
+    <label for="dp" style = "padding-top: 5px">Please Input your Birthday:</label>
+    <input type="date" id="dp" class="form-control" onchange="questionsAppear(); checkAll()">
+  </div>
+  <div id = "questions" class ="na">
+  <div class = "question">
+    <h3>
+      Question 1
+    </h3>
+    <p>
+      What is your favorite color?
+    </p>
+    <ul>
+      <li class = "html racket scala" style = "color: red">Red</li>
+      <li class = "c php python racket sql" style = "color: blue">Blue</li>
+      <li class = "js python" style = "color: yellow">Yellow</li>
+      <li class = "java sql" style = "color: orange">Orange</li>
+    </ul>
+  </div>
+    <div class = "question">
+    <h3>
+      Question 2
+    </h3>
+    <p>
+      What is your favorite kind of food?
+    </p>
+    <ul>
+      <li class = "c sql python">Meats</li>
+      <li class = "java php">Fruits & Veggies</li>
+      <li class = "html js">Deserts</li>
+      <li class = "scala racket">Bleach</li>
+    </ul>
+  </div>
+    <div class = "question">
+    <h3>
+      Question 3
+    </h3>
+    <p>
+      Your 8th-Grade Teacher wants you to do a book report. Is your presentation....
+    </p>
+    <ul>
+      <li class = "html js">Flashy! Colors and pictures will say more than 100 words.</li>
+      <li class = "c racket python">Reread an excerpt in exact detail, then everyone will at least think you did the reading</li>
+      <li class = "java scala">Focus on big themes, no one wants to hear you reread the entire book</li>
+      <li class = "php sql">Reading?? Who does that? I'll sparknotes it and BS the report</li>
+    </ul>
+  </div>
+    <div class = "question">
+    <h3>
+      Question 4
+    </h3>
+    <p>
+      What do you like to do on a Saturday night?
+    </p>
+    <ul>
+      <li class ="c sql">Watch a movie</li>
+      <li class ="html java scala">Hit the club</li>
+      <li class ="js python">Gaming with Friends</li>
+      <li class ="php racket">Camping in the woods</li>
+    </ul>
+  </div>
+    <div class = "question">
+    <h3>
+      Question 5
+    </h3>
+    <p>
+      If you had to pick a Liberal Arts major, it would be...
+    </p>
+    <ul>
+      <li class ="python js">English</li>
+      <li class ="sql java">History</li>
+      <li class = "html scala">Music</li>
+      <li class ="c php racket">Psychology</li>
+    </ul>
+  </div>
+    <div class = "question">
+    <h3>
+      Question 6
+    </h3>
+    <p>
+      Which best describes your work ethic?
+    </p>
+    <ul>
+      <li class ="js python php">I'll cross that bridge when I come to it</li>
+      <li class ="java c">Everything must be carefully planned and designed to ensure success</li>
+      <li class ="sql html">I'll just ask someone that's done the work before. I don't even need to understand it.</li>
+      <li class ="racket scala">Just get the work done as quickly as possible.</li>
+    </ul>
+  </div>
+    <div class = "question">
+    <h3>
+      Question 7
+    </h3>
+    <p>  
+      Which one of the Beatles is your favorite?
+    </p>
+    <ul>
+      <li class ="java html">John Lennon</li>
+      <li class = "js python">Paul McCartney</li>
+      <li class = "scala c">George Harrison</li>
+      <li class = "php racket sql">Ringo Starr</li>
+    </ul>
+  </div>
+    <div class = "question">
+    <h3>
+      Question 8
+    </h3>
+    <p>  
+      What's your favorite Season?
+    </p>
+    <ul>
+      <li class="sql html c">Spring</li>
+      <li class="php js python">Summer</li>
+      <li class="java racket">Fall</li>
+      <li class="scala">Winter</li>
+    </ul>
+  </div>
+    <div class = "question">
+    <h3>
+      Question 9
+    </h3>
+    <p>  
+      Which emoji jumps out at you the most?
+    </p>
+    <ul class = "emojis">
+      <li class="racket"><img src="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fcheese.png?v=1567896995504"></li>
+      <li class="php"><img src="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fcrab.png?v=1567963074531"></li>
+      <li class="js"><img src ="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fhand.png?v=1567963080036"></li>
+      <li class="java"><img src ="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fhotdog.png?v=1567963085052"></li>
+      <li class="c"><img src="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Flion.png?v=1567963089484"></li>
+      <li class="scala"><img src="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fmoney.png?v=1567963092871"></li>
+      <li class="sql"><img src="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Frobot.png?v=1567963098104"></li>
+      <li class="python"><img src="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fturkey.png?v=1567963105570"></li>
+      <li class="html"><img src="https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Funicorn.png?v=1567963109935"></li>
+    </ul>
+  </div>
+  </div>
+
+</form>
+    <div id ="resPage" class = "noflex-center na">
+      <h2 id = "reshead">
+      </h2>
+      <div id ="resimg">
+        
+      </div>
+      <p id = "restext">
+        
+      </p>
+      <a href = "scores.html">Click here to see other people's results</a>
+    </div>
+</div>
+</body>
+<script>
+  
+  
+  $("li").click(function(){
+  let parent = $(this).parent();
+  parent.parent().addClass('answered');
+  parent.children().removeClass('selected-item');
+  $(this).addClass('selected-item');
+  checkAll();
+  });
+  
+  //makes sure all questions are answered before submitting
+  function checkAll(){
+    let submissionbtn = $('#submissionbtn');
+    if(finalcheck()){
+      submissionbtn.removeAttr("disabled");
+      submissionbtn.addClass("glowbtn").html("Submit");
+    }
+    else{
+      submissionbtn.attr("disabled");
+      submissionbtn.removeClass("glowbtn").html("Answer Below");
+    }
+  }
+  
+  //have other questions appear
+  function questionsAppear(){
+    let questions = $('#questions');
+    questions.addClass('w3-animate-zoom');
+    questions.removeClass('na');
+  }
+
+  //Uses the birthdate to settle ties
+  function getDateTb(langs){
+    console.log('langs', langs);
+    let date = document.getElementById('dp').value || undefined;
+    if(!date){
+      return langs[0];
+    }else{
+      let month = parseInt(date.split('-')[1]);
+      console.log('d, m', date, month);
+      let counter = 0;
+      for(let i=0; i<month; i++){
+        counter  = i % langs.length;  
+      }
+      return langs[counter];
+    }
+    
+  }
+  
+  //checks to see all questions are answered
+  function finalcheck(){
+    //check question status
+    let questions = document.getElementsByClassName('question');
+    for(let i=0; i<questions.length; i++){
+      if(!questions[i].classList.contains('answered')){
+        return false;
+      }
+    }
+    return true && document.getElementById('dp').value && document.getElementById('namer').value;
+  }
+  
+  //tallys the score and returns the result
+  function tallyScore(){
+    let scoreSheet = {
+      c: 0,
+      java: 0,
+      js: 0,
+      html: 0,
+      php: 0, 
+      scala: 0,
+      sql: 0,
+      python: 0,
+      racket: 0
+    }
+    let answers = document.getElementsByClassName('selected-item');
+    for(let i=0; i<answers.length; i++){
+      let cl = answers[i].classList;
+      console.log(cl);
+      for(let j=0; j<cl.length; j++){
+        if(cl[j] != 'selected-item')
+          scoreSheet[cl[j]] = scoreSheet[cl[j]] + 1;
+      }
+    }
+    
+    console.log(scoreSheet);
+    
+    let max  = {score: -1, langs: []}
+    for (let key in scoreSheet) {
+      console.log(key);
+      if(scoreSheet.hasOwnProperty(key)) {
+          if(scoreSheet[key]  == max.score){
+            console.log('score added');
+            max.langs.push(key);
+          }
+          if(scoreSheet[key] > max.score){
+            console.log('score updated');
+            max.score = scoreSheet[key];
+            max.langs = [];
+            max.langs.push(key);
+          }
+      }
+    }
+    var finalResult = max.langs.length>1? getDateTb(max.langs) : max.langs[0];
+    console.log('final', finalResult);
+    getResultsFor(finalResult);
+    submit();
+  }
+  
+  //sends post request to the server
+  function submit() {       
+    const input = document.querySelector( '#yourname' ),
+          json = { yourname: 'test-value' },
+          body = JSON.stringify( json )
+
+    fetch( '/submit', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the reponse 
+      console.log( response )
+    })
+
+    return false
+  }
+  
+  function getResultsFor(result){
+    let selName = document.getElementById('namer').value;
+    let json = { name: selName, language: result }
+    let body = JSON.stringify( json )
+
+    fetch( '/getLangMembers', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      return response.text()
+    })
+    .then((text) => sendPopup(result, text))
+
+    return false
+  }
+  
+  function sendPopup(result, pwg){
+    console.log(pwg);
+    let tr = getObjImg(result)
+    let people = JSON.parse(pwg).vals;
+    $('#restext').html("Other people who got "+ tr.name + ": "+people.join(', '));
+    $('#resPage').removeClass('na');
+    $('#questPage').addClass('na');
+    $('#headbar').addClass('na');
+    $('#reshead').html("You are " + tr.name +"!");
+    let imgSlot = document.getElementById('resimg');
+    let img = document.createElement('img');
+    img.src = tr.img;
+    img.classList.add('resimg');
+    imgSlot.appendChild(img);
+  }
+
+  function getObjImg(lang){
+    var tr = {}
+    switch(lang){
+      case 'c':
+        tr.name = "C/C++";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fc.png?v=1567996550072";
+        break;
+        
+      case 'java':
+        tr.name = "Java";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fjava.png?v=1567996559614";
+        break;
+        
+      case 'js':
+        tr.name = "JavaScript";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fjs.png?v=1567996564224";
+        break;
+        
+      case 'php':
+        tr.name = "PHP";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fphp.png?v=1567996568640";
+        break;
+        
+      case 'sql':
+        tr.name = "SQL";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fsql.png?v=1567996582461";
+        break;
+        
+      case 'python':
+        tr.name = "Python";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fpython.png?v=1567996571804";
+        break;
+        
+      case 'racket':
+        tr.name = "Racket";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fracket.png?v=1567996575142";
+        break;
+        
+      case 'scala':
+        tr.name = "Scala";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fscala.png?v=1567996579109";
+        break;
+        
+      case 'html':
+        tr.name = "HTML";
+        tr.img = "https://cdn.glitch.com/4838c614-590f-49bf-8e61-4675c10b61db%2Fhtml.png?v=1567996553888";
+        break;
+        
+    }  
+    return tr;
+  }
+  </script>
+</html>
