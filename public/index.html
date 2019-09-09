@@ -37,21 +37,30 @@
           <h3>Rice Bowl</h3>
           <form action="/">
             <div class="form-input">
-              <label for="name" class="form-label">Your name</label>
-              <input type='text' id='name' required>
+              <label for="fst-name" class="form-label"> First Name</label>
+              <input type="text" id="fst-name" required>
+              
+              <br><br>
+              
+              <label for="lst-name" class="form-label"> Last Name</label>
+              <input type="text" id="lst-name" required>
             </div>
 
             <div class="form-input text-input">
-              <label for="dream" class="form-label">Share your dream with us</label>
-              <textarea id='dream' required></textarea>
+              <label for="order-name" class="form-label">Name of your Order</label>
+              <input type="text" id="order-name" required>
             </div>
 
             <div class="form-input" role="radiogroup" aria-label="pork-pieces">
-              <p class="form-label" id="pork-label">How much pork?</p>
-              <input type="radio" role="radio" checked id="3pork" name="pork" value="3">
-              <label for="3pork">3 pieces</label>
-              <input type="radio" role="radio" id="5pork" name="pork" value="5">
-              <label for="5pork">5 pieces</label>
+              <p class="form-label" id="grain">Grain</p>
+              <input type="radio" role="radio" checked id="brown_rice" name="grain" value="1">             
+              <label for="brown_rice">Brown Rice</label>
+              
+              <input type="radio" role="radio" id="whte_rice" name="grain" value="2">
+              <label for="white_rice">White Rice</label>
+              
+              <input type="radio" role="radio" id="quinoa_brown_rice" name="grain" value="3">
+              <label for="quinoa_brown_rice">Quinoa & Brown Rice</label>
             </div>
 
             <div class="form-input" role="radiogroup" aria-label="garlic-level">
