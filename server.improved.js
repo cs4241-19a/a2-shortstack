@@ -6,9 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-var playerData = [
-  {'name': "Javier", 'moves': 0, 'medal': "Platinum"}
-]
+var playerData = [["Javier", 0, "Platinum"]]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -35,7 +33,7 @@ const handlePost = function( request, response ) {
   let dataString = ''
 
   request.on( 'data', function( data ) {
-      dataString += data 
+      dataString += playerData 
   })
 
   request.on( 'end', function() {
@@ -64,7 +62,7 @@ const handlePost = function( request, response ) {
                        'medal': obj.medal}
       playerData.push(newEntry)
       
-      response.writeHead(200, "OK", { 'Content-Type': 'application/json' })
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
       response.end("You got a " + medal + " medal!")
     }
     
@@ -74,7 +72,7 @@ const handlePost = function( request, response ) {
                   'colornpos': colorNpos}
       var cbody = JSON.stringify(clues)
       
-      response.writeHead(200, "OK", { 'Content-Type': 'application/json' })
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
       response.end(cbody)
     }
   })
