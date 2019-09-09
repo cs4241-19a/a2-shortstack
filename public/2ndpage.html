@@ -55,8 +55,9 @@
 <script>
 
     const updateEntry = function (row) {
+        let key=localStorage.getItem('token');
         const newGrade = document.querySelector('#updateInput'),
-            json={updateInput:newGrade.value},
+            json={token:key, updateInput:newGrade.value},
             body = JSON.stringify(json);
         fetch('/submit',{
             method:'POST',
@@ -75,18 +76,32 @@
                     })
                 }
         )
-    }
-
-
+    };
 
 
       const deleteEntry = function (n){
-          const rowNum={rowNum:n};
-          fetch('/delete',{
+          let key=localStorage.getItem('token');
+          const newGrade = document.querySelector('#curGrade'),
+              json={token:key, updateInput:newGrade.value},
+              body = JSON.stringify(json);
+          fetch('/submit',{
               method:'POST',
-              body:JSON.stringify({rowNum:n}),
-          });
-          fillTable();
+              body
+          })
+              .then(function (response) {
+                  console.log("post responses:",response);
+                  return false;
+              }).then(
+              function () {
+                  fetch('/receive')
+                      .then(function (response) {
+                          return response.json();
+                      }).then(function (response) {
+                      document.getElementById('curGrade').innerText=(JSON.stringify(response[row].currentGrade)).replace(/^"(.*)"$/, '$1');
+                  })
+              }
+          )
+
       };
 
 
