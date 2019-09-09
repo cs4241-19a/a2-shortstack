@@ -36,7 +36,7 @@ function bookingsAtDateTime(date, time, response) {
     }
     let pendingOut = [];
     rows.forEach((row) => {
-      let result = {username: row.username, seat: row.seat, date: row.date, time: row.time};
+      let result = {username: row.username, seat: row.seat, date: row.date, time: row.time, email: row.email, id: row.id};
       pendingOut.push(result);
     });
     response.writeHead( 200, "OK", {'Content-Type': 'application/json' });
@@ -44,8 +44,27 @@ function bookingsAtDateTime(date, time, response) {
   });
 }
 
+const delBooking = function(response, id) {
+  if (id == '' || id == undefined) { return; }
+  let sql = "DELETE FROM reservations WHERE id=" + id + ";";
+  
+  console.log("Running DB Query: " + sql);
+
+  db.all(sql, [], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    rows.forEach((row) => {
+      console.log(row.name);
+    });
+  });
+  response.writeHead( 200, "OK", {'Content-Type': 'application/json' });
+  response.end("SUCCESS (Removed ID:" + id + ")");
+}
+
 const addBooking = function(username, seat, date, time) {
-  let sql = "INSERT INTO reservations (username, seat, date, time) VALUES ('" + username + "', '" + seat + "', '" + date + "', '" + time + "');";
+  if (username == '' || seat == '' || date == '') { return; }
+  let sql = "INSERT INTO reservations (username, seat, date, time, email) VALUES ('" + username + "', '" + seat + "', '" + date + "', '" + time + "', '" + username +"@wpi.edu');";
   
   console.log("Running DB Query: " + sql);
 
@@ -67,11 +86,18 @@ const handleGet = function( request, response ) {
   if( url.parse(request.url).pathname === '/' ) {
     sendFile( response, dir + '/view.html' )
   }else if( url.parse(request.url).pathname === '/api/avail' ) {
-    sendFile( response, dir + '/view.html' )
     const date = qs.parse(parsedUrl.query).date;
     const time = qs.parse(parsedUrl.query).time;
     if (date !== undefined && time !== undefined) {
       bookingsAtDateTime(date, time, response);
+    }
+    else {
+      sendFile(response, '/api404.html')
+    }
+  }else if( url.parse(request.url).pathname === '/api/del' ) {
+    const id = qs.parse(parsedUrl.query).id;
+    if (id !== undefined) {
+      delBooking(response, id);
     }
     else {
       sendFile(response, '/api404.html')

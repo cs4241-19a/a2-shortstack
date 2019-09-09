@@ -3,3 +3,10 @@
 body {
     background-color: lightblue;
 }
+
+.seat {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    border: 1px solid black;
+}
