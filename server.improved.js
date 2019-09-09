@@ -16,7 +16,8 @@ const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
+    console.log("this was a post")
+    //handlePost( request, response ) 
   }
 })
 
@@ -33,6 +34,7 @@ const handleGet = function( request, response ) {
   }
 };
 
+/*
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -65,6 +67,7 @@ const handlePost = function( request, response ) {
     }
   })
 };
+*/
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 

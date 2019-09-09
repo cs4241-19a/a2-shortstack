@@ -44,8 +44,6 @@ const displayData = function ( data ) {
 
 // Fetch the appdata and then call the display function
 const loadData = function( e ) {
-  e.preventDefault();
-  console.log("we are really trying")
   fetch( '/books', {
     method:'GET',
   })
@@ -86,14 +84,11 @@ const loadData = function( e ) {
       document.getElementById('comments').value = '';
       document.getElementById('rating').value = '';
     };
-  
-    const addBookbutton = document.querySelector( 'submit-btn' )
-    addBookbutton.onclick = console.log("are you kidding me")
-    //addBookbutton.onclick = addBook
-
-    const loadBookData = document.querySelector('load-btn')
-    loadBookData.onclick = console.log("BRUH")
 
   window.onload = function() {
+    const addBookbutton = document.getElementById( 'submit-btn' )
+    addBookbutton.onclick = console.log("are you kidding me")
+    //addBookbutton.onclick = addBook
     
+    loadData()
   }
