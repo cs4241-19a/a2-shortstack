@@ -1,14 +1,16 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Yume Wo Katare</title>
+    <title>Restaurant</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Oregano:400,400i|Raleway&display=swap" rel="stylesheet">
   </head>
+  
   <body>
     <div class="container">
+      
       <header>
         <img src="/images/rice_bowl_header.jpg" id="rice-bowl" alt="4 bowls of different toppings">
         <div class="img-text">
@@ -16,21 +18,24 @@
           <h2>Create your own rice bowl!</h2>
         </div>
       </header>
+      
       <main>
         <div class="navigationPane">
           <nav class="links">
-            <a id="form-link" aria-label="link to order form">Place an Order</a>
-            <a id="table-link" aria-label="link to order table">View Orders</a>
+            <button><a id="form-link" aria-label="link to order form">Place an Order</a></button>
+            <button><a id="table-link" aria-label="link to order table">View Orders</a></button>
           </nav>
         </div>
-        <div id="error">
+        
+        <div id="error-msg">
           <i class="fa  fa-exclamation-circle"></i>
-          Please complete the form.
+          You are missing some required fields.
         </div>
-        <!--    ORDER FORM    -->
+        
+        <!-- PLACE AN ORDER -->
         <div id="order-form">
-          <h3>order your ramen</h3>
-          <form action="">
+          <h3>Rice Bowl</h3>
+          <form action="/">
             <div class="form-input">
               <label for="name" class="form-label">Your name</label>
               <input type='text' id='name' required>
