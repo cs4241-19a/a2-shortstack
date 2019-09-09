@@ -1,1 +1,19 @@
-/*Style your own assignment! This is fun! */
+body, input{
+  background:tan;
+}
+
+table, th, td{
+  border: 1px solid black;
+}
+
+button:hover{
+  font-weight:bold;
+}
+
+.center{
+  text-align: center;
+}
+
+.color{
+  background-color:grey;
+}
