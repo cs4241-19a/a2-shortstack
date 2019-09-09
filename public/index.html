@@ -141,7 +141,7 @@
     var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :first-child[index]')
     var i;
     var indices = [];
-    for(i = pointer.hasChildNodes(); i >= 0; i--){
+    for(i = pointer.hasChildNodes()-1; i >= 0; i--){
       if(pointerChild !== null) {
         console.log(pointerChild.getAttribute('index'))
         indices.push(pointerChild.getAttribute('index'))
@@ -169,8 +169,8 @@
   
   
   const createEvent = function(index, day, task, time){
+      console.log("createEvent")
       var dayNum = dayFinder(day)
-      console.log(day)
       var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
       var timeNode = document.createTextNode(time)
       var textNode = document.createTextNode(task)
@@ -181,7 +181,6 @@
       divNode.appendChild(timeNode)
       divNode.appendChild(breakNode1)
       divNode.appendChild(textNode)
-      console.log(dayCol)
 
       dayCol.appendChild(divNode)
       dayCol.appendChild(breakNode)

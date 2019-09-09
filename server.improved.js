@@ -53,14 +53,10 @@ const handlePost = function( request, response ) {
         response.end()
         break
       case '/delete':
-
-        //var index = info.day+info.task+info.time;
-        //var split = data.indexOf(delEvent)
-        var int
-        for(int = 0; int < info.length; int++) {
-          var split = data.findIndex(x => x.index === info[int])
+        while(info.length >= 0) {
+          var split = data.findIndex(x => x.index === info[0])
           data.splice(split, 1)
-          info.splice(int, 1)
+          info.shift()
         }
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
