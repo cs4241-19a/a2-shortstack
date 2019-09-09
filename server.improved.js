@@ -27,12 +27,16 @@ const server = http.createServer(function (request, response) {
         handleGet(request, response)
     } else if (request.method === 'POST') { //could add more functions like delete here, but could also have just POST and have the urls to determine what to do
         handlePost(request, response)
+    } else if (request.method === 'DELETE') {
+        handleDelete(request, response)
+    } else if (request.method === 'PUT') {
+        handlePut(request, response)
     }
 });
 
 //use handleGet to display data structure (server) in UI (server to UI)
 const handleGet = function (request, response) {
-    const filename = dir + request.url.slice(1)
+    const filename = dir + request.url.slice(1);
     if (request.url === '/') {
         sendFile(response, 'public/index.html') //do sendFile for javascript file
     } else if (request.url === '/getdata') {
@@ -82,10 +86,39 @@ const handlePost = function (request, response) {
         }
         console.log(data.finalExam);
         writeUserData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
-        updateGrade(data.token,data.currentGrade);
         removeGrade(data.token, data.currentGrade);
+        updateGrade(data.token,data.currentGrade);
     })
 };
+
+/*
+const handleDelete = function (request, response) {
+    console.log("DELETE: ", request.url);
+    keyRef.child(request.url).set({});
+    response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+    response.end("OK");
+};
+
+const handlePut = function (request, response) {
+    console.log("PUT");
+    let dataString = '';
+    request.on('data', function (data) {
+        dataString += data
+    });
+    request.on('end', function () {
+        let jsonObj = JSON.parse(dataString);
+        let key = jsonObj['uid-val'] + '/' + jsonObj['entry-key'];
+        let numWords = jsonObj["entry-post"].split(" ").length;
+        jsonObj["entry-words"] = numWords;
+        jsonObj["entry-map"] = wordFreq(jsonObj["entry-post"]);
+        delete jsonObj['entry-key'];
+        // Then post to firebase!
+        ref.child(key).update(jsonObj);
+        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+        response.end("OK")
+    });
+};
+*/
 
 const sendData = function (response, gradeDataset) {
     const type = mime.getType(gradeDataset);
@@ -123,16 +156,16 @@ function updateGrade(ref, currentGrade) {
     let tokenRef = keyRef.child(ref);
     tokenRef.update({
         currentGrade: currentGrade
-})
+    })
 }
 
 function removeGrade(ref, currentGrade) {
     let tokenRef = keyRef.child(ref);
     let gradeRef = tokenRef.child(currentGrade);
-    gradeRef.remove().then(function() {
+    gradeRef.remove().then(function () {
         console.log("Remove succeeded.")
     })
-        .catch(function(error) {
+        .catch(function (error) {
             console.log("Remove failed: " + error.message)
         });
 }
