@@ -34,11 +34,10 @@ body {
 }
 
 .boardsection:first-child {
-    border-right: 5px solid white;
-
+  border-top: 3px solid white;
   border-left: 5px solid white;
   border-right: 5px solid white;
-
+  border-bottom: 3px solid white;
 }
 
 
