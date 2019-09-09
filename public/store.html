@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<section class="hero">
+    <header class="logo">
+        <div class="banner-content">
+            <a href="index.html" style="color: #FFFFFF;text-decoration: none;">Home
+            </a>
+            <a href="cart.html" style="color: #FFFFFF;text-decoration: none;">Cart
+            </a>
+            <a href="login.html" style="color: #FFFFFF;text-decoration: none;">Login
+            </a>
+        </div>
+    </header>
+    <div id="cartnotification">
+    </div>
+    <div class="products" id="products">
+    </div>
+    <p style="text-align:center">
+        <a href="https://etsy.com/shop/feyfoundry">
+            <img src="images/logo.png" alt="Fey Foundry" style="width:500px;height:500px;">
+        </a>
+    </p>
+</section>
+
+
+</body>
+<script>
+    let prodname;
+    $.getJSON("json/products.json", function(json) {
+        $.each(json, function(i, item) {
+            let product = document.createElement('div');
+            let title = document.createElement('h2');
+            let image = document.createElement('img');
+            let description = document.createElement('p');
+            let addtocart = document.createElement('button');
+            addtocart.id = item["id"];
+            addtocart.innerText = "Add to cart";
+            product.className += "card fat";
+            title.innerText = item["title"];
+            image.src = item["img"];
+            description.innerText = item["description"] + "\n";
+            description.className += "card-body";
+            product.appendChild(title);
+            product.appendChild(image);
+            product.appendChild(description);
+            product.appendChild(addtocart);
+            document.getElementById('products').appendChild(product);
+        });
+    });
+
+
+    const submit = function( e ) {
+        // prevent default form action from being carried out
+        e.preventDefault();
+
+        $.getJSON("json/products.json", function(json) {
+            const body = JSON.stringify(json["prodname"]);
+            fetch( '/submit', {
+                method:'POST',
+                body
+            })
+                .then( function( response ) {
+                    document.getElementById('cartnotification').style.display = "flex";
+                    document.getElementById('cartnotification').innerText = "Added product " + response["name"] + "to cart. " +
+                        "Your total is: " + response["total"];
+                });
+        });
+
+
+        return false
+    };
+
+    window.onload = function() {
+        const button = document.querySelector( 'button' );
+        prodname = button.id;
+        button.onclick = submit
+    }
+</script>
+</html>

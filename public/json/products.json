@@ -1,0 +1,18 @@
+{
+  "cantthinkstraightpin" : {
+    "id": "cantthinkstraightpin",
+    "title": "I can't even think straight - gay, lesbian, bisexual, and pansexual pride pinback button - multiple color schemes available",
+    "price": 1.99,
+    "variations": ["Bisexual", "Original LGBT", "Pansexual", "Lesbian"],
+    "img": "images/porcupin.jpg",
+    "description": "- 1.75 inch pin\n- High-definition laser-printed image\n- Multiple color variations for different orientations\n"
+  },
+  "kantostarterscharm" : {
+    "id": "kantostarterscharm",
+    "title": "Pokémon Kanto Starter Phone Charm Keychains 1.5 (Bulbasaur, Charmander, Squirtle)",
+    "price": 8.95,
+    "variations": ["Bulbasaur", "Charmander", "Squirtle"],
+    "img": "images/pokemoncharm.jpg",
+    "description": "- 1.5 inch charm\n- High-definition laser-printed image\n"
+  }
+}

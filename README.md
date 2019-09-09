@@ -66,24 +66,17 @@ Sample Readme (delete the above when you're ready to submit, and modify the belo
 ---
 
 ## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+This server is a basic prototype for my e-commerce art store, Fey Foundry.
 
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+Repositories used:
+    - modified login page from https://github.com/nauvalazhar/bootstrap-4-login-page
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
+http://a2-jeffreyxiao.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Tech Achievement 1**: Uses json files to store users and products
+- **Tech Achievement 2**: Main page, login page, store page
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Design Achievement 1**: Applied Bootstrap css as well as custom css
+- **Design Achievement 2**: Products are displayed from JSON
