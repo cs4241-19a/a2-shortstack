@@ -43,6 +43,11 @@ select, input, button, p {
     color: black;
     font-size: 15px;
 }
+
+button:hover {
+    color: red;
+}
+
 .split {
     height: 100%;
     position: fixed;
