@@ -1,7 +1,7 @@
 ## CS 4241 Assignment 2: Vehicle Value Estimater
 Author: Zonglin Peng
 
-![](./ScreenCap.jpg)
+![](ScreenCap.JPG)
 
 Include a very brief summary of your project here.
 Images are encouraged, along with concise, high-level text.
