@@ -66,9 +66,14 @@ form {
     width: 100%;
 }
 
-th, td {
+th {
+    border-bottom: 3px solid #aaa;
+    padding: 15px;
+}
+
+td{
     border-bottom: 1px solid #ddd;
-    padding: 7px;
+    padding: 15px;
 }
 
 table {
@@ -112,6 +117,11 @@ button {
 button:hover {
     background-color: #f0e7e3;
     color: black;
+}
+
+table button {
+    padding: 10px 15px;
+    width: 100%;
 }
 
 #error-msg {
@@ -242,9 +252,4 @@ button:hover {
     color: white;
     border: 1px solid black;
     align-self: center;
-}
-
-table button {
-    padding: 5px 7px;
-    width: 100%;
 }
