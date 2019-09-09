@@ -97,7 +97,7 @@
         var info = myJSON.data
         var i;
         for(i = 0; i < info.length; i++){
-          if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null){ 
+          if(document.querySelector(".boardsection[data-board]:first-child .tasklist [id='"+info[i].day + info[i].task + info[i].time+"']") === null){ 
             console.log(info)
             createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
           }
@@ -138,17 +138,16 @@
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
     var i;
     var indices = [];
-    console.log("Child Nodes = " + pointer.hasChildNodes()+1)
-    for(i = 1; i < pointer.childNodes.length; i++){
+    console.log("Child Nodes Length = " + pointer.childNodes.length)
+    for(i = 0; i < pointer.childNodes.length; i++){
       var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :nth-child('+i+')')
       console.log("Child = " + pointerChild)
-      if(pointerChild !== null) {
+      if(pointerChild.getAttribute('id') !== null) {
         console.log(pointerChild.getAttribute('id'))
         indices.push(pointerChild.getAttribute('id'))
       }
     }
     console.log(indices)
-    
     if(indices !== []) {
         delEvent(indices)
     }
