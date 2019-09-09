@@ -97,6 +97,8 @@ app.controller("dashboardCtrl", function ($scope) {
             method: 'PUT',
             body: JSON.stringify(body)
         }).then(function (response) {
+            $scope.selectedRow = undefined;
+            $scope.$apply();
             updateStats();
             repopulateTable();
         })
