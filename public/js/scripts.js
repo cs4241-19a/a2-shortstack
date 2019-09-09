@@ -38,11 +38,11 @@ const submit = function( e ) {
 const loadTable = function(data){
     //load the table with the current results 
     let dataTable = document.querySelector('#calculations');
-    dataTable.innerHTML =
+  dataTable.innerHTML =
     '<tr>'+
        ' <th>Edit</th>' + ' <th> First Number</th>'+ ' <th> Operation</th>' +
       '<th>Second Number</th>' + '<th> Result </th>' + '<th>Delete</th>' +
-    '</tr>\n';
+    '</tr>\n'
 
     let x; //first number 
     let y; //second number 
@@ -52,9 +52,9 @@ const loadTable = function(data){
    console.log(data);
    console.log(data[0].firstNumber);
     for(let i = 0; i < data.length; i++){
-        x = document.getElementById(data[i].firstNumber).value;
-        y = document.getElementById('secondNumber' + i).value;
-        operator = document.getElementById('operator' + i).value;
+        x = data[i].firstNumber;
+        y = data[i].secondNumber;
+        operator = data[i].operator;
 
         //see what type of action we want to perform
         switch(operator){ //option in dropdown 
@@ -85,7 +85,7 @@ const loadTable = function(data){
 
           //display row 
           dataTable.innerHTML = '<tr>\n' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
-          x + operator + y + result + '<button class = "delete" onclick = "delExpression()" > Delete </button>';
+          x + operator + y + result + '<button class = "delete" onclick = "delExpression()" > Delete </button>'
     }
 }
 
