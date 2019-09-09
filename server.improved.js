@@ -19,13 +19,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-const appdata = [
-  { 'fName': 'Bob', 'lName': 'Smith', 'month':'August', 'day': 23, 'sign':"Leo"},
-  { 'fName': 'Suzy', 'lName': 'Ng', 'month':'September','day': 30 , 'sign':"Libra"},
-  { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"Capricorn"},
-  { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"Capricorn"} 
-
-]
+const appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -38,10 +32,7 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    //console.log(returnFirebaseAsArray())
-    //console.log(returnArray)
-    //returnFirebaseAsArray()
-    //console.log(returnArray)
+    loadFromFirebase()
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
@@ -74,18 +65,6 @@ const handlePost = function( request, response ) {
         console.log("submit")
         const convertedData = JSON.parse(dataString)
         convertedData.sign = starSign(convertedData)
-        /*if(noDuplicatesFirebase(convertedData)){
-          addItemToFirebase(convertedData)
-          let json = JSON.stringify(returnFirebaseAsArray())
-          response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-          response.write(json)
-          response.end()
-        }
-        else{
-          response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-          response.write("Duplicate Information, Not Added!")
-          response.end()
-        }*/
         if(noDuplicates(convertedData)){
           appdata.push(convertedData)
           let json = JSON.stringify(appdata)
@@ -104,27 +83,22 @@ const handlePost = function( request, response ) {
       case "modify":
         console.log("modify")
         const Data = JSON.parse(dataString)
-        modifyItemInFirebase(Data.originalArr, Data.newInput)
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-        response.write(JSON.stringify(returnFirebaseAsArray()))
-        response.end()
-        /*modData(Data)
+        modData(Data)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))
-        response.end()*/
+        response.end()
         break
       case "delete":
         console.log("delete")
         const removalData = JSON.parse(dataString)
-        /*removalData.sign = starSign(removalData)
-        removeGiven(removalData)*/
-        deleteInFirebase(removalData)
+        removalData.sign = starSign(removalData)
+        removeGiven(removalData)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-        response.write(JSON.stringify(returnFirebaseAsArray()))
+        response.write(JSON.stringify(appdata))
         response.end()
         break
       case "remote":
-        console.log("remote")
+        deleteInFirebase()
         for(let i = 0; i< appdata.length; i++){
           addItemToFirebase(appdata[i])
         }
@@ -309,38 +283,10 @@ function modData(toChange){
 }
 
 //******** FIREBASE FUNCTIONS *******//
-//returns firebase database as an array of json objects
-function returnFirebaseAsArray(){
-  /*let returnArray = []
-  firebase.database().ref().once("value", function(data){
-    data.forEach(function(childSnapshot){
-        var childData = childSnapshot.val()
-        returnArray.push(childData)
-    })
-  })
-    .then(function(result){
-    return returnArray;
-  })
-  .finally(function (){
-    return returnArray
-  })*/
-  let returnArray = []
-  firebase.database().ref().once("value", function(data){
-    return data
-  }).then(function(nodes){
-      nodes.forEach(function(child){
-        returnArray.push(child.val())
-        console.log(returnArray)
-      })
-  })
-  
-  
-}
-
 
 //Takes given JSON object and adds it to the remote database
 function addItemToFirebase(itemToAdd){
-  const dbRef = firebase.database.ref()
+  const dbRef = firebase.database().ref()
   var templateItem = dbRef.push().set(
     {fName: itemToAdd.fName,
     lName: itemToAdd.lName,
@@ -350,51 +296,16 @@ function addItemToFirebase(itemToAdd){
     })
 }
 
-//Takes given original object and then sets equal to new object
-function modifyItemInFirebase(itemToModify, newInfo){
-  newInfo.sign = starSign(newInfo)
-  let id = getFirebaseKey(itemToModify)
-  firebase.database().ref('/' + id).set({
-    fName: newInfo.fName,
-    lName: newInfo.lName,
-    month: newInfo.month,
-    day: newInfo.day,
-    sign: newInfo.sign
-  })
-}
-
 //Delets object from firebase
-function deleteInFirebase(itemToDelete){
-  let id = getFirebaseKey(itemToDelete)
-  firebase.database().ref('/' + id).remove()
+function deleteInFirebase(){
+  let db = firebase.database().ref('/')
+  db.remove()
 }
 
-//Gets Key for JSON object
-function getFirebaseKey(item){
-  let key = ""
-  firebase.database().ref().once("value")
-  .then(function( response) {
-    response.forEach(function(childSnapshot){
-      var childKey = childSnapshot.key()
-      var childData = childSnapshot.val()
-      if(!noDuplicatesFirebase(childData)){
-        key = childKey()
-      }
-    })
-    return key
+function loadFromFirebase(){
+  firebase.database().ref().once('value')
+  .then(function(data){
+    data.forEach
   })
 }
 
-//Checks if given JSON object is a duplicate of an exisiting object
-function noDuplicatesFirebase(itemToCheck){
-  let dataArray = returnFirebaseAsArray()
-  console.log(dataArray)
-  for(let i = 0; i< dataArray.length; i++){
-    if((itemToCheck.fName === dataArray[i].fName) && (itemToCheck.lName === dataArray[i].lName)){
-      if((itemToCheck.day === dataArray[i].day) && (itemToCheck.month === dataArray[i].month)){
-        return false;
-      }
-    }
-  }
-  return true;
-}
