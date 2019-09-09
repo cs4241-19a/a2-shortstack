@@ -111,6 +111,8 @@ selectCharacter = function(e) {
       document.querySelector('#classes').value = "";
       checkClass(newClass);
   }
+
+  let title = document.querySelector('#title').value;
 };
 
 checkClass = function(newClass) {
@@ -146,7 +148,7 @@ checkClass = function(newClass) {
             document.querySelector('#intelligence').innerHTML = 'Intelligence: ';
             break;
     }
-}
+};
 
 deleteDB = function(e) {
     e.preventDefault();
