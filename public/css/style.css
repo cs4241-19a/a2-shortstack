@@ -69,5 +69,22 @@ table{
 
 td{
   color: black;
-  width: 100%
+  width: 100%;
+}
+
+th{
+  widthL 
+}
+#calculations {
+  width: 100%;
+}
+
+.edit{
+  margin-left: 38px;
+  margin-right: 100px;
+}
+
+.delete{
+  marign-right: 5px;
+  margin-left: 300px;
 }

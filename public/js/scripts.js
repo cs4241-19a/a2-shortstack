@@ -85,9 +85,7 @@ const loadTable = function(data){
           console.log(operator)
           console.log(result)
           //display row 
-          dataTable.innerHTML =  '<tr>' +'<th>Edit</th>' + ' <th> First Number</th>'+ ' <th> Operation</th>' +
-      '<th>Second Number</th>' + '<th> Result </th>' + '<th>Delete</th>' +
-    '</tr>\n'+ '<tr>' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
+          dataTable.innerHTML =  '<tr>' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
           x + operator + y + result + '<button class = "delete" onclick = "delExpression()" > Delete </button>'
     }
 }
