@@ -104,10 +104,7 @@
         for(i = 0; i < info.length; i++){
           if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null){
             createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
-            console.log("yes")
-        }
-                    console.log("no")
-
+          }
         }
       
         console.log( JSON.stringify( myJSON ) )
@@ -171,7 +168,7 @@
       body
     }).then(function(response) {
       //occupySchedule()
-      updateSchedule(day)
+      updateSchedule()
       console.log("made it")
     })
   }
@@ -195,12 +192,22 @@
       dayCol.appendChild(breakNode)
   }
   
-  const updateSchedule = function( day ) {
+  const updateSchedule = function( ) {
     var num = 0;
-    var pointer = document.querySelector('.boardsection[data-board]:nth-child('+num+') .tasklist')
+    var int = 0;
+    console.log("Here")
+    var pointer = document.querySelector('.boardsection[data-board]:last-child .tasklist ')
     var pointerChild = document.querySelector('.boardsection[data-board]:nth-child('+num+') .tasklist :first-child[index]')
-    
-    while(num = 0; num < document.querySelector('.boardsection[data-board]').has
+    for(num = 0; num < document.querySelector('.boardsection[data-board]').hasChildNodes(); num++) {
+      pointerChild = document.querySelector('.boardsection[data-board]:nth-child('+num+') .tasklist :first-child')
+      console.log(pointerChild)
+
+      while(pointerChild !== null)
+      {
+        console.log(pointerChild)
+        pointer.removeChild(pointerChild)
+      }
+    }
   }
   
   const dayFinder = function(str) {

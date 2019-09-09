@@ -34,7 +34,7 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
-
+ 
   request.on( 'data', function( data ) {
       dataString += data 
   })
@@ -48,7 +48,7 @@ const handlePost = function( request, response ) {
           'task' : info.task,
           'time': info.time
         }
-        //console.log(newEvent);
+        console.log(newEvent);
         data.push(newEvent);
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
