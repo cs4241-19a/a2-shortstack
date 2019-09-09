@@ -125,7 +125,7 @@
 
             <div class="form-input">
               <label for="updateOrderName" class="form-label">Name of your order</label>
-              <input type="text" id="updateOrderName" required></input>
+              <input type="text" id="updateOrderName" required>
             </div>
             
             <div class="form-input" role="radiogroup" aria-label="type-of-grain">
@@ -134,35 +134,35 @@
               <input type="radio" role="radio" checked id="update_brown_rice" name="updateGrain" value="0">             
               <label for="update_brown_rice">Brown Rice</label><br>
               
-              <input type="radio" role="radio" id="update_white_rice" name="updateGrain" value="1">
+              <input type="radio" role="radio" id="update_white_rice" name="updateGrain" value="0">
               <label for="update_white_rice">White Rice</label><br>
               
-              <input type="radio" role="radio" id="update_quinoa_brown_rice" name="updateGrain" value="2">
+              <input type="radio" role="radio" id="update_quinoa_brown_rice" name="updateGrain" value="1">
               <label for="update_quinoa_brown_rice">Quinoa & Brown Rice</label><br>
             </div>
             
             <div class="form-input" role="radiogroup" aria-label="type-of-protein">
               <b><p class="form-label">Protein</p></b>
               
-              <input type="radio" role="radio" id="update_salt_pepper_chk" name="updateProtein" value="0">
+              <input type="radio" role="radio" id="update_salt_pepper_chk" name="updateProtein" value="1">
               <label for="update_salt_pepper_chk">Chinese Salt + Pepper Chicken</label><br>
               
-              <input type="radio" role="radio" id="update_tamari_chk" name="updateProtein" value="1">
+              <input type="radio" role="radio" id="update_tamari_chk" name="updateProtein" value="2">
               <label for="update_tamari_chk">Tamari Chicken</label><br>
               
-              <input type="radio" role="radio" id="update_char_siu_bbq_chk" name="updateProtein" value="2">
+              <input type="radio" role="radio" id="update_char_siu_bbq_chk" name="updateProtein" value="1">
               <label for="update_char_siu_bbq_chk">Char Siu BBQ Chicken</label><br>
               
-              <input type="radio" role="radio" id="update_gochujang_chk" name="updateProtein" value="3">
+              <input type="radio" role="radio" id="update_gochujang_chk" name="updateProtein" value="1">
               <label for="update_gochujang_chk">Gochujang Chicken</label><br>
               
-              <input type="radio" role="radio" checked id="update_miso_braised_pulled_pork" name="updateProtein" value="4">
+              <input type="radio" role="radio" checked id="update_miso_braised_pulled_pork" name="updateProtein" value="1">
               <label for="update_miso_braised_pulled_pork">Miso Braised Pulled Pork</label><br>
               
-              <input type="radio" role="radio" id="update_fiery_chickpeas" name="updateProtein" value="5">
+              <input type="radio" role="radio" id="update_fiery_chickpeas" name="updateProtein" value="1">
               <label for="update_fiery_chickpeas">Fiery Chickpeas</label><br>
               
-              <input type="radio" role="radio" id="update_roasted_paprika_tofu" name="updateProtein" value="6">
+              <input type="radio" role="radio" id="update_roasted_paprika_tofu" name="updateProtein" value="1">
               <label for="update_roasted_paprika_tofu">Roasted Paprika Tofu</label><br>
             </div>
             
@@ -257,12 +257,12 @@
         index: document.getElementById('update-btn').dataset.index,
         fstname: document.getElementById('updateFstName').value,
         lstname: document.getElementById('updateLstName').value,
-        dream: document.getElementById('updateOrderName').value,
+        ordername: document.getElementById('updateOrderName').value,
         typeOfGrain: document.querySelector('input[name="updateGrain"]:checked').value,
         typeOfProtein: document.querySelector('input[name="updateProtein"]:checked').value
       };
       
-      if (orderValidation(updatedOrder.name, updatedOrder.dream)) {
+      if (orderValidation(updatedOrder.fstname, updatedOrder.lstname, updatedOrder.ordername)) {
         const body = JSON.stringify(updatedOrder);
         fetch('/update', {
           method: 'POST',
@@ -282,12 +282,12 @@
       document.getElementById('salt_pepper_chk').checked = true;
     };
     
-    const orderValidation = function (name, dream) {
-      if (name === '') {
+    const orderValidation = function (fstname, lstname, ordername) {
+      if (fstname === '' || lstname === '') {
         document.getElementById('error-msg').style.display = "block";
         document.getElementById('error-msg').focus();
         return false;
-      } else if (dream === '') {
+      } else if (ordername === '') {
         document.getElementById('error-msg').style.display = "block";
         document.getElementById('error-msg').focus();
         return false;
@@ -325,8 +325,9 @@
       
       // load values
       document.getElementById('update-btn').dataset.index = index;
-      document.getElementById('updateName').value=orderToUpdate.name;
-      document.getElementById('updateDream').value=orderToUpdate.dream;
+      document.getElementById('updateFstName').value=orderToUpdate.fstname;
+      document.getElementById('updateLstName').value=orderToUpdate.lstname;
+      document.getElementById('updateOrderName').value=orderToUpdate.ordername;
       
       orderToUpdate.typeOfGrain === 3 ? document.getElementById('update_brown_rice').checked = true : document.getElementById('update_white_rice').checked = true;
       orderToUpdate.typeOfProtein ? document.getElementById('update_salt_pepper_chk').checked = true : document.getElementById('update_fiery_chickpeas').checked = true;
