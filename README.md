@@ -1,7 +1,7 @@
 ## When To Meet - http://a2-jgerulskis.glitch.me
-My web application provides users the ability to plan events with friends, without the need to sign in.
+My web application provides users the ability to plan events, without the need to sign in.
 
-I was inspired to make this applicaiton by the website www.When2Meet.com, a site I have used 1 too many times. The UI is cumbersome, especially on mobile devices. I couldn't stand using this application when I knew I could create a better version. My site would allow users to plan events just like When2Meet.com, but with a much better UI. The main focus on this project was user friendly UI elements, that would work just as well on mobile as on desktop. The site does everything When2Meet does but just better.
+I was inspired to make this applicaiton by the website www.When2Meet.com, a site I have used 1 too many times. The UI is cumbersome, especially on mobile devices. I couldn't stand using this application when I knew I could create a better version. My site would allow users to plan events just like When2Meet.com, but with a much better UI. The main focus on this project was user friendly UI elements, that would work just as well on mobile as on desktop.
 
 As it stands today, the application only can plan 1 event at a time. Meaning everytime an event is created, it overrides the existing event. However, all the functionality for planning multiple events is already incorporated except for the backend generating a unique id for each event. To demonstrate the ability that my application has to plan multiple events, I created additional example events which I will talk more about later.
 
@@ -40,6 +40,26 @@ http://a2-jgerulskis.glitch.me
 - **Events created in index.html**: Your event! view at /viewEvent.html?exampleEvent3
 - Line 110 in server.improved creates the hardcoded event ID, that is where a unique id function should be implemented for the future. Since it is hardcoded it creating new events overrides the hardcoded exampleEvent3 json.
 
+### In depth technical explanation of functionality
+I wanted to include a section to thoroughly explain how my application works from a technical stand point while creating an event.
+1.) User creates event from the home page (index.html).
+    > Frontend validates form
+    > A post request is sent to the server
+    > Backend validates with MomentJS
+    > Manipulates date range to an array of dates
+    > Saves to a json file (hard coded as exampleEvent3, could be anything though)
+2.) User views event from view event page (viewEvent.html?eventID, eventID can be anything)
+    > The front end splits the URL at the '?' to make 2 seperate get request
+        - 1 for the html
+        - 1 for the JSON file with event details
+    > The front end then dynamically creates a table conforming to event details
+    > Looks at current availability and colors cells accordingly
+3.) User begins selecting his or her available times
+    > Front end keeps track of the selected days.
+    > Selecting an already selected day removes it from the current user's availability.
+    > The user can then submit this availability to the server via a post request.
+    > The backend appends that users availabilty to a list.
+
 ### Requirements
 - a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
 
@@ -56,6 +76,8 @@ You can create events at index.html, and add your availibilty to the event on th
 - a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
 
 Although I do not explicitly add a new field, I strongly beleive my date conversion as explained in my tech acheivements sufficiently fulfills this requirement. Flatpicker gives the backend a range formatted like yyyy-mm-dd to yyyy-mm-dd. I convert that to an array of dates between the two. It is then given to the client when viewing the event like [yyyy-mm-dd, yyyy-mm-dd, yyyy-mm-dd, ....] instead of as a range. Although this isn't an additional field, it is a derivative field of what we were originally given based on the input. 
+
+### Created with help from the following libraries
 
 Flatpickr > https://flatpickr.js.org/getting-started/
 MomentJS  > https://momentjs.com/
