@@ -1,41 +1,379 @@
 <!doctype html>
 <html lang="en">
+  
+  
   <head>
-    <title>CS4241 Assignment 2</title>
+    <title>Manasi Danke-Puppy Pals! </title>
     <meta charset="utf-8">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+  
+  
+  <body background="">>
+    <div class="container">
+      <header> 
+        <h1>Puppy Pals</h1>
+        <h2>Helping Puppers Feel Their Best</h2>
+        <br></br>
+        </div>
+      </header>
+  
+      <main>
+        <div class="menuBar">
+          <nav class="tabsOnTop">            
+            
+            <a id="form-link" aria-label="link to order form">Booking With Us</a>
+            <a id="homepage-link" aria-label="link to about us"></a>
+            <a id="table-link" aria-label="link to order table">Your History of Bookings</a>
+          </nav>
+        </div>
+        
+        
+        <!--TAB ON THE LEFT-->
+        <div id="left-form">
+          <h3>
+           <img class="item" src="data:image/jpeg;base64,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" alt="Example image">
+           <img class="item" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEsuwlFaqcFv-NQirDCPsEGN-7IlxSjANbUq0IFKEy23buzd2f" alt="Example image">
+            <img class="item" src="data:image/jpeg;base64,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" alt="Example image">
+           <img class="item" src="data:image/jpeg;base64,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" alt="Example image">
+          </h3>
+          </h3>
+        </div>
+        
+        <!--    ORDER FORM    -->
+        <div id="order-form">
+          <br></br>
+          <h3>Booking A Pampering Session</h3>
+          <br></br>
+          <h>  Our pampering center offers a $25 package with all inclusive bath, facial, pawdicure, tooth brushing, brush-out, and ear cleaning services.</h>
+          <br></br>
+          <h><u>Extra:</u> We charge $5 for an a la carte massage/tummy rub.</h>
+          <br></br>
+          <h> <u>Additional Fee:</u> We Charge $5 extra for larger dogs.</h>
+          <br></br>
+          <br></br>
+          <br></br>
+
+          <form action="">
+            <div class="form-input">
+              <label for="name_id" class="form-label">What is Your Name:</label>
+              <input type='text' id='name_id' required>
+            </div> 
+            <div class="form-input text-input">
+              <label for="pupper_id" class="form-label">What is Your Pupper's Name:</label>
+              <textarea id='pupper_id' required></textarea>
+            </div>        
+            <div class="form-input text-input">
+              <label for="groomingDescription" class="form-label">Special Notes: Anything to Be Mindful Of (ex: allergies, etc...)</label>
+              <textarea id='groomingDescription' required></textarea>
+            </div>            
+            <div class="form-input" role="radiogroup" aria-label="massage-level">
+              <p class="form-label">Would Your Pupper Like a Massage?</p>
+              <input type="radio" role="radio" id="Withoutmassage" name="massage" value="0">
+              <label for="notToday">Not Today</label>
+              <input type="radio" role="radio" checked id="" name="massage" value="1">
+              <label for="allmassage">Of Course</label>
+            </div>
+             <br></br>
+            
+            <div class="form-input" role="radiogroup" aria-label="massage-level1">
+              <p class="form-label">Is Your Pupper A Lap Dog or Big Dog?</p>
+              <input type="radio" role="radio" id="Withoutdogsize" name="dogsize" value="0">
+              <label for="lap dog">My Dog Can Fit on my Lap</label>
+              <input type="radio" role="radio" checked id="" name="dogsize" value="1">
+              <label for="bigdog">My Dog Is A Big Dog</label>
+            </div>
+             <br></br>
+            
+            <div id="submit-btn">
+              <button>Submit Booking</button>
+            </div>
+          </form>
+        </div>
+        <br></br>
+        <div id="error">
+          <i class="fa  fa-exclamation-circle"></i>
+        <h>It would be ter-ruff-ic if you completed all fields.</h>
+        </div>
+  
+        <!--    ORDER CONFIRMATION    -->
+        <div id="order-confirmation">
+          <br></br>
+          <!--<button id="new-order-btn">Book Another Pampering Sesh</button>-->
+          <h3>Your Booking Was Submitted.</h3>
+          <h4>We hope to make your pupper as happy as possible.</h4>
+          <img src="https://1.bp.blogspot.com/-XGhqUacfMH0/WNr2OZ12yII/AAAAAAAACu0/jC4LVWbx1msKmgZw8-AYzTIvE30EwQX3gCLcB/s1600/Thankyou-dog.jpg" id="success-pic" alt="cartoon dumpling with a happy facial expression">
+        </div>
+
+        <!--    ORDER TABLE    -->
+        <div id="order-table">
+          <br></br>
+          <button id="new-order-btn">Book Another Pampering Sesh</button>
+          
+          <h3>Your Bookings</h3>
+          <h2>Hope You and Your Pupper Join Us Again!</h2>
+          <table id="orders"></table>
+          <br></br>
+
+          <img class="item" src=" https://www.doggroomingcourse.com/wp-content/uploads/2017/04/Happy-groomed-dog.jpg"> 
+          
+
+        </div>
+        <!--    UPDATE ORDER FORM    -->
+        <div id="update-order-form">
+          <h3>Edit Your Booking</h3>
+          <form action="">
+            <div class="form-input">
+              <label for="updateNameID" class="form-label">Your is Your Name:</label>
+              <input type='text' id='updateNameID' required>
+            </div>
+            
+            <div class="form-input">
+              <label for="pupper_id" class="form-label">What is Your Pupper's Name:</label>
+              <textarea id='updatePupperID' required></textarea>
+            </div>
+
+            <div class="form-input">
+              <label for="updateGroom" class="form-label">Special Notes/Grooming Description</label>
+              <textarea id='updateGroom' required></textarea>
+            </div>
+
+            <div class="form-input" role="radiogroup" aria-label="massage-level">
+              <p class="form-label">Would Your Pupper Like a Massage?</p>
+              <input type="radio" role="radio" checked id="updateWithoutmassage" name="updatemassage" value="0">
+              <label for="updateWithoutmassage">No thanks</label>
+              <input type="radio" role="radio" id="updateAllmassage" name="updatemassage" value="5">
+              <label for="updateAllmassage">Yes, please!</label>
+            </div>
+            
+            <div class="form-input" role="radiogroup" aria-label="massage-level1">
+              <p class="form-label">Is Your Pupper A Lap Dog or Big Dog? </p>
+              <input type="radio" role="radio" checked id="updateWithoutdogize" name="updatedogsize" value="0">
+              <label for="updateWithoutdogsize">Lap Dog</label>
+              <input type="radio" role="radio" id="updateAlldogsize" name="updatedogsize" value="5">
+              <label for="updateAlldogsize">Big Dog</label>
+            </div>
+            
+            <div id="update-form-btns">
+              <button id="update-btn">Update Order</button>
+            </div>
+          </form>
+        </div>
+      </main>
+
+
+    </div>
+<br></br>
+<footer>
+  <p>Proudly Rated: 5/5 paws.</p>
+</footer>
   </body>
+
   <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+    const addOrder = function( e ) {
+      e.preventDefault();
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+      const newOrder = {
+        name_id: document.getElementById( 'name_id' ).value,
+        pupper_id: document.getElementById( 'pupper_id' ).value,
+        groomingDescription: document.getElementById( 'groomingDescription' ).value,
+        massage: document.querySelector('input[name="massage"]:checked').value,
+        dogsize: document.querySelector('input[name="dogsize"]:checked').value
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+      };
 
-    return false
-  }
+      if (orderValidation(newOrder.name_id, newOrder.groomingDescription)) {
+        const body = JSON.stringify( newOrder );
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+        fetch( '/submit', {
+          method:'POST',
+          body
+        }).then( function( response ) {
+          document.getElementById('order-confirmation').style.display = "flex";
+          document.getElementById('order-form').style.display = "none";
+          document.getElementById('left-form').style.display = "none";
+
+          resetOrderForm();
+        });
+
+      }
+
+      return false;
+    };
+
+    const deleteOrder = function (index) {
+      const orderNumber = { orderNumber: index };
+      const body = JSON.stringify(orderNumber);
+      fetch('/delete', {
+        method: 'POST',
+        body
+      });
+      fetchOrders();
+    };
+
+    const fetchOrders = async function() {
+      try {
+        const resp = await fetch('/orders', { method: 'GET' });
+        const data = await resp.json();
+        const orders = data.data;
+
+        let htmlDiv = document.getElementById('orders');
+
+        htmlDiv.innerHTML = '<tr>\n' +
+                '              <th>Your Name</th>\n' +
+                '              <th>Pupper Name </th>\n' +
+                '              <th>Special Notes/Grooming Details</th>\n' +
+                '              <th>Massage?</th>\n' +
+                '              <th>A Big Dog?</th>\n' +
+                '              <th>Total Price</th>\n' +
+                '              <th></th>\n' +
+                '              <th></th>\n' +
+                '            </tr>';
+
+        for (let i = 0; i < orders.length; i++) {
+          const order = orders[i];
+          const stringOrder = JSON.stringify(orders[i]);
+          const massage = (order.massage ? 'Yes' : 'No');
+          const dogsize = (order.dogsize ? 'Yes' : 'No');
+          let newRow = '<tr>\n';
+          newRow += (`<td> ${order.name_id} </td>\n`);
+          newRow += (`<td> ${order.pupper_id} </td>\n`);
+          newRow += (`<td> ${order.groomingDescription} </td>\n`);
+          newRow += (`<td> ${massage} </td>\n`);
+          newRow += (`<td> ${dogsize} </td>\n`);
+          newRow += (`<td> ${order.price} </td>\n`);
+          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
+                  + encodeURIComponent(stringOrder) +
+                  `>Update Booking</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete Booking</button> </td>\n`);
+          newRow += '</tr>';
+          htmlDiv.innerHTML += newRow;
+        }
+      } catch (err) {
+        console.log(err);
+      }
+
+      return false;
+    };
+
+    const updateOrder = ( e ) => {
+      e.preventDefault();
+      const updatedOrder = {
+        index: document.getElementById('update-btn').dataset.index,
+        name_id: document.getElementById('updateNameID').value,
+        pupper_id: document.getElementById('updatePupperID').value,
+        groomingDescription: document.getElementById('updateGroom').value,
+        massage: document.querySelector('input[name="updatemassage"]:checked').value,
+        dogsize: document.querySelector('input[name="updatedogsize"]:checked').value
+      };
+      if (orderValidation(updatedOrder.name_id, updatedOrder.groomingDescription)) {
+        const body = JSON.stringify(updatedOrder);
+        fetch('/update', {
+          method: 'POST',
+          body
+        }).then(function () {
+          viewOrderTable();
+          viewLeftTable();
+        });
+      }
+
+      return false;
+    };
+
+    const resetOrderForm = () => {
+      document.getElementById( 'name_id' ).value = '';
+      document.getElementById( 'pupper_id' ).value = '';
+      document.getElementById( 'groomingDescription' ).value = '';
+      document.getElementById('lapdog').checked = true;
+      document.getElementById('allmassage').checked = true;
+      document.getElementById('dogsize').checked = true;
+    };
+
+    const orderValidation = function (name_id, groomingDescription) {
+      if (name_id === '') {
+        document.getElementById('error').style.display = "block";
+        document.getElementById('error').focus();
+        return false;
+      } else if (groomingDescription === '') {
+        document.getElementById('error').style.display = "block";
+        document.getElementById('error').focus();
+        return false;
+      } else {
+        document.getElementById('error').style.display = "none";
+        return true;
+      }
+    }
+
+    const viewOrderForm = function() {
+      document.getElementById('error').style.display = "none";
+      document.getElementById('order-table').style.display = "none";
+      document.getElementById('update-order-form').style.display = "none";
+      document.getElementById('order-confirmation').style.display = "none";
+      document.getElementById('order-form').style.display = "block";
+      document.getElementById('left-form').style.display = "block";
+      
+      resetOrderForm();
+    };
+
+    const viewOrderTable  = function () {
+      document.getElementById('order-table').style.display = "flex";
+      document.getElementById('order-form').style.display = "none";
+      document.getElementById('update-order-form').style.display = "none";
+      document.getElementById('order-confirmation').style.display = "none";
+      document.getElementById('error').style.display = "none";
+      document.getElementById('left-form').style.display = "none";
+      fetchOrders();
+      return false;
+    };
+    
+    const viewLeftTable  = function () {
+      document.getElementById('left-form').style.display = "none";
+      fetchOrders();
+      return false;
+    };
+
+    const viewUpdateForm = function (index) {
+      let orderToUpdate = decodeURIComponent(document.getElementById(`update-button-${index}`).dataset.string);
+      orderToUpdate = JSON.parse(orderToUpdate);
+
+      document.getElementById('order-table').style.display = "none";
+      document.getElementById('update-order-form').style.display="block";
+      document.getElementById('left-form').style.display = "none";
+
+
+      // load values
+      document.getElementById('update-btn').dataset.index = index;
+      document.getElementById('updateNameID').value=orderToUpdate.name_id;
+      document.getElementById('updatePupperID').value=orderToUpdate.pupper_id;
+      document.getElementById('updateGroom').value=orderToUpdate.groomingDescription;
+      orderToUpdate.massage ? document.getElementById('updateAllmassage').checked = true : document.getElementById('updateWithoutmassage').checked = true;
+      orderToUpdate.massage ? document.getElementById('updateAlldogsize').checked = true : document.getElementById('updateWithoutdogize').checked = true;
+
+      return false;
+    };
+
+    window.onload = function() {
+
+      const submitButton = document.getElementById( 'submit-btn' );
+      submitButton.onclick = addOrder;
+
+      const tableLink = document.getElementById( 'table-link' );
+      tableLink.onclick = viewOrderTable;
+      
+       const leftLink = document.getElementById( 'homepage-link' );
+      leftLink.onclick = viewLeftTable;
+
+      const formLink = document.getElementById( 'form-link' );
+      formLink.onclick = viewOrderForm;
+
+      const updateButton = document.getElementById( 'update-btn' );
+      updateButton.onclick = updateOrder;
+
+      const newOrderButton = document.getElementById( 'new-order-btn' );
+      newOrderButton.onclick = viewOrderForm;
+      
+    };
 
   </script>
 </html>
