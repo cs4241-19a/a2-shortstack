@@ -87,13 +87,13 @@ const loadData = function( e ) {
       document.getElementById('rating').value = '';
     };
   
-
-  window.onload = function() {
     const addBookbutton = document.querySelector( 'submit-btn' )
     addBookbutton.onclick = console.log("are you kidding me")
     //addBookbutton.onclick = addBook
-    
+
     const loadBookData = document.querySelector('load-btn')
     loadBookData.onclick = console.log("BRUH")
+
+  window.onload = function() {
     
   }
