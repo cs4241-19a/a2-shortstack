@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "amarkoski-a2",
+  "version": "1.0",
+  "description": "Word counter web app for WPI CS 4241 second assignment",
+  "author": "Andrew Markoski",
   "scripts": {
     "start": "node server.improved.js"
   },

@@ -6,11 +6,64 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+var strData = [] // array to hold strUnit objects
+
+// Returns new strUnit object
+function strUnit (str, occ){
+  
+  var strObj = {
+    strVal : str, // unique word
+    freq : 1, // # of occurrences
+    firstOcc : occ // first occurrence of word
+  }
+  return strObj;
+}
+
+// Returns obj with total words
+// @return object with length of strData
+function getTotalWords(){
+  return {
+    total: strData.length
+  }
+}
+
+// use regex to remove punctuation from a given string
+// @return str without punctuation or symbols
+function removePunctuation(str){
+  return str.replace(/[.,!?;:()]/g,'')
+}
+
+
+// collect data on unique strings, # of occurrences, and first occurrence
+//@param inputText - text from client to searth through
+function count(inputText){
+  inputText = inputText.trim(); // trim spaces from beginning and end of inputText
+  inputText = inputText.toLowerCase();
+  let strArr = inputText.split(" "); // split string into array of strings based on spaces
+
+  // go through each string in the input text to find the unique strings 
+  for(let i = 0; i < strArr.length; i++){
+    let currStr = strArr[i];
+    currStr = removePunctuation(currStr)
+    let foundStr = false;
+    let j = 0;
+
+    // loop through found strings until reaching end of array or finding the same string value
+    while(!foundStr && j < strData.length){
+      if(currStr === strData[j].strVal){
+        strData[j].freq++;
+        foundStr = true;
+      }
+      j++;
+    }
+
+    // If string is not in array, add new strUnit object to array
+    if(!foundStr){
+      strData.push(strUnit(currStr, (i+1)));
+    }
+  }
+  
+}
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -20,12 +73,27 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+// Send strData and total number of words back to client when there is a GET request
+const getResponse = function( request, response){
+  const body = JSON.stringify(strData);
+  const total = JSON.stringify(getTotalWords());
+  response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+  response.write(body);
+  response.write(total);
+  response.end();
+}
+
+
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if(request.url === '/getData'){
+    getResponse(request, response);
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -38,10 +106,8 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
+    strData = []; // reset array of data
+    count(JSON.parse( dataString ).inputText);
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
