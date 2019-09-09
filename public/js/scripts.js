@@ -73,7 +73,7 @@ const loadData = function( e ) {
         body
       }).then( function( response ) {
           resetOrderForm();
-          console.log(response)
+          loadData();
         })
       return false;
     }

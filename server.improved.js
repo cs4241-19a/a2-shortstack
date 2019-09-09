@@ -16,8 +16,7 @@ const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
-    console.log("this was a post")
-    //handlePost( request, response ) 
+    handlePost( request, response ) 
   }
 })
 
@@ -34,7 +33,6 @@ const handleGet = function( request, response ) {
   }
 };
 
-/*
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -67,20 +65,16 @@ const handlePost = function( request, response ) {
     }
   })
 };
-*/
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
 
    fs.readFile( filename, function( err, content ) {
-
      // if the error = null, then we've loaded the file successfully
      if( err === null ) {
-
        // status code: https://httpstatuses.com
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
-
      }else{
 
        // file not found, error code 404
