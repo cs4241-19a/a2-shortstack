@@ -7,8 +7,10 @@ const http = require( 'http' ),
       port = 3000;
 
 const appdata = [
-  { 'fstname': 'Amanda', 'lstname': 'Ezeobiejesi', 'ordername': 'I want to be famous', 'amountOfPork': 3, 'garlic': 1, 'price': 14},
-  { 'name': 'Izzy Azevedo', 'dream': 'To own an art studio', 'amountOfPork': 5, 'garlic': 1, 'price': 18}
+  { 'fstname': 'Amanda', 'lstname': 'Ezeobiejesi', 'ordername': 'Pacific Centre', 'typeOfGrain': 1, 'typeOfProtein': 4, 'price': 9},
+  { 'fstname': 'Chirstina', 'lstname': 'Zymaris', 'ordername': 'Crispy Bacon', 'typeOfGrain': 2, 'typeOfProtein': 5, 'price': 10},
+  { 'fstname': 'Beza', 'lstname': 'Ayalew', 'ordername': 'Treasure Island', 'typeOfGrain': 2, 'typeOfProtein': 2, 'price': 11},
+
 ];
 
 const server = http.createServer( function( request,response ) {
