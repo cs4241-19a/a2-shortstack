@@ -50,12 +50,14 @@ body {
 }
 
 .boardsection[data-board] .tasklist  {
+  overflow: hidden;
+  flex-wrap: nowrap;
   width:100%;
   color: white;
   padding-top: .5em;
   padding-bottom: .5em;
   padding-left: .25em;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .menu {
