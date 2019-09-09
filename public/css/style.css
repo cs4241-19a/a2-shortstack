@@ -31,7 +31,8 @@ text-align:center;
 
 input{
   font-size:32px;
-  width:60px;
+  width:90px;
+  text-align:center;
   background-color:rgba(0, 0, 255,0);
    border-style:none none double none; 
 }
@@ -59,14 +60,14 @@ input{
 nav{
   text-align:center;
   font-size:50px;
-  width:800px;
-  margin:auto;
+  margin-top:40px;
 }
 
 a{
-  justify-item:center;
-  margin:auto;
-  border:3px solid;
+  
+  margin-left:60px;
+  margin-right:60px;
+  
 }
 
 a:hover {
@@ -83,4 +84,19 @@ a:hover {
 
 .MH{
  width:500px;
+}
+
+.tableButton{
+  margin:7px;
+  font-size:18px;
+  background-color:rgba(0,0,0,0);
+  color:black;
+  border-radius:3em;
+  border:3px solid;
+}
+
+.tableButton:hover {
+  background-color: #555555; /* Grey */
+  color: white;
+  cursor: pointer;
 }

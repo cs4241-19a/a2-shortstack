@@ -86,11 +86,11 @@
   
       let htmlDiv = document.getElementById('matchTable');
       htmlDiv.innerHTML = '<tr>\n' +
-                '<th>Team #</th>\n' + 
-                 '<th>W</th>\n' +
-                '<th>L</th>\n' +
-                '<th>T</th>\n' +
-                '<th>WP</th>\n' +
+                '<th  class="MH">Team #</th>\n' + 
+                 '<th class="MH">W</th>\n' +
+                '<th class="MH">L</th>\n' +
+                '<th class="MH">T</th>\n' +
+                '<th class="MH">WP</th>\n' +
                 '</tr>';
       for (let i = 0; i < result.length; i++) {
           const rank = result[i];
@@ -124,10 +124,10 @@
         const matchH = data.data;
         let htmlDiv = document.getElementById('matchTable');
         htmlDiv.innerHTML = '<tr>\n' +
-                '<th>Match #</th>\n' + 
-                 '<th>Red</th>\n' +
-                '<th>Blue</th>\n' +
-                '<th>Score</th>\n' +
+                '<th class="MH">Match#</th>\n' + 
+                 '<th class="MH">Red</th>\n' +
+                '<th class="MH">Blue</th>\n' +
+                '<th class="MH" style="text-align:right;">Score</th>\n' +
                 '</tr>';
        
         for (let i = 0; i < matchH.length; i++) {
@@ -147,8 +147,8 @@
           newRow += (`<td> ${match.redScore} </td>\n`);
           newRow += (`<td> ${match.blueScore} </td>\n`); 
           }
-          newRow += (`<td> <button id="edit-button-${i}" class="table-button" onclick="editMatch(${i})" >Edit</button> </td>\n`);
-          newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
+          newRow += (`<td> <button id="edit-button-${i}" class="tableButton" onclick="editMatch(${i})" >Edit</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="tableButton"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
         }
@@ -161,10 +161,10 @@
     const matchH = data.data;
     let htmlDiv = document.getElementById('matchTable');
     htmlDiv.innerHTML = '<tr>\n' +
-                '<th class="MH"> Match# </th>\n' + 
-                 '<th class="MH"> Red </th>\n' +
-                '<th class="MH"> Blue </th>\n' +
-                '<th class="MH"> Score </th>\n' +
+                '<th class="MH">Match#</th>\n' + 
+                 '<th class="MH">Red</th>\n' +
+                '<th class="MH">Blue</th>\n' +
+                '<th class="MH" style="text-align:right;">Score</th>\n' +
                 '</tr>';
     
      for (let i = 0; i < matchH.length; i++) {
@@ -177,9 +177,8 @@
           newRow += (`<td><input id='updatedBlue1' value="${match.blue1}"> </td>\n`);
           newRow += (`<td><input id='updatedRedScore' value="${match.redScore}"> </td>\n`);
           newRow += (`<td><input  id='updatedBlueScore' value="${match.blueScore}"> </td>\n`);         
-          newRow += (`<td><button id="update-button-${i}" class="table-button" onclick="updateMatch(${i})">Update</button> </td>\n`);
-          //newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
-          newRow += '</tr>';
+          newRow += (`<td><button id="update-button-${i}" class="tableButton" onclick="updateMatch(${i})">Update</button> </td>\n`);
+         newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
           } else{
           newRow += (`<td> ${match.matchNumber} </td>\n`);
@@ -187,10 +186,7 @@
           newRow += (`<td> ${match.blue1} </td>\n`);
           newRow += (`<td> ${match.redScore} </td>\n`);
           newRow += (`<td> ${match.blueScore} </td>\n`);         
-          //newRow += (`<td> <button id="update-button-${i}" class="table-button" onclick="updateMatch(${i})" data-string=`
-          //         + encodeURIComponent(stringOrder) + `>Edit</button> </td>\n`);
-          //newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
-          newRow += '</tr>';
+           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
         }
      }
