@@ -57,7 +57,7 @@ const handlePost = function( request, response ) {
     var color = rightColor(playerGuess)
     var colorNpos = rightPosition(playerGuess)
     
-    if (colorNpos == 4) {
+    if (colorNpos == 4 && obj.guesscount <= 15) {
       var medal = giveMedal(obj.guesscount)
       var newEntry = { 'name': obj.playername,
                        'moves': obj.guesscount,
@@ -67,11 +67,15 @@ const handlePost = function( request, response ) {
       
       response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
       //response.end("You got a " + medal + " medal!")
-      response.end(playerData)
+      response.end(JSON.stringify(playerData))
+    }
+    
+    else if (obj.guesscount == 15) {
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
+      response.end("You lost!")
     }
     
     else {
-      // send color & colorNpos
       var clues = {'color': color,
                   'colornpos': colorNpos}
       var cbody = JSON.stringify(clues)
