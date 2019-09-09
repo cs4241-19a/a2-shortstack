@@ -278,13 +278,32 @@
     return false
   }
   
-  
+  const doGenerate = function(e){
+  e.preventDefault()
+console.log("ADD")
+  fetch( '/getHoro', {
+    method:'GET'
+  })
+  .then( function( response ) {
+    console.log(response)
+    response.text()
+    .then(function(message){
+      let allData = JSON.parse(message)
+      console.log(allData)
+      var randHoro = Math.floor(Math.random() * (Object.keys(allData).length))
+      console.log(randHoro)
+      document.getElementById("horoResult").innerHTML = allData[randHoro].horoscope
+    })
+  })
+  return false
+}
   
     //Assign Button Functions On Load
     window.onload = function() {
       const subButton = document.querySelector( '#subButton' )
       subButton.onclick = submit
-      const genButton = document.querySelector('#')
+      const genButton = document.querySelector('#GenerateHoro')
+      genButton.onclick = doGenerate
     }  
   </script>
 </html>
