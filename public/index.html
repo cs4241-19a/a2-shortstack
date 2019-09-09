@@ -140,7 +140,7 @@
           newRow += (`<td><input value="${match.blue1}"> </td>\n`);
           newRow += (`<td><input value="${match.redScore}"> </td>\n`);
           newRow += (`<td><input value="${match.blueScore}"> </td>\n`);         
-          newRow += (`<td> <button id="update-button-${i}" class="table-button" onclick="updateMatch(${i})">Update</button> </td>\n`);
+          newRow += (`<td><button id="update-button-${i}" class="table-button" onclick="updateMatch(${i})">Update</button> </td>\n`);
           //newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
@@ -160,9 +160,10 @@
   }
   
   const updateMatch = function (index){
-       e.preventDefault()
+      // e.preventDefault()
 
     const updatedMR = {
+      index:index,
       matchNumber:document.getElementById( 'updatedMN' ).value,
       red1:document.getElementById( 'updatedRed1' ).value,
       blue1:document.getElementById( 'blue1' ).value,
