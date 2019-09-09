@@ -32,11 +32,19 @@
         <div class="column">
           <div class="notification" id="amountBox">
             <form class="item" action="">
-              <h5> Enter Amount: </h5>
+              <h5> Enter Raw Amount: </h5>
               <input class="selStyle" type='text' id='amount' size="10"/>
             </form>
           </div>
         </div>
+        <div class="column">
+            <div class="notification" id="taxBox">
+                <div class="item">
+                  <h5> Enter Tax Percentage: </h5>
+                  <input class="selStyle" type='text' id='tax' size="10"/>
+                </div>              
+            </div>
+          </div>
         <div class="column">
           <div class="notification" id="categoryBox">
               <div class="dropdown">
@@ -80,6 +88,7 @@
       <a class="button btn is-primary is-focused center" id="button" disabled>Submit</a>
     
       <section class="section">
+        
         <table id="expense-table"></table>
         <br>
         <section class="container">

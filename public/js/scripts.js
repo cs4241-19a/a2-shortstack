@@ -7,6 +7,10 @@ var amountFlag = false;
     categoryFlag = false;
     monthFlag = false;
     buttonStatus = false;
+    taxFlag = false;
+
+// variable to keep track of inputted tax
+var tax = document.getElementById("tax")
 
 const submit = function( e ) {
 
@@ -43,7 +47,9 @@ const getTableData = function() {
     .then(response => response.json())
     .then(data => {
         console.log(data)
-        table.setData(data)
+        // add new field to data (total) & load to table
+        modifyData(data)
+        
     })
     .catch(err => {
         console.log(err)
@@ -60,6 +66,67 @@ const button = document.getElementById( 'button' )
 button.onclick = submit
 }
 
+// loops through server data, applies proper sales tax to amount
+// and adds new field for total
+function modifyData(data) {
+    var tableData = []
+
+    for (var i = 0; i < data.length; i++) {
+        // multiply amount by sales tax, turn back into string
+        var amt = (data[i].amount)
+        var amtInt = parseInt(amt)
+        var cat = (data[i].category)
+        var mon = (data[i].month)
+        var tot = amtInt + (amtInt * (tax.value/100))
+        
+        obj = { amount: amt, category: cat, month: mon, total: tot}
+        
+        tableData.push(obj)
+    }
+
+    // load data into table
+    table.setData(tableData)
+}
+
+// make table
+var table = new Tabulator("#expense-table", {
+	layout:"fitColumns",      //fit columns to width of table
+	responsiveLayout:"hide",  //hide columns that dont fit on the table
+	tooltips:true,            //show tool tips on cells
+	addRowPos:"top",          //when adding a new row, add it to the top of the table
+	history:true,             //allow undo and redo actions on the table
+	pagination:"local",       //paginate the data
+	paginationSize:50,         //allow 7 rows per page of data
+	movableColumns:true,      //allow column order to be changed
+	resizableRows:true,       //allow row order to be changed
+	initialSort:[             //set the initial sort order of the data
+		{column:"name", dir:"asc"},
+	],
+    columns:[                  //define the table columns
+		{title:"Month", field:"month", editor:"select", headerFilter: "input", editorParams:{values:["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]}},
+        {title:"Category", field:"category", align:"left", editor:"select", headerFilter: "input", editorParams:{values:["Merchandise", "Restaurants", "Gasoline", "Travel/Ent", "Supermarkets"]}},
+        {title:"Raw Amount", field:"amount", editor:"input", formatter:"money", bottomCalc:"sum", bottomCalcFormatter: "money", headerFilter: "input", 
+        bottomCalcFormatterParams:  {
+          decimal: ".",
+          thousand: ",",
+          symbol: "$"
+        }, formatterParams: {
+            decimal: ".",
+            thousand: ",",
+            symbol: "$"
+        }},
+        {title:"Total Amount", field:"total", editor:"input", formatter:"money", bottomCalc:"sum", bottomCalcFormatter: "money", headerFilter: "input", 
+        bottomCalcFormatterParams:  {
+          decimal: ".",
+          thousand: ",",
+          symbol: "$"
+        }, formatterParams: {
+            decimal: ".",
+            thousand: ",",
+            symbol: "$"
+        }}
+	],
+});
 
 // download csv
 var dnCSV = document.getElementById("dnCSV")
@@ -99,36 +166,6 @@ dnXSLX.addEventListener("click", function download() {
     table.download("xlsx", "expense_report.xlsx", {sheetName:"MyExpenses"});
 })
 
-// make table
-var table = new Tabulator("#expense-table", {
-	layout:"fitColumns",      //fit columns to width of table
-	responsiveLayout:"hide",  //hide columns that dont fit on the table
-	tooltips:true,            //show tool tips on cells
-	addRowPos:"top",          //when adding a new row, add it to the top of the table
-	history:true,             //allow undo and redo actions on the table
-	pagination:"local",       //paginate the data
-	paginationSize:50,         //allow 7 rows per page of data
-	movableColumns:true,      //allow column order to be changed
-	resizableRows:true,       //allow row order to be changed
-	initialSort:[             //set the initial sort order of the data
-		{column:"name", dir:"asc"},
-	],
-    columns:[                  //define the table columns
-        {title:"Amount", field:"amount", editor:"input", formatter:"money", bottomCalc:"sum", bottomCalcFormatter: "money",
-        bottomCalcFormatterParams:  {
-          decimal: ".",
-          thousand: ",",
-          symbol: "$"
-        }, formatterParams: {
-            decimal: ".",
-            thousand: ",",
-            symbol: "$"
-        }},
-		{title:"Category", field:"category", align:"left", editor:"select", editorParams:{values:["Merchandise", "Restaurants", "Gasoline", "Travel/Ent", "Supermarkets"]}},
-		{title:"Month", field:"month", editor:"select", editorParams:{values:["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]}}
-	],
-});
-
 // change amount notification on input
 var amount = document.getElementById('amount')
 amount.oninput = function() { changeAmountNotification() }
@@ -148,6 +185,28 @@ function changeAmountNotification() {
     if (amount.value == '') {
         document.getElementById("amountBox").classList.remove("is-success")
         amountFlag = false
+        disableButton()
+    }
+}
+
+// change tax notification on input
+tax.oninput = function() { changeTaxNotification() }
+
+function changeTaxNotification() {
+    if (tax.value != '') {
+        // check to make sure value is int
+        if (isNaN(tax.value)) {
+            console.log("Entered value is not a number")
+        } else {
+            document.getElementById("taxBox").classList.add("is-success")
+            taxFlag = true
+            enableButton()            
+        }
+        
+    }
+    if (tax.value == '') {
+        document.getElementById("taxBox").classList.remove("is-success")
+        taxFlag = false
         disableButton()
     }
 }
@@ -177,7 +236,7 @@ function changeCategoryNotification() {
 
 // enable submit button when all fields are filled
 function enableButton() { 
-    if (amountFlag == true && monthFlag == true && categoryFlag == true) {
+    if (amountFlag == true && monthFlag == true && categoryFlag == true && taxFlag == true) {
         console.log("button enabled")
         document.getElementById('button').removeAttribute("disabled");
         buttonStatus = true
@@ -186,11 +245,9 @@ function enableButton() {
 
 // disable submit button if any fields are left empty
 function disableButton() {
-    if (amountFlag == false || monthFlag == false || categoryFlag == false) {
+    if (amountFlag == false || monthFlag == false || categoryFlag == false || taxFlag == false) {
         console.log("button disabled")
         document.getElementById('button').setAttribute("disabled", "")
         buttonStatus = false
     }
 }
-
-
