@@ -8,7 +8,7 @@ The tasks are shown as a list.
 It's useful to have all of your lists stored at the same place, and a possible tracking option (not implemented) can notify you when a task is due. It's
 also useful to divide up your lists into different boards to categorize and organize them. 
 
-http://a2-manasmehta18-Manas-Mehta.glitch.me
+http://a2-manasmehta18-manas-mehta.glitch.me
 
 ## Technical Achievements
 - **Tech Achievement 1**: Maintained a remote database using firebase
