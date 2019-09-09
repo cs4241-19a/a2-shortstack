@@ -3,7 +3,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-bottom: 30px;
+  padding-bottom: 150px;
   background-color: #f0e7e3;
 }
 
