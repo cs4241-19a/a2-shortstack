@@ -72,7 +72,7 @@
       <button id="next">
         Next Day
       </button>
-      <form action="">
+      <form>
         <div class="menu-data">
           <span> Day: </span>
           <input type="text" id="day" value="Monday">
@@ -164,9 +164,6 @@
       method: 'POST',
       body
     }).then( function( response ) {
-      
-      
-      
       createEvent(day, task, time);
 
       document.querySelector("#day").value = '';
@@ -175,6 +172,35 @@
     })
     
     return false
+  }
+  
+  const removeEvent = function(e) {
+      e.preventDefault();
+      var day = document.querySelector("#day").value
+      var task = document.querySelector("#task").value
+      var time = document.querySelector("#time").value
+      console.log("Day: " + day + " Time: " + time + " Task: "+ task);
+
+      var eventInfo = {
+        day : document.querySelector("#day").value,
+        task : document.querySelector("#task").value,
+        time : document.querySelector("#time").value,
+      };
+
+      var body = JSON.stringify( newEvent );
+      fetch('/submit',{
+        method: 'POST',
+        body
+      }).then( function( response ) {
+        createEvent(day, task, time);
+
+        document.querySelector("#day").value = '';
+        document.querySelector("#task").value = '';
+        document.querySelector("#time").value = '';
+    })
+    
+    return false
+    
   }
   
   const createEvent = function(day, task, time){
@@ -217,6 +243,9 @@
     
     const button = document.querySelector( '#submit' )
     button.onclick = addEvent
+    
+    const nextButton = document.querySelector( '#next' )
+    button.oncllick = removeEvent
   }
     
 
