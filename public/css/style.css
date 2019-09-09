@@ -72,10 +72,11 @@ td{
   width: 100%;
 }
 
-th{
-  widthL 
-}
 #calculations {
+  width: 100%;
+}
+
+#calculations th{
   width: 100%;
 }
 
@@ -88,3 +89,4 @@ th{
   marign-right: 5px;
   margin-left: 300px;
 }
+

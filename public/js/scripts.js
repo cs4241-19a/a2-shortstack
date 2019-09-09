@@ -56,6 +56,20 @@ const loadTable = function(data){
         operator = data[i].operator;  
       console.log(x);
 
+      if(operator == "1"){ //add 
+        result = x+y;
+        operator = "+";
+      } else if (operator == "2"){ //subtract
+        result = x-y;
+        operator = "-";
+      } else if (operator == "3"){ //multiply
+        result = x * y;
+        operator = "X";
+      } else if (operator == "4"){ //divide
+        if ( y == "0"){
+          result = ""
+        }
+      }
         //see what type of action we want to perform
         switch(operator){ //option in dropdown 
             case "1": //add 
@@ -86,7 +100,7 @@ const loadTable = function(data){
           console.log(result)
           //display row 
           dataTable.innerHTML =  '<tr>' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
-          x + operator + y + result + '<button class = "delete" onclick = "delExpression()" > Delete </button>'
+           + x  + operator  + y + result  + '<button class = "delete" onclick = "delExpression()" > Delete </button>'
     }
 }
 
