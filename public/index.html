@@ -174,31 +174,11 @@
     return false
   }
   
-  
-
-  const deleteEvent = function( ) {
-    //var obj = document.querySelector('.boardsection:last-child')
-    console.log("Hello");
- //   var day = obj.day
- //   var task = obj.task
-//    var time = obj.time
-
-    var eventInfo = {
-      day : day,
-      task : task,
-      time : time,
-    }
-    var body = JSON.stringify( eventInfo );
-    fetch('/delete',{
-      method: 'POST',
-      body
-    }).then( function( response ) {
-      occupySchedule()
-    }) 
-
+  const deleteEvent = function(e) {
+    e.preventDefault();
+    var obj = document.querySelector('.boardsection[data-board]:first-child .tasklist')
+    console.log(obj)
   }
-  
-  
   
   const createEvent = function(day, task, time){
       var dayNum = dayFinder(day)
@@ -242,7 +222,7 @@
     button.onclick = addEvent
     
     const nextButton = document.querySelector( '#next' )
-    button.onclick = deleteEvent
+    nextButton.onclick = deleteEvent
   }
     
 

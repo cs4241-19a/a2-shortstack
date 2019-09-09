@@ -6,17 +6,10 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
-
 const data = [
-  { 'day': 'Monday', 'task': 'CS4241 A2 Due', time: '11:59:00'},
-  { 'day': 'Tuesday', 'task': 'MA2621 Homework Due', time: '2:00:00'},
-  { 'day': 'Tuesday', 'task': 'CH1010 Daily Problem', time: '11:00:00'}
-
+  { 'day': 'Monday', 'task': 'CS4241 A2 Due', time: '11:59'},
+  { 'day': 'Tuesday', 'task': 'MA2621 Homework Due', time: '2:00'},
+  { 'day': 'Tuesday', 'task': 'CH1010 Daily Problem', time: '11:00'}
 ]
 
 const server = http.createServer( function( request,response ) {
