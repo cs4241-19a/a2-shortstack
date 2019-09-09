@@ -65,13 +65,32 @@ const handlePost = function( request, response ) {
       
      case '/delete':
        const MRdelete = JSON.parse(dataString); //match result
-       appdata.splice(MRdelete.orderNumber, 1);
+       appdata.splice(MRdelete.matchNumber, 1);
  //      MN--;
  //     appdata.push(newMR);
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
 
       break;
+      
+      
+      case '/update':
+        const MRupdate = JSON.parse(dataString);
+
+        const updatedOrder = {
+        'matchNumber':MRupdate.matchNumber,
+        'red1': MRupdate.red1, 
+        'blue1': MRupdate.blue1, 
+        'redScore': MRupdate.redScore, 
+        'blueScore':MRupdate.blueScore
+        };
+
+        appdata.splice(MRupdate.index, 1, updatedOrder);
+
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
+        response.end();
+
+        break;
       
   
   }

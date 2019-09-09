@@ -110,9 +110,9 @@
           newRow += (`<td> ${match.blue1} </td>\n`);
           newRow += (`<td> ${match.redScore} </td>\n`);
           newRow += (`<td> ${match.blueScore} </td>\n`);         
-          // newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
-          //         + encodeURIComponent(stringOrder) +
-          //         `>Edit</button> </td>\n`);
+         newRow += (`<td> <button id="update-button-${i}" class="table-button" onclick="viewUpdateForm(${i})" data-string=`
+                   + encodeURIComponent(stringOrder) +
+                   `>Edit</button> </td>\n`);
           newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
@@ -129,7 +129,7 @@
         method: 'POST',
         body
       });
-      fetchOrders();
+      fetchMH();
     };
 
   </script>
