@@ -96,11 +96,11 @@
     })
     .then( function( response ) {
  
-      //showData();
+      //displayDataTable();
     })
 
     //window.location = "index.html";
-    showData();
+    displayDataTable();
     return false
   }
 
@@ -112,7 +112,7 @@
       body
     });
     
-    showData();
+    sdisplayDataTable();
   };
     
   const updateRow = function(rowIndex){
@@ -123,15 +123,35 @@
     let newGasPrice = document.querySelector('gasPrice'+rowIndex).value
     
     const json ={
-      'model': data.model,
-      'year': data.year,
-      'mpg': data.mpg,
-      'tripDistance': data.tripDistance,
-      'gasPrice': data.gasPrice,
+      'model': newModel,
+      'year': newYear,
+      'mpg': newMPG,
+      'tripDistance': newDistance,
+      'gasPrice': newGasPrice
     }
+    
+    json.index = rowIndex
+    
+    const body = JSON.stringify(json)
+    fetch('/update', {
+      method: 'POST',
+      body
+    }).then(function(response){
+      displayDataTable();
+    })
+  }
+  
+  const displayDataTable = function(){
+    fetch('/carData', {
+      method:'GET'
+    }).then(function(response){
+      return response.json()
+    }).then(function(theCarData){
+      createDataTable(theCarData,-1);
+    })
   }
 
-  const showData = function(){
+  const createDataTable = function(){
     fetch('/carData',{
       method: 'GET'
     })
@@ -182,6 +202,7 @@
 
     })
   }
+  
 
 const dbData = function(){
       fetch( '/getData')
