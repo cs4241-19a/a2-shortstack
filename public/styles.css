@@ -1,0 +1,37 @@
+.flex-grid {
+    display: flex;
+  }
+  .col {
+    flex: 1;
+    align-content: center;
+  }
+  
+  .title {
+    color: navy;
+    background-color: lightblue;
+    text-align: center;
+  }
+
+  footer {
+    color: navy;
+    background-color: lightblue;
+    text-align: center;
+  }
+
+  .button {
+    background-color: lightblue;
+    color:navy;
+  }
+
+  .tableCell {
+    text-align: center;
+  }
+  
+  .outputTable {
+    color: navy;
+    border-color: lightblue;
+    border-width: 3em;
+    outline-color: navy;
+    outline-width: 3em;
+    column-gap: 20em;
+  }
