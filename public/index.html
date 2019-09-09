@@ -140,8 +140,11 @@
     })
       .then( function( myJSON ) {
         var info = myJSON.data
-        var task = document.createTextNode(info[0].task)
-        document.querySelector("boardsection[data_board[day='1']")
+        var textNode = document.createTextNode(info[0].task)
+        var dayCol = document.querySelector(".boardsection[data-board='day_1'] .tasklist")
+        dayCol.appendChild(textNode);
+        
+          //.appendChild(textnode);
         //answer.innerHTML = info[1].value
         
       
@@ -183,8 +186,7 @@
 
     
     
-    
-    
+
   }
     
 
