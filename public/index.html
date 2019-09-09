@@ -173,9 +173,24 @@
     
     return false
   }
+     
+  const removeEvent = function() {
+    console.log("Something")
+    var val = document.querySelector('.boardsection:last-child .tasklist').value
+    if(val !== null) {
+      var day = document.querySelector('.boardsection:last-child .tasklist').value.task
+      console.log(day)
+    }
+    var day = document.querySelector('.boardsection:last-child .tasklist').value.task
+
+    console.log(day)
+
+        
+  }
   
   const deleteEvent = function( day, task, time) {
-      e.preventDefault();
+    
+    
       var eventInfo = {
         day : day,
         task : task,
@@ -190,10 +205,6 @@
     })
     
     return false
-    
-  }
-  
-  const removeEvent = function() {
     
   }
   
@@ -239,7 +250,7 @@
     button.onclick = addEvent
     
     const nextButton = document.querySelector( '#next' )
-    button.oncllick = deleteEvent
+    button.oncllick = removeEvent
   }
     
 
