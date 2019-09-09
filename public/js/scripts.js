@@ -1,6 +1,3 @@
-//import { get } from "https"
-
-//console.log("Welcome to assignment 2!")
 
 const submit = function( e ) {
     // prevent default form action from being carried out
@@ -64,7 +61,7 @@ const loadTable = function(data){
             operator = '+';
             break;
             case 2: //subtract 
-            resut = x-y;
+            result = x-y;
             operator = '-';
             break;
             case 3:  //mutliply 
@@ -110,13 +107,13 @@ const delExpression = function(index){
 }
 
 const editExpression = function(rowIndex){
-   json.index = rowIndex;
+  
     const newRow = {
         firstNumber: document.getElementById("firstNumber").value,
         operator: document.getElementById("operator").value,
         secondNumber: document.getElementById("secondNumber").value
     }
-
+    newRow.index = rowIndex;
     const body = JSON.stringify(newRow);
     fetch('/edit', {
         method: 'POST',

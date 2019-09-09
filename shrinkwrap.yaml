@@ -1,0 +1,169 @@
+dependencies:
+  mime: 2.4.4
+  npm: 6.11.3
+devDependencies:
+  ws: 3.3.2
+packages:
+  /async-limiter/1.0.1:
+    dev: true
+    resolution:
+      integrity: sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
+  /mime/2.4.4:
+    dev: false
+    engines:
+      node: '>=4.0.0'
+    hasBin: true
+    resolution:
+      integrity: sha512-LRxmNwziLPT828z+4YkNzloCFC2YM4wrB99k+AV5ZbEyfGNWfG8SO1FUXLmLDBSo89NrJZ4DIWeLjy1CHGhMGA==
+  /npm/6.11.3:
+    bundledDependencies:
+      - abbrev
+      - ansicolors
+      - ansistyles
+      - aproba
+      - archy
+      - bin-links
+      - bluebird
+      - byte-size
+      - cacache
+      - call-limit
+      - chownr
+      - ci-info
+      - cli-columns
+      - cli-table3
+      - cmd-shim
+      - columnify
+      - config-chain
+      - debuglog
+      - detect-indent
+      - detect-newline
+      - dezalgo
+      - editor
+      - figgy-pudding
+      - find-npm-prefix
+      - fs-vacuum
+      - fs-write-stream-atomic
+      - gentle-fs
+      - glob
+      - graceful-fs
+      - has-unicode
+      - hosted-git-info
+      - iferr
+      - imurmurhash
+      - infer-owner
+      - inflight
+      - inherits
+      - ini
+      - init-package-json
+      - is-cidr
+      - json-parse-better-errors
+      - JSONStream
+      - lazy-property
+      - libcipm
+      - libnpm
+      - libnpmaccess
+      - libnpmhook
+      - libnpmorg
+      - libnpmsearch
+      - libnpmteam
+      - libnpx
+      - lock-verify
+      - lockfile
+      - lodash._baseindexof
+      - lodash._baseuniq
+      - lodash._bindcallback
+      - lodash._cacheindexof
+      - lodash._createcache
+      - lodash._getnative
+      - lodash.clonedeep
+      - lodash.restparam
+      - lodash.union
+      - lodash.uniq
+      - lodash.without
+      - lru-cache
+      - meant
+      - mississippi
+      - mkdirp
+      - move-concurrently
+      - node-gyp
+      - nopt
+      - normalize-package-data
+      - npm-audit-report
+      - npm-cache-filename
+      - npm-install-checks
+      - npm-lifecycle
+      - npm-package-arg
+      - npm-packlist
+      - npm-pick-manifest
+      - npm-profile
+      - npm-registry-fetch
+      - npm-user-validate
+      - npmlog
+      - once
+      - opener
+      - osenv
+      - pacote
+      - path-is-inside
+      - promise-inflight
+      - qrcode-terminal
+      - query-string
+      - qw
+      - read-cmd-shim
+      - read-installed
+      - read-package-json
+      - read-package-tree
+      - read
+      - readable-stream
+      - readdir-scoped-modules
+      - request
+      - retry
+      - rimraf
+      - safe-buffer
+      - semver
+      - sha
+      - slide
+      - sorted-object
+      - sorted-union-stream
+      - ssri
+      - stringify-package
+      - tar
+      - text-table
+      - tiny-relative-date
+      - uid-number
+      - umask
+      - unique-filename
+      - unpipe
+      - update-notifier
+      - uuid
+      - validate-npm-package-license
+      - validate-npm-package-name
+      - which
+      - worker-farm
+      - write-file-atomic
+    dev: false
+    hasBin: true
+    resolution:
+      integrity: sha512-K2h+MPzZiY39Xf6eHEdECe/LKoJXam4UCflz5kIxoskN3LQFeYs5fqBGT5i4TtM/aBk+86Mcf+jgXs/WuWAutQ==
+  /safe-buffer/5.1.2:
+    dev: true
+    resolution:
+      integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
+  /ultron/1.1.1:
+    dev: true
+    resolution:
+      integrity: sha512-UIEXBNeYmKptWH6z8ZnqTeS8fV74zG0/eRU9VGkpzz+LIJNs8W/zM/L+7ctCkRrgbNnnR0xxw4bKOr0cW0N0Og==
+  /ws/3.3.2:
+    dependencies:
+      async-limiter: 1.0.1
+      safe-buffer: 5.1.2
+      ultron: 1.1.1
+    dev: true
+    resolution:
+      integrity: sha512-t+WGpsNxhMR4v6EClXS8r8km5ZljKJzyGhJf7goJz9k5Ye3+b5Bvno5rjqPuIBn5mnn5GBb7o8IrIWHxX1qOLQ==
+registry: 'https://registry.npmjs.org/'
+shrinkwrapMinorVersion: 9
+shrinkwrapVersion: 3
+specifiers:
+  mime: ^2.4.4
+  npm: ^6.11.3
+  ws: 3.3.2
