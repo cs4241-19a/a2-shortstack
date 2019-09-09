@@ -147,13 +147,8 @@
     for(i = pointer.hasChildNodes(); i > 0; i--){
       if(pointerChild !== null) {
         removeEvent(pointerChild.getAttribute('index'))
-        //pointer.removeChild(pointerChild.getAttribute('index'))
       }
-      //console.log(pointerChild.getAttribute('index'))
-      
     }
-    
-    
   }
   
   
@@ -164,7 +159,6 @@
       method: 'POST',
       body
     }).then(function(response) {
-      //occupySchedule()
       updateSchedule()
       console.log("made it")
     })
@@ -173,6 +167,7 @@
   
   const createEvent = function(index, day, task, time){
       var dayNum = dayFinder(day)
+      console.log(day)
       var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
       var timeNode = document.createTextNode(time)
       var textNode = document.createTextNode(task)
@@ -194,15 +189,14 @@
     var int = 0;
     console.log("Here")
     var pointer = document.querySelector('.boardsection[data-board]:last-child .tasklist ')
-    //var pointerChild = document.querySelector('.boardsection[data-board]:last-child .tasklist :first-child')
-      //console.log(pointerChild)
-
+    for(int = 0; int < document.querySelector('.boardsection[data-board]').hasChildNodes(); int++) {   
+      var pointer = document.querySelector('.boardsection[data-board]:nth-child(+ +"') .tasklist ')
       while(pointer.firstChild !== null)
       {
         console.log(pointer)
         console.log(pointer.firstChild)
         pointer.removeChild(pointer.firstChild)
-      }
+      }}
     }
   
   const dayFinder = function(str) {
