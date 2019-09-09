@@ -1,5 +1,7 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
+      request = require('request'),
+      cheerio = require('cheerio'),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
@@ -7,10 +9,46 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'yourname': 'Rafael', 'dish': "cookie", 'ingredient': "chocolate" },
+  { 'yourname': 'Nasim', 'dish': "roll", 'ingredient': "strawberry" },
+  { 'yourname': 'Shine', 'dish': "duck", 'ingredient': "orange"} 
 ]
+
+const recipe = function(data){
+  const new_recipe = data;
+  const str = ""
+  request(str.concat('https://www.allrecipes.com/search/results/?wt=',new_recipe.dish,'&ingIncl=',new_recipe.ingredient,'&sort=re'), (error, response, html) => {
+  if (!error && response.statusCode == 200) {
+    const $ = cheerio.load(html);
+    
+    const link = $('.fixed-recipe-card__h3 a').first().attr('href');
+    return recipeview(link);
+    }
+  })
+}
+
+const recipeview = function(link){
+  const new_recipe = link;
+  const str = ""
+  request(link, (error, response, html) => {
+  if (!error && response.statusCode == 200) {
+    const $ = cheerio.load(html);
+    
+    const ingredients = $('.checkList__item').each((i, el) => {
+      const title = $(el).attr('title')
+    }
+  );
+    const instructions = $('.recipe-directions__list--item').each((i, el) => {
+      const title = $(el).text()
+      });
+    
+    return {
+      ingredients: ingredients,
+      instructions: instructions
+      }
+    }
+  })
+}
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -32,19 +70,25 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
-
   request.on( 'data', function( data ) {
       dataString += data 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
+    const data = JSON.parse( dataString )
+    addLog(data);
+    const answer = recipe(data)
     // ... do something with the data here!!!
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.end(answer)
+    console.log(answer);
+    
   })
+}
+
+const addLog = function(data){
+  appdata.push(data)
 }
 
 const sendFile = function( response, filename ) {
