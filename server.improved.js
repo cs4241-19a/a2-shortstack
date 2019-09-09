@@ -13,7 +13,10 @@ const appdata = [
 ]
 
 const appdata2 = [
-  {'team':888,'WLP':"0-0-0",'WP':0}
+  {'team':8192,'WLP':"0-0-0",'WP':1},
+  {'team':7146,'WLP':"0-0-0",'WP':1},
+  {'team':6439,'WLP':"0-0-0",'WP':0},
+  {'team':359,'WLP':"0-0-0",'WP':2}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -72,6 +75,7 @@ const handlePost = function( request, response ) {
       appdata.push(newMR);
       addTeam(MR.red1);
       addTeam(MR.blue1);
+      rank();
       
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
@@ -117,11 +121,34 @@ const sendData = function( response, MHs ) {
   response.end();
 }
 
-const rank = function(redS,blueS){
+const rank = function(){
   for(let i=0; i<appdata.length;i++){
-    if(appdata[i].r===1){
-      red1
+    if(appdata[i].r==1){
+      for(let j=0; j<appdata2.length;j++){
+        if(appdata2[j].team == appdata[i].red1){
+          appdata2[j].WP+=2;
+        }
+      }
+      appdata2[1].WP=100;
+    } else if (appdata[i].r===2){
+      for(let j=0; j<appdata2.length;j++){
+        if(appdata2[j].team == appdata[i].blue1){
+          appdata2[j].WP+=2;
+        }
+      }
+    } else{
+      if(appdata[i].r===0){
+      for(let j=0; j<appdata2.length;j++){
+        if(appdata2[j].team == appdata[i].red1){
+          appdata2[j].WP++;
+        }
+        if(appdata2[j].team == appdata[i].blue1){
+          appdata2[j].WP++;
+        }
+      }
+    } 
     }
+     
   }
 }
 
