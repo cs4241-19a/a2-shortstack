@@ -113,7 +113,14 @@ const handlePost = function( request, response ) {
         break
 
       case '/update':
-        appdata.update( data )
+        let index = data.index
+        appdata[index].model = data.model
+        appdata[index].year = data.year
+        appdata[index].mpg = data.mpg
+        appdata[index].tripDistance = data.tripDistance
+        appdata[index].gasPrice = data.gasPrice
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
         break
 
       default:
