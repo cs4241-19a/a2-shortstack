@@ -102,6 +102,12 @@ const deletePost = (uuid, res) => {
   }
 };
 
+/**
+ * Determines whether or not the specified IP has liked the post with the list
+ * of liked IPs.
+ * @param ip the IP to check
+ * @param likedIPs the list of IPs that have liked the post
+ */
 const hasLiked = (ip, likedIPs) => likedIPs.some(likedIP => ip === likedIP);
 
 /**
