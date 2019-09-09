@@ -73,8 +73,7 @@
     </div>
   </body>
   <script>
-    /*window.localStorage;
-    localStorage.setItem('firstvalue', model.value);*/
+
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
@@ -96,10 +95,9 @@
     })
     .then( function( response ) {
  
-      //displayDataTable();
+      
     })
 
-    //window.location = "index.html";
     displayDataTable();
     return false
   }
@@ -168,9 +166,6 @@
 
   const createDataTable = function(theCarData, updateIndex){
 
-      /*let entry=document.createElement("div");
-      entry.innerHTML=JSON.stringify(theCarData);
-      document.body.appendChild(entry);*/
 
       let finalCarData = document.querySelector('#CarData');
 
@@ -213,7 +208,7 @@
           newLine+=('<td>' +'$'+cars.gasPrice+ '</td>');
           newLine+=('<td>' +cars.totalGallons+ '</td>');
           newLine+=('<td>' +'$'+cars.totalCost+ '</td>');
-          newLine+=('<td><button id="' + i + '" onclick="changeRow(' + i + ')"> Edit </button></td>\n');
+          newLine+=('<td><button style="background-color:grey;color:white;" id="' + i + '" onclick="changeRow(' + i + ')"> Edit </button></td>\n');
           newLine+=('<td><button style="background-color:red;color:white;" id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
           newLine+='</tr>';
         }
@@ -232,8 +227,8 @@ const dbData = function(){
         })
       .then(function (response){
             console.log( 'post response: ', response );
-            var n=localStorage.getItem('firstvalue');
-            document.getElementById('emptyfield').innerText=JSON.stringify(response[n].model)
+            var getData=localStorage.getItem('firstvalue');
+            document.getElementById('emptyfield').innerText=JSON.stringify(response[getData].model)
         });
 }
 
@@ -242,7 +237,6 @@ const dbData = function(){
     const button = document.querySelector( 'button' )
     button.onclick = submit
 
-    //dbData();
 
   }
 
