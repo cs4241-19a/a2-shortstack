@@ -144,10 +144,16 @@
         var i;
         for(i = 0; i < info.length; i++){
           var dayNum = dayFinder(info[i].day)
-          var textNode = document.createTextNode(info[i].time + " " + info[i].task)
-          var
+          var timeNode = document.createTextNode(info[i].time)
+          var textNode = document.createTextNode(info[i].task)
+          var divNode = document.createElement("div")
+          var breakNode = document.createElement("br")
           var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
-          dayCol.appendChild(textNode);
+          day
+          dayCol.appendChild(breakNode)
+          dayCol.appendChild(timeNode)
+          dayCol.appendChild(breakNode)
+          dayCol.appendChild(textNode)
 
         }
         
