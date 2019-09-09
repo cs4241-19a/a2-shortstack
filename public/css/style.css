@@ -1,1 +1,72 @@
-/*Style your own assignment! This is fun! */
+form {
+  margin: 0 auto;
+  width: 400px;
+  padding: 1em;
+  border: 1px solid #720606;
+  border-radius: 1em;
+  margin-bottom: 1vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;  
+}
+
+form div + div {
+  margin-top: 1em;
+}
+
+label {
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+
+input, textarea {
+  font: 1em sans-serif;
+  width: 300px;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  
+}
+
+input:focus, textarea:focus {
+  border-color: #000;
+}
+
+textarea {
+  vertical-align: top;
+  height: 5em;
+}
+
+.button {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 7vw;
+}
+
+body {
+  background-image: url("https://cdn.glitch.com/8a9e152e-502f-4791-b904-2719621175b6%2Fbook-3057904_960_720.png?v=1567960122849");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.labelInput{
+  padding: 5px;
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+}
+
+
+    
+}
