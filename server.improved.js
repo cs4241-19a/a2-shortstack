@@ -299,7 +299,7 @@ function modData(toChange){
 //******** FIREBASE FUNCTIONS *******//
 //returns firebase database as an array of json objects
 function returnFirebaseAsArray(){
-  let returnArray = []
+  /*let returnArray = []
   firebase.database().ref().once("value", function(data){
     data.forEach(function(childSnapshot){
         var childData = childSnapshot.val()
@@ -307,12 +307,20 @@ function returnFirebaseAsArray(){
     })
   })
     .then(function(result){
-    //console.log(result)
-    //console.log(returnArray)
     return returnArray;
+  })
+  .finally(function (){
+    return returnArray
+  })*/
+  return aFunction().then(function(val){
+    
   })
   
   
+}
+
+function aFunction(){
+  return null;
 }
 
 
