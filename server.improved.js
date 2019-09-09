@@ -65,15 +65,9 @@ const handlePost = function( request, response ) {
       
      case '/delete':
        const MRdelete = JSON.parse(dataString); //match result
-       const newMR ={
-        'matchNumber':MN,
-        'red1': MR.red1, 
-        'blue1': MR.blue1, 
-        'redScore': MR.redScore, 
-        'blueScore':MR.blueScore
-      }
-      MN++;
-      appdata.push(newMR);
+       appdata.splice(MRdelete.orderNumber, 1);
+ //      MN--;
+ //     appdata.push(newMR);
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
 

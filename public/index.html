@@ -113,7 +113,7 @@
           // newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
           //         + encodeURIComponent(stringOrder) +
           //         `>Edit</button> </td>\n`);
-          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
         }
@@ -122,9 +122,9 @@
   
   
   
-  const deleteOrder = function (index) {
-      const orderNumber = { orderNumber: index };
-      const body = JSON.stringify(orderNumber);
+  const deleteMatch = function (index) {
+      const matchNumber = { matchNumber: index };
+      const body = JSON.stringify(matchNumber);
       fetch('/delete', {
         method: 'POST',
         body
