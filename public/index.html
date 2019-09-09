@@ -85,9 +85,9 @@
           distance = document.querySelector( '#distance' ),
           gas = document.querySelector( '#gas' )
     
-          json = { model: model.value, year: year.value,
-                 mpg: mpg.value, tripDistance: distance.value,
-                 gasPrice: gas.value},
+          json = { 'model': model.value, 'year': year.value,
+                 'mpg': mpg.value, 'tripDistance': distance.value,
+                 'gasPrice': gas.value},
           body = JSON.stringify( json )
 
     fetch( '/submit', { //url name = /submit
@@ -169,7 +169,6 @@
 
       let finalCarData = document.querySelector('#CarData');
 
-      //setting the header at the top of the table
       finalCarData.innerHTML =
 
                 '<h3 style="position:absolute; top:-48px;">My Saved Trip Details</h3>\n'+
