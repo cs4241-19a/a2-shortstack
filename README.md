@@ -5,7 +5,7 @@ Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and
 Deployed on Glitch:
 
 
-### Deliverables
+### Deliverables:
 
 # Puppy Pals -by Manasi Danke
 Puppy Pals is a service that provides grooming services for dogs. The website enables owners to fill out their name, their dog's name, enter in special details for the order, indicate the size of their dog, add on a massage, and be able to view the price!
