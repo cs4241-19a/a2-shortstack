@@ -27,6 +27,7 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/index.html' )
   } else if ( request.url === '/items' ){
     sendData( response, appdata );
+  }
   else{
     sendFile( response, filename )
   }
@@ -70,5 +71,12 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+const sendData = function( response, items ) {
+  const type = mime.getType( items );
+  response.writeHeader(200, { 'Content-Type': type });
+  response.write(JSON.stringify({ data: items }));
+  response.end();
+};
 
 server.listen( process.env.PORT || port )

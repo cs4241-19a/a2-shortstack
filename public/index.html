@@ -65,19 +65,22 @@
       const resp = await fetch('/items', { method: 'GET' });
       const data = await resp.json();
       const favs = data.data;
-
-      let htmlCard = `<div class="card"> 
-                            <div class="card-body">`;
+      
+      let htmlCard = document.getElementById("favorites").innerHTML;
 
       for (let i = 0; i < 3; i++) {
-        htmlCard += `<h5 class="card-title">${favs[i].name}</h5>
-                    <p class="card-text"><small class="text-muted">${favs[i].category}</small></p>
-                    <p class="card-text">${favs[i].usd}</p>
-                    <p class="card-text">${favs[i].eur}</p>
-                  </div>
-                  <div class="card-footer bg-transparent">${favs[i].rating}</div>
-                </div>`;
+        htmlCard += `<div class="card"> 
+                       <div class="card-body">
+                        <h5 class="card-title">${favs[i].name}</h5>
+                        <p class="card-text"><small class="text-muted">${favs[i].category}</small></p>
+                        <p class="card-text">${favs[i].usd}</p>
+                        <p class="card-text">${favs[i].eur}</p>
+                    </div>
+                    <div class="card-footer bg-transparent">${favs[i].rating}</div>
+                  </div>`;
       }
+
+      debugger
 
       document.getElementById("favorites").innerHTML = htmlCard;
     };
