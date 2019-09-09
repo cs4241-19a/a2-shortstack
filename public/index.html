@@ -16,7 +16,7 @@
           Sunday
         </div>
         <div class="tasklist" day="1">
-          thing
+          
         </div>
       </div>
       <div class="boardsection" data-board="day_2">
@@ -48,7 +48,7 @@
           Thursday
         </div>
         <div class="tasklist" day="5">
-          thing
+          
         </div>
       </div>
       <div class="boardsection" data-board="day_6">
@@ -56,7 +56,7 @@
           Friday
         </div>
         <div class="tasklist" day="6">
-          thing
+          
         </div>
       </div>
       <div class="boardsection" data-board="day_7">
@@ -64,7 +64,7 @@
           Saturday
         </div>
         <div class="tasklist" day="7">
-          thing
+          
         </div>
       </div>    
     </div>
@@ -75,9 +75,9 @@
       <form action="">
         <div class="menu-data">
           <span> Day: </span>
-          <input type="text" id="day" value="1">
+          <input type="text" id="day" value="Monday">
           <span> Task: </span>
-          <input type="text" id="task" value="task">
+          <input type="text" id="task" value="HW">
           <span> Time: </span>
           <input type="time" id="time" value="2:00">
         </div>
@@ -112,9 +112,7 @@
       console.log( response )
       //occupyText()
       
-      
-      
-      /*
+    
       fetch(url)
         .then(function( response ) {
           //response.json();
@@ -125,7 +123,7 @@
         //answer.innerHTML = data
         //console.log(info)
       });
-      */
+      
 
       
     })
@@ -134,13 +132,14 @@
   }
   
   const occupySchedule = function() {
-    fetch( '/information' )
+    fetch( '/info' )
       .then( function( response ) {
         console.log( response )
         return response.json()
     })
       .then( function( myJSON ) {
         var info = myJSON.data
+        document.querySelector(".data")
         answer.innerHTML = info[1].value
         
       
@@ -151,6 +150,11 @@
   
   const addEvent = function(e) {
   e.preventDefault();
+  var day = document.querySelector("#day").value
+  var task = document.querySelector("#task").value
+  var time = document.querySelector("#time").value
+  console.log("Day: " + day + " Time: " + time + " Task: "+ task);
+    
   var newEvent = {
     day : document.querySelector("#day").value,
     task : document.querySelector("#task").value,
@@ -161,7 +165,7 @@
     method: 'POST',
     body
   }).then( function( response ) {
-    document.querySelector( document.querySelector("#day").value ).appendChild(document.querySelector("#task").value)
+    document.querySelector( day ).appendChild( time + " " + task );
 
     document.querySelector("#day").value = '';
     document.querySelector("#task").value = '';
@@ -172,7 +176,7 @@
     occupySchedule()
     
     const button = document.querySelector( '#submit' )
-    button.onclick = submit
+    button.onclick = addEvent
   }
     
 

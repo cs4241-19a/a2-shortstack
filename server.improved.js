@@ -30,7 +30,7 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  } else if( request.url === '/information') {
+  } else if( request.url === '/info') {
     sendData( response, data )
   } else{
     sendFile( response, filename )
