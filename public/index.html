@@ -135,11 +135,11 @@
         const stringOrder = JSON.stringify(match[i]);
         let newRow = '<tr>\n';
        if(i === index){
-          newRow += (`<td id='updatedMN'><input value="${match.matchNumber}">   </td>\n`);
-          newRow += (`<td id='updatedRed1'><input value="${match.red1}"> </td>\n`);
-          newRow += (`<td id='updatedBlue1'><input value="${match.blue1}"> </td>\n`);
-          newRow += (`<td id='updatedRedScore'><input value="${match.redScore}"> </td>\n`);
-          newRow += (`<td id='updatedBlueScore'><input value="${match.blueScore}"> </td>\n`);         
+          newRow += (`<td><input id='updatedMN' value="${match.matchNumber}">   </td>\n`);
+          newRow += (`<td><input id='updatedRed1' value="${match.red1}"> </td>\n`);
+          newRow += (`<td><input id='updatedBlue1' value="${match.blue1}"> </td>\n`);
+          newRow += (`<td><input id='updatedRedScore' value="${match.redScore}"> </td>\n`);
+          newRow += (`<td><input  id='updatedBlueScore' value="${match.blueScore}"> </td>\n`);         
           newRow += (`<td><button id="update-button-${i}" class="table-button" onclick="updateMatch(${i})">Update</button> </td>\n`);
           //newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
@@ -164,17 +164,17 @@
 
     const updatedMR = {
       index:index,
-      // matchNumber:document.getElementById( 'updatedMN' ).value,
-      // red1:document.getElementById( 'updatedRed1' ).value,
-      // blue1:document.getElementById( 'updatedBlue1' ).value,
-      // redScore:document.getElementById( 'updatedRedScore' ).value,
-      // blueScore:document.getElementById( 'updatedBlueScore' ).value
+      matchNumber:document.getElementById( 'updatedMN' ).value,
+      red1:document.getElementById( 'updatedRed1' ).value,
+      blue1:document.getElementById( 'updatedBlue1' ).value,
+      redScore:document.getElementById( 'updatedRedScore' ).value,
+      blueScore:document.getElementById( 'updatedBlueScore' ).value
       
-      matchNumber:1,
-      red1:1,
-      blue1:1,
-      redScore:1,
-      blueScore:1
+      // matchNumber:1,
+      // red1:1,
+      // blue1:1,
+      // redScore:1,
+      // blueScore:1
     }
     
      const body = JSON.stringify(updatedMR);

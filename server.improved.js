@@ -77,15 +77,20 @@ const handlePost = function( request, response ) {
       case '/update':
         const MRupdate = JSON.parse(dataString);
 
-        const updatedOrder = {
-        'matchNumber':MRupdate.matchNumber,
+        const updatedMR = {
+        // 'matchNumber':MRupdate.matchNumber,
+        // 'red1': MRupdate.red1, 
+        // 'blue1': MRupdate.blue1, 
+        // 'redScore': MRupdate.redScore, 
+        // 'blueScore':MRupdate.blueScore
+                'matchNumber':MRupdate.matchNumber,
         'red1': MRupdate.red1, 
         'blue1': MRupdate.blue1, 
         'redScore': MRupdate.redScore, 
-        'blueScore':MRupdate.blueScore
+        'blueScore':MRupdate.blueScore          
         };
 
-        appdata.splice(MRupdate.index, 1, updatedOrder);
+        appdata.splice(1, 1, updatedMR);
 
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
         response.end();
