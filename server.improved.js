@@ -19,7 +19,11 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-var appdata = []
+const appdata = [
+  { 'fName': 'Bob', 'lName': 'Smith', 'month':'August', 'day': 23, 'sign':"Leo"},
+  { 'fName': 'Suzy', 'lName': 'Ng', 'month':'September','day': 30 , 'sign':"Libra"},
+  { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"Cancer"} 
+]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -32,9 +36,6 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    if(appdata.length === 0){
-      loadFromFirebase()
-    }
     sendFile( response, 'public/index.html' )
   }
   else if (request.url == '/getData'){
@@ -95,18 +96,6 @@ const handlePost = function( request, response ) {
         response.write(JSON.stringify(appdata))
         response.end()
         break
-      case "remote":
-        console.log(dataString)
-        deleteInFirebase()
-        for(let i = 0; i< appdata.length; i++){
-          addItemToFirebase(appdata[i])
-        }
-        appdata = []
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-        response.write("WRITTEN TO DATABASE")
-        response.end()
-
-        break;
       default:
         console.log(reqURL)
     }

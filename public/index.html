@@ -13,6 +13,7 @@
   </head>
   <body>
     <nav>
+      <h1>Celebrity Horoscopes</h1>
       <ul>
         <li><button onclick="displayNewForm()">Add New</button></li>
         <li><button onclick="displayModForm()">Modify Existing</button></li>
@@ -61,7 +62,7 @@
     </form>
     </div>
     <div id="Container"></div>
-    <div id="ZodiacCarousel" class="carousel slide" data-rise="carousel">
+    <div id="ZodiacCarousel" class="carousel slide" data-rise="carousel" style="margin:0px;">
       <!--Indicators-->
       <ol class="carousel-indicators" style="display:none;">
         <li data-target="#ZodiacCarousel" data-slide-to="0" class="active"></li>
@@ -177,29 +178,28 @@
     </div>
   </body>
   <script>
-
-  const submit = function( e ) {
+    const submit = function( e ) {
     // prevent default form action from being carried out
-    e.preventDefault()
-    let valInput = []
-    valInput.push(document.querySelector( '.fName' ).value)
-    valInput.push(document.querySelector( '.lName' ).value)
-    valInput.push(document.querySelector( '.month' ).value)
-    valInput.push(document.querySelector( '.days' ).value)
-    const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
-          body = JSON.stringify( json )
+      e.preventDefault()
+      let valInput = []
+      valInput.push(document.querySelector( '.fName' ).value)
+      valInput.push(document.querySelector( '.lName' ).value)
+      valInput.push(document.querySelector( '.month' ).value)
+      valInput.push(document.querySelector( '.days' ).value)
+      const json = { fName: valInput[0], lName: valInput[1], month: valInput[2], day: valInput[3] },
+            body = JSON.stringify( json )
 
-    fetch( '/submit', {
-      method:'POST',
-      body
-    })
-    .then( function( response) {
+      fetch( '/submit', {
+        method:'POST',
+        body
+      })
+      .then( function( response) {
       // do something with the reponse
       //display horoscope on screen
-     response.text()
-      .then(function(message){
-       console.log(message)
-       displayNewForm()
+         response.text()
+        .then(function(message){
+         console.log(message)
+         displayNewForm()
      })
       
     })
@@ -270,26 +270,6 @@
     window.onload = function() {
       const subButton = document.querySelector( '#subButton' )
       subButton.onclick = submit
-    }
-    
-    window.beforeonunload = function(){
-      let body = "LEAVING PAGE"
-      fetch( '/remote', {
-      method:'POST',
-      body
-    })
-    .then( function( response) {
-      // do something with the reponse
-      //display horoscope on screen
-     response.text()
-      .then(function(message){
-       console.log(message)
-     })
-      
-    })
-    return false
-    
-    }
-  
+    }  
   </script>
 </html>

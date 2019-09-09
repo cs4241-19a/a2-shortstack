@@ -4,8 +4,15 @@ nav{
   justify-content: space-between;
   align-items: stretch;
   background: black;
-  position: sticky;
+  position: fixed;
+  z-index: 1000;
   width: 100%;
+}
+nav h1{
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding: 0;
 }
 nav ul{
   display: flex;
