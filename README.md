@@ -7,7 +7,7 @@ Deployed on Glitch:
 
 ### Deliverables
 
-# Puppy Pals!-by Manasi Danke
+# Puppy Pals -by Manasi Danke
 Puppy Pals is a service that provides grooming services for dogs. The website enables owners to fill out their name, their dog's name, enter in special details for the order, indicate the size of their dog, add on a massage, and be able to view the price!
 
 The website, with the help of a html form and table, help the pet owners effectively communicate the above details to the groomers by filling out a form.The owners can simply fill out a form each time and have those details organized neatly in a table.
