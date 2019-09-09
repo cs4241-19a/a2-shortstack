@@ -1,0 +1,72 @@
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+      <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+      <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <button class = "home-btn" type="button" onclick="openPage('index.html')">Home</button>
+    <h2 style="margin-top: 20px; text-align: center">
+      <u>Past Results</u>
+    </h2>
+  <table id = "full-table">
+    <tr>
+      <th>Name</th>
+      <th>Language</th>
+    </tr>
+    <tbody id="maintable">
+    </tbody>
+  </table>
+  </body>
+  <script>
+    
+    getAllData();
+    
+    
+  function getAllData(){       
+    fetch( '/allData', {
+      method:'GET'
+    })
+    .then( function( response ) {
+     return response.text()
+    })
+    .then((text) => createTable(text))
+
+    return false
+  }
+    
+    function createTable(text){
+      let data = JSON.parse(text);
+      for(let i=0; i<data.length; i++){
+        if(data[i].name && data[i].lang){
+          let td1 = document.createElement('td');
+          td1.innerHTML = data[i].name;
+
+          let td2 = document.createElement('td');
+          td2.innerHTML = data[i].lang;
+
+          let tr = document.createElement('tr');
+          tr.append(td1, td2);
+          tr.classList.add('table-item')
+
+          document.getElementById('maintable').appendChild(tr);
+        }
+      }
+    }
+    
+    
+    function openPage(page){
+      let link = document.createElement('a');
+      link.href = "/"+ page;
+      link.click();
+    }
+    
+  </script>
+</html>
