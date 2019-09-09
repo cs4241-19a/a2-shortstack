@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>a2-cmcourville-library</title>
+    <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div class="topnav">
+      <a  hef="https://cmcourville-a2-shortstack.glitch.me/">Home</a>
+      <a  href="https://cmcourville-a2-shortstack.glitch.me/library.html">Library</a>
+      <a  href="https://cmcourville-a2-shortstack.glitch.me/">Submit Another Book</a>
+    </div>
+    <h1 id="myHeader">Welcome to the Library</h1>
+      <table id = "results">
+          <tbody id = "tableBody"></tbody>
+      </table>
+  </body>
+  <script>
+  function updateTable(data){
+    let tableRef = document.getElementById("tableBody")
+    tableRef.innerHTML = ""
+    function addNewEntry(title, author, comment, time){
+      let resultsTable = document.getElementById("results");
+      let newRow = tableRef.insertRow(-1)
+      let authorText = document.createTextNode(author);
+      let titleText = document.createTextNode(title);
+      let commentText = document.createTextNode(comment);
+      let timeText = document.createTextNode(time);
+      let titleCell = newRow.insertCell(0)
+      let authorCell = newRow.insertCell(1)
+      let commentCell = newRow.insertCell(2)
+      let timeCell = newRow.insertCell(3)
+      titleCell.appendChild(titleText)
+      authorCell.appendChild(authorText)
+      commentCell.appendChild(commentText)
+      timeCell.appendChild(timeText)
+    }
+    data.forEach(element => {
+      addNewEntry(element['title'], element['author'], element['comment'], element['time'])
+    });
+}
+  window.onload = function(e) {
+    const button = document.querySelector( 'button' )
+    e.preventDefault()
+    fetch("/appData", {method: "GET"}).then(response => {
+      response.text().then(function(value){
+        let data = JSON.parse(value)
+        updateTable(data)
+      })
+    });
+  }
+  </script>
+</html>
