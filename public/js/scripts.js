@@ -1,5 +1,4 @@
-// ***********************************************************************
-// Display functions specific to each table. Use a template row and replace with satellite data
+// Display functions for each table
 const displayBooks = function( bkdata ) {
   const template = '<tr><td>{name}</td><td>{author}</td><td>{comments}</td><td>{rating}</tr>'
   const row = template.replace("{name}", bkdata.bookName).replace("{author}", bkdata.authorName).replace("{comments}", bkdata.comments).replace("{rating}", bkdata.rating)
@@ -20,9 +19,6 @@ const displayBadBooks = function( bkdata ) {
   const tbody = document.querySelector("#bad-books")
   tbody.innerHTML += row
 }
-// End individual display functions
-// ************************************************************************
-
 
 //displayData for the three different tables
 const displayData = function ( data ) {
@@ -42,7 +38,7 @@ const displayData = function ( data ) {
   }
 }
 
-// Fetch the appdata and then call the display function
+// Fetch the appdata and then call the display functions
 const loadData = function( e ) {
   fetch( '/books', {
     method:'GET',
@@ -62,15 +58,20 @@ const loadData = function( e ) {
         authorName: document.getElementById( 'authorName' ).value,
         comments:document.getElementById( 'comments' ).value,
         rating: document.getElementById( 'rating' ).value,
-        status: 'inprogress'
+        status: 'none'
       };
-        const body = JSON.stringify( newBook );
-        fetch( '/addBook', {
-          method:'POST',
-          body
-        }).then( function( response ) {
-          //document.getElementById('order-confirmation').style.display = "flex";
-          //FIX THISSSS
+      
+      if(newBook.rating >= 3){
+         newBook.status = 'good'
+      } else {
+        newBook.status = 'bad'
+      }
+      
+      const body = JSON.stringify( newBook );
+      fetch( '/addBook', {
+        method:'POST',
+        body
+      }).then( function( response ) {
           resetOrderForm();
           console.log(response)
         })
@@ -87,8 +88,7 @@ const loadData = function( e ) {
 
   window.onload = function() {
     const addBookbutton = document.getElementById( 'submit-btn' )
-    addBookbutton.onclick = console.log("are you kidding me")
-    //addBookbutton.onclick = addBook
+    addBookbutton.onclick = addBook
     
     loadData()
   }
