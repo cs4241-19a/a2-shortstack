@@ -2,40 +2,125 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+      <script src = "./js/scripts.js" type="text/javascript"></script>
     <meta charset="utf-8">
   </head>
   <body>
+
+    <div id="background">
+      <h1>
+        Fake Sushi Website!
+      </h1>
+      <div id="foreground">
+        
+            <div class="navbar">
+              <div class="dropdown">
+            <button class="dropbtn">
+                Menu
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a id="nav-order">Order</a>
+                <a id="nav-find">Find Order</a>
+            </div>
+        </div>
+
+    </div> 
+   <div id="content">
+     
+
+
+    <!-- Order DIV -->
+    <div id="orderForm">
+        <form action="">
+          <div class="form-input" style="margin-right:20px;">
+            
+            <!-- Customer Info-->
+            <label for="yourname" class="form-label">Name</label>
+            <input class="text" type="text" id="yourname" required> 
+          </div>
+          
+          <div class ="form-input" style="float:left;">
+            <label for="yourphone" class="form-label">Phone Number</label>
+            <input class="text" type="number" id="phone" required>
+          </div>
+          
+          <!-- Sushi Order -->
+           <div class="form-input" role="radiogroup" aria-label="fish-type">
+              <p class="form-label" id="fish-label">What fish would you like?</p>
+              <input type="radio" checked id="salmon" name="fish" value="salmon">
+              <label class="radio" for="salmon">Salmon</label>
+              <input type="radio" id="tuna" name="fish" value="tuna">
+              <label for="tuna">Tuna</label>
+            </div>
+          
+            <div class="form-input" role="radiogroup" aria-label="fish-type">
+              <p class="form-label" id="dish-label">How do you want it?</p>
+              <input type="radio" checked id="sashimi" name="style" value="sashimi">
+              <label for="sashimi">Sashimi</label>
+              <input type="radio" id="sushi" name="style" value="sushi">
+              <label for="sushi">Sushi</label>
+            </div>
+          
+            <div class ="form-input">
+              <label for="number-order" class="form-label">How many orders?</label>
+              <input class="text" type="number" id="number-order" required>
+            </div>
+           <button type="button" id="submitBtn" class="submit">Submit Order</button>
+        </form>
+      
+    </div>
+
+    <div id="modifyView">
+      <div class ="form-input">
+        <label for="number-order" class="form-label">Order ID</label>
+        <input class="text" type="number" id="orderID" readonly="readonly">
+      </div>
+      <button type="button" id="modifyBtn" class="modifyBtn">Modify Order</button>
+    </div>
+    
+    <!-- Find Order by ID -->
+    <div id="findOrderForm">
+      <div class ="form-input">
+              <label for="order-number" class="form-label">Enter your Order Number!</label>
+              <input class="text" type="number" id="order-number" required>
+      </div>
+      <button type="button" class="findorder">Find Order</button>
+    </div>
+    
+    <!-- Show Order Screen -->
+    <div id="showOrder">
+      <table border="1" style="width:100%">
+        <caption>Your Order</caption>
+        <tr>
+          <th>OrderID</th> 
+          <th>Fish</th>
+          <th>Style</th> 
+          <th>Quantity</th>
+          <th>Total Price</th>
+        </tr>
+        <tr>
+          <td id="tOrderID">Hi</td>
+          <td id="tFish">Hi</td>
+          <td id="tStyle">Hi</td>
+          <td id="tQuantity">Hi</td>
+          <td id="tTotal">Hi</td>
+          <td> <button type="button" id="modifyBtnLol" class="modify">Modify</button></td>
+          <td> <button type="button" id="deleteBtn" class="modify">Delete</button></td>
+        </tr>
+      </table>
+      
+        </div>         
+    </div>
+        </div>
+          </div>
+    <!--
     <form action="">
-      <input type='text' id='yourname' value="your name here">
+      <input type="text" id="yourname" value="your name here">
       <button>submit</button>
     </form>
+    -->
   </body>
-  <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
