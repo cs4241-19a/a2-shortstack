@@ -25,6 +25,10 @@ const tableLoad = function(){
   })
   .then(function(apiJson) {
     apiData = Array.from(apiJson);
+    if (apiData.length < 1) {
+        $("#reservations").empty();
+        $("#reservations").append("<tr><th>No results for this time.</th><th>Select a new time/date</th><th>(Or add one for this time!)</th><th></th></tr>")
+    }
     apiData.forEach(function(reservation) {
         $("#reservations").append("<tr><td>" + reservation.seat + "</td><td>" + reservation.username + "</td><td>" + reservation.email + "</td><td><button onclick='delBooking(" + reservation.id + ")'>Delete</button></td></li>")
     });
