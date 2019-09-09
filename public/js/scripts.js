@@ -61,11 +61,14 @@ const loadData = function( e ) {
         status: 'none'
       };
       
-      if(newBook.rating >= 3){
-         newBook.status = 'good'
+      if (newBook.rating === "1" || newBook.rating === "2" ) {
+        
       } else {
-        newBook.status = 'bad'
+        
       }
+    if (bkdata.rating === "3" || bkdata.rating === "4" || bkdata.rating === "5") {
+      displayGoodBooks(bkdata)
+    }
       
       const body = JSON.stringify( newBook );
       fetch( '/addBook', {

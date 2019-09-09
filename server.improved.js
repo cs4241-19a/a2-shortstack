@@ -39,7 +39,26 @@ const bookAddition = function (data) {
   appdata.push(new_book)
 }
 
+//delete a book given its name
+const bookDeletion = function (data) {
+  const name = data
+  for (let i = 0; i < appdata.length; i++) {
+    if (appdata[i].bookName === name) {
+      appdata.splice(i, 1)
+    }
+  }
+}
 
+// Update rating of a book -> this then will update the status
+const bookEdition = function (data) {
+  const name = data.bookName
+  for (let i = 0; i < appdata.length; i++) {
+    if (appdata[i].bookName === name) {
+      appdata[i].rating = data.rating
+      if (appdata[i].rating === '3' )
+    }
+  }
+}
 
 const handlePost = function( request, response ) {
   let dataString = ''
@@ -67,23 +86,6 @@ const handlePost = function( request, response ) {
     }
   })
 };
-
-/*
-const book = JSON.parse( dataString );
-
-        const newBook = {
-          'bookName': book.bookName,
-          'authorName': book.authorName,
-          'comments': book.comments,
-          'rating': book.rating,
-          'status': book.status,
-        };
-
-        appdata.push(newBook);
-
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-        response.end();
-*/
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
