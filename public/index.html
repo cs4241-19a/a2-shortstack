@@ -269,7 +269,7 @@
       subButton.onclick = submit
     }
     
-    window.onunload = window.onbeforeunload = function(){
+    window.onunload = window.beforeonunload = function(){
       console.log("ON REMOTE")
       let body = ""
       fetch( '/remote', {

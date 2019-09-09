@@ -45,8 +45,8 @@ const handleGet = function( request, response ) {
 
 const sendData = function(res){
   res.writeHeader(200, "OK", {'Content-Type': 'plain/text'})
-  res.write(JSON.stringify(returnFirebaseAsArray()))
-  //res.write(JSON.stringify(appdata))
+  //res.write(JSON.stringify(returnFirebaseAsArray()))
+  res.write(JSON.stringify(appdata))
   res.end()
 }
 
@@ -102,6 +102,7 @@ const handlePost = function( request, response ) {
         for(let i = 0; i< appdata.length; i++){
           addItemToFirebase(appdata[i])
         }
+        appdata = []
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write("WRITTEN TO DATABASE")
         response.end()
@@ -305,7 +306,9 @@ function deleteInFirebase(){
 function loadFromFirebase(){
   firebase.database().ref().once('value')
   .then(function(data){
-    data.forEach
+    data.forEach(function(child){
+      appdata.push(child.val())
+    })
   })
 }
 
