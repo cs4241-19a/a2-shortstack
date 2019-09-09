@@ -43,27 +43,27 @@ const handleDelete = function(request,response){
   })
 
   request.on( 'end', function() {
-    console.log(dataString);
+    console.log("deleting "+dataString);
     let obj=JSON.parse( dataString );
     let dName=obj['yourname'];
-    let dInd=0;
+    console.log(dName)
 
-    let newData2={ 'name': dName }
-    console.log(newData2);
+    // let newData2={ 'name': dName }
+    // console.log(newData2);
     for(let i=0;i<scopeData2.length;i++){
-      if(dName === scopeData2[i].name){
-        console.log(dName+", "+scopeData2[i].name)
-        dInd=i;
+      if(dName == scopeData2[i].name){
+        console.log(dName+", "+scopeData2[i].name+", "+i)
+        scopeData2.splice(i,1);
         break;
       }
-    delete scopeData2[dInd];
-    }
+
+  }
 
     console.log('scopeData2:');
     console.log(scopeData2);
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end(JSON.stringify(newData2))
+    response.end("object "+dName+"successfully deleted")
   })
 }
 

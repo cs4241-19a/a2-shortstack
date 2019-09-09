@@ -3,87 +3,50 @@ Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and
 
 Due: September 9th, by 11:59 AM.
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
-
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
-
 Baseline Requirements
----
-
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
-
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
-
-Your application is required to implement the following functionalities:
-
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
 
 Your application is required to demonstrate the use of the following concepts:
-
 HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
+- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application (2 text boxes, text and date, and 4 buttons)
 
 CSS:
 - CSS styling of the primary visual elements in the application
 - Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
+    - Element selectors (used for body styling)
+    - ID selectors (used for buttons)
+    - Class selectors (used for div styling/bootstrap)
 - CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
+    - CSS to cause at least one element to be horizontally centered on the page (all content blocks are positioned in center using bootstrap columns, no need for align-elements except for on things like text)
+    - CSS to cause at least one pair of elements to appear side-by-side (main content columns are 1x2 in each row)
+    - CSS defined in a maintainable, readable form, in external stylesheets (99% of css styling is in style.css)
 
 JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
+- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository. (cookie hadling, fetch requests)
 
 Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
+- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository. (handling fetch requests)
 
-Deliverables
----
-
-Do the following to complete this assignment:
-
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
+## HunterCaouette's website - now with a horoscope machine
 Include a very brief summary of your project here.
 Images are encouraged, along with concise, high-level text.
 
+
 Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+- domain area: a cool little feature set for the website to make it more fun
+- persistent data storage beyond server up-cycle w/o a real database
+- used cookies in lieu of setting up a database
+- the cookies are a decent workaround, to really address the issue on every windowload the page would POST each cookie to the server
+- I would be interested in continuing to research/look into ways to use cookies effectively as a way to store session data for user convenience
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
 
-http://a2-charlieroberts.glitch.me
+http://a2-hcaouette.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Tech Achievement 1**: In this project I used browser cookies to maintain session data for 24 hours, even if the server is disabled. They can be viewed from the cookie viewer menu in the browser.
+- **Tech Achievement 2**: Used bootstrap to make front-end elements look cleaner and more organized, and scalable to screen size
+- **Tech Achievement 3**: used alerts to deliver derived fields to the user, and then store the information in the cookies
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Design Achievement 1**: I used alt tags on my images
+- **Design Achievement 2**: I checked for suitable text/background contrast (scored 7.66)
+- **Design Achievement 3**: I couldn't use many semantic tags, as my site is still supported by bootstrap which uses proprietary divs

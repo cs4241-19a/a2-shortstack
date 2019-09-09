@@ -70,7 +70,6 @@ const delByName = function() {
     console.log( response )
     response.text().then(function(text){
       console.log(text)
-      let jOBJ = JSON.parse(text)
       //cookie is set to the table value stored in the temporary server, now cached for a day
     })
   })
