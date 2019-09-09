@@ -176,8 +176,16 @@
   
   const deleteEvent = function(e) {
     e.preventDefault();
-    var obj = document.querySelector('.boardsection[data-board]:first-child .tasklist')
-    console.log(obj)
+    var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist div')
+        var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
+
+    if(pointer !== null) {
+      var i;
+      for(i = 0; i < pointer.childNodes.length; i++){
+        pointer.remove(pointer.childNodes[i])
+      }
+    }
+    console.log(pointer)
   }
   
   const createEvent = function(day, task, time){
@@ -187,11 +195,12 @@
       var textNode = document.createTextNode(task)
       var divNode = document.createElement("div")
       var breakNode = document.createElement("br")
-      divNode.appendChild(breakNode)
+      var breakNode1 = document.createElement("br")
       divNode.appendChild(timeNode)
-      divNode.appendChild(breakNode)
+      divNode.appendChild(breakNode1)
       divNode.appendChild(textNode)
       dayCol.appendChild(divNode)
+      dayCol.appendChild(breakNode)
   }
   
   const dayFinder = function(str) {
