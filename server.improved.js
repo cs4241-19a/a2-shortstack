@@ -9,9 +9,8 @@ const http = require( 'http' ),
       app = Express(),
       bodyParser = require('body-parser')
       app.use(Express.static('public'))
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded())
+      app.use(bodyParser.json())
+      app.use(bodyParser.urlencoded())
 
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 71 },
@@ -78,7 +77,7 @@ app.get("/data", function(request, response){
   
   
   appdata.forEach(function(item){
-    //newData.shift()
+    
     newData.push({name: item.name, year: item.year, inches: item.inches, cm: (item.inches * 2.54)})
   })
   

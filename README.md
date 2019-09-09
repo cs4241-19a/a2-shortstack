@@ -16,13 +16,11 @@ The table has been prefilled with info of three students. The table will appear 
 
 
 
-
-http://a2-charlieroberts.glitch.me
+Justin Kreiselman (jkreiselman)
+https://a2-kreiselman-justin-kreiselman.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Tech Achievement 1**: Used express js (https://expressjs.com/) to streamline get/post requests and functions. This can be seen in server.improved.js
+- **Tech Achievement 2**: Used jquery (https://jquery.com/) to help with manipulating the data to display it in the table. This can be seen in scripts.js in the getData() function.
 
-### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+
