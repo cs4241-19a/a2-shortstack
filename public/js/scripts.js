@@ -592,9 +592,11 @@ function signToImageURL(sign){
 }
 
 
-function doGeneration(){
+const doGeneration = function(e){
+  e.preventDefault()
+console.log("ADD")
   fetch( '/getHoro', {
-    method:'GET',
+    method:'GET'
   })
   .then( function( response ) {
     console.log(response)
@@ -602,8 +604,8 @@ function doGeneration(){
     .then(function(message){
       let allData = JSON.parse(message)
       console.log(allData)
-      var randHoro = Math.random() * (Object.keys(allData).length+1);
-      document.getElementById("horoResult").innerHTML = allData[randHoro].horoscope
+      //var randHoro = Math.random() * (Object.keys(allData).length+1);
+      //document.getElementById("horoResult").innerHTML = allData[randHoro].horoscope
     })
   })
   return false
