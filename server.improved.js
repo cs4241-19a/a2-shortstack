@@ -174,9 +174,11 @@ const rank = function(){
     }
      
   }
+  appdata2.sort(function(b,a){
+  return a.WP-b.WP});
 }
 
-const sort
+
 
 const addTeam = function(t){
   let exist = 0;
