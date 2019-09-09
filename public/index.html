@@ -195,8 +195,6 @@
         var pointer = document.querySelector('.boardsection[data-board]:nth-child('+int+') .tasklist ')
         if(pointer!==null){
           while(pointer.firstChild !== null){
-            console.log(pointer)
-            console.log(pointer.firstChild)
             pointer.removeChild(pointer.firstChild)
           }
         }
@@ -235,7 +233,10 @@
     const nextButton = document.querySelector( '#next' )
     nextButton.onclick = deleteEvent
     
-    
+     
+    $('.boardsection[data-board] .tasklist').on('click', function() {
+      removeEvent([$(this).index]);
+    });
   }
     
 

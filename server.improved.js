@@ -17,7 +17,7 @@ const server = http.createServer( function( request,response ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
-  }
+  } 
 })
 
 const handleGet = function( request, response ) {
