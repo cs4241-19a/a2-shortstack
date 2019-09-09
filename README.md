@@ -1,26 +1,27 @@
 ## The Forums
+
 My project is a forum which is creatively named "The Forums". Users can post, edit, or delete any message on the forum. 
 
 This project aims to helps people comunicate big ideas in an simple way. The chalanges are giving people the space to write everything they want while still having it not appear daunting to read. The design of the website is colorful yet rather minimalistic. This helps the users focus on the content.
 
 https://a2-jameskajon.glitch.me
 
-###Requirements
+### Requirements
 
-####HTML
+#### HTML
 - All data stored in the database can be seen on the index page, or a specific forum page.
 - All messages and dates are displayed (unless deleted). The user's name can be seen by hovering over a username.
 
-####CSS
+#### CSS
 - I used element selectors, ID selectors, and class selectors in my style.css file
 - I horizontally centered the title (h2) on the forum page in style.css with the `#forum-title` selector
 - I made the three name fields in the add form to be side-by-side using the `#add-names`. I added padding with the `#add-names > input:not(:first-child)` selector
 - All of my css is in the styles.css file and separated by css for the forum pages and the form modals. However, most of my stying is done by bootstrap classed
 
-####JS
+#### JS
 - TODO
 
-####Node.js
+#### Node.js
 - I am using express instead of plain node.js. My back end code is written in the app.js and ForumRouter.js files.
 - app.js contains the basic server code.
 - ForumRouter.js handles all post and gets.
