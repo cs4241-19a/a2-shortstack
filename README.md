@@ -17,7 +17,7 @@ A webpage is developed and deployed to mark down the user-entered vehicles and e
 
 ## Introduction of Usage
 Visit the url below:
-http://a2-zonbglinpeng.glitch.me
+http://a2-zonglinpeng.glitch.me
 
 ## Technical Achievements
 - **Live Information Chart**: Implements a live table that displays all the input car information to the user on the web page in real time; after the user selectes to edit the chart, the chart will be updated without refresh.
