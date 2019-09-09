@@ -1,1 +1,75 @@
-/*Style your own assignment! This is fun! */
+/* Styling for A2's website*/
+
+h1{
+  text-align: center;
+  font-size: 6vw;
+}
+
+.dTable {
+  margin: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+body {
+  background-image: url("https://cdn.glitch.com/83e94d04-3929-4ece-9999-95ff1d0573cd%2Fpsychedelic-background.png?v=1567958230774");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+p {
+  text-allign: center;
+  font-size: 2vw;
+}
+
+form {
+  /* Just to center the form on the page */
+  margin: 0 auto;
+  width: 400px;
+  background: white;
+  color: black;
+  padding: 10px 10px;
+}
+
+form div + div {
+  margin-top: 1em;
+}
+
+label {
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+
+input, textarea {
+  font: 1em sans-serif;
+  width: 300px;
+  box-sizing: border-box;
+  border: 1px solid #999;
+} 
+
+textarea {
+  vertical-align: top;
+  height: 5em;  
+}
+
+.button {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 5px 5px;
+}
+
+button {
+  margin-left: .3em;
+}
+
+table, td, th{
+  border: 1px solid black;
+  background: white;
+  color: black;
+  padding: 4px;
+}
