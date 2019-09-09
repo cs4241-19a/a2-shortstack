@@ -29,18 +29,27 @@ const handleGet = function (request, response) {
       break;
     default:
       sendFile(response, filename)
-  }
+    }
 }
 
 const handlePost = function (request, response) {
+  const filename = dir + request.url.slice(1)
 
   switch (request.url) {
     case "/submit":
-      console.log("got to submit POST")
-      submit(request, response);
-  }
-
+      submit(request, response)
+      break;
 }
+}
+
+// const getData = function(request, response) {
+//   request.on('end', function(){
+//      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+//     const body = JSON.stringify(namesArray); 
+//     response.write(body);
+//     response.end();
+//   })
+// }
 
 const submit = function (request, response) {
   let dataString = ''
