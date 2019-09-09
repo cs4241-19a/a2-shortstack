@@ -62,8 +62,8 @@ div.transbox1 {
   background-color: #EFDA8A;/*#EEC075;*/
   border: 1px solid black;
   opacity: 0.6;
-  width: 310px;
-  height: 230px;
+  width: 25%;
+  height: 36%;
   position: absolute;
   left: 32%;
   
@@ -93,8 +93,8 @@ div.transbox2 {
   background-color: #7FEDEB;
   border: 1px solid black;
   opacity: 0.6;
-  width: 350px;
-  height: 230px;
+  width: 30%;
+  height: 36%;
   position: absolute;
   overflow: auto;
   
@@ -105,6 +105,30 @@ div.transbox2:hover {
 }
 
 div.transbox2 p {
+  margin: 5%;
+  font-weight: bold;
+  color: #000000;
+  overflow: auto;
+}
+
+div.transbox3 {
+  margin: 30px;
+  background-color: #5CC208;
+  border: 1px solid black;
+  opacity: 0.6;
+  width: 30%;
+  height: 36%;
+  position: absolute;
+  left: 64%;
+  overflow: auto;
+  
+}
+
+div.transbox3:hover {
+  opacity: 1.0;
+}
+
+div.transbox3 p {
   margin: 5%;
   font-weight: bold;
   color: #000000;
