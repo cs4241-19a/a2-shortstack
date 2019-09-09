@@ -1,9 +1,16 @@
 const N = 5;
-let score = 0;
-let grid = [N];
-let placedNew = false;
+let score = 0,
+    rank = null;
+    done = false,
+    grid = [N],
+    coolDown = false,
+    keyVals = [],
+    modal = null;
 
 function setUpGame(){
+    modal = document.getElementById("gameOver");
+    done = false;
+
     grid = [N];
     for(let i = 0; i < N; i++){
         grid[i] = [N];
@@ -25,9 +32,15 @@ function setUpGame(){
     }
 
     score = 0;
+    rank = null;
+    for(let i = 0; i < 4; i++)
+        keyVals[i] = 0;
+
     placeNew();
-    placedNew = false;
+    coolDown = false;
     updateGrid();
+
+    endGame();
 
     window.onkeydown = function(event){
         switch(event.key){
@@ -47,7 +60,7 @@ function setUpGame(){
     }
     window.onkeyup = function(event){
         if(event.key == 's' || event.key == 'a' || event.key == 'w' || event.key == 'd')
-            placedNew = false;
+            coolDown = false;
     }
 }
 
@@ -72,6 +85,7 @@ const move = function(direction){
                     }
                 }
             }
+            keyVals[0]++;
             break;
         case "left":
             for(let i = N-1; i >= 0; i--){
@@ -91,6 +105,7 @@ const move = function(direction){
                     }
                 }
             }
+            keyVals[1]++;
             break;
         case "up":
             for(let j = 0; j < N; j++){
@@ -110,6 +125,7 @@ const move = function(direction){
                     }
                 }
             }
+            keyVals[2]++;
             break;
         case "right":
             for(let i = N-1; i >= 0; i--){
@@ -129,16 +145,19 @@ const move = function(direction){
                     }
                 }
             }
+            keyVals[3]++;
             break;         
     }
-    if(!placedNew && moved){
+    if(!coolDown && moved){
+        updateGrid();
         placeNew();
     }  
+    checkFull();
     printGrid();
     updateGrid();
 }
 
-function placeNew(){
+function checkFull(){
     let avail = 0;
     for(let i = 0; i < N; i++){
         for(let j = 0; j < N; j++){
@@ -148,14 +167,18 @@ function placeNew(){
     }
 
     if(avail < 1){
-        GAMEOVER = true;
-        return false;
+        endGame();
+        return 0;
     }
-    if(avail > 2)
-        avail = 2;
+    else if(avail > 2)
+        return 2;
+    else 
+        return 1;
+}
 
-    placedNew = true;
-    let newSlots = avail;
+function placeNew(){
+    coolDown = true;
+    let newSlots = checkFull();
     while(newSlots > 0){
         let randPos = [Math.floor(Math.random()*N), 
                        Math.floor(Math.random()*N)];
@@ -164,7 +187,7 @@ function placeNew(){
             grid[randPos[0]][randPos[1]] = val*2;
             newSlots--;
             score+=val*2;
-            document.getElementById('score').innerHTML = "Score: "+score;
+            document.getElementById('score').innerHTML = "<p>Score: "+score+"</p>";
         }
     }
 }
@@ -186,12 +209,46 @@ function updateGrid(){
     let cells = document.getElementsByClassName('gridCell');
     let j = 0, k = 0;
     for(let i = 0; i < N*N; i++){
+        cells[i].classList = ["gridCell"];
+        cells[i].classList.add("val"+grid[j][k]);
         cells[i].innerHTML = ""+grid[j][k++];
-        if(!grid[j][k-1])
+        if(!grid[j][k-1]){
             cells[i].innerHTML = "-";
+        }
         if(k >= N){
             k = 0;
             j++;
         }
     }
+}
+
+function endGame(){
+    if(!done)
+        document.getElementById('keyData').innerHTML = "S: "+keyVals[0]+
+                                                "<br/>A: "+keyVals[1]+
+                                                "<br/>W: "+keyVals[2]+
+                                                "<br/>D: "+keyVals[3];
+    done = true;
+    modal.style.display = "block";                                            
+}
+
+function recordScore(){
+    let name = document.querySelector('#name').value;
+
+    if(!name){
+      name = "Null";
+    }
+
+    const input = "<tr><td>"+name+"</td><td>"+score+"</td><td>"+rank+"</td></tr>",
+        json = { entry: input },
+        body = JSON.stringify( json );
+
+    fetch( '/submit', {
+      method:'POST',
+      body
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+    })
 }

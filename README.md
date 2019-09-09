@@ -19,10 +19,17 @@ They are not intended to be sensible or useful ideas.
 Your application is required to implement the following functionalities:
 
 - a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
+
+   name
+   score
+   keypresses
+
 - a `Results` functionality which shows the entire dataset residing in the server's memory
 - a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
 - a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
     - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
+
+    calculates rank and graphs keypresses
 
 Your application is required to demonstrate the use of the following concepts:
 
