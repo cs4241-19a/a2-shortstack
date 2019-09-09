@@ -2,7 +2,7 @@ body {
     background-image: url("bg.jpg");
     font-family: Arial, Helvetica, sans-serif;
     background-position: center;
-    background-size: 100% 100%;
+    background-size: 100%;
     background-repeat: repeat-y;
     margin-left: 200px;
     margin-right: 200px;
