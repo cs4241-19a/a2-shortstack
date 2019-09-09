@@ -2,7 +2,7 @@
 
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 
-Deployed on Glitch:
+Deployed on Glitch: https://glitch.com/~mmdanke-a2-mmdanke-manasi-danke
 
 
 ### Deliverables:
