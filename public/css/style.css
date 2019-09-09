@@ -1,7 +1,7 @@
 body {
     margin: 0px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -97,7 +97,7 @@ button:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-#error {
+#error-msg {
     display: none;
     color: white;
     margin-bottom: 20px;
@@ -113,7 +113,7 @@ button:hover {
     width: 100%;
 }
 
-#ramen-pic {
+#rice-bowl {
     width: 100%;
     height: auto;
     color: white;
