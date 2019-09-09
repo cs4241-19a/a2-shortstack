@@ -118,7 +118,7 @@ const sendOrderData = function( response, orders ) {
 };
 
 const calcPrice = function(topping1, topping2) {
-  let price = 8;
+  let price = 10;
   if (topping1 !== "")
     price += 2;
   if (topping2 !== "")
