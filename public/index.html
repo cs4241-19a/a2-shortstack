@@ -2,34 +2,132 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
     <meta charset="utf-8">
   </head>
   <body>
+    <div class="mainImage">
+    <img src="https://cdn.glitch.com/839132ad-c497-4e2b-a6d8-f813383c72c5%2Fworld-of-warcraft-logo1.png?v=1567988639926">
+    </div>
+    <h2>
+      Create a Character
+    </h2>
+    <div class="slct">
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <input type="text" class="form-control" id="username" placeholder="Character Name">
+      <select name="slc1" id="race" onchange="_1sel();"></select>
+      <select name="slc2" id="class"></select>
+      <script>
+          var slc1 = document.getElementById("race");
+          var slc2 = document.getElementById("class");
+
+          var dataObj = {
+              "Human": ["Warrior", "Paladin", "Mage", "Warlock", "Priest", "Rogue"],
+              "Gnome": ["Warrior", "Rogue", "Mage", "Warlock"],
+              "Dwarf": ["Warrior", "Hunter", "Paladin", "Priest", "Rogue"],
+              "Night Elf": ["Warrior", "Hunter", "Druid", "Priest", "Rogue"],
+              "Orc": ["Warrior", "Hunter", "Rogue", "Warlock", "Shaman"],
+              "Undead": ["Warrior", "Rogue", "Mage", "Warlock", "Priest"],
+              "Tauren": ["Warrior", "Hunter", "Shaman", "Druid"],
+              "Troll": ["Warrior", "Hunter", "Shaman", "Priest", "Rogue", "Mage"]
+          }
+
+          let race = Object.keys(dataObj);
+          cmo(race, slc1);
+          _1sel();
+
+          function _1sel() {
+              slc2.innerHTML = "";
+              let clss = dataObj[slc1.value];
+              cmo(clss, slc2);
+          }
+
+          function cmo(arr, s) {
+              arr.forEach(o => {
+                  let opt = document.createElement("option");
+                  opt.value = o;
+                  opt.innerHTML = o;
+                  s.add(opt);
+              });
+          }
+      </script>
+      <button class="btn-default">Submit</button>
     </form>
+    </div>
+    <table id="characters">
+      <thead>
+      <tr>
+        <th>Faction</th>
+        <th>Name</th> 
+        <th>Race</th>
+        <th>Class</th>
+        <th>Level</th>
+        <th>Edit</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+  </table>
   </body>
   <script>
-
+    
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const inputName = document.querySelector( '#username' );
+    const inputRace = document.querySelector( '#race' );
+    const inputClass = document.querySelector( '#class' );
+    const json = { username: inputName.value, race: inputRace.value, class: inputClass.value  };
+    body = JSON.stringify( json )
+    
+    if (inputName.value === "") {
+      alert("Input a proper name!")
+      
+    } else {
+        fetch( '/submit', {
+        method:'POST',
+        body 
+      })
+      .then( response => {
+        return response.json();
+      })
+      .then( entry => {
+        var row = document.createElement("tr");
+        var n0 = document.createElement("td");
+        var n1 = document.createElement("td");
+        var n2 = document.createElement("td");
+        var n3 = document.createElement("td");
+        var n4 = document.createElement("td");
+        var n5 = document.createElement("td");
+        
+        n0.appendChild(document.createTextNode(entry.faction));
+        n1.appendChild(document.createTextNode(entry.username));
+        n2.appendChild(document.createTextNode(entry.race));
+        n3.appendChild(document.createTextNode(entry.class));
+        n4.appendChild(document.createTextNode("1"));
+          
+        var del = document.createElement("button");
+        del.setAttribute("class", "btn-default");
+        del.innerHTML = "Delete";
+        del.onclick =  function() {
+          var parent = this.parentNode.parentNode;
+          parent.parentNode.removeChild(parent);
+        }
+        n5.appendChild(del);
+          
+        row.appendChild(n0);
+        row.appendChild(n1);
+        row.appendChild(n2);
+        row.appendChild(n3);
+        row.appendChild(n4);
+        row.appendChild(n5);
+          
+        document.getElementById("characters").appendChild(row);
+      })
+    }
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
+    return false;
   }
 
   window.onload = function() {
