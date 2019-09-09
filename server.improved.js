@@ -36,8 +36,9 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
   if( request.url === '/' ) {
-    //console.log(returnFirebaseAsArray())
-    returnFirebaseAsArray()
+    //returnFirebaseAsArray()
+    //console.log(returnArray)
+    //returnFirebaseAsArray()
     //console.log(returnArray)
     sendFile( response, 'public/index.html' )
   }
@@ -298,35 +299,22 @@ function modData(toChange){
 //******** FIREBASE FUNCTIONS *******//
 //returns firebase database as an array of json objects
 function returnFirebaseAsArray(){
-  let returnArray = []
-  let ref = firebase.database().ref()
-  ref.once('value', function(snapshot){
-    snapshot.forEach(function(data){
-      //console.log(data.val())
-      returnArray.push(data.val())
-    })
-  })
-  .then(function(dataSnapshot){
-     console.log(returnArray) 
-     return returnArray
-  })
   /*firebase.database().ref().once("value", function(data){
     data.forEach(function(childSnapshot){
         var childData = childSnapshot.val()
         returnArray.push(childData)
-        return returnArray
-      })
-    return returnArray
-  })
-  return returnArray*/
+        console.log(childData)
+    })
+    //return returnArray
+  })*/
+  //return returnArray
   //console.log(firebase.database().ref().toJSON())
+  firebase.database.ref().once('value'.then(function(largeSnap){
+    console.log(largeSna)
+  }))
   
 }
 
-async function waitForIt(){
- var newArray = await returnFirebaseAsArray()
- console.log(newArray)
-}
 
 //Takes given JSON object and adds it to the remote database
 function addItemToFirebase(itemToAdd){
