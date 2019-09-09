@@ -2,27 +2,31 @@
 Author: Zonglin Peng
 
 ![](ScreenCap.JPG)
+###### "A good programmer never sleeps."
 
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+## Summary
+A webpage is developed and deployed to mark down the user-entered vehicles and estimates their values based on the year and mpg. User are free to edit the information on the webpage.
 
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+- Challenges: Solved the frond-end interactions with the back-end server.
+- Innovations: Display a table of information of car. Blanks, dropdown boxs, buttons, and the icon are also helpful to users.
+- Usability: User can easily edit all the histories and check their cars value.
+- Additional implications.
+    - A better value estimator.
+    - More navigation bars and sytles. Possibly adopt from Boostrap.
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
 
-http://a2-charlieroberts.glitch.me
+## Introduction of Usage
+Visit the url below:
+http://a2-zonbglinpeng.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
+- **Information Chart**: Implements a table that displays all the input car information to the user on the web page.
+- **Value Estimater**: Designed a value estimating algorithm that uses the year and mpg of a car and produce a value of the car in dollars. The factor of model is not discuss to avoid copyright and furthermore lawsuits.
 - **Add-Modify-Delete**: Implemented all of the features in add, modify, and delete the entry of the dataset. All the exceptions are handles, such as duplicate ID`s of cars and user wrong inputs (empty blanks, unexpected ID, and etc.)
--**Dropdown Box**: Adopted a dropdown box for the user that includes most of the most popular car models. Note that It is possible and esay to add ALL models, yet I did spend time and space for it.
+- **Dropdown Box**: Adopted a dropdown box for the user that includes most of the most popular car models. Note that It is possible and esay to add ALL models, yet I did spend time and space for it.
+- **Image In Readme**: Added a screen shot of my index webpage where three samples are entered.
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: As shown in the script.js and the index.html, an infomation icon is implemented. When an user click on it, a pop-up will be dispplayed to show the usage instruction. Sweet Alert is adopted.
-- **Design Achievement 2**: Tested the application with n=4 users, finding that the background and the elements are always displayed in the expected places.
-- **Design Achievement 3**: Adopted Clean x simple design of the webpage is adopted where the black-and-white-based theme color makes the web page looks decent and high-ended. (Goat.com)
+- **Interactive Information Icon**: As shown in the script.js and the index.html, an infomation icon is implemented. When an user click on it, a pop-up will be dispplayed to show the usage instruction. The Sweet Alert is adopted.
+- **Webpage Element Arrangements**: Tested the application with n=4 users, finding that the background and the elements are always displayed in the expected places.
+- **Noble Theme Design**: Adopted Clean x simple design of the webpage is adopted where the black-and-white-based theme color including background images and new fonts that make the web page look decent and high-ended. (Goat.com)
