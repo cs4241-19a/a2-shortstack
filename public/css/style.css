@@ -2,30 +2,6 @@ html {
     background-image: white;
 }
 
-.split {
-    height: 100%;
-    position: fixed;
-    padding-top: 20px;
-}
-.left {
-    width: 20%;
-    left: 2;
-    display: flex;
-    size: auto;
-    justify-content: center;
-    background-image: url("../images/left-bg.jpg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-.right {
-    width: 80%;
-    right: 0;
-    size: auto;
-    background-image: url("../images/right-bg.jpg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-}
-
 h1{
     background-image: url("../images/h1.jpg");
     color: white;
@@ -59,10 +35,34 @@ table, th, td {
     margin: 1%
 }
 
-select, input, button {
+select, input, button, p {
     color: black;
     font-size: 15px;
 }
+.split {
+    height: 100%;
+    position: fixed;
+    padding-top: 20px;
+}
+.left {
+    width: 20%;
+    left: 2;
+    display: flex;
+    size: auto;
+    justify-content: center;
+    background-image: url("../images/left-bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.right {
+    width: 80%;
+    right: 0;
+    size: auto;
+    background-image: url("../images/right-bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
 
 #id{
     size: auto;

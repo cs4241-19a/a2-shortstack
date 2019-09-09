@@ -4,12 +4,15 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <link href="./css/style.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
 
   <body>
     <h1><font size="+3">Enter Information Of Your Car To Estimate Its Value</font></h1>
 
     <div class="split left">
+      <img src="../images/info.png" id="info" style="width:30px;height:30px;border:0;">
+      <br>
       <form action="">
         <br><br><br>
         <select id='model'>
@@ -35,10 +38,16 @@
           <tr>
             <td>&nbsp;</td>
           </tr>
-        </table>
+      </table>
+      <p>
+        <br>Note: Value is happily estimated from year and mpg of a car.
+        <br>Declaration: All the info is for recreational purpose. DO NOT USE FOR REAL.
+      </p>
+    </div>
   </body>
 
   <script>
+
 let ID = 3;
 
 //let table = document.getElementById('database').getElementsByTagName('tr');
@@ -145,13 +154,21 @@ const modifyCar = function( e ) {
   return false
 }
 
+const infoAlert = function(){
+  swal("How To Use", 
+  ">Add: Select models and enter year and mpg.\n"+
+  ">Delete: Select models and enter its ID.\n"+
+  ">Modify: Select models enter its ID, year, and mpg.")
+}
 
 const addButton = document.getElementById('add');
 const deleteButton = document.getElementById('del');
 const modifyButton = document.getElementById('mod');
+const infoIcon = document.getElementById('info');
 addButton.onclick = addCar;
 deleteButton.onclick = deleteCar;
 modifyButton.onclick = modifyCar;
+infoIcon.onclick = infoAlert;
 
 window.onload = function() {
   getCar()
