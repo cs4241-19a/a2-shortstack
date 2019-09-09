@@ -35,10 +35,10 @@ const submit = function( e ) {
   return false
 }
 
-const retreiveAll = function() {
+
+const retrieveAll = function() {
   fetch( '/retrieve', {
-    method:'GET',
-    body
+    method:'POST',
   })
   .then( function( response ) {
     console.log('retrieving')
@@ -46,7 +46,7 @@ const retreiveAll = function() {
     console.log( response )
     response.text().then(function(text){
       console.log(text)
-      setCookie(inputName.value, text, 1);
+      // setCookie(inputName.value, text, 1);
       let jOBJ = JSON.parse(text)
       //cookie is set to the table value stored in the temporary server, now cached for a day
     })

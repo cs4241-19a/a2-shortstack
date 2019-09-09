@@ -28,6 +28,13 @@ const handleGet = function( request, response ) {
 }
 
 const handlePost = function( request, response ) {
+  if(request.url === '/submit'){ handleSubmit(request,response)}
+    else if(request.url === '/retrieve'){handleRetrieve(request,response)}
+    else{return false}//some kind of error necessary here
+
+}
+
+const handleSubmit= function(request,response){
   let dataString = ''
 
   request.on( 'data', function( data ) {
@@ -50,19 +57,6 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
     let hscp=horoscope(mon,day);
     let zdc=zodiac(yr);
-
-    // let newData="{ name: "
-    //     newData+=name
-    //     newData+=", bday: "
-    //     newData+=date
-    //     newData+=", zodiac: "
-    //     newData+=zdc
-    //     newData+=", horoscope: "
-    //     newData+=hscp+" },";
-    // console.log(newData);
-    // scopeData+=newData;
-    // console.log('scopeData:');
-    // console.log(scopeData);
 
     let newData2={ 'name': name, 'bday': date, 'zodiac': zdc, 'horoscope': hscp }
     console.log(newData2);
@@ -97,7 +91,7 @@ const sendFile = function( response, filename ) {
    })
 }
 
-function horoscope(mon,day){
+const horoscope = function(mon,day){
   console.log(mon,day);
   let hscp='';
 
@@ -129,7 +123,7 @@ function horoscope(mon,day){
   return hscp;
 }
 
-function zodiac(yr){
+const zodiac = function(yr){
   let zmod=yr%12;
   console.log(yr,zmod);
   let zod='';
@@ -148,6 +142,16 @@ function zodiac(yr){
     case 11: zod="Sheep"; break;
   }
   return zod;
+}
+
+const handleRetrieve = function( request, response){
+  console.log('run')
+  request.on( 'end', function() {
+    console.log('returning following datalog:')
+    console.log(scopeData2)
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end(JSON.stringify(scopeData2))
+  })
 }
 
 server.listen( process.env.PORT || port )
