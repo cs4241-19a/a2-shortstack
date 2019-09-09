@@ -19,11 +19,11 @@
           <h2>Create your own rice bowl!</h2>
           
           <div class="navigationPane">
-          <nav class="links">
-            <button><a id="form-link" aria-label="link to order form">Place an Order</a></button>
-            <button><a id="table-link" aria-label="link to list of orders">View Orders</a></button>
-          </nav>
-        </div>
+            <nav class="links">
+              <button><a id="form-link" aria-label="link to order form">Place an Order</a></button>
+              <button><a id="table-link" aria-label="link to list of orders">View Orders</a></button>
+            </nav>
+          </div>
         </div>
       </header>
       
@@ -239,8 +239,8 @@
           newRow += (`<td> ${order.ordername} </td>\n`);
           newRow += (`<td> ${order.typeOfGrain} </td>\n`);
           newRow += (`<td> ${order.typeOfProtein} </td>\n`);
-          newRow += (`<td> ${order.price} </td>\n`);
-          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=` + encodeURIComponent(stringOrder) + `>Edit</button> </td>\n`);
+          newRow += (`<td> ${"$" + order.price} </td>\n`);
+          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=` + encodeURIComponent(stringOrder) + `>Modify</button> </td>\n`);
           newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
