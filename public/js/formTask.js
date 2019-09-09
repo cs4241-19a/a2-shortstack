@@ -230,7 +230,10 @@ window.onload = function() {
         document.getElementById('nav').style.backgroundColor = response.users[n][b].color;
         document.getElementById('bName').innerText = JSON.stringify(response.users[n][b].boardName).replace(/^"(.*)"$/, '$1');
         document.getElementById('usrTxt').innerText = JSON.stringify(response.users[n][b].username).replace(/^"(.*)"$/, '$1');
+        document.getElementById('name2').innerText = JSON.stringify(response.users[n][b].fullname).replace(/^"(.*)"$/, '$1');
+        document.getElementById('emailId2').innerText = JSON.stringify(response.users[n][b].email).replace(/^"(.*)"$/, '$1');
         document.getElementById('listTextH').innerText = JSON.stringify(response.users[n][b].lists[1].listname).replace(/^"(.*)"$/, '$1');
+
 
         var t = parseInt(localStorage.getItem('taskNumber'));
 
