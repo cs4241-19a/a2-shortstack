@@ -2,12 +2,51 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link rel = "stylesheet" text = "text/css" href = "css/style.css">
     <meta charset="utf-8">
   </head>
   <body>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <label for="flavour"> Flavour </label>
+      <select id = "flavour">
+        <option value="">--Please choose a flavour--</option>
+        <option value="bb">Blueberry</option>
+        <option value="bg">Bubble Gum</option>
+        <option value="bc">Buttered Corn</option>
+        <option value="cm">Chili Mango</option>
+        <option value="cp">Chocolate Pudding</option>
+        <option value="cc">Cotton Candy</option>
+        <option value="dp">Dr Pepper</option>
+        <option value="fv">French Vanilla</option>
+        <option value="ga">Green Apple</option>
+        <option value="ip">Island Punch</option>
+        <option value="kw">Kiwi</option>
+        <option value="ll">Lemon Lime</option>
+        <option value="sc">Strawberry Cheesecake</option>
+        <option value="tb">Top Banana</option>
+        <option value="tf">Tutti-Fruitti</option>
+        <option value="vc">Very Cherry</option>
+        <option value="wm">Watermelon</option>
+      </select>
+      <label> Amount </label>
+      <grid>
+      <input type = "text" id = "amt" placeholder = "1,5,100,...">
+      <select id = "container">
+        <option value="">--Please choose a container--</option>
+        <option value="bag">Bag(s)</option>
+        <option value="can">Can(s)</option>
+        <option value="jar">Jar(s)</option>
+        <option value="tin">Tin(s)</option>
+        <option value="box">Box(s)</option>
+      </select>
+      </grid>
+      <label> Your Name</label>
+      <input type = "text" id = "name" placeholder = "your name">
+      <label> E-mail Address</label>
+      <input type = "text" id = "email" placeholder = "your email">
+      <button id = "addBtn">Add</button>
+      <button id = "resultBtn">Show Result</button>
+      <table id = "myTable"></table> 
     </form>
   </body>
   <script>
@@ -16,25 +55,134 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const flav = document.querySelector( '#flavour' ).value,
+          amtNum = document.querySelector( '#amt' ).value,
+          amtCtn = document.querySelector( '#container' ).value,
+          name = document.querySelector( '#name' ).value,
+          email = document.querySelector( '#email' ).value,
+          json = { 'flavour': flav,
+                   'amountNum': amtNum,
+                   'amountCont': amtCtn,
+                   'name': name,
+                   'email': email},
           body = JSON.stringify( json )
 
+  if(flav !== '' && amtNum !== '' && amtCtn !== ''){
     fetch( '/submit', {
       method:'POST',
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+      window.confirm("Submit successfully!");
     })
-
+    .catch(function(err){
+      console.log("There is an error: " + err)
+    })} else {
+      window.alert("Please fill in flavour and amount to complete the order!");
+    }
+    return false
+  }
+  
+  const resultUpdate = async function() {
+    try{
+    const res = await fetch('/result',{method:'GET'});
+    const data = await res.json();
+    const orders = data.data;
+    
+    let table = document.getElementById('myTable')
+      
+    table.innerHTML = '<tr>\n' +
+                '<th>Flavour</th>\n' +
+                '<th>Amount(Number)</th>\n' +
+                '<th>Amount(Container)</th>\n' +
+                '<th>Name</th>\n' +
+                '<th>Email</th>\n' +
+                '<th>Price</th>\n' +
+                '<th></th>\n' +
+                '<th></th>\n' +
+                '</tr>';
+      for(let i = 0; i < orders.length; i++){
+          const ele = orders[i]
+          const sOrder = JSON.stringify(orders[i]);
+          let addEle = '<tr>\n'
+          addEle += (`<td> ${ele.flavour}</td> \n`)
+          addEle += (`<td> ${ele.amountNum}</td> \n`)
+          addEle += (`<td> ${ele.amountCont}</td> \n`)
+          addEle += (`<td> ${ele.name}</td> \n`)
+          addEle += (`<td> ${ele.email}</td> \n`)
+          addEle += (`<td> ${ele.price}</td> \n`)
+          addEle += (`<td> <button id="editBtn-${i}" class="table-button" onclick="editForm(${i})">Edit</button> </td>\n`)
+          addEle += (`<td> <button id="delete-button-${i}" class="table-button" onclick="deleteForm(${i})">Delete</button> </td>\n`)
+          addEle += '</tr>';
+          table.innerHTML += addEle
+    }}
+    catch(err){
+      window.alert(err);
+    }
+     return false
+  }
+  
+  const deleteForm = function(i){
+    const delRow = {orderNum: i};
+    const body = JSON.stringify(delRow);
+    fetch('/delete', {
+      method: 'POST',
+      body
+    });
+      resultUpdate();
+  }
+  
+//   const update = ( e ) => {
+//       e.preventDefault();
+//       const flav = document.getElementById('flavour').value,
+//             amtNum = document.getElementById('amountNum').value,
+//             amtCont = document.getElementById('amountCont').value
+    
+//       const newOrder = {
+//         i: document.getElementById('editBtn').dataset.index,
+//         flavour: document.getElementById('flavour').value,
+//         amountNum: document.getElementById('amountNum').value,
+//         amountCont: document.getElementById('amountCont').value,
+//         name: document.getElementById('name').value,
+//         email: document.getElementById('email').value
+//       };
+//       if (flav !== '' && amtNum !== '' && amtCtn !== '') {
+//         const body = JSON.stringify(newOrder);
+//         fetch('/update', {
+//           method: 'POST',
+//           body
+//         }).then(function () {
+//           resultUpdate();
+//         });
+//       }
+//       return false;
+//   }
+  
+  // const editForm = function (i) {
+  //     let udOrder = decodeURIComponent(document.getElementById(`editBtn-${i}`).dataset.string);
+  //     let upd = JSON.parse(udOrder);
+  //       document.getElementById("flavour") = upd.flavour;
+  //       document.getElementById("amt") = upd.amountNum;
+  //       document.getElementById("container") = upd.amountCont;
+  //       document.getElementById("name") = upd.name;
+  //       document.getElementById("email") = upd.email;
+  //     return false;
+  //   };
+  
+  const result = function (){
+    resultUpdate()
     return false
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+    const addButton = document.getElementById( 'addBtn' )
+    addButton.onclick = submit
+    
+    const resultButton = document.getElementById('resultBtn')
+    resultButton.onclick = result
+    
+    const updateButton = document.getElementById( 'editBtn' );
+    updateButton.onclick = update;
   }
 
   </script>
