@@ -156,7 +156,7 @@ function displayData(){
       .then(function(message){
         let allData = JSON.parse(message)
         console.log(message)
-        var html = "<table id=\"resultsTable\"><tr><th" + " align=" + ">Existing Data</th></tr>"
+        var html = "<table id=\"resultsTable\" class=\"resultsTable\"><tr><th" + " align=" + ">Existing Data</th></tr>"
         html += "<tr><td>Index</td><td>First Name</td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
         for(let i = 0; i< Object.keys(allData).length; i++){
           html += "<tr>" 

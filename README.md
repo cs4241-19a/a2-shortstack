@@ -17,8 +17,6 @@ Your application is required to demonstrate the use of the following concepts:
 CSS:
 - CSS styling of the primary visual elements in the application
 - Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
     - Class selectors
 - CSS positioning and sizing of the primary visual elements in the application:
     - CSS to cause at least one element to be horizontally centered on the page
@@ -29,26 +27,18 @@ CSS:
 Natalie Bloniarz - Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ---
 
-## Celebrity Horoscope Database
+## Zodiac Calculator / Horoscope Database
 The purpose of this comedy.
 The application calcualtes zodiac signs based on a given birthdate, and gives users the opportunity to revieve a random horoscope for a person entered into the database.
 (All horoscopes were generated using https://www.wordblanks.com/mad-libs/misc/story_137920/played/4032093/?new=1)
-An area for future expanision would be the addition of a persistant database.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
+An area for future expanision would be the addition of a persistant database and the addition of an internal horoscope madlibs generator.
 
 http://a2-nbloniarz.glitch.me
 
 ## Technical Achievements
 - **Dynamic Dropdowns**: When adding or modifying information in the database, the dropdown for the day of the month dynamically changes based on the month selected. 
 - **Dynamic Displays**: The buttons on the navigation bar at the top of the page dynamically hide/show the relevant functionalities of the buttons
-- **Completed Server Logic**: The user can add, modify, and delete, multiple pieces of infomation per visit. Additionally The user is not allowed to add duplicate information
+- **Completed Server Logic**: The user can add, modify, and delete, multiple pieces of infomation per visit. Additionally The user is not allowed to add duplicate information (Exact same first name, last name, month, and day)
 
 
 ### Design/Evaluation Achievements

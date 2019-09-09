@@ -12,7 +12,9 @@ var appdata = [
 ]
 
 const horoscopes = [
-  {'horoscope': ""}
+  {'horoscope': "You will have a 258 star day today. You will have a impertinent situation with your syringe. Your junkyard will tell you how knotted and stuckup you are and this will hurt your meatballs. Breathe and let it go. Take care of yourself today, Take time for yourself. Go staining or advancing. Take a bath with restless greenly seagulls. Relax. Your lucky number is 334. Today is a knotted day to use this number by betting on canteens."},
+  {'horoscope': "You will have a 111 star day today. You will have a huge situation with your robot. Your tummy will tell you how thrifty and indescribable you are and this will hurt your cowbells. Breathe and let it go.Take care of yourself today, Take time for yourself. Go calming or inspecting. Take a bath with Turkish sloppily ballerinas. Relax.Your lucky number is 1097. Today is a charismatic day to use this number by betting on sodas."},
+  {'horoscope': "You will have a 14 star day today. You will have a vascular situation with your belt. Your fig will tell you how chipper and radiant you are and this will hurt your inhalers. Breathe and let it go. Take care of yourself today, Take time for yourself. Go zipping or romancing. Take a bath with important prematurely puppies. Relax. Your lucky number is 377. Today is a vascular day to use this number by betting on globs."}
 ]
 
 const server = http.createServer( function( request,response ) {

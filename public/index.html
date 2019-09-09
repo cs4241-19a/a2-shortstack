@@ -250,9 +250,7 @@
     e.preventDefault()
     let originalData = document.getElementById('modHolder').innerHTML
     originalData = JSON.parse(originalData)
-    console.log(originalData)
-    const jsonOriginal = { fName: originalData[0], lName: originalData[1], month: originalData[2], day: originalData[3] },
-          body = JSON.stringify( jsonOriginal )
+    const body = JSON.stringify(originalData)
     fetch( '/delete', {
       method:'POST',
       body
@@ -263,6 +261,7 @@
      response.text()
       .then(function(message){
        console.log(message)
+       displayModForm()
      })
       
     })
