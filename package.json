@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-kdreese",
+  "version": "1.0.0",
+  "description": "WPI CS4241 second assignment",
+  "author": "Kyle Reese",
   "scripts": {
     "start": "node server.improved.js"
   },

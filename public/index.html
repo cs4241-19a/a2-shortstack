@@ -3,11 +3,50 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <h3 class="center">
+        Enter Blue, Red, or Yellow
+      </h3>
+      <div class="center">
+        <input type="text" id="topLeft" value="Enter Top Left Color">
+        <input type="text" id="topMiddle" value="Enter Top Middle Color">
+        <input type="text" id="topRight" value="Enter Top Right Color">
+      </div>
+      <div class="center">
+        <input type="text" id="bottomLeft" value="Enter Bottom Left Color">
+        <input type="text" id="bottomMiddle" value="Enter Bottom Middle Color">
+        <input type="text" id="bottomRight" value="Enter Bottom Right Color">
+      </div>
+      <div class="center">
+        <button>Submit</button>
+      </div>
+      <table style="width:100%">
+        <tr>
+          <th id="topLeftBox" class="color">
+            topLeft
+          </th>
+          <th id="topMiddleBox" class="color">
+            topMiddle
+          </th>
+          <th id="topRightBox" class="color">
+            topRight
+          </th>
+        </tr>
+        <tr>
+          <th id="bottomLeftBox" class="color">
+            bottomRight
+          </th>
+          <th id="bottomMiddleBox" class="color">
+            bottomMiddle
+          </th>
+          <th id="bottomRightBox" class="color">
+            bottomRight
+          </th>
+        </tr>
+      </table>
     </form>
   </body>
   <script>
@@ -16,8 +55,28 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const input = document.querySelector( '#topLeft' ),
+          json = { topLeft: input.value },
+          body = JSON.stringify( json )
+    
+    const input = document.querySelector( '#topMiddle' ),
+          json = { topMiddle: input.value },
+          body = JSON.stringify( json )
+    
+    const input = document.querySelector( '#topRight' ),
+          json = { topRight: input.value },
+          body = JSON.stringify( json )
+    
+    const input = document.querySelector( '#bottomLeft' ),
+          json = { bottomLeft: input.value },
+          body = JSON.stringify( json )
+    
+    const input = document.querySelector( '#bottomMiddle' ),
+          json = { bottomMiddle: input.value },
+          body = JSON.stringify( json )
+    
+    const input = document.querySelector( '#bottomRight' ),
+          json = { bottomRight: input.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
