@@ -54,7 +54,7 @@ const handlePost = function( request, response ) {
 	
 	appdata.push(data)
 	
-	console.log(data)
+//	console.log(data)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()

@@ -28,7 +28,7 @@
   margin 0 auto;
   vertical-align: middle;
 }
-
+/* Requirement: two elements side by side */
 /* sets square 1 to the left */
 #square1 {
 	float: left;
@@ -49,7 +49,7 @@ body {
   font-size: 16px;
   text-align: justify;
 }
-
+/* Requirement: Horizontally Centered element */
 h1 {
   color: #4CB785;
   text-align: center;

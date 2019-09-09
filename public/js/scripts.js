@@ -120,21 +120,7 @@ function ShowResults()
 		} 
 	
 	});
-//	console.log("show results  ", json);
 
-	
-	
-	
-//	for (var i = 0; i < json.length; i++){
-//		var obj = json[i];
-//		document.getElementById("results").innerHTML += "trial " + i + ": </br>"
-	/*	document.getElementById("results").innerHTML += 
-			"<ul> <li> Elapsed Time: " + obj.time + "<li>" +
-			"<li> Your Guess: " + obj.guess + " <li>" +
-			"<li> Actual Percentage: " + obj.actual + " <li>" +
-			"<li> Percent Error: " + obj.percentError + " <li>" ;
-		*/
- //   } 
 }
 
 	
@@ -161,23 +147,4 @@ function UpdateData(time,actual) {
 		
 		document.forms['response'].reset();  		
 		
-}
-
-
-//tech acheivement!! sends data from browser to server, where the responses are automatically appended to a csv
-function saveData(dataToAppend){
-	
-	var toCsv = new Object();
-	toCsv.TrialType = dataToAppend[0];
-	toCsv.user = dataToAppend[1];
-	toCsv.actual= dataToAppend[2];
-	
-	var myCsv = JSON.stringify(dataToAppend);
-	console.log(myCsv);
-	
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "./server.improved.js", true);
-	xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-	xhr.send(myCsv);
-
 }
