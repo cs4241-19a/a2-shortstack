@@ -42,8 +42,18 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    const item = JSON.parse( dataString );
+    
+    const newItemObj = {
+      'name': item.name, 
+      'category': item.category, 
+      'rating': parseInt(item.rating), 
+      'usd': parseFloat(item.usd), 
+      'eur': calcEuroPrice(parseFloat(item.usd)),
+      'link': item.link, 
+    };
 
-    // ... do something with the data here!!!
+    appdata.push(newItemObj);
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -78,5 +88,9 @@ const sendData = function( response, items ) {
   response.write(JSON.stringify({ data: items }));
   response.end();
 };
+
+function calcEuroPrice(usd) {
+  return usd * 0.91;
+}
 
 server.listen( process.env.PORT || port )
