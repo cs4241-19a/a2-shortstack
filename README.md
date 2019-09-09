@@ -5,7 +5,7 @@ Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and
 Deployed on Glitch:
 
 
-###Deliverables
+### Deliverables
 
 # Puppy Pals!-by Manasi Danke
 Puppy Pals is a service that provides grooming services for dogs. The website enables owners to fill out their name, their dog's name, enter in special details for the order, indicate the size of their dog, add on a massage, and be able to view the price!
@@ -23,10 +23,10 @@ Ideas for the future:
 ## Technical Achievements
 - With the help of github and Stack Overflow, I was able to do error checking to make sure the text fields without the default selected radio button options had something in them. If they are not filled, a yellow box pops up next to the submit button.
 - Nav Bar links link to the html form or updated table.
--
+- Can change more than one field at a fime when booking is being updated.
 
 ## Design/Evaluation Achievements
-- Created my own layout,design, and color scheme for this assignment using elements such as a container to create a top banner, navigation menu bar,customization on strategically-placed buttons, and flexbox to create a panel of pictures, and a personalized table to store database values.
+- Created my own layout,design, and color scheme for this assignment using elements such as a container to create a top banner, navigation menu bar,customization on strategically-placed buttons and other elements using values and ids, flexbox to create a panel of pictures, and a personalized table to store database values.
 - Implemented Radio Buttons and Text Areas as a way to have different inputs on the form.
 - Yellow Incompleted Fields Box when all the fields have not been filled out(with help from github).
 - Friendly, visually appealing website with dog puns(thought placed into word choice and site content-especially with how it is styled with font-family and font-style).
