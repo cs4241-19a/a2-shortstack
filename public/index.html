@@ -174,32 +174,26 @@
     return false
   }
   
-  const removeEvent = function(e) {
+  const deleteEvent = function( day, task, time) {
       e.preventDefault();
-      var day = document.querySelector("#day").value
-      var task = document.querySelector("#task").value
-      var time = document.querySelector("#time").value
-      console.log("Day: " + day + " Time: " + time + " Task: "+ task);
-
       var eventInfo = {
-        day : document.querySelector("#day").value,
-        task : document.querySelector("#task").value,
-        time : document.querySelector("#time").value,
+        day : day,
+        task : task,
+        time : time,
       };
-
-      var body = JSON.stringify( newEvent );
-      fetch('/submit',{
+      var body = JSON.stringify( eventInfo );
+      fetch('/delete',{
         method: 'POST',
         body
       }).then( function( response ) {
-        createEvent(day, task, time);
-
-        document.querySelector("#day").value = '';
-        document.querySelector("#task").value = '';
-        document.querySelector("#time").value = '';
+        occupySchedule()
     })
     
     return false
+    
+  }
+  
+  const removeEvent = function() {
     
   }
   
@@ -245,7 +239,7 @@
     button.onclick = addEvent
     
     const nextButton = document.querySelector( '#next' )
-    button.oncllick = removeEvent
+    button.oncllick = deleteEvent
   }
     
 

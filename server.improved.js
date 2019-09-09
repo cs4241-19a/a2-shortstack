@@ -46,26 +46,30 @@ const handlePost = function( request, response ) {
       dataString += data 
   })
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    var info = JSON.parse( dataString )
     switch(request.url) {
       case '/submit':
-        var info = JSON.parse( dataString )
         var newEvent = {
           'day': info.day,
           'task' : info.task,
           'time': info.time
         }
-
-        // ... do something with the data here!!!
-        //response.write(JSON.parse( dataString ))
         data.push(newEvent);
-
-        //response.write(data.toString())
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
         break
+      case '/delete':
+        var delEvent = {
+          'day': info.day,
+          'task' : info.task,
+          'time': info.time
+        }
+        console.log(data.indexOf(delEvent));
+        break
       default:
         console.log("error");
+        break
+        
     }
   })
 }
