@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div class = "heading">
+      <h1>
+        <div id = "title">
+          Results
+        </div>
+      </h1>
+    </div>
+    <div id = "tableBox" class = "labelInput"></div>
+    <div class = "labelInput">
+      <button id = "backButton">
+        Back to Home Page
+      </button>
+    </div>
+  </body>
+
+
+  <script>
+    let resultsData = []
+    const getResults = function() {
+      // prevent default form action from being carried out
+      fetch( '/getResults', {
+        method:'GET'
+      })
+      .then( function( response ) {
+        response.json().then((responseData) => {
+          console.log( responseData ) 
+          resultsData = Object.values(responseData)
+          console.log(resultsData)
+          makeTable()
+        })
+      
+        console.log( response )
+      })
+      
+      return false
+    }
+    
+    const makeTable = function(){
+      let html = "<table border='1|1' id = 'dTable'>"
+      html+="<tr>"
+      html+="<td>Player Name</td>"
+      html+="<td>Country</td>"
+      html+="<td>Shots</td>"
+      html+="<td>Goals</td>"
+      html+="<td>Goal Percentage</td>"
+      html+="</tr>"
+      for (let i = 0; i < resultsData.length; i++) {
+        html+="<tr>"
+        html+="<td>"+resultsData[i].Player+"</td>"
+        html+="<td>"+resultsData[i].Country+"</td>"
+        html+="<td>"+resultsData[i].Shots+"</td>"
+        html+="<td>"+resultsData[i].Goals+"</td>"
+        html+="<td>"+resultsData[i].Percentage+"</td>"
+        
+        html+="</tr>"
+      }
+      html+="</table>"
+      document.getElementById('tableBox').innerHTML = html
+    }
+      
+    
+  
+    
+    const back = function(e) {
+      location.href = "index.html"
+    }
+    window.onload = function() {
+      getResults()
+      const button1 = document.querySelector( '#backButton' )
+      button1.onclick = back
+      
+    }  
+  </script>
+</html>

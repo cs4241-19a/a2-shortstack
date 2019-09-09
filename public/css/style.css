@@ -1,1 +1,92 @@
 /*Style your own assignment! This is fun! */
+body {
+    background: rgb(247,235,249);
+    background: linear-gradient(90deg, rgba(247,235,249,1) 0%, rgba(210,169,213,1) 35%, rgba(255,255,255,1) 100%);
+}
+
+button{
+  display:inline-block;
+  background-color:lavender;
+  padding:0.3em 1.2em;
+  margin:0 0.1em 0.1em 0;
+  border:0.16em solid rgba(255, 255, 255, 0);
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-family:'Verdana';
+  font-weight:300;
+  font-size: 16px;
+  color:darkmagenta;
+  text-shadow: 0 0.04em 0.04em rgba(0,0,0,1);
+  text-align:center;
+  transition: all 0.2s;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover{
+  border-color: rgba(138, 43, 226, 1);
+}
+@media all and (max-width:30em){
+  button{
+  display:block;
+  margin:0.2em auto;
+  }
+}
+
+#button1 , #button2 {
+  display:inline-block;
+  align-items: center;
+}
+
+h1{
+  font-family: Impact;
+  Display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 900px;
+  height: 300px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  background-image: url(http://www.sclance.com/clipart/soccer-ball-clipart-no-background/soccer-ball-clipart-no-background_1716281.png);
+}
+
+#statsTable
+{
+  font-family: Verdana;
+  font-size: 16px;
+  border:1px;
+  background: #fff;
+  margin: 45px;
+  width: 600px;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+#statsTable td
+{
+  border-bottom: 1px solid black;
+  color: #669;
+  padding: 6px 8px;
+}
+#statsTable tbody tr:hover td
+{
+  color: #009;
+}
+
+#bigTitle{
+  color: purple;
+  font-size: 70px
+}
+
+.officialHeading{
+  display: flex;
+  justify-content: center;
+}
+
+.inputData{
+  font-family: Verdana;
+  Display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 6px; 
+}
