@@ -67,7 +67,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id="newBtn" type="button" class="btn btn-success">Add</button>
+            <button id="newBtn" type="button" class="btn btn-success" data-dismiss="modal">Add</button>
           </div>
         </div>
       </div>
@@ -153,7 +153,6 @@
     
     const newItem = function( e ) {
       // prevent default form action from being carried out
-      // { 'name': 'Yeezy 350 Boost', 'category': 'Fashion', 'rating': 5, 'usd': 200, 'eur': 182, 'link'
       e.preventDefault()
       const inName = document.querySelector( '#name' ),
             inCategory = document.querySelector( '#category' ),
@@ -167,7 +166,7 @@
         body 
       })
       .then( function( response ) {
-        refresh
+        refresh()
         console.log( response )
       })
       return false

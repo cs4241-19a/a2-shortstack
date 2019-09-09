@@ -54,6 +54,9 @@ const handlePost = function( request, response ) {
     };
 
     appdata.push(newItemObj);
+    
+    // sort the data to ensure favorite are always first 3 elements
+    appdata.sort((a, b) => (a.rating < b.rating) ? 1 : (a.rating === b.rating) ? ((a.usd > b.usd) ? 1 : -1) : -1 )
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
