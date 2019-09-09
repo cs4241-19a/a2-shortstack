@@ -452,23 +452,23 @@ function toggleMove(){
 function keyEvent(event){
     var key = event.key;
     switch(key){
-        case 'x': //translate positive x direction
+        case '1': //translate positive x direction
             direction = "R";
             toggleMove();
             break;
-        case 'c': //translate negative x direction
+        case '2': //translate negative x direction
             direction = "L";
             toggleMove();
             break;
-        case 'y': //translate positive y direction
+        case '3': //translate positive y direction
             direction = "T";
             toggleMove();
             break;
-        case 'u': //translate negative y direction
+        case '4': //translate negative y direction
             direction = "B";
             toggleMove();
             break;
-        case 'z': //translate positive z direction
+        case '5': //translate positive z direction
             direction = "F";
             toggleMove();
             break;

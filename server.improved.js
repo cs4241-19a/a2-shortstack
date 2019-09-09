@@ -29,13 +29,11 @@ const appdata = [
                [1.0, -0.5, -0.5, 1],
                [0.0, 0.0, 0.5, 1]],
     "triangles": [0, 3, 2, 2, 3, 1, 1, 3, 0, 0, 1, 2]},
-  { "vertices": 3, 
-    "numPoly": 1, 
-    "name": "Triangle", 
-    "points": [[0.0, 1.0, 0.0, 1],
-               [-0.5, 0, 0.0, 1],
-               [0.5, 0, 0, 1]],
-    "triangles": [1, 2, 3]},
+  { "vertices": 5, 
+    "numPoly": 5, 
+    "name": "It's Art!", 
+    "points": randPoints(5),
+    "triangles": randTri(5, 5)},
 ]
 
 function randPoints(numPoints){
@@ -94,13 +92,15 @@ const handlePost = function( request, response ) {
       case '/generate':
         let data = JSON.parse(dataString)
         //generate random number for points
-        let points = [2, 5, 7, 8]
+        let points = randPoints(data.vertices)
+        let triangles = randTri(data.numPoly, data.vertices)
         
         let drawing = {
           "vertices": data.vertices, 
           "numPoly": data.numPoly, 
-          "name": data.name, 
-          "points": points
+          "name": data.name,
+          "points": points,
+          "triangles": triangles
         }
         
         appdata.push(drawing)
@@ -123,6 +123,8 @@ const handlePost = function( request, response ) {
         appdata[idx].vertices = newData.vertices
         appdata[idx].numPoly = newData.numPoly
         appdata[idx].name = newData.name
+        appdata[idx].points = randPoints(newData.vertices)
+        appdata[idx].triangles = randTri(newData.numPoly, newData.vertices)
         
         break
     }
