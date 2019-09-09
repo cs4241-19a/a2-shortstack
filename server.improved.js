@@ -13,7 +13,7 @@ const appdata = [
 ]
 
 const appdata2 = [
-  {}
+  {'team':888,'WLP':"0-0-0",'WP':0}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -69,8 +69,9 @@ const handlePost = function( request, response ) {
         'blueScore':MR.blueScore,
         'result':r
       }
-      // addTeam(MR.red1);
-      // addTeam(MR.blue1);
+      appdata.push(newMR);
+      addTeam(MR.red1);
+      addTeam(MR.blue1);
       
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
@@ -116,8 +117,12 @@ const sendData = function( response, MHs ) {
   response.end();
 }
 
-const matchResult = function(redS,blueS){
-  
+const rank = function(redS,blueS){
+  for(let i=0; i<appdata.length;i++){
+    if(appdata[i].r===1){
+      red1
+    }
+  }
 }
 
 const addTeam = function(t){

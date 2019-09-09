@@ -78,14 +78,13 @@
     
     const rank = document.getElementById( 'viewRank' );
     rank.onclick = viewRank;
-    
   }
     
     const viewRank = async function(){
        const appdata2 = await fetch('/appdata2', { method: 'GET' });
         const data = await appdata2.json();
-        const rank = data.data;
-        let htmlDiv = document.getElementById('matchTable');
+        const result = data.data;
+  
       let htmlDiv = document.getElementById('matchTable');
       htmlDiv.innerHTML = '<tr>\n' +
                 '<th>Team #</th>\n' + 
