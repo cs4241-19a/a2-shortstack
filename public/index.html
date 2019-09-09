@@ -6,37 +6,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     <link rel = "stylesheet" type = "text/css" href = "css/style.css">
     <link href="tabulator-master/dist/css/bulma/tabulator_bulma.min.css" rel="stylesheet">
+    <link href = "css/tabulator_midnight.min.css" rel = "stylesheet">
     <script type="text/javascript" src="tabulator-master/dist/js/tabulator.min.js"></script>
   </head>
-  <body>
+  <body style = "background-color: #3D3D3D">
     <!-- Hero -->
     <section class="hero center parallax-boat">
       <div class="hero-body">
         <div class = "container">
-          <h1 class = "white is-size-1 title">Boat Race Tracker</h1>
+          <h1 class = "white is-size-1 title">PC Performance Tracker</h1>
         </div>
       </div>
   </section>
-  <br>
+  <div class = "sticky-bar">
+  </div>
+
+  <h1 class = "center">Enter Your Statistics Here:</h1>
 
     <!-- columns: https://bulma.io/documentation/columns/basics/ -->
     <div class="columns columns-style">
-        <div class="column">
-            <form action="" class = "center notification has-background-light">
-              <h2>Name</h2>
-                <input id = "yourname" type='text' value="" class = "form-style">
+        <div class="column is-one-fifth">
+            <form action="" class = "center notification column-style">
+              <h2>Computer Name</h2>
+                <input id = "computer" type='text' value="" class = "form-style">
               </form>
         </div>
-        <div class="column">
-            <form action="" class = "center notification has-background-light">
-                <h2>Time</h2>
-                <input id = "time" type='text' id='time' value="" class = "form-style">
+        <div class="column is-one-fifth">
+            <form action="" class = "center notification column-style">
+                <h2>Game</h2>
+                <input id = "game" type='text' id='time' value="" class = "form-style">
               </form>
         </div>
-        <div class="column">
-            <form action="" class = "center notification has-background-light">
-                <h2>Boat Type</h2>
-                <input id = "boat-type" type='text' id='id' value="" class = "form-style">
+        <div class="column is-one-fifth">
+            <form action="" class = "center notification column-style">
+                <h2>FPS</h2>
+                <input id = "fps" type='text' id='id' value="" class = "form-style">
+              </form>
+        </div>
+        <div class="column is-one-fifth">
+            <form action="" class = "center notification column-style">
+                <h2>CPU Temperature</h2>
+                <input id = "cpu-temp" type='text' id='id' value="" class = "form-style">
+              </form>
+        </div>
+        <div class="column is-one-fifth">
+            <form action="" class = "center notification column-style">
+                <h2>GPU Temperature</h2>
+                <input id = "gpu-temp" type='text' id='id' value="" class = "form-style">
               </form>
         </div>
     </div>
@@ -44,14 +60,38 @@
     <!-- section: https://bulma.io/documentation/layout/section/ -->
     <section class="section no-padding">
         <div class="container center">
-            <button id = "submit-button" class = "submit-style white has-background-danger">Submit Time</button>
+            <button id = "submit-button" class = "submit-style">Submit Stats</button>
         </div>
     </section>
 
-    <div id = "example-table"></div>
+    <div class = "divider">
+      <h1 class = "center" >All Performaces</h1>
+      </div>
 
+    <div class = "Midnight" id = "all-table"></div>
 
-    <div id="example-table"></div>
+    <div class = "divider">
+      <h1 class = "center">Best Performing Games</h1>
+      </div>
+
+    <div class = "Midnight" id = "toptime-table"></div>
+
+    <div class = "divider">
+        <h1 class = "center">Computer Health</h1>
+        </div>
+
+    <div class = "progress-style" >
+        <h1>Frames</h1>
+        <progress id = "frames-health" class = "progress is-info" value = "0"></progress>
+        <h1>CPU Health</h1>
+        <progress id = "cpu-health" class = "progress is-info" value = "0"></progress>
+        <h1>GPU Health</h1>
+        <progress id = "gpu-health" class = "progress is-info" value = "0"></progress>
+    </div>
+
+    <div class = "divider">
+        </div>
+
   <script src="js/scripts.js"></script>
   
   </body>

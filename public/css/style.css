@@ -7,7 +7,7 @@
 
     .parallax-boat {
         /* The image used */
-        background-image: url("water.jpg");
+        background-image: url("abstract.jpg");
     
         /* Create the parallax scrolling effect */
         background-attachment: fixed;
@@ -21,10 +21,7 @@
     }
 
     .form-style {
-        margin: 15px;
-        height: 30px;
-        width: 250px;
-        font-size: 20px;
+        margin-left: 10px;
     }
 
     .submit-style {
@@ -32,6 +29,7 @@
         width: 100%;
         font-size: 20px;
         font-weight: bold;
+        margin-bottom: 20px;
     }
 
     .no-padding {
@@ -39,11 +37,40 @@
     }
 
     .columns-style {
-        margin-left: 15px;
-        margin-right: 15px;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .column-style {
+        height: 100px;
+        background-color: #8D8D8D;
+        color: white;
+    }
+
+    .progress-style {
+        background-color: #8D8D8D;
+        height: 200px;
+    }
+    
+    .sticky-bar {
+        position:sticky;
+        background-color: black;
+        height: 15px;
+    }
+
+    .divider {
+        background-color: black;
+        height: 50px;
     }
 
     h2 {
-        font-size: 24px;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 20px;
+        color: white;
         font-weight: bold;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
