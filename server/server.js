@@ -8,7 +8,7 @@ const mime = require("mime");
  * @param req the request object
  */
 const getIP = req => {
-  const forward = req.headers["x-forward-for"];
+  const forward = req.headers["x-forwarded-for"];
   const defaultIP = req.connection.remoteAddress;
   if (forward) {
     const ips = forward.split(",");
