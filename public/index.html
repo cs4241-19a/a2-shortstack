@@ -1,41 +1,55 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>a2-Alexander-Rus</title>
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
     <meta charset="utf-8">
+    <link rel="stylesheet" href="/style.css">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>Submit</button>
-    </form>
-  </body>
-  <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
-</html>
+    <div class="wrapper">
+        <header>
+          <h1>Save Your Music ♫</h1>
+          <p>𝄞 Add Your Favorite Songs So You Don't Forget them 𝄞</p>
+        </header>
+        <div class="main">
+          <table id = "Song_Table">
+              <tr>
+                <th>To-Do:</th>
+                <th>Artist</th>
+                <th>Song Length</th>
+                <th>Picture URL</th>
+                <th>Link to Video</th>
+                <th>Delete Song</th>
+              </tr>
+            </table>
+          </div> 
+            <form action="" id="new" class="wrapper">
+              Song Name:<input type="text" name="songName">
+              Artist:<input type="text" name="artist">
+              Song Length:<input type="text" name="newLength">
+              Picture URL:<input type="text" name="picture">
+              Link To Video:<input type="text" name="video">
+      
+              <button id="add_song" class="btn-submit">Add Song</button>
+            </form>  
+            <p style="padding-left: 10px">
+                Simply add a song by inputing the song name, artist, song length(required*), a picture url to go with it, and a link to
+                its music video!
+            </p>
+            <div>
+              <h2 class="special">
+                  Total Listen Time : <span id='count'></span> minutes.
+              </h2>
+            </div>
+          </div>
+          <script src="scripts.js"></script> 
+        </div>
+        <div class="main">	
+      </div>
+  </body> 
+  </html>

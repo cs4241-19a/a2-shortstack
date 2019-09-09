@@ -1,1 +1,169 @@
-/*Style your own assignment! This is fun! */
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Lato', sans-serif;
+    color: #4c4c4c;
+    background-color: #f8fdf3;
+  }
+  h1 {
+    font-family: 'Courgette', cursive;
+    text-shadow: 0 1px 0 rgba(0,0,0, .4);
+    line-height: 0.65;
+    margin-top: 0.5em;
+    margin-bottom: 50px;
+  }
+  h2 {
+    margin-top: 0;
+  }
+  
+  p {
+    font-size: 1.1em;
+    text-shadow: 0 1px 0 rgba(0,0,0, .25);
+  }
+  
+  table, th, td {
+    border: 2px solid black;
+    text-align: center;
+  }
+  
+  table { 
+    border-collapse: collapse;
+     width: 100%;
+  }
+  
+  .special {
+    text-align: center;
+    color: darkgray
+  }
+  
+  form {
+    width: 60%;
+    overflow: hidden;
+    display: flex;
+    border-radius: 0.2em;
+    border: solid 4px white;
+    background-color: white;
+    box-shadow: 0 1px 14px rgba(0,0,0, .12);
+  }
+  form input {
+    padding: 12px;
+    font-size: 1.15em;
+    width: 100%;
+  }
+  input,
+  button {
+    border: none;
+    outline: none;
+  }
+  button {
+    cursor: pointer;
+  }
+  .btn-submit {
+    color: white;
+    padding: 0 1em;
+    font-size: 1em;
+    background-color: #7bcbc4;
+    border-radius: 0.2em;
+  }
+  
+  .wrapper {
+    max-width: 900px;
+    margin: 2.5em auto;
+    border-radius: 0.35em;
+    background-color: #fcfcfc;
+    overflow: hidden;
+    box-shadow: 0 0 26px rgba(0,0,0, .13);
+  }
+  
+  header {
+    color: white; 
+    text-align: center;
+    background: linear-gradient(90deg, #d4eece, #55b3d0, #1e7eb7),
+                url('https://cdn.glitch.com/bc9ea397-e39e-46f2-9773-7aaf8023612c%2Fwave.jpg?v=1568001262823') no-repeat;
+    background-blend-mode: multiply;    
+    background-size: cover;   
+  }
+  
+  @media (max-width: 768px) {
+    .wrapper {
+      margin: 0;
+    }
+    header {
+      padding: 1.25em;
+    }
+    h1 {
+      font-size: 3.6em;
+      margin: 0.3em 0 0;
+    }
+    form {
+      width: 95%;
+      flex-direction: column;
+      margin: auto;
+      margin-top: 2.5em;
+    }
+    form input {
+      font-size: 1em;
+      text-align: center;
+    }
+    .btn-submit {
+      padding: 12px 0;
+      margin-top: 0.5em;
+    }
+    .main {
+      padding: 2em 1em 0.75em;
+    }
+    .guest {
+      margin-bottom: 1em;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .wrapper {
+      width: 90%;
+    }
+    header {
+      height: 280px;
+      padding: 2.5em 1em 1em;  
+      background-position: 0 -95px; 
+    }
+    h1 {
+      font-size: 5.8em;
+    }
+    form {
+      margin: 4.15em auto 0;
+      z-index: 1000;
+      position: relative;
+    }
+    .main {
+      padding: 3.25em 1.5em 0.75em;
+      position: relative;
+      z-index: 10;
+    }
+    h2 {
+      float: left;
+      font-size: 1.9em;
+      margin-left: 1.25%;
+    }
+    .hide-guests {
+      float: right;
+      margin-top: 12px;
+      margin-right: 1.25%;
+    }
+    .guest-list {
+      display: flex;    
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-top: 1.25em;
+    }
+    .guest {
+      flex-grow: 1;
+      flex-basis: 47.5%;
+      margin: 0 1.25% 1em;
+    }
+  }
+  @media (min-width: 880px) { 
+    .guest {
+      flex-basis: 20%;
+    }
+  }
