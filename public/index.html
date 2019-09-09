@@ -139,7 +139,7 @@
         
         var i;
         for(i = 0; i < info.length; i++){
-          createEvent(info[i].day, info[i].task, info[i].time);
+          createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
         }
 
         console.log( JSON.stringify( myJSON ) )
@@ -152,7 +152,7 @@
     var task = document.querySelector("#task").value
     var time = document.querySelector("#time").value
     var index = day + task + time
-    console.log("Day: " + day + " Time: " + time + " Task: "+ task);
+    console.log("Index"+ index +"Day: " + day + " Time: " + time + " Task: "+ task);
 
     var newEvent = {
       index : index,
@@ -178,20 +178,31 @@
   
   const deleteEvent = function(e) {
     e.preventDefault();
-    var delEvent;
+    var eventInd;
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
     while(pointer.hasChildNodes()){
-      pointer.removeChild(pointer.firstChild)
-      if(pointer.firstChild.getAttribute('index')) {
-        delEvent = pointer.firstChild.getAttribute('index');
+      //pointer.removeChild(pointer.firstChild)
+      if(pointer.firstChild.getAttribute('index') !== null) {
+        eventInd = pointer.firstChild.getAttribute('index');
         
-        removeEvent()
+        removeEvent(eventInd)
       }
     }
     
     
   }
   
+  
+  const removeEvent = function(index) {
+    var body = JSON.stringify( index )
+    
+    fetch('/delete',{
+      method: 'POST',
+      body
+    }).then(function(response) {
+      //occupySchedule()
+    })
+  }
   
   
   const createEvent = function(index, day, task, time){
@@ -206,6 +217,8 @@
       divNode.appendChild(timeNode)
       divNode.appendChild(breakNode1)
       divNode.appendChild(textNode)
+      console.log(dayCol)
+
       dayCol.appendChild(divNode)
       dayCol.appendChild(breakNode)
   }

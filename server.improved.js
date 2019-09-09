@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const data = [
-  { 'index': 0, 'day': 'Monday', 'task': 'CS4241 A2 Due', time: '11:59'},
-  { 'index': 1, 'day': 'Tuesday', 'task': 'MA2621 Homework Due', time: '2:00'},
-  { 'index': 2, 'day': 'Tuesday', 'task': 'CH1010 Daily Problem', time: '11:00'}
+  { 'index': 'MondayCS4241 A2 Due11:59', 'day': 'Monday', 'task': 'CS4241 A2 Due', time: '11:59'},
+  { 'index': 'TuesdayMA2621 Homework Due2:00', 'day': 'Tuesday', 'task': 'MA2621 Homework Due', time: '2:00'},
+  { 'index': 'TuesdayCH1010 Daily Problem11:00', 'day': 'Tuesday', 'task': 'CH1010 Daily Problem', time: '11:00'}
 ]
 
 const server = http.createServer( function( request,response ) {
