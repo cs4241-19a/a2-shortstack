@@ -3,6 +3,10 @@ body, html {
     height: 100%;
 }
 
+.link {
+  color: black;
+}
+
 .icon {
   margin-top: 20px;
   
