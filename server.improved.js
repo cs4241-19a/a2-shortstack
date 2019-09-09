@@ -9,7 +9,6 @@ let imageOrders = [];
 let orders = [];
 let entries = ["<tr><td>Name</td><td>Score</td></tr>"];
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.get('/', function(req, res) {
   res.redirect('/home');
