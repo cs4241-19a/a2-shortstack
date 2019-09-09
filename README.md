@@ -2,6 +2,10 @@
 This applcation is a replica of the famous Bon Me restaurant. However, this focuses on their delicious rice bowls. 
 To place an order, the customer's first name, last name, and whatever they want to name their meal are required. 
 Include a very brief summary of your project here. The name can be anything from Treasure Island to bon appetit. 
+When the customer places their order, that order is them put under the "view orders" page with the other customer 
+orders. This data is organized in a table where customers can modify or delete their orders. I made it so that the 
+once the customer logs onto the application, they feel even more hungry than they already do, by putting a picture 
+that is clear and rich with color of some of the available rice bowl options.
 
 Images are encouraged, along with concise, high-level text.
 
@@ -17,8 +21,7 @@ Here is a sample formula for summarizing your activities, talk about:
 https://a2-amandaeze97.glitch.me/
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Form Validation**: When a customer submits the form with missing required fields, the form throws an error.
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: Shown in `style.css`, the code...
