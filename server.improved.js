@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Database Information
 var admin = require("firebase-admin");
 
@@ -15,10 +16,17 @@ var users = db.ref('/');
 // to install the mime library used in the following line of codek
 const http = require( 'http' ),
       fs   = require( 'fs' ),
+=======
+const http = require( 'http' ),
+      fs   = require( 'fs' ),
+      // IMPORTANT: you must run `npm install` in the directory for this assignment
+      // to install the mime library used in the following line of code
+>>>>>>> cef8836fe8c60d3eed3f8085a19626af605718c8
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
 
+<<<<<<< HEAD
 const appdata = [ //can add/edit/delete any object in here 
   { 'model': 'Toyota', 'year': 2002, 'mpg': 23, 'tripDistance': 300, 'gasPrice': 2.39, 'totalGallons': 13.04, 'totalCost': 31.16 },
   { 'model': 'Honda', 'year': 2004, 'mpg': 30, 'tripDistance': 230, 'gasPrice': 3.40, 'totalGallons': 7.66, 'totalCost': 26.04  },
@@ -30,15 +38,31 @@ const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){ //could add more functions like delete here, but could also have just POST and have the urls to determine what to do  
+=======
+const appdata = [
+  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
+  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
+  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+]
+
+const server = http.createServer( function( request,response ) {
+  if( request.method === 'GET' ) {
+    handleGet( request, response )    
+  }else if( request.method === 'POST' ){
+>>>>>>> cef8836fe8c60d3eed3f8085a19626af605718c8
     handlePost( request, response ) 
   }
 })
 
+<<<<<<< HEAD
 //use handleGet to display data structure (server) in UI (server to UI)
+=======
+>>>>>>> cef8836fe8c60d3eed3f8085a19626af605718c8
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
+<<<<<<< HEAD
     sendFile( response, 'public/index.html' ) //do sendFile for javascript file
   }else if(request.url === '/carData'){
     sendData(response, appdata)
@@ -55,6 +79,14 @@ const handleGet = function( request, response ) {
 }
 //communicate from HTML to server
 //change url to look at specific file (same as a1 with switch statement) (if request.url = add, add the data)
+=======
+    sendFile( response, 'public/index.html' )
+  }else{
+    sendFile( response, filename )
+  }
+}
+
+>>>>>>> cef8836fe8c60d3eed3f8085a19626af605718c8
 const handlePost = function( request, response ) {
   let dataString = ''
 
@@ -63,6 +95,7 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
+<<<<<<< HEAD
     
     const data = JSON.parse(dataString)
     
@@ -138,6 +171,17 @@ const sendData = function(response, carsdata){
 }
 
 
+=======
+    console.log( JSON.parse( dataString ) )
+
+    // ... do something with the data here!!!
+
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end()
+  })
+}
+
+>>>>>>> cef8836fe8c60d3eed3f8085a19626af605718c8
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
 
@@ -160,5 +204,8 @@ const sendFile = function( response, filename ) {
    })
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cef8836fe8c60d3eed3f8085a19626af605718c8
 server.listen( process.env.PORT || port )
