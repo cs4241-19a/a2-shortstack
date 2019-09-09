@@ -42,26 +42,18 @@ app.get('/queue', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-    let query = req.query.query
-
-    let song = req.query.song ? 'track' : null
-    let artist = req.query.artist ? 'artist' : null
-    let album = req.query.album ? 'album' : null
-    let playlist = req.query.playlist ? 'playlist' : null
-    let type = [song, artist, album, playlist].filter(Boolean).join(",")
-    let data = querystring.stringify({
-        q: query,
-        type: type
-    })
+    console.log(req.query)
+    console.log(req.headers.authorization)
     let options = {
-        url: `https://api.spotify.com/v1/search?${data}`,
+        url: `https://api.spotify.com/v1/search?${querystring.stringify(req.query)}`,
         headers: {
-            'Authorization': 'Bearer ' + access_token
+            Authorization: req.headers.authorization,
         },
+        json: true
     }
-    request.get(options)
-        .on('body', (res) => console.log(res))
-    res.sendStatus(200)
+    request.get(options, (err, response, body) => {
+        res.json(body);
+    });
 
 })
 

@@ -6,23 +6,23 @@ function submitForm(e) {
     let q = $("#query").val()
     let types = []
     $("#queryForm input:checked").each((i, v) => {
-        console.log(v)
         types.push(v.value)
     })
     let params = $.param({
         q: q,
         type: types.filter(Boolean).join(",")
     })
-    console.log(params)
-
-
-    fetch(`https://api.spotify.com/v1/search?${params}`, {
+    fetch(`/search?${params}`, {
             headers: {
                 'Authorization': 'Bearer ' + Cookies.get("spotify_access_token")
             }
         })
         .then((res) => res.json())
         .then((data) => {
+            if ('error' in data) {
+                alert("Please Log in");
+                return;
+            }
             $('.results-table tbody').remove()
             $('.results-table thead').css('visibility', 'visible')
             let tbody = $('<tbody />').appendTo($('.results-table'))
@@ -36,7 +36,7 @@ function submitForm(e) {
                     .append(`<td align="right">${msToTime(track.duration_ms)}</td>`)
                     .append(`<td style="display: none">${track.id}</td>`)
             }
-        })
+        }).catch((err) => console.log(err))
     return false;
 }
 
@@ -45,10 +45,8 @@ const msToTime = function(ms) {
 }
 
 const formToJSON = elements => [].reduce.call(elements, (data, element) => {
-
     data[element.name] = element.value;
     return data;
-
 }, {});
 
 window.onload = function() {
