@@ -80,7 +80,6 @@ const handlePost = function( request, response ) {
         break
       case "delete":
         const removalData = JSON.parse(dataString)
-        removalData.sign = starSign(removalData)
         removeGiven(removalData)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.write(JSON.stringify(appdata))

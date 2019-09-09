@@ -250,6 +250,7 @@
     e.preventDefault()
     let originalData = document.getElementById('modHolder').innerHTML
     originalData = JSON.parse(originalData)
+    console.log(originalData)
     const jsonOriginal = { fName: originalData[0], lName: originalData[1], month: originalData[2], day: originalData[3] },
           body = JSON.stringify( jsonOriginal )
     fetch( '/delete', {
