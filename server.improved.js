@@ -7,9 +7,8 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'name': 'John Doe', 'age': 21, 'occupation': 'Student', 'strength': 50, 'dexterity': 45, 'intelligence': 38, 'luck': 25, 'odd': 15, 'total': 173},
+  { 'name': 'Jane Doe', 'age': 21, 'occupation': 'Student', 'strength': 55, 'dexterity': 40, 'intelligence': 38, 'luck': 30, 'odd': 15, 'total': 178 }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -25,12 +24,21 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if ( request.url === '/view-characters' ){
+    const type = mime.getType( appdata ) 
+    response.writeHeader( 200, { 'Content-Type': type } ) 
+    response.write( JSON.stringify( appdata ) )
+    console.log( JSON.stringify( appdata ) )
+    response.end()
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
+  debugger
   let dataString = ''
 
   request.on( 'data', function( data ) {
@@ -38,13 +46,78 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    
+    if ( request.url === '/submit') {
+      let inputData = JSON.parse( dataString )
+      let totalStats = calculateStats(parseInt(inputData.strength), parseInt(inputData.dexterity), parseInt(inputData.intelligence), parseInt(inputData.luck), parseInt(inputData.odd))
+      const newChar = {'name': inputData.name, 
+                       'age': inputData.age, 
+                       'occupation': inputData.occupation, 
+                       'strength': inputData.strength, 
+                       'dexterity': inputData.dexterity, 
+                       'intelligence': inputData.intelligence, 
+                       'luck': inputData.luck, 
+                       'odd': inputData.odd, 
+                       'total': totalStats 
+                      }
+      console.log( newChar )
+      
+      appdata.push( newChar )
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.end()
+      
+    }
+    else if ( request.url === '/delete') {
+      let inputData = JSON.parse( dataString )
+      let index = inputData.charNum
+      
+      //console.log( "Attempting to delete: " + inputData )
+      
+      if ( index > -1 ) {
+        appdata.splice( index, 1 )
+      }
+      
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.end()
+      
+    }
+    else if ( request.url === '/edit') {
+      debugger
+      let inputData = JSON.parse( dataString )
+      console.log(inputData)
+      let index = inputData.charNum
+      console.log(index)
+      let totalStats = calculateStats(parseInt(inputData.charEdit.strength), parseInt(inputData.charEdit.dexterity), parseInt(inputData.charEdit.intelligence), parseInt(inputData.charEdit.luck), parseInt(inputData.charEdit.odd))
+      const edited = {'name': inputData.charEdit.name, 
+                       'age': inputData.charEdit.age, 
+                       'occupation': inputData.charEdit.occupation, 
+                       'strength': inputData.charEdit.strength, 
+                       'dexterity': inputData.charEdit.dexterity, 
+                       'intelligence': inputData.charEdit.intelligence, 
+                       'luck': inputData.charEdit.luck, 
+                       'odd': inputData.charEdit.odd, 
+                       'total': totalStats 
+                      }
+      console.log(edited)
+      if ( index > -1 ) {
+        appdata.splice(index, 1, edited)
+        console.log(appdata)
+      }
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+      response.end()
+      
+    }
+    else
+      // nothing happens
+      response.end()
+    
   })
+}
+
+const calculateStats = function (str, dex, int, luk, odd) {
+  
+  return str + dex + int + luk + odd
+
 }
 
 const sendFile = function( response, filename ) {
