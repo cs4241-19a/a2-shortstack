@@ -98,15 +98,12 @@
     })
       .then( function( myJSON ) {
         var info = myJSON.data
-        console.log(info)
-
         var i;
         for(i = 0; i < info.length; i++){
           if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null){
             createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
           }
         }
-      
         console.log( JSON.stringify( myJSON ) )
     })
   }
@@ -197,18 +194,16 @@
     var int = 0;
     console.log("Here")
     var pointer = document.querySelector('.boardsection[data-board]:last-child .tasklist ')
-    var pointerChild = document.querySelector('.boardsection[data-board]:nth-child('+num+') .tasklist :first-child[index]')
-    for(num = 0; num < document.querySelector('.boardsection[data-board]').hasChildNodes(); num++) {
-      pointerChild = document.querySelector('.boardsection[data-board]:nth-child('+num+') .tasklist :first-child')
-      console.log(pointerChild)
+    //var pointerChild = document.querySelector('.boardsection[data-board]:last-child .tasklist :first-child')
+      //console.log(pointerChild)
 
-      while(pointerChild !== null)
+      while(pointer.firstChild !== null)
       {
-        console.log(pointerChild)
-        pointer.removeChild(pointerChild)
+        console.log(pointer)
+        console.log(pointer.firstChild)
+        pointer.removeChild(pointer.firstChild)
       }
     }
-  }
   
   const dayFinder = function(str) {
     switch(str.trim().toLowerCase()) {
