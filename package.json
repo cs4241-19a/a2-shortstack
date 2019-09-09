@@ -1,8 +1,15 @@
 {
+<<<<<<< HEAD
   "name": "what",
   "version": "v1",
   "description": "Assignment 2",
   "author": "Andrew Levy",
+=======
+  "name": "",
+  "version": "",
+  "description": "",
+  "author": "",
+>>>>>>> d74223ab6d4787daa0352020a356c0b7b511d0b3
   "scripts": {
     "start": "node server.improved.js"
   },
