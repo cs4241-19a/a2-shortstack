@@ -11,7 +11,7 @@ const http = require('http'),
     port = 3000,
     client_id = process.env.CLIENT_ID,
     client_secret = process.env.CLIENT_SECRET,
-    redirect_uri = `http://localhost:${port}/callback`
+    redirect_uri = process.env.spotify_callback
 
 let stateKey = 'spotify_auth_state'
 
