@@ -1,41 +1,231 @@
-<!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+  
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+</head>
+<body>
+
+<header>
+  <h2>Foodify</h2>
+</header>
+
+<section>
+  <nav>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <div class="form-group">
+    <label>Your name:</label>
+     <input type="text" id="yourname" value="" class="form-control">
+        </div>
+      <br>
+      <div class="form-group">
+      <label>What are you craving?:</label>
+      <input type="text" id="dish" value="" class="form-control">
+      </div>
+      <br>
+      <div class="form-group">
+      <label>Any ingredient you would like?</label>
+      <input type="text" id="ingredient" value="" class="form-control">
+      </div>
+      <br>
+      <button class="btn btn-primary">submit</button>
     </form>
-  </body>
+  </nav>
+  
+  <article>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+       <tr>
+      <th scope="col" id="hidden" style="display:none;">Ingredients List</th>
+    </tr>
+      </thead>
+      <tbody id="ingredients">
+      </tbody>
+    </table>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+       <tr>
+      <th scope="row" id="hidden1" style="display:none;">Instructions List</th>
+    </tr>
+      </thead>
+      <tbody id="instructions">
+      </tbody>
+    </table>
+    <table class="table table-hover">
+      <thead class="thead-dark">
+       <tr>
+      <th scope="col">Past Searches</th>
+    </tr>
+      </thead>
+      <tbody id="search">
+      </tbody>
+    </table>
+  </article>
+</section>
+
+<footer>
+  <p>Made by Rafael Pimentel</p>
+</footer>
+
+</body>
   <script>
 
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    document.getElementById('hidden').style.display = 'block';
+    document.getElementById('hidden1').style.display = 'block';
+    const input = document.querySelector( '#yourname' );
+    const input2 = document.querySelector( '#dish' );
+    const input3 = document.querySelector( '#ingredient' );
+          json = { yourname: input.value,
+                   dish: input2.value,
+                   ingredient: input3.value},
+            
           body = JSON.stringify( json )
-
+    
     fetch( '/submit', {
       method:'POST',
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
+    response.json().then(data => {
+          console.log("Response received", data)
+          displayData(data)
+        });
+      })
     return false
   }
+  
+  const loadData = function(json){
+    const arrays = recipe(json)
+    displayData(arrays);
+    
+  }
+  
+  const displayData = function(arrays){
+    
+    document.querySelector("#ingredients").innerHTML = ""
+    document.querySelector("#instructions").innerHTML = ""
+    
+    for (let i = 0; i < arrays.ingredients.length; i++) {
+      const ing = arrays.ingredients[i];
+      displayIngredients(ing);
+    }
+    
+    for (let i = 0; i < arrays.instructions.length; i++) {
+      const ins = arrays.instructions[i];
+      displayInstructions(ins);
+    }
+  }
+  
+  const displayIngredients = function( ing ) {
+  const template = '<tr><td>{name} </td></tr><br>'
+  const row = template.replace("{name}", ing)
+  const tbody = document.querySelector("#ingredients")
+  tbody.innerHTML += row
+}
+  
+  const displayInstructions = function( ins ) {
+  const template = '<tr><td>{name} </td></tr><br>'
+  const row = template.replace("{name}", ins)
+  const tbody = document.querySelector("#instructions")
+  tbody.innerHTML += row
+}
+  
+  // Fetch data and then display it
+const loadDataApp = function( e ) {
+  fetch( '/orders', {
+    method:'GET',
+  })
+  .then( function( response ) {
+    response.json().then(displayDataApp)
+  })
+}
 
+const displayDataApp = function ( data ) {
+  for (let i = 0; i < data.length; i++) {
+    const order = data[i]
+    displayOrder(order)
+    }
+}
+
+const displayOrder = function(order) {
+   const template = '<tr scope="row"><td>{name}</td><td>{orbit}</td><td>{launch}</td><td></td></tr><br>'
+  const row = template.replace("{name}", order.yourname).replace("{orbit}", order.dish).replace("{launch}", order.ingredient)
+  const tbody = document.querySelector("#search")
+  tbody.innerHTML += row
+}
+  
+  
   window.onload = function() {
     const button = document.querySelector( 'button' )
-    button.onclick = submit
+    button.onclick = submit;
+    loadDataApp();
   }
-
   </script>
 </html>
