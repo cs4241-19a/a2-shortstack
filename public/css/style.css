@@ -59,14 +59,28 @@ input{
 nav{
   text-align:center;
   font-size:50px;
-  
-}
-
-a{
   width:800px;
   margin:auto;
 }
 
-.matchTable{
-  
+a{
+  justify-item:center;
+  margin:auto;
+  border:3px solid;
+}
+
+a:hover {
+  background-color: #555555; /* Grey */
+  color: white;
+  cursor: pointer;
+}
+
+#matchTable{
+  text-align:center;
+  margin: auto;
+  font-size:32px;
+}
+
+.MH{
+ width:500px;
 }
