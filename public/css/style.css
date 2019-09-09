@@ -7,6 +7,7 @@ body {
 /* Element Styles: */
 
 h1 {
+  color: #4a0049;
   display: flex;
   justify-content: center;
 }
@@ -28,7 +29,7 @@ input {
   display: inline-block;
 }
 
-td {
+td { /* Styling for each cell of the table */
     width: 33%;
     color: darkblue;
     font-size: 26px;
@@ -63,6 +64,7 @@ td {
 }
 
 #buttonDiv {
+  /* Equally space around the show and hide buttons, side by side */
   display: flex;
   justify-content: space-around;
 }

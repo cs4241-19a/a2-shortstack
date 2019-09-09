@@ -6,23 +6,77 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000;
 
-const appdata = [
-  '{"studentName": "John Doe", "numericGrade": 87, "letterGrade": "B" }',
-  '{"studentName": "A. N. Example", "numericGrade": 71, "letterGrade": "C" }'
-//  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-//  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const sqlite3 = require('sqlite3').verbose();
+ 
+// Open database in memory
+let db = new sqlite3.Database(':memory:', (err) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log('Connected to the in-memory SQlite database.');
+});
+
+const alphaFunc = function (grade) {
+    // Get the letter for a student's grade
+    let letter;
+    if (grade >= 90) {
+      letter = "A";
+    } else if (grade >= 80) {
+      letter = "B";
+    } else if (grade >= 70) {
+      letter = "C";
+    } else if (grade >= 60) {
+      letter = "D";
+    } else if (grade > -1 && grade !== '') {
+      letter = "F";
+    } else {
+      letter = "N/A";
+    }
+  return letter;
+}
+
+db.serialize(function(){
+    db.run('CREATE TABLE Grades (name TEXT PRIMARY KEY, number TEXT NOT NULL, letter TEXT NOT NULL);');
+    console.log('New table Grades created!');
+    
+    // Insert default grades
+    db.serialize(function() {
+      db.run('INSERT INTO Grades (name, number, letter) VALUES ("John Doe","87","B")');
+      db.run('INSERT INTO Grades (name, number, letter) VALUES ("Allen Example","75","C")');
+    });
+
+    console.log('Database "Grades" ready to go!');
+    db.each('SELECT * from Grades', function(err, row) {
+      if ( row ) {
+        console.log('Initial Student:', row);
+      }
+    });
+});
+
+const dbAddFunc = function(name, number, letter) {
+  db.run('INSERT INTO Grades (name, number, letter) VALUES ("' + name + '","' + number + '","' + letter + '")');
+}
+
+const dbLookup = function(name) {
+  let sql = 'SELECT * FROM Grades WHERE name = ?';
+  db.get(sql, name, (err, row) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    console.log(row + "party");
+    return JSON.stringify(row);
+  });
+}
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    console.log("here");
     handleGet( request, response );
   } else if (request.method === 'DELETE') {
     handleDelete( request, response );
   } else if( request.method === 'POST' ){
     handlePost( request, response ); 
-  } else {
-    
+  } else { //no requests should get here
+    console.log("This type of request has not been handled yet");
   }
 })
 
@@ -44,21 +98,15 @@ const handleDelete = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    let resp;
     let data = JSON.parse( dataString );
-    let found = false;
-    for (let i = 0; i < appdata.length; i++) {
-      let parsedResult = JSON.parse(appdata[i]);
-      console.log(parsedResult.studentName);
-      if (parsedResult.studentName === data.removeName) {
-          found = true;
-          appdata.splice(i, 1);
-          i = appdata.length;
-      }
+  db.run('DELETE FROM Grades WHERE name=?', data.removeName, function(err) {
+    if (err) {
+      return console.error(err.message);
     }
-    resp = '{"removed":"'+ found + '"}';
+    console.log(`Row(s) deleted ${this.changes}`);
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-    response.end(resp, 'utf-8');
+    response.end('{"removed": "done"}', 'utf-8');
+  });
   })
 }
 
@@ -74,48 +122,35 @@ const handlePost = function( request, response ) {
     let data = JSON.parse( dataString );
     console.log( data );
 
-    //submit request
-    // adds user to the system with a letter grade
-    console.log( data.yourname );
-    console.log( data.yourgrade );
+    // view request
+    // Returns the full table from the db
     if (request.url === '/view') {
-      resp = '{"studentArray": ['+ appdata + ']}';
-      console.log(resp);
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+      db.all('SELECT * from Grades ORDER BY name ASC', function(err, rows) {
+        resp = '{"studentArray": '+ JSON.stringify(rows) + '}';
+        
+        console.log(resp);
+        response.end(resp, 'utf-8');
+      });
     } else {
+      // submit request
+      // Adds a new student to the db, or updates their grades
+      // First delete the student if they're already in the database
       let letter = alphaFunc(data.yourgrade);
-      let found = false;
-      for (let i = 0; i < appdata.length; i++) {
-        let parsedResult = JSON.parse(appdata[i]);
-        console.log("found: " + parsedResult.studentName);
-        if (parsedResult.studentName === data.yourname) {
-            found = true;
-            appdata[i] = '{"letterGrade":"'+ letter + '",';
-            appdata[i] += '"studentName":"' + data.yourname + '", ';
-            appdata[i] += '"numericGrade":"' + data.yourgrade + '"}';
-            //parsedResult.letterGrade = letter;
-            //parsedResult.numericGrade = data.yourgrade;
-            i = appdata.length;
+        db.run('DELETE FROM Grades WHERE name=?', data.yourname, function(err) {
+        if (err) {
+          return console.error(err.message);
         }
-      }
-      // if appdata doesn't have this student yet, add it in
+      });
+      // Add in the student with the data provided
+      dbAddFunc(data.yourname, data.yourgrade, letter);
+      
       resp = '{"letterGrade":"'+ letter + '",';
       resp += '"studentName":"' + data.yourname + '", ';
-      if (found) { // if appdata already has this student, update their grade
-        resp += '"modified":true,';
-        resp += '"numericGrade":"' + data.yourgrade + '"}';
-      } else {
-        let storedResp = resp;
-        resp += '"modified":false,';
-        resp += '"numericGrade":"' + data.yourgrade + '"}';
-        storedResp += '"numericGrade":"' + data.yourgrade + '"}';
-        appdata.push(storedResp); //store the data in the array if new
-      }
+      resp += '"numericGrade":"' + data.yourgrade + '"}';
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+      response.end(resp, 'utf-8');
     }
-    //console.log(resp);
-    console.log(appdata);
-    // Send the appropriate response
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-    response.end(resp, 'utf-8');
   })
 }
 
@@ -131,7 +166,7 @@ const sendFile = function( response, filename ) {
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
 
-     } else{
+     } else {
 
        // file not found, error code 404
        response.writeHeader( 404 )
@@ -141,24 +176,5 @@ const sendFile = function( response, filename ) {
    })
 }
 
-const alphaFunc = function (grade) {
-  //grade = valueOf(grade);
-    // get the letter for a student's grade
-    let letter;
-    if (grade >= 90) {
-      letter = 'A';
-    } else if (grade >= 80) {
-      letter = 'B';
-    } else if (grade >= 70) {
-      letter = 'C';
-    } else if (grade >= 60) {
-      letter = 'D';
-    } else if (grade > -1 && grade !== '') {
-      letter = 'F';
-    } else {
-      letter = 'N/A';
-    }
-  return letter;
-}
-
 server.listen( process.env.PORT || port )
+
