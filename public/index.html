@@ -143,7 +143,7 @@
                         <td>€${favs[i].eur}</td>
                         <td>${stars}</td>
                         <td> <button id="editBtn" type="button" class="btn btn-light"> <i class="fas fa-edit"></i></button>
-                        <td> <button id="deleteBtn" type="button" class="btn btn-light"> <i class="fas fa-trash"></i></button>
+                        <td> <button id="deleteBtn" type="button" class="btn btn-light" onclick="deleteItem(${i})"> <i class="fas fa-trash"></i></button>
                       </tr>
         `;
       }
@@ -174,14 +174,12 @@
       return false
     }
     
-    const deleteItem = function ( e, arrPosition ) {
-      // prevent default form action from being carried out
-      e.preventDefault()
-      
-      const index = { index: arrPosition };
-      const body = JSON.stringify(index);
+    const deleteItem = function ( arrPosition ) {
+      const indexJson = { index: arrPosition };
+      debugger
+      const body = JSON.stringify(indexJson);
       fetch('/delete', {
-          method: 'POST',
+          method: 'DELETE',
           body
         });
         refresh();
@@ -198,9 +196,7 @@
 
       const button = document.getElementById( 'newBtn' )
       button.onclick = newItem
-      
-      const button = document.getElementById( 'newBtn' )
-      button.onclick = newItem
+    
     }
 
   </script>
