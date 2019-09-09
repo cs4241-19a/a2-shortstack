@@ -91,6 +91,7 @@
     }
   
   const fetchMH = async function() {
+        
         const fMH = await fetch('/m', { method: 'GET' });
         const data = await fMH.json();
         const matchH = data.data;
@@ -109,8 +110,10 @@
           newRow += (`<td> ${match.matchNumber} </td>\n`);
           newRow += (`<td> ${match.red1} </td>\n`);
           newRow += (`<td> ${match.blue1} </td>\n`);
-          newRow += (`<td style=> ${match.redScore} </td>\n`);
-          newRow += (`<td id="blueScore{i}"> ${match.blueScore} </td>\n`);         
+          if(match.redScore>){
+          newRow += (`<td style="background-color:rgba(255, 0, 0,0.6)"> ${match.redScore} </td>\n`);
+          newRow += (`<td id="blueScore{i}"> ${match.blueScore} </td>\n`);      
+        }
           newRow += (`<td> <button id="edit-button-${i}" class="table-button" onclick="editMatch(${i})" >Edit</button> </td>\n`);
           newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
