@@ -1,10 +1,4 @@
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-## When To Meet
+## When To Meet - http://a2-jgerulskis.glitch.me
 My web application provides users the ability to plan events with friends, without the need to sign in.
 
 I was inspired to make this applicaiton by the website www.When2Meet.com, a site I have used 1 too many times. The UI is cumbersome, especially on mobile devices. I couldn't stand using this application when I knew I could create a better version. My site would allow users to plan events just like When2Meet.com, but with a much better UI. The main focus on this project was user friendly UI elements, that would work just as well on mobile as on desktop. The site does everything When2Meet does but just better.
