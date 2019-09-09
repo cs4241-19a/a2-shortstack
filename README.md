@@ -46,9 +46,8 @@ Do the following to complete this assignment:
 Natalie Bloniarz - Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ---
 
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+## Celebrity Horoscope Database
+The purpose of this application is to store 
 
 Here is a sample formula for summarizing your activities, talk about:
 - the domain area the project pertains to
@@ -63,8 +62,8 @@ http://a2-nbloniarz.glitch.me
 
 ## Technical Achievements
 - **Dynamic Dropdowns**: When adding or modifying information in the database, the dropdown for the day of the month dynamically changes based on the month selected. 
-- **Synamic Displays**: The buttons on the navigation bar at the top of the page dynamically hide/show the relevant functionalities of the buttons
+- **Dynamic Displays**: The buttons on the navigation bar at the top of the page dynamically hide/show the relevant functionalities of the buttons
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Bootstrap Carousel**: Implemented a bootstrap carousel displaying zodiac images. Adapted from https://www.w3schools.com/bootstrap/bootstrap_carousel.asp
+- **Styled Results Table**: at...
