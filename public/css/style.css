@@ -1,1 +1,84 @@
-/*Style your own assignment! This is fun! */
+/* Karen Royer - 09/09/2019 */
+
+body {
+  display:grid;
+  background: skyblue;
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  background-image: url('https://41.media.tumblr.com/efd15be8d41b12a7b0ef17fba27c3e20/tumblr_mqqy59HMaf1qzattso1_1280.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+  margin: 30px;
+  place-items: center;
+}
+
+h1 {
+  font-style: italic;
+  color: navy;
+  font-size:55px;
+}
+
+textarea{
+  font-family: system-ui, sans-serif;
+  font-size:16px;
+background-color: rgba(255, 255, 224, 0.5);
+  border-radius: 5px;
+  color: black;
+  width:90%;
+  height:300px;
+}
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+button{
+  margin:5px;
+  font-family:"Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  font-size:16px;
+  font-style:bold;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .modal {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}
+
+.modal {
+  background-color: rgba(195, 225, 150, 0.5);
+  border-radius: 5px;
+  color: #333;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  max-width: 75%;
+  padding: 1rem 2rem;
+}
+
+.container{
+  display:grid;
+  grid-template-columns: 130px 100px 100px 100px 100px 100px;
+  grid-template-rows: 20px;
+  border-radius: 5px;
+  color: #333;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  max-width: 50%;
+  padding: 1rem 2rem;
+}
+
+.list{
+  margin:20px;
+  display:grid;
+ font-family: system-ui, sans-serif;
+  color: white;
+  grid-template-columns:35% 65%;
+}

@@ -1,12 +1,13 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "WebLibs",
+  "version": "1.0",
+  "description": "Madlibs for the web",
+  "author": "Karen Royer",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
+    "imdb-api": "^4.0.3",
     "mime": "^2.4.4"
   }
 }
