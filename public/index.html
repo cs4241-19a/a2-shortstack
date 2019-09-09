@@ -131,29 +131,18 @@
     let newMPG = document.getElementById('mpg'+rowIndex).value;
     let newDistance = document.getElementById('tripDistance'+rowIndex).value;
     let newGasPrice = document.getElementById('gasPrice'+rowIndex).value;
-    
-    if(newModel === '') {
-        newModel = '(Redacted)'
-    }
-    if(newYear === '') {
-        newYear = '(Redacted)'
-    }
-    if(newMPG === '') {
-        newMPG = '(Redacted)'
-    }
-     if(newDistance === '') {
-        newDistance = '(Redacted)'
-    }
-     if(newGasPrice === '') {
-        newGasPrice = '(Redacted)'
-    }
+  
+    totalGallons = (parseInt(newDistance) / parseInt(newMPG))
+    totalCost = (totalGallons*(parseInt(newGasPrice)))
     
     const json ={
       'model': newModel,
       'year': newYear,
       'mpg': newMPG,
       'tripDistance': newDistance,
-      'gasPrice': newGasPrice
+      'gasPrice': newGasPrice,
+      'totalGallons': totalGallons.toFixed(2),
+      'totalCost': totalCost.toFixed(2)
     }
     
     json.index = rowIndex
