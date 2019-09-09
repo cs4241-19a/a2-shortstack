@@ -6,6 +6,8 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
+let userData = []
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -19,7 +21,9 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else if(request.url === '/add'){
+    sendResult(response)
+  } else{
     sendFile( response, filename )
   }
 }
@@ -32,8 +36,9 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
+    let data = JSON.parse(dataString)
     
-    
+    userData.push(data)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -60,6 +65,13 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+let sendResult = function(response){
+let info = JSON.stringify(userData)
+response.writeHeader( 200, { 'Content-Type': 'plain/text' })
+response.write(info)
+response.end()
 }
 
 server.listen( process.env.PORT || port )
