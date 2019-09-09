@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "A2",
   "version": "",
-  "description": "",
-  "author": "",
+  "description": "Assignment 2 for CS 4241",
+  "author": "Rosana Pochat",
   "scripts": {
     "start": "node server.improved.js"
   },
