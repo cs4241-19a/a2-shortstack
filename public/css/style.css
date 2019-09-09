@@ -1,1 +1,10 @@
-/*Style your own assignment! This is fun! */
+body {
+  background: #555;
+}
+
+.content {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+}

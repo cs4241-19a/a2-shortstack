@@ -52,9 +52,10 @@ const bookDeletion = function (data) {
 // Update rating of a book -> this then will update the status
 const bookEdition = function (data) {
   const name = data.bookName
+  const newRating = data.rating
   for (let i = 0; i < appdata.length; i++) {
     if (appdata[i].bookName === name) {
-      appdata[i].rating = data.rating
+      appdata[i].rating = newRating
       if (appdata[i].rating === "1" || appdata[i].rating === "2" ) {
         appdata[i].status = 'bad'
       } else {
