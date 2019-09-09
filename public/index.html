@@ -71,7 +71,7 @@
             <div class="form-input" role="radiogroup" aria-label="type-of-protein">
               <b><p class="form-label">Protein</p></b>
               
-              <input type="radio" role="radio" id="salt_pepper_chk" name="protein" value="9">
+              <input type="radio" role="radio" checked id="salt_pepper_chk" name="protein" value="9">
               <label for="salt_pepper_chk">Chinese Salt + Pepper Chicken</label><br>
               
               <input type="radio" role="radio" id="tamari_chk" name="protein" value="10">
@@ -179,14 +179,16 @@
   <script>
     const addOrder = function( e ) {
       e.preventDefault();
+      
       const newOrder = {
-        fstname: document.getElementById( 'fstname' ).value,
-        lstname: document.getElementById( 'lstname' ).value,
-        ordername: document.getElementById( 'ordername' ).value,
-        amountOfPork: document.querySelector('input[name="pork"]:checked').value,
-        garlic: document.querySelector('input[name="garlic"]:checked').value
+        fstname: document.getElementById( 'fst-name' ).value,
+        lstname: document.getElementById( 'lst-name' ).value,
+        ordername: document.getElementById( 'order-name' ).value,
+        typeOfGrain: document.querySelector('input[name="grain"]:checked').value,
+        typeOfProtein: document.querySelector('input[name="protein"]:checked').value
       };
-      if (orderValidation(newOrder.name, newOrder.dream)) {
+      
+      if (orderValidation(newOrder.fstname, newOrder.lstname, newOrder.ordername)) {
         const body = JSON.stringify( newOrder );
         fetch( '/submit', {
           method:'POST',
@@ -199,6 +201,7 @@
       }
       return false;
     };
+    
     const deleteOrder = function (index) {
       const orderNumber = { orderNumber: index };
       const body = JSON.stringify(orderNumber);
@@ -208,6 +211,7 @@
       });
       fetchOrders();
     };
+    
     const fetchOrders = async function() {
       try {
         const resp = await fetch('/orders', { method: 'GET' });
@@ -215,27 +219,27 @@
         const orders = data.data;
         let htmlDiv = document.getElementById('orders');
         htmlDiv.innerHTML = '<tr>\n' +
-                '              <th>Name</th>\n' +
-                '              <th>Dream</th>\n' +
-                '              <th>Pork</th>\n' +
-                '              <th>Garlic</th>\n' +
+                '              <th>First Name</th>\n' +
+                '              <th>Last Name</th>\n' +
+                '              <th>Order Name</th>\n' +
+                '              <th>Grain</th>\n' +
+                '              <th>Protein</th>\n' +
                 '              <th>Price</th>\n' +
                 '              <th></th>\n' +
                 '              <th></th>\n' +
                 '            </tr>';
+        
         for (let i = 0; i < orders.length; i++) {
           const order = orders[i];
           const stringOrder = JSON.stringify(orders[i]);
-          const garlic = (order.garlic ? 'Yes' : 'No');
           let newRow = '<tr>\n';
-          newRow += (`<td> ${order.name} </td>\n`);
-          newRow += (`<td> ${order.dream} </td>\n`);
-          newRow += (`<td> ${order.amountOfPork} pieces</td>\n`);
-          newRow += (`<td> ${garlic} </td>\n`);
+          newRow += (`<td> ${order.fstname} </td>\n`);
+          newRow += (`<td> ${order.lstname} </td>\n`);
+          newRow += (`<td> ${order.ordername} </td>\n`);
+          newRow += (`<td> ${order.typeOfGrain} </td>\n`);
+          newRow += (`<td> ${order.typeOfProtein} </td>\n`);
           newRow += (`<td> ${order.price} </td>\n`);
-          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
-                  + encodeURIComponent(stringOrder) +
-                  `>Edit</button> </td>\n`);
+          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=` + encodeURIComponent(stringOrder) + `>Edit</button> </td>\n`);
           newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
@@ -245,15 +249,19 @@
       }
       return false;
     };
+    
     const updateOrder = ( e ) => {
       e.preventDefault();
+      
       const updatedOrder = {
         index: document.getElementById('update-btn').dataset.index,
-        name: document.getElementById('updateName').value,
-        dream: document.getElementById('updateDream').value,
-        amountOfPork: document.querySelector('input[name="updatePork"]:checked').value,
-        garlic: document.querySelector('input[name="updateGarlic"]:checked').value
+        fstname: document.getElementById('updateFstName').value,
+        lstname: document.getElementById('updateLstName').value,
+        dream: document.getElementById('updateOrderName').value,
+        typeOfGrain: document.querySelector('input[name="updateGrain"]:checked').value,
+        typeOfProtein: document.querySelector('input[name="updateProtein"]:checked').value
       };
+      
       if (orderValidation(updatedOrder.name, updatedOrder.dream)) {
         const body = JSON.stringify(updatedOrder);
         fetch('/update', {
@@ -265,12 +273,15 @@
       }
       return false;
     };
+    
     const resetOrderForm = () => {
-      document.getElementById( 'name' ).value = '';
-      document.getElementById( 'dream' ).value = '';
-      document.getElementById('3pork').checked = true;
-      document.getElementById('allGarlic').checked = true;
+      document.getElementById('fst-name').value = '';
+      document.getElementById('lst-name').value = '';
+      document.getElementById('order-name').value = '';
+      document.getElementById('brown_rice').checked = true;
+      document.getElementById('salt_pepper_chk').checked = true;
     };
+    
     const orderValidation = function (name, dream) {
       if (name === '') {
         document.getElementById('error').style.display = "block";
