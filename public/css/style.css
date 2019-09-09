@@ -3,7 +3,7 @@ html, body {
 }
 
 body {
-  background: #555;
+  background: white;
 }
 
 #big-title{
@@ -13,10 +13,14 @@ body {
   color: white;
 }
 
+#left-edit{
+  float: left;
+}
+
 .content {
   max-width: 1000px;
   margin: auto;
-  background: white;
+  background: cornsilk;
   padding: 10px;
   text-align: center;
 }
