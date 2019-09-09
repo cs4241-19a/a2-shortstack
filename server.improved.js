@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'player': 'Ellen Page', 'country': 'ENG', 'goals': 6, 'shots': 16, 'percentage': 0.5 },
+  { 'player': 'Megan Rapinoe', 'country': 'USA', 'goals': 6, 'shots': 12, 'percentage': .3 },
+  { 'player': 'Alex Morgan', 'country': 'USA', 'goals': 6, 'shots': 18, 'percentage': .2} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -41,8 +41,19 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
 
     // ... do something with the data here!!!
+    const newPlayerInput = JSON.parse( dataString );
+
+    let goalPercentage = calculateGoalPercentage(newPlayerInput.shots, newPlayerInput.goals);
+    let newData = {
+      'goalPercent': goalPercentage
+    };
+
+    let newDatas = JSON.stringify(newData);
+
+    console.log(goalPercentage);
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.write(newDatas)//////////////////////////////////////help
     response.end()
   })
 }
@@ -67,6 +78,11 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+//ADDING MY CODE NOW
+const calculateGoalPercentage = function(numberOfShots, numberOfGoals){
+  return (numberOfGoals/numberOfShots);
 }
 
 server.listen( process.env.PORT || port )

@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-gccromwell",
+  "version": "1.0",
+  "description": "CS4241 Assignment 2",
+  "author": "Georgina Cromwell",
   "scripts": {
     "start": "node server.improved.js"
   },

@@ -6,7 +6,10 @@
   </head>
   <body>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
+      <input type='text' id='playername' value="Player's Name Here">
+      <input type='text' id='country' value="Player's Country Here">
+      <input type='number' id='goals'>
+      <input type='number' id='shots'>
       <button>submit</button>
     </form>
   </body>
@@ -15,18 +18,47 @@
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    /*
+    const input = document.querySelector( '#playername' ),
+          json = { playername: input.value },
           body = JSON.stringify( json )
+    */
+
+    const newPlayerInput = {
+      name: document.getElementById('playername').value,
+      country: document.getElementById('country').value,
+      goals: document.getElementById('goals').value,
+      shots: document.getElementById('shots').value
+    };
+
+    const body = JSON.stringify(newPlayerInput);
+
 
     fetch( '/submit', {
       method:'POST',
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
+      response.json().then((newDatas) => {
+          console.log( newDatas ) 
+          // do something with the reponse
+          let myTable =  document.getElementById("demoTable");    
+            // insert new row. 
+            var NewRow = myTable.insertRow(0); 
+            var Newcell1 = NewRow.insertCell(0); 
+            var Newcell2 = NewRow.insertCell(1);
+            var Newcell3 = NewRow.insertCell(2); 
+            var Newcell4 = NewRow.insertCell(3);  
+            var Newcell5 = NewRow.insertCell(4);
+            Newcell1.innerHTML = newPlayerInput.name; 
+            Newcell2.innerHTML = newPlayerInput.country;
+            Newcell3.innerHTML = newPlayerInput.goals;
+            Newcell4.innerHTML = newPlayerInput.shots;
+            Newcell5.innerHTML = newDatas.goalPercent;//////////////////////////////
+        })
+
       console.log( response )
+      // const newDatas = response.json;///////////////////////////////
     })
 
     return false
@@ -38,4 +70,29 @@
   }
 
   </script>
+
+  <table id="demoTable">
+  <tr>
+    <td>Ellen Page</td>
+    <td>ENG</td>
+    <td>6</td>
+    <td>16</td>
+    <td>.5</td>
+  </tr>
+  <tr>
+    <td>Megan Rapinoe</td>
+    <td>USA</td>
+    <td>6</td>
+    <td>12</td>
+    <td>.5</td>
+  </tr>
+  <tr>
+    <td>Alex Morgan</td>
+    <td>USA</td>
+    <td>6</td>
+    <td>18</td>
+    <td>.5</td>
+  </tr>
+  </table>
+
 </html>
