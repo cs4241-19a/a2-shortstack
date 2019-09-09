@@ -1,12 +1,14 @@
 {
-  "name": "",
-  "version": "",
+  "name": "a2-bwhetherington",
+  "version": "1.0.0",
   "description": "",
-  "author": "",
+  "author": "Benjamin Hetherington",
   "scripts": {
-    "start": "node server.improved.js"
+    "wipe-state": "cp data/base-state.json data/state.json",
+    "start": "node server/server.js"
   },
   "dependencies": {
     "mime": "^2.4.4"
-  }
+  },
+  "devDependencies": {}
 }
