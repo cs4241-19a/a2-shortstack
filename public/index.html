@@ -29,33 +29,7 @@
         Wishlist
       </h2>
       
-      <table class="table table-borderless mt-3">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Item</th>
-            <th scope="col">Category</th>
-            <th scope="col">Rating</th>
-            <th scope="col">USD</th>
-            <th scope="col">EUR</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-          </tr>
-        </tbody>
-      </table>
+      <table id="table" class="table table-borderless mt-3"></table>
       
     </div>
     
@@ -87,7 +61,7 @@
                         <h5 class="card-title">${favs[i].name}</h5>
                         <p class="card-text"><small class="text-muted">${favs[i].category}</small></p>
                         <p class="card-text">$${favs[i].usd} - USD</p>
-                        <p class="card-text">$${favs[i].eur} - EURO</p>
+                        <p class="card-text">€${favs[i].eur} - EURO</p>
                     </div>
                     <div class="card-footer bg-transparent">${stars}</div>
                   </div>`;
@@ -100,27 +74,39 @@
       const resp = await fetch('/items', { method: 'GET' });
       const data = await resp.json();
       const favs = data.data;
-      
-      let htmlTable = "";
+     
+      let htmlTable = `<thead class="thead-dark">
+                        <tr>
+                          <th scope="col">Item</th>
+                          <th scope="col">Category</th>
+                          <th scope="col">USD</th>
+                          <th scope="col">EUR</th>
+                          <th scope="col">Rating</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+      `;
           
       for (let i = 0; i < favs.length ; i++) {
         let stars = displayStars(favs[i].rating);
-        htmlCard += `<div class="card"> 
-                       <div class="card-body">
-                        <h5 class="card-title">${favs[i].name}</h5>
-                        <p class="card-text"><small class="text-muted">${favs[i].category}</small></p>
-                        <p class="card-text">$${favs[i].usd} - USD</p>
-                        <p class="card-text">$${favs[i].eur} - EURO</p>
-                    </div>
-                    <div class="card-footer bg-transparent">${stars}</div>
-                  </div>`;
+        htmlTable += `<tr>
+                        <td>${favs[i].name}</td>
+                        <td>${favs[i].category}</td>
+                        <td>$${favs[i].usd}</td>
+                        <td>€${favs[i].eur}</td>
+                        <td>${stars}</td>
+                      </tr>
+        `;
       }
+      
+      htmlTable += `</tbody>`
 
-      document.getElementById("favorites").innerHTML = htmlCard;
+      document.getElementById("table").innerHTML = htmlTable;
     };
 
   window.onload = function() {
     loadFavorites();
+    loadAllResults();
   }
 
   </script>
