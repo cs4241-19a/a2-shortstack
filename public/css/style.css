@@ -3,6 +3,10 @@ body {
  background-color: #f4f4f4;
  font-family: Courier New;
 }
+h1{
+  font-family: Courier New;
+  color: #53688a;
+}
 form{
   display:flex;
   flex-direction: column;
