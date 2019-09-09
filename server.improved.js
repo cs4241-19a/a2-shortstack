@@ -70,8 +70,9 @@ const handlePost = function( request, response ) {
         const newPrice = calculatePrice(parseInt(orderToUpdate.typeOfGrain), parseInt(orderToUpdate.typeOfProtein));
 
         const updatedOrder = {
-          'name': orderToUpdate.name,
-          'dream': orderToUpdate.dream,
+          'fstname': orderToUpdate.fstname,
+          'lstname': orderToUpdate.lstname,
+          'ordername': orderToUpdate.ordername,
           'typeOfGrain': parseInt(orderToUpdate.typeOfGrain),
           'typeOfProtein': parseInt(orderToUpdate.typeOfProtein),
           'price': newPrice,

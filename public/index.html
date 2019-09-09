@@ -284,21 +284,21 @@
     
     const orderValidation = function (name, dream) {
       if (name === '') {
-        document.getElementById('error').style.display = "block";
-        document.getElementById('error').focus();
+        document.getElementById('error-msg').style.display = "block";
+        document.getElementById('error-msg').focus();
         return false;
       } else if (dream === '') {
-        document.getElementById('error').style.display = "block";
-        document.getElementById('error').focus();
+        document.getElementById('error-msg').style.display = "block";
+        document.getElementById('error-msg').focus();
         return false;
       } else {
-        document.getElementById('error').style.display = "none";
+        document.getElementById('error-msg').style.display = "none";
         return true;
       }
     };
     
     const viewOrderForm = function() {
-      document.getElementById('error').style.display = "none";
+      document.getElementById('error-msg').style.display = "none";
       document.getElementById('order-table').style.display = "none";
       document.getElementById('update-order-form').style.display = "none";
       document.getElementById('order-confirmation').style.display = "none";
@@ -311,7 +311,7 @@
       document.getElementById('order-form').style.display = "none";
       document.getElementById('update-order-form').style.display = "none";
       document.getElementById('order-confirmation').style.display = "none";
-      document.getElementById('error').style.display = "none";
+      document.getElementById('error-msg').style.display = "none";
       fetchOrders();
       return false;
     };
