@@ -8,9 +8,9 @@ const http = require( 'http' ),
 
 //TABLE
 const tableOfCar = [
-  {'id': 0, 'model': 'toyota', 'year': 1999, 'mpg': 23, 'value': 1000 },
-  {'id': 1, 'model': 'honda', 'year': 2004, 'mpg': 30, 'value': 2000  },
-  {'id': 2, 'model': 'ford', 'year': 1987, 'mpg': 14, 'value': 0 } 
+  {'id': 0, 'model': 'Toyota', 'year': 1999, 'mpg': 23, 'value': 1000 },
+  {'id': 1, 'model': 'Honda', 'year': 2004, 'mpg': 30, 'value': 2000  },
+  {'id': 2, 'model': 'Nissan', 'year': 2013, 'mpg': 9, 'value': 10000 } 
 ]
 
 //CREATE SERVER
@@ -25,26 +25,34 @@ const server = http.createServer( function( request,response ) {
 //TABLE HANDLERS
 const addCar = function (string) {
   let data = JSON.parse(string);
-  console.log('add called: ' + data['model']);
   tableOfCar.push(data);
   let row = tableOfCar[tableOfCar.length-1];
-  let value = row['value'];
   let year = row['year'];
   let mpg = row['mpg'];
-  value = mpg*1000 - (2019-value)*10
-  tableOfCar[tableOfCar.length-1]['value'] = 
-    (typeof value !== "number" ) ? 
-    0 : value;
+  let weight = (year*1 === 0 || mpg*1 === 0) ? 0 : 1;
+  tableOfCar[tableOfCar.length-1]['value'] = (mpg*1000 - (2019-year)*10) * weight;
+  console.log('add: ' + data['model']);
 }
 
 const deleteCar = function (string) {
   let data = JSON.parse(string);
-  console.log('del called: ' + data['model']);
+  let id = data['id'];
+  let model = data['model'];
+  for (let i = 0; i < tableOfCar.length; i++) {
+    let row = tableOfCar[i];
+    if(row['id'] === id && row['model'] === model){
+      console.log('delete here ');
+      tableOfCar.splice(i,1);
+    }
+  }
+  console.log('del: ' + data['model']);
 }
 
 const modifyCar = function (string) {
+  deleteCar(string);
+  addCar(string);
   let data = JSON.parse(string);
-  console.log('mod called: ' + data['model']);
+  console.log('mod: ' + data['model']);
 }
 
 //HANDLERS

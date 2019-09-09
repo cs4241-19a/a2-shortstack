@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <h1><font size="+3">Enter Information of Your Car</font></h1>
+    <h1><font size="+3">Enter Information Of Your Car To Estimate Its Value</font></h1>
 
     <div class="split left">
       <form action="">
@@ -92,9 +92,21 @@ function postRequest(req) {
           year = document.querySelector( '#year' ),
           mpg = document.querySelector( '#mpg' ),
           idInput = document.querySelector( '#id' ).value,
-          id = (req !== "add" && idInput !== "") ? parseInt(idInput) : ID++,
+          id = function() {
+            if (req === "add"){
+              return ID++;
+            }
+            else {
+              if(idInput !== ""){
+                return parseInt(idInput);
+              }else{
+                return ID++;
+              }
+            }
+          }
+          //id = (req !== "add" && idInput !== "") ? parseInt(idInput) : ID++,
           json = {
-            id: id,
+            id: id(),
             model: model.value,
             year: parseInt(year.value),
             mpg: parseInt(mpg.value),

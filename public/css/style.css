@@ -5,7 +5,6 @@ html {
 .split {
     height: 100%;
     position: fixed;
-    top: 1;
     padding-top: 20px;
 }
 .left {
@@ -43,12 +42,34 @@ h2{
     font-family: 'Times New Roman', Times, serif, monospace;
 }
 
+th {
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+}
+
+td {
+    color: black;
+    font-size: 15px;
+}
+
+table, th, td {
+    border: 1px solid grey;
+    padding: 10px;
+    margin: 1%
+}
+
+select, input, button {
+    color: black;
+    font-size: 15px;
+}
+
 #id{
     size: auto;
     width: 20%;
 }
 
 #database{
-    width: "100%";
+    width: 70%;
     border: 1px solid grey;
 }
