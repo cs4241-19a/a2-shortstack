@@ -15,7 +15,7 @@ const appdata = [
 const data = [
   { 'day': 'Monday', 'task': 'CS4241 A2 Due', time: '11:59:00'},
   { 'day': 'Tuesday', 'task': 'MA2621 Homework Due', time: '2:00:00'},
-  { 'day': 'Tuesday', 'task': 'CH1010 Daily Proble', time: '11:00:00'}
+  { 'day': 'Tuesday', 'task': 'CH1010 Daily Problem', time: '11:00:00'}
 
 ]
 
