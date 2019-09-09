@@ -82,7 +82,6 @@
           <input type="time" id="time" value="02:00">
         </div>
         <button id="submit">Add to Schedule</button>
-        <button id="remove">Remove from Schedule</button>
       </form>
     </div>
     
@@ -112,7 +111,7 @@
     var day = document.querySelector("#day").value
     var task = document.querySelector("#task").value
     var time = document.querySelector("#time").value
-    var index = day + task + time
+    var index = day.toLowerCase()  + task.toLowerCase()  + time.toLowerCase() 
     var newEvent = {
       index : index,
       day : document.querySelector("#day").value,
@@ -166,18 +165,6 @@
       updateSchedule()
     })
   }
-  
-  const removeEvent = function(e) {
-    e.preventDefault()
-    var day = document.querySelector("#day").value
-    var task = document.querySelector("#task").value
-    var time = document.querySelector("#time").value
-    var eventID = day + task + time
-    var index = [eventID]
-    
-    delEvent(index);
-  }
-  
   
   const createEvent = function(index, day, task, time){
       console.log("createEvent")
@@ -242,11 +229,6 @@
     
     const nextButton = document.querySelector( '#next' )
     nextButton.onclick = deleteEvents
-    
-    const rembutton = document.querySelector( '#remove' )
-    rembutton.onclick = removeEvent
-    
- 
     
   }
     
