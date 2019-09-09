@@ -1,10 +1,10 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
+     
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
+
 
 const appdata = [
   { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
@@ -20,12 +20,43 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+let data = {
+  "data": [
+    [
+      "1",
+      "Tiger Nixon",
+      "Ball St",
+      "Pancakes",
+      "Syrup",
+      "Make it quick",
+      "Hello Tiger Nixon, your order of pancakes will be ready in exactly 30 seconds."
+    ],
+    [
+      "2",
+      "Garrett Winters",
+      "100 Insitute Rd",
+      "Waffles",
+      "Butter",
+      "Speed",
+      "Hello Garrett Winters, your order of Waffles will be ready in exactly 30 seconds."
+    ]
+    ]
+};
+
+let idCounter = 3;
+
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-
+  
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if(request.url.includes('fullOrders.json')){
+    response.writeHead(200, {"Content-Type": "application/json"});
+    response.write(JSON.stringify(data));
+    response.end();
+  }
+  else{
     sendFile( response, filename )
   }
 }
@@ -39,11 +70,87 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+    
+    // add row into the table 
+    if(request.url.includes("submit")){
+        let clientData = Object.values(JSON.parse(dataString));
+      
+        // server side processing
+        let message = "Hello "+  clientData[0] + ", your order of " + clientData[2] + " will be ready in exactly 30 seconds."
+        clientData[5] = message
+        clientData.unshift(idCounter.toString())
+        idCounter += 1;
 
-    // ... do something with the data here!!!
+        data['data'].push(clientData);
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+    }
+    else if(request.url.includes("delete")){
+       let clientData = Object.values(JSON.parse(dataString));
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+        let newData = [];
+        for(var i = 0; i < data['data'].length; i++) {
+          var serverName = data['data'][i][0]; 
+          if (!(clientData[0] === serverName)){
+             newData.push(data['data'][i])       
+          }
+        }
+        data['data'] = newData;
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+    }
+    else if(request.url.includes("modify")){
+            let clientData = Object.values(JSON.parse(dataString));
+
+        let newData = [];
+        for(var i = 0; i < data['data'].length; i++) {
+          var serverName = data['data'][i][0]; 
+          if (!(clientData[0] === serverName)){
+             newData.push(data['data'][i])       
+          }
+          else{
+            try {
+            let newEntry = data['data'][i]
+            switch(clientData[1]) {
+              case "nam":
+                newEntry[1] = clientData[2]
+                newData.push(newEntry)
+              break;
+              case "add":
+                newEntry[2] = clientData[2]
+                newData.push(newEntry)
+              break;
+              case "ord":
+                newEntry[3] = clientData[2]
+                newData.push(newEntry)
+              break;
+              case "con":
+                newEntry[4] = clientData[2]
+                newData.push(newEntry)
+              break;
+              case "inf":
+                newEntry[5] = clientData[2]
+                newData.push(newEntry)
+              break;
+              case "mes":
+                newEntry[6] = clientData[2]
+                newData.push(newEntry)
+              break;
+              }
+            }
+            catch (e){
+              newData.push(data['data'][i]) 
+            }
+          }
+        }
+        data['data'] = newData;
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+    }
+    else {
+         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+    }
   })
 }
 
@@ -68,5 +175,7 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+server.listen( process.env.PORT || port )
 
 server.listen( process.env.PORT || port )
