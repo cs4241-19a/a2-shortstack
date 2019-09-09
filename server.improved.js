@@ -57,15 +57,21 @@ const handlePost = function( request, response ) {
     var colorNpos = rightPosition(playerGuess)
     
     if (colorNpos = 4) {
-      // You win!
+      var medal
+      if (guessCount <= 6) 
     }
     
     else {
       if (obj.guesscount >= 15) {
         // You lose...
       }
-      var json = { color: color,
-             colorNpos: colorNpos }
+      
+      var newGuessCount = obj.guesscount + 1
+      
+      const rjson = { color: color,
+                    colornpos: colorNpos,
+                    guesscount: newGuessCount }
+      
       
     }
                       
