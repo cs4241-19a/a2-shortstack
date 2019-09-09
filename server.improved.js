@@ -22,7 +22,7 @@ const appdata = [
                 7, 0, 7, 3, 6, 2, 3, 6, 3, 7, 4, 0, 1, 4, 1, 5]},
   
   { "vertices": 4, 
-    "numPoly": 12, 
+    "numPoly": 4, 
     "name": "Triangular Pyramid", 
     "points": [[0.0, 1.0, -0.5, 1],
                [-1.0, -0.5, -0.5, 1],
@@ -30,10 +30,33 @@ const appdata = [
                [0.0, 0.0, 0.5, 1]],
     "triangles": [0, 3, 2, 2, 3, 1, 1, 3, 0, 0, 1, 2]},
   { "vertices": 3, 
-    "numPoly": 5, 
+    "numPoly": 1, 
     "name": "Triangle", 
-    "points": [1, 1, 1]},
+    "points": [[0.0, 1.0, 0.0, 1],
+               [-0.5, 0, 0.0, 1],
+               [0.5, 0, 0, 1]],
+    "triangles": [1, 2, 3]},
 ]
+
+function randPoints(numPoints){
+  let pointlist = []
+  for(let i = 0; i < numPoints; i++){
+    let point = []
+    for(let j = 0; j < 3; j++){
+      point.push(Math.random()*2 - 1)
+    }
+    point.push(1)
+    pointlist.push(point)
+  }
+  return pointlist
+}
+function randTri(numPoly, numPoints){
+  let triangles = []
+  for(let i = 0; i < numPoly*3; i++){
+    triangles.push(Math.floor(Math.random()*numPoints))
+  }
+  return triangles
+}
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
