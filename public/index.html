@@ -139,6 +139,13 @@
     
   </body>
   <script>
+    //global
+    let currEditIndex = 0;
+    
+    function setEditIndex(index) {
+      return currEditIndex = index;
+    }
+    
     const displayStars = function(rating) {
       let div = `<div class="stars">`;
       
@@ -200,8 +207,8 @@
                         <td>$${favs[i].usd}</td>
                         <td>€${favs[i].eur}</td>
                         <td>${stars}</td>
-                        <td> <button id="editBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#editItem"> <i class="fas fa-edit"></i></button>
-                        <td> <button id="deleteBtn" type="button" class="btn btn-light" onclick="deleteItem(${i})"> <i class="fas fa-trash"></i></button>
+                        <td> <button id="editBtn${i}" type="button" class="btn btn-light" data-toggle="modal" data-target="#editItem" onclick="setEditIndex(${i})> <i class="fas fa-edit"></i></button>
+                        <td> <button id="deleteBtn${i}" type="button" class="btn btn-light" onclick="deleteItem(${i})"> <i class="fas fa-trash"></i></button>
                       </tr>
         `;
       }
@@ -248,13 +255,15 @@
       loadAllResults();
     }
     
-    const editItem = function (arrPosition) {
-      const inName = document.querySelector( '#name' ),
-            inCategory = document.querySelector( '#category' ),
-            inRating = document.querySelector( '#rating' ),
-            inPrice = document.querySelector( '#price' ),
-            inLink = document.querySelector( '#link' ),
-            json = { name: inName.value, category: inCategory.value, rating: inRating.value, usd: inPrice.value, link: inLink.value  },
+    const editItem = function ( e ) {
+      e.preventDefault();
+  
+      const inName = document.querySelector( '#editName' ),
+            inCategory = document.querySelector( '#editCategory' ),
+            inRating = document.querySelector( '#editRating' ),
+            inPrice = document.querySelector( '#editPrice' ),
+            inLink = document.querySelector( '#editLink' ),
+            json = { name: inName.value, category: inCategory.value, rating: inRating.value, usd: inPrice.value, link: inLink.value, index: currEditIndex},
             body = JSON.stringify( json )
       fetch( '/update', {
         method:'PUT',
