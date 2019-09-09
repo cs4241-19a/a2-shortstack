@@ -33,6 +33,8 @@ const handleGet = function( request, response ) {
     sendFile( response, 'public/css/style.css' )
   } else if ( request.url === '/m' ){
     sendData( response, appdata )
+   } else if ( request.url === '/appdata2' ){
+    sendData( response, appdata2 )
    } else {
     sendFile( response, filename )
    }
@@ -67,7 +69,8 @@ const handlePost = function( request, response ) {
         'blueScore':MR.blueScore,
         'result':r
       }
-      
+      // addTeam(MR.red1);
+      // addTeam(MR.blue1);
       
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
@@ -77,8 +80,6 @@ const handlePost = function( request, response ) {
      case '/delete':
        const MRdelete = JSON.parse(dataString); //match result
        appdata.splice(MRdelete.matchNumber, 1);
- //      MN--;
- //     appdata.push(newMR);
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
 
@@ -89,11 +90,6 @@ const handlePost = function( request, response ) {
         const MRupdate = JSON.parse(dataString);
 
         const updatedMR = {
-        // 'matchNumber':MRupdate.matchNumber,
-        // 'red1': MRupdate.red1, 
-        // 'blue1': MRupdate.blue1, 
-        // 'redScore': MRupdate.redScore, 
-        // 'blueScore':MRupdate.blueScore
         'matchNumber':MRupdate.matchNumber,
         'red1': MRupdate.red1, 
         'blue1': MRupdate.blue1, 
@@ -132,7 +128,12 @@ const addTeam = function(t){
     }
   }
   if(exist ===0){
-    const 
+    const newteam ={
+      'team':t,
+      'WLP':"0-0-0",
+      'WP':0
+    }
+    appdata2.push(newteam);
   }
 }
 
