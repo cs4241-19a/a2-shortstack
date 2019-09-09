@@ -8,6 +8,7 @@ Install `npm` and `Node.js`, then run:
 
 `
 $ npm install
+
 $ npm start
 `
 
