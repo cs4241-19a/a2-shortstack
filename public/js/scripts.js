@@ -10,8 +10,7 @@ const submit = function (e) {
         mostValued = document.querySelector('input[name="studentValue"]:checked').value
 
     if (formComplete(firstName, lastName)) {
-        let preferredPronouns, sortedHouse;
-        console.log(pronouns)
+        let preferredPronouns;
         switch (pronouns) {
             case 'he':
                 preferredPronouns = 'He/Him/His'
@@ -27,28 +26,12 @@ const submit = function (e) {
                     preferredPronouns = document.getElementById('inputother').value
                 }
         }
-        switch (mostValued) {
-            case 'bravery':
-                sortedHouse = 'Gryffindor'
-                break
-            case 'loyalty':
-                sortedHouse = 'Hufflepuff'
-                break
-            case 'wisdom':
-                sortedHouse = 'Ravenclaw'
-                break
-            case 'ambition':
-                sortedHouse = 'Slytherin'
-                break
-            default:
-                sortedHouse = 'Muggle'
-        }
 
         const json = {
                 'firstName': firstName,
                 'lastName': lastName,
                 'pronouns': preferredPronouns,
-                'house': sortedHouse
+                'values': mostValued
             },
 
             body = JSON.stringify(json)
