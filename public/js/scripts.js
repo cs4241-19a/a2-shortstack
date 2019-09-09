@@ -18,24 +18,38 @@ const randPhoto = function() {
 }
 
 const loadFavorites = async function() {
-  const resp = await fetch('/orders', { method: 'GET' });
+  const resp = await fetch('/', { method: 'GET' });
   const data = await resp.json();
-  const orders = data.data;
-  let htmlDiv = document.getElementById('orders');
-  htmlDiv.innerHTML = '<tr>\n' +
-          '              <th>Name</th>\n' +
-          '              <th>Dream</th>\n' +
-          '              <th>Pork</th>\n' +
-          '              <th>Garlic</th>\n' +
-          '              <th>Price</th>\n' +
-          '              <th></th>\n' +
-          '              <th></th>\n' +
-          '            </tr>';
-  for (let i = 0; i < orders.length; i++) {
-    const order = orders[i];
-    const stringOrder = JSON.stringify(orders[i]);
-    const garlic = (order.garlic ? 'Yes' : 'No');
-    let newRow = '<tr>\n';
+  const favs = data.data;
+  
+   /*var html = "<table border='1|1'>";
+    for (var i = 0; i < rows.length; i++) {
+        html+="<tr>";
+        html+="<td>"+rows[i].name+"</td>";
+        html+="<td>"+rows[i].age+"</td>";
+        html+="<td>"+rows[i].email+"</td>";
+
+        html+="</tr>";
+
+    }
+    html+="</table>";
+    $("div").html(html);*/
+  
+  <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Yeezy</h5>
+            <p class="card-text"><small class="text-muted">Category</small></p>
+            <p class="card-text">Price</p>
+          </div>
+          <div class="card-footer bg-transparent">Rating</div>
+        </div>
+  
+  let html = document.getElementById('favorites');
+  html.innerHtml = "<div class='card'>"
+  
+  for (let i = 0; i < favs.length; i++) {
+    const item = item[i];
+    const strItem = JSON.stringify(item[i]);
     newRow += (`<td> ${order.name} </td>\n`);
     newRow += (`<td> ${order.dream} </td>\n`);
     newRow += (`<td> ${order.amountOfPork} pieces</td>\n`);
@@ -52,6 +66,6 @@ const loadFavorites = async function() {
   return false;
 };
 
-window.onload = function(){
-  loadFavorites
-}
+window.onload = function() {
+  loadFavorites()
+};
