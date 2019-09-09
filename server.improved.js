@@ -13,13 +13,18 @@ const appdata = [
 ]
 
 const appdata2 = [
-  {'team':8192,'WLP':"0-0-0",'WP':1},
-  {'team':7146,'WLP':"0-0-0",'WP':1},
-  {'team':6439,'WLP':"0-0-0",'WP':0},
-  {'team':359,'WLP':"0-0-0",'WP':2}
+  // {'team':8192,'WLP':"0-0-0",'WP':1},
+  // {'team':7146,'WLP':"0-0-0",'WP':1},
+  // {'team':6439,'WLP':"0-0-0",'WP':0},
+  // {'team':359,'WLP':"0-0-0",'WP':2}
 ]
 
 const server = http.createServer( function( request,response ) {
+  addTeam(8192);
+  addTeam(7146);
+  addTeam(6439);
+  addTeam(359);
+  rank();
   if( request.method === 'GET' ) {
     handleGet( request, response )    
   }else if( request.method === 'POST' ){
@@ -57,11 +62,9 @@ const handlePost = function( request, response ) {
       case '/submit':
       const MR = JSON.parse(dataString); //match result
       let r = 0;
-      if(MR.red1 === MR.blue1){
-        r = 0;
-      } else if(MR.red1 > MR.blue1){
+      if(MR.redScore > MR.blueScore){
         r = 1;
-      } else{
+      } else if(MR.redScore < MR.blueScore){
         r = 2;
       }
       const newMR ={
