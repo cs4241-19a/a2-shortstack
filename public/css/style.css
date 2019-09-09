@@ -54,14 +54,24 @@ body {
 
 .menu {
   display: flex;
-  
-  justify-content: space-evenly;
+  flex-direction: row;
+  align-content: space-evenly;
   margin-top: 2em;
   width: 98vw;
 }
 
+.menu-data {
+  background-color: black;
+  color: white;
+}
+
 button {
   font-size: 25px;
+}
+
+form {
+  margin-left: 2em;
+
 }
 
 #next {
@@ -69,7 +79,6 @@ button {
 }
 
 #submit {
-  margin-left: 2em;
   width: 40vw;
 }
 
