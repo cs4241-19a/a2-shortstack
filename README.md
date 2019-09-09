@@ -35,6 +35,7 @@ Implications:
 - Right now this website is really meant to be used by one person, because of the way the database is coded. The database takes the course title as the key so any other entry with the same course title will overwrite the database. I don't have enough time to manipulate around with it. However in the future, a password encryption step is surely needed in order to ensure the privacy for different users. 
 - I am not sure why I cannot make certain CSS styles apply to the second HTML page even when I appended the "!important" tag to override anything else. Namely, I wanted to make he table round-edged, as well as set the header to be relatively higher than the table. Not working though. I also attempted to add some animation with either CSS or JS libraries and they are malfunctioning as well. The console did not alert me anything and I am wondering if it is due to the bootstrap slider. 
 - This code currently doesn't have any input checking algorithm. It should be fairly easy to implement later using PHP libraries though.
+- Since I actually have 2 HTML pages, I could have implemented a "back" method so the user can go back. With that being said, it can also be worked around with "edit".
 
 
 Achievements:

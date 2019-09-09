@@ -5,8 +5,9 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: 'https://cs4241-a2.firebaseio.com'
 });
+
 var db = admin.database();
-var usersRef = db.ref('/');
+var keyRef = db.ref('/');
 
 const http = require('http'),
     fs = require('fs'),
@@ -37,7 +38,7 @@ const handleGet = function (request, response) {
     } else if (request.url === '/getdata') {
         sendData(response, appdata)
     } else if (request.url === '/receive') {
-        usersRef.on('value', function (snapshot) {
+        keyRef.on('value', function (snapshot) {
             console.log(snapshot.val());
             response.end(JSON.stringify(snapshot.val()))
         }, function (errorObject) {
@@ -76,15 +77,13 @@ const handlePost = function (request, response) {
                 response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
                 response.end();
                 break;
-            case '/delete':
-                removeEntry();
-                break;
             default:
                 response.end('404 Error: File Not Found')
         }
         console.log(data.finalExam);
         writeUserData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
-        updateEntry(data.token,data.currentGrade);
+        updateGrade(data.token,data.currentGrade);
+        removeGrade(data.token, data.currentGrade);
     })
 };
 
@@ -110,8 +109,8 @@ const sendFile = function (response, filename) {
 };
 
 function writeUserData(ref, token, currentGrade, desired, finalWorth, finalExam) {
-    var usernameRef = usersRef.child(ref);
-    usernameRef.set({
+    var tokenRef = keyRef.child(ref);
+    tokenRef.set({
         token: token,
         currentGrade: currentGrade,
         desired: desired,
@@ -120,18 +119,22 @@ function writeUserData(ref, token, currentGrade, desired, finalWorth, finalExam)
     });
 }
 
-function updateEntry(ref, currentGrade) {
-    let usernameRef = usersRef.child(ref);
-    usernameRef.update({
+function updateGrade(ref, currentGrade) {
+    let tokenRef = keyRef.child(ref);
+    tokenRef.update({
         currentGrade: currentGrade
 })
 }
 
-function removeEntry(ref, currentGrade) {
-    let usernameRef = usersRef.child(ref);
-    usernameRef.update({
-        currentGrade:FieldValue.delete()
+function removeGrade(ref, currentGrade) {
+    let tokenRef = keyRef.child(ref);
+    let gradeRef = tokenRef.child(currentGrade);
+    gradeRef.remove().then(function() {
+        console.log("Remove succeeded.")
     })
+        .catch(function(error) {
+            console.log("Remove failed: " + error.message)
+        });
 }
 
 

@@ -53,11 +53,32 @@
 <script src="lib/tweenlite/init.js"></script>
 
 <script>
-    /*
-      function removeEntry(ref){
-          var usernameRef = usersRef.child(ref);
-          usernameRef.remove();
-      }
+
+    const updateEntry = function (row) {
+        const newGrade = document.querySelector('#updateInput'),
+            json={updateInput:newGrade.value},
+            body = JSON.stringify(json);
+        fetch('/submit',{
+            method:'POST',
+            body
+        })
+            .then(function (response) {
+                console.log("post responses:",response);
+                return false;
+            }).then(
+                function () {
+                    fetch('/receive')
+                        .then(function (response) {
+                            return response.json();
+                        }).then(function (response) {
+                            document.getElementById('curGrade').innerText=(JSON.stringify(response[row].currentGrade)).replace(/^"(.*)"$/, '$1');
+                    })
+                }
+        )
+    }
+
+
+
 
       const deleteEntry = function (n){
           const rowNum={rowNum:n};
@@ -66,7 +87,9 @@
               body:JSON.stringify({rowNum:n}),
           });
           fillTable();
-      };*/
+      };
+
+
     window.onload = function () {
         const fillTable = function(){
             fetch('/receive')
@@ -81,7 +104,7 @@
                     '<thead>\n' +
                     '<tr>\n' +
                     '<th>Course Title</th>\n' +
-                    '<th>Current Overall Grade</th>\n' +
+                    '<th id="curGrade">Current Overall Grade</th>\n' +
                     '<th>Desired Overall Grade</th>\n' +
                     '<th>Final Exam Weight</th>\n' +
                     '<th>Final Exam Grade Required</th>\n' +
@@ -97,8 +120,8 @@
                     newRow+=('<td>'+(JSON.stringify(response[rows].desired)).replace(/^"(.*)"$/, '$1')+'</td>');
                     newRow+=('<td>'+(JSON.stringify(response[rows].finalWorth)).replace(/^"(.*)"$/, '$1')+'</td>');
                     newRow+=('<td>'+(JSON.stringify(response[rows].finalExam)).replace(/^"(.*)"$/, '$1')+'</td>');
-                    newRow+=('<td><ul><li><input id="updateInput" type="number" id="desired" placeholder=" Number only"/></li><li><button class="button"  id=" ' + i + ' " onclick="updateEntry (' + i + ')"><strong>√</strong></button></li></ul></td>\n');
-                    newRow+=('<td><button class="button" style="font-weight:300" id=" ' + i + ' " onclick="removeEntry (' + i + ')"> X </button></td>\n');
+                    newRow+=('<td><ul><li><input id="updateInput" type="number" placeholder=" Number only"/></li><li><button class="button"  id=" ' + i + ' " onclick="updateEntry (' + i + ')"><strong>√</strong></button></li></ul></td>\n');
+                    newRow+=('<td><button class="button" style="font-weight:300" id=" ' + i + ' " onclick="deleteEntry (' + i + ')"> X </button></td>\n');
                     newRow+='</tr>';
                     computedGrades.innerHTML+=newRow;
                 }

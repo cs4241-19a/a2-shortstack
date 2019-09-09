@@ -4,8 +4,8 @@
     <list default="true" id="6d88559f-c8a7-41b0-9d0d-909c842d8558" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/2ndpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2ndpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.improved.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.improved.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +30,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML&#10;JavaScript" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript&#10;HTML" />
     <property name="last_opened_file_path" value="D:/a2-shortstack/GlobalLanding" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -89,7 +89,7 @@
       <workItem from="1567988090433" duration="1093000" />
       <workItem from="1567989253443" duration="187000" />
       <workItem from="1567989463328" duration="6862000" />
-      <workItem from="1568033288446" duration="1532000" />
+      <workItem from="1568033288446" duration="5811000" />
     </task>
     <servers />
   </component>
