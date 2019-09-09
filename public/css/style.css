@@ -55,31 +55,28 @@ body {
 .menu {
   display: flex;
   flex-direction: row;
-  align-content: space-evenly;
-  margin-top: 2em;
+  justify-content: space-between;
+  margin-top: 1em;
+  height: 10vmin;
   width: 98vw;
 }
 
 .menu-data {
-  background-color: black;
+  padding-bottom: .25em;
   color: white;
 }
 
 button {
   font-size: 25px;
-}
-
-form {
-  margin-left: 2em;
-
+  border-radius: 5px;
 }
 
 #next {
-  width: 30vw;
+  width: 40vw;
 }
 
 #submit {
-  width: 40vw;
+  width: 55vw;
 }
 
 
