@@ -44,10 +44,10 @@ const loadTable = function(data){
       '<th>Second Number</th>' + '<th> Result </th>' + '<th>Delete</th>' +
     '</tr>\n'
 */
-    let x; //first number 
-    let y; //second number 
-    let operator; //type of operation
-    let result;
+    let x = ""; //first number 
+    let y = ""; //second number 
+    let operator = ""; //type of operation
+    let result = 0;
   
    console.log(data);
     for(let i = 0; i < data.length; i++){
@@ -55,8 +55,11 @@ const loadTable = function(data){
         y = data[i].secondNumber;
         operator = data[i].operator;  
       console.log(x);
-
+      
+      //had to use if statements because switch was not working 
       if(operator == "1"){ //add 
+        console.log(firstNumber);
+        console.log()
         result = x+y;
         operator = "+";
       } else if (operator == "2"){ //subtract
@@ -67,9 +70,17 @@ const loadTable = function(data){
         operator = "X";
       } else if (operator == "4"){ //divide
         if ( y == "0"){
-          result = ""
+          result = "undefined";
+        } else {
+          result = x/y;
         }
+        operator = "/";
+      } else { //default 
+        result = "undefined";
+        
       }
+      
+      /*
         //see what type of action we want to perform
         switch(operator){ //option in dropdown 
             case "1": //add 
@@ -96,8 +107,8 @@ const loadTable = function(data){
             result = "cases are not working ";
             break; 
           }
-          console.log(operator)
-          console.log(result)
+          
+          */
           //display row 
           dataTable.innerHTML =  '<tr>' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
            + x  + operator  + y + result  + '<button class = "delete" onclick = "delExpression()" > Delete </button>'
