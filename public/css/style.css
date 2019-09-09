@@ -91,6 +91,8 @@ div.transbox2 {
   opacity: 0.6;
   width: 350px;
   height: 230px;
+  position: absolute;
+  overflow: auto;
   
 }
 
@@ -102,4 +104,5 @@ div.transbox2 p {
   margin: 5%;
   font-weight: bold;
   color: #000000;
+  overflow: auto;
 }
