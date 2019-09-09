@@ -95,6 +95,9 @@ http://a2-jcharante.glitch.me
     - Class selectors
       - We use class selectors on our text fields for each item. This is to apply a `min-height` attribute to them. This is explained alongside the code in `triage-spa/src/components/Item.vue` line 81.
       - We dynamically determine which class selectors to add to an Item, and used it for setting the background color of items according to their status.
+  - CSS positioning and sizing of the primary visual elements in the application
+    - CSS to cause at least one element to be horizontally centered on the page
+      - The Add Item button is horizontally centered using flex.
 - Javascript
     - Javascript is clearly used throughout the application. Some of its usage is explained below under the `Client has its own State Tracking` Technical Achievement.
 - Node.js
