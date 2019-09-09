@@ -82,8 +82,15 @@ label, button, #error-msg{
 label {
     margin-right: 30px;
 }
+b{
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  font-size: 1vw;
+}
 p{
-  
+  font-family: 'Raleway', sans-serif;
+  font-size: 12px;
+  font-size: 1vw;
 }
 
 button {
