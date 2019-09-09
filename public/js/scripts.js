@@ -35,32 +35,23 @@ const loadFavorites = async function() {
     html+="</table>";
     $("div").html(html);*/
   
-  <div class="card">
+  /*<div class="card">
           <div class="card-body">
             <h5 class="card-title">Yeezy</h5>
             <p class="card-text"><small class="text-muted">Category</small></p>
             <p class="card-text">Price</p>
           </div>
           <div class="card-footer bg-transparent">Rating</div>
-        </div>
+        </div>*/
   
-  let html = document.getElementById('favorites');
-  html.innerHtml = "<div class='card'>"
+  let htmlCard = `<div class="card">' 
+                        <div class="card-body">`
+  
   
   for (let i = 0; i < favs.length; i++) {
-    const item = item[i];
-    const strItem = JSON.stringify(item[i]);
-    newRow += (`<td> ${order.name} </td>\n`);
-    newRow += (`<td> ${order.dream} </td>\n`);
-    newRow += (`<td> ${order.amountOfPork} pieces</td>\n`);
-    newRow += (`<td> ${garlic} </td>\n`);
-    newRow += (`<td> ${order.price} </td>\n`);
-    newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
-            + encodeURIComponent(stringOrder) +
-            `>Edit</button> </td>\n`);
-    newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
-    newRow += '</tr>';
-    htmlDiv.innerHTML += newRow;
+    htmlCard = `<h5 class="card-title">${favs[i].name}</h5>
+
+    `
   }
 
   return false;
