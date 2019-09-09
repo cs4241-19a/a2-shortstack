@@ -13,13 +13,14 @@ body {
   color: white;
 }
 
+#wrapper{
+  display: flex;
+}
 #left-edit{
-  float: left;
-  width: 75%;
+  flex: 0 0 45%;
 }
 #right-edit{
-  float: left;
-  width: 15%;
+  flex: 1;
 }
 
 .content {
@@ -36,4 +37,12 @@ body {
   color: white;
   background-color: black;
   margin-top: 5px;
+}
+
+.table{
+  
+}
+
+tbody{
+  text-align: left;
 }
