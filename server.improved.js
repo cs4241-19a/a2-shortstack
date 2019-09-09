@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = [ ]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -56,6 +52,7 @@ const sendFile = function( response, filename ) {
      if( err === null ) {
 
        // status code: https://httpstatuses.com
+      
        response.writeHeader( 200, { 'Content-Type': type })
        response.end( content )
 
@@ -70,3 +67,4 @@ const sendFile = function( response, filename ) {
 }
 
 server.listen( process.env.PORT || port )
+
