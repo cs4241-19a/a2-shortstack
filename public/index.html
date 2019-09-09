@@ -1,40 +1,235 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
+    <title>Classic Pizza</title>
     <meta charset="utf-8">
+    <link href="./css/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <div class="container">
+      <header>
+        <div class="title">
+          <h1>Classic Pizza</h1>
+          <h1>Best pizza in Massachusetts!</h1>
+        </div>
+      </header>
+      <main>
+        <!-- Links to different pages -->
+        <div class="viewpane">
+          <nav class="link">
+            <a id="new-order-link" aria-label="Order new pizza here">
+              Order now!
+            </a>
+            <a id="current-orders-link" aria-label="See current orders here">
+              View current orders
+            </a>
+          </nav>
+        </div>
+        <!-- Actual order form -->
+        <div id="form">
+          <h2>Order your favorite pizza!</h2>
+          <form action="">
+            <div class="input">
+              <label for="username" class="label">Name:</label>
+              <input type='text' id='username' required>
+            </div>
+
+            <div class="input">
+              <label for="topping1" class="label">Pizza Topping #1:</label>
+              <input type='text' id='topping1' required>
+            </div>
+
+            <div class="input">
+              <label for="topping2" class="label">Pizza Topping #2:</label>
+              <input type='text' id='topping2'>
+            </div>
+
+            <div id="submit-button">
+              <button>Submit Order</button>
+            </div>
+          </form>
+        </div>
+        <!-- Edit order form -->
+        <div id="update-form">
+          <h2>Edit your pizza order</h2>
+          <form action="">
+            <div class="input">
+              <label for="update-username" class="label">Name:</label>
+              <input type='text' id='update-username' required>
+            </div>
+
+            <div class="input">
+              <label for="update-topping1" class="label">Pizza Topping #1:</label>
+              <input type='text' id='update-topping1' required>
+            </div>
+
+            <div class="input">
+              <label for="update-topping2" class="label">Pizza Topping #2:</label>
+              <input type='text' id='update-topping2'>
+            </div>
+
+            <div id="update-buttons">
+              <button id="cancel-button">Cancel</button>
+              <button id="update-button">Update Order</button>
+            </div>
+          </form>
+        </div>
+        <!-- Table of current orders -->
+        <div id="table">
+          <h2>Current orders</h2>
+          <table id="orders"></table>
+        </div>
+        <!-- Order confirmation -->
+        <div id="order-confirmed">
+          <h2>Thanks for your order! It'll be ready in 30 minutes.</h2>
+          <button id="view-orders-button">View your order</button>
+        </div>
+      </main>
+    </div>
   </body>
   <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
+  const addNewOrder = function(e) {
     e.preventDefault();
+    debugger
+    const newOrder = {
+      username: document.getElementById("username").value,
+      topping1: document.getElementById("topping1").value,
+      topping2: document.getElementById("topping2").value
+    };
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json );
-
+    const body = JSON.stringify(newOrder);
     fetch( '/submit', {
       method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the response
-      console.log( response )
+      body
+    }).then( function( response ) {
+      document.getElementById("order-confirmed").style.display = "flex";
+      document.getElementById("form").style.display = "none";
+      resetForm();
     });
 
     return false
   };
 
+  const updateOrder = (e) => {
+    e.preventDefault();
+
+    const updatedOrder = {
+      ordernum: document.getElementById("update-button").dataset.index,
+      username: document.getElementById("update-username").value,
+      topping1: document.getElementById("update-topping1").value,
+      topping2: document.getElementById("update-topping2").value
+    };
+
+    const body = JSON.stringify(updatedOrder);
+    fetch( '/update', {
+      method:'POST',
+      body
+    })
+    .then( function( response ) {
+      viewOrderTable();
+    });
+
+    return false
+  };
+
+  const fetchCurrentOrders = async function() {
+    const response = await fetch('/orders', {method: 'GET'});
+    const data = await response.json();
+    const orders = data.data;
+
+    let HTMLDiv = document.getElementById("orders");
+
+    HTMLDiv.innerHTML = '<tr>\n' + '<th>Name</th>\n' +
+            '<th>Topping #1</th>\n' + '<th>Topping #2</th>\n' +
+            '<th>Price</th>\n' + '<th></th>\n' +
+            '<th></th>\n' + '</tr>';
+
+    for (let i = 0; i < orders.length; i++) {
+      const currentOrder = orders[i];
+      const orderString = JSON.stringify(orders[i]);
+      let row = '<tr>\n';
+      row += (`<td> ${currentOrder.username} </td>\n`);
+      row += (`<td> ${currentOrder.topping1} </td>\n`);
+      row += (`<td> ${currentOrder.topping2} </td>\n`);
+      row += (`<td> ${currentOrder.price} </td>\n`);
+      row += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
+              + encodeURIComponent(orderString) +
+              `>Edit</button> </td>\n`);
+      row += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
+      row += '</tr>';
+      HTMLDiv.innerHTML += row;
+    }
+
+    return false;
+  };
+
+  const deleteOrder = function(num) {
+    const orderNum = {orderNum: num};
+    const body = JSON.stringify(orderNum);
+    fetch( '/delete', {
+      method:'POST',
+      body
+    });
+    fetchCurrentOrders();
+  };
+
+  const viewOrderTable = function() {
+    document.getElementById('table').style.display = "flex";
+    document.getElementById('form').style.display = "none";
+    document.getElementById('update-form').style.display = "none";
+    document.getElementById('order-confirmed').style.display = "none";
+
+    fetchCurrentOrders();
+    return false;
+  };
+
+  const viewOrderForm = function() {
+    document.getElementById('table').style.display = "none";
+    document.getElementById('form').style.display = "block";
+    document.getElementById('update-form').style.display = "none";
+    document.getElementById('order-confirmed').style.display = "none";
+    resetForm();
+  };
+
+  const viewUpdateForm = function(num) {
+    let order = decodeURIComponent(document.getElementById(`update-button-${num}`).dataset.string);
+    order = JSON.parse(order);
+
+    document.getElementById('table').style.display = "none";
+    document.getElementById('update-form').style.display = "block";
+    document.getElementById("update-button").dataset.index = num;
+    document.getElementById("update-username").value = order.username;
+    document.getElementById("update-topping1").value = order.topping1;
+    document.getElementById("update-topping2").value = order.topping2;
+
+    return false;
+  };
+
+  const resetForm = () => {
+    document.getElementById("username").value = "";
+    document.getElementById("topping1").value = "";
+    document.getElementById("topping2").value = "";
+  };
+
   window.onload = function() {
-    const button = document.querySelector( 'button' );
-    button.onclick = submit
+    const submitButton = document.getElementById( 'submit-button' );
+    submitButton.onclick = addNewOrder;
+
+    const cancelButton = document.getElementById( 'cancel-button' );
+    cancelButton.onclick = viewOrderTable;
+
+    const updateOrderButton = document.getElementById( 'update-button' );
+    updateOrderButton.onclick = updateOrder;
+
+    const viewCurrentOrdersButton = document.getElementById( 'view-orders-button' );
+    viewCurrentOrdersButton.onclick = viewOrderTable;
+
+    const newOrderLink = document.getElementById( 'new-order-link' );
+    newOrderLink.onclick = viewOrderForm;
+
+    const currentOrdersLink = document.getElementById( 'current-orders-link' );
+    currentOrdersLink.onclick = viewOrderTable;
   }
 
   </script>
