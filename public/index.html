@@ -76,18 +76,19 @@
     const matchHistory = document.getElementById( 'viewMatchHistory' );
     matchHistory.onclick = viewMH;
     
-    const matchHistory = document.getElementById( 'viewRank' );
-    matchHistory.onclick = viewRank;
+    const rank = document.getElementById( 'viewRank' );
+    rank.onclick = viewRank;
     
   }
     
-  const viewRank = function(){
+    const viewRank =  function(){
     let htmlDiv = document.getElementById('matchTable');
     htmlDiv.innerHTML = '<tr>\n' +
                 '<th>Team #</th>\n' + 
                  '<th>W-L-T</th>\n' +
                 '<th>WP</th>\n' +
                 '</tr>';
+      
   }
     
   const reset = function(){
