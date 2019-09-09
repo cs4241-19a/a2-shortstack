@@ -61,15 +61,24 @@ const handlePost = function( request, response ) {
       appdata.push(newMR);
       for(let i=0;i<appdata.length;i++){
         for(let j=0;i<appdata2.length;j++){
-          if(appdata[i].red1===appdata[j].team || appdata[i].blue1===appdata[j].team ){
-            
+          if(appdata[i].red1===appdata[j].team && appdata[i].redScore >appdata[i].blueScore ){
+            appdata.team.WP=appdata.team.WP+1;
+          } else{
+            if(matchResult(MR.red1,MR.blue1)===0){ //tie
+              const newRR = {
+              'team':MR.red1,
+              'WLT':"0-0-1",
+              'WP':1,
+              }
+              const newRR2 = {
+              'team':MR.red1,
+              'WLT':"0-0-1",
+              'WP':1,
+              }
+            }
           }
       }
-      const newRR = {
-        'team':,
-        'WLT':,
-        'WP':,
-      }
+      
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
 
@@ -121,6 +130,17 @@ const sendData = function( response, MHs ) {
   response.end();
 }
 
+const matchResult = function(redS,blueS){
+  if(redS === blueS){
+     return 0;
+     } else if(redS > blueS){
+    return 1;
+               } else{
+    return 2;
+    
+  }
+  
+}
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
