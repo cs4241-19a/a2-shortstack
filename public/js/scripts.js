@@ -6,6 +6,10 @@ function displayNewForm(){
   var newForm = document.getElementById("newForm");
   var modForm = document.getElementById("modForm");
   var editForm = document.getElementById("editForm");
+  var horo = document.getElementById("horo");
+  if(horo !== null){
+      horo.style.display = 'none'
+  }
   modForm.style.display = 'none'
   if(editForm !== null){
       editForm.style.display = 'none'
@@ -48,6 +52,10 @@ function displayNewForm(){
 function displayModForm(){
   var newForm = document.getElementById("newForm");
   var editForm = document.getElementById("editForm");
+  var horo = document.getElementById("horo");
+  if(horo !== null){
+      horo.style.display = 'none'
+  }
   newForm.style.display = 'none'
   if(editForm !== null){
       editForm.style.display = 'none'
@@ -167,29 +175,23 @@ function displayData(){
   }
 }
 
-//Function to control hide-how of entire database table
-/*function diplayDataTable(data){
-  document.getElementById("Containter").innerHTML = ""
-  updateDatabaseDisplayTable(data)
-}
-
-//Runs everytime the database is updated
-function updateDatabaseDisplayTable(data){
-  var html = "<table><tr><th" + " align=" + ">Existing Data</th></tr>"
-  html += "<tr><td>Index</td><td>First Name</td><td>Last Name</td><td>Day of Birth</td><td>Month of Birth</td><td>Sign</td></tr>"
-  for(let i = 0; i< Object.keys(data).length; i++){
-    html += "<tr>" 
-    html += "<td>" + i + "</td>"
-    html += "<td>" + data[i].fName + "</td>"
-    html += "<td>" + data[i].lName + "</td>"
-    html += "<td>" + data[i].day + "</td>"
-    html += "<td>" + data[i].month + "</td>"
-    html += "<td>" + data[i].sign + "</td>"
-    html +="</tr>"
+function generateHoroscope(){
+  var newForm = document.getElementById("newForm");
+  var modForm = document.getElementById("modForm");
+  var editForm = document.getElementById("editForm");
+  newForm.style.display = 'none'
+  modForm.style.display = 'none'
+  if(editForm !== null){
+      editForm.style.display = 'none'
   }
-  html += "</table>"
-  document.getElementById("Container").innerHTML = html
-}*/
+  var horo = document.getElementById("horo");
+  if(horo !== null){
+      horo.style.display = 'none'
+  }
+  else{
+    horo.style.display = 'inline'
+  }
+}
 
 //******* DYNAMIC DROPDOWNS ******//
 //Removes all options from given select element

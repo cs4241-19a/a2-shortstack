@@ -25,6 +25,10 @@ const appdata = [
   { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"Cancer"} 
 ]
 
+const horoscopes = [
+  {'horoscope': }
+]
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    

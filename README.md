@@ -47,7 +47,8 @@ Natalie Bloniarz - Assignment 2 - Short Stack: Basic Two-tier Web Application us
 ---
 
 ## Celebrity Horoscope Database
-The purpose of this application is to store 
+The purpose of this application is to generate and store zodiac signs of inputed people.
+The main problem the application addresses is the need to look up the zodiac 
 
 Here is a sample formula for summarizing your activities, talk about:
 - the domain area the project pertains to
