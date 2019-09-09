@@ -140,7 +140,7 @@
     var i;
     var indices = [];
     console.log("Child Nodes = " + pointer.hasChildNodes()+1)
-    for(i = 1; i < pointer.childNodes.length+1; i++){
+    for(i = 1; i < pointer.childNodes.length; i++){
       var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :nth-child('+i+')')
       console.log("Child = " + pointerChild)
       if(pointerChild !== null) {
