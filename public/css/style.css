@@ -62,6 +62,10 @@ body {
 }
 
 .menu-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-end;
   padding-bottom: .25em;
   color: white;
 }
@@ -69,6 +73,9 @@ body {
 button {
   font-size: 25px;
   border-radius: 5px;
+  border-width: 0;
+  background-color: #1C1C1D;
+  color: white;
 }
 
 #next {

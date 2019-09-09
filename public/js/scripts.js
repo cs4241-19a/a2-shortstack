@@ -7,4 +7,11 @@ $(document).ready(function () {
     sections.first().insertAfter(sections.last());
     sections.css({animation: "next 1s 1"});
   })
+  $('button').hover( function() {
+    $(this).css({'background-color':'#D6DADA'})
+    $(this).css({'color':'#1C1C1D'})
+  }, function () {
+    $(this).css({'background-color':'#1C1C1D'})
+    $(this).css({'color':'#1C1C1D'})
+  })
 })
