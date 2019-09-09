@@ -2,7 +2,7 @@
 
 This project is focused on in-store menu kiosks in the restaurant industry for a fake restaurant that serves a selection of fries. Assuming that the application can be linked to multiple computers and draw from the same server, it gets rid of the need for a person to take your order. Thus, the restaurant can save money. The key innovations are the menu selection tools and the updated table that is stored in an array on the server. By allowing a computer to take food orders and share the results with the customers and staff, then I eliminate the need to hire a physical person to take orders and thus would save money. While the current application could potentially work with a system similar to Five Guys in which customers' order numbers are called by physical person, I could eliminate the order number caller with an automated voice linked with an admin interface with delete and edit privileges.
 
-http://a2-jhyuen.glitch.me
+[http://a2-jhyuen.glitch.me](http://a2-jhyuen.glitch.me)
 
 ## Technical Achievements
 - **Drop Down Form**: Implemented combo boxes for some forms instead of the standard text input.
