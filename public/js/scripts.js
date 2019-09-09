@@ -38,12 +38,12 @@ const submit = function( e ) {
 const loadTable = function(data){
     //load the table with the current results 
     let dataTable = document.querySelector('#calculations');
-  dataTable.innerHTML =
+  /*dataTable.innerHTML =
     '<tr>'+
        ' <th>Edit</th>' + ' <th> First Number</th>'+ ' <th> Operation</th>' +
       '<th>Second Number</th>' + '<th> Result </th>' + '<th>Delete</th>' +
     '</tr>\n'
-
+*/
     let x; //first number 
     let y; //second number 
     let operator; //type of operation
@@ -84,8 +84,10 @@ const loadTable = function(data){
           }
 
           //display row 
-          dataTable.innerHTML = '<tr>\n' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
-          x + operator + y + result + '<button class = "delete" onclick = "delExpression()" > Delete </button>'
+          dataTable.innerHTML =  '<th>Edit</th>' + ' <th> First Number</th>'+ ' <th> Operation</th>' +
+      '<th>Second Number</th>' + '<th> Result </th>' + '<th>Delete</th>' +
+    '</tr>\n' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
+          x + operator + y + result + '<th><button class = "delete" onclick = "delExpression()" > Delete </button></th>'
     }
 }
 
