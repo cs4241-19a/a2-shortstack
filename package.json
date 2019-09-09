@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-mmdanke-Manasi-Danke",
+  "version": "0.1.0",
+  "description": "Asignment 2",
+  "author": "Manasi Danke",
   "scripts": {
     "start": "node server.improved.js"
   },
