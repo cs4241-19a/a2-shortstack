@@ -17,6 +17,11 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+
+// -----------------------------
+// ---- Mainline Database
+// -----------------------------
+
 // Simple file based db using an ORM
 const sequelize = new Sequalize({
   dialect: 'sqlite',
@@ -66,6 +71,12 @@ sequelize.authenticate()
     console.log("F");
   });
 
+// db_util.makeRes(1, 5, "Occupied!");
+
+// ----------------------------
+// ---- Server Logistics
+// ----------------------------
+
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
@@ -114,7 +125,5 @@ const sendFile = function( response, filename ) {
      }
    })
 }
-
-// db_util.makeRes(1, 5, "Occupied!");
 
 server.listen( process.env.PORT || port )

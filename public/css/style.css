@@ -1,1 +1,25 @@
 /*Style your own assignment! This is fun! */
+
+h1 {
+  font-size: 24pt;
+}
+
+h2 {
+  font-size: 15pt;
+}
+
+#stalls {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+#stalls .card-panel {
+  margin: 5px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
+  width: 60%;
+}

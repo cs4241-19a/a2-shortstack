@@ -1,33 +1,71 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Occupied</title>
+    <title>🚽 Occupied</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
   </head>
-  <p hidden=True>Like Uber, for pooping</p>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
+  <p hidden=True>Like Uber, but for pooping</p>
+  <body class="">
+    <div class="container">
+      <h1>Check the Bathroom Without Leaving Your Desk!</h1>
+      <h2>Step 1: Enter Reservation Information</h2>
+      <form action="" class="row">
+        <input type='text' id='yourname' name="name" placeholder="Your Name (optional)" class="col s6">
 
-      <input type="radio" name="length" value="express">
-      <label for="express">2 minutes - Express</label>
+        <div>
+          <label>
+            <input type="radio" name="length" value="express" />
+            <span>2 minutes - Express</span>
+          </label>
+        </div>
 
-      <input type="radio" name="length" value="standard" checked>
-      <label for="standard">5 minutes - Standard</label>
+        <div>
+          <label>
+            <input type="radio" name="length" value="standard" checked />
+            <span>5 minutes - Standard</span>
+          </label>
+        </div>
 
-      <input type="radio" name="length" value="facebook">
-      <label for="facebook">10 minutes - Reading Facebook</label>
-      <button>submit</button>
-    </form>
+        <div>
+          <label>
+            <input type="radio" name="length" value="facebook" />
+            <span>10 minutes - Reading Facebook</span>
+          </label>
+        </div>
+      </form>
+      <h2>Step 2: Select An Open Stall</h2>
+      <div id="stalls">
+        <div class="card-panel green lighten-2">
+          <p id="stall-0">Hello World</p>
+          <button id="stall-0-btn" class="btn-flat green">Reserve</button>
+        </div>
+        <div class="card-panel green lighten-2">
+          <p id="stall-1">Hello World</p>
+          <button id="stall-1-btn" class="btn-flat green">Reserve</button>
+        </div>
+        <div class="card-panel green lighten-2">
+          <p id="stall-2">Hello World</p>
+          <button id="stall-2-btn" class="btn-flat green">Reserve</button>
+        </div>
+        <div class="card-panel green lighten-2">
+          <p id="stall-3">Hello World</p>
+          <button id="stall-3-btn" class="btn-flat green">Reserve</button>
+        </div>
+      </div>
+    </div>
   </body>
   <script>
 
-  const submit = function( e ) {
+  const submit = function( e, stall ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const name = document.querySelector( '#yourname' ),
+          length = document.querySelector('input[name="length"]:checked'),
+          json = { name: name.value, length: length.value, stall: stall },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
@@ -43,8 +81,22 @@
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+    const button_0 = document.querySelector( '#stall-0-btn' )
+    button_0.onclick = (e) => {
+      submit(e, 0);
+    }
+    const button_1 = document.querySelector( '#stall-1-btn' )
+    button_1.onclick = (e) => {
+      submit(e, 1);
+    }
+    const button_2 = document.querySelector( '#stall-2-btn' )
+    button_2.onclick = (e) => {
+      submit(e, 2);
+    }
+    const button_3 = document.querySelector( '#stall-3-btn' )
+    button_3.onclick = (e) => {
+      submit(e, 3);
+    }
   }
 
   </script>
