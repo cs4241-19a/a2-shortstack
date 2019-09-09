@@ -6,12 +6,9 @@ Author: Rui Huang
 ### Run locally
 Install `npm` and `Node.js`, then run:
 
-`
-$ npm install
-`
-`
-$ npm start
-`
+`$ npm install`
+
+`$ npm start`
 
 And go to `localhost:3000`
 
