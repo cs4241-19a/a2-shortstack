@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="style.css">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <p><a href = "index.html" style="text-decoration:none"><strong>&larr;</strong></a></p>
+    <center>
+    <h1>Register</h1>
+    <form action="">
+      <input type="text" id="username" placeholder="username">
+      <br>
+      <input type="password" placeholder="password" id="password1">
+      <br>
+      <input type="password" placeholder="password" id="password2">
+      <br>
+      <input type="checkbox" onclick="showPassword()">show password(s)
+      <br>
+      <button id="submit">submit</button>
+    </form> 
+    <a href="index.html">already have account?</a>  
+    </center>
+  </body>
+  <script>
+
+  function showPassword() {
+    var x = document.getElementById("password1");
+    var y = document.getElementById("password2");
+    
+    if (x.type === "password") {
+      x.type = "text";
+      y.type = "text";
+    } else {
+      x.type = "password";
+      y.type = "password";
+    }
+  } 
+    
+  const submit = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+
+    const username = document.querySelector( '#username' ),
+          password1 = document.querySelector( '#password1' ),
+          password2 = document.querySelector( '#password2' ),
+          json = { action: "add", username: username.value, password: password1.value },
+          body = JSON.stringify( json )
+      
+    if(password1.value == password2.value) {
+        fetch( '/submit', {
+          method:'POST',
+          body 
+        })
+        .then( function( response ) {
+          // do something with the reponse
+          return response.text()
+        })
+        .then( function( data ) {
+          var json=JSON.parse(data)
+          window.alert(json.status)
+        })
+        return false
+      }    
+      else {
+        window.alert("passwords do not match! could not create a new user.")
+      }
+  }
+
+  window.onload = function() {
+    const button = document.querySelector( '#submit' )
+    button.onclick = submit
+  }
+
+  </script>
+</html>

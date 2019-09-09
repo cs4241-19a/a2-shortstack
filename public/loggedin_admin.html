@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="style.css">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <center>
+    <h1>Congrats! You logged in as an admin!</h1>
+    <form>
+      <input type="text" id="username" placeholder="username"><button id="delete">delete user</button>
+      <br>
+      <button id="refresh">refresh table</button>
+      <br>
+      <button id="logout"><a href="index.html" color="black" style="text-decoration:none; color:black">log out</a></button>
+    </form>
+    <table id="output"><tr><th>Username</th><th>Password</th><th>Admin?</th></tr></table>
+    </center>
+  </body>
+  <script>
+    
+    var encrypt = 'true'
+    // var encrypt = 'false'
+    
+    function binary(str) {
+      return str.split(/\s/g).map((x) => x = String.fromCharCode(parseInt(x, 2))).join("");
+    }
+    
+    function isEven(int) {
+      if(int % 2 == 0) {
+        return 'true'
+      }
+      return 'false'
+    }
+    
+    function hashFunction(string) {
+      var pass = ''
+      var bin = ''
+      if(string == '') {
+        string = 'empty'
+      }
+      for (var i = 0; i < string.length; i++) {
+        bin += string[i].charCodeAt(0).toString(2) + " ";
+      }
+      
+      for (var i = 0; i < bin.length; i++) {
+        var rand = Math.random();  
+        if(bin[i] == '1' && isEven(rand) == 'true') {
+          pass += '0'
+        }
+        else if(bin[i] == '0' && isEven(rand) == 'false') {
+          pass += '1'
+        }
+      }
+      
+      // return bin
+      return binary(pass);
+    }
+    
+    var submitted = "false"
+    
+    function createTableFromJSON(someJson) {
+      if(submitted == "false") {
+        for(var i=0; i < Object.keys(someJson.users).length; i++) {
+          var row = document.createElement('tr')
+          for(var j=0; i < Object.keys(someJson.users).length; i++) {
+            let x = i
+            let y = j
+            if(someJson.users[x].username != undefined) {
+              var node = document.getElementById('output');
+              var newNode = document.createElement('td');
+              newNode.appendChild(document.createTextNode(someJson.users[x].username));
+              node.appendChild(newNode);
+              if(encrypt == 'true') {
+                var node = document.getElementById('output');
+                var newNode = document.createElement('td');
+                newNode.appendChild(document.createTextNode(hashFunction(someJson.users[x].password)));
+                node.appendChild(newNode);
+              }
+              else {
+                var node = document.getElementById('output');
+                var newNode = document.createElement('td');
+                newNode.appendChild(document.createTextNode(someJson.users[x].password));
+                node.appendChild(newNode);
+              }
+              var node = document.getElementById('output');
+              var newNode = document.createElement('td');
+              newNode.appendChild(document.createTextNode(someJson.users[x].admin));
+              node.appendChild(newNode);
+              var node = document.getElementById('output');
+              var newNode = document.createElement('tr');
+              node.appendChild(newNode);
+            }
+          }
+        }
+      }
+      submitted = "true"
+    }
+    
+  var jsondata = ''
+    
+  const submit = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+    
+    var deleteUserVar = "false"
+    
+    var json = ''
+    var body = ''
+    
+    if(deleteUserVar == "true") {
+      json = { action: "delete", username: "test" },
+            body = JSON.stringify( json )
+    }
+    else {
+      json = { action: "login", username: "admin", password: "" },
+            body = JSON.stringify( json )
+    }
+    
+    // const json = { action: "login", username: "admin", password: "" },
+    //       body = JSON.stringify( json )
+
+    fetch( '/submit', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the reponse 
+      // return response.text
+      return response.text();
+    })
+    .then( function( data ) {
+      
+      jsondata = JSON.parse(data)
+      
+      var json = JSON.parse(data)
+      
+      // var node = document.getElementById('output');
+      // var newNode = document.createElement('tr');
+      // newNode.appendChild(document.createTextNode(json.users[0].username));
+      // newNode.appendChild(document.createTextNode(json));
+      // node.appendChild(newNode);
+      
+      // for(var i=0; i < Object.keys(json).length; i++) {
+      //   let j = i
+      //   var node = document.getElementById('output');
+      //   var newNode = document.createElement('tr');
+      //   newNode.appendChild(document.createTextNode(json.users[j].username));
+      //   node.appendChild(newNode);
+      // }
+      
+      createTableFromJSON(json)  
+    })
+    return false
+  }
+  
+    const del = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+    
+    var deleteUserVar = "true"
+    
+    var json = ''
+    var body = ''
+    var username = document.querySelector( '#username' )
+    
+    if(deleteUserVar == "true") {
+      json = { action: "delete", username: username.value },
+            body = JSON.stringify( json )
+    }
+    else {
+      json = { action: "login", username: "admin", password: "" },
+            body = JSON.stringify( json )
+    }
+    
+    // const json = { action: "login", username: "admin", password: "" },
+    //       body = JSON.stringify( json )
+
+    fetch( '/submit', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      // do something with the reponse 
+      // return response.text
+      return response.text();
+    })
+    .then( function( data ) {
+      
+    })
+    return false
+  }
+    
+  function goHome() {
+    window.location("index.html")
+  }
+  
+  window.onload = submit
+    
+  const button = document.querySelector('#delete')
+  button.onclick = del
+    
+  const button2 = document.querySelector('#admin')
+  button.onclick = changeAdminStatus
+    
+  // window.onload = function() {
+  //   // make it so the table refreshes on click maybe?
+  //   const button = document.querySelector( '#submit' )
+  //   button.onclick = submit
+  //   const button2 = document.querySelector( '#delete' )
+  //   button2.onclick = del
+  //   const button3 = document.querySelector( '#refresh')
+  //   button3.onclick = goHome()
+  // }
+
+  </script>
+</html>
