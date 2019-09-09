@@ -1,5 +1,7 @@
 # CS4241 Message Board
 
+[Website Link](a2-bwhetherington.glitch.me).
+
 This project is a simple implementation of a message board. Users may make posts to the message board under any name they wish to. At this time, it does not currently feature any proper authentication. Rather, authentication is all based on the user's IP addresses. Obviously this is not a viable solution for a production system, but it is workable for a more simplistic implementation. Users' IP addresses are used in two ways in this application:
 
 1. IP addresses are used to track whether or not a user has liked a post. If a user has liked a post and they load the page, they will see that they have already liked the post. In addition, it is used on the server and on the client to verify ensure that a user cannot like the same post twice.
