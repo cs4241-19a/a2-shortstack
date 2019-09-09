@@ -7,6 +7,7 @@
     "start": "node server.improved.js"
   },
   "dependencies": {
+    "clientside-require": "^4.7.2",
     "mime": "^2.4.4"
   }
 }

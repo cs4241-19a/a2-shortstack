@@ -1,3 +1,5 @@
+console.log("Reading server.improved");
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -7,15 +9,13 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  
 ]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
-  }else if( request.method === 'POST' ){
+  }else if( request.method === 'POST' ){  
     handlePost( request, response ) 
   }
 })
@@ -25,12 +25,18 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if (request.url ==='/data'){
+	   response.writeHeader( 200, { 'Content-Type': 'text/plain' })
+       response.end( JSON.stringify(appdata) )
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
+	console.log("post request")
   let dataString = ''
 
   request.on( 'data', function( data ) {
@@ -39,8 +45,16 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
+	
+	data = JSON.parse ( dataString ) ;
+	
+	data.percentError = Math.abs(((data.guess - data.actual)/data.actual)*100)
 
     // ... do something with the data here!!!
+	
+	appdata.push(data)
+	
+	console.log(data)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()

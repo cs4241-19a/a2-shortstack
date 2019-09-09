@@ -1,1 +1,74 @@
-/*Style your own assignment! This is fun! */
+
+
+/* Styling for the continue button to open the next trial */
+.continueButton {
+  background-color: #555;
+  border: none;
+  color: #4CB785;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+/* Div containing the squares */
+#container {
+	width: 100%;
+	height: 300px;
+}
+
+/*generic styling for the squares */
+.square {
+  height: 100px;
+  width: 100px;
+  background-color: #555;
+  text-align: center;
+  padding-top = 20%;
+  margin 0 auto;
+  vertical-align: middle;
+}
+
+/* sets square 1 to the left */
+#square1 {
+	float: left;
+	margin-left: 10%;
+}
+
+/* sets square 2 to the right */ 
+#square2 {
+	float: right;
+	margin-right: 10%;
+}
+
+body {
+  padding: 20px;
+  font-family: courier;
+  font-weight: bold;
+  color: #4CB785;
+  font-size: 16px;
+  text-align: justify;
+}
+
+h1 {
+  color: #4CB785;
+  text-align: center;
+  font-family: 'Brush Script MT';
+  font-size: 50px;
+	  
+}
+
+/* input form */
+input[type=text] {
+  border: 2px solid #4CB785;
+  border-radius: 4px;
+  font-family: courier;
+  color: #555;
+  font-weight: bold;
+
+}
+
+
+
+
+
