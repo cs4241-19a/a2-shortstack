@@ -452,45 +452,37 @@ function toggleMove(){
 function keyEvent(event){
     var key = event.key;
     switch(key){
-        case '1': //translate positive x direction
+        case '!': //translate positive x direction
             direction = "R";
             toggleMove();
             break;
-        case '2': //translate negative x direction
+        case '@': //translate negative x direction
             direction = "L";
             toggleMove();
             break;
-        case '3': //translate positive y direction
+        case '#': //translate positive y direction
             direction = "T";
             toggleMove();
             break;
-        case '4': //translate negative y direction
+        case '$': //translate negative y direction
             direction = "B";
             toggleMove();
             break;
-        case '5': //translate positive z direction
+        case '%': //translate positive z direction
             direction = "F";
             toggleMove();
             break;
-        case 'a': //translate negative z direction
+        case '^': //translate negative z direction
             direction = "K";
             toggleMove();
             break;
-        case 'r': //rotates
+        case '&': //rotates
             if(!isRotate){
                 isRotate = true;
                 x_roll();
             }
             else
                 isRotate = false;
-            break;
-        case 'b': //pulses
-            if(!isPulse){
-                isPulse = true;
-                pulse();
-            }
-            else
-                isPulse = false;
             break;
     }
 }
