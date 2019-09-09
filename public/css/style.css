@@ -1,1 +1,71 @@
-/*Style your own assignment! This is fun! */
+body{
+    background-color: #8FA1C0;
+    font-family: "Arial";
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+p {
+    text-align: center;
+    color: white;
+}
+.userInput{
+    text-align: left;
+    font-weight: bold;
+    /*color: rgb(21, 55, 68);*/
+    color: black;
+}
+
+input[type=text], select {
+    padding: 3px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
+  }
+.operators{
+    font-size: 17px;
+    font-weight: bold;
+    /*color: rgb(21, 55, 68);*/
+    color: black;
+    text-align: left;
+    display: inline-block;
+}
+
+#operator{
+    display: inline-block;
+    padding: 3px;
+    font-size: 17px;
+    border: none;
+    /*font-family: 'Times New Roman', Times, serif;*/
+}
+
+table{
+    width: 100%;
+}
+
+button{
+  display: inline-block;
+  text-align: center;
+  padding: 9px 7px;
+  margin: 2px;
+  font-family: "Arial";
+  font-size: 17px;
+
+  border: solid 1px transparent;
+  border-radius: 7px; 
+  
+  color:white;
+  background-color: rgb(21, 55, 68);
+}
+
+
+
+table{
+    width: 100%;
+    color: white;
+    font-family: "Arial";
+}

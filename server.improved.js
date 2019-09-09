@@ -1,3 +1,5 @@
+
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -6,11 +8,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appData = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,24 +23,40 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }else if(request.url === '/cal'){ //should change this 
+    response.writeHeader( 200, 'OK', {'Content-Type': 'text/plain' })
+    response.end(JSON.stringify(appData))
+    
+  }else {
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
   let dataString = ''
-
   request.on( 'data', function( data ) {
       dataString += data 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    data = JSON.parse(dataString)
+    appData.push(data)
 
-    // ... do something with the data here!!!
+    //response.end(result);
+    //response.end(JSON.parse(dataString));
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    if(request.url === '/delete'){
+      appData.splice(data.row, 1)
+    }
+
+    if(request.url == '/edit'){
+      let pos = data.index;
+      
+      appData[index].firstNumber = data.firstNumber;
+      appData[index].operator = data.operator;
+      appData[index].SecondNumber = data.secondNumber;
+    }
+    response.writeHeader( 200, 'OK', {'Content-Type': 'text/plain' })
     response.end()
   })
 }
@@ -68,5 +82,4 @@ const sendFile = function( response, filename ) {
      }
    })
 }
-
 server.listen( process.env.PORT || port )

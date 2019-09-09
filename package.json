@@ -1,12 +1,16 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-alejandragarza42-alejandra-garza",
+  "version": "0.1.0",
+  "description": "CS4241 Assignment #2: shortstack",
+  "author": "Alejandra Garza",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.4",
+    "npm": "^6.11.3"
+  },
+  "devDependencies": {
+    "ws": "3.3.2"
   }
 }
