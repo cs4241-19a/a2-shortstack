@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000;
 
 const appdata = [
-  { 'fstname': 'Amanda', 'lstname': 'Ezeobiejesi', 'ordername': 'Pacific Centre', 'typeOfGrain': 1, 'typeOfProtein': 4, 'price': 9},
-  { 'fstname': 'Chirstina', 'lstname': 'Zymaris', 'ordername': 'Crispy Bacon', 'typeOfGrain': 2, 'typeOfProtein': 5, 'price': 10},
-  { 'fstname': 'Beza', 'lstname': 'Ayalew', 'ordername': 'Treasure Island', 'typeOfGrain': 2, 'typeOfProtein': 2, 'price': 11},
+  { 'fstname': 'Amanda', 'lstname': 'Ezeobiejesi', 'ordername': 'Pacific Centre', 'typeOfGrain': 0, 'typeOfProtein': 1, 'price': 10},
+  { 'fstname': 'Chirstina', 'lstname': 'Zymaris', 'ordername': 'Crispy Bacon', 'typeOfGrain': 1, 'typeOfProtein': 1, 'price': 11},
+  { 'fstname': 'Beza', 'lstname': 'Ayalew', 'ordername': 'Treasure Island', 'typeOfGrain': 0, 'typeOfProtein': 2, 'price': 11},
 
 ];
 
@@ -46,13 +46,14 @@ const handlePost = function( request, response ) {
       case '/submit':
         const order = JSON.parse( dataString );
 
-        const price = calculatePrice(parseInt(order.amountOfPork), parseInt(order.garlic));
+        const price = calculatePrice(parseInt(order.typeOfGrain), parseInt(order.typeOfProtein));
 
         const newOrder = {
-          'name': order.name,
-          'dream': order.dream,
-          'amountOfPork': parseInt(order.amountOfPork),
-          'garlic': parseInt(order.garlic),
+          'fstname': order.fstname,
+          'lstname': order.lstname,
+          'ordername': order.ordername,
+          'typeOfGrain': parseInt(order.typeOfGrain),
+          'typeOfProtein': parseInt(order.typeOfProtein),
           'price': price,
         };
 
@@ -66,13 +67,13 @@ const handlePost = function( request, response ) {
       case '/update':
         const orderToUpdate = JSON.parse(dataString);
 
-        const newPrice = calculatePrice(parseInt(orderToUpdate.amountOfPork), parseInt(orderToUpdate.garlic));
+        const newPrice = calculatePrice(parseInt(orderToUpdate.typeOfGrain), parseInt(orderToUpdate.typeOfProtein));
 
         const updatedOrder = {
           'name': orderToUpdate.name,
           'dream': orderToUpdate.dream,
-          'amountOfPork': parseInt(orderToUpdate.amountOfPork),
-          'garlic': parseInt(orderToUpdate.garlic),
+          'typeOfGrain': parseInt(orderToUpdate.typeOfGrain),
+          'typeOfProtein': parseInt(orderToUpdate.typeOfProtein),
           'price': newPrice,
         };
 
@@ -98,9 +99,9 @@ const handlePost = function( request, response ) {
   })
 };
 
-const calculatePrice = function (amountOfPork, ifGarlic) {
-  const baseRamenPrice = 7;
-  const price = (baseRamenPrice + (2*amountOfPork) + ifGarlic);
+const calculatePrice = function (typeOfGrain, typeOfProtein) {
+  const baseRiceBowlPrice = 9;
+  const price = baseRiceBowlPrice + typeOfGrain + typeOfProtein;
   return price;
 };
 
