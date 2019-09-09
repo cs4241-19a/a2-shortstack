@@ -11,7 +11,7 @@
     <h1>Fantastic Fries</h1>
     <h3>In-Store Kiosk</h3>
     <div class="instructions">
-      <p>Welcome to Fantastic Fries! Create your fantastic fries on the left, and see your order and everybody else's orders on the right. Once your order is done, we'll call you up to the register to pay.</p>
+      <p>Welcome to Fantastic Fries! Create your fantastic fries order on the left, and then see your order, and everybody else's, on the right. Once your order is done, we'll call you up to the register to pay.</p>
     </div>
 
     <div class="columns">
@@ -22,19 +22,19 @@
 
         <h4>Name</h4>
         <form action="">
-          <input type='text' id='yourname' value="John Doe">
+          <input type='text' id='name' value="John Doe">
         </form>
 
         <h4>Phone Number</h4>
         <form action="">
-          <input type='text' id='yourname' value="(123)-456-7890">
+          <input type='tel' id='phone' pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="123-456-7890">
         </form>
 
         <h2>Fries</h2>
 
         <h4>Potato</h4>
         <form action="">
-          <select name="potato" dir="rtl">
+          <select name="potato" id='potato' dir="rtl">
             <option value="yellow">Yellow Potato | $3</option>
             <option value="red">Red Potato | $4</option>
             <option value="idaho">Idaho Potato | $5</option>
@@ -44,7 +44,7 @@
 
         <h4>Seasoning</h4>
         <form action="">
-          <select name="seasoning" dir="rtl">
+          <select name="seasoning" id='seasoning' dir="rtl">
             <option value="none">None +$0</option>
             <option value="salt">Just Salt +$1</option>
             <option value="pepper">Just Pepper +$1</option>
@@ -57,7 +57,7 @@
 
         <h4>Size</h4>
         <form action="">
-          <select name="size" dir="rtl">
+          <select name="size" id='size' dir="rtl">
             <option value="small">Small x1</option>
             <option value="medium">Medium x1.5</option>
             <option value="large">Large x2</option>

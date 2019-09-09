@@ -1,10 +1,21 @@
+var name = document.getElementById('name')
+var phone = document.getElementById('phone')
+var potato = document.getElementById('potato')
+var seasoning = document.getElementById('seasoning')
+var size = document.getElementById('size')
+
+// add order to server queue table
 const submit = function( e ) {
 
      // prevent default form action from being carried out
     e.preventDefault()
-    const input = document.querySelector( '#yourname' ),
-    json = { yourname: input.value },
-    body = JSON.stringify( json )
+    const name = document.querySelector( '#name' ),
+          phone = document.querySelector( '#phone' ),
+          potato = document.querySelector( '#potato' ),
+          seasoning = document.querySelector( '#seasoning' ),
+          size = document.querySelector( '#size' ),
+          json = { name: name.value, phone: phone.value, potato: potato.value, seasoning: seasoning.value, size: size.value},
+          body = JSON.stringify( json )
 
     fetch( '/submit', {
         method:'POST',
@@ -19,6 +30,7 @@ const submit = function( e ) {
     return false
 }
 
+// submit button
 window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = submit
