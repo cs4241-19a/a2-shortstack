@@ -45,8 +45,6 @@ const handlePost = function( request, response ) {
     // append to data array 
     tableData.push(JSON.parse(dataString))
 
-    console.log("Server Dataset: " + (JSON.parse(tableData)))
-
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
