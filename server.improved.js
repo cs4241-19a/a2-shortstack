@@ -55,7 +55,11 @@ const bookEdition = function (data) {
   for (let i = 0; i < appdata.length; i++) {
     if (appdata[i].bookName === name) {
       appdata[i].rating = data.rating
-      if (appdata[i].rating === '3' )
+      if (appdata[i].rating === "1" || appdata[i].rating === "2" ) {
+        appdata[i].status = 'bad'
+      } else {
+        appdata[i].status = 'good'
+      }
     }
   }
 }

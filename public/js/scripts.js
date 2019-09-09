@@ -51,7 +51,6 @@ const loadData = function( e ) {
     
 //add Book function
     const addBook = function( e ) {
-      e.preventDefault();
       
       const newBook = {
         bookName: document.getElementById( 'bookName' ).value,
@@ -62,13 +61,10 @@ const loadData = function( e ) {
       };
       
       if (newBook.rating === "1" || newBook.rating === "2" ) {
-        
+        newBook.status = 'bad'
       } else {
-        
+        newBook.status = 'good'
       }
-    if (bkdata.rating === "3" || bkdata.rating === "4" || bkdata.rating === "5") {
-      displayGoodBooks(bkdata)
-    }
       
       const body = JSON.stringify( newBook );
       fetch( '/addBook', {
@@ -78,6 +74,8 @@ const loadData = function( e ) {
           resetOrderForm();
           loadData();
         })
+      resetOrderForm();
+      loadData();
       return false;
     }
     
