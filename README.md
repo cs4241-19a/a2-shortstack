@@ -1,89 +1,36 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
-Due: September 9th, by 11:59 AM.
+https://a2-thearst3rd.glitch.me/
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
+## BIG CHAT
 
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
+Big Chat is a simple forum that allows multiple people to post chats on a website which can be viewed by others.
 
-Baseline Requirements
----
+Big Chat has multiple features that would be expected of an application of it's type, such as:
+- Entering your name
+- Viewing the contents of the messages
+- Timestamps which are locally converted to your time zone
 
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
+Additionally, there exists functionality to wipe the existing chat messages and restart with the default chat messages that are left automatically.
 
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
+However, there are some drawbacks. In order to view new chat messages coming in, the user needs to refresh the page. This is done automatically upon submitting a chat message, but in case any other user submits a message, the page must be refreshed before that message is loaded.
 
-Your application is required to implement the following functionalities:
+Lastly, if you have played the video game FEZ, there is a secret easter egg for being able to solve a puzzle. There is also a link on the website which 
 
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
+Check it out at the link:
 
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Label the pull request as follows: a2-gitusername-firstname-lastname
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
+https://a2-thearst3rd.glitch.me/
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Supports Any Number of Concurrent Users**: Because each of the messages are timestamped, multiple users can enter messages at the same time and anyone can see those messages and when they were typed. I tested this with 3 seperate users at one time.
+- **Safe Handling of Blank Fields**: Before submitting the form, the client will validate that the fields are all properly filled in before sending a POST request. It will display an alert if the fields are not properly completed.
+- **Generation of Chats Table**: A client side script fetches all of the chat information from the server and then dynamically generates the table of elements. It properly adds the class tags to each element so that the CSS can properly make it look pretty.
+- **Entering of a Secret Code**: With my FEZ secret, the user can enter a secret code by pressing a certain button combination. My code listens to all button presses, and keeps track of all button presses to check if it matches with the correct code.
+- **Playback of Audio File**: Additionaly, when the FEZ secret is triggered, it will play the sound effect from the game which plays when you complete a secret. It streams the files from glitch's assets, and also displays an alert to the user. While I'm at it, I'll say that I also use glitch assets to show the FEZ name and puzzle as part of the default chats.
 
-### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+### Design Achievements
+- **Global Font Changing**: The first few lines of css enable the entire webpage to change fonts without needing to add repeated code to every css element. I used this to make the font bigger and more ledgible.
+- **Centered Page**: The "content" class allows me to seperate the main body of the page from the background and add spacing on the sides to keep the page centered, while keeping the text from being too far away from the edges. I used different pixel numbers in my main page and the FEZ explanation page to suit the contents of the page.
+- **`big-text` CSS Class**: By developing a very simple class, I can make any text bigger relative to the text around it. I utilize this on multiple elements throughout the webpage, for example it is how I made the capital letters bigger than the lowercase letters, even though they're all technically capital letters.
+- **Different Chat Table Classes**: In the chat output, there are different classes for the username, content, and timestamp columns. These classes allow the CSS to properly align, weigh, and color the text to look pleasing and readable.

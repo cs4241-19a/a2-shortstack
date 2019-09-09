@@ -1,17 +1,21 @@
+/*
+ * Webware Assignment #2
+ * by Terry Hearst
+ */
+
 const http = require("http"),
       fs   = require("fs"),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
       // to install the mime library used in the following line of code
       mime = require("mime"),
       dir  = "public/",
-      port = 3000
+      port = 3000,
+      myChat = require("./mychat.js")
 
-const appdata =
-[
-  {"model": "toyota", "year": 1999, "mpg": 23},
-  {"model": "honda",  "year": 2004, "mpg": 30},
-  {"model": "ford",   "year": 1987, "mpg": 14}
-]
+
+// Add default chat messages
+myChat.initChats()
+
 
 const server = http.createServer(function(request, response)
 {
@@ -31,7 +35,12 @@ const handleGet = function(request, response)
   
   if (request.url === "/")
   {
-    sendFile(response, "public/index.html")
+    sendFile(response, dir + "index.html")
+  }
+  else if (request.url === "/chats")
+  {
+    response.writeHead(200, "OK", {"Content-Type": "application/json"})
+    response.end(JSON.stringify(myChat.getChats()))
   }
   else
   {
@@ -50,9 +59,23 @@ const handlePost = function(request, response)
   
   request.on("end", function()
   {
-    console.log(JSON.parse(dataString))
+    const dataObj = JSON.parse(dataString)
+    console.log(dataObj)
     
-    // ... do something with the data here!!!
+    switch (dataObj.action)
+    {
+      case "submit":
+        myChat.addChat(dataObj.username, dataObj.contents)
+        break
+      
+      case "resetAllChats":
+        myChat.initChats()
+        break
+      
+      default:
+        console.log("Unknown action \"" + dataObj.action + "\"")
+        break
+    }
     
     response.writeHead(200, "OK", {"Content-Type": "text/plain"})
     response.end()
