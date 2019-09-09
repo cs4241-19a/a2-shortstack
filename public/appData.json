@@ -1,0 +1,14 @@
+[ 
+{
+    "boat":"WPI-1V", "meters":"2000", "time":"365"
+},
+{
+    "boat":"WPI-1V", "meters":"4000", "time":"750"
+},
+{
+    "boat":"Colby-1V", "meters":"2000", "time":"370"
+},
+{
+    "boat":"WPI-2V", "meters":"2000", "time":"380"
+}
+]

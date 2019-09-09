@@ -1,1 +1,75 @@
-/*Style your own assignment! This is fun! */
+input {
+  border: 1px solid #000
+  width: 20%;
+  padding: 0.3%;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+button {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 15px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px; 
+  border-radius: 8px;
+}
+
+body{
+  background-color: #B3DAF9;
+  color: #292929;
+  font-family: Arial;
+}
+
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+
+a{
+  margin-left:28px;
+}
+table {
+  border: 2px solid black;
+  width:60%; 
+  margin-left:20%; 
+  margin-right:20%;
+} 
+
+th, td {
+  border: 1px solid black;
+}
+
+#mode{ 
+  text-align:center;
+  margin-bottom: 28px;
+  font-size: 32px;
+}
+
+#boatForm {
+  text-align:center;
+}
+
+#sumbitMode{
+  display:"block";
+}
+
+#results{
+  display:"none";
+}
+
+#error{
+  text-align: center;
+  font-size: 16px;
+  color: #9B080D;
+}
+
+#success{
+  text-align: center;
+  font-size: 16px;
+  color: #0A4200;
+}
