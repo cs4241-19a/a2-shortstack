@@ -4,11 +4,8 @@ nav{
   justify-content: space-between;
   align-items: stretch;
   background: black;
-  position: absolute;
-  z-index: 1000;
-  width: 100%;
-  overflow: auto;
 }
+
 nav h1{
   text-align: center;
   color: white;
@@ -42,20 +39,21 @@ nav ul li button{
   margin: 10px;
 }
 
-#NEW legend{
+#NEW legend, #EDIT legend, #modForm legend, #editForm legend{
   font-size: 20px;
   font-weight: bold;
   align-self: center;
   flex-basis: content;
+  text-align: center;
 }
 
-#NEW input, select{
+#NEW input, #NEW select, #EDIT input, #EDIT select, #editForm input, #editForm select{
   border-radius: 15px;
   text-align: center;
   width: 100%;
 }
 
-#NEW select{
+#NEW select, #EDIT select, #modForm select{
   text-indent: 45%;
 }
 
@@ -76,5 +74,9 @@ nav ul li button{
 
 #ZodiacCarousel{
   position: relative;
+}
+
+#Container{
+  margin: 0px;
 }
 
