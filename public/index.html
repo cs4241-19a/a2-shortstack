@@ -110,9 +110,8 @@
           newRow += (`<td> ${match.blue1} </td>\n`);
           newRow += (`<td> ${match.redScore} </td>\n`);
           newRow += (`<td> ${match.blueScore} </td>\n`);         
-         newRow += (`<td> <button id="update-button-${i}" class="table-button" onclick="viewUpdateForm(${i})" data-string=`
-                   + encodeURIComponent(stringOrder) +
-                   `>Edit</button> </td>\n`);
+          newRow += (`<td> <button id="update-button-${i}" class="table-button" onclick="updateMatch(${i})" data-string=`
+                   + encodeURIComponent(stringOrder) + `>Edit</button> </td>\n`);
           newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
@@ -120,7 +119,50 @@
       return false;
     }
   
-  
+  const updateMatch = async function (index) {
+    const fMH = await fetch('/m', { method: 'GET' });
+    const data = await fMH.json();
+    const matchH = data.data;
+    let htmlDiv = document.getElementById('matchTable');
+    htmlDiv.innerHTML = '<tr>\n' +
+                '<th>Match #</th>\n' + 
+                 '<th>Red</th>\n' +
+                '<th>Blue</th>\n' +
+                '<th>Score</th>\n' +
+                '</tr>';
+    
+     for (let i = 0; i < matchH.length; i++) {
+       if(i === index){
+          newRow += (`<td><input>  ${match.matchNumber} </td>\n`);
+          newRow += (`<td><input>  ${match.red1} </td>\n`);
+          newRow += (`<td><input>  ${match.blue1} </td>\n`);
+          newRow += (`<td><input>  ${match.redScore} </td>\n`);
+          newRow += (`<td><input>  ${match.blueScore} </td>\n`);         
+          newRow += (`<td> <button id="update-button-${i}" class="table-button" onclick="updateMatch(${i})" data-string=`
+                   + encodeURIComponent(stringOrder) + `>Edit</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
+          newRow += '</tr>';
+          htmlDiv.innerHTML += newRow;
+          } else{
+          const match = matchH[i];
+          const stringOrder = JSON.stringify(match[i]);
+          let newRow = '<tr>\n';
+          newRow += (`<td> ${match.matchNumber} </td>\n`);
+          newRow += (`<td> ${match.red1} </td>\n`);
+          newRow += (`<td> ${match.blue1} </td>\n`);
+          newRow += (`<td> ${match.redScore} </td>\n`);
+          newRow += (`<td> ${match.blueScore} </td>\n`);         
+          newRow += (`<td> <button id="update-button-${i}" class="table-button" onclick="updateMatch(${i})" data-string=`
+                   + encodeURIComponent(stringOrder) + `>Edit</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
+          newRow += '</tr>';
+          htmlDiv.innerHTML += newRow;
+        }
+     }
+    
+    
+    
+  }
   
   const deleteMatch = function (index) {
       const matchNumber = { matchNumber: index };
