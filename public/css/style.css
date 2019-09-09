@@ -1,17 +1,12 @@
 body {
-    margin: 0px;
-    display: flex;
+    margin: 15px;
     flex-direction: column;
     align-items: center;
     background-color: #fcebd9;
-    font-family: 'Manjari', sans-serif;
-
+    font-family: 'Noto Sans', sans-serif;
 }
 
-header {
-    position: relative;
-    width: 100%;
-    float: left;
+header, h2 {
     text-align: center;
 }
 
@@ -28,22 +23,19 @@ nav {
     display: inline;
 }
 
-h1 {
-    font-style: italic;
-    font-size: 74px;
-    margin-top: 20px;
-    margin-bottom: 0px;
-    text-align: center;
-    font-family: 'Manjari', sans-serif;
+
+table button {
+    padding: 10px 20px;
 }
 
-h2 {
+h1 {
+    font-size: 60px;
+    margin-top: 20px;
     text-align: center;
-    font-size: 1.75vw;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 h3 {
-    font-style: normal;
     font-size: 40px;
     font-size: 5vw;
     margin-top: 0px;
@@ -57,8 +49,7 @@ form {
 }
 
 th, td {
-    border-bottom: 1px solid;
-    padding: 7px;
+    padding: 50px;
 }
 
 label {
@@ -69,9 +60,7 @@ button {
     background-color: white;
     padding: 15px 30px;
     border-radius: 20px;
-    border: 2px solid black;
-  font-family: 'Manjari', sans-serif;
-
+    font-family: 'Noto Sans', sans-serif; 
 }
 
 .container {
@@ -83,7 +72,7 @@ button {
     flex-direction: column;
     height: 60%;
     width: 100%;
-    text-align: right;
+    text-align: left;
     margin-top: 20px;
     justify-content: absolute;
     white-space: nowrap;
@@ -114,14 +103,8 @@ button {
     margin-bottom: 20px;
 }
 
-.form-input .text-input {
-    display: flex;
-    flex-direction: column;
-}
-
 .form-label {
     font-size: 25px;
-    font-size: 2vw;
     margin-top: 10px;
     margin-bottom: 7px;
 }
@@ -130,8 +113,7 @@ button {
     width: 95%;
     padding: 12px;
     margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 2px;
+    border-radius: 20px;
     resize: vertical;
     font-size: 18px;
     font-size: 1.75vw;
@@ -145,18 +127,5 @@ button {
 }
 
 #cancel-btn {
-    background-color: white;
-    margin-right: 20px;
-    border: 2px solid;
-}
-
-#new-order-btn {
-    background-color: #005600;
-    border: 2px solid #005600;
-    align-self: flex-end;
-}
-
-table button {
-    padding: 5px 7px;
-    width: 100%;
+    margin-right: 30px;
 }
