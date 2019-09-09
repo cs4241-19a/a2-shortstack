@@ -78,7 +78,7 @@ body {
     padding: 0;
 }
 
-.button {
+#logoutBtn {
     background-color: dodgerblue;
     border: none;
     border-radius: 40px;
@@ -94,7 +94,88 @@ body {
     box-shadow: 0 1px 10px black;
 }
 
-.button:hover {
+#logoutBtn:hover {
+    background-color: #006eda;
+    box-shadow: 0 1px 10px black;
+    cursor: pointer;
+}
+
+.lists {
+    margin: -10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    align-content: center;
+    min-width: 1550px;
+    max-width: 1550px;
+}
+
+#listTab {
+    display: inline-block;
+    border-collapse: separate;
+    border-spacing: 40px 0;
+}
+
+.listEle {
+    width: 450px;
+    height: 500px;
+    margin: 50px;
+    padding: 10px;
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0 1px 10px black;
+}
+
+.add {
+    height: 52px;
+    width: 52px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px black;
+    background: green;
+    cursor: pointer;
+    opacity: 0.5;
+    color: white;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    transition-property: background;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}
+
+#addColumn {
+    display: inline-block;
+    vertical-align: top;
+    margin: 2px 0 0 0;
+}
+
+.add:hover {
+    background: green;
+    opacity: 1;
+}
+
+#addColumnChild {
+    line-height: 50px;
+}
+
+
+#headBtn {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 120px;
+    font-size: 1.2em;
+    font-weight: 500;
+    box-shadow: 0 1px 10px black;
+}
+
+#headBtn:hover {
     background-color: #006eda;
     box-shadow: 0 1px 10px black;
     cursor: pointer;

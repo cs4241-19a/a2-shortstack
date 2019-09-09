@@ -71,9 +71,27 @@ const handlePost = function( request, response ) {
       var email = username + "@tasktracker.com"
       var emailKey = "email"
 
+      json2 = {
+        "1" : {
+          "listname": "list1",
+          "taskNums": 1,
+          "tasks": {
+            "1": {
+              "taskName": "Add a task",
+              "taskDesc": "Add a new task or edit this one",
+              "taskDue": "The Time and Date by which task is due"
+            }
+          }
+        }
+      };
+
       json[emailKey] = email
 
-      writeUserData(json.name, json.Board, json.name, json.fullname, json.email, json.Color, json.Board)
+      writeUserData(json.name, json.Board, json.name, json.fullname, json.email, json.Color, json.Board, json2)
+    } else if(Object.keys(json).length === 3) {
+      writeUserData2(json.name, json.Board, json.listNameEdit)
+    } else if(Object.keys(json).length === 6) {
+      writeUserData3(json.name, json.Board, json.taskName, json.taskDes, json.dueDate, json.taskNum)
     }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -103,7 +121,7 @@ const sendFile = function( response, filename ) {
    })
 }
 
-function writeUserData(ref, refBoard, username, fullname, email, color, boardName) {
+function writeUserData(ref, refBoard, username, fullname, email, color, boardName, lists) {
   var usernameRef = usersRef.child(ref);
   var boardRef = usernameRef.child(refBoard);
   boardRef.set({
@@ -111,7 +129,33 @@ function writeUserData(ref, refBoard, username, fullname, email, color, boardNam
     fullname: fullname,
     email: email,
     color: color,
-    boardName: boardName
+    boardName: boardName,
+    lists: lists
+  });
+}
+
+function writeUserData2(ref, refBoard, listName) {
+  var usernameRef = usersRef.child(ref);
+  var boardRef = usernameRef.child(refBoard);
+  var listsRef = boardRef.child("lists/1");
+  listsRef.update({
+    listname: listName
+  });
+}
+
+function writeUserData3(ref, refBoard, taskName, taskDesc, taskDue, taskNum) {
+  var usernameRef = usersRef.child(ref);
+  var boardRef = usernameRef.child(refBoard);
+  var listsRef = boardRef.child("lists/1");
+  listsRef.update({
+    taskNums: parseInt(taskNum)
+  });
+  var tasksRef = listsRef.child("tasks");
+  var taskRef = tasksRef.child(taskNum)
+  taskRef.set({
+    taskName: taskName,
+    taskDesc: taskDesc,
+    taskDue: taskDue
   });
 }
 

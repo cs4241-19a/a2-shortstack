@@ -1,9 +1,10 @@
-$('#addColumnChild').click(function(){
-    $('#my-table tr').each(function(){
-        $(this).append(`<td></td>`);
+jQuery.noConflict();
+jQuery(document).ready(function() {
+    jQuery('#addColumnChild').click(function () {
+        console.log("added List")
+        jQuery('#listRow').each(function () {
+            jQuery(this).append(`<td class="listEle"></td>`);
+        });
     });
 });
 
-$('#addRowChild').click(function(){
-    $('#my-table tbody').append(`<tr>${$('#default-row').html()}</tr>`);
-});

@@ -4,10 +4,10 @@
     <title>CS4241 Assignment 2</title>
     <link href="css/task.css" rel="stylesheet" type="task/css">
     <meta charset="utf-8">
+    <script src="js/jquery.js"></script>
 </head>
 <body>
     <script src="js/formTask.js"></script>
-    <script src="js/listAdd.js"></script>
     <div id="nav" class="Heading">
         <div class="textHead" >
             <a class="textH"> TaskTracker : </a>
@@ -28,20 +28,37 @@
             </ul>
         </div>
     </div>
+    <script src="js/listAdd.js"></script>
     <div class="lists">
-        <table class="listTab">
-            <tr class="listRow">
+        <table id="listTab"  class="listTab">
+            <tr id="listRow" class="listRow">
                 <td class="listEle">
-                    <div class="imgBrd"></div>
-                </td>
-                <td class="listEle">
-                    <div class="imgList"></div>
-                </td>
-                <td class="listEle">
-                    <div class="imgMan"></div>
+                    <div class="listContent">
+                        <div class="listHead">
+                            <div class="listHeadText">
+                                <p id="listTextH" class="listTextH"></p>
+                            </div>
+
+                            <div class="listHeadText">
+                                <input class="txtBox" type="text" id="listNameEdit" placeholder="New List Name">
+                                <button id="doneBtn" class="button">Done</button>
+                            </div>
+
+                            <div class="listHeadText">
+                                <input class="txtBox" type="text" id="listEleAdd" placeholder="New Task Name">
+                                <input class="txtBox" type="text" id="listEleDesc" placeholder="New Task Description">
+                                <input class="txtBox" type="text" id="listEleDue" placeholder="Due Date">
+                                <button id="addBtn" class="button">Add</button>
+                            </div>
+
+                        </div>
+                    </div>
                 </td>
             </tr>
         </table>
+        <div id="addColumn" class="add">
+            <div id="addColumnChild"><b>+</b></div>
+        </div>
     </div>
     <p>
     </p>

@@ -38,7 +38,7 @@ const submit = function( e ) {
         })
 
     window.location = "/task.html"
-    return false
+    return true
 }
 
 window.onload = function() {
