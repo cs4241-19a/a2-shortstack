@@ -47,6 +47,8 @@ button {
 
 table {
   border-spacing: 50px 0;
+  display:flex;
+  justify-content: center;
 }
 
 #instruction {
@@ -76,8 +78,6 @@ table {
 
 #table {
   grid-area: d;
-  display:flex;
-  justify-self: center;
 }
 
 #canvas {
@@ -88,4 +88,3 @@ table {
   border: 5px dotted var(--borderColor);
   margin-right: 20%;
 }
-
