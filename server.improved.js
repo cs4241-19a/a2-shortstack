@@ -38,10 +38,10 @@ const handlePost = function(request, response) {
     dataString += data;
   });
 
+  //pushes or removes selected player from data set
   request.on("end", function() {
     newData = JSON.parse(dataString);
     if (request.url.slice(1) == "addsubmit") {
-      console.log(newData.playername);
       appdata.push(newData);
     } else if (request.url.slice(1) == "delsubmit") {
       for (let i = 0; i < appdata.length; i++) {

@@ -58,6 +58,7 @@
     </div>
   </body>
   <script>
+    //add playrs when button is pressed
     const addsubmit = function(e) {
       // prevent default form action from being carried out
       e.preventDefault();
@@ -73,19 +74,19 @@
           obj[name] = value;
         }
       }
-      //namejson = { thing: input.value };
+
       body = JSON.stringify(obj);
 
+      //fetch to add players
       fetch("/addsubmit", {
         method: "POST",
         body
-      }).then(function(response) {
-        console.log(response);
-      });
+      }).then(function(response) {});
 
       return false;
     };
 
+    //delete players when button is pressed
     const delsubmit = function(e) {
       // prevent default form action from being carried out
       e.preventDefault();
@@ -101,19 +102,19 @@
           obj[name] = value;
         }
       }
-      //namejson = { thing: input.value };
+
       body = JSON.stringify(obj);
 
+      //fetch to delete players
       fetch("/delsubmit", {
         method: "POST",
         body
-      }).then(function(response) {
-        console.log(response);
-      });
+      }).then(function(response) {});
 
       return false;
     };
 
+    //button click controls whether it adds or deletes
     window.onload = function() {
       const addbutton = document.querySelector("#addbutton");
       const delbutton = document.querySelector("#delbutton");

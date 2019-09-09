@@ -28,6 +28,7 @@
     </div>
   </body>
   <script>
+        //creates roster when button is pressed
         const submit = function(e) {
           // prevent default form action from being carried out
           e.preventDefault();
@@ -42,6 +43,7 @@
           return false;
         };
 
+        //displays roster and fantasy points as table from text
         function createRoster(text){
 
             var table = document.createElement("table");
@@ -55,13 +57,11 @@
             tr.appendChild(th);
 
             let pdata = JSON.parse(text);
-            console.log(pdata)
 
             var totalscore = 0
 
             for (let j = 0; j < pdata.length; j++) {
-                console.log("hi")
-                //calculate the number of fantasy points
+                //calculate the number of fantasy points and puts it in table
                 pd = pdata[j];
                 findpoint = pd.passYards/25 + pd.passTDs*4 + pd.rushYards/10 + pd.rushTDs*6 + pd.recYards/10 + pd.recTDs*6 + pd.turnovers*(-2)
                 tr = table.insertRow(-1);
