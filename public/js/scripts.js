@@ -50,27 +50,27 @@ const loadTable = function(data){
     let result;
   
    console.log(data);
-   console.log(data[0].firstNumber);
     for(let i = 0; i < data.length; i++){
         x = data[i].firstNumber;
         y = data[i].secondNumber;
-        operator = data[i].operator;
+        operator = data[i].operator;  
+      console.log(operator);
 
         //see what type of action we want to perform
         switch(operator){ //option in dropdown 
-            case 1: //add 
+            case "1": //add 
             result = x+y;
             operator = '+';
             break;
-            case 2: //subtract 
+            case "2": //subtract 
             result = x-y;
             operator = '-';
             break;
-            case 3:  //mutliply 
+            case "3":  //mutliply 
             result = x*y;
             operator = 'X';
             break;
-            case 4:  //divide 
+            case "4":  //divide 
             if(y === 0){ //cannot divide by zero 
               result = "undefined";
             }else {
@@ -79,15 +79,16 @@ const loadTable = function(data){
             operator = '/';
             break;
             default: 
-            result = "undedined";
+            result = "cases are not working";
             break; 
           }
-
+          console.log(operator)
+          console.log(result)
           //display row 
-          dataTable.innerHTML =  '<th>Edit</th>' + ' <th> First Number</th>'+ ' <th> Operation</th>' +
+          dataTable.innerHTML =  '<tr>' +'<th>Edit</th>' + ' <th> First Number</th>'+ ' <th> Operation</th>' +
       '<th>Second Number</th>' + '<th> Result </th>' + '<th>Delete</th>' +
-    '</tr>\n' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
-          x + operator + y + result + '<th><button class = "delete" onclick = "delExpression()" > Delete </button></th>'
+    '</tr>\n'+ '<tr>' + '<button class = "edit" onclick = "editExpression()">Edit</button>'+
+          x + operator + y + result + '<button class = "delete" onclick = "delExpression()" > Delete </button>'
     }
 }
 

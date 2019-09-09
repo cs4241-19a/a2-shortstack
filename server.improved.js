@@ -9,8 +9,8 @@ const http = require( 'http' ),
       port = 3000
 
 const appData = [
-  {'firstNumber': 55, 'operator': 3, 'secondNumber': 40}, 
-  {'firstNumber': 2, 'operator': 4, 'secondNumber': 'undefined'}
+  {'firstNumber': "55", 'operator': "3", 'secondNumber': "40"}, 
+  {'firstNumber': "2", 'operator': "4", 'secondNumber': "0"}
 ]
 
 const server = http.createServer( function( request,response ) {
