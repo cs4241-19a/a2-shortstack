@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head>
-  <body onload="occupySchedule()">
+  <body>
     <div class="title">
       Daily Schedule
     </div>
@@ -98,9 +98,6 @@
           json = { yourresponse: input.value },
           body = JSON.stringify( json ),
           answer = document.querySelector( '#answer')
-
-    //answer.innerHTML = "hi"
-
     
     fetch( '/submit', {
       method:'POST',
@@ -142,23 +139,56 @@
         
         var i;
         for(i = 0; i < info.length; i++){
-          var dayNum = dayFinder(info[i].day)
-          var timeNode = document.createTextNode(info[i].time)
-          var textNode = document.createTextNode(info[i].task)
-          var divNode = document.createElement("div")
-          var breakNode = document.createElement("br")
-          var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
-          divNode.appendChild(breakNode)
-          divNode.appendChild(timeNode)
-          divNode.appendChild(breakNode)
-          divNode.appendChild(textNode)
-          dayCol.appendChild(divNode)
+          createEvent(info[i].day, info[i].task, info[i].time);
         }
-        
-          //.appendChild(textnode);
-        //answer.innerHTML = info[1].value
+
         console.log( JSON.stringify( myJSON ) )
     })
+  }
+  
+  const addEvent = function(e) {
+    e.preventDefault();
+    var day = document.querySelector("#day").value
+    var task = document.querySelector("#task").value
+    var time = document.querySelector("#time").value
+    console.log("Day: " + day + " Time: " + time + " Task: "+ task);
+
+    var newEvent = {
+      day : document.querySelector("#day").value,
+      task : document.querySelector("#task").value,
+      time : document.querySelector("#time").value,
+    };
+    
+    var body = JSON.stringify( newEvent );
+    fetch('/submit',{
+      method: 'POST',
+      body
+    }).then( function( response ) {
+      
+      
+      
+      createEvent(day, task, time);
+
+      document.querySelector("#day").value = '';
+      document.querySelector("#task").value = '';
+      document.querySelector("#time").value = '';
+    })
+    
+    return false
+  }
+  
+  const createEvent = function(day, task, time){
+      var dayNum = dayFinder(day)
+      var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
+      var timeNode = document.createTextNode(time)
+      var textNode = document.createTextNode(task)
+      var divNode = document.createElement("div")
+      var breakNode = document.createElement("br")
+      divNode.appendChild(breakNode)
+      divNode.appendChild(timeNode)
+      divNode.appendChild(breakNode)
+      divNode.appendChild(textNode)
+      dayCol.appendChild(divNode)
   }
   
   const dayFinder = function(str) {
@@ -181,52 +211,13 @@
         return 'error'
     }
   }
-  
-  const addEvent = function(e) {
-    e.preventDefault();
-    var day = document.querySelector("#day").value
-    var task = document.querySelector("#task").value
-    var time = document.querySelector("#time").value
-    console.log("Day: " + day + " Time: " + time + " Task: "+ task);
-
-    var newEvent = {
-      day : document.querySelector("#day").value,
-      task : document.querySelector("#task").value,
-      time : document.querySelector("#time").value,
-    };
-    
-    var newEventInfo = JSON.stringify( newEvent );
-    fetch('/submit',{
-      method: 'POST',
-      body
-    }).then( function( response ) {
-      var dayNum = dayFinder(info[i].day)
-      var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
-      var timeNode = document.createTextNode(info[i].time)
-      var textNode = document.createTextNode(info[i].task)
-      var divNode = document.createElement("div")
-      var breakNode = document.createElement("br")
-      divNode.appendChild(breakNode)
-      divNode.appendChild(timeNode)
-      divNode.appendChild(breakNode)
-      divNode.appendChild(textNode)
-      dayCol.appendChild(divNode)
-
-      document.querySelector("#day").value = '';
-      document.querySelector("#task").value = '';
-      document.querySelector("#time").value = '';
-  })
-  }
 
   window.onload = function() {
+    occupySchedule();
+    
     const button = document.querySelector( '#submit' )
     button.onclick = addEvent
   }
-    
-
-    
-    
-
     
 
   </script>
