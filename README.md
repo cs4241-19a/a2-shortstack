@@ -79,6 +79,8 @@ Depending on what they answered for the survey question, their character will be
 - CSS selectors (element, id, and class)
 - CSS positioning (horizontal: table, side by side: title/image and form)
 - CSS in external stylesheet
+- Javascript
+- Node.js
 
 ## Technical Achievements
 - **Colored Rows (Technical)**: Depending on which House the character is in, the row will be colored in the House's main color (Gryffindor is red, 
