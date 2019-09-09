@@ -2,22 +2,149 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta charset="utf-8">
+   <!-- <script type="text/javascript">
+      function computeBMI()
+      {
+        //Obtain user inputs
+        var height=Number(document.getElementById("height").value);
+        var heightunits=document.getElementById("heightunits").value;
+        var weight=Number(document.getElementById("weight").value);
+        var weightunits=document.getElementById("weightunits").value;
+
+
+        //Convert all units to metric
+        if (heightunits=="inches") height/=39.3700787;
+        if (weightunits=="lb") weight/=2.20462;
+
+        //Perform calculation
+        var BMI=weight/Math.pow(height,2);
+
+        //Display result of calculation
+        document.getElementById("output").innerText=Math.round(BMI*100)/100;
+
+        if (output<18.5)
+          document.getElementById("comment").innerHTML = "Underweight";
+        if (output>=18.5 && output<=25)
+          document.getElementById("comment").innerHTML = "Normal";
+        if (output>=25 && output<=30)
+          document.getElementById("comment").innerHTML = "Obese";
+        if (output>30)
+          document.getElementById("comment").innerHTML = "Overweight";
+        //document.getElementById("answer").value = output;
+      }-->
+    <!--</script> -->
+
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+  <img src="https://amp.businessinsider.com/images/5b280cb81ae66240008b5403-750-563.jpg" alt="planking" align="right" height="300" width="500">
+  <h1>Start Your Fitness Journey Now</h1>
+<!--  <form name="calculateBMI">-->
+<!--    <table>-->
+<!--      <td>-->
+<!--        <input type="text" name="display" id="display" disabled>-->
+<!--      </td>-->
+<!--    </table>-->
+<!--  </form>-->
+<!--  <main>-->
+<!--    <section class="display-BMI">-->
+<!--  <form onsubmit="return false" oninput="getBMI();">-->
+
+<!--    Enter your name: <input name="name" id="name" type="text">-->
+
+<!--    <br />-->
+
+<!--    Height<input name="height" id="height" type="text">-->
+
+<!--    <br />-->
+
+<!--   Weight<input name="weight" id="weight" type="text">-->
+
+<!--    <br />-->
+
+<!--    Your BMI is:  <output name="finalBMI" id="finalBMI" for="name height weight"></output>-->
+<!--<form onsubmit="return false" oninput="getBMI();">-->
+<!--          <label for="name">Here Enter your name:</label>-->
+<!--           <input id='name' type="text">-->
+<!--          <label for="height">Here Enter your height:</label>-->
+<!--          <input id='height' type="text" required>-->
+<!--          <select type="multiple" id="heightunits">-->
+<!--            <option value="inches" selected="selected">inches</option>-->
+<!--            <option value="metres">metres</option>-->
+<!--          </select>-->
+<!--          <label for="weight">Here Enter your weight:</label>-->
+<!--          <input id='weight' type="text" required>-->
+<!--          <select type="multiple" id="weightunites">-->
+<!--            <option value="lb" selected="selected">pounds</option>-->
+<!--            <option value="kg">kilograms</option>-->
+<!--          </select>-->
+
+<!--&lt;!&ndash;        Your BMI is: <output name="finalBMI" id="finalBMI" for="name height weight"></output>&ndash;&gt;-->
+<!--  <input onclick="showInput()" type="submit" type="button" value="Calculate!" onclick="getBMI();">-->
+
+<!--  <p><button onclick="getBMI()" type="button">Calculate!</button></p>-->
+<!--      </form>-->
+
+<!--  <h2>Your BMI is: <span id="display"></span></h2>-->
+  <p>Enter your name: <input type='text' id='yourname'></p>
+  <p>Enter your height: <input type="text" id="height"/>
+    <select type="multiple" id="heightunits">
+      <option value="metres" selected="selected">metres</option>
+      <option value="inches" selected="selected">inches</option>
+      <option value="metres">metres</option>
+    </select>
+  </p>
+  <p>Enter your weight: <input type="text" id="weight"/>
+    <select type="multiple" id="weightunits">
+      <option value="lb" selected="selected">pounds</option>
+      <option value="kg">kilograms</option>
+    </select>
+  </p>
+  <input type="submit" value="Calculate!!!" onclick="getBMI()">
+  <h1>Your BMI is: <span id="output">?</span></h1>
+
   </body>
+
+
+<!--
+  </form>
+  <input type="text" id="result" name="bmi[]" value=""/>
+  link name: <input type="text" id="name">
+  <button onclick="saveSubmissions()"; return false"> save submission</button>-->
+  <!--<p>Enter your name: <input type='text' id='yourname'></p>
+  <p>Enter your height: <input type="text" id="height"/>
+    <select type="multiple" id="heightunits">
+      <option value="inches" selected="selected">inches</option>
+      <option value="metres">metres</option>
+    </select>
+  </p>
+  <p>Enter your weight: <input type="text" id="weight"/>
+    <select type="multiple" id="weightunits">
+      <option value="lb" selected="selected">pounds</option>
+      <option value="kg">kilograms</option>
+    </select>
+  </p>
+  <input type="submit" type="button" value="Submit" onclick="return computeBMI();">
+  <h1>Your BMI is: <span id="output">?</span></h1>
+
+  <h2>This means you are: <span id="comment">?</span></h2>-->
+  <!--    <form action="">
+        <input type='text' id='yourname' value="your name here">
+        <input type='text' id='height' value="enter your height">
+        <input type='text' id='weight' value="enter your weight">
+        <button>submit</button>--><!--
+         </div>
+      </form>
+  </body>-->
   <script>
 
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const input = document.querySelector( '#name' ),
+          json = { name: input.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
@@ -25,7 +152,8 @@
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
+      // do something with the response
+      localStorage.setItem('name', 'name');
       console.log( response )
     })
 
@@ -38,4 +166,15 @@
   }
 
   </script>
+
+<script>
+  function results() {
+    var name = document.getElementById('name').value;
+    var bmi = document.getElementById('comment').value;
+
+    document.write(name + "<br/>");
+    document.write(bmi + "<br/>");
+  }
+</script>
+  </body>
 </html>
