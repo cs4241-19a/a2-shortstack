@@ -12,6 +12,10 @@ const appdata = [
   { 'matchNumber':2,'red1': 6439, 'blue1': 359, 'redScore': 23, 'blueScore':32 } 
 ]
 
+const appdata2 = [
+  {}
+]
+
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response )    
@@ -55,6 +59,17 @@ const handlePost = function( request, response ) {
         'blueScore':MR.blueScore
       }
       appdata.push(newMR);
+      for(let i=0;i<appdata.length;i++){
+        for(let j=0;i<appdata2.length;j++){
+          if(appdata[i].red1===appdata[j].team || appdata[i].blue1===appdata[j].team ){
+            
+          }
+      }
+      const newRR = {
+        'team':,
+        'WLT':,
+        'WP':,
+      }
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
 
