@@ -3,6 +3,17 @@ body, html {
     height: 100%;
 }
 
+h2 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+#title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 400%;
+}
+
 .link {
   color: black;
 }
@@ -10,12 +21,6 @@ body, html {
 .icon {
   margin-top: 20px;
   
-}
-
-#title {
-  font-family: 'Roboto', sans-serif;
-  font-weight: bold;
-  font-size: 400%;
 }
 
 .slogan {
