@@ -40,16 +40,6 @@ body {
   border-bottom: 3px solid white;
 }
 
-
-.boardsection[data-board] .tasklist  {
-  width:100%;
-  color: white;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  padding-left: .25em;
-  
-}
-
 .boardsection[data-board] .header {
   color: white;
   text-align: center;
@@ -57,6 +47,15 @@ body {
   padding-top: .75em;
   padding-bottom: .75em;
 
+}
+
+.boardsection[data-board] .tasklist  {
+  width:100%;
+  color: white;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  padding-left: .25em;
+  font-size: 12px;
 }
 
 .menu {

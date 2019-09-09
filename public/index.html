@@ -140,17 +140,41 @@
     })
       .then( function( myJSON ) {
         var info = myJSON.data
-        var textNode = document.createTextNode(info[0].task)
-        var dayCol = document.querySelector(".boardsection[data-board='day_1'] .tasklist")
-        dayCol.appendChild(textNode);
+        
+        var i;
+        for(i = 0; i < info.length; i++){
+          var dayNum = dayFinder(info[i].day)
+          var textNode = document.createTextNode(info[i].task)
+          var dayCol = document.querySelector(".boardsection[data-board='"+ dayNum +"'] .tasklist")
+          dayCol.appendChild(textNode);
+
+        }
         
           //.appendChild(textnode);
         //answer.innerHTML = info[1].value
-        
-      
-        console.log( info[1] )
         console.log( JSON.stringify( myJSON ) )
     })
+  }
+  
+  const dayFinder = function(str) {
+    switch(str.trim().toLowerCase()) {
+      case 'sunday':
+        return 'day_1'
+      case 'monday':
+        return 'day_2'
+      case 'tuesday':
+        return 'day_3'
+      case 'wednesday':
+        return 'day_4'
+      case 'thursday':
+        return 'day_5'
+      case 'friday':
+        return 'day_6'
+      case 'saturday':
+        return 'day_7'
+      default: 
+        return 'error'
+    }
   }
   
   const addEvent = function(e) {
@@ -178,7 +202,6 @@
   }) 
 
   window.onload = function() {
-    
     const button = document.querySelector( '#submit' )
     button.onclick = addEvent
   }
