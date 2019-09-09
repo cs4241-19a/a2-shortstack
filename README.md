@@ -25,30 +25,15 @@ CSS:
     - CSS to cause at least one pair of elements to appear side-by-side
     - CSS defined in a maintainable, readable form, in external stylesheets 
 
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
 
 Natalie Bloniarz - Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ---
 
 ## Celebrity Horoscope Database
-The purpose of this application is to generate and store zodiac signs of inputed people.
-The main problem the application addresses is the need to look up the zodiac 
+The purpose of this comedy.
+The application calcualtes zodiac signs based on a given birthdate, and gives users the opportunity to revieve a random horoscope for a person entered into the database.
+(All horoscopes were generated using https://www.wordblanks.com/mad-libs/misc/story_137920/played/4032093/?new=1)
+An area for future expanision would be the addition of a persistant database.
 
 Here is a sample formula for summarizing your activities, talk about:
 - the domain area the project pertains to
@@ -57,13 +42,14 @@ Here is a sample formula for summarizing your activities, talk about:
 - the main results of the implementation, does it really address the problem?
 - any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
 
 http://a2-nbloniarz.glitch.me
 
 ## Technical Achievements
 - **Dynamic Dropdowns**: When adding or modifying information in the database, the dropdown for the day of the month dynamically changes based on the month selected. 
 - **Dynamic Displays**: The buttons on the navigation bar at the top of the page dynamically hide/show the relevant functionalities of the buttons
+- **Completed Server Logic**: The user can add, modify, and delete, multiple pieces of infomation per visit. Additionally The user is not allowed to add duplicate information
+
 
 ### Design/Evaluation Achievements
 - **Bootstrap Carousel**: Implemented a bootstrap carousel displaying zodiac images. Adapted from https://www.w3schools.com/bootstrap/bootstrap_carousel.asp
