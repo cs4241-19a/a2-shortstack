@@ -16,7 +16,6 @@ input, button {
     height: 400px;
 }
 
-
 .bg-login-image {
     background: url("https://lh3.googleusercontent.com/eAy0MKw8o274YHXUyZXbMvBjHTZ9JqowvgzIq_E3VfdywogrBCKm0nWHmvQBULt-Jh8tjOrwy-jIU4YcXYJvtHmxJ3C7BmDwEZqkWgZloOfiZuJvI_m6hu36AnwTXqnCgHhP4sV287NR0u_y8eHe07KK3EasCis2hExUJ8GqUX3txXWp-ZhfYfRj8uQu41M6UWf5sV4EWjUJ0Q2YPWK6uhvUKTXGr-j731Qa2HvBVBgxuRPCouf2Om0w7AcoYbz-iXohczHoffAJNr-JoupFMFZ1XyeSgDjiUyTWC_tzb6Omm-af3BVBzjNDsDUEdGWQ9Is-PoDtBuSfJ4c5_UqTIzsn3O67Q_9vySKgK0aXzOOrzilK4IZk7_86V1PxlKANsJ4Ss3-xVfgmyhMbVwUUax3mOos2Z9yXf3M_lKMU2HY9_yLTbJFYRJ23Pf8liRj7WADQ5JM_FU2se5WoCfRb1BCLAhKLZ0dmRBXj3eZxdQAr5td_CMDLsXjth0IMN5znklkKkTynL_0OFc5FhpUDIKfHPh6ioLRqs6FJBIadIldTE5A2f7eyCI6eb9BlS0yhf4UvM0MqOOb5IBalj4ZZUeFNS9PoD34Rl7kLfoVM3fymT9LuW7k3y29PmLzoZecKxUkiir0daahi0dLeYCV8z69ab9ovrl4WICwYWDtipo9Gz1Wf34dTlgs=w460-h613-no");
     background-position: center;
@@ -37,4 +36,17 @@ table.dataTable tbody tr.selected {
 .page-item.active .page-link {
     background-color: #36b9cc;
     border-color: #36b9cc;
+}
+
+/* Bubble Chart */
+.node text {
+    fill: white;
+}
+
+.node:hover {
+    opacity: 0.8;
+}
+
+#word-muse {
+    font-family: Nunito, sans-serif;
 }

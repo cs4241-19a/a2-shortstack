@@ -3,35 +3,8 @@
  * Angular.js App
  */
 
-/**
- * TODO: Zoom word bubble, make prettier
- * TODO: All css requirmements
- */
-
 var app = angular.module("dashboardApp", []);
 app.controller("dashboardCtrl", function ($scope) {
-
-    /** MyScript Handwriting Recognition **/
-    const editorElement = document.getElementById('editor');
-    const configuration = {
-        recognitionParams: {
-            type: 'TEXT',
-            protocol: 'WEBSOCKET',
-            apiVersion: 'V4',
-            server: {
-                applicationKey: 'b62eb6b0-53c7-4004-bd95-8a824c6fcd7e',
-                hmacKey: '572eac2b-be25-43d8-a16e-204ed2076ef4'
-            }
-        }
-    };
-    MyScript.register(editorElement, configuration);
-    editorElement.addEventListener('exported', function (evt) {
-        var exports = evt.detail.exports;
-        if (exports && exports['text/plain']) {
-            $("#comment").val(exports['text/plain']);
-        }
-    });
-
 
     // Angular Vars
     $scope.totalEntries = 0;
@@ -76,6 +49,27 @@ app.controller("dashboardCtrl", function ($scope) {
         });
     }
 
+    /** MyScript Handwriting Recognition **/
+    const editorElement = document.getElementById('editor');
+    const configuration = {
+        recognitionParams: {
+            type: 'TEXT',
+            protocol: 'WEBSOCKET',
+            apiVersion: 'V4',
+            server: {
+                applicationKey: 'b62eb6b0-53c7-4004-bd95-8a824c6fcd7e',
+                hmacKey: '572eac2b-be25-43d8-a16e-204ed2076ef4'
+            }
+        }
+    };
+    MyScript.register(editorElement, configuration);
+    editorElement.addEventListener('exported', function (evt) {
+        var exports = evt.detail.exports;
+        if (exports && exports['text/plain']) {
+            $("#comment").val(exports['text/plain']);
+        }
+    });
+
     $scope.deleteRow = function () {
         fetch('/' + currentUser.uid + '/' + $scope.selectedRow['entry-key'], {
             method: 'DELETE',
@@ -88,7 +82,6 @@ app.controller("dashboardCtrl", function ($scope) {
     };
 
     $scope.updateRow = function () {
-
         if ($("#updateTitle").val() == "" || $("#updateBody").val() == "" || $("#updateDate").val() == "") {
             alert("Don't post empty messages!");
             return;
@@ -290,6 +283,21 @@ app.controller("dashboardCtrl", function ($scope) {
             .attr("height", diameter)
             .attr("class", "bubble");
 
+        //Container for the gradients
+        var defs = svg.append("defs");
+
+        //Filter for the outside glow
+        var filter = defs.append("filter")
+            .attr("id", "glow");
+        filter.append("feGaussianBlur")
+            .attr("stdDeviation", "4.5")
+            .attr("result", "coloredBlur");
+        var feMerge = filter.append("feMerge");
+        feMerge.append("feMergeNode")
+            .attr("in", "coloredBlur");
+        feMerge.append("feMergeNode")
+            .attr("in", "SourceGraphic");
+
         var nodes = d3.hierarchy(the_frequencies)
             .sum(function (d) {
                 return d.Count;
@@ -320,11 +328,11 @@ app.controller("dashboardCtrl", function ($scope) {
                 return color(i);
             })
             .on("mouseover", function (d, i) {
-                d3.select(this).style("fill", "red");
+                d3.select(this).style("filter", "url(#glow)")
                 showWordData(d.data.Name)
             })
             .on("mouseout", function (d, i) {
-                d3.select(this).style("fill", color(i));
+                d3.select(this).style("filter", "")
             });
 
         // Word
@@ -334,12 +342,9 @@ app.controller("dashboardCtrl", function ($scope) {
             .text(function (d) {
                 return d.data.Name.substring(0, d.r / 3);
             })
-            .attr("font-family", "sans-serif")
             .attr("font-size", function (d) {
                 return d.r / 5;
-            })
-            .attr("fill", "white");
-
+            });
         // Count
         node.append("text")
             .attr("dy", "1.3em")
@@ -350,8 +355,7 @@ app.controller("dashboardCtrl", function ($scope) {
             .attr("font-family", "Gill Sans", "Gill Sans MT")
             .attr("font-size", function (d) {
                 return d.r / 5;
-            })
-            .attr("fill", "white");
+            });
 
         d3.select(self.frameElement)
             .style("height", diameter + "px");
