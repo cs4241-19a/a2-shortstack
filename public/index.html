@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
   <script src="lib/jquery/jquery.js"></script>
   <script src="lib/jquery/jquery.slim.min.js"></script>
+
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -80,6 +81,7 @@
 
 </body>
 <script>
+
     window.localStorage;
     localStorage.setItem('token', token.value);
     localStorage.setItem('currentGrade', currentGrade.value);
@@ -87,7 +89,6 @@
     localStorage.setItem('finalWorth', finalWorth.value);
     const submit = function (e) {
         e.preventDefault();
-
         const currentGrade = document.querySelector('#currentGrade'),
             desired = document.querySelector('#desired'),
             finalWorth = document.querySelector('#finalWorth'),
