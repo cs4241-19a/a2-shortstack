@@ -1,1 +1,79 @@
-/*Style your own assignment! This is fun! */
+body{
+  background-image: url('https://cdn.glitch.com/1a8d2ad7-a868-4aaa-b0eb-cdcb02e00e93%2Flibrary2.0.jpg?v=1567996005197');
+  background-size: 100%; 
+  background-position:top;
+  background-origin:content-box;
+
+}
+
+#myHeader{
+  color: #170D8C;
+  text-align: center; 
+  font-family: "Courier";
+  font-size: 30px;
+  padding-left: 20px;
+  
+}
+
+h2 {
+  color: #170D8C;
+  text-align: center;
+  font-family: "Courier";
+  font-size: 20px;
+}
+
+#button{
+  
+  border-radius: 2px;
+  background-color: #170D8C;
+  color: white; 
+  border: 2px solid #170D8C;
+  font-size: 16px;
+}
+
+#author{
+  text-align: left;
+  color: #C5BABA;
+}
+
+#title{
+  text-align: left;
+  color: #C5BABA;
+}
+
+#comment {
+  text-align: left;
+  color: #C5BABA;
+}
+
+#userInput{
+  text-align: center;
+}
+
+.topnav{
+  background-color: #170D8C;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: white; 
+  text-align: left; 
+  padding: 14px 16px; 
+  text-decoration: none; 
+  font-size: 17px;
+  
+}
+
+.topnav a:hover {
+  background-color: #80C6FF;
+  color: white;
+  
+  
+}
+
+.topnav a.active {
+  background-color: #170D8C;
+  color: white;
+}
+
