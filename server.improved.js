@@ -22,6 +22,7 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  }else if(request.url === '/retrieve'){handleRetrieve(request,response)
   }else{
     sendFile( response, filename )
   }
@@ -29,9 +30,41 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   if(request.url === '/submit'){ handleSubmit(request,response)}
-    else if(request.url === '/retrieve'){handleRetrieve(request,response)}
+    else if(request.url === '/del'){handleDelete(request,response)}
     else{return false}//some kind of error necessary here
 
+}
+
+const handleDelete = function(request,response){
+  let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data
+  })
+
+  request.on( 'end', function() {
+    console.log(dataString);
+    let obj=JSON.parse( dataString );
+    let dName=obj['yourname'];
+    let dInd=0;
+
+    let newData2={ 'name': dName }
+    console.log(newData2);
+    for(let i=0;i<scopeData2.length;i++){
+      if(dName === scopeData2[i].name){
+        console.log(dName+", "+scopeData2[i].name)
+        dInd=i;
+        break;
+      }
+    delete scopeData2[dInd];
+    }
+
+    console.log('scopeData2:');
+    console.log(scopeData2);
+
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end(JSON.stringify(newData2))
+  })
 }
 
 const handleSubmit= function(request,response){
@@ -44,9 +77,6 @@ const handleSubmit= function(request,response){
   request.on( 'end', function() {
     console.log(dataString);
     let obj=JSON.parse( dataString );
-    // console.log("handlePost: "+obj );
-    // console.log("name: "+obj['yourname']);
-    // console.log("bday: "+obj['BDay']);
     let name=obj['yourname'];
     let date=obj['BDay'];
     let mon = parseInt(date.substring(5,7));
