@@ -107,7 +107,7 @@ const PostValidation = {
 
 const FileManager = {
   saveJSON: function(jsonFile) {
-    const eventHash = "testHash"; // TODO: SWITCH this
+    const eventHash = "exampleEvent3"; // TODO: SWITCH this
     jsonFile.potentialDates = this.converDayRangeToArray(jsonFile.potentialDates); 
     fs.writeFile('./public/events/' + eventHash + '.json', JSON.stringify(jsonFile), function (err) {
       if (err) throw err;

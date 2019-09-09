@@ -1,90 +1,67 @@
-Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
-===
-
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
-
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
-
-Baseline Requirements
----
-
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
-
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
-
-Your application is required to implement the following functionalities:
-
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
 
 JavaScript:
 - At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
 
 Node.js:
 - An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
+## When To Meet
+My web application provides users the ability to plan events with friends, without the need to sign in.
 
-Deliverables
----
+I was inspired to make this applicaiton by the website www.When2Meet.com, a site I have used 1 too many times. The UI is cumbersome, especially on mobile devices. I couldn't stand using this application when I knew I could create a better version. My site would allow users to plan events just like When2Meet.com, but with a much better UI. The main focus on this project was user friendly UI elements, that would work just as well on mobile as on desktop. The site does everything When2Meet does but just better.
 
-Do the following to complete this assignment:
+As it stands today, the application only can plan 1 event at a time. Meaning everytime an event is created, it overrides the existing event. However, all the functionality for planning multiple events is already incorporated except for the backend generating a unique id for each event. To demonstrate the ability that my application has to plan multiple events, I created additional example events which I will talk more about later.
 
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourTeamName` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
+http://a2-jgerulskis.glitch.me
 
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
-
-## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+### Technical Achievements
+- **Tech Achievement 1**: 2 post request types (1 in eventCreationHandler.js, 1 in eventViewerHandler.js), one creates an event, another modifys the events availibilty (2 forms)
+- **Tech Achievement 2**: Front end and back end post request validation to prevent malicous intent ('FormValidation'). It mainly checks the input to make sure it is properly formatted.
+- **Tech Achievement 3**: Dynamically created table based on a event details JSON file (In eventViewerHandler.js)
+- **Tech Achievement 4**: Dynamically created tabled cell 'click' event callbacks utilizing closure (In eventViewerHandler.js)
+- **Tech Achievement 5**: The ability to manage / parse request for infinite amount of events given they all have a different ID (In In eventViewerHandler.js / server.improved.js)
+- **Tech Acheivement 6**: JQuery to bind UI elements to HTML, and dynamically inject navbar
+- **Tech Acheivement 7**: Used library MomentJS to do operation on DateTimes on the backend. Flatpicker gives the backend a range formatted like yyyy-mm-dd to yyyy-mm-dd. I convert that to an array of dates between the two. It is then given to the client when viewing the event like [yyyy-mm-dd, yyyy-mm-dd, yyyy-mm-dd, ....]
+- **Tech Acheivement 8**: Used file system on backend to make events persist as JSONs
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Design Achievement 1**: Bootstrap CDN to quickly create layouts / navigation bar
+- **Design Achievement 2**: Used library Flatpickr to create the DateTime UIs on the event creation page. Used native UI on mobile browsers. Key to a user friendly mobile experience.
+- **Design Achievement 3**: Custom logo in top left of nav bar.
+- **Desgin Achievement 4**: On the event viewer page, the cells with some available people has a custom calculated alpha value intended to create a quick way to determine availabilty. Ex: a cell with 4/5 available people will be much less transperant than a cell with 1/5 availabilty. This makes it easy to view.
+- **Design Achievement 5**: Added a gradient background to the body of the html.
+- **Desing Achievement 6**: CSS selectors using IDs
+- **Design Achievement 7**: CSS to cause form input fields to be horizontally centered on the page
+- **Design Achievement 8**: CSS to cause table cells of elements to appear side-by-side
+- **Design Achievement 9**: CSS defined in a maintainable, readable form, in external stylesheets 
 
+### How to use
+- **Create an event from /index.html or /**
+- **View event or add availability at /viewEvent?exampleEvent3**
+- **Share the link with whoever else you want to plan with**
+- **Happy planning!**
 
-Used flatpickr version 4 > https://flatpickr.js.org/getting-started/
+### Demonstration of ability to create infinite events on the server once unique ID function is implemented
+- **Use Case 1**: Jack's birthday party! view at /viewEvent.html?exampleEvent1
+- **Use Case 2**: Software Engineering Retrospective! view at /viewEvent.html?exampleEvent2
+- **Events created in index.html**: Your event! view at /viewEvent.html?exampleEvent3
+- Line 110 in server.improved creates the hardcoded event ID, that is where a unique id function should be implemented for the future. Since it is hardcoded it creating new events overrides the hardcoded exampleEvent3 json.
+
+### Requirements
+- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
+
+Saves and serves events JSONs from the event folder in the public directory.
+
+- a `Results` functionality which shows the entire dataset residing in the server's memory
+
+the /viewEvent?exampleEvent3 page allows you to view entire dataset of a specific event
+
+- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
+
+You can create events at index.html, and add your availibilty to the event on the viewEvent.html page
+
+- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
+
+Although I do not explicitly add a new field, I strongly beleive my date conversion as explained in my tech acheivements sufficiently fulfills this requirement. Flatpicker gives the backend a range formatted like yyyy-mm-dd to yyyy-mm-dd. I convert that to an array of dates between the two. It is then given to the client when viewing the event like [yyyy-mm-dd, yyyy-mm-dd, yyyy-mm-dd, ....] instead of as a range. Although this isn't an additional field, it is a derivative field of what we were originally given based on the input. 
+
+Flatpickr > https://flatpickr.js.org/getting-started/
+MomentJS  > https://momentjs.com/
