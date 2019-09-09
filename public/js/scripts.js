@@ -175,7 +175,6 @@ function results() {
     fetch('/results.html', {
         method: 'GET'
     }).then(function(response) {
-
     })
 }
 

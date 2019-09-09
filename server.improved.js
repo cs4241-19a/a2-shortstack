@@ -108,13 +108,11 @@ const sendFile = function(response, filename) {
 	console.log(filename)
 
 	fs.readFile(filename, function(err, content) {
-		console.log('1')
 		 // if the error = null, then we've loaded the file successfully
 		if (err === null) {
 			 // status code: https://httpstatuses.com
-			 console.log('2')
 			 response.writeHeader(200, {'Content-Type': type})
-			 response.end(content)
+			 response.end(content, 'utf-8')
 		} else {
 			 // file not found, error code 404
 			response.writeHeader(404)
