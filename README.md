@@ -2,7 +2,7 @@ You Final Exam Grade Calculator
 ===
 http://a2-eos7l.glitch.me
 
-This website takes your current overall grade for a particular class, your desired minimum overall grade in class, the final exam weight, and the course title, and computes the minimum percentage grade required on the final exam.
+This website takes your current overall grade for any class, your desired minimum overall grade in class, the final exam weight, and the course title, to compute the minimum percentage grade required for you to score on the final exam.
 
 To fulfill the requirements:
 ---
@@ -20,8 +20,8 @@ To fulfill the requirements:
 Goals:
 ---
 - This website is designed to help students better understand their grades and keep things organized so they can balance their workload particularly during the final exam time. 
-- Currently this website does fulfill what it is designed for but unfortunately I really could not figure out how to make the delete/modify work with Firebase and it is too late for me to go back.
 - Because of the update functionality, students can constantly change their current grade in class in order to better monitor their progress. 
+- If a student decides to drop/NR certain class, he/she can utilize the delete function to delete the data entry. 
 
 Main Challenges:
 ---
@@ -32,21 +32,21 @@ Main Challenges:
 
 Implications:
 ---
-- Right now this website is really meant to be used by one person, because of the way the database is coded. The database takes the course title as the key so any other entry with the same course title will overwrite the database. I don't have enough time to manipulate around with it. However in the future, a password authentication step is surely needed in order to ensure the privacy for different users. 
-- I am not sure why I cannot make certain CSS styles apply to the second HTML page even when I tried with the "!important" tag to override anything else. Namely, I wanted to make he table round-edged, as well as set the header to be relatively higher than the table. Not working though. I also attempted to add some animation with either CSS or JS libraries and they are malfunctioning as well. The console did not alert me anything and I am wondering if it is due to the bootstrap slider. 
-- This code currently doesn't have any input checking algorithm. It should be fairly easy to implement later using php libraries though.
+- Right now this website is really meant to be used by one person, because of the way the database is coded. The database takes the course title as the key so any other entry with the same course title will overwrite the database. I don't have enough time to manipulate around with it. However in the future, a password encryption step is surely needed in order to ensure the privacy for different users. 
+- I am not sure why I cannot make certain CSS styles apply to the second HTML page even when I appended the "!important" tag to override anything else. Namely, I wanted to make he table round-edged, as well as set the header to be relatively higher than the table. Not working though. I also attempted to add some animation with either CSS or JS libraries and they are malfunctioning as well. The console did not alert me anything and I am wondering if it is due to the bootstrap slider. 
+- This code currently doesn't have any input checking algorithm. It should be fairly easy to implement later using PHP libraries though.
 
 
 Achievements:
 ---
 ### Technical:
 - I used Firebase to store my data while also maintaining a local dataset. 
-- Created a bootstrapped responsive data from scratch which maintained a consistent color scheme. 
+- I created a bootstrapped responsive data from scratch which maintained a consistent color scheme. 
 - I learned to use local storage in order to build the bridge between the first and second page (right now this is not necessary because I don't have any password encryption but it can be useful if I implement that).
 
 ### Design:
 - I implemented a slider for the front page. The example slider code is found here: https://startbootstrap.com/snippets/full-slider/
-- I coded the form entry textbox and table from scratch. I also tried my best to maintain a consistent style throughout all HTML pages(including color and font choices).
+- I coded the form entry textbox and table from scratch. I also tried my best to maintain a consistent style throughout all HTML pages (including color and font choices).
 - I modified this template and turned it into my Results page: https://templatemag.com/demo/GlobalLanding/. It was difficult to make the layering work properly because of the interaction with the particles. P.S.: In A1 I could not accomplish having both the particles interaction in the background as well as the buttons clickable in the front, but this time it is working. 
 
 
