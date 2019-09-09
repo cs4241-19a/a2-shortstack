@@ -126,11 +126,11 @@
   }
     
   const updateRow = function(rowIndex){
-    let newModel = document.querySelector('model'+rowIndex).value
-    let newYear = document.querySelector('year'+rowIndex).value
-    let newMPG = document.querySelector('mpg'+rowIndex).value
-    let newDistance = document.querySelector('tripDistance'+rowIndex).value
-    let newGasPrice = document.querySelector('gasPrice'+rowIndex).value
+    let newModel = document.getElementById('model'+rowIndex).value
+    let newYear = document.getElementById('year'+rowIndex).value
+    let newMPG = document.getElementById('mpg'+rowIndex).value
+    let newDistance = document.getElementById('tripDistance'+rowIndex).value
+    let newGasPrice = document.getElementById('gasPrice'+rowIndex).value
     
     const json ={
       'model': newModel,
@@ -188,7 +188,7 @@
 
       for(let i = 0; i < theCarData.length; i++){
         const cars = theCarData[i];
-        let newLine = '<tr>\n';
+        let newLine = '<tr>';
         
         if(i===updateIndex){
           newLine+=('<td>' +cars.model+ '</td>');
