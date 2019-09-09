@@ -24,7 +24,7 @@
           Monday
         </div>
         <div class="tasklist" day="2">
-          thing
+          
         </div>
       </div>
       <div class="boardsection" data-board="day_3">
@@ -32,7 +32,7 @@
           Tuesday
         </div>
         <div class="tasklist" day="3">
-          thing
+          
         </div>
       </div>      
       <div class="boardsection" data-board="day_4">
@@ -40,7 +40,7 @@
           Wednesday
         </div>
         <div class="tasklist" day="4">
-          thing
+          
         </div>
       </div>
       <div class="boardsection" data-board="day_5">
@@ -133,7 +133,7 @@
     return false
   }
   
-  const occupyText = function() {
+  const occupySchedule = function() {
     fetch( '/information' )
       .then( function( response ) {
         console.log( response )
@@ -142,28 +142,40 @@
       .then( function( myJSON ) {
         var info = myJSON.data
         answer.innerHTML = info[1].value
-      
+        
       
         console.log( info[1] )
         console.log( JSON.stringify( myJSON ) )
     })
   }
+  
+  const addEvent = function(e) {
+  e.preventDefault();
+  var newEvent = {
+    day : document.querySelector("#day").value,
+    task : document.querySelector("#task").value,
+    time : document.querySelector("#time").value,
+  };
+  var newEventInfo = JSON.stringify( newEvent );
+  fetch('/submit',{
+    method: 'POST',
+    body
+  }).then( function( response ) {
+    document.querySelector( document.querySelector("#day").value ).appendChild(document.querySelector("#task").value)
+
+    document.querySelector("#day").value = '';
+    document.querySelector("#task").value = '';
+    document.querySelector("#time").value = '';
+  }) 
 
   window.onload = function() {
+    occupySchedule()
+    
     const button = document.querySelector( '#submit' )
     button.onclick = submit
-    
   }
     
-  const addEvent = function(e) {
-    e.preventDefault();
-    var newEvent = {
-      day : document.querySelector("#day").value,
-      task : document.querySelector("#task").value,
-      time : document.querySelector("#time").value,
-    };
-    
-    var eventInfo = JSON.stringi
+
     
     
     
