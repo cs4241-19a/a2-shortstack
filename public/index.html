@@ -43,6 +43,18 @@
         <br>Note: Value is happily estimated from year and mpg of a car.
         <br>Declaration: All the info is for recreational purpose. DO NOT USE FOR REAL.
       </p>
+      <div id="content"></div>
+      <script>
+        function hndlr(response) {
+        for (var i = 0; i < response.items.length; i++) {
+          var item = response.items[i];
+          // in production code, item.htmlTitle should have the HTML entities escaped.
+          document.getElementById("content").innerHTML += "<br>" + item.htmlTitle;
+        }
+      }
+      </script>
+      <script src="https://www.googleapis.com/customsearch/v1?key=YOUR-KEY&cx=017576662512468239146:omuauf_lfve&q=tomato&callback=hndlr">
+      </script>
     </div>
   </body>
 
