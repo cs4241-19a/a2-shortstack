@@ -64,6 +64,11 @@
         height: 50px;
     }
 
+    .bars {
+        justify-self: flex-end;
+        justify-content: flex-end;
+    }
+
     h2 {
         font-size: 16px;
     }
