@@ -1,81 +1,73 @@
-<!doctype html>
+!doctype html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href="css/style.css">
   </head>
   <body>
-    <div class = "heading">
+    <div class = "officialHeading">
       <h1>
-        <div id = "title">
+        <div id = "bigTitle">
           Results
         </div>
       </h1>
     </div>
-    <div id = "tableBox" class = "labelInput"></div>
-    <div class = "labelInput">
-      <button id = "backButton">
-        Back to Home Page
+    <div id = "dataTable" class = "inputData"></div>
+    <div class = "inputData">
+      <button id = "addAnotherPlayer">
+        Add Another Player
       </button>
     </div>
   </body>
-
-
   <script>
-    let resultsData = []
+    //global variable for data
+    let bigData = []
+
+    //copied submit stuff and changed to be for the getResults
     const getResults = function() {
-      // prevent default form action from being carried out
       fetch( '/getResults', {
         method:'GET'
       })
       .then( function( response ) {
         response.json().then((responseData) => {
           console.log( responseData ) 
-          resultsData = Object.values(responseData)
-          console.log(resultsData)
-          makeTable()
+          bigData = Object.values(responseData)
+          console.log(bigData)
+          displayResultsTable()
         })
-      
         console.log( response )
       })
       
       return false
     }
     
-    const makeTable = function(){
-      let html = "<table border='1|1' id = 'dTable'>"
-      html+="<tr>"
-      html+="<td>Player Name</td>"
-      html+="<td>Country</td>"
-      html+="<td>Shots</td>"
-      html+="<td>Goals</td>"
-      html+="<td>Goal Percentage</td>"
-      html+="</tr>"
-      for (let i = 0; i < resultsData.length; i++) {
-        html+="<tr>"
-        html+="<td>"+resultsData[i].Player+"</td>"
-        html+="<td>"+resultsData[i].Country+"</td>"
-        html+="<td>"+resultsData[i].Shots+"</td>"
-        html+="<td>"+resultsData[i].Goals+"</td>"
-        html+="<td>"+resultsData[i].Percentage+"</td>"
-        
-        html+="</tr>"
-      }
-      html+="</table>"
-      document.getElementById('tableBox').innerHTML = html
-    }
-      
-    
-  
-    
-    const back = function(e) {
+    //method to get back to the home page
+    const backToHome = function(e) {
       location.href = "index.html"
     }
+
+    //method to actually write out the HTML for the table of data
+    const displayResultsTable = function(){
+      let tableHtml = "<table id = 'statsTable'><tr><td><b>Player Name</b></td><td><b>Country</b></td><td><b>Goals</b></td><td><b>Shots</b></td><td><b>Goal Percentage</b></td></tr>"
+
+      for (let i = 0; i < bigData.length; i++) {
+        tableHtml+="<tr><td>"+bigData[i].playerName+"</td>"
+        tableHtml+="<td>"+bigData[i].country+"</td>"
+        tableHtml+="<td>"+bigData[i].goals+"</td>"
+        tableHtml+="<td>"+bigData[i].shots+"</td>"
+        tableHtml+="<td>"+bigData[i].goalPercentage+"</td></tr>"
+      }
+      tableHtml+="</table>"
+      document.getElementById('dataTable').innerHTML = tableHtml
+    }
+
+    //load the window and set up the button, also start the functionality of loading the table
     window.onload = function() {
       getResults()
-      const button1 = document.querySelector( '#backButton' )
-      button1.onclick = back
-      
+      const addPlayer = document.querySelector( '#addAnotherPlayer' )
+      addPlayer.onclick = backToHome
     }  
+
   </script>
 </html>
