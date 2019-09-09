@@ -19,7 +19,6 @@ const getComputerChoice = function () {
 
     const rand = Math.floor(Math.random() * Math.floor(maxChoices));  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
-    console.log("going fine" + rand);
 
     switch(maxChoices){
         case 3:
@@ -72,6 +71,14 @@ const getWinner = function (player, comp) {
                 if (comp === 'rock' || comp === 'spock') winner = 'computer';
                 else if (comp === 'paper' || comp === 'lizard') winner = 'player';
                 else if (comp === 'scissors') winner = 'tied';
+            } else if (player === 'lizard') {
+                if (comp === 'rock' || comp === 'scissors') winner = 'computer';
+                else if (comp === 'paper' || comp === 'spock') winner = 'player';
+                else if (comp === 'lizard') winner = 'tied';
+            } else if (player === 'spock') {
+                if (comp === 'paper' || comp === 'lizard') winner = 'computer';
+                else if (comp === 'rock' || comp === 'scissors') winner = 'player';
+                else if (comp === 'spock') winner = 'tied';
             }
             break;
         default:
@@ -79,7 +86,6 @@ const getWinner = function (player, comp) {
             break;
     }
 };
-
 
 
 // Game

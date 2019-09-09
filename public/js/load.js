@@ -3,12 +3,13 @@ const config = document.querySelector('.config');
 
 let numElements = 3;
 
+// NOT BEING USED
+
 // Load different game configurations
 const loadChoices = function (e) {
 
     switch(e){
         case 3:
-            console.log("happened");
             elements.innerHTML = `
                 <i id="rock" class="choice fas fa-hand-rock fa-10x"></i>
                 <i id="paper" class="choice fas fa-hand-paper fa-10x"></i>

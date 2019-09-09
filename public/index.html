@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/modal.css">
   </head>
-  <body>
+  <body class="inputs">
     <form action="">
       <input class="name" type='text' id='playerName' value="Your name here">
       <button class="submit-button pure-button">Submit</button>
@@ -35,7 +35,6 @@
     .then( res => res.json())
     .then( json => {
       // do something with the reponse
-      console.log(json);
       configNum = json.config;
       $(".titleName").text("Play a game with me " + input.value);
     });
@@ -46,6 +45,11 @@
   window.onload = function() {
     const button = document.querySelector( 'button' );
     button.onclick = submit;
+    $("#rock").hide();
+    $("#paper").hide();
+    $("#scissors").hide();
+    $("#spock").hide();
+    $("#lizard").hide();
   }
   </script>
 
@@ -81,25 +85,29 @@
     // Load different game configurations
     const loadChoices = function (conf) {
 
-      console.log("config num: " + conf);
       switch(conf){
         case "3":
 
+          $("#rock").show();
+          $("#paper").show();
+          $("#scissors").show();
           $("#spock").hide();
           $("#lizard").hide();
-
           break;
         case "5":
 
+          $("#rock").show();
+          $("#paper").show();
+          $("#scissors").show();
           $("#spock").show();
           $("#lizard").show();
           break;
 
         default:
-          $("#rock").show();
-          $("#paper").show();
-          $("#scissors").show();
-          $("#spock").show();
+          $("#rock").hide();
+          $("#paper").hide();
+          $("#scissors").hide();
+          $("#spock").hide();
           $("#lizard").hide();
           break;
       }

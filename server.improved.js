@@ -9,6 +9,7 @@ const http = require( 'http' ),
 
 let appdata = {};
 let username;
+const timeStart = Date.now();
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -41,24 +42,23 @@ const handlePost = function( request, response ) {
 
     // ... do something with the data here!!!
     let jsonData = JSON.parse(dataString);
-    console.log(jsonData);
+    let timeElapsed = Date.now() - timeStart;
     if(!Object.keys(appdata).includes(jsonData.playerName) && jsonData.playerName !== undefined){
-      appdata[jsonData.playerName] = { 'config': 3 };
-      username = jsonData.playerName;
+      appdata[jsonData.playerName] = { 'config': 3, 'time': timeElapsed};
     }
-    else if(jsonData.playerName === undefined && jsonData.config !== undefined){
-    }
+
+    username = jsonData.playerName;
 
     response.setHeader('Content-Type', 'application/json' );
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
     response.write(JSON.stringify(appdata[jsonData.playerName]));
     response.end();
-    console.log( appdata );
   })
 };
 
 const handlePut = function( request, response ){
     let dataString = '';
+    let timeElapsed = Date.now() - timeStart;
 
     request.on( 'data', function( data ) {
         dataString += data;
@@ -66,9 +66,12 @@ const handlePut = function( request, response ){
 
     request.on( 'end', function() {
         let jsonData = JSON.parse(dataString);
-        appdata[username] = jsonData.config;
-
-        console.log(JSON.stringify(jsonData));
+        if(!Object.keys(appdata).includes(username) && jsonData.config !== undefined){
+            appdata[username].config = jsonData.config;
+        }
+        else {
+            appdata['namelessPlayer'] = { 'config': jsonData.config, 'time': timeElapsed};
+        }
 
         response.setHeader('Content-Type', 'application/json' );
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
