@@ -26,13 +26,13 @@ main {
 
 nav {
     font-family: 'Raleway', sans-serif;
-    font-size: 18px;
+    font-size: 12px;
     font-size: 1.75vw;
     display: inline;
 }
 
 h1 {
-    font-family: 'Oregano', cursive;
+    font-family: 'Lobster Two', cursive;
     font-style: italic;
     font-size: 74px;
     font-size: 6vw;
@@ -48,7 +48,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'Oregano', cursive;
+    font-family: 'Lobster Two', cursive;
     font-style: normal;
     font-size: 40px;
     font-size: 5vw;
@@ -73,10 +73,10 @@ table {
     white-space: nowrap;
 }
 
-label, button, #error{
+label, button, #error-msg{
     font-family: 'Raleway', sans-serif;
-    font-size: 18px;
-    font-size: 1.75vw;
+    font-size: 12px;
+    font-size: 1.2vw;
 }
 
 label {
@@ -87,7 +87,8 @@ button {
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     -webkit-appearance: none;
-    background-color: #c9a4a0;
+    background-color: #black;
+  color: white;
     padding: 12px 12px 12px 12px;
     border-radius: 4px;
     border: 1px solid black;
