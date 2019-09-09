@@ -269,11 +269,8 @@
       subButton.onclick = submit
     }
     
-    window.onbeforeunload = function(){
-      pushToRemote
-    }
-  
-    const pushToRemote = function(){
+    window.onunload = window.onbeforeunload = function(){
+      console.log("ON REMOTE")
       let body = ""
       fetch( '/remote', {
       method:'POST',
@@ -289,6 +286,7 @@
       
     })
     return false
+    
     }
   
   </script>

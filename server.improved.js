@@ -20,9 +20,11 @@ firebase.initializeApp(firebaseConfig);
 
 
 const appdata = [
-  { 'fName': 'Bob', 'lName': 'Smith', 'month':'August', 'day': 23, 'sign':"AHH"},
-  { 'fName': 'Suzy', 'lName': 'Ng', 'month':'September','day': 30 , 'sign':"AHH"},
-  { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"AHH"} 
+  { 'fName': 'Bob', 'lName': 'Smith', 'month':'August', 'day': 23, 'sign':"Leo"},
+  { 'fName': 'Suzy', 'lName': 'Ng', 'month':'September','day': 30 , 'sign':"Libra"},
+  { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"Capricorn"},
+  { 'fName': 'Jim', 'lName': 'Hopper', 'month': 'July','day': 14, 'sign':"Capricorn"} 
+
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -72,7 +74,7 @@ const handlePost = function( request, response ) {
         console.log("submit")
         const convertedData = JSON.parse(dataString)
         convertedData.sign = starSign(convertedData)
-        if(noDuplicatesFirebase(convertedData)){
+        /*if(noDuplicatesFirebase(convertedData)){
           addItemToFirebase(convertedData)
           let json = JSON.stringify(returnFirebaseAsArray())
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -83,8 +85,8 @@ const handlePost = function( request, response ) {
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
           response.write("Duplicate Information, Not Added!")
           response.end()
-        }
-        /*if(noDuplicates(convertedData)){
+        }*/
+        if(noDuplicates(convertedData)){
           appdata.push(convertedData)
           let json = JSON.stringify(appdata)
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -96,7 +98,7 @@ const handlePost = function( request, response ) {
           response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
           response.write("Duplicate Information, Not Added!")
           response.end()
-        } */       
+        }       
         break
         /*Modify  Case MAXIMUM EFFICENCY*/
       case "modify":
@@ -122,9 +124,14 @@ const handlePost = function( request, response ) {
         response.end()
         break
       case "remote":
+        console.log("remote")
         for(let i = 0; i< appdata.length; i++){
-          
+          addItemToFirebase(appdata[i])
         }
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.write("WRITTEN TO DATABASE")
+        response.end()
+
         break;
       default:
         console.log(reqURL)
@@ -334,14 +341,13 @@ function returnFirebaseAsArray(){
 //Takes given JSON object and adds it to the remote database
 function addItemToFirebase(itemToAdd){
   const dbRef = firebase.database.ref()
-  var templateItem = dbRef.push()
-  templateItem.set({
-    fName: itemToAdd.fName,
+  var templateItem = dbRef.push().set(
+    {fName: itemToAdd.fName,
     lName: itemToAdd.lName,
     month: itemToAdd.month,
     day: itemToAdd.day,
     sign: itemToAdd.sign
-  })
+    })
 }
 
 //Takes given original object and then sets equal to new object
