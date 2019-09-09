@@ -5,7 +5,7 @@ Readme
 ---
 
 ## Budget Your Next Roadtrip!
-This project aims to help people who want to plan for a roadtrip be more codt efficient and save money, particularly on gas. 
+This project aims to help people who want to plan for a roadtrip be more cost efficient and save money, particularly on gas. 
 
 - The project pertains to saving money on gas while on a road trip 
 - The problem is that many people do not realize how much they could save on gas during a long road trip. This application does all the math for you.
