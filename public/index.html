@@ -1,41 +1,226 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
-  </body>
-  <script>
+<head>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+<title>CS4241 Assignemnt 2</title>
 
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Lora|Merriweather:300,400" rel="stylesheet">
 
-    return false
-  }
+<!-- Main css -->
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+<!-- PRE LOADER -->
 
-  </script>
+<div class="preloader">
+     <div class="sk-spinner sk-spinner-wordpress">
+          <span class="sk-inner-circle"></span>
+     </div>
+</div>
+
+<!-- Navigation section  -->
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+     <div class="container">
+
+          <div class="navbar-header">
+               <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+                    <span class="icon icon-bar"></span>
+               </button>
+               <a href="index.html" class="navbar-brand">Blogatron</a>
+          </div>
+          <div class="collapse navbar-collapse">
+               <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="index.html">Home</a></li>
+               </ul>
+          </div>
+
+  </div>
+</div>
+
+<!-- Home Section -->
+<section id="home" class="main-home">
+     <div class="overlay"></div>
+     <div class="container">
+          <div class="row">
+               <div class="col-md-12 col-sm-12">
+                    <h1>Welcome to BLOGATRON</h1>
+                    <h2>You read it here, first!</h2>
+                    <a href="#subscribe" class="btn btn-default">Post</a>
+               </div>
+          </div>
+     </div>
+</section>
+
+<!-- Blog Section -->
+<section id="blog">
+     <div class="container">
+          <div class="row">
+
+               <div id="posts" class="col-md-offset-1 col-md-10 col-sm-12">
+                    <div class="blog-post-thumb">
+                         <div class="blog-post-image">
+                              <a href="single-post.html">
+                                   <img src="https://cdn.glitch.com/293b4513-c413-4c8b-acbf-f410e8292295%2Fwinny.JPG?v=1568002664362" class="img-responsive" alt="Blog Image">
+                              </a>
+                         </div>
+                         <div class="blog-post-title">
+                              <h3><a href="single-post.html">Breaking News: Asian Panda Calls Out TA</a></h3>
+                         </div>
+                         <div class="blog-post-format">
+                              <span><a href="#"><img src="https://cdn.glitch.com/293b4513-c413-4c8b-acbf-f410e8292295%2F2C.jpg?v=1568002610510" class="img-responsive img-circle"> 2Corknot2C</a></span>
+                              <span><i class="fa fa-date"></i> April 11, 2019</span>
+                              <span><a href="#"><i class="fa fa-comment-o"></i> 3 Comments</a></span>
+                         </div>
+                         <div class="blog-post-des">
+                              <p>Winny aka Asian Panda has a conflict of interest due to a class with homework. With the assignment graded and returned to the students, Winny has decided that she should attain the points that the TA has deducted from her homework.</p>
+                              <a href="single-post.html" class="btn btn-default">Continue Reading</a>
+                         </div>
+                    </div>
+
+                    <div class="blog-post-thumb">
+                         <div class="blog-post-image">
+                              <a href="single-post.html">
+                                   <img src="https://cdn.glitch.com/293b4513-c413-4c8b-acbf-f410e8292295%2Fsummer.JPG?v=1568002639117" class="img-responsive" alt="Blog Image">
+                              </a>
+                         </div>
+                         <div class="blog-post-title">
+                              <h3><a href="single-post.html">Summer done right by "The Charmed Ones"</a></h3>
+                         </div>
+                         <div class="blog-post-format">
+                              <span><a href="#"><img src="https://cdn.glitch.com/293b4513-c413-4c8b-acbf-f410e8292295%2Fauthor.jpg?v=1568002624551" class="img-responsive img-circle"> Heart Killer</a></span>
+                              <span><i class="fa fa-date"></i> 2 hours ago</span>
+                              <span><a href="#"><i class="fa fa-comment-o"></i> 0 Comments</a></span>
+                         </div>
+                         <div class="blog-post-des">
+                              <p>This summer was the time to shine for our very own Charmed Ones as they embarked on a multi-state tour, making stops in Massachusetts, Connecticut, Rhode Island, & many more! There was yelling, poking, choking, eating, and lots & lots of sleeping pics.</p>
+                              <a href="single-post.html" class="btn btn-default">Continue Reading</a>
+                         </div>
+                    </div>
+
+                    <div class="blog-post-thumb">
+                         <div class="blog-post-video">
+                              <div class="embed-responsive embed-responsive-16by9">
+                                   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zqUopiAYdRg" allowfullscreen></iframe>
+                              </div>
+                         </div>
+                         <div class="blog-post-title">
+                              <h3><a href="single-post.html">My opinion on "IT Chapter 2"</a></h3>
+                         </div>
+                         <div class="blog-post-format">
+                              <span><a href="#"><img src="https://cdn.glitch.com/293b4513-c413-4c8b-acbf-f410e8292295%2Fauthor.jpg?v=1568002624551" class="img-responsive img-circle"> Heart Killer</a></span>
+                              <span><i class="fa fa-date"></i> Sept 8, 2019</span>
+                              <span><a href="#"><i class="fa fa-comment-o"></i> 11 Comments</a></span>
+                         </div>
+                         <div class="blog-post-des">
+                              <p>To be honest, I never saw the first movie, I just watched this one because my roommate convinced me to, and I have to say, I actually quite enjoyed it, except for the jumpscares, they're just cheap, in my opinion. But I think the casting was excellent, a lot of them have crazy resemblances with their younger counterparts.</p>
+                              <a href="single-post.html" class="btn btn-default">Continue Reading</a>
+                         </div>
+                    </div>
+                 
+                    <div class="blog-post-thumb">
+                      <div class="blog-post-title">
+                              <h3>Another day, another drama...</h3>
+                        
+                         </div>
+                      <div class="blog-post-format">
+                        <span>Heart Killer</span>
+                              <span><i class="fa fa-date"></i> April 11, 2019</span>
+                         </div>
+                         <div class="blog-post-des">
+                              <p>Roommate accused of stealing cheese</p>
+                         </div>
+                      <a class="btn btn-default">Edit</a>
+                        <a class="btn btn-default">Delete</a> 
+                      
+                 </div>
+                 </div>
+               </div>
+          </div>
+</section>
+
+<!-- Subscribe section  -->
+<section id="subscribe">
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-offset-1 col-md-10 col-sm-12">
+                    <h2>Share your thoughts!</h2>
+                    <p>You won't regret it :)</p>
+
+                    <form action="/publish" method="post">
+                         <div class="col-md-4 col-sm-4">
+                              <input name="name" type="text" class="form-control" id="name" placeholder="Name" required="required">
+                         </div>
+                      <div class="col-md-4 col-sm-4">
+                              <input name="title" type="text" class="form-control" id="title" placeholder="Title">
+                         </div>
+                         <textarea name="message" rows="5" class="form-control" id="message" placeholder="Your post here" message="message" required="required"></textarea>
+                                        <div class="col-md-3 col-sm-4">
+                                             <input name="submit" type="submit" class="form-control" id="submit" value="Publish Your Post">
+                                        </div>
+                    </form>
+               </div>
+
+          </div>
+     </div>
+</section>
+
+<!-- Footer Section -->
+<footer>
+     <div class="container">
+          <div class="row">
+
+               <div class="col-md-5 col-md-offset-1 col-sm-6">
+                    <h3>Blogatron</h3>
+                    <p>People can take everything away from you, but they can never take away your truth. But the question is, "Can you handle mine?..."</p>
+               </div>
+
+               <div class="col-md-4 col-md-offset-1 col-sm-6">
+                    <h3>Talk to us</h3>
+                    <p><i class="fa fa-globe"></i> 55 Lake Kennedy Avenue, Brewster, MA 10069</p>
+                    <p><i class="fa fa-phone"></i> 666-66-6666</p>
+                    <p><i class="fa fa-save"></i> drama@everythingsfine.com</p>
+               </div>
+
+               <div class="clearfix col-md-12 col-sm-12">
+                    <hr>
+               </div>
+
+               <div class="col-md-12 col-sm-12">
+                    <ul class="social-icon">
+                         <li><a href="#" class="fa fa-facebook"></a></li>
+                         <li><a href="#" class="fa fa-twitter"></a></li>
+                         <li><a href="#" class="fa fa-google-plus"></a></li>
+                         <li><a href="#" class="fa fa-dribbble"></a></li>
+                         <li><a href="#" class="fa fa-linkedin"></a></li>
+                    </ul>
+               </div>
+               
+          </div>
+     </div>
+</footer>
+
+<!-- Back top -->
+<a href="#back-top" class="go-top"><i class="fa fa-angle-up"></i></a>
+
+<!-- SCRIPTS -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.parallax.js"></script>
+<script src="js/custom.js"></script>
+<script src="js/scripts.js"></script>
+
+</body>
 </html>
