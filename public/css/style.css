@@ -1,10 +1,30 @@
+html, body {
+  height: 100%;
+}
+
 body {
   background: #555;
 }
 
+#big-title{
+  font-size: 30px;
+  font-family: monospace;
+  font-weight: bold;
+  color: white;
+}
+
 .content {
-  max-width: 500px;
+  max-width: 1000px;
   margin: auto;
   background: white;
   padding: 10px;
+  text-align: center;
+}
+
+.table-label {
+  font-size: 19px;
+  font-family: monospace;
+  color: white;
+  background-color: black;
+  margin-top: 5px;
 }
