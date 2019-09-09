@@ -1,0 +1,12 @@
+{
+  "name": "Soccer Star Stats",
+  "version": "1.0.0",
+  "description": "A webpage to hold a user's favorite soccer stars' statistics",
+  "author": "Georgina Cromwell",
+  "scripts": {
+    "start": "node server.improved.js"
+  },
+  "dependencies": {
+    "mime": "^2.4.4"
+  }
+}

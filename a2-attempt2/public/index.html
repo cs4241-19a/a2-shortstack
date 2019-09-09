@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href="css/style.css">
+  </head>
+  <body>
+    <div class = "officialHeading">
+      <h1>
+        <div id = "bigTitle">
+          Soccer Star Stats
+        </div>
+      </h1>
+    </div>
+      <div class = "inputData">
+        <label for = "playerName">Player Name:</label>
+        <form action="">
+          <input type="text" id="playerName" value="">
+        </form>
+        <label for = "country">Country:</label>
+        <form action = "">
+          <input type = "text" id = "country" value = "">
+        </form>
+        <label for = "goals">Goals Scored:</label>
+        <form action = "">
+          <input type = "number" id = "goals" value = "">
+        </form>
+        <label for = "shots">Shots:</label>
+        <form action = "">
+          <input type = "number" id = "shots" value = "">
+        </form>
+      </div>
+    <div id = "button1">
+      <button id = "addPlayerButton">
+        Add Player to Table
+      </button>
+    </div>
+    <div id= "button2">
+      <button id = "getResultsButton">
+        See Table
+      </button>
+    </div>
+  </body>
+  <script>
+    
+  //calls post method to submit data and add it to table
+  const submit = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+    //get input data
+    const input1 = document.querySelector('#playerName')
+    const input2 = document.querySelector('#country')
+    const input3 = document.querySelector('#goals')
+    const input4 = document.querySelector('#shots')
+
+    const newDataObject = {playerName: input1.value, 
+                  country: input2.value,
+                  goals: input3.value,
+                  shots: input4.value}
+
+    const body = JSON.stringify( newDataObject )
+      
+      fetch( '/submit', {
+        method:'POST',
+        body 
+      })
+      .then( function( response ) {
+        response.json().then((responseData) => {
+          console.log( responseData ) 
+          //send message alerting successful addition to table
+          alert("You successfully added " + responseData.playerName + " to your player table!")
+        })
+      
+        console.log( response )
+      })
+    return false
+  }
+  
+  //method to go to results page
+  const loadResults = function(e) {
+    location.href = "results.html"
+  }
+
+  //function to load page and set up buttons
+  window.onload = function() {
+    const button1 = document.querySelector( '#addPlayerButton' )
+    const button2 = document.querySelector( '#getResultsButton')
+    button1.onclick = submit
+    button2.onclick = loadResults
+  }
+  </script>
+</html>
