@@ -11,7 +11,7 @@ In this project I learned and faced:
 - For the tabular dataset, I am only keeping three fields in the "appdata". There are multiple user inputs I am handling, but I handle them with event listeners, so I could not store those in the server. (there must be another way)
 
 
-http://a2-charlieroberts.glitch.me
+https://a2-calemdar.glitch.me/
 
 ## Technical Achievements
 - **Tech Achievement 1**: Using layered HTML elements to show or hide depending on the state of the game
