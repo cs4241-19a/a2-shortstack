@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="head1">
+      <h1>Fantasy Football Score Tracker</h1>
+      <p id="desc">
+        Uses Statistics to Calculate Fantasy Points of Players and Your Team!
+      </p>
+    </div>
+    <div id="page">
+      <form action="">
+        <p>Player Name: <input type="text" id="playername" value="" /></p>
+        <p>
+          Passing:
+          <input type="number" id="passYards" value="0" />
+          Yards,
+          <input type="number" id="passTDs" value="0" />
+          Touchdowns
+        </p>
+        <p>
+          Rushing:
+          <input type="number" id="rushYards" value="0" />
+          Yards,
+          <input type="number" id="rushTDs" value="0" />
+          Touchdowns
+        </p>
+        <p>
+          Receiving:
+          <input type="number" id="recYards" value="0" />
+          Yards,
+          <input type="number" id="recTDs" value="0" />
+          Touchdowns
+        </p>
+        <p>
+          Turnovers:
+          <input type="number" id="turnovers" value="0" />
+        </p>
+        <button id="addbutton" type="button">
+          Add Player To Roster
+        </button>
+        <button id="delbutton" type="button">
+          Remove Player With This Name
+        </button>
+        <button
+          id="viewbutton"
+          type="button"
+          onclick="window.location.href='roster.html'"
+        >
+          Show Roster
+        </button>
+      </form>
+    </div>
+  </body>
+  <script>
+    const addsubmit = function(e) {
+      // prevent default form action from being carried out
+      e.preventDefault();
+
+      obj = {};
+      const input = document.querySelectorAll("input");
+      for (let i = 0; i < input.length; i++) {
+        let element = input[i];
+        let name = element.id;
+        let value = element.value;
+
+        if (name) {
+          obj[name] = value;
+        }
+      }
+      //namejson = { thing: input.value };
+      body = JSON.stringify(obj);
+
+      fetch("/addsubmit", {
+        method: "POST",
+        body
+      }).then(function(response) {
+        console.log(response);
+      });
+
+      return false;
+    };
+
+    const delsubmit = function(e) {
+      // prevent default form action from being carried out
+      e.preventDefault();
+
+      obj = {};
+      const input = document.querySelectorAll("input");
+      for (let i = 0; i < input.length; i++) {
+        let element = input[i];
+        let name = element.id;
+        let value = element.value;
+
+        if (name) {
+          obj[name] = value;
+        }
+      }
+      //namejson = { thing: input.value };
+      body = JSON.stringify(obj);
+
+      fetch("/delsubmit", {
+        method: "POST",
+        body
+      }).then(function(response) {
+        console.log(response);
+      });
+
+      return false;
+    };
+
+    window.onload = function() {
+      const addbutton = document.querySelector("#addbutton");
+      const delbutton = document.querySelector("#delbutton");
+      addbutton.onclick = addsubmit;
+      delbutton.onclick = delsubmit;
+    };
+  </script>
+</html>

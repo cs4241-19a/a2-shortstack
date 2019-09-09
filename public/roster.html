@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+  </head>
+  <body>
+    <div id="head1">
+      <h1>Fantasy Football Score Tracker</h1>
+      <p id="desc">
+            Uses Statistics to Calculate Fantasy Points of Players and Your Team!
+          </p>
+    </div>
+    <div id="page">
+      <p>
+          Roster
+      </p>
+      <p id="place">
+        <button id="displaybutton">Show</button>
+      </p>
+        <button id="addbutton" type="button" onclick="window.location.href='index.html'">
+          Add/Remove Players
+        </button>
+      </form>
+    </div>
+  </body>
+  <script>
+        const submit = function(e) {
+          // prevent default form action from being carried out
+          e.preventDefault();
+    
+          fetch("/rsubmit", {
+            method: "GET"
+          }).then(function(response) {
+            return response.text()
+          })
+          .then((text) => createRoster(text));
+    
+          return false;
+        };
+
+        function createRoster(text){
+
+            var table = document.createElement("table");
+            table.setAttribute("class", "center");
+            var tr = table.insertRow(-1);  
+            var th = document.createElement("th");
+            th.innerHTML = "Name";
+            tr.appendChild(th);
+            var th = document.createElement("th");
+            th.innerHTML = "Points";
+            tr.appendChild(th);
+
+            let pdata = JSON.parse(text);
+            console.log(pdata)
+
+            var totalscore = 0
+
+            for (let j = 0; j < pdata.length; j++) {
+                console.log("hi")
+                //calculate the number of fantasy points
+                pd = pdata[j];
+                findpoint = pd.passYards/25 + pd.passTDs*4 + pd.rushYards/10 + pd.rushTDs*6 + pd.recYards/10 + pd.recTDs*6 + pd.turnovers*(-2)
+                tr = table.insertRow(-1);
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = pd.playername;
+                var tabCell1 = tr.insertCell(-1);
+                tabCell1.innerHTML = findpoint;
+                totalscore += findpoint
+            }
+            tr = table.insertRow(-1);
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = "---------";
+            var tabCell1 = tr.insertCell(-1);
+            tabCell1.innerHTML = "---";
+            tr = table.insertRow(-1);
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = "Total";
+            var tabCell1 = tr.insertCell(-1);
+            tabCell1.innerHTML = totalscore;
+
+            var divContainer = document.getElementById("place");
+            divContainer.innerHTML = "";
+            divContainer.appendChild(table);
+        }
+
+    
+        window.onload = function() {
+          const displaybutton = document.querySelector("#displaybutton");
+          displaybutton.onclick = submit;
+        };
+      </script>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "what",
+  "version": "v1",
+  "description": "Assignment 2",
+  "author": "Andrew Levy",
+  "scripts": {
+    "start": "node server.improved.js"
+  },
+  "dependencies": {
+    "mime": "^2.4.4"
+  }
+}
