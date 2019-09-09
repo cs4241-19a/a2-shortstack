@@ -1,40 +1,198 @@
 <!doctype html>
+<link rel="stylesheet" type="text/css" href="public/css/style.css" />
 <html lang="en">
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    
+    p {border: 1px solid black;}
+    
+    h1, h2, form {text-align: center}
+  
+    #sideBySide{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .server{
+      text-align: center;
+      border: 1px solid black;
+    }
+  </style>
+  
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    
+    <h1>Power Usage Database</h1>
+      <h2>Add a reading</h2>
+      <form action="" class = "userInput">
+        <input type="text" id="addD" placeholder="Date? (MM/DD/YY)"><br>
+        <input type="text" id="addT" placeholder="Time? (HH:MM)"><br>
+        <input type="text" id="addV" placeholder="Voltage reading?"><br>
+        <input type="text" id="addI" placeholder="Current reading?"><br>
+        <button id="addButton"> Add</button>
+      </form>
+    
+      <h2>Remove a reading</h2>
+      <form action="" class = "userInput">
+        <input type="text" id="delId" placeholder="Specify the reading's ID"><br>
+        <button id="delButton">Delete</button>
+      </form>
+
+        <h2 id = "modHead">Modfy a reading</h2>
+        <form action="" class = "userInput">
+          <input type="text" id="modId" placeholder="Specify the reading's ID"><br>
+          <input type="text" id="newD" placeholder="New date?"><br>
+          <input type="text" id="newT" placeholder="New time?"><br>
+          <input type="text" id="newV" placeholder="New voltage?"><br>
+          <input type="text" id="newI" placeholder="New current?"><br>
+          <button id="modButton">Modify</button><br><br>
+        </form>
+    
+    <div id = "sideBySide">
+      <div class = "server">
+        <h2>Response from the server:</h2>
+        <p id="serverResponse"><br></p>
+      </div>
+
+      <div class = "server">
+        <h2>Retrieve Data from Server</h2>
+        <form action="">
+          <button id="getButton">Retrieve Data</button>
+        </form><br>
+      </div>
+    </div>
+     <table id="dataTable"></table>
+    
   </body>
   <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
+  const addData = function( e ) {
     e.preventDefault()
-
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const addD = document.querySelector( '#addD'),
+          addT = document.querySelector( '#addT' ),
+          addV = document.querySelector( '#addV' ),
+          addI = document.querySelector( '#addI' ),
+          json = { date: addD.value, time: addT.value, voltage: addV.value, current: addI.value },
           body = JSON.stringify( json )
 
-    fetch( '/submit', {
+    fetch( '/addData', {
       method:'POST',
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+      response.text()
+        .then(function (message){
+        console.log('Server said back: ', message)
+        document.getElementById("serverResponse").innerHTML = message;
+      })
     })
-
     return false
   }
+  
+  const getData = function( e ){
+    e.preventDefault()
+    
+    fetch( '/getData', {
+      method:'POST'
+    })
+    .then( function( response ) {
+      response.text()
+        .then(function (message){
+        console.log('Server said back: ', message)
+        data = JSON.parse(message)
+        
+        // Delete the table that currenlty exists and make a new one with same ID
+        const oldTable = document.getElementById("dataTable")
+        oldTable.parentElement.removeChild(oldTable)
+        const newTable = document.createElement("TABLE")
+        newTable.setAttribute("id", "dataTable");
+        newTable.setAttribute("style", "width:75%")
+        
+        // Make the headings
+        const headerRow = newTable.insertRow();
+        for (let valueName in data[0]){
+          const headingName = valueName.charAt(0).toUpperCase() + valueName.slice(1);
+          headingCell = document.createElement("TH")
+          headingCell.innerHTML = headingName
+          headerRow.appendChild(headingCell)
+        }
+        
+        // Insert the data
+        for (json of data){
+          console.log(json)
+          row = newTable.insertRow()
+          let index = 0
+          for ( key of Object.keys(json)){
+            row.insertCell(index).innerHTML = json[key]
+            index++
+          }
+        }
+        document.body.appendChild(newTable)
+      })
+    })
+  }
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+  const delData = function( e ){
+    e.preventDefault()
+    
+    const body = document.querySelector("#delId").value
+    console.log(body)
+    fetch( '/delData', {
+      method:'POST',
+      body
+    })
+    .then( function( response ) {
+      response.text()
+        .then(function (message){
+        console.log('Server said back: ', message)
+        document.getElementById("serverResponse").innerHTML = message
+        })
+    })
+  }
+  
+  const modData = function( e ){
+    e.preventDefault()
+    const modId = document.querySelector( '#modId').value,
+          newD = document.querySelector( '#newD').value,
+          newT = document.querySelector( '#newT' ).value,
+          newV = document.querySelector( '#newV' ).value,
+          newI = document.querySelector( '#newI' ).value,
+          json = { date: newD, time: newT, voltage: newV, current: newI , id: modId},
+          body = JSON.stringify( json )
+
+    fetch( '/modData', {
+      method:'POST',
+      body 
+    }).then( function( response ) {
+      response.text()
+        .then(function (message){
+        console.log('Server said back: ', message)
+        document.getElementById("serverResponse").innerHTML = message;
+      })
+    })
+    return false
+  }
+  
+  window.onload = function() { //This will execute once after all of the html has beenrendered
+    const addButton = document.querySelector( '#addButton' ) //JQUERY
+    const delButton = document.querySelector( '#delButton' )
+    const dataButton = document.querySelector( "#getButton")
+    const modButton = document.querySelector( "#modButton")
+    // const button = document.getElementByID
+    //JQUERY was invented to perform tasks that make HTML manipluation easier
+    //Pass this a CSS selector, and it will find the HTML onbject selected by the CSS Selector
+    //Returns a JavaScript representation of the HTML elememt
+    console.log({response: "I am loaded"})
+    addButton.onclick = addData
+    delButton.onclick = delData
+    dataButton.onclick = getData
+    modButton.onclick = modData
   }
 
   </script>

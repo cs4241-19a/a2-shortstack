@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Daniel Caffrey",
+  "version": "1.0",
+  "description": "A client-server based power monitoring website",
+  "author": "Daniel Caffrey",
   "scripts": {
     "start": "node server.improved.js"
   },
