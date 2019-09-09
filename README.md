@@ -71,8 +71,14 @@ Sample Readme (delete the above when you're ready to submit, and modify the belo
 The user can create their own Harry Potter character by filling out the form.  Once they submitted their information, a table with current added characters is displayed.
 Depending on what they answered for the survey question, their character will be sorted into one of the Hogwarts Houses (Gryffindor, Hufflepuff, Ravenclaw, Slytherin).
 
-## Requirements
-This project utilizes the HTML forms using divs and tables.
+## Requirements Met
+- Server
+- Results (table)
+- HTML Form (divs and table)
+- Server logic ()
+- CSS selectors (element, id, and class)
+- CSS positioning (horizontal: table, side by side: title/image and form)
+- CSS in external stylesheet
 
 ## Technical Achievements
 - **Colored Rows (Technical)**: Depending on which House the character is in, the row will be colored in the House's main color (Gryffindor is red, 
