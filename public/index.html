@@ -128,7 +128,8 @@
                 '<th class="MH">Match#</th>\n' + 
                  '<th class="MH">Red</th>\n' +
                 '<th class="MH">Blue</th>\n' +
-                '<th class="MH" style="text-align:right;">Score</th>\n' +
+                '<th class="MH">Red Score</th>\n' +
+                '<th class="MH">Blue Score</th>\n' +
                 '</tr>';
        
         for (let i = 0; i < matchH.length; i++) {
@@ -138,10 +139,10 @@
           newRow += (`<td> ${match.matchNumber} </td>\n`);
           newRow += (`<td> ${match.red1} </td>\n`);
           newRow += (`<td> ${match.blue1} </td>\n`);
-          if(match.redScore > match.blueScore){
+          if(parseInt(match.redScore) > parseInt(match.blueScore)){
           newRow += (`<td style="background-color:rgba(255, 0, 0,0.6)"> ${match.redScore} </td>\n`);
           newRow += (`<td id="blueScore{i}"> ${match.blueScore} </td>\n`);      
-          } else if(match.redScore < match.blueScore){
+          } else if(parseInt(match.redScore) < parseInt(match.blueScore)){
           newRow += (`<td> ${match.redScore} </td>\n`);
           newRow += (`<td style="background-color:rgba(0, 0, 255,0.4)"> ${match.blueScore} </td>\n`);      
           } else {
@@ -161,11 +162,12 @@
     const data = await fMH.json();
     const matchH = data.data;
     let htmlDiv = document.getElementById('matchTable');
-    htmlDiv.innerHTML = '<tr>\n' +
+        htmlDiv.innerHTML = '<tr>\n' +
                 '<th class="MH">Match#</th>\n' + 
                  '<th class="MH">Red</th>\n' +
                 '<th class="MH">Blue</th>\n' +
-                '<th class="MH" style="text-align:right;">Score</th>\n' +
+                '<th class="MH">Red Score</th>\n' +
+                '<th class="MH">Blue Score</th>\n' +
                 '</tr>';
     
      for (let i = 0; i < matchH.length; i++) {
