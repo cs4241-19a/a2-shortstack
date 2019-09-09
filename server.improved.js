@@ -61,7 +61,7 @@ const handlePost = function( request, response ) {
         }
         var index = info.day+info.task+info.time;
         //var split = data.indexOf(delEvent)
-        var split = data.findIn(x => x.index === index)
+        var split = data.findIndex(x => x.index === index)
         data.splice(split, 1)
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
@@ -99,7 +99,10 @@ const sendFile = function( response, filename ) {
        // file not found, error code 404
        response.writeHeader( 404 )
        response.end( '404 Error: File Not Found' )
-
-       (process.env.PORT || port )
-     }
-   })}
+       
+     }})}
+       
+     
+     server.listen(process.env.PORT || port )
+     
+  
