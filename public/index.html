@@ -1,24 +1,122 @@
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <form action="">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
 
-     <input type="text" id="yourname" value="what do you feel like eating?" class="recipe">
-      <input type="text" id="dish" value="" class="recipe">
-      <input type="text" id="ingredient" value="" class="recipe">
-      <button>submit</button>
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+  
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Create two columns/boxes that floats next to each other */
+nav {
+  float: left;
+  width: 30%;
+  height: 300px; /* only for demonstration, should be removed */
+  background: #ccc;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #f1f1f1;
+  height: 300px; /* only for demonstration, should be removed */
+}
+
+/* Clear floats after the columns */
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h2>Food app</h2>
+</header>
+
+<section>
+  <nav>
+    <form action="">
+      <div class="form-group">
+    <label>Your name:</label>
+     <input type="text" id="yourname" value="" class="form-control">
+        </div>
+      <br>
+      <div class="form-group">
+      <label>What are you craving?:</label>
+      <input type="text" id="dish" value="" class="form-control">
+      </div>
+      <br>
+      <div class="form-group">
+      <label>Any ingredient you would like?</label>
+      <input type="text" id="ingredient" value="" class="form-control">
+      </div>
+      <br>
+      <button class="btn btn-primary">submit</button>
     </form>
+  </nav>
+  
+  <article>
     <div id="ingredients">
       
     </div>
     <div id="instructions">
       
     </div>
-  </body>
+  </article>
+</section>
+
+<footer>
+  <p>Footer</p>
+</footer>
+
+</body>
   <script>
 
   const submit = function( e ) {
@@ -39,6 +137,7 @@
     })
     .then( function( response ) {
       // do something with the reponse 
+    window.location.reload();
       
     displayData(response)
       
@@ -67,16 +166,40 @@
   }
   
   const displayIngredients = function( ing ) {
-  const template = '<tr><td>{name}</td></tr>'
+  const template = '<tr><td>{name} </td></tr><br>'
   const row = template.replace("{name}", ing)
   const tbody = document.querySelector("#ingredients")
   tbody.innerHTML += row
 }
   
   const displayInstructions = function( ins ) {
-  const template = '<tr><td>{name}</td></tr>'
+  const template = '<tr><td>{name} </td></tr><br>'
   const row = template.replace("{name}", ins)
   const tbody = document.querySelector("#instructions")
+  tbody.innerHTML += row
+}
+  
+  // Fetch data and then display it
+const loadDataApp = function( e ) {
+  fetch( '/orders', {
+    method:'GET',
+  })
+  .then( function( response ) {
+    response.json().then(displayDataApp)
+  })
+}
+
+const displayDataApp = function ( data ) {
+  for (let i = 0; i < data.length; i++) {
+    const order = data[i]
+    displayOrder(order)
+    }
+}
+
+const displayOrder = function(order) {
+   const template = '<tr><td>{name} </td><td>{orbit} </td><td>{launch} </td><td></td></tr><br>'
+  const row = template.replace("{name}", order.yourname).replace("{orbit}", order.dish).replace("{launch}", order.ingredient)
+  const tbody = document.querySelector("#ingredients")
   tbody.innerHTML += row
 }
   
@@ -84,6 +207,7 @@
   window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = submit;
+    loadDataApp();
   }
   </script>
 </html>

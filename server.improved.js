@@ -63,10 +63,15 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  } else if ( request.url === '/orders' ) {
+    response.writeHeader( 200, { 'Content-Type': 'application/json' })
+    console.log(appdata)
+    response.end( JSON.stringify(appdata) )
   }else{
     sendFile( response, filename )
   }
 }
+
 
 const handlePost = function( request, response ) {
   let dataString = ''

@@ -9,6 +9,7 @@
   "dependencies": {
     "mime": "^2.4.4",
     "request": "^2.88.0",
-    "cheerio": "^0.22.0"
+    "cheerio": "^0.22.0",
+    "bootstrap": "^4.3.1"
   }
 }
