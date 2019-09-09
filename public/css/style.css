@@ -1,1 +1,54 @@
-/*Style your own assignment! This is fun! */
+html {
+    background-image: white;
+}
+
+.split {
+    height: 100%;
+    position: fixed;
+    top: 1;
+    padding-top: 20px;
+}
+.left {
+    width: 20%;
+    left: 2;
+    display: flex;
+    size: auto;
+    justify-content: center;
+    background-image: url("../images/left-bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.right {
+    width: 80%;
+    right: 0;
+    size: auto;
+    background-image: url("../images/right-bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+h1{
+    background-image: url("../images/h1.jpg");
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif, monospace;
+}
+
+h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif, monospace;
+}
+
+#id{
+    size: auto;
+    width: 20%;
+}
+
+#database{
+    width: "100%";
+    border: 1px solid grey;
+}
