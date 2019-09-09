@@ -1,89 +1,70 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
-Due: September 9th, by 11:59 AM.
+## Andrew's Arbitrary Data Collection Station
 
-This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
+I was having trouble coming up with what type of data to collect, so this application just collects some basic data and gives fun statistics about it.
 
-The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
+The main problem this program is trying to address is boredom. It can probably entertain you for a minute or two.
+Or if you are really into data like what the average of several RGB values or names is, I guess this can do that for you too.
 
-Baseline Requirements
----
+The five things the form collects are: first name, last name, birthday, favorite color, and how you are feeling right now (on a scale of 1-5)
+As multiple people submit the statistics about this data get more interesting
+you can see the averages of people taking the quiz in respects to:
+   average name length
+   average name
+   average favorite color in RGB
+   average age
+   average mood while taking this survey
+   
+Unintentionally this program solves three problems that could be considered valuable:
+   It can tell you the average name between multiple names
+   It can produce the average value of several colors
+   If only one name is entered it can count the number of characters you submitted, if you need to know how long something is
+   
+By submitting the form multiple times you can find the averages to things you never thought to take the average of before!
 
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
 
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
+Data can be submitted by the form, it can also be deleted when viewing the group page. However, for the most
+fun results with this application you are encouraged to submit as many forms as possible during the lifetime
+of the server to get the most interesting aggregate data results.
 
-Your application is required to implement the following functionalities:
+All style changes can be seen in style.css:
+     Titles are horizontally centered (h1,h2,h3,etc...)
+     The main content is also centered between two columns (that was done by bootstrap though)
+     The first name and last name fields are displayed side by side (at least on desktop, on mobile they stack for accessibilty)
+     
+   
 
-- a `Server` which not only serves files, but also maintains a tabular dataset with 3 or more fields related to your application
-- a `Results` functionality which shows the entire dataset residing in the server's memory
-- a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
-- a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
-
-Your application is required to demonstrate the use of the following concepts:
-
-HTML:
-- One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
-
-CSS:
-- CSS styling of the primary visual elements in the application
-- Various CSS Selector functionality must be demonstrated:
-    - Element selectors
-    - ID selectors
-    - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
-
-JavaScript:
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
-
-Node.js:
-- An HTTP Server that delivers all necessary files and data for the application. A starting point is provided in this repository.
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
-1. Fork the starting project code. This repo contains some starter code that may be used or discarded as needed.
-2. Implement your project with the above requirements.
-3. Test your project to make sure that when someone goes to your main page, it displays correctly.
-4. Deploy your project to Glitch, and fill in the appropriate fields in your package.json file.
-5. Ensure that your project has the proper naming scheme `a2-yourname` so we can find it.
-6. Modify the Readme to the specifications below.
-7. Create and submit a Pull Request to the original repo. Only one member needs to submit a pull request.
-
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
----
-
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
-
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
-
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
+https://a2-acnolan.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
-
+- **Tech Achievement 1**: The site is mobile friendly and will work on desktop and phones nicely, you can test 
+                          the differences by viewing it on your phone or resizing the browser. This was done
+                          using bootstrap.
+- **Tech Achievement 2**: Using the HTML5 audio tag EPIC background music plays to make the form more fun.
+                          You should probably mute your audio if you don't want to hear it. It only
+                          seems to work on chrome, edge, and ie.
+- **Tech Achievement 3**: The form uses javascript to ensure front end validation. The form is not submitted
+                          to the server unless all of the fields are filled out, this prevents excess
+                          server use.
+                          
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Design Achievement 1**: Using the chrome developer tool's lighthouse audit I recieved 100/100
+                            for best practices, seo, and accessibility. For performance it was still
+                            high 95/100, the issue was caching and the size of the files (specifically
+                            bootstrap.min.css). I tried to use the minimized version to reduce load
+                            times, however if I had more time I would have added caching to solve
+                            the problem even more.
+- **Design Achievement 2**: Shown in `style.css`, I redesigned radio buttons to look more like
+                            regular buttons and just be prettier for selecting the how you
+                            are doing element of the form.
+- **Design Achievement 2**: Shown in `style.css`, the code uses a three column layout with the main
+                            content centered, and then two side columns showing images for
+                            "aesthetic" value. As mentioned above the site is mobile friendly,
+                            and will properly collapse things as the window scales down and the 
+                            table on the results page will become scrollable to avoid overflow issues.
+- **Design Achievement 3**: I tested the application in various browsers to ensure that it works.
+                            In the chrome and ie it functions as intended. Firefox and Safari did
+                            not seem to support the audio. Edge supported the audio, but had issues
+                            with some of bootstraps css.

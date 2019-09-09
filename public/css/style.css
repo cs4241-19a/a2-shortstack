@@ -1,5 +1,6 @@
 /*Style your own assignment! This is fun! */
 
+/*base tag styles to make the site look decent*/
 html, body{
     background-color: yellow;
     overflow-x: hidden;
@@ -9,7 +10,111 @@ h1, h2, h3{
     text-align: center;
 }
 
-.dat-boi-right{
+form{
+    font-weight: bold;
+}
+
+form div{
+    margin-bottom: 15px;
+}
+
+/*aligning the main content*/
+.main-content{
+    text-align: center;
+    margin-top: 15px;
+}
+.main-content p{
+    text-align: left;
+    margin-top: 15px;
+}
+
+/*flipping the images on the right*/
+.datboi-right{
     transform: scaleX(-1);
 }
 
+/*styles for the how are you doing radio buttons*/
+.mood{
+    list-style-type: none;
+    padding: 0;
+}
+
+.mood li{
+    display:inline-block;
+    margin-right: 5px;
+    width: 100px;
+    height: 50px;
+    position: relative;
+}
+
+
+
+.mood label, .mood input{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.mood input[type="radio"] {
+    opacity: 0.01;
+    z-index: 100;
+  }
+
+.mood input[type="radio"]:checked+label, .Checked+label{
+    background: lightseagreen;
+}
+
+.mood label{
+    padding: 5px;
+    border: 1px solid #FFF;
+    cursor: pointer;
+    z-index: 90;
+    background: grey;
+}
+
+.mood label:hover{
+    background: lightblue;
+}
+
+/*some specfic fixes with ids*/
+#favcolor{
+    height: 50px;
+    width: 50px;
+}
+
+#colorselect{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#resultszone h2{
+  color: blue;
+}
+
+/*bootstrap table overrides*/
+td{
+  border: 2px solid #000;
+}
+
+
+/*mobile friendly styles*/
+.mobile-only{
+  display:none;
+}
+
+
+@media (max-width: 992px){
+  .col-lg-3 img{
+    display:none;
+  }
+  .mobile-only{
+    display:block;
+  }
+  .mobile-table{
+    overflow: scroll;
+  }
+}
