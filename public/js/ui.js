@@ -13,7 +13,7 @@ let winner;
 let round = 0;
 let playerChoice;
 let computerChoice;
-let maxChoices = 5;
+let maxChoices = parseInt(configNum);
 
 const getComputerChoice = function () {
 
@@ -80,9 +80,12 @@ const getWinner = function (player, comp) {
     }
 };
 
+
+
 // Game
 const play = function (event) {
     playerChoice = event.target.id;
+    maxChoices = parseInt(configNum);
     getComputerChoice();
     getWinner(playerChoice, computerChoice);
     round += 1;
@@ -90,46 +93,16 @@ const play = function (event) {
     showWinner(winner, computerChoice);
 };
 
-// Load different game configurations
-const loadChoices = function (e) {
 
-    switch(e){
-        case 3:
-            console.log("happened 3");
-            choices.innerHTML = `
-                <i id="rock" class="choice fas fa-hand-rock fa-10x"></i>
-                <i id="paper" class="choice fas fa-hand-paper fa-10x"></i>
-                <i id="scissors" class="choice fas fa-hand-scissors fa-10x"></i>
-            `;
-            break;
-        case 5:
-            console.log("happened 5");
-            choices.innerHTML = `
-                <i id="rock" class="choice fas fa-hand-rock fa-10x"></i>
-                <i id="paper" class="choice fas fa-hand-paper fa-10x"></i>
-                <i id="scissors" class="choice fas fa-hand-scissors fa-10x"></i>
-                <i class="fas fa-hand-lizard fa-10x"></i>
-                <i class="fas fa-hand-spock fa-10x"></i>
-            `;
-            break;
-        default:
-            choices.innerHTML = `
-                <i id="rock" class="choice fas fa-hand-rock fa-10x"></i>
-            `;
-            break;
-
-    }
-};
-
-const showWinner = function (winner, compterChoice) {
+const showWinner = function (winner, computerChoice) {
     if (winner === 'player') {
         // update score
         scoreboard.player += 1;
         // show modal
         result.innerHTML = `
             <h1 class="text-win">Player Wins</h1>
-            <i class="fas fa-hand-${compterChoice} fa-10x"></i>
-            <p>Computer Picked <strong>${compterChoice.charAt(0).toUpperCase() + compterChoice.slice(1)}</strong></p>
+            <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+            <p>Computer Picked <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
         `;
     } else if(winner === 'computer') {
         // update score
@@ -137,15 +110,15 @@ const showWinner = function (winner, compterChoice) {
         // show modal
         result.innerHTML = `
             <h1 class="text-lose">Computer Wins</h1>
-            <i class="fas fa-hand-${compterChoice} fa-10x"></i>
-            <p>Computer Picked <strong>${compterChoice.charAt(0).toUpperCase() + compterChoice.slice(1)}</strong></p>
+            <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+            <p>Computer Picked <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
         `;
     } else if(winner === 'tied') {
         // show modal
         result.innerHTML = `
             <h1>Round Tied</h1>
-            <i class="fas fa-hand-${compterChoice} fa-10x"></i>
-            <p>Computer Picked <strong>${compterChoice.charAt(0).toUpperCase() + compterChoice.slice(1)}</strong></p>
+            <i class="fas fa-hand-${computerChoice} fa-10x"></i>
+            <p>Computer Picked <strong>${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)}</strong></p>
         `;
     }
 

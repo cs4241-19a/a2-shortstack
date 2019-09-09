@@ -10,17 +10,16 @@
   <body>
     <form action="">
       <input class="name" type='text' id='playerName' value="Your name here">
-      <button>submit</button>
+      <button class="submit-button pure-button">Submit</button>
     </form>
     <select class="config" name="ice-cream">
-      <option value="">Select One …</option>
+      <option value="">Select Game Type</option>
       <option value="3">Rock Paper Scissors</option>
       <option value="5">Rock Paper Scissors Lizard Spock</option>
-      <option value="7">Vanilla</option>
     </select>
   </body>
   <script>
-
+  let configNum = 3;
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault();
@@ -31,13 +30,15 @@
 
     fetch( 'http://localhost:3000', {
       method:'POST',
-      body 
+      body
     })
     .then( res => res.json())
-    .then( json =>
+    .then( json => {
       // do something with the reponse
-      console.log(json)
-    );
+      console.log(json);
+      configNum = json.config;
+      $(".titleName").text("Play a game with me " + input.value);
+    });
 
     return false
   };
@@ -56,7 +57,7 @@
 <body>
   <div class="container">
     <header class="header">
-      <h1>Rock Paper Scissors</h1>
+      <h1 class="titleName">Rock Paper Scissors</h1>
       <button id="restart" class="restart-btn">Restart Game</button>
       <div id="score" class="score">
         <p>Player: 0</p>
@@ -65,18 +66,70 @@
     </header>
     <h2>Make Your Selection</h2>
     <div class="choices">
+
       <i id="rock" class="choice fas fa-hand-rock fa-10x"></i>
       <i id="paper" class="choice fas fa-hand-paper fa-10x"></i>
       <i id="scissors" class="choice fas fa-hand-scissors fa-10x"></i>
-      <i class="fas fa-hand-lizard fa-10x"></i>
-      <i class="fas fa-hand-spock fa-10x"></i>
+      <i id="lizard" class="choice fas fa-hand-lizard fa-10x"></i>
+      <i id="spock" class="choice fas fa-hand-spock fa-10x"></i>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type = "text/javascript">
+    const config = document.querySelector('.config');
+
+    // Load different game configurations
+    const loadChoices = function (conf) {
+
+      console.log("config num: " + conf);
+      switch(conf){
+        case "3":
+
+          $("#spock").hide();
+          $("#lizard").hide();
+
+          break;
+        case "5":
+
+          $("#spock").show();
+          $("#lizard").show();
+          break;
+
+        default:
+          $("#rock").show();
+          $("#paper").show();
+          $("#scissors").show();
+          $("#spock").show();
+          $("#lizard").hide();
+          break;
+      }
+    };
+
+
+    config.addEventListener('change', () => {
+      const input = config,
+              json = { config: input.value },
+              body = JSON.stringify( json );
+      fetch('http://localhost:3000', {
+        headers: {"Content-Type": "application/json; charset=utf-8"},
+        method: 'PUT',
+        body: body,
+        json: true
+      })
+              .then( res => res.json())
+              .then( json => {
+                configNum = json.config;
+                loadChoices(configNum);
+              });
+
+
+    });
+
+  </script>
 
   <div class="modal">
     <div id="result" class="modal-content"></div>
   </div>
-
   <script src="./js/ui.js"></script>
 </body>
 </html>

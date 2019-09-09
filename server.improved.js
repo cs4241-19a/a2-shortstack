@@ -8,12 +8,15 @@ const http = require( 'http' ),
       { parse } = require('querystring');
 
 let appdata = {};
+let username;
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
     handleGet( request, response );
   }else if( request.method === 'POST' ){
     handlePost( request, response );
+  }else if( request.method === 'PUT' ) {
+      handlePut(request, response);
   }
 });
 
@@ -39,17 +42,42 @@ const handlePost = function( request, response ) {
     // ... do something with the data here!!!
     let jsonData = JSON.parse(dataString);
     console.log(jsonData);
-    if(!Object.keys(appdata).includes(jsonData.playerName)){
+    if(!Object.keys(appdata).includes(jsonData.playerName) && jsonData.playerName !== undefined){
       appdata[jsonData.playerName] = { 'config': 3 };
+      username = jsonData.playerName;
+    }
+    else if(jsonData.playerName === undefined && jsonData.config !== undefined){
     }
 
     response.setHeader('Content-Type', 'application/json' );
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
     response.write(JSON.stringify(appdata[jsonData.playerName]));
-    response.end('OK');
+    response.end();
     console.log( appdata );
   })
 };
+
+const handlePut = function( request, response ){
+    let dataString = '';
+
+    request.on( 'data', function( data ) {
+        dataString += data;
+    });
+
+    request.on( 'end', function() {
+        let jsonData = JSON.parse(dataString);
+        appdata[username] = jsonData.config;
+
+        console.log(JSON.stringify(jsonData));
+
+        response.setHeader('Content-Type', 'application/json' );
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+        response.write(JSON.stringify(jsonData));
+        response.end();
+
+    });
+};
+
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename );
