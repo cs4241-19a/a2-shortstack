@@ -176,6 +176,7 @@ function displayData(){
 }
 
 function generateHoroscope(){
+  console.log("ADK")
   var newForm = document.getElementById("newForm");
   var modForm = document.getElementById("modForm");
   var editForm = document.getElementById("editForm");
@@ -191,6 +192,11 @@ function generateHoroscope(){
   else{
     horo.style.display = 'inline'
   }
+  
+  if(document.getElementById("resultsTable") !== null){
+    document.getElementById("Container").innerHTML = ''
+  }
+    
 }
 
 //******* DYNAMIC DROPDOWNS ******//
