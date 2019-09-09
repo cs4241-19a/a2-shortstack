@@ -57,9 +57,7 @@ function genTable(dataList, idx) {
                   "<input type='text' id='nameE' value='" + d.name + "'>" +
                 "</td>" +
                 "<td>" + 
-                  "<button id='v" + i + "' onclick='drawData(" + i + ")'>View</button>" +
                   "<button id='u" + i + "' onclick='updateData(" + i + ")'>Update</button>" +
-                  "<button id='d" + i + "'onclick='deleteData(" + i +")'>Delete</button>" +
                 "</td>"
               "</tr>"
     }
