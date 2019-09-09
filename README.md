@@ -16,7 +16,7 @@ This project mainly focused on the interaction between the front-end, which upda
 to the back-end server for storage and to calculate/verify purchases. This was mainly done through custom GET and POST requests in which the UI can request
 data given a specific UID, and using localStorage to implement state across browser refreshes.
 
-https://a2-jamesplante.glitch.me/
+https://a2-jwplante.glitch.me/
 
 ## Technical Achievements
 - **Purchasing System**: Purchases are sent to the server backend as POST requests after a user fills out the HTML form containing "delta objects" that consist of the current balance and what the user wants to purchase. The server then makes
