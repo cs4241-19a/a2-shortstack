@@ -7,7 +7,7 @@ The original plan was to create a "simple calculator simulator" that would allow
 Unfortunately, this did not happen and I was unable to finish the project:  
 https://a2-alejandragarza2-alejandra-garza.glitch.me/
 
-##What Went Wrong
+## What Went Wrong
 - One of the main issues I experienced, was that my fetch('/cal') call would not work while I was using Visual Studio Code no matter what I tried to change. However, when I uploaded my project to Glitch, it started pointing out small syntax errors that neither VS Code nor the Chrome Inspector had identfied, and after fixing them my code worked...a little better.
 - Dynamically allocating the table was extremely challenging and I was unfortunately unable to do it, one of the biggest issues I kept having was that I could not parse the data correctly: 
 ![alt text](https://github.com/AlejandraGarza42/a2-shortstack/blob/master/screenshot1.PNG)
