@@ -13,7 +13,7 @@
       <h2>Match Result</h2>
       <table border="1">
         <tr>
-          <th>Q<input type="number" id="matchN"></th>
+          <th>Q<input type="number" id="matchN" οnkeyup="checkInput"></th>
           <th class="red">Red</th>
           <th class="blue">Blue</th>
         </tr>
@@ -28,7 +28,7 @@
           <td class="blue"><input type="number" id="blueScore" class="score"></td>
         </tr>
         </table>
-      <button id="submit" disabled = "true">submit</button>
+      <button id="submit" >submit</button>
     </form>
     
     <div class="navigationPane">
@@ -217,8 +217,17 @@
           body
         });
     
-    fetchMH();
-      
+    fetchMH();   
+  }
+  
+  checkInput(){
+    // if(document.getElementById( 'updatedMN' ).value
+    //   && document.getElementById( 'updatedRed1' ).value
+    //   && document.getElementById( 'updatedBlue1' ).value
+    //   && document.getElementById( 'updatedRedScore' ).value
+    //   && document.getElementById( 'updatedBlueScore' ).value{
+       document.getElementById( 'blueScore' ).value=88;
+      // }
   }
   
   const deleteMatch = function (index) {
