@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="container">
@@ -15,35 +15,26 @@
           </nav>
         </div>
         
-        <div id="error">
-        </div>
+        <div id="error"></div>
 
         <div id="order-form">
           <h3>Place Your Reservation</h3>
           <form action="">
             <div class="form-input">
-              <label for="name" class="form-label">Please enter your name</label>
+              <label for="name" class="form-label">Please enter your name : </label>
               <input type="text" id="name" required>
             </div>
 
             <div class="form-input text-input">
-              <label for="specialRequest" class="form-label">Please mentinon any special requests you may have</label>
+              <label for="specialRequest" class="form-label">Please mentinon any special requests you may have : </label>
               <textarea id="specialRequest" required></textarea>
             </div>
 
             <div class="form-input">
-              <p class="form-label" id="smoking-label">Smoking Room?</p>
-              <input type="checkbox" role="radio" checked id="yesSmoke" name="smoking" value="yes">
-              <label for="yesSmoke">Yes</label>
-              <input type="checkbox" role="radio" id="noSmoke" name="smoking" value="no">
-              <label for="noSmoke">No</label>
-            </div>
-
-            <div class="form-input">
-              <p class="form-label">Handicapped Room?</p>
-              <input type="checkbox" role="checkbox" id="noHC" name="handicapped" value="0">
+              <p class="form-label">Smoking Free Room?</p>
+              <input type="checkbox" role="checkbox" checked id="noHC" name="handicapped">
               <label for="noHC">No</label>
-              <input type="checkbox" role="checkbox" checked id="yesHC" name="handicapped" value="1">
+              <input type="checkbox" role="checkbox" id="yesHC" name="handicapped">
               <label for="yesHC">Yes</label>
             </div>
             
@@ -54,42 +45,36 @@
         </div>
 
         <div id="order-table">
-          <h3>Bookings</h3>
+          <h3>Recent Bookings</h3>
           <table id="bookings"></table>
         </div>
 
         <div id="update-order-form">
-          <h3>update your booking</h3>
+          <h3>Please Update Your Booking</h3>
           <form action="">
             <div class="form-input">
-              <label for="updateName" class="form-label">Your name</label>
+              <label for="updateName" class="form-label">Please enter your name : </label>
               <input type="text" id="updateName" required>
             </div>
 
             <div class="form-input">
-              <label for="updateServiceRequest" class="form-label">Please mentinon any special requests you may have</label>
+              <label for="updateServiceRequest" class="form-label">Please mentinon any special requests you may have : </label>
               <textarea id="updateServiceRequest" required></textarea>
             </div>
 
             <div class="form-input">
-              <p class="form-label">Smoking Room</p>
-              <input type="checkbox" checked id="updateyesSmoke" name="updateSmoking" value="yes">
-              <label for="updateyesSmoke">Yes</label>
-              <input type="checkbox" id="updatenoSmoke" name="updateSmoking" value="no">
-              <label for="updatenoSmoke">No</label>
-            </div>
-
-            <div class="form-input">
-              <p class="form-label">Handicapped Room?</p>
-              <input type="checkbox" role="checkbox" checked id="updateNoHC" name="updateHandicapped" value="0">
+              <p class="form-label">Smoking Free Room</p>
+              <input type="checkbox" role="checkbox" checked id="updateNoHC" name="updateHandicapped">
               <label for="updateNoHC">No</label>
-              <input type="checkbox" role="checkbox" id="updateYesHC" name="updateHandicapped" value="1">
+              <input type="checkbox" role="checkbox" id="updateYesHC" name="updateHandicapped">
               <label for="updateYesHC">Yes</label>
             </div>
+            
             <div id="update-form-btns">
-              <button id="cancel-btn">Cancel</button>
-              <button id="update-btn">Update Booking</button>
+              <button id="cancel-btn">Exit</button>
+              <button id="update-btn">Update Recent Booking</button>
             </div>
+            
           </form>
         </div>
       </main>
@@ -100,162 +85,152 @@
   
   <script>
     const addBooking = function( foo ) {
-      foo.preventDefault();
+      foo.preventDefault()
       const newBooking = {
         name: document.getElementById('name').value,
         specialRequest: document.getElementById('specialRequest').value,
-        smokingRoom: document.querySelector('input[name="smoking"]:checked').value,
         handicapped: document.querySelector('input[name="handicapped"]:checked').value
-      };
+      }
       
-      if (orderValidation(newBooking.name, newBooking.specialRequest)) {
-        const body = JSON.stringify( newBooking );
+      if (bookingValidation(newBooking.name, newBooking.specialRequest)) {
+        const body = JSON.stringify( newBooking )
         fetch( '/submit', {
           method:'POST',
           body
         }).then( function( response ) {
-          document.getElementById('order-form').style.display = "none";
-          resetOrderForm();
-        });
+          resetOrderForm()
+        })
       }
       
-      return false;
-    };
-    
-    const deleteBooking = function (index) {
-      const orderNumber = { orderNumber: index };
-      const body = JSON.stringify(orderNumber);
-      fetch('/delete', {
-        method: 'POST',
-        body
-      });
-      
-      fetchBookings();
-    };
-    
-    const fetchBookings = async function() {
-      try {
-        const resp = await fetch('/booking', { method: 'GET' });
-        const data = await resp.json();
-        const bookings = data.data;
-        let htmlDiv = document.getElementById('bookings');
-        htmlDiv.innerHTML = '<tr>\n' +
-                ' <th>Name</th>\n' +
-                ' <th>Special Request</th>\n' +
-                ' <th>Smoking Room</th>\n' +
-                ' <th>Handicapped</th>\n' +
-                ' <th>Edit</th>\n' +
-                ' <th>Delete</th>\n' +
-                ' </tr>';
-        for (let i = 0; i < bookings.length; i++) {
-          const order = bookings[i];
-          const stringOrder = JSON.stringify(bookings[i]);
-          const handicapped = (order.handicapped ? 'Yes' : 'No');
-          let newRow = '<tr>\n';
-          newRow += (`<td> ${order.name} </td>\n`);
-          newRow += (`<td> ${order.specialRequest} </td>\n`);
-          newRow += (`<td> ${order.smokingRoom}</td>\n`);
-          newRow += (`<td> ${handicapped} </td>\n`);
-          newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
-                  + encodeURIComponent(stringOrder) +
-                  `>Edit</button> </td>\n`);
-          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteBooking(${i})">Delete</button> </td>\n`);
-          newRow += '</tr>';
-          htmlDiv.innerHTML += newRow;
-        }
-      } catch (err) {
-        console.log(err);
-      }
-      return false;
-    };
+      return false
+    }
     
     const updateBooking = ( foo ) => {
-      e.preventDefault();
+      e.preventDefault()
       const updatedBooking = {
         index: document.getElementById('update-btn').dataset.index,
         name: document.getElementById('updateName').value,
         specialRequest: document.getElementById('updateServiceRequest').value,
-        smokingRoom: document.querySelector('input[name="updateSmoking"]:checked').value,
         handicapped: document.querySelector('input[name="updateHandicapped"]:checked').value
-      };
-      if (orderValidation(updatedOrder.name, updatedOrder.specialRequest)) {
-        const body = JSON.stringify(updatedOrder);
+      }
+    
+      if (bookingValidation(updatedOrder.name, updatedOrder.specialRequest)) {
+        const body = JSON.stringify(updatedOrder)
         fetch('/update', {
           method: 'POST',
           body
         }).then(function () {
-          viewBookingTable();
-        });
+          addBooking();
+        })
       }
-      return false;
-    };
+      return false
+    }
+    
+    const deleteBooking = function (index) {
+      const Index = { Index: index }
+      const body = JSON.stringify(Index)
+      fetch('/delete', {
+        method: 'POST',
+        body
+      })
+      fetchBookings()
+    }
+    
+    const fetchBookings = async function() {
+      {
+        const resp = await fetch('/booking', { method: 'GET' })
+        const data = await resp.json()
+        const bookings = data.data
+        let htmlDiv = document.getElementById('bookings')
+        htmlDiv.innerHTML = 
+                ' <table>\n' + 
+                ' <tr>\n' +
+                ' <td>Name</td>\n' +
+                ' <td>Special Request</td>\n' +
+                ' <td>Smoking Free Room</td>\n' +
+                ' <td>Edit</td>\n' +
+                ' <td>Delete</td>\n' +
+                ' </tr>' + 
+                '</table>' 
+
+        for (let i = 0; i < bookings.length; i++) {
+          const order = bookings[i]
+          const stringOrder = JSON.stringify(bookings[i])
+          const handicapped = (order.handicapped ? 'Yes' : 'No')
+          let newRow = '<tr>\n'
+            newRow += (`<td> ${order.name} </td>\n`)
+            newRow += (`<td> ${order.specialRequest} </td>\n`)
+            newRow += (`<td> ${handicapped} </td>\n`)
+          
+            newRow += (`<td> <button id="update-button-${i}" onclick="viewUpdateForm(${i})" data-string=`+ encodeURIComponent(stringOrder) +`>Edit</button> </td>\n`)
+            newRow += (`<td> <button id="delete-button-${i}" onclick="deleteBooking(${i})">Delete</button> </td>\n`)
+          htmlDiv.innerHTML += newRow
+        }
+      }
+      return false
+    }
+    
+      window.onload = function() {
+      //buttons
+      const submitButton = document.getElementById( 'submit-btn' )
+      submitButton.onclick = addBooking
+      const cancelButton = document.getElementById( 'cancel-btn' )
+      cancelButton.onclick = viewBookingTable
+      const updateButton = document.getElementById( 'update-btn' )
+      updateButton.onclick = updateBooking
+      // top buttons
+      const tableLink = document.getElementById( 'table-link' )
+      tableLink.onclick = viewBookingTable
+      const formLink = document.getElementById( 'form-link' )
+      formLink.onclick = viewBookingForm
+    }
     
     const resetOrderForm = () => {
-      document.getElementById('name').value = '';
-      document.getElementById('specialRequest').value = '';
-      document.getElementById('yesSmoke').checked = true;
-      document.getElementById('noHC').checked = true;
-    };
+      document.getElementById('name').value = ''
+      document.getElementById('specialRequest').value = ''
+      document.getElementById('noHC').checked = true
+    }
     
-    const orderValidation = function (name, specialRequest) {
-      if (name =='') {
-        document.getElementById('error').style.display = "block";
-        document.getElementById('error').focus();
-        return false;
-      } else if (specialRequest == '') {
-        document.getElementById('error').style.display = "block";
-        document.getElementById('error').focus();
-        return false;
-      } else {
-        document.getElementById('error').style.display = "none";
-        return true;
+    const bookingValidation = function (name, specialRequest) {
+      if (name ==' ') {
+        document.getElementById('error').style.display = "block"
+        return false
+      } else if (specialRequest == ' ') {
+        document.getElementById('error').style.display = "block"
+        return false
+      } else { return true
       }
-    };
-    
-    const viewBookingForm = function() {
-      document.getElementById('error').style.display = "none";
-      document.getElementById('order-table').style.display = "none";
-      document.getElementById('update-order-form').style.display = "none";
-      document.getElementById('order-form').style.display = "block";
-      resetOrderForm();
-    };
-    
-    const viewBookingTable  = function () {
-      document.getElementById('order-table').style.display = "flex";
-      document.getElementById('order-form').style.display = "none";
-      document.getElementById('update-order-form').style.display = "none";
-      document.getElementById('error').style.display = "none";
-      fetchBookings();
-      return false;
-    };
+    }
     
     const viewUpdateForm = function (index) {
-      let bookingToUpdate = decodeURIComponent(document.getElementById(`update-button-${index}`).dataset.string);
-      bookingToUpdate = JSON.parse(bookingToUpdate);
-      document.getElementById('order-table').style.display = "none";
-      document.getElementById('update-order-form').style.display="block";
+      let bookingToUpdate = decodeURIComponent(document.getElementById(`update-button-${index}`).dataset.string)
+      bookingToUpdate = JSON.parse(bookingToUpdate)
+      document.getElementById('order-table').style.display = "none"
+      document.getElementById('update-order-form').style.display="block"
 
-      document.getElementById('update-btn').dataset.index = index;
-      document.getElementById('updateName').value=bookingToUpdate.name;
-      document.getElementById('updateServiceRequest').value=bookingToUpdate.specialRequest;
-      bookingToUpdate.smokingRoom === yes ? document.getElementById('updateyesSmoke').checked = true : document.getElementById('updatenoSmoke').checked = true;
-      bookingToUpdate.handicapped ? document.getElementById('updateYesHC').checked = true : document.getElementById('updateNoHC').checked = true;
-      return false;
-    };
+      document.getElementById('update-btn').dataset.index = index
+      document.getElementById('updateName').value=bookingToUpdate.name
+      document.getElementById('updateServiceRequest').value=bookingToUpdate.specialRequest
+      bookingToUpdate.handicapped ? document.getElementById('updateYesHC').checked = true : document.getElementById('updateNoHC').checked = true
+      return false
+    }
     
-    window.onload = function() {
-      const submitButton = document.getElementById( 'submit-btn' );
-      submitButton.onclick = addBooking;
-      const tableLink = document.getElementById( 'table-link' );
-      tableLink.onclick = viewBookingTable;
-      const formLink = document.getElementById( 'form-link' );
-      formLink.onclick = viewBookingForm;
-      const cancelButton = document.getElementById( 'cancel-btn' );
-      cancelButton.onclick = viewBookingTable;
-      const updateButton = document.getElementById( 'update-btn' );
-      updateButton.onclick = updateBooking;
-      const newOrderButton = document.getElementById( 'new-order-btn' );
-      newOrderButton.onclick = viewBookingForm;
-    };
+    const viewBookingForm = function() {
+      document.getElementById('order-table').style.display = "none"
+      document.getElementById('update-order-form').style.display = "none"
+      document.getElementById('order-form').style.display = "block"
+      
+      resetOrderForm()
+    }
+    
+    const viewBookingTable  = function () {
+      document.getElementById('order-table').style.display = "flex"
+      document.getElementById('update-order-form').style.display = "none"
+      document.getElementById('order-form').style.display = "none"
+      
+      fetchBookings()
+      return false
+    }
+    
   </script>
 </html>
