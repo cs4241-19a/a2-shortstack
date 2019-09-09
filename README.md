@@ -1,4 +1,4 @@
-Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
+README
 ---
 
 ## Pythagorean Theorem Calculator
@@ -12,14 +12,14 @@ Here is a sample formula for summarizing your activities, talk about:
 - Yes this solves the problem, users can easily see the length of the third side of their triangles
 - Note: the submit data function must be clicked in order for the results table on the right hand side to update
 
-***GLITCH LINK HERE***
+https://a2-cenright7192.glitch.me/ 
 
 ## Technical Achievements
 - **Editable Form Table**: Shown in `index.html` the page uses editable text boxes. This makes it easy and straightforward for the user to edit certain triangle's side lengths. Also, the delete buttons are dynamically created which allows each triangle to be delted at any time, regardless of the order.
 - **Passing Data through Response Objects**: Shown in `server.imporved.js` and `input.html`. I had significant trouble with both sending the response from the server side as well as accessing the body of the response on the client side through the promises. I attended many office hours with Noelle and eventually we figured out the problem. This set me back many days on the project because I was unable to work with data without the server.
 
 ### Design/Evaluation Achievements
-- **Accesibility**: Shown in `style.css` and `index.html`, the image makes use of an alt tag, the colors on the page are all of acccesible contrast, indicative tags were used when applicable.
+- **Accesibility**: Shown in `style.css` and `index.html`, the image makes use of an alt tag, the colors on the page are all of acccesible contrast, indicative tags were used when applicable. Aditionally, it is easy to tab through all of the buttons and input buttons in the intended order.
 - **Layout**: Shown in `styles.css`, I used flex grid to set up the three columns for the layout which allowed me to changes how they were centered.
 
 ## Sources:
