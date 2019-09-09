@@ -13,8 +13,8 @@ const appdata = [
 ]
 
 const data = [
-  { 'question': 'one', 'answer': '4', response: ''},
-  { 'question': 'two', 'answer': '2', response: ''}
+  { 'day': 'Monday', 'task': 'CS4241 A2 Due', time: '11:59:00'},
+  { 'day': 'Tuesday', 'task': 'MA2621 Homework Due', time: '2:00:00'}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -46,15 +46,15 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
     var info = JSON.parse( dataString )
-    var newAnswer = {
-      'question': info.question,
-      'answer' : info.answer,
-      'response': info.response
+    var newEvent = {
+      'day': info.day,
+      'task' : info.task,
+      'time': info.time
     }
     
     // ... do something with the data here!!!
     //response.write(JSON.parse( dataString ))
-    data.push(newAnswer);
+    data.push(newEvent);
     
     //response.write(data.toString())
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
