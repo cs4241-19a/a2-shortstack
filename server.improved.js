@@ -7,7 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 var playerData = [
-  {'name': "Javier", 'moves': 0, 'medal': "Platinum"}
+  {'name': "Javier", 'moves': 0, 'medal': "platinum"}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -57,17 +57,17 @@ const handlePost = function( request, response ) {
     var color = rightColor(playerGuess)
     var colorNpos = rightPosition(playerGuess)
     
-    if (colorNpos = 4) {
+    if (colorNpos == 4) {
       var medal = giveMedal(obj.guesscount)
       var newEntry = { 'name': obj.playername,
                        'moves': obj.guesscount,
-                       'medal': obj.medal}
+                       'medal': giveMedal(obj.guesscount)}
       playerData.push(newEntry)
       
+      
       response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
-      response.write("You got a " + medal + " medal!")
-      response.end()
-      console.log()
+      //response.end("You got a " + medal + " medal!")
+      response.end(playerData)
     }
     
     else {
@@ -77,8 +77,7 @@ const handlePost = function( request, response ) {
       var cbody = JSON.stringify(clues)
       
       response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
-      response.json(cbody)
-      response.end()
+      response.end(cbody)
     }
   })
 }
