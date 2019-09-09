@@ -142,22 +142,29 @@
     var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
     var pointerChild = document.querySelector('.boardsection[data-board]:first-child .tasklist :first-child[index]')
     var i;
+    var indices;
     for(i = pointer.hasChildNodes(); i > 0; i--){
       if(pointerChild !== null) {
-        removeEvent(pointerChild.getAttribute('index'))
+        indices = [];
+        console.log(pointerChild.getAttribute('index'))
+        indices.push(pointerChild.getAttribute('index'))
+        console.log(indices)
       }
+    }
+    
+    if(indices !== null) {
+        removeEvent(indices)
     }
   }
   
   
   const removeEvent = function(index) {
     var body = JSON.stringify( index )
-    
+    console.log("Here")
     fetch('/delete',{
       method: 'POST',
       body
     }).then(function(response) {
-      console.log(index)
       updateSchedule()
       console.log(response)
     })
