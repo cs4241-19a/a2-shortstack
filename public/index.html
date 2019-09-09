@@ -176,17 +176,17 @@
   
   const deleteEvent = function(e) {
     e.preventDefault();
-    var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist div')
-        var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
-
-    if(pointer !== null) {
-      var i;
-      for(i = 0; i < pointer.childNodes.length; i++){
-        pointer.remove(pointer.childNodes[i])
+    var pointer = document.querySelector('.boardsection[data-board]:first-child .tasklist')
+    while(pointer.hasChildNodes()){
+      pointer.removeChild(pointer.firstChild)
+      if(pointer.firstChild) {
+        
       }
     }
-    console.log(pointer)
+    
   }
+  
+  
   
   const createEvent = function(day, task, time){
       var dayNum = dayFinder(day)
