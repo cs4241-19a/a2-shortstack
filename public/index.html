@@ -12,7 +12,7 @@
   <body>
     <div class="header-image">
       <div class="header-text">
-        <h1 class="title">shopr</h1>
+        <h1 id="title">shopr</h1>
         <p class="slogan">your online wishlist</p>
         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#addItem">Add item</button>
       </div>
@@ -31,7 +31,7 @@
             <form>
               <div class="form-group">
                 <label for="name" class="col-form-label">Name</label>
-                <input type="text" class="form-control" id="rname">
+                <input type="text" class="form-control" id="name">
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4">
@@ -39,18 +39,24 @@
                   <input type="text" class="form-control" id="price" placeholder="$ USD">
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="inputState">Category</label>
-                  <select id="inputState" class="form-control">
+                  <label for="category">Category</label>
+                  <select id="category" class="form-control">
                     <option selected>Fashion</option>
-                    <option selected>Tech</option>
-                    <option selected>Sports</option>
-                    <option selected>Gaming</option>
-                    <option selected>Other</option>
+                    <option>Tech</option>
+                    <option>Sports</option>
+                    <option>Gaming</option>
+                    <option>Other</option>
                   </select>
                 </div>
                 <div class="form-group col-md-4">
                   <label for="rating">Rating</label>
-                  <input type="text" class="form-control" id="rating">
+                  <select id="category" class="form-control">
+                    <option selected>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
                 </div>
               </div>
               <div class="form-group">
@@ -61,7 +67,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-success">Add</button>
+            <button id="submit" type="button" class="btn btn-success">Add</button>
           </div>
         </div>
       </div>
@@ -157,6 +163,9 @@
   window.onload = function() {
     loadFavorites();
     loadAllResults();
+    
+    const button = document.querySelector( 'button' )
+    button.onclick = submit
   }
 
   </script>
