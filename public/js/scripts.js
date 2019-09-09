@@ -12,6 +12,8 @@ var orderNum = 0;
 // add order to server queue table
 const submit = function( e ) {
 
+
+
     // prevent default form action from being carried out
     e.preventDefault()
     const yourname = document.querySelector( '#name' ),
@@ -20,31 +22,98 @@ const submit = function( e ) {
           seasoning = document.querySelector( '#seasoning' ),
           size = document.querySelector( '#size' )
 
-    // calculate cost of order
-    var cost = calculateCost(potato.value, seasoning.value, size.value);
+   var phonepattern = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+   if ((yourname.value.length > 20 || !phone.value.match(phonepattern))) {
+      invalidOrder();
+      return;
+    }
 
     // increment order number for a new order
     orderNum++;
 
-    console.log("Order #" + orderNum + " Cost = $" + cost);
-
-    const json = { yourname: yourname.value, phone: phone.value, potato: potato.value, seasoning: seasoning.value, size: size.value, cost: cost, orderNum: orderNum},
+    const json = { yourname: yourname.value, phone: phone.value, potato: potato.value, seasoning: seasoning.value, size: size.value, orderNum: orderNum},
           body = JSON.stringify( json )
 
+    // order sent to server
     fetch( '/submit', {
         method:'POST',
         body
     })
 
     .then( function( response ) {
-      // do something with the reponse
       console.log( response )
+
+      // load data into queue table
+      refreshTable();
     })
 
     resetForm();
 
     return false
 }
+
+function refreshTable() {
+
+  // fetch data
+  let data
+    fetch('/orders')
+    .then(response => response.json())
+    .then(data => {
+        console.log("Data from server: ")
+        console.log(data)
+
+        // form table and calculate cost
+        createTable(data)
+
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
+
+// calculates cost and then adds it to the table
+function createTable(data) {
+
+    var table = document.getElementById('tableData');
+    var orders = []
+    var cost = 0;
+
+    // clear old table entries except for the first
+    for (var i=table.rows.length-1; i>0; i--) {
+      table.deleteRow(i);
+    }
+
+    // loop through data, store variables, and calculate cost
+    for (var x=0; x<data.length; x++) {
+        var yourname = (data[x].yourname)
+        var potato = (data[x].potato)
+        var seasoning = (data[x].seasoning)
+        var size = (data[x].size)
+        var orderNum = (data[x].orderNum)
+
+        var cost = calculateCost(potato,seasoning, size);
+
+        var food = size + " | " + potato + " | " + seasoning;
+
+        // load data into table
+        var row = table.insertRow(1);
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        //var cell4 = row.insertCell(4);
+
+        cell0.innerHTML = yourname;
+        cell1.innerHTML = food;
+        cell2.innerHTML = "$" + cost;
+        cell3.innerHTML = orderNum;
+        //cell4.innerHTML = '<button onclick="removeOrder(' + x + ')">Remove</button>';
+    }
+}
+
+// refresh table on load
+refreshTable();
 
 // submit button
 window.onload = function() {
@@ -127,6 +196,10 @@ function calculateCost(potato, seasoning, size) {
   }
 
   return cost;
+}
+
+function invalidOrder() {
+  alert("Please properly fill out your name (20 characters max) and phone number (XXX-XXX-XXXX). Thank you.")
 }
 
 console.log("a2-jhyuen")

@@ -8,10 +8,14 @@
           href="css/style.css" />
   </head>
   <body>
-    <h1>Fantastic Fries</h1>
+    <div class="title">
+      <div class="center">
+        <img src="css/logo.png" alt="Fantastic Fries Logo">
+      </div>
+    </div>
     <h3>In-Store Kiosk</h3>
     <div class="instructions">
-      <p>Welcome to Fantastic Fries! Create your fantastic fries order on the left, and then see your order, and everybody else's, on the right. Once your order is done, we'll call you up to the register to pay.</p>
+      <p>Welcome to Fantastic Fries! Create your fantastic fries order on the left, and then see your order, and everybody else's, on the right. Once your order is done, we'll call you up to the register to pay and pick up your order.</p>
     </div>
 
     <div class="columns">
@@ -50,7 +54,7 @@
             <option value="pepper">Just Pepper +$1</option>
             <option value="snp">Salt and Pepper +$2</option>
             <option value="cajun">Cajun +$3</option>
-            <option value="guys">7 Guys Style +$3</option>
+            <option value="guys">Seven Guys Style +$3</option>
             <option value="original">Original Recipie +$3</option>
           </select>
         </form>
@@ -64,8 +68,10 @@
           </select>
         </form>
 
-        <div class="right">
-          <button type="button">Place Your Fantastic Order</button>
+        <div class="submit">
+          <div class="right">
+            <button type="button">Place Your Fantastic Order</button>
+          </div>
         </div>
 
       </div>
@@ -74,12 +80,12 @@
 
       <div class="queue">
         <h2>Queue</h2>
-        <table>
+        <table id='tableData'>
           <tr>
             <th>Name</th>
             <th>Fries</th>
             <th>Cost</th>
-            <th>Order Number</th>
+            <th>Order #</th>
           </tr>
         </table>
 
@@ -90,7 +96,6 @@
     <div class="center">
 
     </div>
-
 
 
     <script src="js/scripts.js"></script>

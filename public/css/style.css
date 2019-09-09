@@ -1,10 +1,12 @@
 body {
-    background-color: #FFFFFF;
+    background-image: url("bg.jpg");
     font-family: Arial, Helvetica, sans-serif;
     background-position: center;
-    background-size: cover;
-    margin-left: 400px;
-    margin-right: 400px;
+    background-size: 100% 100%;
+    background-repeat: repeat-y;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 80px;
 }
 
 h1 {
@@ -44,7 +46,7 @@ table {
 }
 
 td, th {
-  border: 1px solid #dddddd;
+  border: 1px solid #000000;
   text-align: left;
   padding: 8px;
 }
@@ -54,7 +56,7 @@ tr:nth-child(even) {
 }
 
 button {
-  margin-top: 30px;
+
 }
 
 .center {
@@ -72,6 +74,7 @@ button {
     column-fill: balance;
     column-width: 100px;
     margin-top: 30px;
+    margin-right: 250px;
 }
 
 .space {
@@ -93,7 +96,17 @@ button {
 }
 
 .instructions {
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 250px;
+  margin-right: 250px;
   text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.submit {
+  margin-top: 30px;
+}
+
+.title {
+  margin-top: 60px;
 }

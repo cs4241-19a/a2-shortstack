@@ -23,8 +23,8 @@ const handleGet = function( request, response ) {
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   } else if (request.url === '/orders') { // grabs orders and sends it back to client
-      response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
-      response.end(JSON.stringify(orders))
+    response.writeHead( 200, "OK", {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(orders))
   } else{
     sendFile( response, filename )
   }
@@ -40,8 +40,8 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
 
-    // add new order to the beginning of the orders array
-    orders.unshift(JSON.parse(dataString))
+    // add new order to the end of the orders array
+    orders.push(JSON.parse(dataString))
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
