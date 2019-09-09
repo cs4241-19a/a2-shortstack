@@ -1,5 +1,15 @@
 /*Style your own assignment! This is fun! */
 
+body {
+    background: silver;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 #gryffindorbg {
     background: red;
 }
