@@ -1,18 +1,5 @@
-/*
-TODO:
-- add computed field in server
-    - validate: error when input loses focus and date is default value mm/dd/yyyy
-*- add ability to remove a record from the server
-- add a results html file to display all results
-?- date inputs are 5px taller than text
-*- onchange funcs for assignment must get event
-    - or not...?
-*- date inputs change width depending on value
-*- validate: how to find record in db if all the info is the same?
-    - validate the post request, do not allow if record already exists
-*/
+//inspired by https://codepen.io/iamjoshellis/pen/yaAXmr?editors=1100
 
-//add btn onclick
 function addAssignment(e) {
     e.preventDefault();
 
@@ -123,7 +110,7 @@ const done_click = function(e) {
         body
     }).then(function(response) {
         if (response.statusText == 'yes') {
-            color = '#9adbbe'
+            color = 'lightgreen'
             let rmbtn = parent.querySelector("#rm_btn")
             parent.removeChild(rmbtn)
             let kids = parent.children;
@@ -175,6 +162,10 @@ function results() {
     fetch('/results.html', {
         method: 'GET'
     }).then(function(response) {
+        window.location = response.url
+        response.on('data', function(data) {
+            console.log(JSON.parse(data))
+        })
     })
 }
 

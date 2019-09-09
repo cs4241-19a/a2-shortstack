@@ -98,20 +98,21 @@ const handleDelete = function(request, response) {
 	request.on('end', function() {
 		let find = findData(JSON.parse(datastr))
 		delete appdata[find]
-		response.writeHead(200, done, {'Content-Type': 'text/plain'})
+		response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
 		response.end();
 	})
 }
 
 const sendFile = function(response, filename) {
 	const type = mime.getType(filename)
-	console.log(filename)
 
 	fs.readFile(filename, function(err, content) {
 		 // if the error = null, then we've loaded the file successfully
 		if (err === null) {
 			 // status code: https://httpstatuses.com
 			 response.writeHeader(200, {'Content-Type': type})
+			 //console.log(filename)
+			 if (filename==='public/results.html') response.write(JSON.stringify(appdata))
 			 response.end(content, 'utf-8')
 		} else {
 			 // file not found, error code 404
