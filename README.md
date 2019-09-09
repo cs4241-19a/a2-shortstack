@@ -12,8 +12,8 @@ https://a2-alejandragarza2-alejandra-garza.glitch.me/
 - Dynamically allocating the table was extremely challenging and I was unfortunately unable to do it, one of the biggest issues I kept having was that I could not parse the data correctly: 
 ![alt text](https://github.com/AlejandraGarza42/a2-shortstack/blob/master/screenshot1.PNG)
 the first two elements in the array worked fine (they were harcoded there as examples), however, the others did not read the operator and the numbers correctly.
-- Another minor issue was that everything kept shifting once the elements started to be dynamically allocated to the table, and it was all formatted really strangely, regardless of what I did in the.css
-![alt text](https://github.com/AlejandraGarza42/a2-shortstack/blob/master/screenshot2.PNG)
+- Another minor issue was that the data that was displayed in the table, was all mushed together (as seen below) and I was unable to separate them no matter how many Ids and classes I created. 
+![alt text](https://github.com/AlejandraGarza42/a2-shortstack/blob/master/screenshot3.PNG)
 - Lastly I never got around to fixing my delete and edit option since I wasn't able to even add my entries to the table.
 
 I apologize for writing unecessary things, since I had no achievements I thought writing about the challenges I faced was better than nothng.
