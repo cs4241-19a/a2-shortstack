@@ -65,25 +65,23 @@ Do the following to complete this assignment:
 Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
 ---
 
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+## Create a Harry Potter Character
+[https://a2-jlfong.glitch.me/](https://a2-jlfong.glitch.me/)
 
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+The user can create their own Harry Potter character by filling out the form.  Once they submitted their information, a table with current added characters is displayed.
+Depending on what they answered for the survey question, their character will be sorted into one of the Hogwarts Houses (Gryffindor, Hufflepuff, Ravenclaw, Slytherin).
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
-
-http://a2-charlieroberts.glitch.me
+## Requirements
+This project utilizes the HTML forms using divs and tables.
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Colored Rows (Technical)**: Depending on which House the character is in, the row will be colored in the House's main color (Gryffindor is red, 
+Hufflepuff is yellow, Ravenclaw is blue, Slytherin is green).
+- **Editing the Table**: The user is able to edit a character's information from the table.  If their House is changed to a different Housee, the row will change its 
+color to match the new House.  If the value for the new House ends up being invalid input, the table will list them as a Muggle (a regular human being with no magical talent).
+If their first name, last name, or pronouns are edited to be empty, the table will list those fields as redacted.
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
+- **Colored Rows (Design)**: To add on to what I stated in the technical aspect, I wanted to display the rows in these colors so the user can easily differentiate
+which characters are in which Houses.
 - **Design Achievement 2**: We tested the application with n=X users, finding that...
