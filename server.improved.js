@@ -10,7 +10,7 @@ const data = [
   { 'index': 'MondayCS4241 A2 Due11:59', 'day': 'Monday', 'task': 'CS4241 A2 Due', time: '11:59'},
   { 'index': 'TuesdayMA2621 Homework Due2:00', 'day': 'Tuesday', 'task': 'MA2621 Homework Due', time: '2:00'},
   { 'index': 'TuesdayCH1010 Daily Problem11:00', 'day': 'Tuesday', 'task': 'CH1010 Daily Problem', time: '11:00'}
-] 
+]
   
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -48,7 +48,6 @@ const handlePost = function( request, response ) {
           'task' : info.task,
           'time': info.time
         }
-        console.log(newEvent);
         data.push(newEvent);
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
@@ -62,10 +61,8 @@ const handlePost = function( request, response ) {
         }
         var split = data.indexOf(delEvent)
         data.splice(split, 1)
-      
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
         response.end()
-        console.log(data.indexOf(delEvent));
         break
       default:
         console.log("error");

@@ -100,7 +100,8 @@
         var info = myJSON.data
         var i;
         for(i = 0; i < info.length; i++){
-          if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null){
+          if(document.querySelector(".boardsection[data-board]:first-child .tasklist [index='"+info[i].day + info[i].task + info[i].time+"']") === null){ 
+            console.log(info)
             createEvent(info[i].index, info[i].day, info[i].task, info[i].time);
           }
         }
@@ -114,15 +115,12 @@
     var task = document.querySelector("#task").value
     var time = document.querySelector("#time").value
     var index = day + task + time
-    console.log("Index"+ index +"Day: " + day + " Time: " + time + " Task: "+ task);
-
     var newEvent = {
       index : index,
       day : document.querySelector("#day").value,
       task : document.querySelector("#task").value,
       time : document.querySelector("#time").value,
     };
-    
     var body = JSON.stringify( newEvent );
     fetch('/submit',{
       method: 'POST',
@@ -159,8 +157,9 @@
       method: 'POST',
       body
     }).then(function(response) {
+      console.log(index)
       updateSchedule()
-      console.log("made it")
+      console.log(response)
     })
   }
   
@@ -185,19 +184,21 @@
   }
   
   const updateSchedule = function( ) {
-    var num = 0;
     var int = 0;
     console.log("Here")
-    var pointer = document.querySelector('.boardsection[data-board]:last-child .tasklist ')
-    for(int = 0; int < document.querySelector('.boardsection[data-board]').hasChildNodes(); int++) {   
-      var pointer = document.querySelector('.boardsection[data-board]:nth-child(+ +"') .tasklist ')
-      while(pointer.firstChild !== null)
-      {
-        console.log(pointer)
-        console.log(pointer.firstChild)
-        pointer.removeChild(pointer.firstChild)
-      }}
+    var pointer = document.querySelector('.boardsection[data-board]:nth-child('+int+') .tasklist ')
+    for(int = 0; int < 8; int++) {   
+        var pointer = document.querySelector('.boardsection[data-board]:nth-child('+int+') .tasklist ')
+        if(pointer!==null){
+          while(pointer.firstChild !== null){
+            console.log(pointer)
+            console.log(pointer.firstChild)
+            pointer.removeChild(pointer.firstChild)
+          }
+        }
     }
+    //occupySchedule()
+  }
   
   const dayFinder = function(str) {
     switch(str.trim().toLowerCase()) {
