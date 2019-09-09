@@ -92,6 +92,10 @@ const handlePost = function( request, response ) {
       writeUserData2(json.name, json.Board, json.listNameEdit)
     } else if(Object.keys(json).length === 6) {
       writeUserData3(json.name, json.Board, json.taskName, json.taskDes, json.dueDate, json.taskNum)
+    }else if(Object.keys(json).length === 7) {
+      writeUserData4(json.name, json.Board, json.taskNum, json.taskName, json.taskDes, json.dueDate)
+    }else if(Object.keys(json).length === 5) {
+      writeUserData5(json.name, json.Board, json.taskNum)
     }
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
@@ -157,6 +161,33 @@ function writeUserData3(ref, refBoard, taskName, taskDesc, taskDue, taskNum) {
     taskDesc: taskDesc,
     taskDue: taskDue
   });
+}
+
+function writeUserData4(ref, refBoard, taskNum, taskName, taskDesc, taskDue) {
+  var usernameRef = usersRef.child(ref);
+  var boardRef = usernameRef.child(refBoard);
+  var listsRef = boardRef.child("lists/1");
+  var tasksRef = listsRef.child("tasks");
+  var taskRef = tasksRef.child(taskNum);
+  taskRef.update({
+    taskName: taskName,
+    taskDesc: taskDesc,
+    taskDue: taskDue
+  });
+}
+
+function writeUserData5(ref, refBoard, taskNum) {
+  var usernameRef = usersRef.child(ref);
+  var boardRef = usernameRef.child(refBoard);
+  var listsRef = boardRef.child("lists/1");
+  var tasksRef = listsRef.child("tasks");
+  var taskRef = tasksRef.child(taskNum);
+  taskRef.remove().then(function() {
+    console.log("Remove succeeded.")
+  })
+      .catch(function(error) {
+        console.log("Remove failed: " + error.message)
+      });
 }
 
 server.listen( process.env.PORT || port )

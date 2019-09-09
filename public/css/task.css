@@ -291,6 +291,60 @@ body {
     cursor: pointer;
 }
 
+#delBtn {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 80px;
+    font-size: 0.9em;
+    font-weight: 500;
+    box-shadow: 0 1px 10px darkslategray;
+    margin-left: 10px;
+}
+
+#delBtn:hover {
+    background-color: #006eda;
+    box-shadow: 0 1px 10px black;
+    cursor: pointer;
+}
+
+#editBtn {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 80px;
+    font-size: 0.9em;
+    font-weight: 500;
+    box-shadow: 0 1px 10px darkslategray;
+    margin-left: 10px;
+}
+
+#editBtn:hover {
+    background-color: #006eda;
+    box-shadow: 0 1px 10px black;
+    cursor: pointer;
+}
+
 #tasks {
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.9em;
+    font-weight: 400;
+}
+
+.task1 {
+    font-size: 1em;
+    font-weight: 600;
 
 }
