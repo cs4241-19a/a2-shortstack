@@ -7,17 +7,9 @@
   </head>
   <body>
     <center>
-    <h1>Login</h1>
-    <form action="">
-      <input type="text" id="username" placeholder="username">
-      <br>
-      <input type="password" placeholder="password" id="password">
-      <br>
-      <input type="checkbox" onclick="showPassword()">show password 
-      <br>
-      <button id="submit">log in</button>
-    </form>
-    <a href="/register.html">create new account</a>
+    <h1>Congrats! You logged in.</h1>
+    <h3>There's not much to do here unless your an admin. Try logging in as an admin to see all the different users.</h3>
+    <a href="index.html"><button>log out</button></a>
     </center>
     <p id="output"></p>
   </body>
@@ -40,7 +32,7 @@
 
     const username = document.querySelector( '#username' ),
           password = document.querySelector( '#password' ),
-          json = { action: "login", username: username.value, password: password.value },
+          json = { username: username.value, password: password.value },
           body = JSON.stringify( json )
 
     fetch( '/submit', {
@@ -49,7 +41,6 @@
     })
     .then( function( response ) {
       // do something with the reponse 
-      // return response.text
       return response.text();
     })
     .then( function( data ) {
@@ -57,35 +48,17 @@
       
       // document.write("<h1>" + data + "</h1>")
       
-      // window.alert(data)
+      window.alert(data)
       
-//       if(data == "logged in successfully!") {
-//          if(document.querySelector('#username').value == "admin") {
-//            window.location = "loggedin_admin.html"
-//          }
-//         else {
-//           window.location = "loggedin.html"
-//         }
-//       }
-      
-      var json = JSON.parse(data)
-      
-      window.alert(json.loginstatus)
-      
-      if(json.loginstatus == "logged in successfully!") {
-        if(json.adminstatus == "true") {
-          window.location = "loggedin_admin.html"
-        }
-        else {
-          window.location = "loggedin.html"
-        }
+      if(data == "logged in successfully!") {
+         window.location = "register.html"
       }
       
       // var node = document.getElementById('output');
       // var newNode = document.createElement('p');
-      // newNode.appendChild(document.createTextNode(data.adminstatus));
+      // newNode.appendChild(document.createTextNode(data));
       // node.appendChild(newNode);
-    })
+    })    
     return false
   }
 
