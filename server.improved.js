@@ -30,6 +30,10 @@ const handleGet = function (request, response) {
     }
 };
 
+function validate(str) {
+    return str.replace('\'', '\'\'');
+}
+
 const handlePost = function (request, response) {
     let dataString = '';
 
@@ -39,16 +43,18 @@ const handlePost = function (request, response) {
 
     request.on('end', function () {
         let data = JSON.parse(dataString);
-        console.log(data);
-
-        db.run(`INSERT INTO content(contentText, contentType, submittedBy) VALUES('` +
-            data.content.replace('\'', '"') + `', '` +
-            data.type.replace('\'', '"') + `', '` +
-            data.name.replace('\'', '"') + `')`, function (err) {
+        let len = data.content.split(' ').length;
+        db.run(`INSERT INTO content(contentText, contentType, submittedBy, contentLength) VALUES('` +
+            validate(data.content) + `', '` +
+            validate(data.type) + `', '` +
+            validate(data.name) + `', '` +
+            len + `')`, function (err) {
             if (err) {
                 return console.log(err.message);
             }
-            console.log(`A row has been inserted with rowid ${this.lastID}`); });
+            data.contentLength = len;
+            console.log(data);
+            console.log(`New item entered! Row ID: ${this.lastID}`); });
 
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
         response.end()

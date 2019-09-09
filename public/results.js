@@ -20,7 +20,7 @@ function fillTable(table, data) {
             for (let key in item) {
                 if (Object.prototype.hasOwnProperty.call(item, key)) {
                     // console.log(key, ": ", item[key]);
-                    let th = document.createElement("th");
+                    let th = document.createElement("td");
                     let text = document.createTextNode(item[key]);
                     th.appendChild(text);
                     row.appendChild(th);
@@ -28,6 +28,18 @@ function fillTable(table, data) {
             }
     });
 }
+
+window.onload = function () {
+    const button = document.querySelector('#submissionButton');
+    button.onclick = goToSubmission;
+    updateContentLabel();
+};
+
+
+const goToSubmission = function(){
+    const url = window.location;
+    window.location.href = url.protocol + "//" + url.host + "/index.html";
+};
 
 
 let table = document.querySelector("table");

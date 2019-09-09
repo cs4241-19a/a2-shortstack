@@ -25,12 +25,19 @@ const submit = function (e) {
             });
 
     return false
-}
+};
 
 window.onload = function () {
     const button = document.querySelector('#submitButton');
+    const resultsButton = document.querySelector('#resultsButton');
     button.onclick = submit;
+    resultsButton.onclick = goToResults;
     updateContentLabel();
+};
+
+const goToResults = function(){
+    const url = window.location;
+    window.location.href = url.protocol + "//" + url.host + "/results.html";
 };
 
 function getContentType() {

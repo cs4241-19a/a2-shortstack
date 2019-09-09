@@ -1,11 +1,23 @@
+body {
+    background-color: lightskyblue;
+    display: flex;
+    flex-direction: column;
+}
+
+body.results {
+    align-items: flex-start;
+}
+
 form {
+    display: flex;
+    flex-direction: column;
+
     /* Just to center the form on the page */
     margin: 0 auto;
-    width: 400px;
+    width: 500px;
     /* To see the outline of the form */
     padding: 1em;
-    border: 1px solid #CCC;
-    border-radius: 1em;
+    border: 2px solid #333333;
 }
 
 form div + div {
@@ -22,10 +34,10 @@ label {
 input, textarea {
     /* To make sure that all text fields have the same font settings
        By default, textareas have a monospace font */
-    font: 1em sans-serif;
-
+    font: 1em "Franklin Gothic Book";
+    background-color: darkorange;
     /* To give the same size to all text fields */
-    width: 300px;
+    width: 90%;
     box-sizing: border-box;
 
     /* To harmonize the look & feel of text field border */
@@ -55,3 +67,18 @@ button {
        between the labels and their text fields */
     margin-left: .5em;
 }
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+th {
+    border: 1px solid gray;
+    background-color: darkorange;
+}
+
+table {
+    width: 85%;
+    background-color: #999999;
+}
+.col{display:inline-block; border-bottom:1px dashed #333333;width:100px;}
