@@ -168,8 +168,8 @@ const genTable = function (studentList, editIndex) {
             newLine += ('<td align="center">' + houseColor + '<input id="lastName' + i + '" type="text" value="' + currentStudent.lastName + '"> </div></td>\n');
             newLine += ('<td align="center">' + houseColor + '<input id="pronouns' + i + '" type="text" value="' + currentStudent.pronouns + '"> </div></td>\n');
             newLine += ('<td align="center">' + houseColor + '<input id="house' + i + '" type="text" value="' + currentStudent.house + '"></div></td>\n');
-            newLine += ('<td align="center">' + houseColor + '<button id="' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
-            newLine += ('<td align="center">' + houseColor + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<button id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
+            newLine += ('<td align="center">' + houseColor + '<button id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
             newLine += '</tr>';
         }
         else {
@@ -199,7 +199,6 @@ const showData = function () {
 window.onload = function () {
     const button = document.querySelector('button')
     button.onclick = submit
-
 }
 
 

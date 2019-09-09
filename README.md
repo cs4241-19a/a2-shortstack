@@ -85,11 +85,12 @@ Depending on what they answered for the survey question, their character will be
 ## Technical Achievements
 - **Colored Rows (Technical)**: Depending on which House the character is in, the row will be colored in the House's main color (Gryffindor is red, 
 Hufflepuff is yellow, Ravenclaw is blue, Slytherin is green).
-- **Editing the Table**: The user is able to edit a character's information from the table.  If their House is changed to a different Housee, the row will change its 
+- **Editing the Table / Field Checking**: The user is able to edit a character's information from the table.  If their House is changed to a different Housee, the row will change its 
 color to match the new House.  If the value for the new House ends up being invalid input, the table will list them as a Muggle (a regular human being with no magical talent).
 If their first name, last name, or pronouns are edited to be empty, the table will list those fields as redacted.
 
 ### Design/Evaluation Achievements
 - **Colored Rows (Design)**: To add on to what I stated in the technical aspect, I wanted to display the rows in these colors so the user can easily differentiate
 which characters are in which Houses.
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Table Row Hovering**: I wanted to implement a way where the user's mouse can interact with the table, so I added in an aspect when the mouse hovers over a row,
+the row will highlight the text to alert the user which row their mouse is on.  (Got insipration from [here](https://codepen.io/jackrugile/pen/EyABe)).
