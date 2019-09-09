@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'name': 'Yeezy 350', 'category': 'Fashion', 'rating': 5, 'usd': 200, 'eur': 182 },
-  { 'name': 'Macbook Pro', 'category': 'Tech', 'rating': 3, 'usd': 1299, 'eur': 1178.31 },
-  { 'name': 'Wilson Basketball', 'category': 'Sports', 'rating': 2, 'usd': 20, 'eur': 18.14 },
+  { 'name': 'Yeezy 350 Boost', 'category': 'Fashion', 'rating': 5, 'usd': 200, 'eur': 182, 'link': "https://stockx.com/adidas-yeezy-boost-350-v2-cream-white?currencyCode=USD&size=8.5&gclid=CjwKCAjwzdLrBRBiEiwAEHrAYr6Goiw3RGnCl12vXPPsgVqOjI-F36X_4AfNaeBDvt6D-mjEkhmVBBoCRBEQAvD_BwE"},
+  { 'name': 'Macbook Pro', 'category': 'Tech', 'rating': 3, 'usd': 1299, 'eur': 1178.31, 'link': "https://www.apple.com/shop/buy-mac/macbook-pro/13-inch-space-gray-1.4ghz-quad-core-processor-with-turbo-boost-up-to-3.9ghz-128gb?afid=p238%7Csbepnohbm-dc_mtid_1870765e38482_pcrid_246386726307_pgrid_14874568330_&cid=aos-us-kwgo-pla-mac--slid-----product-MUHN2LL/A" },
+  { 'name': 'Wilson Basketball', 'category': 'Sports', 'rating': 2, 'usd': 20, 'eur': 18.14, 'link': "https://www.wilson.com/en-us/basketball/balls/evolution/evolution-game-basketball?gclid=CjwKCAjwzdLrBRBiEiwAEHrAYsO1rcrobWjAgngQhHvN_RTM9DJZj_zVaqj5c4KJ7Vw5_S4yYuE4QxoCYssQAvD_BwE&source=googleshopping&ef_id=CjwKCAjwzdLrBRBiEiwAEHrAYsO1rcrobWjAgngQhHvN_RTM9DJZj_zVaqj5c4KJ7Vw5_S4yYuE4QxoCYssQAvD_BwE:G:s&s_kwcid=AL!8492!3!179840140943!!!g!430754648574!&CMPID=Google-wilson-basketball_g_shopping_usa---c-179840140943-" }
 ]
 
 const server = http.createServer( function( request,response ) {
