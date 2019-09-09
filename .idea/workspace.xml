@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6d88559f-c8a7-41b0-9d0d-909c842d8558" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/2ndpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2ndpage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.improved.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.improved.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,7 +30,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript&#10;HTML" />
-    <property name="last_opened_file_path" value="D:/a2-shortstack/GlobalLanding" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../a2-manasmehta18-master/a2-manasmehta18-master" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -90,6 +89,8 @@
       <workItem from="1567989253443" duration="187000" />
       <workItem from="1567989463328" duration="6862000" />
       <workItem from="1568033288446" duration="8111000" />
+      <workItem from="1568047053672" duration="5603000" />
+      <workItem from="1568060897238" duration="4077000" />
     </task>
     <servers />
   </component>

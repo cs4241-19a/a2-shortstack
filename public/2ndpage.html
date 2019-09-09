@@ -32,13 +32,17 @@
     <div class="content">
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
-            <h1 class="main-title" id="resultTitle">Result</h1>
-            <div class="table-responsive text-nowrap">
-                <table id="gradeTable" class="table table-small main-tagline table-hover w-auto " style=width:50%>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
+           </div>
+        <h1 class="main-title my-5" id="resultTitle">Result</h1>
+        <div class="table-responsive text-nowrap">
+            <table id="gradeTable" class="w-auto table-condensed table-hover">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="modifyData">
+            <ul><li><input class="updateInput" id="updateTokenInput" type="text" placeholder="Course Number"/><span>              </span><input id="updateGradeInput" class="updateInput" type="number" placeholder="Most Current Grade"/></li><li><button class="button" >Update Current Grade</button></li></ul>
+            <ul><li><input class="updateInput"  id="deleteTokenInput" type="text" placeholder="Course Number"></li><li><button class="button" >Delete Current Grade</button></li></ul>
         </div>
     </div>
     <!--content-->
@@ -53,11 +57,12 @@
 <script src="lib/tweenlite/init.js"></script>
 
 <script>
-
-    const updateEntry = function (row) {
-        let key=localStorage.getItem('token');
-        const newGrade = document.querySelector('#updateInput'),
-            json={token:key, updateInput:newGrade.value},
+/*
+    const updateEntry = function (e) {
+        e.preventDefault();
+        let DataKey=localStorage.getItem('token');
+        const newGrade = document.querySelector('#updateTokenInput'),
+            json={token:DataKey, updateInput:newGrade.value},
             body = JSON.stringify(json);
         fetch('/submit',{
             method:'POST',
@@ -66,21 +71,22 @@
             .then(function (response) {
                 console.log("post responses:",response);
                 return false;
-            }).then(
-                function () {
+            }).then(function () {
                     fetch('/receive')
                         .then(function (response) {
                             return response.json();
                         }).then(function (response) {
-                            document.getElementById('curGrade').innerText=(JSON.stringify(response[row].currentGrade)).replace(/^"(.*)"$/, '$1');
+                        let DataKey=localStorage.getItem('token');
+                            document.getElementById('curGrade').innerText=(JSON.stringify(response[DataKey].currentGrade)).replace(/^"(.*)"$/, '$1');
                     })
                 }
         )
     };
+    return True*/
 
 
-      const deleteEntry = function (n){
-          let key=localStorage.getItem('token');
+      const deleteEntry = function (e){
+          let DataKey=localStorage.getItem('token');
           const newGrade = document.querySelector('#curGrade'),
               json={token:key, updateInput:newGrade.value},
               body = JSON.stringify(json);
@@ -97,13 +103,12 @@
                       .then(function (response) {
                           return response.json();
                       }).then(function (response) {
-                      document.getElementById('curGrade').innerText=(JSON.stringify(response[row].currentGrade)).replace(/^"(.*)"$/, '$1');
+                      document.getElementById('curGrade').innerText=(JSON.stringify(response[DataKey].currentGrade)).replace(/^"(.*)"$/, '$1');
                   })
               }
           )
 
       };
-
 
     window.onload = function () {
         const fillTable = function(){
@@ -123,8 +128,6 @@
                     '<th>Desired Overall Grade</th>\n' +
                     '<th>Final Exam Weight</th>\n' +
                     '<th>Final Exam Grade Required</th>\n' +
-                    '<th>Current Grade Update</th>\n' +
-                    '<th>Delete</th>\n' +
                     '</tr>\n' +
                     '</thead>\n';
                 for (let i = 0; i < numOfEntry.length; i++){
@@ -135,8 +138,8 @@
                     newRow+=('<td>'+(JSON.stringify(response[rows].desired)).replace(/^"(.*)"$/, '$1')+'</td>');
                     newRow+=('<td>'+(JSON.stringify(response[rows].finalWorth)).replace(/^"(.*)"$/, '$1')+'</td>');
                     newRow+=('<td>'+(JSON.stringify(response[rows].finalExam)).replace(/^"(.*)"$/, '$1')+'</td>');
-                    newRow+=('<td><ul><li><input id="updateInput" type="number" placeholder=" Number only"/></li><li><button class="button"  id=" ' + i + ' " onclick="updateEntry (' + i + ')"><strong>√</strong></button></li></ul></td>\n');
-                    newRow+=('<td><button class="button" style="font-weight:300" id=" ' + i + ' " onclick="deleteEntry (' + i + ')"> X </button></td>\n');
+                    //newRow+=('<td><ul><li><input id="updateInput" type="number" placeholder=" Number only"/></li><li><button class="button"  id=" ' + i + ' " onclick="updateEntry (' + i + ')"><strong>√</strong></button></li></ul></td>\n');
+                    //newRow+=('<td><button class="button" style="font-weight:300" id=" ' + i + ' " onclick="deleteEntry (' + i + ')"> X </button></td>\n');
                     newRow+='</tr>';
                     computedGrades.innerHTML+=newRow;
                 }
