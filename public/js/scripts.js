@@ -1,7 +1,5 @@
-// Add some Javascript code here, to run on the front end.
-
 const submit = function (e) {
-    // prevent default form action from being carried out
+
     e.preventDefault()
 
     const firstName = document.querySelector('#firstName').value,
@@ -36,9 +34,9 @@ const submit = function (e) {
 
             body = JSON.stringify(json)
 
-        fetch('/submit', { //url name = /submit
+        fetch('/submit', {
             method: 'POST',
-            body //same as saying->body:body
+            body 
         }).then(function (response) {})
 
         showData();
@@ -128,7 +126,6 @@ const deleteRow = function (rowIndex) {
 
 const genTable = function (studentList, editIndex) {
     let studentTable = document.querySelector('#HogwartsStudents');
-    //setting the header at the top of the table
     studentTable.innerHTML =
         '<tr>\n' +
         '<th align="center">First Name</th>\n' +
@@ -200,6 +197,3 @@ window.onload = function () {
     const button = document.querySelector('button')
     button.onclick = submit
 }
-
-
-//encodeURIComponent

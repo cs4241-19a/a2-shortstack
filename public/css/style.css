@@ -5,20 +5,24 @@ body {
     font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
 }
 
-.container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
+table {
+    font-size: 20px;
+    width: 75%;
 }
 
-.twocolumn {
-    display: flex;
-    justify-content: space-around;
+th {
+    background: black;
+    color: #fff;
 }
 
-.formdisplay {
-    positon: absolute;
+tbody:hover td {
+    color: transparent;
+    text-shadow: 0 0 3px #aaa;
+}
+
+tbody:hover tr:hover td {
+    color: #444;
+    text-shadow: 0 1px 0 #fff;
 }
 
 #gryffindorbg {
@@ -46,22 +50,18 @@ body {
     display: none;
 }
 
-table {
-    font-size: 20px;
-    width: 75%;
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
-th {
-    background: black;
-    color: #fff;
+.twocolumn {
+    display: flex;
+    justify-content: space-around;
 }
 
-tbody:hover td {
-    color: transparent;
-    text-shadow: 0 0 3px #aaa;
-}
-
-tbody:hover tr:hover td {
-    color: #444;
-    text-shadow: 0 1px 0 #fff;
+.formdisplay {
+    positon: absolute;
 }

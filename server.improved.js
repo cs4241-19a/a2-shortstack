@@ -6,7 +6,7 @@ const http = require('http'),
     dir = 'public/',
     port = 3000
 
-const appdata = [ //can add/edit/ delete any object in here
+const appdata = [
     {
         'firstName': 'Janette',
         'lastName': 'Fong',
@@ -23,25 +23,24 @@ const appdata = [ //can add/edit/ delete any object in here
 const server = http.createServer(function (request, response) {
     if (request.method === 'GET') {
         handleGet(request, response)
-    } else if (request.method === 'POST') { //could add more functions like delete here, but could also have just POST and have the urls to determine what to do
+    } else if (request.method === 'POST') {
         handlePost(request, response)
     }
 })
 
-//use handleGet to display data structure (server) in UI (server to UI)
+
 const handleGet = function (request, response) {
     const filename = dir + request.url.slice(1)
 
     if (request.url === '/') {
-        sendFile(response, 'public/index.html') //do sendFile for javascript file
+        sendFile(response, 'public/index.html')
     } else if (request.url === '/studentData') {
         sendData(response, appdata)
     } else {
         sendFile(response, filename)
     }
 }
-//communicate from HTML to server
-//change url to look at specific file (same as a1 with switch statement) (if request.url = add, add the data)
+
 const handlePost = function (request, response) {
     let dataString = ''
 
@@ -51,66 +50,66 @@ const handlePost = function (request, response) {
 
     request.on('end', function () {
 
-        const data = JSON.parse(dataString)
+            const data = JSON.parse(dataString)
 
 
-        switch (request.url) {
+            switch (request.url) {
 
-            case '/submit':
-                //server logic
-                let sortedHouse;
-                switch (data.values) {
-                    case 'bravery':
-                        sortedHouse = 'Gryffindor'
-                        break
-                    case 'loyalty':
-                        sortedHouse = 'Hufflepuff'
-                        break
-                    case 'wisdom':
-                        sortedHouse = 'Ravenclaw'
-                        break
-                    case 'ambition':
-                        sortedHouse = 'Slytherin'
-                        break
-                    default:
-                        sortedHouse = 'Muggle'
-                }
+                case '/submit':
+                    //server logic
+                    let sortedHouse;
+                    switch (data.values) {
+                        case 'bravery':
+                            sortedHouse = 'Gryffindor'
+                            break
+                        case 'loyalty':
+                            sortedHouse = 'Hufflepuff'
+                            break
+                        case 'wisdom':
+                            sortedHouse = 'Ravenclaw'
+                            break
+                        case 'ambition':
+                            sortedHouse = 'Slytherin'
+                            break
+                        default:
+                            sortedHouse = 'Muggle'
+                    }
 
-                        const newStudent = {
-                            'firstName': data.firstName,
-                            'lastName': data.lastName,
-                            'pronouns': data.pronouns,
-                            'values': data.values,
-                            'house': sortedHouse
-                        }
+                    const newStudent = {
+                        'firstName': data.firstName,
+                        'lastName': data.lastName,
+                        'pronouns': data.pronouns,
+                        'values': data.values,
+                        'house': sortedHouse
+                    }
 
-                        appdata.push(newStudent)
+                    appdata.push(newStudent)
 
-                        console.log(appdata)
+                    console.log(appdata)
 
-                        response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
-                        response.end()
-                        break
+                    response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
+                    response.end()
+                    break
 
-                    case '/delete':
-                        appdata.splice(data.rowData, 1)
-                        response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
-                        response.end()
-                        break
+                case '/delete':
+                    appdata.splice(data.rowData, 1)
+                    response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
+                    response.end()
+                    break
 
-                    case '/update':
-                        let index = data.index
-                        appdata[index].firstName = data.firstName
-                        appdata[index].lastName = data.lastName
-                        appdata[index].pronouns = data.pronouns
-                        appdata[index].house = data.house
-                        response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
-                        response.end()
-                        break
+                case '/update':
+                    let index = data.index
+                    appdata[index].firstName = data.firstName
+                    appdata[index].lastName = data.lastName
+                    appdata[index].pronouns = data.pronouns
+                    appdata[index].house = data.house
+                    response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
+                    response.end()
+                    break
 
-                    default:
-                        response.end('404 Error: File Not Found')
-                }
+                default:
+                    response.end('404 Error: File Not Found')
+            }
 
 
         }
@@ -124,23 +123,17 @@ const sendData = function (response, studentData) {
 
 const sendFile = function (response, filename) {
     const type = mime.getType(filename)
-
     fs.readFile(filename, function (err, content) {
 
         // if the error = null, then we've loaded the file successfully
-        if (err === null) {
-
-            // status code: https://httpstatuses.com
-            response.writeHeader(200, {'Content-Type': type})
-            response.end(content)
-
-        } else {
-
-            // file not found, error code 404
-            response.writeHeader(404)
-            response.end('404 Error: File Not Found')
-
-        }
+      if (err === null) {
+        response.writeHeader(200, {'Content-Type': type})
+        response.end(content)
+      }
+      else {
+        response.writeHeader(404)
+        response.end('404 Error: File Not Found')
+      }
     })
 }
 
