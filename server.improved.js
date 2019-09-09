@@ -6,15 +6,13 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+var playerData = [
+  {'name': "Javier", 'moves': 0, 'medal': "platinum"}
 ]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
-    handleGet( request, response )    
+    handleGet( request, response )
   }else if( request.method === 'POST' ){
     handlePost( request, response ) 
   }
@@ -24,6 +22,9 @@ const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
+    // If page is entered or refreshed, generate a new board
+    generateBoard()
+    console.log(board)
     sendFile( response, 'public/index.html' )
   }else{
     sendFile( response, filename )
@@ -38,12 +39,50 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    var obj = JSON.parse( dataString )
 
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    // Turn player response into an 4 digit array
+    var playerGuess = extractAnswer(obj)
+    console.log(playerGuess)
+    
+    // Check if data is valid
+    for (var i = 0; i < 4; i++) {
+      if (playerGuess[i] == -1) {
+        response.writeHead( 400, "Bad response", {'Content-Type': 'text/plain' })
+        response.end()
+      }
+    }
+    
+    // If valid, check against solution
+    var color = rightColor(playerGuess)
+    var colorNpos = rightPosition(playerGuess)
+    
+    if (colorNpos == 4 && obj.guesscount <= 15) {
+      var medal = giveMedal(obj.guesscount)
+      var newEntry = { 'name': obj.playername,
+                       'moves': obj.guesscount,
+                       'medal': giveMedal(obj.guesscount)}
+      playerData.push(newEntry)
+      
+      
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
+      //response.end("You got a " + medal + " medal!")
+      response.end(JSON.stringify(playerData))
+    }
+    
+    else if (obj.guesscount == 15) {
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
+      response.end("You lost!")
+    }
+    
+    else {
+      var clues = {'color': color,
+                  'colornpos': colorNpos}
+      var cbody = JSON.stringify(clues)
+      
+      response.writeHead(200, "OK", { 'Content-Type': 'text/plain' })
+      response.end(cbody)
+    }
   })
 }
 
@@ -67,6 +106,75 @@ const sendFile = function( response, filename ) {
 
      }
    })
+}
+
+var board = [-1, -1, -1, -1]
+
+// Create a random array of 4 numbers, each from 0 to 5
+const generateBoard = function() {
+  for (var i = 0; i < 4; i++) {
+    board[i] = Math.floor(6 * Math.random())
+  }
+  return board
+}
+
+// Extract the user's answer
+const extractAnswer = function(json) {
+  var answer = [colorToNumber(json.firstball),
+                colorToNumber(json.secondball),
+                colorToNumber(json.thirdball),
+                colorToNumber(json.fourthball)]
+  return answer
+}
+
+// Translates each answer from a string to a number
+const colorToNumber = function(color) {
+  if (color == "red") { return 0 }
+  else if(color == "blue") { return 1 }
+  else if(color == "yellow") { return 2 }
+  else if(color == "green") { return 3 }
+  else if(color == "purple") { return 4 }
+  else if(color == "orange") { return 5 }
+  else { return -1 }
+}
+
+// Returns the number of ball of the right color, regardless of position
+const rightColor = function(pGuess) {
+  var solTally = [0, 0, 0, 0, 0, 0]
+  for (var s = 0; s < 6; s++) {
+    for (var b = 0; b < 4; b++) {
+      if (board[b] == s) { solTally[s]++ }
+    }
+  }
+  
+  var guessTally = [0, 0, 0, 0, 0, 0]
+  for (var s = 0; s < 6; s++) {
+    for (var b = 0; b < 4; b++) {
+      if (pGuess[b] == s) { guessTally[s]++ }
+    }
+  }
+  
+  var correctColor = 0
+  for (var s = 0; s < 6; s++) {
+    correctColor = correctColor + Math.min(solTally[s], guessTally[s])
+  }
+  
+  return correctColor 
+}
+
+const rightPosition = function(pGuess) {
+  var correctPos = 0;
+  for (var j = 0; j < 4; j++) {
+    if (board[j] == pGuess[j]) { correctPos++ }
+  }
+  return correctPos
+}
+
+const giveMedal = function(guessCount) {
+  if (guessCount <= 6) { return "platinum" }
+  else if (guessCount <= 8) { return "gold" }
+  else if (guessCount <= 12) { return "silver" }
+  else { return "bronze" }
 }
 
 server.listen( process.env.PORT || port )
