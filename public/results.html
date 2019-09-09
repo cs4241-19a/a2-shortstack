@@ -18,6 +18,11 @@
     </div>
     <div id = "tableBox" class = "labelInput"></div>
     <div class = "labelInput">
+      <button id = "clearButton">
+        Clear Results
+      </button>
+    </div>
+    <div class = "labelInput">
       <button id = "backButton">
         Back to Roll
       </button>
@@ -46,6 +51,19 @@
       
       return false
     }
+    
+    const clearResults = function(){
+
+      fetch( '/clear', {
+        method:'POST',
+        body: JSON.stringify({message: "clear"})
+      })
+      .then( function( response ) {})
+      results.length = 0;
+      makeTable()
+   
+      return false
+   }
     
     const makeTable = function(){
       let html = "<table border='1|1' id = 'dTable'>"
@@ -81,7 +99,9 @@
     window.onload = function() {
       getResults()
       const button1 = document.querySelector( '#backButton' )
+      const button2 = document.querySelector( '#clearButton')
       button1.onclick = back
+      button2.onclick = clearResults
       
     }  
   </script>
