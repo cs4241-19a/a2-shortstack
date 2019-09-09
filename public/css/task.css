@@ -374,7 +374,7 @@ body {
     min-width: 1650px;
     margin-left: -7px;
     text-align: center;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -383,6 +383,7 @@ body {
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
     background-color: #2E3047;
     color: white;
+
 
 
 }

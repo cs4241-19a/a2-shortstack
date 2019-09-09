@@ -37,7 +37,12 @@ window.onload = function() {
                             str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + '<b> Task Desc: </b>' + col2 + '<br>' + '</a>' + '<a class="task3">' + '<b> Due By: </b>' + col3 + '</a>' + '</li>';
                         }
                     }
+                    str += '<li>' + '<br>' + '</li>';
+                    str += '<li>' + '<br>' + '</li>';
                 }
+                str += '<li>' + '<br>' + '</li>';
+                str += '<li>' + '<br>' + '</li>';
+                str += '<li>' + '<br>' + '</li>';
             }
         str += '</ul>';
         document.getElementById("database").innerHTML = str;

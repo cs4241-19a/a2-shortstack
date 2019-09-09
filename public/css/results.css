@@ -1,0 +1,35 @@
+#exitBtn {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 80px;
+    font-size: 0.9em;
+    font-weight: 500;
+    box-shadow: 0 1px 10px darkslategray;
+    margin-left: 10px;
+    position: absolute;
+    right: 0;
+    margin-right: 50px;
+}
+
+#exitBtn:hover {
+    background-color: #006eda;
+    box-shadow: 0 1px 10px black;
+    cursor: pointer;
+}
+
+#database {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.container {
+    padding: 50px;
+}
