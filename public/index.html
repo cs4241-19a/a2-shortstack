@@ -79,7 +79,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit an Item</h5>
+            <h5 class="modal-title" id="exampleModalTitle">Edit an Item</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -207,7 +207,7 @@
                         <td>$${favs[i].usd}</td>
                         <td>€${favs[i].eur}</td>
                         <td>${stars}</td>
-                        <td> <button id="editBtn${i}" type="button" class="btn btn-light" data-toggle="modal" data-target="#editItem" onclick="setEditIndex(${i})> <i class="fas fa-edit"></i></button>
+                        <td> <button id="editBtn${i}" type="button" class="btn btn-light" data-toggle="modal" data-target="#editItem" onclick="setEditIndex(${i})"> <i class="fas fa-edit"></i></button>
                         <td> <button id="deleteBtn${i}" type="button" class="btn btn-light" onclick="deleteItem(${i})"> <i class="fas fa-trash"></i></button>
                       </tr>
         `;
@@ -282,6 +282,9 @@
 
       const button = document.getElementById( 'newBtn' )
       button.onclick = newItem
+      
+      const editButton = document.getElementById( 'editBtn' )
+      button.onclick = editItem
     
     }
 

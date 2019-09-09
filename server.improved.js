@@ -20,7 +20,7 @@ const server = http.createServer( function( request,response ) {
   } else if( request.method === 'DELETE' ){
     handleDelete( request, response ) 
   } else {
-    //handlePut( request, response ) 
+    handlePut( request, response ) 
   }
 })
 
@@ -82,6 +82,32 @@ const handleDelete = function( request, response ) {
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
+  })
+}
+
+const handlePut = function( request, response ) {
+  let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+
+  request.on( 'end', function() {
+    const updateItem = JSON.parse(dataString);
+
+    const updatedItemObj = {
+      'name': updateItem.name, 
+      'category': updateItem.category, 
+      'rating': parseInt(updateItem.rating), 
+      'usd': parseFloat(updateItem.usd), 
+      'eur': calcEuroPrice(parseFloat(updateItem.usd)),
+      'link': updateItem.link, 
+    };
+
+    appdata.splice(updateItem.index, 1, updatedItemObj);
+
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
+    response.end();
   })
 }
 
