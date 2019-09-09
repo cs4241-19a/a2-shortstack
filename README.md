@@ -63,25 +63,46 @@ Do the following to complete this assignment:
 Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
 ---
 
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+Title: Log your next adventure
 
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+This is an app where users can log their travels. Users input their name, place they started from and place they went to, and the app will give them the distance traveled?
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
+- This project aims to help people keep track of their miles traveled for personal records
+- This app aims to give users more insight on the extent of their travels and help them remember where they have been to in more concise way
+- This app wants to solve the problem that users can have remembering where they have been after traveling for a long time or frequently
+- Future steps for the application would be:
+    - Adding the same functionality for flights,
+    - Adding dates for more record-keeping, 
+    - Adding an option of inputting money spent,
+    - Adding the carbon footprint left on each trip
+    - Showing trips on Google Maps as pins 
+    - Adding button to calculate total miles traveled
 
-http://a2-charlieroberts.glitch.me
 
 ## Technical Achievements
-- **Tech Achievement 1**: Using a combination of...
-- **Tech Achievement 2**: ...
+- **Tech Achievement 1**: Custom CSS for Bootstrap to change the labels of input text boxes to be bigger and more visible
+- **Tech Achievement 2**: Used CSS to modify the font family, color, size, spacing, padding of autofill options when activated by your browser
+- **Tech Achievement 3**: Dynamically generated table that automatically loads whenever the submit button is pressed to update the contents of the table
+- **Tech Achievement 4**: Table fully created using only JS and Bootstrap
+- **Tech Achievement 5**: Used Google Maps API to get the distance and duration of each trip
+- **Tech Achievement 6**: Distance and duration also automatically added to the table
+- **Tech Achievement 7**: All data is logged into the database after the Submit button is pressed
+- **Tech Achievement 8**: Users can pick between modes of transport, which then changes the distance and time traveled
+- **Tech Achievement 9**: Data will not be added to the table unless Name, Place From, To and Mode of transport have been filled in
+- **Tech Achievement 10**: Table content is not editable for distance and duration so users don't have to worry about changing something wrongly
+- **Tech Achievement 11**: Table content can be edited at any point and will right after update the database
+
 
 ### Design/Evaluation Achievements
-- **Design Achievement 1**: Shown in `style.css`, the code...
-- **Design Achievement 2**: We tested the application with n=X users, finding that...
+- **Design Achievement 1**: Used bootstrap to lay out the form in a visually pleasing way
+- **Design Achievement 2**: Added floating letters for the title text
+- **Design Achievement 3**: Used a video for the background to inspire users
+- **Design Achievement 4**: Parallax-style layout where the background stays the same while the content changes 
+- **Design Achievement 5**: Jumping arrow to go to area where data is shown in a table 
+- **Design Achievement 6**: When your browser's autocomplete is used to auto complete the text boxes, custom layout allows for input that is still visually related to the theme of the site
+- **Design Achievement 7**: Used Fontawesome icons for edit and delete functionality
+- **Design Achievement 8**: User doesn't need to focus on inputting the places in a well-formatted way to get correct distances. Only exception to this I know of is that when you simply put in Worcester, it automatically thinks you mean Worcester, UK
+- **Design Achievement 9**: User can click view places in new page button to go to a new page and only get the place table without other distractions. This can be used for accessibility or simply for cleaner printing of data
+- **Design Achievement 10**: The return trip check box used as a reminder for users to count that trip twice
+- **Design Achievement 11**: Used flexbox to arrange many elements in the form including the primary and secondary buttons, input fields and radio buttons
+- **Design Achievement 12**: Secondary buttons adjust dynamically in size on window size change independently of the bootstrap css

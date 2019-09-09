@@ -1,1 +1,317 @@
 /*Style your own assignment! This is fun! */
+#video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+#table{
+    max-width: 100%;
+    align-items: center;
+}
+
+
+body{
+    background-color: rgba(0,0,0,0.5);
+    z-index: 0;
+}
+
+h5 {
+    color: ghostwhite;
+    text-align: center;
+    font-size: 2em;
+}
+
+.container {
+    min-width: 100%;
+    padding: 0;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.firstPage {
+    /*padding should be same as displayContent div to look good*/
+    padding: 120px 120px 10vw 10vw;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.secondPage{
+    background-color: rgba(0,0,0,0.7);
+    /*box-shadow: -1px 0px 8px 1px rgba(0,0,0,0.75);*/
+    text-align: center;
+    align-content: center;
+    /*padding: 20px 1vw;*/
+    vertical-align: middle;
+
+}
+
+#secondPage{
+    max-width: 100%;
+    vertical-align: middle;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+}
+
+.secondHeaderDiv {
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin-right: 5vw;
+    margin-left: 5vw;
+    vertical-align: middle;
+
+}
+
+.dataDisplay{
+    background-color: rgba(275,275,275,1);
+    box-shadow: -1px 0px 8px 1px rgba(0,0,0,0.75);
+    text-align: center;
+    align-content: center;
+    padding: 60px 7vw;
+    height: calc(10vh + 10vw);
+    /*border-radius: 25px;*/
+    justify-content: center;
+    vertical-align: middle;
+    margin-top: 0px;
+    /*flex-wrap: wrap;*/
+}
+
+#dataDisplay {
+    margin-top: 0px;
+}
+
+form {
+    /*ideal look if form padding-top same as buttons padding-top*/
+    padding-top: 40px;
+}
+
+.questionContainer {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.buttonContainer {
+    padding-top: 50px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.secondaryButtons {
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn-secondary {
+    min-width: 30vw;
+}
+.radioContainer {
+    font-size: calc(8vh + 8vw);
+    display: flex;
+    justify-content: space-around;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.checkBoxContainer {
+    padding-top: 15px;
+    justify-content: center;
+}
+
+.textInput {
+    font-size: calc(0.8vh + 0.8vw);
+    text-align: center;
+    color: ghostwhite;
+    padding-bottom: 15px;
+}
+
+#placeTo, #placeFrom, #yourname {
+    margin-top: 15px;
+    /*padding-top: 15px;*/
+    padding-bottom: 5px;
+}
+
+
+::placeholder {
+    font-size: calc(0.8vw + 0.8vh);
+    color: lightgrey;
+}
+
+.btn {
+    padding-top: 20px;
+    font-size: calc(0.8vw + 0.8vh);
+}
+
+button {
+    margin-top: 50px;
+    padding-top: 20px;
+}
+
+.radioHeader {
+    font-size: 18px;
+    text-align: center;
+    color: ghostwhite;
+    display: flex;
+    justify-content: center;
+}
+
+.radio {
+    font-size: calc(8vw + 8vh);
+    padding-bottom: 0;
+}
+
+input[type="text"]{
+    font-size: 40px;
+    text-align: center;
+}
+
+input[type="text"]:hover{
+    background-color: rgba(255, 255, 255,0.1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0;
+}
+
+input[type="text"]::selection:active{
+    background-color: rgba(0, 0, 0,0.1);
+    font-size: calc(0.8vh + 0.8vw);
+    text-align: right;
+
+}
+
+label[for="returnCheck"] {
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: calc(8vh + 8vw);
+}
+
+#returnCheck {
+    font-size: calc(8vh + 8vw);
+}
+
+#secondHeader {
+    padding-bottom: 15px;
+}
+
+#dbTable {
+    margin-top: 10px;
+}
+
+/*bootstrap elements*/
+
+/*.table-striped {*/
+/*    border-top-color: ghostwhite;*/
+/*    border-radius: 25px;*/
+/*}*/
+
+.card {
+    margin-top: -10px;
+    padding-top: 0;
+}
+
+/*title text styles*/
+.ml12 {
+    font-weight: 800;
+    font-size: 3em;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    color: ghostwhite;
+}
+
+.ml12 .letter {
+    display: inline-block;
+    line-height: 1em;
+}
+
+.fa-pencil-square-o:hover {
+    color: steelblue;
+}
+
+/*!*the invisible div*!*/
+/*.invisible{*/
+/*    height: calc(20vw + 20vh);*/
+/*    background-color: rgba(0,0,0,0.7);*/
+/*}*/
+
+
+/*change color of background on autofill input*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: none;
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: none;
+    transition: background-color 5000s ease-in-out 0s;
+    letter-spacing: 1px;
+    margin-left: 3px;
+    padding-left: 3px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Roboto, Arial, sans-serif;
+    font-size: calc(0.8vh + 0.8vw);
+}
+
+/*style for bouncy arrow*/
+.fa {
+    color: white;
+}
+
+.fa:hover{
+    color: darkcyan;
+}
+
+.arrow {
+    text-align: center;
+    margin: 8% 0;
+}
+.bounce {
+    -moz-animation: bounce 2s infinite;
+    -webkit-animation: bounce 2s infinite;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+.first {
+    width: 100%;
+    height: 1000px;
+    background: #ccc;
+}
+
+.second {
+    width: 100%;
+    height: 1000px;
+    background: #999;
+}
+
+
+
+
+
