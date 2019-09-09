@@ -1,1 +1,64 @@
-/*Style your own assignment! This is fun! */
+body {text-align: center;}
+form {display: inline-block;}
+
+.submit{
+  background-color: #0000FF;
+  border: none;
+  color: white;
+  padding: 20px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.submit:hover{
+   background-color: #45a049;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 2px solid #C0C0C0;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #00FFFF;
+}
+
+tr:nth-child(odd) {
+  background-color: #008080;
+}
+
+p{ 
+ color: black;
+ width: 600px;
+ height:100px;
+ text-align: center;
+ font-size: 20px;
+ margin: 0 auto;
+ padding-top: 30px;
+ overflow: hidden;
+ font-family: BenchNine , cursive;
+}
+.wrap { display:flex;align-items:center}
+.wrap2 { display:flex;align-items:center}
+
+input, select{
+  width: 80%;
+  padding: 10px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}

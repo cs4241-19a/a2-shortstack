@@ -1,11 +1,12 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-cbennet-cooper-bennet",
+  "version": "1",
+  "description": "webware project 2",
+  "author": "Cooper Bennet",
   "scripts": {
     "start": "node server.improved.js"
   },
+  
   "dependencies": {
     "mime": "^2.4.4"
   }
