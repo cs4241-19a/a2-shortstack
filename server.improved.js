@@ -300,9 +300,15 @@ function modData(toChange){
 function returnFirebaseAsArray(){
   let returnArray = []
   let ref = firebase.database().ref()
-  ref.once('value')
+  ref.once('value', function(snapshot){
+    snapshot.forEach(function(data){
+      //console.log(data.val())
+      returnArray.push(data.val())
+    })
+  })
   .then(function(dataSnapshot){
-    
+     console.log(returnArray) 
+     return returnArray
   })
   /*firebase.database().ref().once("value", function(data){
     data.forEach(function(childSnapshot){
@@ -313,7 +319,7 @@ function returnFirebaseAsArray(){
     return returnArray
   })
   return returnArray*/
-  console.log(firebase.database().ref().toJSON())
+  //console.log(firebase.database().ref().toJSON())
   
 }
 
