@@ -1,1 +1,84 @@
-/*Style your own assignment! This is fun! */
+#table {
+    font-family: 'Cambria', sans-serif;
+    font-size: 20px;
+    display: none;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#update-form {
+    display: none;
+    width: 100%;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+#order-confirmed {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Arial', sans-serif;
+    font-style: italic;
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+nav {
+    font-family: 'Cambria', sans-serif;
+    font-size: 30px;
+    margin-top: 15px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+.link a {
+    display: inline;
+    margin-left: 20px;
+}
+
+form {
+    float: left;
+    width: 100%;
+    justify-content: center;
+}
+
+#form {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+}
+
+label, button{
+    font-family: 'Cambria', sans-serif;
+    font-size: 20px;
+}
+
+h2 {
+    font-family: 'Cambria', sans-serif;
+    text-align: center;
+    font-size: 20px;
+}
