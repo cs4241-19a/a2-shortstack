@@ -105,6 +105,7 @@
           const match = matchH[i];
           const stringOrder = JSON.stringify(match[i]);
           let newRow = '<tr>\n';
+          newRow += (`<td> ${match.matchNumber} </td>\n`);
           newRow += (`<td> ${match.red1} </td>\n`);
           newRow += (`<td> ${match.blue1} </td>\n`);
           newRow += (`<td> ${match.redScore} </td>\n`);
@@ -112,7 +113,7 @@
           // newRow += (`<td> <button id="update-button-${i}" class="table-button" style="font-size: 1vw" onclick="viewUpdateForm(${i})" data-string=`
           //         + encodeURIComponent(stringOrder) +
           //         `>Edit</button> </td>\n`);
-          // newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
+          newRow += (`<td> <button id="delete-button-${i}" class="table-button" style="font-size: 1vw" onclick="deleteOrder(${i})">Delete</button> </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
         }
