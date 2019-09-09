@@ -8,8 +8,8 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'matchNumber':1,'red1': 8192, 'blue1': 7146, 'redScore': 25, 'blueScore':25},
-  { 'matchNumber':2,'red1': 6439, 'blue1': 359, 'redScore': 23, 'blueScore':32 } 
+  { 'matchNumber':1,'red1': 8192, 'blue1': 7146, 'redScore': 25, 'blueScore':25,'result':0},
+  { 'matchNumber':2,'red1': 6439, 'blue1': 359, 'redScore': 23, 'blueScore':32,'result':2 } 
 ]
 
 const appdata2 = [
@@ -51,33 +51,23 @@ const handlePost = function( request, response ) {
   switch ( request.url ) {
       case '/submit':
       const MR = JSON.parse(dataString); //match result
+      let r = 0;
+      if(MR.red1 === MR.blue1){
+        r = 0;
+      } else if(MR.red1 > MR.blue1){
+        r = 1;
+      } else if(MR.red1 < MR.blue1){
+        r = 2;
+      }
       const newMR ={
         'matchNumber':MR.matchN,
         'red1': MR.red1, 
         'blue1': MR.blue1, 
         'redScore': MR.redScore, 
-        'blueScore':MR.blueScore
+        'blueScore':MR.blueScore,
+        'result':r
       }
-      appdata.push(newMR);
-      for(let i=0;i<appdata.length;i++){
-        for(let j=0;i<appdata2.length;j++){
-          if(appdata[i].red1===appdata[j].team && appdata[i].redScore >appdata[i].blueScore ){
-            appdata.team.WP=appdata.team.WP+1;
-          } else{
-            if(matchResult(MR.red1,MR.blue1)===0){ //tie
-              const newRR = {
-              'team':MR.red1,
-              'WLT':"0-0-1",
-              'WP':1,
-              }
-              const newRR2 = {
-              'team':MR.red1,
-              'WLT':"0-0-1",
-              'WP':1,
-              }
-            }
-          }
-      }
+      
       
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
@@ -104,7 +94,7 @@ const handlePost = function( request, response ) {
         // 'blue1': MRupdate.blue1, 
         // 'redScore': MRupdate.redScore, 
         // 'blueScore':MRupdate.blueScore
-                'matchNumber':MRupdate.matchNumber,
+        'matchNumber':MRupdate.matchNumber,
         'red1': MRupdate.red1, 
         'blue1': MRupdate.blue1, 
         'redScore': MRupdate.redScore, 
@@ -131,15 +121,19 @@ const sendData = function( response, MHs ) {
 }
 
 const matchResult = function(redS,blueS){
-  if(redS === blueS){
-     return 0;
-     } else if(redS > blueS){
-    return 1;
-               } else{
-    return 2;
-    
-  }
   
+}
+
+const addTeam = function(t){
+  let exist = 0;
+  for(let i=0; i<appdata2.length;i++){
+    if(appdata2[i].team === t){
+      exist = 1;
+    }
+  }
+  if(exist ===0){
+    const 
+  }
 }
 
 const sendFile = function( response, filename ) {
