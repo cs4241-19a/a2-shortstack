@@ -337,14 +337,36 @@ body {
     cursor: pointer;
 }
 
+.listHeadText4 {
+    background-color: #B55151;
+    color: white;
+    margin-right: -10px;
+    margin-left: -10px;
+    margin-top: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+.listHeadText5 {
+    background-color: #FC6354;
+    color: white;
+    margin-right: -10px;
+    margin-left: -10px;
+    margin-top: 0;
+    text-align: center;
+    padding: 10px;
+}
+
 #tasks {
     font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: 400;
 }
 
 .task1 {
-    font-size: 1em;
+    font-size: 1.3em;
     font-weight: 600;
-
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter";
 }
+
+

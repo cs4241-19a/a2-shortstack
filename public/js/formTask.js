@@ -88,7 +88,7 @@ const add = function( e ) {
                     var col1 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskName).replace(/^"(.*)"$/, '$1')
                     var col2 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDesc).replace(/^"(.*)"$/, '$1')
                     var col3 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDue).replace(/^"(.*)"$/, '$1')
-                    str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + 'Task Desc:' + col2 + '<br>' + '</a>' + '<a class="task3">' + 'Due By:' + col3 + '</a>' + '</li>';
+                    str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + '<b> Task Desc: </b>' + col2 + '<br>' + '</a>' + '<a class="task3">' + '<b> Due By: </b>' + col3 + '</a>' + '</li>';
 
                 }
             }
@@ -145,7 +145,7 @@ const editTask = function( e ) {
                     var col1 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskName).replace(/^"(.*)"$/, '$1')
                     var col2 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDesc).replace(/^"(.*)"$/, '$1')
                     var col3 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDue).replace(/^"(.*)"$/, '$1')
-                    str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + 'Task Desc:' + col2 + '<br>' + '</a>' + '<a class="task3">' + 'Due By:' + col3 + '</a>' + '</li>';
+                    str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + '<b> Task Desc: </b>' + col2 + '<br>' + '</a>' + '<a class="task3">' + '<b> Due By: </b>' + col3 + '</a>' + '</li>';
 
                 }
             }
@@ -200,7 +200,7 @@ const delTask = function( e ) {
                     var col1 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskName).replace(/^"(.*)"$/, '$1')
                     var col2 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDesc).replace(/^"(.*)"$/, '$1')
                     var col3 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDue).replace(/^"(.*)"$/, '$1')
-                    str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + 'Task Desc:' + col2 + '<br>' + '</a>' + '<a class="task3">' + 'Due By:' + col3 + '</a>' + '</li>';
+                    str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + '<b> Task Desc: </b>' + col2 + '<br>' + '</a>' + '<a class="task3">' + '<b> Due By: </b>' + col3 + '</a>' + '</li>';
 
                 }
             }
@@ -241,7 +241,7 @@ window.onload = function() {
                 var col1 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskName).replace(/^"(.*)"$/, '$1')
                 var col2 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDesc).replace(/^"(.*)"$/, '$1')
                 var col3 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDue).replace(/^"(.*)"$/, '$1')
-                str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + 'Task Desc:' + col2 + '<br>' + '</a>' + '<a class="task3">' + 'Due By:' + col3 + '</a>' + '</li>';
+                str += '<li>'+ '<a class="task1">' + '<br>' + i + '. ' + col1 + ':' + '</br>' + '</a>' + '<a class="task2">' + '<b> Task Desc: </b>' + col2 + '<br>' + '</a>' + '<a class="task3">' + '<b> Due By: </b>' + col3 + '</a>' + '</li>';
 
             }
         }
