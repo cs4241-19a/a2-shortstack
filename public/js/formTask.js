@@ -84,6 +84,21 @@ const add = function( e ) {
             document.getElementById('usrTxt').innerText = JSON.stringify(response.users[n][b].username).replace(/^"(.*)"$/, '$1');
             document.getElementById('listTextH').innerText = JSON.stringify(response.users[n][b].lists[1].listname).replace(/^"(.*)"$/, '$1');
             console.log("get response: ", response)
+
+            var t = parseInt(localStorage.getItem('taskNumber'));
+
+            for(var f = 0; f < 10000; f++){}
+
+            var str = '<ul style="list-style: none" >';
+            for(var i = 1; i <= t; i++) {
+                var ref = JSON.stringify(response.users[n][b].lists[1].tasks[i]).replace(/^"(.*)"$/, '$1');
+                if(ref !== null) {
+                    var row = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskName).replace(/^"(.*)"$/, '$1')
+                    str += '<li>'+ row + '</li>';
+                }
+            }
+            str += '</ul>';
+            document.getElementById("tasks").innerHTML = str;
         })
     });
 
@@ -111,6 +126,21 @@ window.onload = function() {
         document.getElementById('bName').innerText = JSON.stringify(response.users[n][b].boardName).replace(/^"(.*)"$/, '$1');
         document.getElementById('usrTxt').innerText = JSON.stringify(response.users[n][b].username).replace(/^"(.*)"$/, '$1');
         document.getElementById('listTextH').innerText = JSON.stringify(response.users[n][b].lists[1].listname).replace(/^"(.*)"$/, '$1');
+
+        var t = parseInt(localStorage.getItem('taskNumber'));
+
+        var str = '<ul style="list-style: none" >';
+        for(var i = 1; i <= t; i++) {
+            var ref = JSON.stringify(response.users[n][b].lists[1].tasks[i]).replace(/^"(.*)"$/, '$1');
+            if(ref !== null) {
+                var row = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskName).replace(/^"(.*)"$/, '$1')
+                str += '<li>'+ row + '</li>';
+            }
+        }
+        str += '</ul>';
+        document.getElementById("tasks").innerHTML = str;
+
+
         console.log( "get response: ", response )
     })
 

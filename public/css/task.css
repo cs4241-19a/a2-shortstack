@@ -120,11 +120,11 @@ body {
 .listEle {
     width: 450px;
     height: 500px;
-    margin: 50px;
     padding: 10px;
     background: white;
     border-radius: 25px;
     box-shadow: 0 1px 10px black;
+    vertical-align: top;
 }
 
 .add {
@@ -179,4 +179,118 @@ body {
     background-color: #006eda;
     box-shadow: 0 1px 10px black;
     cursor: pointer;
+}
+
+.listContent {
+    padding: 0;
+}
+
+.listHeadText1 {
+    background-color: #2E3047;
+    color: white;
+    margin-right: -10px;
+    margin-left: -10px;
+    margin-top: -26px;
+    border-radius: 25px 25px 0 0;
+    text-align: center;
+    padding: 1px;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.4em;
+    font-weight: 500;
+}
+
+.listHeadText2 {
+    background-color: #B55151;
+    color: white;
+    margin-right: -10px;
+    margin-left: -10px;
+    margin-top: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+.txtBox {
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-decoration: none;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.0em;
+    font-weight: 300;
+    box-sizing: border-box;
+    border: 2px solid transparent;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    cursor: auto;
+    width: 200px;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.txtBox:focus {
+    border: 2px solid dodgerblue;
+}
+
+#doneBtn {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 80px;
+    font-size: 0.9em;
+    font-weight: 500;
+    box-shadow: 0 1px 10px darkslategray;
+    margin-left: 10px;
+}
+
+#doneBtn:hover {
+    background-color: #006eda;
+    box-shadow: 0 1px 10px black;
+    cursor: pointer;
+}
+
+.listHeadText3 {
+    background-color: #FC6354;
+    color: white;
+    margin-right: -10px;
+    margin-left: -10px;
+    margin-top: 0;
+    text-align: center;
+    padding: 10px;
+}
+
+#addBtn {
+    background-color: dodgerblue;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-family: 'Source Code Pro', 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 80px;
+    font-size: 0.9em;
+    font-weight: 500;
+    box-shadow: 0 1px 10px darkslategray;
+    margin-left: 10px;
+}
+
+#addBtn:hover {
+    background-color: #006eda;
+    box-shadow: 0 1px 10px black;
+    cursor: pointer;
+}
+
+#tasks {
+
 }
