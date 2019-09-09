@@ -6,10 +6,13 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+let d = new Date();
+let date = d.toString().slice(4, 15);
+
+let appdata = [
+   {'name': 'Winny Bunny', 'title': 'S your tsuff', 'message': 'hi yall', 'date': date},
+   {'name': 'jjj', 'title': 'jejhfbj', 'message': 'kefnek', 'date': date},
+   {'name': 'kkk', 'title': 'jejf', 'message': 'kefn2k4', 'date': date}
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -25,26 +28,71 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  } else if (request.url === '/reqdata') {
+        sendData(response, appdata)
+    } else if (request.url === '/single-post.html') {
+      sendFile( response, 'public/single-post.html' )
+}
+  else{
     sendFile( response, filename )
   }
 }
 
-const handlePost = function( request, response ) {
-  let dataString = ''
+const handlePost = function (request, response) {
+    let dataString = ''
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+    request.on('data', function (data) {
+        dataString += data
+    })
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    request.on('end', function () {
 
-    // ... do something with the data here!!!
+            const data = JSON.parse(dataString)
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
+            switch (request.url) {
+
+                case '/publish':
+                    
+                    const newData = {
+                        'name': data.name,
+                        'title': data.title,
+                        'message': data.message,
+                        'date': data.date
+                    }
+
+                    appdata.push(newData)
+
+                    response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
+                    response.end()
+                    break
+                
+
+                case '/delete':
+                    appdata.splice(data.rowData, 1)
+                    response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
+                    response.end()
+                    break
+
+                case '/edit':
+                    let index = data.index
+                    appdata[index].name = data.name
+                    appdata[index].title = data.title
+                    appdata[index].message = data.message
+                    response.writeHead(200, "OK", {'Content-Type': 'text/plain'})
+                    response.end()
+                    break
+
+                default:
+                    response.end('404 Error: File Not Found')
+            }
+
+
+        }
+    )
+}
+
+const sendData = function (response, reqdata) {
+    response.end(JSON.stringify(reqdata));
 }
 
 const sendFile = function( response, filename ) {
