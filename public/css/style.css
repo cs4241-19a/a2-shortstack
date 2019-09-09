@@ -1,1 +1,102 @@
-/*Style your own assignment! This is fun! */
+/* Global font overrides */
+
+html, body, form, fieldset, table, tr, td, img {
+  margin: 0;
+  padding: 0;
+  font: 100%/150% "Verdana", sans-serif;
+}
+
+input, button, select, textarea, optgroup, option {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+
+/* Element selectors */
+
+body {
+	font-size: 1.2em;
+	background: #E0E0FF;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+h2 {
+	font-size: 2em;
+}
+
+table, tr, th {
+	border-collapse: collapse;
+}
+
+table {
+  padding: 15px;
+	width: 100%;
+}
+
+tr {
+  padding: 5em;
+}
+
+input {
+  font-weight: normal;
+}
+
+
+/* Class selectors */
+
+.content {
+	max-width: 1460px;
+	margin: auto;
+	padding: 20px;
+	background: #D0D0FF;
+}
+
+.big-text {
+  font-size: 140%;
+}
+
+.form-table, .form-tr, .form-th {
+  margin: auto;
+  width: auto;
+}
+
+
+.chat-username {
+  font-weight: bold;
+  font-size: 120;
+  text-align: right;
+  padding: 1em;
+  min-width: 150px;
+}
+
+.chat-contents {
+  font-weight: normal;
+  text-align: left;
+  width: 100%;
+}
+
+.chat-timestamp {
+  font-weight: italic;
+  font-size: 75%;
+  color: #808080;
+  text-align: left;
+  min-width: 150px;
+}
+
+
+/* ID Selectors */
+
+#big-header {
+  text-align: center;
+  padding: 15px;
+}
+
+#reset-button {
+  font-weight: bold;
+  color: darkred;
+}
