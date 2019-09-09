@@ -71,7 +71,7 @@ Triage helps you keep track of tasks you have to do. It has support for recommen
 ![image](https://user-images.githubusercontent.com/13973198/64527783-d4680f80-d2d4-11e9-9ccb-6936853ab8c4.png)
 
 
-http://a2-jcharante.glitch.me
+https://a2-jcharante.glitch.me
 
 ## Meeting Requirements
 

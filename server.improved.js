@@ -162,7 +162,7 @@ process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
 
 function shutdown() {
-  console.log("ahh you bitch");
+  console.log("Received server shutdown request");
   const jsonContent = JSON.stringify({
     itemsStore
   });
