@@ -59,12 +59,12 @@ https://a2-acnolan.glitch.me
 - **Design Achievement 2**: Shown in `style.css`, I redesigned radio buttons to look more like
                             regular buttons and just be prettier for selecting the how you
                             are doing element of the form.
-- **Design Achievement 2**: Shown in `style.css`, the code uses a three column layout with the main
+- **Design Achievement 3**: Shown in `style.css`, the code uses a three column layout with the main
                             content centered, and then two side columns showing images for
                             "aesthetic" value. As mentioned above the site is mobile friendly,
                             and will properly collapse things as the window scales down and the 
                             table on the results page will become scrollable to avoid overflow issues.
-- **Design Achievement 3**: I tested the application in various browsers to ensure that it works.
+- **Design Achievement 4**: I tested the application in various browsers to ensure that it works.
                             In the chrome and ie it functions as intended. Firefox and Safari did
                             not seem to support the audio. Edge supported the audio, but had issues
                             with some of bootstraps css.
