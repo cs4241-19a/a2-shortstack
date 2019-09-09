@@ -1,6 +1,6 @@
 Andrew Markoski
 
-Glitch link: http://amarkoski-a2-amarkoski.glitch.me
+Glitch link: http://amarkoski-a2-shortstack.glitch.me/
 
 ## Word Counter
 
