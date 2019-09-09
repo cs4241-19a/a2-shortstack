@@ -19,7 +19,7 @@ function grabInput(poly, ver, name){
   
   const input = {
     vertices: document.getElementById(ver).value,
-    drawType: document.getElementById(poly).value,
+    numPoly: document.getElementById(poly).value,
     name: document.getElementById(name).value
   };
   return input
@@ -81,7 +81,17 @@ function genTable(dataList, idx) {
 }
 
 function drawData(index){
-  console.log("draw", index)
+  fetch( '/getDrawings', {
+    method: 'GET'
+  })
+  .then( function( response) {
+    return response.json()
+  })
+  .then( function(data){
+    let shape = data[index]
+    console.log(shape)
+    initialize(shape.vertices, shape.points, shape.numPoly, shape.triangles)
+  })
 }
 
 function editData(index){
