@@ -13,6 +13,42 @@ body {
   color: white;
 }
 
+.content {
+  max-width: 1000px;
+  margin: auto;
+  background: cornsilk;
+  padding: 10px;
+  text-align: center;
+  font-family: monospace;
+}
+
+legend{
+  font-family: monospace;
+  font-size: 19px;
+}
+
+.table-label {
+  font-size: 22px;
+  font-family: monospace;
+  color: white;
+  background-color: black;
+  margin-top: 5px;
+}
+
+.table{
+  font-family: monospace;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+tbody{
+  text-align: left;
+}
+
 #wrapper{
   display: flex;
 }
@@ -23,26 +59,14 @@ body {
   flex: 1;
 }
 
-.content {
-  max-width: 1000px;
-  margin: auto;
-  background: cornsilk;
-  padding: 10px;
-  text-align: center;
-}
-
-.table-label {
-  font-size: 19px;
+button {
   font-family: monospace;
+  background-color: white; 
+  color: black; 
+  border: 2px solid #FC7550;
+}
+
+button:hover {
+  background-color: #FC7550;
   color: white;
-  background-color: black;
-  margin-top: 5px;
-}
-
-.table{
-  
-}
-
-tbody{
-  text-align: left;
 }
