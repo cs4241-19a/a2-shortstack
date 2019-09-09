@@ -48,9 +48,11 @@ const loadTable = function(data){
     let y; //second number 
     let operator; //type of operation
     let result;
-
+  
+   console.log(data);
+   console.log(data[0].firstNumber);
     for(let i = 0; i < data.length; i++){
-        x = document.getElementById('firstNumber' + i).value;
+        x = document.getElementById(data[i].firstNumber).value;
         y = document.getElementById('secondNumber' + i).value;
         operator = document.getElementById('operator' + i).value;
 

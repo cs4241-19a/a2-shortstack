@@ -8,7 +8,10 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appData = []
+const appData = [
+  {'firstNumber': 55, 'operator': 3, 'secondNumber': 40}, 
+  {'firstNumber': 2, 'operator': 4, 'secondNumber': 'undefined'}
+]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {

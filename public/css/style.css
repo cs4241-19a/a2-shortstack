@@ -43,9 +43,6 @@ input[type=text], select {
     /*font-family: 'Times New Roman', Times, serif;*/
 }
 
-table{
-    width: 100%;
-}
 
 button{
   display: inline-block;
@@ -68,4 +65,8 @@ table{
     width: 100%;
     color: white;
     font-family: "Arial";
+}
+
+td{
+  color: black;
 }
