@@ -25,7 +25,7 @@ const appdata = [ //can add/edit/ delete any object in here
 const server = http.createServer(function (request, response) {
     if (request.method === 'GET') {
         handleGet(request, response)
-    } else if (request.method === 'POST') { //could add more functions like delete here, but could also have just POST and have the urls to determine what to do
+    } else if (request.method === 'POST') {
         handlePost(request, response)
     } else if (request.method === 'DELETE') {
         handleDelete(request, response)
