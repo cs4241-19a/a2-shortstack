@@ -14,20 +14,14 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 
 const appdata = [
-  { 'name': 'Justin', 'year': 2020, 'inches': 230 },
-  { 'name': 'Bob', 'year': 2021, 'inches': 320 },
-  { 'name': 'Andy', 'year': 2022, 'inches': 135} 
+  { 'name': 'Justin', 'year': 2020, 'inches': 71 },
+  { 'name': 'Bob', 'year': 2021, 'inches': 60 },
+  { 'name': 'Andy', 'year': 2022, 'inches': 84} 
 ]
 
 const newData = []
 
-/*const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    //handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    //handlePost( request, response ) 
-  }
-})*/
+
 
 
 app.get("/", function(request, response){
@@ -80,11 +74,7 @@ app.get("/data", function(request, response){
   console.log("Pre newData is " )
   console.log(newData)
   
-  //newData.forEach(function(data){
- //   newData.shift()
-    
-    
-  //})
+ 
   
   
   appdata.forEach(function(item){
@@ -103,61 +93,6 @@ app.get("/data", function(request, response){
   
   response.send(newData)
 })
-/*const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
-
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  }
-  else if(request.url === '/data')
-    {
-      
-      response.send([appdata])
-      
-    }
-  else{
-    sendFile( response, filename )
-  }
-}*/
-
-/*const handlePost = function( request, response ) {
-  let dataString = ''
-
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
-
-  request.on( 'end', function() {
-   console.log("Request is " + request.url.slice(1))
-    console.log("dataString is " + dataString)
-    const data = JSON.parse(dataString)
-    actions[request.url.slice(1)](data)
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
-}*/
-
-/*const actions = {
-  
-  submit(json)
-  {
-    console.log("passed item is " + JSON.stringify(json))
-    appdata.push( json)
-  console.log("Successfully submitted")  
-    console.log(appdata)
-    
-  },
-  
-  Ondelete(json)
-  {
-    console.log("deleted item is " + JSON.stringify(json))
-    
-    console.log("successfully deleted")
-    console.log(appdata)
-  }
-}*/
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
@@ -181,5 +116,5 @@ const sendFile = function( response, filename ) {
    })
 }
 
-//server.listen( process.env.PORT || port )
+
 app.listen(process.env.PORT || port)

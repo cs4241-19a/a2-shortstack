@@ -10,7 +10,7 @@
   <body>
     <div class="input">
       
-    
+    <!-- Input fields and submit button -->
     <form id = "info" action="/submit" method = "POST">
       <input type="text" name="yourname" placeholder="your name here"><br>
       <input type ="text" name="classyear" placeholder="Your class year"><br>
@@ -20,13 +20,13 @@
     <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
     </div>
     
-    
+    <!-- Delete field and delete button -->
     <form id = "delete" action = "/delete" method = "POST">
       <input type = "text" name = "delName" placeholder = "Name to delete"><br>
       <button id = "deleteBtn" class = "inputbutton" onclick = "onDelete()">delete</button><br><br>
     </form>
     
-    
+    <!-- Data table with student info -->
     <table id = "dataTable">
       <th>Name</th>
       <th>ClassYear</th>
@@ -34,75 +34,9 @@
       <th> Height in centimeters</th>
     </table>
   </body>
+  
+  <!-- jquery inport -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  
-  <script>
-
-  function submit(  ) {
-    
-    console.log("Testing for name " + document.getElementById('yourname') )
-    document.getElementById('info').submit()
-    setTimeout(function(){
-      clearTable()
-      getData()
-    },1000)
-    
-
-    
-
-    return false
-  }
-  
-  function onDelete(){
-    document.getElementById('delete').submit()
-    setTimeout(function(){
-      clearTable()
-      document.getElementById("dataTable").deleteRow(1)
-      getData()
-    },1000)
-    
-    return false
-  }
-
- 
-    
-    
-    
-    function clearTable()
-    {
-      
-      $.get('/data',function(response){
-        
-        response.forEach(function(item){
-          console.log("cleariunug list" )
-          document.getElementById("dataTable").deleteRow(1)
-        })
-        
-      })
-     
-      console.log("Table has been reset")
-    }
-    
-    function getData()
-    {
-      $.get('/data',function(response){
-       
-          
-          response.forEach(function(item){
-          console.log("item is " +item)
-          $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td><td>' + item.cm + '</td></tr>')
-          console.log("wrote " + item.name)
-        })
-          
-      
-        
-      })
-      console.log("Done writing")
-    }
-    
-    
-  
-    
-
-  </script>
+  <!-- js im
+  <script src="js/scripts.js"></script>
 </html>
