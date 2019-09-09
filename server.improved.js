@@ -26,9 +26,11 @@ const server = http.createServer( function( request,response ) {
 })
 
 const writeCorsHeaders = function(request, response) {
-  response.setHeader('Access-Control-Allow-Headers', request.headers.origin);
-  response.setHeader('Access-Control-Request-Method', request.headers.origin);
-  response.setHeader('Access-Control-Allow-Origin', request.headers.origin);
+  if (request.headers.origin) {
+    response.setHeader('Access-Control-Allow-Headers', request.headers.origin);
+    response.setHeader('Access-Control-Request-Method', request.headers.origin);
+    response.setHeader('Access-Control-Allow-Origin', request.headers.origin);
+  }
   response.setHeader('Access-Control-Allow-Headers', 'authorization, content-type')
   response.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
 }
@@ -40,11 +42,13 @@ const handleOptions = function(request, response) {
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 )
+  const ROOT = 'triage-spa/dist/spa'
 
+  console.log(`Resolving HTTP GET ${request.url}`)
   if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
+    sendFile( response, `${ROOT}/index.html`)
   }else{
-    sendFile( response, filename )
+    sendFile( response, `${ROOT}/${request.url}` )
   }
 }
 

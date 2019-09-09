@@ -1,0 +1,3 @@
+[submodule "triage-spa"]
+	path = triage-spa
+	url = git@github.com:JCharante/triage-spa.git

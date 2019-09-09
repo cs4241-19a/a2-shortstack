@@ -65,18 +65,11 @@ Do the following to complete this assignment:
 Sample Readme (delete the above when you're ready to submit, and modify the below so with your links and descriptions)
 ---
 
-## Your Web Application Title
-Include a very brief summary of your project here.
-Images are encouraged, along with concise, high-level text.
+## Triage
+Triage helps you keep track of tasks you have to do. It has support for recommended deadlines, and hard deadlines, as for many classes they have recommend doing certain problems after lecture but may only collect homework once a week. There's support for multiple levels of importance and for difficulty. It uses all of the just mentioned filed to calculate a priority score, which is displayed on the web app and is used to sort the list of tasks. This differentiates itself from other existing options.
 
-Here is a sample formula for summarizing your activities, talk about:
-- the domain area the project pertains to
-- the main challenges or problems the application addresses
-- the key innovations that make it possible to address the problem
-- the main results of the implementation, does it really address the problem?
-- any additional implications of the resulting application, or possibly areas for future work that have been discovered as part of the design and implementation activities
+![image](https://user-images.githubusercontent.com/13973198/64527783-d4680f80-d2d4-11e9-9ccb-6936853ab8c4.png)
 
-(Note that when I use the above formula, I aim to have only one sentence per thought in order to remain concise.)
 
 http://a2-charlieroberts.glitch.me
 
