@@ -1,6 +1,6 @@
 ## Area of a Square Experiment
 
-http://a2-dkaravoussianis-demi-karavoussianis@glitch.me
+http://a2-dkaravoussianis-demi-karavoussianis.glitch.me
 
 My project pertains to research in how humans are able to perceive relative area of squares. The experiment generates two squares on random sizes, and asks the user to estimate what percent the smaller is of the larger in terms of area.  The data collected from this experiment could be used to gain more insight on how humans perceive area, and how effective area is as a method of data visualization. The results of my data do not completely address the problem, because no control, or alternative visualization method was observed. Additional areas of future work would be observing if the user becomes more accurate as the experiment progresses. In addition, testing alternative methods and seeing whether users are more accurate when taking more time per trial.
 
