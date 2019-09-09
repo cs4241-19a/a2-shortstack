@@ -162,8 +162,6 @@
       const data = await resp.json();
       const favs = data.data;
       
-      debugger
-
       let htmlCard = "";
           
       for (let i = 0; i < 3; i++) {
@@ -248,7 +246,6 @@
     const deleteItem = function ( arrPosition ) {
       const indexJson = { index: arrPosition };
       const body = JSON.stringify(indexJson);
-      debugger
       fetch('/delete', {
           method: 'DELETE',
           body
