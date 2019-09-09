@@ -75,7 +75,7 @@ Depending on what they answered for the survey question, their character will be
 - Server
 - Results (table)
 - HTML Form (divs and table)
-- Server logic ()
+- Server logic (sorted House)
 - CSS selectors (element, id, and class)
 - CSS positioning (horizontal: table, side by side: title/image and form)
 - CSS in external stylesheet
