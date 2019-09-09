@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "a2-elizabeth-kirschner",
+  "version": "1.0.1",
+  "description": "Keeps track of books",
+  "author": "Elizabeth Kirschner",
   "scripts": {
     "start": "node server.improved.js"
   },
