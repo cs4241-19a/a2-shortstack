@@ -21,7 +21,7 @@ Goals:
 ---
 - This website is designed to help students better understand their grades and keep things organized so they can balance their workload particularly during the final exam time. 
 - Currently this website does fulfill what it is designed for but unfortunately I really could not figure out how to make the delete/modify work with Firebase and it is too late for me to go back.
-
+- Because of the update functionality, students can constantly change their current grade in class in order to better monitor their progress. 
 
 Main Challenges:
 ---
@@ -46,7 +46,7 @@ Achievements:
 
 ### Design:
 - I implemented a slider for the front page. The example slider code is found here: https://startbootstrap.com/snippets/full-slider/
-- I coded the entry box from scratch. I also tried my best to maintain a consistent style throughout all HTML pages(including color and font choices).
+- I coded the form entry textbox and table from scratch. I also tried my best to maintain a consistent style throughout all HTML pages(including color and font choices).
 - I modified this template and turned it into my Results page: https://templatemag.com/demo/GlobalLanding/. It was difficult to make the layering work properly because of the interaction with the particles. P.S.: In A1 I could not accomplish having both the particles interaction in the background as well as the buttons clickable in the front, but this time it is working. 
 
 
