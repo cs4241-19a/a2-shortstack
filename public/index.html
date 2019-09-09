@@ -268,7 +268,28 @@
       const subButton = document.querySelector( '#subButton' )
       subButton.onclick = submit
     }
+    
+    window.onbeforeunload = function(){
+      pushToRemote
+    }
   
+    const pushToRemote = function(){
+      let body = ""
+      fetch( '/remote', {
+      method:'POST',
+      body
+    })
+    .then( function( response) {
+      // do something with the reponse
+      //display horoscope on screen
+     response.text()
+      .then(function(message){
+       console.log(message)
+     })
+      
+    })
+    return false
+    }
   
   </script>
 </html>
