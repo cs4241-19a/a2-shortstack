@@ -1,5 +1,9 @@
 /*Style your own assignment! This is fun! */
 
+div{
+  border: 1px solid white;
+}
+
 body {
   background: #5A5959;
   font-family: 'Calibri', sans-serif;
