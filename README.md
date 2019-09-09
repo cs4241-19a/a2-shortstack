@@ -1,5 +1,5 @@
 
-Title: Log your next adventure
+##Title: Log your next adventure
 
 This is an app where users can log their travels. Users input their name, place they started from and place they went to, and the app will give them the distance traveled?
 
