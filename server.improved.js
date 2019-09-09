@@ -8,6 +8,7 @@ const http = require( 'http' ),
       Express = require('express'),
       app = Express(),
       bodyParser = require('body-parser')
+      app.use(Express.static('public'))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
