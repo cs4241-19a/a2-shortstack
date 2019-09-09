@@ -12,6 +12,9 @@ The results screen will show all previous rolls and results while the server was
 The website is meant to address the problem of missing dice in some board game or playing D and D or similar game that requires dice.
 For future work it may be useful to allow the user to roll different types of dice at the same time. 
 
+Note: Because of the nature of the website I did not include a way to modify records because I felt like there was no reason to
+because it would require making a whole new roll and that would not show you how individual die rolled so instead I added
+a clear results button that emptys the result table on both front end and back end to include more client server interaction
 
 https://glitch.com/~a2-andrewbonaventura
 
