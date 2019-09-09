@@ -82,21 +82,22 @@ label {
 }
 
 button {
-  background-color: white;
-  padding: 12px 12px 12px 12px;
-  border-radius: 4px;
-  border: 2px solid black;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  -webkit-appearance: none;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    -webkit-appearance: none;
+    background-color:white;
+    padding: 12px 28px;
+    border-radius: 4px;
+    border: 2px solid black;
 }
 
 button:hover {
-  background-color: black;
-  color: white;
+    background-color: black;
+    color: white;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-#error-msg {
+#error {
     display: none;
     color: white;
     margin-bottom: 20px;
@@ -112,7 +113,7 @@ button:hover {
     width: 100%;
 }
 
-#rice-bowl {
+#ramen-pic {
     width: 100%;
     height: auto;
     color: white;

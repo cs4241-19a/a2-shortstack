@@ -296,6 +296,7 @@
         return true;
       }
     };
+    
     const viewOrderForm = function() {
       document.getElementById('error').style.display = "none";
       document.getElementById('order-table').style.display = "none";
@@ -304,6 +305,7 @@
       document.getElementById('order-form').style.display = "block";
       resetOrderForm();
     };
+    
     const viewOrderTable  = function () {
       document.getElementById('order-table').style.display = "flex";
       document.getElementById('order-form').style.display = "none";
@@ -313,19 +315,24 @@
       fetchOrders();
       return false;
     };
+    
     const viewUpdateForm = function (index) {
       let orderToUpdate = decodeURIComponent(document.getElementById(`update-button-${index}`).dataset.string);
       orderToUpdate = JSON.parse(orderToUpdate);
+      
       document.getElementById('order-table').style.display = "none";
       document.getElementById('update-order-form').style.display="block";
+      
       // load values
       document.getElementById('update-btn').dataset.index = index;
       document.getElementById('updateName').value=orderToUpdate.name;
       document.getElementById('updateDream').value=orderToUpdate.dream;
-      orderToUpdate.amountOfPork === 3 ? document.getElementById('update3pork').checked = true : document.getElementById('update5pork').checked = true;
-      orderToUpdate.garlic ? document.getElementById('updateAllGarlic').checked = true : document.getElementById('updateSansGarlic').checked = true;
+      
+      orderToUpdate.typeOfGrain === 3 ? document.getElementById('update_brown_rice').checked = true : document.getElementById('update_white_rice').checked = true;
+      orderToUpdate.typeOfProtein ? document.getElementById('update_salt_pepper_chk').checked = true : document.getElementById('update_fiery_chickpeas').checked = true;
       return false;
     };
+    
     window.onload = function() {
       const submitButton = document.getElementById( 'submit-btn' );
       submitButton.onclick = addOrder;
