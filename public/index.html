@@ -88,14 +88,18 @@
       let htmlDiv = document.getElementById('matchTable');
       htmlDiv.innerHTML = '<tr>\n' +
                 '<th>Team #</th>\n' + 
-                 '<th>W-L-T</th>\n' +
+                 '<th>W</th>\n' +
+                '<th>L</th>\n' +
+                '<th>T</th>\n' +
                 '<th>WP</th>\n' +
                 '</tr>';
       for (let i = 0; i < result.length; i++) {
           const rank = result[i];
           let newRow = '<tr>\n';
           newRow += (`<td> ${rank.team} </td>\n`);
-          newRow += (`<td> ${rank.WLP} </td>\n`);
+          newRow += (`<td> ${rank.W} </td>\n`);
+          newRow += (`<td> ${rank.L} </td>\n`);
+          newRow += (`<td> ${rank.P} </td>\n`);
           newRow += (`<td> ${rank.WP} </td>\n`);
           newRow += '</tr>';
           htmlDiv.innerHTML += newRow;
@@ -143,7 +147,6 @@
           } else {
           newRow += (`<td> ${match.redScore} </td>\n`);
           newRow += (`<td> ${match.blueScore} </td>\n`); 
-            newRow += (`<td> ${match.result} </td>\n`); 
           }
           newRow += (`<td> <button id="edit-button-${i}" class="table-button" onclick="editMatch(${i})" >Edit</button> </td>\n`);
           newRow += (`<td> <button id="delete-button-${i}" class="table-button"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);

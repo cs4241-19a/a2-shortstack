@@ -90,23 +90,29 @@ const handlePost = function( request, response ) {
        appdata.splice(MRdelete.matchNumber, 1);
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
-
+      rank();
       break;
       
       
       case '/update':
         const MRupdate = JSON.parse(dataString);
-
+        let r2 = 0;
+        if(MRupdate.redScore > MRupdate.blueScore){
+          r2 = 1;
+        } else if(MRupdate.redScore < MRupdate.blueScore){
+          r2 = 2;
+        }
         const updatedMR = {
         'matchNumber':MRupdate.matchNumber,
         'red1': MRupdate.red1, 
         'blue1': MRupdate.blue1, 
         'redScore': MRupdate.redScore, 
-        'blueScore':MRupdate.blueScore          
+        'blueScore':MRupdate.blueScore,
+         'result': r2
         };
-
+        
         appdata.splice(MRupdate.index, 1, updatedMR);
-
+        rank();
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
         response.end();
 
@@ -126,6 +132,9 @@ const sendData = function( response, MHs ) {
 
 const rank = function(){
   for(let j=0; j<appdata2.length;j++){
+    appdata2[j].W = 0; 
+    appdata2[j].L = 0; 
+    appdata2[j].P = 0; 
     appdata2[j].WP = 0; 
   }
   
@@ -133,22 +142,32 @@ const rank = function(){
     if(appdata[i].result===1){
       for(let j=0; j<appdata2.length;j++){
         if(appdata2[j].team == appdata[i].red1){
+          appdata2[j].W++;
           appdata2[j].WP+=2;
+        }
+        if(appdata2[j].team == appdata[i].blue1){
+        appdata2[j].L++;
         }
       }
     } else if (appdata[i].result===2){
       for(let j=0; j<appdata2.length;j++){
-        if(appdata2[j].team === appdata[i].blue1){
+        if(appdata2[j].team == appdata[i].blue1){
           appdata2[j].WP+=2;
+          appdata2[j].W++; 
+        }
+        if(appdata2[j].team == appdata[i].red1){
+        appdata2[j].L++;
         }
       }
     } else{
       for(let j=0; j<appdata2.length;j++){
-        if(appdata2[j].team === appdata[i].red1){
+        if(appdata2[j].team == appdata[i].red1){
           appdata2[j].WP++;
+          appdata2[j].P++;
         }
-        if(appdata2[j].team === appdata[i].blue1){
+        if(appdata2[j].team == appdata[i].blue1){
           appdata2[j].WP++;
+          appdata2[j].P++;
         }
       }
     
@@ -156,6 +175,8 @@ const rank = function(){
      
   }
 }
+
+const sort
 
 const addTeam = function(t){
   let exist = 0;
@@ -167,7 +188,9 @@ const addTeam = function(t){
   if(exist === 0){
     const newteam ={
       'team':t,
-      'WLP':"0-0-0",
+       'W':0,
+      'L':0,
+      'P':0,
       'WP':0
     }
     appdata2.push(newteam);
