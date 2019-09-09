@@ -1,52 +1,36 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/style.css">
-  </head>
-  <body>
-    <form action="/my-handling-form-page" method="post">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="user_name">
-  </div>
-  <div>
-    <label for="mail">E-mail:</label>
-    <input type="email" id="mail" name="user_mail">
-  </div>
-  <div>
-    <label for="msg">Message:</label>
-    <textarea id="msg" name="user_message"></textarea>
-  </div>
+    <script type="text/javascript" src="/js/scripts.js"></script>
+</head>
+<body>
+<form action="/submit" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="user_name">
+    </div>
+    <div>
+        <label for="contentTypeSelector">Type:</label>
+        <select id="contentTypeSelector" name="Entry Type" onload="updateContentLabel()"
+                onchange="updateContentLabel()">
+            <option value="joke">Joke</option>
+            <option value="fact">Fact</option>
+        </select>
+    </div>
+    <div>
+        <label id="contentLabel" for="content"></label>
+        <textarea id="content" name="content"></textarea>
+    </div>
+    <div>
+        <button type="submit" id="submitButton">Submit</button>
+    </div>
 </form>
-  </body>
-  <script>
+</body>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+<script>
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
+</script>
 </html>

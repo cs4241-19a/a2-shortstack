@@ -1,72 +1,143 @@
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
+const sqlite3 = require('sqlite3').verbose();
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const
+    http = require('http'),
+    fs = require('fs'),
+    // IMPORTANT: you must run `npm install` in the directory for this assignment
+    // to install the mime library used in the following line of code
+    mime = require('mime'),
+    dir = 'public/',
+    port = 3000;
 
-const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
-  }
-})
+const server = http.createServer(function (request, response) {
+    if (request.method === 'GET') {
+        handleGet(request, response)
+    } else if (request.method === 'POST') {
+        handlePost(request, response)
+    }
+});
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+const handleGet = function (request, response) {
+    const filename = dir + request.url.slice(1);
 
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  }else{
-    sendFile( response, filename )
-  }
+    if (request.url === '/') {
+        sendFile(response, 'public/index.html')
+    }
+    else if (request.url === '/get-results') {
+        sendResults(response)
+    }else {
+        sendFile(response, filename)
+    }
+};
+
+const handlePost = function (request, response) {
+    let dataString = '';
+
+    request.on('data', function (data) {
+        dataString += data
+    });
+
+    request.on('end', function () {
+        let data = JSON.parse(dataString);
+        console.log(data);
+
+        db.run(`INSERT INTO content(contentText, contentType, submittedBy) VALUES('` +
+            data.content.replace('\'', '"') + `', '` +
+            data.type.replace('\'', '"') + `', '` +
+            data.name.replace('\'', '"') + `')`, function (err) {
+            if (err) {
+                return console.log(err.message);
+            }
+            console.log(`A row has been inserted with rowid ${this.lastID}`); });
+
+        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+        response.end()
+    })
 }
 
-const handlePost = function( request, response ) {
-  let dataString = ''
+const sendFile = function (response, filename) {
+    const type = mime.getType(filename)
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+    fs.readFile(filename, function (err, content) {
 
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+        // if the error = null, then we've loaded the file successfully
+        if (err === null) {
 
-    // ... do something with the data here!!!
+            // status code: https://httpstatuses.com
+            response.writeHeader(200, {'Content-Type': type})
+            response.end(content)
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
-}
+        } else {
 
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
+            // file not found, error code 404
+            response.writeHeader(404)
+            response.end('404 Error: File Not Found')
 
-   fs.readFile( filename, function( err, content ) {
+        }
+    })
+};
 
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
+const sendResults = function (response) {
+// open the database
+    let db = new sqlite3.Database('./database.db');
+    console.log("getting data!");
+    let sql = `SELECT * FROM content
+           ORDER BY contentType`;
+    let content = [];
+    db.all(sql, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        rows.forEach((row) => {
+            console.log(row);
+            content.push(row);
+        });
+        response.writeHeader(200, {'Content-Type': 'application/json'});
+        response.write(JSON.stringify(rows));
+        response.end();
+    });
 
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
+    db.close();
+    // console.log(content);
 
-     }else{
+};
 
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
 
-     }
-   })
-}
+let db = new sqlite3.Database('./database.db', (err) => {
+    if (err)
+        console.error(err.message);
+    console.log('Connected to the database.');
+});
 
-server.listen( process.env.PORT || port )
+db.run("CREATE TABLE IF NOT EXISTS content(" +
+    "contentText text PRIMARY KEY, " +
+    "contentType text NOT NULL, " +
+    "submittedBy text NOT NULL, " +
+    "contentLength number DEFAULT 0)",
+    (err) => {
+        if (err)
+            console.error(err.message);
+        console.log('Connected to the database.');
+    });
+
+
+// db.serialize(() => {
+//     db.each(`SELECT
+// PlaylistId as id,
+//                   Name as name
+//            FROM playlists`, (err, row) => {
+//         if (err) {
+//             console.error(err.message);
+//         }
+//         console.log(row.id + "\t" + row.name);
+//     });
+// });
+//
+// db.close((err) => {
+//     if (err) {
+//         console.error(err.message);
+//     }
+//     console.log('Close the database connection.');
+// });
+
+    server.listen(process.env.PORT || port);
