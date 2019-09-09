@@ -58,11 +58,12 @@ const handlePost = function( request, response ) {
     
     if (colorNpos = 4) {
       var medal
-      if (guessCount <= 6) 
+      if (guessCount <= 5)  { medal = 'platinum'
+      }
     }
     
     else {
-      if (obj.guesscount >= 15) {
+      if (obj.guesscount >= 14) {
         // You lose...
       }
       
