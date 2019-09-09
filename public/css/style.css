@@ -4,9 +4,10 @@ nav{
   justify-content: space-between;
   align-items: stretch;
   background: black;
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   width: 100%;
+  overflow: auto;
 }
 nav h1{
   text-align: center;
@@ -66,5 +67,14 @@ nav ul li button{
   text-align: center;
   text-align-last: center;
   text-indent: 50%;
+}
+
+#Wrapper{
+  positon: absolute;
+  bottom: 0;
+}
+
+#ZodiacCarousel{
+  position: relative;
 }
 
