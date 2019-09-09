@@ -8,11 +8,11 @@ This program uses Node.js to count the frequency of unique words in a body of te
 
 This program addresses issues related to working with bodies of text and trying to determine the frequency of different words. It provides a solution to these issues while additionally providing information on the first occurrence of each unique word in a body of text. 
 
-![](https://github.com/amarkoski/a2-shortstack/public/img/initialSite.jpg)
+![Initial Page](https://github.com/amarkoski/a2-shortstack/blob/master/public/img/initialSite.PNG)
 Initial page
 
 
-![](https://github.com/amarkoski/a2-shortstack/public/img/woodchuckExample.jpg)
+![Page after recieving data from server](https://github.com/amarkoski/a2-shortstack/blob/master/public/img/woodchuckExample.PNG)
 Page after recieving data from server
 
 ## Technical Achievements
