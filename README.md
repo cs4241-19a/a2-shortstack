@@ -10,9 +10,11 @@ https://a2-davidvollum.glitch.me/admin.html
 ## Technical Achievements
 - Using Push and Fetch I was able to make it so comments can be submited on one page and apear on the other page when the admin clicks refresh
 - 2 Pages interacting together
+- Ability to delete comments from the server
 
 ### Design/Evaluation Achievements
 - External font used "Roboto" which can be seen on the main index.html page
 - I have tested it with many comments and it works well
     - It will lose all of the comments when the server quits
--CSS to center the content horizontaly and change the background color (/styles/style.css)
+- CSS to center the content horizontaly and change the background color (/styles/style.css)
+- Clear feeback when comment is sent to the server

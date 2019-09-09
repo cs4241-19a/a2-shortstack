@@ -8,15 +8,20 @@
   </head>
   <body>
     <h1>Comment Form!</h1>
-    <h2>Please write any comments you have for the developer</h2>
-    <div id = form>
-      <form action="">
-        <input type='text' id='name' value="Name">
-        <input type='text' id='email' value="email">
-        <input type='text' id='comment' value="comment">
-        <button>submit</button>
+    <div id = "success">
+        <h2>Thank you for submiting feedback. To submit another comment please reload the page.</h2>
     </div>
-    </form>
+    <div id = "form">
+      <h2>Please write any comments you have for the developer</h2>
+      <div>
+        <form action="">
+          <input type="text" id="name" value="Name">
+          <input type="text" id="email" value="email">
+          <input type="text" id="comment" value="comment">
+          <button>submit</button>
+      </form>
+      </div>
+    </div>
   </body>
   <script>
 
@@ -34,7 +39,9 @@
       body
     })
     .then( function( response ) {
-      //document.getElementById("form").hidden = true
+      document.getElementById("form").hidden = true
+      document.getElementById("success").hidden = false
+
       console.log( response )
 
     })
@@ -44,8 +51,10 @@
 
   window.onload = function() {
     const button = document.querySelector( 'button' )
+    document.getElementById("success").hidden = true
     button.onclick = submit
   }
 
   </script>
 </html>
+

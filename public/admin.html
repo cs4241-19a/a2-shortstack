@@ -11,13 +11,16 @@
                   <th colspan="4">Comments</th>
               </tr>
           </thead>
-          <tbody id = tableBody>
+          <tbody id = "tableBody">
               <tr>
-                  <td ></td>Please Press refresh to see results</td>
+                  <td>Please Press refresh to see results</td>
               </tr>
           </tbody>
       </table>
-      <button>refresh</button>
+      <button id = "refresh">refresh</button>
+      <br>
+      <h3>The clear button will clear the comments stored on the server</h3>
+      <button id = "clear">clear</button>
   </body>
   <script>
 
@@ -57,10 +60,20 @@
     });
   }
 
+  const clear = function ( e ) {
+    e.preventDefault()
+    fetch('/clear', {method: 'POST'}).then(response =>{
+      refresh(e)
+    })
+  }
+
   window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = refresh
+    const refreshButton = document.getElementById( 'refresh' )
+    const clearButton = document.getElementById( 'clear' )
+    refreshButton.onclick = refresh
+    clearButton.onclick = clear
   }
 
   </script>
 </html>
+

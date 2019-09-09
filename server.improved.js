@@ -37,6 +37,15 @@ const handleGet = function( request, response ) {
 }
 
 const handlePost = function( request, response ) {
+  console.log(request.url)
+  if (request.url === '/clear'){
+    appdata.length = 0
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+    response.end()
+    return
+  }
+
+
   let dataString = ''
 
   request.on( 'data', function( data ) {
@@ -58,7 +67,7 @@ const handlePost = function( request, response ) {
     const data = JSON.parse(dataString)
     let date = new Date(Date.now())
     console.log(getCurrentDayAndTime())
-    time = getCurrentDayAndTime()
+    let time = getCurrentDayAndTime()
     appdata.push({ 'name': data['name'], 'email': data['email'], 'comment': data['comment'], 'time': time })
     console.log(data['name'])
     console.log("App Data: " + JSON.stringify(appdata))
