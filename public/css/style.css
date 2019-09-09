@@ -3,11 +3,37 @@
   background-color:rgba(255, 0, 0,0.6);
 }
 
+h1{
+  text-align:center;
+  font-size:50px;
+}
+
+h2{
+  text-align:center;
+  font-size:30px;
+}
+
+header{
+
+}
+
+#table1{
+text-align:center;
+  margin: auto;
+  fontsize:18px;
+}
+
 .blue{
   background-color:rgba(0, 0, 255,0.6);
 }
 
+input{
+  width:60px;
+}
 
+#matchN{
+  width:50px;
+}
 
 .matchTable{
   
