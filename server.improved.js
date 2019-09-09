@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -22,12 +18,21 @@ const server = http.createServer( function( request,response ) {
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-
+  
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  }else if(request.url === '/result'){
+    sendForm( response, appdata )       
   }else{
     sendFile( response, filename )
   }
+}
+
+const sendForm = function(response, form){
+  const type = mime.getType( form );
+  response.writeHeader( 200, { 'Content-Type': type })
+  response.write(JSON.stringify({data: form}))
+  response.end();
 }
 
 const handlePost = function( request, response ) {
@@ -38,13 +43,76 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    switch(request.url){
+      case '/submit':
+        const order = JSON.parse(dataString),
+              price = calculatePrice(parseInt(order.amountNum), order.amountCont),
+              orderObj = {
+                'flavour': order.flavour,
+                'amountNum': order.amountNum,
+                'amountCont': order.amountCont,
+                'name': order.name,
+                'email': order.email,
+                'price': price
+                };
+        appdata.push(orderObj)
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+        break
+        
+      case '/delete':
+        const deleteForm = JSON.parse(dataString)
+        appdata.splice(deleteForm.orderNum, 1)
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+        break
+        
+//       case '/update':
+//         const editForm = JSON.parse(dataString);
 
-    // ... do something with the data here!!!
+//         const newPrice = calculatePrice(parseInt(editForm.amountNum), editForm.amountCont);
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
-  })
+//         const newOrder = {
+//                 'flavour': editForm.flavour,
+//                 'amountNum': editForm.amountNum,
+//                 'amountCont': editForm.amountCont,
+//                 'name': editForm.name,
+//                 'email': editForm.email,
+//                 'price': newPrice
+//         };
+
+//         appdata.splice(editForm.index, 1, newOrder);
+
+//         response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
+//         response.end();
+//         break
+    }})
+}
+
+const calculatePrice = function(amt, container){
+   let price = 0;
+  switch(container){
+    case 'bag':
+      price = 5;
+      break
+    case 'can':
+      price = 10;
+      break
+    case 'jar':
+      price = 15;
+      break
+    case 'tin':
+      price = 20;
+      break
+    case 'box':
+      price = 25;
+      break
+    default:
+      price = 0;
+      break
+    }
+      price *= amt;
+  return price;
 }
 
 const sendFile = function( response, filename ) {
