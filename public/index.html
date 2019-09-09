@@ -1,41 +1,97 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" type = "text/css" href="css/style.css" >
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
   </head>
   <body>
+    <h1> Create Your Own Library</h1>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <div>
+        <label for="title"> Title:</label>
+        <input type="text" id="title" name="book_title">
+      </div>
+      <div>
+        <label for="author"> Author:</label>
+        <input type="text" id="author" name="book_author">
+      </div>
+      <div>
+        <label for="descr">Description:</label>
+        <textarea id="descr" name="book_description"></textarea>
+      </div>
+      <div>
+       <label for="year"> Publication Year (xxxx):</label>
+       <input type="number" id="year" name="book_year"
+        min="1300" max="2100">
+      </div>
+      <div class="button">
+        <button type="submit" id="addButton">Add Book</button>
+      </div>
     </form>
+    <div class="button">
+      <button id="libraryButton">Go To Library</button>
+    </div>
   </body>
   <script>
+    let bookData = []
 
-  const submit = function( e ) {
+const addBook = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const input1 = document.querySelector('#title')
+    const input2 = document.querySelector('#author')
+    const input3 = document.querySelector('#descr')
+    const input4 = document.querySelector('#year')
+    
+    const json = { title: input1.value,
+                   author: input2.value,
+                   descr: input3.value,
+                   year: input4.value}
+    
+    const body = JSON.stringify(json)
+    
+    bookData.push(body)
+    
+    console.log(bookData)
+  
+    input1.value = ""
+    input2.value = ""
+    input3.value = ""
+    input4.value = ""
 
-    fetch( '/submit', {
+  fetch( '/submit', {
       method:'POST',
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+      fetch( '/books', {
+      method:'GET'
     })
-
+    .then( function( response ) {
+      response.json().then(function(data) {
+        console.log(data)
+      })
+    })
+    })
     return false
   }
 
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
+
+const library = function(e){
+    e.preventDefault();
+    
+    window.location = "library.html"
   }
 
+  window.onload = function() {
+    const button = document.querySelector( '#addButton' )
+    button.onclick = addBook
+    
+    const button1 = document.querySelector( '#libraryButton')
+    button1.onclick = library
+  }
   </script>
+  
 </html>

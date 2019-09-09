@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const bookData = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,7 +21,12 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }else if( request.url === '/library.html') {
+    sendFile(response, 'public/library.html')
+  }else if (request.url === '/books') {
+    console.log('request for books')
+    sendResults(response);
+            }else{
     sendFile( response, filename )
   }
 }
@@ -33,15 +34,15 @@ const handleGet = function( request, response ) {
 const handlePost = function( request, response ) {
   let dataString = ''
 
+  console.log(request)
   request.on( 'data', function( data ) {
       dataString += data 
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
+    let data = JSON.parse(dataString);
+    bookData.push(data);
+    console.log('data: ', bookData);
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
@@ -68,5 +69,14 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+const sendResults = function(response) {
+  const lib = JSON.stringify(bookData)
+  
+  response.writeHeader( 200, {'Content-Type': 'plain/text'})
+  response.write(lib)
+  response.end();
+}
+
 
 server.listen( process.env.PORT || port )
