@@ -128,7 +128,7 @@
                           <th scope="col">Category</th>
                           <th scope="col">USD</th>
                           <th scope="col">EURO</th>
-                          <th scope="col">Rating</th>
+                          <th colspan="3">Rating</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -142,6 +142,8 @@
                         <td>$${favs[i].usd}</td>
                         <td>€${favs[i].eur}</td>
                         <td>${stars}</td>
+                        <td> <button id="editBtn" type="button" class="btn btn-light"> <i class="fas fa-edit"></i></button>
+                        <td> <button id="deleteBtn" type="button" class="btn btn-light"> <i class="fas fa-trash"></i></button>
                       </tr>
         `;
       }
@@ -171,11 +173,15 @@
       })
       return false
     }
+    
+    const
 
     const refresh = function() {
       loadFavorites();
       loadAllResults();
     }
+    
+    
     
     window.onload = function() {
       refresh()

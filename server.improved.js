@@ -59,9 +59,8 @@ const handlePost = function( request, response ) {
 
     appdata.push(newItemObj);
     
-    // sort the data to ensure favorite are always first 3 elements
-    appdata.sort((a, b) => (a.rating < b.rating) ? 1 : (a.rating === b.rating) ? ((a.usd > b.usd) ? 1 : -1) : -1 )
-
+    sortData();
+    
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
   })
@@ -77,10 +76,9 @@ const handleDelete = function( request, response ) {
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
 
-    appdata.splice(newItemObj);
+    appdata.splice(dataString.index, 1);
     
-    // sort the data to ensure favorite are always first 3 elements
-    appdata.sort((a, b) => (a.rating < b.rating) ? 1 : (a.rating === b.rating) ? ((a.usd > b.usd) ? 1 : -1) : -1 )
+    sortData();
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
     response.end()
@@ -118,6 +116,11 @@ const sendData = function( response, items ) {
 
 function calcEuroPrice(usd) {
   return usd * 0.91;
+}
+
+function sortData() {
+  // sort the data to ensure favorite are always first 3 elements
+  appdata.sort((a, b) => (a.rating < b.rating) ? 1 : (a.rating === b.rating) ? ((a.usd > b.usd) ? 1 : -1) : -1 );
 }
 
 server.listen( process.env.PORT || port )
