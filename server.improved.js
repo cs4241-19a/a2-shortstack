@@ -77,7 +77,7 @@ const handlePost = function (request, response) {
                     };
                     console.log(finalExam);
                     appdata.push(grades);
-                    var finalExamKey = "finalExam";
+                    let finalExamKey = "finalExam";
                     data[finalExamKey] = finalExam;
                     response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
                     response.end();
@@ -86,7 +86,7 @@ const handlePost = function (request, response) {
                     response.end('404 Error: File Not Found')
             }
             console.log(data.finalExam);
-            writeUserData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
+            writeData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
         } else if (Object.keys(data).length === 2) {
             updateGrade(data.token, data.updateInput)
             //removeGrade(data.token, data.currentGrade);
@@ -146,7 +146,7 @@ const handlePost = function (request, response) {
         })
     };
 
-    function writeUserData(ref, token, currentGrade, desired, finalWorth, finalExam) {
+    function writeData(ref, token, currentGrade, desired, finalWorth, finalExam) {
         var tokenRef = keyRef.child(ref);
         tokenRef.set({
             token: token,

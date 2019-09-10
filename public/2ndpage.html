@@ -72,7 +72,6 @@
 <script src="lib/tweenlite/init.js"></script>
 
 <script>
-
     const updateEntry = function (e) {
         e.preventDefault();
         let key = document.querySelector('#updateTokenInput');
@@ -91,9 +90,9 @@
                     .then(function (response) {
                         return response.json();
                     }).then(function (response) {
-                    let DataKey = (document.querySelector('#updateTokenInput')).replace(/^"(.*)"$/, '$1');
+                    let DataKey =document.querySelector('#updateTokenInput');
                     console.log(DataKey);
-                    document.getElementById('curGrade').innerText = JSON.stringify(response.DataKey.currentGrade).replace(/^"(.*)"$/, '$1');
+                    document.getElementById('curGrade').innerText = JSON.stringify(response["DataKey"].currentGrade).replace(/^"(.*)"$/, '$1');
                 })
             }
         );
@@ -148,6 +147,7 @@
                     '<th>Desired Overall Grade</th>\n' +
                     '<th>Final Exam Weight</th>\n' +
                     '<th>Final Exam Grade Required</th>\n' +
+                    '<th>Delete</th>\n' +
                     '</tr>\n' +
                     '</thead>\n';
                 for (let i = 0; i < numOfEntry.length; i++) {
@@ -159,7 +159,7 @@
                     newRow += ('<td>' + (JSON.stringify(response[rows].finalWorth)).replace(/^"(.*)"$/, '$1') + '</td>');
                     newRow += ('<td>' + (JSON.stringify(response[rows].finalExam)).replace(/^"(.*)"$/, '$1') + '</td>');
                     //newRow+=('<td><ul><li><input id="updateInput" type="number" placeholder=" Number only"/></li><li><button class="button"  id=" ' + i + ' " onclick="updateEntry (' + i + ')"><strong>√</strong></button></li></ul></td>\n');
-                    //newRow+=('<td><button class="button" style="font-weight:300" id=" ' + i + ' " onclick="deleteEntry (' + i + ')"> X </button></td>\n');
+                    newRow+=('<td><button class="button" style="font-weight:300" id=" ' + i + ' " onclick="deleteEntry (' + i + ')"> X </button></td>\n');
                     newRow += '</tr>';
                     computedGrades.innerHTML += newRow;
                 }
