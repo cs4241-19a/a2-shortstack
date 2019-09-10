@@ -6,19 +6,19 @@ function generateCustomer(){
   let imgProperties = "";
   let orderProperties = "";
   if(rand === 1){
-    imgProperties = "<img style='height:70px; width:50px;' src='../assets/chocolate.png'/>";
+    imgProperties = "<img style='height:8vh; width:2.5vw;' src='../assets/chocolate.png'/>";
     orderProperties = "<li>CHOCOLATE</li>";
   }
   else if(rand === 2){
-    imgProperties = "<img style='height:70px; width:50px;' src='../assets/cookie-dough.png'/>";
+    imgProperties = "<img style='height:8vh; width:2.5vw;' src='../assets/cookie-dough.png'/>";
     orderProperties = "<li>COOKIE DOUGH</li>";
   }
   else if(rand === 3){
-    imgProperties = "<img style='height:70px; width:50px;' src='../assets/vanilla.png'/>";
+    imgProperties = "<img style='height:8vh; width:2.5vw;' src='../assets/vanilla.png'/>";
     orderProperties = "<li>VANILLA</li>";
   }
   else if(rand === 4){
-    imgProperties = "<img style='height:70px; width:50px;' src='../assets/strawberry.png'/>";
+    imgProperties = "<img style='height:8vh; width:2.5vw;' src='../assets/strawberry.png'/>";
     orderProperties = "<li>STRAWBERRY</li>";
   }
   let json = {img: imgProperties, order: orderProperties},
@@ -133,23 +133,44 @@ function makeMove(event){
   .then( response => response.json())
   .then(response => {
     const kind = response.kind;
+    const list = document.querySelector('#completed');
     document.querySelector('#line').innerHTML = response.images.join("");
     document.querySelector('#orders').innerHTML = response.orders.join("");
     if(kind === "VN"){
+      let newfinished = document.createElement("LI");
+      let textnode = document.createTextNode("VANILLA: +$3");
+      newfinished.appendChild(textnode);
       updateBank(3);
+      list.appendChild(newfinished);
     }
     else if(kind === "CH"){
+      let newfinished = document.createElement("LI");
+      let textnode = document.createTextNode("CHOCOLATE: +$6");
+      newfinished.appendChild(textnode);
       updateBank(6);
+      list.appendChild(newfinished);
     }
     else if(kind === "ST"){
+      let newfinished = document.createElement("LI");
+      let textnode = document.createTextNode("STRAWBERRY: +$5");
+      newfinished.appendChild(textnode);
       updateBank(5);
+      list.appendChild(newfinished);
     }
     else if(kind === "CD"){
+      let newfinished = document.createElement("LI");
+      let textnode = document.createTextNode("COOKIE DOUGH: +$6");
+      newfinished.appendChild(textnode);
       updateBank(6);
+      list.appendChild(newfinished);
     }
     else{
+      let newfinished = document.createElement("LI");
+      let textnode = document.createTextNode("WRONG KIND!: -$10");
       wrong += 1;
+      newfinished.appendChild(textnode);
       updateBank(-10);
+      list.appendChild(newfinished);
     }
   })
 }
