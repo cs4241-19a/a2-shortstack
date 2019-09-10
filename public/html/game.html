@@ -4,6 +4,7 @@
   <title>CS4241 Assignment 2</title>
   <meta charset="utf-8">
   <script type="text/javascript" src="../js/scripts.js"></script>
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../css/game.css">
 </head>
@@ -25,18 +26,14 @@
             </form>
           </div>
           <div class="modal-footer">
-            <form action="/">
-              <input class="button" onclick="recordScore()" type="submit" value="SUBMIT"/>
-            </form>
+            <button onclick="recordScore()" type="button" class="nes-btn is-warning">SUBMIT</button>
           </div>
         </div>
       </div>
     </div>
 <br>
 <br>
-  <form action="/">
-    <input class="button" onclick="quit()" type="submit" value="QUIT"/>
-  </form>
+<button onclick="window.location='/'" type="button" class="nes-btn is-warning">QUIT</button>
 <h1>Money: <span id="money" style="color: green; font-size: 50px; margin: 0;">$ <span id="bills">0</span></span></h1>
 <div class="divs">
     <div class="category" id="menu">

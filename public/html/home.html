@@ -4,25 +4,20 @@
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
     <script type="text/javascript" src="../js/scripts.js"></script>
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="../css/home.css">
   </head>
   <body>
 <h1>Ken's Ice Cream Shop</h1>
-<img src="../assets/truck.png"/>
+<img style="width: 30vw" src="../assets/truck.png"/>
 <br>
 <br>
-<form action="/instructions">
-  <input type="submit" value="INSTRUCTIONS"/>
-</form>
+<div class="buttondiv">
+<button type="button" class="nes-btn is-warning" onclick="window.location='/instructions'">INSTRUCTIONS</button>
   <br>
+  <button type="button" class="nes-btn is-warning" onclick="window.location='/scoreboard'">SCOREBOARD</button>
   <br>
-  <form action="/scoreboard">
-    <input type="submit" value="SCOREBOARD"/>
-  </form>
-  <br>
-  <br>
-  <form action="/game">
-    <input type="submit" value="PLAY"/>
-  </form>
+  <button type="button" class="nes-btn is-warning" onclick="window.location='/game'">PLAY</button>
+</div>
   </body>
 </html>

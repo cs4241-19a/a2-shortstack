@@ -1,5 +1,5 @@
 @font-face {
-  src: url(../assets/otherarcade.ttf);
+  src: url(../assets/kongtext.ttf);
   font-family: arcade;
 }
 
@@ -15,20 +15,12 @@ body{
   width: 100%;
   margin: 0;
 }
-input{
-  font-family: arcade;
-  border-radius: 30px;
-  font-size: 25px;
-  background-color: yellow;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  cursor: pointer;
-  line-height: 35px;
-}
-input:hover{
-  font-size: 30px;
-  line-height: 35px;
+.buttondiv{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 #instructpanel{
   background-color: white;

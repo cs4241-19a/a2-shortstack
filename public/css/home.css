@@ -1,5 +1,5 @@
 @font-face {
-  src: url(../assets/otherarcade.ttf);
+  src: url(../assets/kongtext.ttf);
   font-family: arcade;
 }
 body{
@@ -10,7 +10,7 @@ body{
   margin: 0;
 }
 h1{
-  font-size: 75px;
+  font-size: 4vw;
   text-align: center;
 }
 img{
@@ -18,18 +18,10 @@ img{
   margin-left: auto;
   margin-right: auto;
 }
-input{
-  font-family: arcade;
-  border-radius: 30px;
-  font-size: 25px;
-  background-color: yellow;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  cursor: pointer;
-  line-height: 35px;
-}
-input:hover{
-  font-size: 30px;
-  line-height: 35px;
+.buttondiv{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
