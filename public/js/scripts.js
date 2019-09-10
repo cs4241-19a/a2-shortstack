@@ -1,4 +1,5 @@
 var wrong = 0;
+var open = false;
 
 //to generate a new customer every so often
 function generateCustomer(){
@@ -30,13 +31,12 @@ function generateCustomer(){
   })
   .then (response => response.json())
   .then (response => {
-    if(response.images.length > 10 || wrong === 2 || Number(document.querySelector('#bills').innerHTML) < 0){
+    if(response.images.length > 10){
+      open = true;
       document.querySelector('#YOULOSE').showModal();
     }
-    else{
-      document.querySelector('#line').innerHTML = response.images.join("");
-      document.querySelector('#orders').innerHTML = response.orders.join("");
-    }
+    document.querySelector('#line').innerHTML = response.images.join("");
+    document.querySelector('#orders').innerHTML = response.orders.join("");
   })
 }
 
@@ -59,12 +59,11 @@ function updateBank(num) {
     })
   .then( promiseresponse => promiseresponse.json())
   .then(response => {
-    if (response.result < 0 || wrong === 2) {
-      document.querySelector('#bills').innerHTML = response.result;
+    document.querySelector('#bills').innerHTML = response.result;
+    var amount = Number(document.querySelector('#bills').innerHTML);
+    if (amount < 0 || wrong >= 2) {
+      open = true;
       document.querySelector('#YOULOSE').showModal();
-    }
-    else{
-      document.querySelector('#bills').innerHTML = response.result;
     }
   })
   return false;
@@ -87,6 +86,7 @@ function updateBank(num) {
 
 //function to reset info when quitting
 function quit(){
+  open = false;
   window.location = '/';
   updateBank(0);
   wrong = 0;
@@ -95,8 +95,8 @@ function quit(){
 //function to update the score board in the server
 function recordScore(){
   quit();
-  let score = document.querySelector('#bills').innerHTML;
   let name = "";
+  let score = document.querySelector('#bills').innerHTML;
   if(document.querySelector('#name').value){
     name = document.querySelector('#name').value;
   }
@@ -129,55 +129,58 @@ function loadScoreBoard(){
 }
 
 function makeMove(event){
-  const move = event.which;
-  let json = {move: move},
-  body = JSON.stringify(json)
-  fetch('/remove', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body
-  })
-  .then( response => response.json())
-  .then(response => {
-    const kind = response.kind;
-    const list = document.querySelector('#completed');
-    document.querySelector('#line').innerHTML = response.images.join("");
-    document.querySelector('#orders').innerHTML = response.orders.join("");
-    if(kind === "VN"){
-      let newfinished = document.createElement("LI");
-      let textnode = document.createTextNode("VANILLA: +$3");
-      newfinished.appendChild(textnode);
-      updateBank(3);
-      list.appendChild(newfinished);
-    }
-    else if(kind === "CH"){
-      let newfinished = document.createElement("LI");
-      let textnode = document.createTextNode("CHOCOLATE: +$6");
-      newfinished.appendChild(textnode);
-      updateBank(6);
-      list.appendChild(newfinished);
-    }
-    else if(kind === "ST"){
-      let newfinished = document.createElement("LI");
-      let textnode = document.createTextNode("STRAWBERRY: +$5");
-      newfinished.appendChild(textnode);
-      updateBank(5);
-      list.appendChild(newfinished);
-    }
-    else if(kind === "CD"){
-      let newfinished = document.createElement("LI");
-      let textnode = document.createTextNode("COOKIE DOUGH: +$6");
-      newfinished.appendChild(textnode);
-      updateBank(6);
-      list.appendChild(newfinished);
-    }
-    else{
-      let newfinished = document.createElement("LI");
-      let textnode = document.createTextNode("WRONG KIND!: -$10");
-      wrong += 1;
-      newfinished.appendChild(textnode);
-      updateBank(-10);
-      list.appendChild(newfinished);
-    }
-  })
+  if(open === false){
+    const move = event.which;
+    let json = {move: move},
+    body = JSON.stringify(json)
+    fetch('/remove', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body
+    })
+    .then( response => response.json())
+    .then(response => {
+      const kind = response.kind;
+      const list = document.querySelector('#completed');
+      document.querySelector('#line').innerHTML = response.images.join("");
+      document.querySelector('#orders').innerHTML = response.orders.join("");
+      if(kind === "VN"){
+        let newfinished = document.createElement("LI");
+        let textnode = document.createTextNode("VANILLA: +$3");
+        newfinished.appendChild(textnode);
+        updateBank(3);
+        list.appendChild(newfinished);
+      }
+      else if(kind === "CH"){
+        let newfinished = document.createElement("LI");
+        let textnode = document.createTextNode("CHOCOLATE: +$6");
+        newfinished.appendChild(textnode);
+        updateBank(6);
+        list.appendChild(newfinished);
+      }
+      else if(kind === "ST"){
+        let newfinished = document.createElement("LI");
+        let textnode = document.createTextNode("STRAWBERRY: +$5");
+        newfinished.appendChild(textnode);
+        updateBank(5);
+        list.appendChild(newfinished);
+      }
+      else if(kind === "CD"){
+        let newfinished = document.createElement("LI");
+        let textnode = document.createTextNode("COOKIE DOUGH: +$6");
+        newfinished.appendChild(textnode);
+        updateBank(6);
+        list.appendChild(newfinished);
+      }
+      else{
+        let newfinished = document.createElement("LI");
+        let textnode = document.createTextNode("WRONG KIND!: -$10");
+        wrong += 1;
+        newfinished.appendChild(textnode);
+        updateBank(-10);
+        list.appendChild(newfinished);
+      }
+    })
+  }
+  else{}
 }

@@ -2,12 +2,14 @@ const bodyParser = require('body-parser'),
       express = require('express'),
       app = express(),
       path = require('path'),
+      favicon = require('serve-favicon'),
       port = process.env.PORT || 3000;
 
 let money = 0;
 let imageOrders = [];
 let orders = [];
 let entries = ["<tr><td>Name</td><td>Score</td></tr>"];
+app.use(favicon(path.join(__dirname,'public','assets','favicon.ico')));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.get('/', function(req, res) {
