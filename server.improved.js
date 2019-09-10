@@ -7,9 +7,9 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'schema': 'https', 'domain': www.google.com, 'subdomain': 23 },
+  { 'schema': 'http', 'domain': www.yahoo.com, 'subdomain': 30 },
+  { 'schema': 'ftp', 'domain': www.bing.com, 'subdomain': 14} 
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -39,7 +39,11 @@ const handlePost = function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-
+    if (dataString != null){
+      url = new URL(dataString)
+      
+    
+    }
     // ... do something with the data here!!!
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })

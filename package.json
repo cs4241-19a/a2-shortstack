@@ -1,8 +1,8 @@
 {
   "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "version": "0.0.1",
+  "description": "A simple http server that responds to requests.",
+  "author": "Tom Graham",
   "scripts": {
     "start": "node server.improved.js"
   },
