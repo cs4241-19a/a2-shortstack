@@ -12,24 +12,21 @@
   <audio loop autoplay>
   <source src="assets/icecreamsong.mp3" type="audio/mpeg">
 </audio>
-<div class="modal fade" id="YOULOSE" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title">GAME OVER!</h2>
-          </div>
-          <div class="modal-body">
-            <p>Enter your name to be put on the score board! Please no inappropriate names!</p>
-            <form>
-              <input input="text" id="name" placeholder="Enter your name">
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button onclick="recordScore()" type="button" class="nes-btn is-warning">SUBMIT</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section>
+      <dialog class="nes-dialog is-rounded" id="YOULOSE">
+        <form method="dialog">
+          <p class="title">GAME OVER!</p>
+          <p>Please enter your name for the scoreboard!</p>
+          <p>Please no inappropriate names!</p>
+          <menu class="dialog-menu">
+            <div class="nes-field is-inline">
+              <input type="text" id="name" class="nes-input is-warning" placeholder="Your Name">
+              <button onclick="recordScore()" class="nes-btn is-warning">SUBMIT</button>
+            </div>
+          </menu>
+        </form>
+      </dialog>
+    </section>
 <br>
 <br>
 <button onclick="window.location='/'" type="button" class="nes-btn is-warning">QUIT</button>
@@ -38,27 +35,32 @@
     <div class="category nes-container is-rounded" id="menu">
       <p class="title">MENU</p>
       <br>
-      <p ondragover="allowDragging(event)">
-        1. VANILLA -
-        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/vanilla.png"/>
-      </p>
-      <p ondragover="allowDragging(event)">
-        2. Chocolate -
-        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/chocolate.png"/>
-      </p>
-      <p ondragover="allowDragging(event)">
-        3. Strawberry -
-        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/strawberry.png"/>
-      </p>
-      <p ondragover="allowDragging(event)">
-        4. Cookie Dough -
-        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/cookie-dough.png"/>
-      </p>
+      <ol>
+        <li ondragover="allowDragging(event)">
+          VANILLA -
+          <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/vanilla.png"/>
+        </li>
+        <br>
+        <li ondragover="allowDragging(event)">
+          Chocolate -
+          <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/chocolate.png"/>
+        </li>
+        <br>
+        <li ondragover="allowDragging(event)">
+          Strawberry -
+          <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/strawberry.png"/>
+        </li>
+        <br>
+        <li ondragover="allowDragging(event)">
+          Cookie Dough -
+          <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/cookie-dough.png"/>
+        </li>
+      </ol>
     </div>
     <div class="category nes-container is-rounded">
       <p class="title">ORDERS</p>
       <br>
-      <ul id="orders" style="list-style-type:none"></ul>
+      <ul class="nes-list is-disc" id="orders" style="list-style-type:none"></ul>
     </div>
     <div class="category nes-container is-rounded">
       <p  class="title">COMPLETED</p>

@@ -58,7 +58,7 @@ function updateBank(num) {
     document.querySelector('#bills').innerHTML = response.result;
     var amount = Number(document.querySelector('#bills').innerHTML);
     if (amount <= 0 || wrong === 2) {
-      $('#YOULOSE').modal('show');
+      document.querySelector('#YOULOSE').showModal();
       //document.location.href = '/';
     }
   })
