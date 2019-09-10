@@ -22,7 +22,7 @@ h1 {
 textarea{
   font-family: system-ui, sans-serif;
   font-size:16px;
-background-color: rgba(255, 255, 224, 0.5);
+  background-color: rgba(255, 255, 224, 0.5);
   border-radius: 5px;
   color: black;
   width:90%;
@@ -54,7 +54,7 @@ button{
 }
 
 .modal {
-  background-color: rgba(195, 225, 150, 0.5);
+  background-color: rgba(255, 225, 255, 0.5);
   border-radius: 5px;
   color: #333;
   font-family: system-ui, sans-serif;
