@@ -22,12 +22,16 @@ Goals:
 - This website is designed to help students better understand their grades and keep things organized so they can balance their workload particularly during the final exam time. 
 - Because of the update functionality, students can constantly change their current grade in class in order to better monitor their progress. 
 - If a student decides to drop/NR certain class, he/she can utilize the delete function to delete the data entry. 
+- I think delete is a totally unnecessary functionality to implement. A student might need to modify their most current overall grade as the term goes on but it is highly likely for them to delete their current grade.
+
 
 Main Challenges:
 ---
 - I had a hard time understanding the communication between the server and the client.
 - I went to all the office hours and am still quite confused. Because I also wanted to use a database for this project, it complicated things even more. 
 - I am also a hard-core UI lover and I spent a lot of time trying to make the page look nicer. Due to the time constraints, I gave up on implementing the pre-loading screen (half of the code is still in here) and I failed to learn how to use dataTables which should have made the styling of the tables easier.
+- The CSS styling was not easy because I used multiple CSS templates and integrating them required a lot of dedication.
+- I could have allowed both update and delete to work for the entire data entry if I were not using Firebase. But since I am using Firebase, and this database is really not that user-friendly. The documentation online is super limited. Even when they described the delete and update methods online, they said it was only for one field not the entire sub-collection.  
 
 
 Implications:
@@ -58,3 +62,4 @@ Achievements:
 Special thanks:
 ---
 Kit Zeller and Manas Mehta helped me a lot through the debugging process. 
+I started the assignment straight up with Firebase which is a total mistake and Prof. Charlie helped me debug a lot! 

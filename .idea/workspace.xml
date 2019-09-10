@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d88559f-c8a7-41b0-9d0d-909c842d8558" name="Default Changelist" comment="" />
+    <list default="true" id="6d88559f-c8a7-41b0-9d0d-909c842d8558" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/a2-shortstack-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/a2-shortstack-master.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/2ndpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2ndpage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/scripts.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/scripts.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap/css/bootstrap-newer.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/bootstrap/css/bootstrap-newer.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/bootstrap/css/bootstrap.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/bootstrap/css/bootstrap.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap/fonts/glyphicons-halflings-regular.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/bootstrap/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap/js/bootstrap.bundle.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/bootstrap/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/bootstrap/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/bootstrap/js/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/bootstrap/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/easing/easing.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/easing/easing.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/easing/easing.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/easing/easing.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/ionicons/css/ionicons.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/ionicons/css/ionicons.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/ionicons/fonts/ionicons.svg" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/ionicons/fonts/ionicons.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/jquery/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/jquery/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/jquery/jquery.magnific-popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/jquery/jquery.magnific-popup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/jquery/jquery.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/jquery/jquery.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/jquery/jquery.slim.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/jquery/jquery.slim.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/magnific-popup/magnific-popup.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/magnific-popup/magnific-popup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/magnific-popup/magnific-popup.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/magnific-popup/magnific-popup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/magnific-popup/magnific-popup.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/magnific-popup/magnific-popup.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/tweenlite/easepack.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/tweenlite/easepack.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/tweenlite/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/tweenlite/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/lib/tweenlite/tweenlite.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lib/tweenlite/tweenlite.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.improved.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.improved.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serviceKey.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/serviceKey.json.json" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,11 +57,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1QTK6L34BczKwthDCzacxIbKq2F" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript&#10;HTML" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML&#10;JavaScript" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -86,11 +123,10 @@
       <workItem from="1567989463328" duration="6862000" />
       <workItem from="1568033288446" duration="8111000" />
       <workItem from="1568047053672" duration="5603000" />
-      <workItem from="1568060897238" duration="8770000" />
-      <workItem from="1568071449078" duration="847000" />
-      <workItem from="1568072308210" duration="1623000" />
-      <workItem from="1568084250088" duration="1060000" />
-      <workItem from="1568135616640" duration="1496000" />
+      <workItem from="1568060897238" duration="4077000" />
+      <workItem from="1568147618852" duration="2013000" />
+      <workItem from="1568149864966" duration="738000" />
+      <workItem from="1568150890848" duration="123000" />
     </task>
     <servers />
   </component>

@@ -44,9 +44,9 @@
             <ul>
                 <li><input class="updateInput" id="updateTokenInput" type="text"
                            placeholder="Course Number"/><span> </span><input id="updateGradeInput"
-                                                                                          class="updateInput"
-                                                                                          type="number"
-                                                                                          placeholder="Most Current Grade"/>
+                                                                             class="updateInput"
+                                                                             type="number"
+                                                                             placeholder="Most Current Grade"/>
                 </li>
                 <li>
                     <button class="button" id="updateBtn">Update Current Grade</button>
@@ -72,13 +72,14 @@
 <script src="lib/tweenlite/init.js"></script>
 
 <script>
+
     const updateEntry = function (e) {
         e.preventDefault();
         let key = document.querySelector('#updateTokenInput');
         let newGrade = document.querySelector('#updateGradeInput');
         console.log(newGrade.value,key.value);
-            json = {token: key.value, updateInput: newGrade.value}
-            body = JSON.stringify(json);
+        json = {token: key.value, updateInput: newGrade.value}
+        body = JSON.stringify(json);
         document.querySelector("#gradeForUpdate"+key.value).innerText=newGrade.value;
         fetch('/submit', {
             method: 'POST',
@@ -94,7 +95,7 @@
                     }).then(function (response) {
                     let DataKey =document.querySelector('#updateTokenInput');
                     console.log(DataKey);
-                    //document.getElementById('curGrade').innerText = response[ DataKey.value ].currentGrade;
+                    document.getElementById('curGrade').innerText = response[ DataKey.value ].currentGrade;
                 })
             }
         );
@@ -104,11 +105,11 @@
 
     const deleteEntry = function (e) {
         e.preventDefault();
-        let key = document.querySelector('#updateTokenInput');
+        let key = document.querySelector('#deleteTokenInput');
         let newGrade = document.querySelector('#updateGradeInput');
         console.log(newGrade.value,key.value);
         json = {token: key.value, updateInput: newGrade.value}
-            body = JSON.stringify(json);
+        body = JSON.stringify(json);
         document.querySelector("#gradeForUpdate"+key.value).innerText=" ";
         fetch('/submit', {
             method: 'POST',

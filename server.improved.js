@@ -13,7 +13,7 @@ const http = require('http'),
     fs = require('fs'),
     mime = require('mime'),
     dir = 'public/',
-    port = 3000;
+    port = 8000;
 
 const appdata = [ //can add/edit/ delete any object in here
     {'token': 'CS4241', 'currentGrade': 'toyota', 'desired': 1999, 'finalWorth': 23, 'finalExam': undefined},
@@ -25,18 +25,14 @@ const appdata = [ //can add/edit/ delete any object in here
 const server = http.createServer(function (request, response) {
     if (request.method === 'GET') {
         handleGet(request, response)
-    } else if (request.method === 'POST') {
+    } else if (request.method === 'POST') { //could add more functions like delete here, but could also have just POST and have the urls to determine what to do
         handlePost(request, response)
-    } else if (request.method === 'DELETE') {
-        handleDelete(request, response)
-    } else if (request.method === 'PUT') {
-        handlePut(request, response)
     }
 });
 
 //use handleGet to display data structure (server) in UI (server to UI)
 const handleGet = function (request, response) {
-    const filename = dir + request.url.slice(1);
+    const filename = dir + request.url.slice(1)
     if (request.url === '/') {
         sendFile(response, 'public/index.html') //do sendFile for javascript file
     } else if (request.url === '/getdata') {
@@ -61,7 +57,7 @@ const handlePost = function (request, response) {
     });
     request.on('end', function () {
         const data = JSON.parse(dataString);
-        if (Object.keys(data).length === 6) {
+        if (Object.keys(data).length === 4) {
             switch (request.url) {
                 case '/submit':
                     let desiredPercentage = parseInt(data.desired) * 0.01;
@@ -77,7 +73,7 @@ const handlePost = function (request, response) {
                     };
                     console.log(finalExam);
                     appdata.push(grades);
-                    let finalExamKey = "finalExam";
+                    var finalExamKey = "finalExam";
                     data[finalExamKey] = finalExam;
                     response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
                     response.end();
@@ -87,97 +83,58 @@ const handlePost = function (request, response) {
             }
             console.log(data.finalExam);
             writeData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
-        } else if (Object.keys(data).length === 2) {
+        }
+        else if (Object.keys(data).length === 2) {
             console.log("data input:", data.updateInput);
             updateGrade(data.token, data.updateInput)
             //removeGrade(data.token, data.currentGrade);
 
         }
-        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-        response.end();
+        //updateGrade(data.token, data.updateInput);
+    })
+};
+
+const sendData = function (response, gradeDataset) {
+    const type = mime.getType(gradeDataset);
+    response.writeHeader(200, {'Content-Type': type});
+    response.write(JSON.stringify({data: gradeDataset}));
+    response.end();
+};
+
+const sendFile = function (response, filename) {
+    const type = mime.getType(filename);
+
+    fs.readFile(filename, function (err, content) {
+        if (err === null) {
+            response.writeHeader(200, {'Content-Type': type});
+            response.end(content)
+        } else {
+            response.writeHeader(404);
+            response.end('404 Error: File Not Found')
+        }
+    })
+};
+
+function writeData(ref, token, currentGrade, desired, finalWorth, finalExam) {
+    var tokenRef = keyRef.child(ref);
+    tokenRef.set({
+        token: token,
+        currentGrade: currentGrade,
+        desired: desired,
+        finalWorth: finalWorth,
+        finalExam: finalExam
     });
-
-    /*
-    const handleDelete = function (request, response) {
-        console.log("DELETE: ", request.url);
-        keyRef.child(request.url).set({});
-        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-        response.end("OK");
-    };
-
-    const handlePut = function (request, response) {
-        console.log("PUT");
-        let dataString = '';
-        request.on('data', function (data) {
-            dataString += data
-        });
-        request.on('end', function () {
-            let jsonObj = JSON.parse(dataString);
-            let key = jsonObj['uid-val'] + '/' + jsonObj['entry-key'];
-            let numWords = jsonObj["entry-post"].split(" ").length;
-            jsonObj["entry-words"] = numWords;
-            jsonObj["entry-map"] = wordFreq(jsonObj["entry-post"]);
-            delete jsonObj['entry-key'];
-            // Then post to firebase!
-            ref.child(key).update(jsonObj);
-            response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-            response.end("OK")
-        });
-    };
-    */
 }
-    const sendData = function (response, gradeDataset) {
-        const type = mime.getType(gradeDataset);
-        response.writeHeader(200, {'Content-Type': type});
-        response.write(JSON.stringify({data: gradeDataset}));
-        response.end();
-    };
 
-    const sendFile = function (response, filename) {
-        const type = mime.getType(filename);
-
-        fs.readFile(filename, function (err, content) {
-            if (err === null) {
-                response.writeHeader(200, {'Content-Type': type});
-                response.end(content)
-            } else {
-                response.writeHeader(404);
-                response.end('404 Error: File Not Found')
-            }
-        })
-    };
-
-    function writeData(ref, token, currentGrade, desired, finalWorth, finalExam) {
-        var tokenRef = keyRef.child(ref);
-        tokenRef.set({
-            token: token,
-            currentGrade: currentGrade,
-            desired: desired,
-            finalWorth: finalWorth,
-            finalExam: finalExam
-        });
-    }
-
-    function updateGrade(ref, currentGrade,) {
-        debugger;
-        let tokenRef = keyRef.child(ref);
-        tokenRef.update({
-            "currentGrade": ''+currentGrade
-        })
-    }
-
-    function removeGrade(ref, currentGrade) {
-        let tokenRef = keyRef.child(ref);
-        let gradeRef = tokenRef.child(currentGrade);
-        gradeRef.remove().then(function () {
-            console.log("Remove succeeded.")
-        })
-            .catch(function (error) {
-                console.log("Remove failed: " + error.message)
-            });
-    }
+function updateGrade(ref, curGrade) {
+    let tokenRef = keyRef.child(ref);
+    tokenRef.update({
+        currentGrade: curGrade
+})
+}
 
 
-    server.listen(process.env.PORT || port)
+
+server.listen(process.env.PORT || port);
 
 

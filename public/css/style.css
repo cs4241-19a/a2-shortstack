@@ -13,6 +13,7 @@
 .form__container {
     padding: 52px 36px 38px;
     text-align: center;
+    /*background: #eaeced;*/
     background: rgba(0, 0, 0, 0.8);
     border-radius: 12px;
 }
@@ -372,7 +373,6 @@ ul{
     background: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     margin-top: 5px;
-    margin-right: 15px;
     margin-bottom: 15px;
 }
 
