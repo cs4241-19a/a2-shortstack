@@ -4,8 +4,12 @@
 }
 
 h1{
-  font-size: 75px;
+  font-size: 5.5vw;
   text-align: center;
+}
+
+p{
+  font-size: 1.5vw;
 }
 
 body{
@@ -28,11 +32,11 @@ body{
   height: auto;
   border-radius: 5%;
   font-size: 30px;
-  width: 80%;
+  width: 90%;
 }
 
 .images{
   margin: 0 20px 0 20px;
   float: left;
-  width: 25%;
+  width: 50%;
 }
