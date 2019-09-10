@@ -45,20 +45,49 @@ app.post('/neworder', function(req, res) {
   res.send({images: imageOrders, orders: orders});
 })
 app.post('/remove', function(req, res) {
-  let id = req.body.id;
-  imageOrders.forEach(function(element) {
-    if(element.includes(id)){
-      let index = imageOrders.indexOf(element);
-      imageOrders.splice(index, 1);
+  let move = req.body.move;
+  let kind = "";
+  if(imageOrders[0].includes('vanilla')){
+    if(move === 49){
+      kind = "VN";
+      imageOrders.splice(0, 1);
+      orders.splice(0, 1);
     }
-  });
-  orders.forEach(function(element) {
-    if(element.includes(id)){
-      let index = orders.indexOf(element);
-      orders.splice(index, 1);
+    else{
+      kind = "WK";
     }
-  });
-  res.send({images: imageOrders, orders: orders});
+  }
+  else if(imageOrders[0].includes('chocolate')){
+    if(move === 50){
+      kind = "CH";
+      imageOrders.splice(0, 1);
+      orders.splice(0, 1);
+    }
+    else{
+      kind = "WK";
+    }
+  }
+  else if(imageOrders[0].includes('strawberry')){
+    if(move === 51){
+      kind = "ST";
+      imageOrders.splice(0, 1);
+      orders.splice(0, 1);
+    }
+    else{
+      kind = "WK";
+    }
+  }
+  else if(imageOrders[0].includes('cookie')){
+    if(move === 52){
+      kind = "CD";
+      imageOrders.splice(0, 1);
+      orders.splice(0, 1);
+    }
+    else{
+      kind = "WK";
+    }
+  }
+  res.send({images: imageOrders, orders: orders, kind: kind});
 })
 app.post('/submit', function(req, res) {
   entries.push(req.body.entry);

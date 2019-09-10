@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../css/game.css">
 </head>
-<body>
+<body onkeypress="makeMove(event)">
   <audio loop autoplay>
   <source src="assets/icecreamsong.mp3" type="audio/mpeg">
 </audio>
@@ -29,31 +29,31 @@
     </section>
 <br>
 <br>
-<button onclick="window.location='/'" type="button" class="nes-btn is-warning">QUIT</button>
+<button onclick="quit()" type="button" class="nes-btn is-warning">QUIT</button>
 <h1>Money: <span id="money" style="color: green; font-size: 50px; margin: 0;">$ <span id="bills">0</span></span></h1>
 <div class="divs">
     <div class="category nes-container is-rounded" id="menu">
       <p class="title">MENU</p>
       <br>
       <ol>
-        <li ondragover="allowDragging(event)">
+        <li>
           VANILLA -
-          <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/vanilla.png"/>
+          <img class="menuitem" src="../assets/vanilla.png"/>
         </li>
         <br>
-        <li ondragover="allowDragging(event)">
+        <li>
           Chocolate -
-          <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/chocolate.png"/>
+          <img class="menuitem" src="../assets/chocolate.png"/>
         </li>
         <br>
-        <li ondragover="allowDragging(event)">
+        <li>
           Strawberry -
-          <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/strawberry.png"/>
+          <img class="menuitem" src="../assets/strawberry.png"/>
         </li>
         <br>
-        <li ondragover="allowDragging(event)">
+        <li>
           Cookie Dough -
-          <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/cookie-dough.png"/>
+          <img class="menuitem" src="../assets/cookie-dough.png"/>
         </li>
       </ol>
     </div>
