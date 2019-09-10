@@ -5,7 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/2ndpage.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2ndpage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/jquery.dataTables.min.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server.improved.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.improved.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,7 +32,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript&#10;HTML" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../a2-manasmehta18-master/a2-manasmehta18-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -92,7 +92,9 @@
       <workItem from="1567989463328" duration="6862000" />
       <workItem from="1568033288446" duration="8111000" />
       <workItem from="1568047053672" duration="5603000" />
-      <workItem from="1568060897238" duration="7351000" />
+      <workItem from="1568060897238" duration="8770000" />
+      <workItem from="1568071449078" duration="847000" />
+      <workItem from="1568072308210" duration="1623000" />
     </task>
     <servers />
   </component>

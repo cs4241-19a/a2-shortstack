@@ -61,116 +61,121 @@ const handlePost = function (request, response) {
     });
     request.on('end', function () {
         const data = JSON.parse(dataString);
-        switch (request.url) {
-            case '/submit':
-                let desiredPercentage = parseInt(data.desired) * 0.01;
-                let finalWorthPercentage = parseInt(data.finalWorth) * 0.01;
-                let currentGradePercentage = parseInt(data.currentGrade) * 0.01;
-                let finalExam = 100 * ((desiredPercentage - (1 - finalWorthPercentage) * currentGradePercentage) / finalWorthPercentage);
-                const grades = {
-                    'token': JSON.stringify(data.token),
-                    'currentGrade': currentGradePercentage,
-                    'desired': desiredPercentage,
-                    'finalWorth': finalWorthPercentage,
-                    'finalExam': finalExam
-                };
-                console.log(finalExam);
-                appdata.push(grades);
-                var finalExamKey = "finalExam";
-                data[finalExamKey] = finalExam;
-                response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-                response.end();
-                break;
-            default:
-                response.end('404 Error: File Not Found')
+        if (Object.keys(data).length === 6) {
+            switch (request.url) {
+                case '/submit':
+                    let desiredPercentage = parseInt(data.desired) * 0.01;
+                    let finalWorthPercentage = parseInt(data.finalWorth) * 0.01;
+                    let currentGradePercentage = parseInt(data.currentGrade) * 0.01;
+                    let finalExam = 100 * ((desiredPercentage - (1 - finalWorthPercentage) * currentGradePercentage) / finalWorthPercentage);
+                    const grades = {
+                        'token': JSON.stringify(data.token),
+                        'currentGrade': currentGradePercentage,
+                        'desired': desiredPercentage,
+                        'finalWorth': finalWorthPercentage,
+                        'finalExam': finalExam
+                    };
+                    console.log(finalExam);
+                    appdata.push(grades);
+                    var finalExamKey = "finalExam";
+                    data[finalExamKey] = finalExam;
+                    response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+                    response.end();
+                    break;
+                default:
+                    response.end('404 Error: File Not Found')
+            }
+            console.log(data.finalExam);
+            writeUserData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
+        } else if (Object.keys(data).length === 2) {
+            updateGrade(data.token, data.updateInput)
+            //removeGrade(data.token, data.currentGrade);
+
         }
-        console.log(data.finalExam);
-        writeUserData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
-        removeGrade(data.token, data.currentGrade);
-        updateGrade(data.token,data.currentGrade);
-    })
-};
-
-/*
-const handleDelete = function (request, response) {
-    console.log("DELETE: ", request.url);
-    keyRef.child(request.url).set({});
-    response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-    response.end("OK");
-};
-
-const handlePut = function (request, response) {
-    console.log("PUT");
-    let dataString = '';
-    request.on('data', function (data) {
-        dataString += data
-    });
-    request.on('end', function () {
-        let jsonObj = JSON.parse(dataString);
-        let key = jsonObj['uid-val'] + '/' + jsonObj['entry-key'];
-        let numWords = jsonObj["entry-post"].split(" ").length;
-        jsonObj["entry-words"] = numWords;
-        jsonObj["entry-map"] = wordFreq(jsonObj["entry-post"]);
-        delete jsonObj['entry-key'];
-        // Then post to firebase!
-        ref.child(key).update(jsonObj);
         response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
-        response.end("OK")
+        response.end();
     });
-};
-*/
 
-const sendData = function (response, gradeDataset) {
-    const type = mime.getType(gradeDataset);
-    response.writeHeader(200, {'Content-Type': type});
-    response.write(JSON.stringify({data: gradeDataset}));
-    response.end();
-};
+    /*
+    const handleDelete = function (request, response) {
+        console.log("DELETE: ", request.url);
+        keyRef.child(request.url).set({});
+        response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+        response.end("OK");
+    };
 
-const sendFile = function (response, filename) {
-    const type = mime.getType(filename);
-
-    fs.readFile(filename, function (err, content) {
-        if (err === null) {
-            response.writeHeader(200, {'Content-Type': type});
-            response.end(content)
-        } else {
-            response.writeHeader(404);
-            response.end('404 Error: File Not Found')
-        }
-    })
-};
-
-function writeUserData(ref, token, currentGrade, desired, finalWorth, finalExam) {
-    var tokenRef = keyRef.child(ref);
-    tokenRef.set({
-        token: token,
-        currentGrade: currentGrade,
-        desired: desired,
-        finalWorth: finalWorth,
-        finalExam: finalExam
-    });
-}
-
-function updateGrade(ref, currentGrade) {
-    let tokenRef = keyRef.child(ref);
-    tokenRef.update({
-        currentGrade: currentGrade
-    })
-}
-
-function removeGrade(ref, currentGrade) {
-    let tokenRef = keyRef.child(ref);
-    let gradeRef = tokenRef.child(currentGrade);
-    gradeRef.remove().then(function () {
-        console.log("Remove succeeded.")
-    })
-        .catch(function (error) {
-            console.log("Remove failed: " + error.message)
+    const handlePut = function (request, response) {
+        console.log("PUT");
+        let dataString = '';
+        request.on('data', function (data) {
+            dataString += data
         });
+        request.on('end', function () {
+            let jsonObj = JSON.parse(dataString);
+            let key = jsonObj['uid-val'] + '/' + jsonObj['entry-key'];
+            let numWords = jsonObj["entry-post"].split(" ").length;
+            jsonObj["entry-words"] = numWords;
+            jsonObj["entry-map"] = wordFreq(jsonObj["entry-post"]);
+            delete jsonObj['entry-key'];
+            // Then post to firebase!
+            ref.child(key).update(jsonObj);
+            response.writeHead(200, "OK", {'Content-Type': 'text/plain'});
+            response.end("OK")
+        });
+    };
+    */
 }
+    const sendData = function (response, gradeDataset) {
+        const type = mime.getType(gradeDataset);
+        response.writeHeader(200, {'Content-Type': type});
+        response.write(JSON.stringify({data: gradeDataset}));
+        response.end();
+    };
+
+    const sendFile = function (response, filename) {
+        const type = mime.getType(filename);
+
+        fs.readFile(filename, function (err, content) {
+            if (err === null) {
+                response.writeHeader(200, {'Content-Type': type});
+                response.end(content)
+            } else {
+                response.writeHeader(404);
+                response.end('404 Error: File Not Found')
+            }
+        })
+    };
+
+    function writeUserData(ref, token, currentGrade, desired, finalWorth, finalExam) {
+        var tokenRef = keyRef.child(ref);
+        tokenRef.set({
+            token: token,
+            currentGrade: currentGrade,
+            desired: desired,
+            finalWorth: finalWorth,
+            finalExam: finalExam
+        });
+    }
+
+    function updateGrade(ref, currentGrade,) {
+        let tokenRef = keyRef.child(ref);
+        tokenRef.update({
+            currentGrade: currentGrade
+        })
+    }
+
+    function removeGrade(ref, currentGrade) {
+        let tokenRef = keyRef.child(ref);
+        let gradeRef = tokenRef.child(currentGrade);
+        gradeRef.remove().then(function () {
+            console.log("Remove succeeded.")
+        })
+            .catch(function (error) {
+                console.log("Remove failed: " + error.message)
+            });
+    }
 
 
-server.listen(process.env.PORT || port);
+    server.listen(process.env.PORT || port)
 
 

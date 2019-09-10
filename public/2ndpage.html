@@ -43,7 +43,7 @@
         <div class="modifyData">
             <ul>
                 <li><input class="updateInput" id="updateTokenInput" type="text"
-                           placeholder="Course Number"/><span>              </span><input id="updateGradeInput"
+                           placeholder="Course Number"/><span> </span><input id="updateGradeInput"
                                                                                           class="updateInput"
                                                                                           type="number"
                                                                                           placeholder="Most Current Grade"/>
@@ -75,9 +75,9 @@
 
     const updateEntry = function (e) {
         e.preventDefault();
-        let DataKey = localStorage.getItem('token');
-        const newGrade = document.querySelector('#updateTokenInput'),
-            json = {token: DataKey, updateInput: newGrade.value},
+        let key = document.querySelector('#updateTokenInput');
+        let newGrade = document.querySelector('#updateGradeInput');
+            json = {token: key, updateInput: newGrade.value},
             body = JSON.stringify(json);
         fetch('/submit', {
             method: 'POST',
@@ -91,8 +91,8 @@
                     .then(function (response) {
                         return response.json();
                     }).then(function (response) {
-                    let DataKey = localStorage.getItem('token');
-                    document.getElementById('curGrade').innerText = (JSON.stringify(response[DataKey].currentGrade)).replace(/^"(.*)"$/, '$1');
+                    let DataKey = document.querySelector('#updateTokenInput');
+                    document.getElementById('curGrade').innerText = JSON.stringify(response[DataKey].currentGrade).replace(/^"(.*)"$/, '$1');
                 })
             }
         );
