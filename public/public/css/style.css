@@ -1,0 +1,30 @@
+/*Style your own assignment! This is fun! */
+h1 {
+    color:red;
+    font-size: 100px;
+    text-align: center;
+    
+}
+body {
+    background-color: orange;
+    margin: 100px;
+}
+
+* {
+    box-sizing: border-box;
+}
+.column {
+    float: left;
+    width: 50%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.form {
+    text-align: left;
+
+}
