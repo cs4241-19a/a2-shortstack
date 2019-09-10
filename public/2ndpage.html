@@ -76,8 +76,10 @@
         e.preventDefault();
         let key = document.querySelector('#updateTokenInput');
         let newGrade = document.querySelector('#updateGradeInput');
-            json = {token: key, updateInput: newGrade.value},
+        console.log(newGrade.value,key.value);
+            json = {token: key.value, updateInput: newGrade.value},
             body = JSON.stringify(json);
+        document.querySelector("#gradeForUpdate"+key.value).innerText=newGrade.value;
         fetch('/submit', {
             method: 'POST',
             body
@@ -92,7 +94,7 @@
                     }).then(function (response) {
                     let DataKey =document.querySelector('#updateTokenInput');
                     console.log(DataKey);
-                    document.getElementById('curGrade').innerText = JSON.stringify(response["DataKey"].currentGrade).replace(/^"(.*)"$/, '$1');
+                    document.getElementById('curGrade').innerText = response[ DataKey.value ].currentGrade;
                 })
             }
         );
@@ -102,10 +104,12 @@
 /*
     const deleteEntry = function (e) {
         e.preventDefault();
-        let DataKey = localStorage.getItem('token');
-        const newGrade = document.querySelector('#curGrade'),
-            json = {token: DataKey, updateInput: newGrade.value},
+        let key = document.querySelector('#updateTokenInput');
+        let newGrade = document.querySelector('#updateGradeInput');
+        console.log(newGrade.value,key.value);
+        json = {token: key.value, updateInput: newGrade.value},
             body = JSON.stringify(json);
+//
         fetch('/submit', {
             method: 'POST',
             body
@@ -116,16 +120,15 @@
             }).then(function (response) {
             return response.json();
         }).then(function (response) {
-            let DataKey = localStorage.getItem('token');
+            let DataKey =document.querySelector('#updateTokenInput');
         })
                 fetch('/receive')
                     .then(function (response) {
                         return response.json();
                     }).then(function (response) {
-                    document.getElementById('curGrade').innerText = (JSON.stringify(response[DataKey].currentGrade)).replace(/^"(.*)"$/, '$1');
+                    document.getElementById('curGrade').innerText = undefined;
                 })
             }
-        )
 
     };
 */
@@ -136,7 +139,7 @@
                     return json = response.json();
                 }).then(function (response) {
                 console.log('post response: ', response);
-                let DataKey = localStorage.getItem('token');
+                //let DataKey = localStorage.getItem('token');
                 let computedGrades = document.querySelector('#gradeTable');
                 let numOfEntry = Object.keys(response);
                 computedGrades.innerHTML =
@@ -147,14 +150,18 @@
                     '<th>Desired Overall Grade</th>\n' +
                     '<th>Final Exam Weight</th>\n' +
                     '<th>Final Exam Grade Required</th>\n' +
-                    '<th>Delete</th>\n' +
+                    //'<th>Update Current Grade</th>\n' +
+                    '<th>Delete Current Grade</th>\n' +
                     '</tr>\n' +
                     '</thead>\n';
                 for (let i = 0; i < numOfEntry.length; i++) {
                     const rows = numOfEntry[i];
                     let newRow = '<tr>';
                     newRow += ('<td>' + (JSON.stringify(response[rows].token)).replace(/^"(.*)"$/, '$1') + '</td>');
-                    newRow += ('<td>' + (JSON.stringify(response[rows].currentGrade)).replace(/^"(.*)"$/, '$1') + '</td>');
+                    //newRow += `<td id="gradeForUpdate${i}"></td>
+                    courseTitle=response[rows].token;
+                    console.log("class:", courseTitle);
+                    newRow += ('<td id="gradeForUpdate' + courseTitle + '">' + (JSON.stringify(response[rows].currentGrade)).replace(/^"(.*)"$/, '$1') + '</td>');
                     newRow += ('<td>' + (JSON.stringify(response[rows].desired)).replace(/^"(.*)"$/, '$1') + '</td>');
                     newRow += ('<td>' + (JSON.stringify(response[rows].finalWorth)).replace(/^"(.*)"$/, '$1') + '</td>');
                     newRow += ('<td>' + (JSON.stringify(response[rows].finalExam)).replace(/^"(.*)"$/, '$1') + '</td>');

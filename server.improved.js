@@ -88,6 +88,7 @@ const handlePost = function (request, response) {
             console.log(data.finalExam);
             writeData(data.token, data.token, data.currentGrade, data.desired, data.finalWorth, data.finalExam);
         } else if (Object.keys(data).length === 2) {
+            console.log("data input:", data.updateInput);
             updateGrade(data.token, data.updateInput)
             //removeGrade(data.token, data.currentGrade);
 
@@ -158,9 +159,10 @@ const handlePost = function (request, response) {
     }
 
     function updateGrade(ref, currentGrade,) {
+        debugger;
         let tokenRef = keyRef.child(ref);
         tokenRef.update({
-            currentGrade: currentGrade
+            "currentGrade": ''+currentGrade
         })
     }
 
