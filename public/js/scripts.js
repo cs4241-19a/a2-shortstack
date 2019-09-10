@@ -30,8 +30,13 @@ function generateCustomer(){
   })
   .then (response => response.json())
   .then (response => {
-    document.querySelector('#line').innerHTML = response.images.join("");
-    document.querySelector('#orders').innerHTML = response.orders.join("");
+    if(response.images.length > 10 || wrong === 2 || Number(document.querySelector('#bills').innerHTML) < 0){
+      document.querySelector('#YOULOSE').showModal();
+    }
+    else{
+      document.querySelector('#line').innerHTML = response.images.join("");
+      document.querySelector('#orders').innerHTML = response.orders.join("");
+    }
   })
 }
 
@@ -54,10 +59,12 @@ function updateBank(num) {
     })
   .then( promiseresponse => promiseresponse.json())
   .then(response => {
-    document.querySelector('#bills').innerHTML = response.result;
-    var amount = Number(document.querySelector('#bills').innerHTML);
-    if (amount <= 0 || wrong === 2) {
+    if (response.result < 0 || wrong === 2) {
+      document.querySelector('#bills').innerHTML = response.result;
       document.querySelector('#YOULOSE').showModal();
+    }
+    else{
+      document.querySelector('#bills').innerHTML = response.result;
     }
   })
   return false;
