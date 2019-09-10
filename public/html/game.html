@@ -11,7 +11,6 @@
 <body>
   <audio loop autoplay>
   <source src="assets/icecreamsong.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
 </audio>
 <div class="modal fade" id="YOULOSE" role="dialog">
       <div class="modal-dialog">
@@ -36,38 +35,39 @@
 <button onclick="window.location='/'" type="button" class="nes-btn is-warning">QUIT</button>
 <h1>Money: <span id="money" style="color: green; font-size: 50px; margin: 0;">$ <span id="bills">0</span></span></h1>
 <div class="divs">
-    <div class="category" id="menu">
-      <p style="margin: 0; text-decoration: underline;">MENU</p>
+    <div class="category nes-container is-rounded" id="menu">
+      <p class="title">MENU</p>
+      <br>
       <p ondragover="allowDragging(event)">
+        1. VANILLA -
         <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/vanilla.png"/>
-        VANILLA -
-        <span style="padding-left: 15px;">$3</span>
       </p>
       <p ondragover="allowDragging(event)">
+        2. Chocolate -
         <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/chocolate.png"/>
-        CHOCOLATE -
-        <span style="padding-left: 15px;">$6</span>
       </p>
       <p ondragover="allowDragging(event)">
+        3. Strawberry -
         <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/strawberry.png"/>
-        STRAWBERRY -
-        <span style="padding-left: 15px;">$5</span>
       </p>
       <p ondragover="allowDragging(event)">
+        4. Cookie Dough -
         <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/cookie-dough.png"/>
-        COOKIE DOUGH -
-        <span style="padding-left: 15px;">$6</span>
       </p>
     </div>
-    <div class="category">
-      <p style="margin: 0; text-decoration: underline;">ORDERS</p>
+    <div class="category nes-container is-rounded">
+      <p class="title">ORDERS</p>
+      <br>
       <ul id="orders" style="list-style-type:none"></ul>
     </div>
-    <div class="category">
-      <p style="margin: 0; text-decoration: underline;">COMPLETED</p>
+    <div class="category nes-container is-rounded">
+      <p  class="title">COMPLETED</p>
+      <br>
       <ul id="completed" style="list-style-type:none"></ul>
     </div>
   </div>
+  <br>
+  <br>
   <div style="display: inline; width: 100%;">
     <img style="width: 10%; height: auto;" src="../assets/truck.png"/>
     <div style="display: inline" id="line"></div>
