@@ -9,6 +9,10 @@ body{
   margin: 0;
   font-family: arcade;
 }
+div{
+  display: flex;
+  justify-content: center;
+}
 .buttondiv{
   width: 100%;
   display: flex;

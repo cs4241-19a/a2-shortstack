@@ -9,7 +9,18 @@
   </head>
   <body onload="loadScoreBoard()">
     <h1>SCORE BOARD</h1>
-    <table id="table"></table>
+    <div>
+      <table id="table" class="nes-table is-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+      <br>
     <div class="buttondiv">
     <button class="nes-btn is-warning" onclick="window.location='/'">BACK</button>
   </div>
