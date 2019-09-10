@@ -77,7 +77,7 @@
         let key = document.querySelector('#updateTokenInput');
         let newGrade = document.querySelector('#updateGradeInput');
         console.log(newGrade.value,key.value);
-            json = {token: key.value, updateInput: newGrade.value},
+            json = {token: key.value, updateInput: newGrade.value}
             body = JSON.stringify(json);
         document.querySelector("#gradeForUpdate"+key.value).innerText=newGrade.value;
         fetch('/submit', {
@@ -101,37 +101,35 @@
         return true
     };
 
-/*
+
     const deleteEntry = function (e) {
         e.preventDefault();
         let key = document.querySelector('#updateTokenInput');
         let newGrade = document.querySelector('#updateGradeInput');
         console.log(newGrade.value,key.value);
-        json = {token: key.value, updateInput: newGrade.value},
+        json = {token: key.value, updateInput: newGrade.value}
             body = JSON.stringify(json);
-//
+        document.querySelector("#gradeForUpdate"+key.value).innerText=" ";
         fetch('/submit', {
             method: 'POST',
             body
         })
             .then(function (response) {
                 console.log("post responses:", response);
-                return false;
-            }).then(function (response) {
-            return response.json();
-        }).then(function (response) {
-            let DataKey =document.querySelector('#updateTokenInput');
-        })
+                return false
+            }).then(function () {
                 fetch('/receive')
                     .then(function (response) {
                         return response.json();
                     }).then(function (response) {
-                    document.getElementById('curGrade').innerText = undefined;
+                    let DataKey =document.querySelector('#updateTokenInput');
+                    console.log(DataKey);
                 })
             }
+        );
+        return true
+    }
 
-    };
-*/
     window.onload = function () {
         const fillTable = function () {
             fetch('/receive')
@@ -151,7 +149,7 @@
                     '<th>Final Exam Weight</th>\n' +
                     '<th>Final Exam Grade Required</th>\n' +
                     //'<th>Update Current Grade</th>\n' +
-                    '<th>Delete Current Grade</th>\n' +
+                    //'<th>Delete Current Grade</th>\n' +
                     '</tr>\n' +
                     '</thead>\n';
                 for (let i = 0; i < numOfEntry.length; i++) {
@@ -166,7 +164,7 @@
                     newRow += ('<td>' + (JSON.stringify(response[rows].finalWorth)).replace(/^"(.*)"$/, '$1') + '</td>');
                     newRow += ('<td>' + (JSON.stringify(response[rows].finalExam)).replace(/^"(.*)"$/, '$1') + '</td>');
                     //newRow+=('<td><ul><li><input id="updateInput" type="number" placeholder=" Number only"/></li><li><button class="button"  id=" ' + i + ' " onclick="updateEntry (' + i + ')"><strong>√</strong></button></li></ul></td>\n');
-                    newRow+=('<td><button class="button" style="font-weight:300" id=" ' + i + ' " onclick="deleteEntry (' + i + ')"> X </button></td>\n');
+                    //newRow+=('<td><button class="button" style="font-weight:300" id=" ' + i + ' " onclick="deleteEntry (' + i + ')"> X </button></td>\n');
                     newRow += '</tr>';
                     computedGrades.innerHTML += newRow;
                 }
@@ -175,6 +173,8 @@
         fillTable();
         const updateBtn = document.getElementById( 'updateBtn' );
         updateBtn.onclick = updateEntry;
+        const delBtn = document.getElementById( 'delBtn' );
+        delBtn.onclick = deleteEntry;
     }
 </script>
 
