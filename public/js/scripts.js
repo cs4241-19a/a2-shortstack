@@ -98,13 +98,13 @@ function chooseLevel(){
   const hard = document.querySelector('#hard');
   let speed = 0;
   if(easy.checked){
-    speed = 1500;
+    speed = 1000;
   }
   else if(moderate.checked){
-    speed = 800;
+    speed = 600;
   }
   else if(hard.checked){
-    speed = 400;
+    speed = 200;
   }
   else{
     document.querySelector('#choose').showModal();
