@@ -31,7 +31,7 @@ function generateCustomer(){
   })
   .then (response => response.json())
   .then (response => {
-    if(response.images.length > 10){
+    if(response.images.length > 15 || wrong >= 5){
       open = true;
       document.querySelector('#YOULOSE').showModal();
     }
@@ -61,7 +61,7 @@ function updateBank(num) {
   .then(response => {
     document.querySelector('#bills').innerHTML = response.result;
     var amount = Number(document.querySelector('#bills').innerHTML);
-    if (amount < 0 || wrong >= 2) {
+    if (wrong >= 5) {
       open = true;
       document.querySelector('#YOULOSE').showModal();
     }

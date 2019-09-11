@@ -13,6 +13,17 @@ h1{
   font-size: 4vw;
   text-align: center;
 }
+
+#version2{
+  font-size: 2vw;
+  text-align: center;
+  animation: blinker 0.8s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
 img{
   display: block;
   margin-left: auto;
