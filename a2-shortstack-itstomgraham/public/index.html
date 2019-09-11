@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>CS4241 Assignment 2: HTTP Methods </title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+	<section class=boxes>
+		<h1>HTTP Methods:</h1>
+		<ul> <p class=pc>
+				This site is intended to simply show the responses from HTTP requests<br>
+				to the server in the browser. The results will be displayed below, simply <br>
+				type in a url to begin.
+			</p>
+			<li>
+				<form action="submit" method=GET type=application/x-www-form-urlencoded>
+					<input type="text" id="getBoxText" value="..."  class="justcenter"> 
+					<button class="button">GET</button>
+				</form>
+			</li>
+			<li>
+				<form action="submit" method=HEAD>
+					<input type="text" id="headBoxText" value="..." class="justcenter">
+					<button class="button">HEAD</button>
+				</form>
+			</li>
+			<li>
+				<form action="submit" method=POST>
+					<input type="text" id="postBoxText" value="..." class="justcenter"> 
+					<button class="button"> POST</button>
+				</form>
+			</li>
+			<li>
+				<form action="submit" method=PUT>
+					<input type="text" id='putBoxText' value="..." class="justcenter">
+					<button class="button">PUT</button>
+				</form>
+			</li>
+		</ul>
+		<input type="text" id="outputBoxText" value="" size="100" size="4">
+	</section>
+</body>
+
+
+<script>
+	const actions = ['GET', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'TRACE', 'PATCH']
+		const submit = function (e) {
+			e.preventDefault()
+			const input = document.querySelector(method),
+				json = { url: input.value },
+				body = JSON.stringify(json)
+
+			fetch('/submit', {
+				method: method,
+				body
+			})
+			.then(function (response) {
+				console.log(response)
+			})
+	}
+
+	window.onload = function () {
+		const button = document.querySelector(method)
+		button.onclick = submit
+		}
+
+</script>
+</html>
