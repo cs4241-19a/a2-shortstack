@@ -17,7 +17,44 @@
   <br>
   <button type="button" class="nes-btn is-warning" onclick="window.location='/scoreboard'">SCOREBOARD</button>
   <br>
-  <button type="button" class="nes-btn is-warning" onclick="window.location='/game'">PLAY</button>
+  <button type="button" class="nes-btn is-warning" onclick="openModal()">PLAY</button>
+  <script>
+    function openModal(){
+      document.querySelector('#level').showModal();
+    }
+  </script>
 </div>
+<section>
+  <dialog id="level" class="nes-dialog is-rounded">
+    <form method="dialog">
+      <p class="title">Choose Your Difficulty:</p>
+      <label>
+        <input id="easy" type="radio" class="nes-radio" name="answer"/>
+        <span>EASY</span>
+      </label>
+      <label>
+        <input id="moderate" type="radio" class="nes-radio" name="answer"/>
+        <span>MODERATE</span>
+      </label>
+      <label>
+        <input id="hard" type="radio" class="nes-radio" name="answer"/>
+        <span>HARD</span>
+      </label>
+      <menu class="dialog-menu" style="display: flex; justify-content: center;">
+        <br>
+        <button onclick="chooseLevel()" class="nes-btn is-warning">GO!</button>
+      </menu>
+    </form>
+  </dialog>
+</section>
+<section>
+  <dialog class="nes-dialog is-rounded" id="choose" data-backdrop="static">
+    <form method="dialog">
+      <p>Please choose a difficulty!!!</p>
+      <menu class="dialog-menu">
+      </menu>
+    </form>
+  </dialog>
+</section>
   </body>
 </html>

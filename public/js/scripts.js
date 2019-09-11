@@ -92,6 +92,44 @@ function quit(){
   wrong = 0;
 }
 
+function chooseLevel(){
+  const easy = document.querySelector('#easy');
+  const moderate = document.querySelector('#moderate');
+  const hard = document.querySelector('#hard');
+  let speed = 0;
+  if(easy.checked){
+    speed = 1500;
+  }
+  else if(moderate.checked){
+    speed = 800;
+  }
+  else if(hard.checked){
+    speed = 400;
+  }
+  else{
+    document.querySelector('#choose').showModal();
+    setTimeout(function(){document.querySelector('#choose').close();}, 900);
+    return;
+  }
+  let json = { speed: speed},
+  body = JSON.stringify( json )
+  fetch( '/spendSpeed', {
+    method:'POST',
+    headers: {'Content-Type': 'application/json'},
+    body
+  })
+  window.location = '/game';
+}
+
+function go(){
+  fetch( '/getSpeed', {
+    method:'GET'
+  })
+  .then(promise => promise.json())
+  .then(promise => {
+    setInterval(generateCustomer, promise.speed);
+  })
+}
 //function to update the score board in the server
 function recordScore(){
   quit();

@@ -6,6 +6,7 @@ const bodyParser = require('body-parser'),
       port = process.env.PORT || 3000;
 
 let money = 0;
+speed = 0;
 let imageOrders = [];
 let orders = [];
 let entries = ["<tr><td>Name</td><td>Score</td></tr>"];
@@ -93,6 +94,12 @@ app.post('/remove', function(req, res) {
 })
 app.post('/submit', function(req, res) {
   entries.push(req.body.entry);
+})
+app.post('/spendSpeed', function(req, res) {
+  speed = req.body.speed;
+})
+app.get('/getSpeed', function(req, res) {
+  res.send({speed: speed});
 })
 app.get('/loadscores', function(req, res) {
   res.send({result: entries});
