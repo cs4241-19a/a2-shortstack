@@ -10,17 +10,20 @@
 <body>
 	<section class=boxes>
 		
-		<h1>HTTP Methods:</h1>
-		<ul> <p class=pc>
-				This site is intended to simply show the responses from HTTP requests<br>
-				to the server in the browser. The results will be displayed below, simply <br>
-				type in a url to begin.
-		</p>
+		<h1>Programming Language's</h1>
+		<ul> 
+			<p class=pc>
+				This site is intended to simply show the interactions between the<br>
+				the server during transactions. The server stores the input information<br>
+				for a short time in memory. The idea is to store it persisently for the next<br> 
+				upcoming project which will be a continuation of this.
+			</p>
 			<form action='submit' method=GET>
-					<input type='text' id='programlanguage' value='https://www.google.com' class="justcenter"/> 
-					<input type='text' id='use' value='https://www.google.com'  class="justcenter"/> 
-					<input type='text' id='header' value='https://www.google.com'  class="justcenter"/> 
-					<button class="button">POST</button>
+					<li >Programming Language:<input type='text' id="programlanguage" value="Python" class="justcenter"/> </li>
+					<li>Use: <input type='text' id='use' value="FUN"  class="justcenter"/> </li>
+					<li>Date of Origin: <input type='text' id='header' value="1991" class="justcenter"/> </li>
+					<br>
+					<button class="button">Submit</button>
 			</form>
 			<!-- <li>
 				<form action='submit' method=>
@@ -29,7 +32,7 @@
 				</form>
 			</li> -->
 		</ul>
-		<input type="text" id='outputBoxText'  value="" size="50" rows="4" >
+		<!-- <input type="text" id='outputBoxText'  value="" size="50" rows="4" > -->
 	</section>
 </body>
 
@@ -37,27 +40,23 @@
 <script>
 		const submit = function (e) {
 			e.preventDefault();
-
-
 				const programlangueinputBox = document.querySelector('#programlangue');
 				const useinputBox = document.querySelector('#use');
 				const headerinputBox = document.querySelector('#header');
 
-			const values = { 
-				programlangue: programlangueinputBox.value, 
+			json = {programlangue: programlangueinputBox.value, 
 				use: useinputBox.value,
-				header: headerinputBox.value
-			};
-
-			const jsonValue = JSON.stringify(values);
+				header: headerinputBox.value}
+			body = JSON.stringify(json)
 
 			console.log(jsonValue);
 
 			fetch('/', {
-				method: 'POST',
-				jsonValue
+				method:'POST',
+				body
 			})
 			.then(function (response) {
+				localStorage.setItem(0, method, body)
 				console.log(response)
 			})
 
