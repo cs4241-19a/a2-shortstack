@@ -11,7 +11,8 @@
 	<section class=boxes>
 		
 		<h1>Programming Language's</h1>
-		<ul> 
+		<ul>
+			<img src="SSD/Users/tom/Code/a2-shortstack/code-1839406_1280.jpg" width=400 height=200>
 			<p class=pc>
 				This site is intended to simply show the interactions between the<br>
 				the server during transactions. The server stores the input information<br>
@@ -19,9 +20,9 @@
 				upcoming project which will be a continuation of this.
 			</p>
 			<form action='submit' method=GET>
-					<li >Programming Language:<input type='text' id="programlanguage" value="Python" class="justcenter"/> </li>
-					<li>Use: <input type='text' id='use' value="FUN"  class="justcenter"/> </li>
-					<li>Date of Origin: <input type='text' id='header' value="1991" class="justcenter"/> </li>
+					Programming Language:<input type='text' id="programlanguage" value="Python" class="justcenter"/><br>
+					Use: <input type='text' id='use' value="FUN"  class="justcenter"/><br>
+					Date of Origin: <input type='number' id='header' value="1991" class="justcenter"/><br>
 					<br>
 					<button class="button">Submit</button>
 			</form>
@@ -35,8 +36,6 @@
 		<!-- <input type="text" id='outputBoxText'  value="" size="50" rows="4" > -->
 	</section>
 </body>
-
-
 <script>
 		const submit = function (e) {
 			e.preventDefault();
@@ -44,14 +43,14 @@
 				const useinputBox = document.querySelector('#use');
 				const headerinputBox = document.querySelector('#header');
 
-			json = {programlangue: programlangueinputBox.value, 
-				use: useinputBox.value,
-				header: headerinputBox.value}
+			json = { 'programlangue': programlangueinputBox.value, 
+				'use': useinputBox.value,
+				'header': headerinputBox.value }
 			body = JSON.stringify(json)
 
 			console.log(jsonValue);
 
-			fetch('/', {
+			fetch('/submit', {
 				method:'POST',
 				body
 			})
