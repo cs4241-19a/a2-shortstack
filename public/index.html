@@ -55,7 +55,7 @@
 				body
 			})
 			.then(function (response) {
-				localStorage.setItem(0, method, body)
+				localStorage.setItem(i++, method, body)
 				console.log(response)
 			})
 

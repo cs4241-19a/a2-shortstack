@@ -1,3 +1,7 @@
+Tom Graham
+CS 4241
+9/10/19
+
 ## Programming Languages
 
 This site is intended to simply show the interactions between the
