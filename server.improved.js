@@ -59,6 +59,11 @@ app.get('/', function(request, response) {
   response.sendFile( __dirname + 'public/index.html' )
 })
 
+
+app.get('/public/css/style.css', function(request, response) {
+  response.sendFile( __dirname + 'public/css/style.css' )
+})
+
 // const handleGet = function( request, response ) {
 //   const filename = dir + request.url.slice( 1 ) 
 
