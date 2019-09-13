@@ -23,7 +23,21 @@ app.post( '/submit', function( request, response ) {
   response.end( JSON.stringify( dreams ) )
 })
 
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+ 
+const adapter = new FileSync('db.json')
+const db = low( adapter )
 
+db.defaults({ users:[] }).write()
+
+// add a user
+db.get( 'users' ).push({ name:'bob', age:42 }).write()
+
+// filter users by age
+const seniors = db.get( 'users' )
+  .filter( user => user.age > 70 )
+  .value()
 
 const http = require( 'http' ),
       fs   = require( 'fs' ),
