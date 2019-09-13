@@ -1,3 +1,19 @@
+var express = require( 'express' )
+var app = express()
+
+app.use( function( req, res, next ) {
+  console.log( 'url:', req.url )
+  next()
+})
+
+app.get( '/', function (req, res) {
+  res.send( 'Hello World!' )
+})
+
+app.listen(3000)
+
+
+
 
 const http = require( 'http' ),
       fs   = require( 'fs' ),
@@ -19,18 +35,18 @@ const appdata2 = [
   // {'team':359,'WLP':"0-0-0",'WP':2}
 ]
 
-const server = http.createServer( function( request,response ) {
-  addTeam(8192);
-  addTeam(7146);
-  addTeam(6439);
-  addTeam(359);
-  rank();
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
-  }
-})
+// const server = http.createServer( function( request,response ) {
+//   addTeam(8192);
+//   addTeam(7146);
+//   addTeam(6439);
+//   addTeam(359);
+//   rank();
+//   if( request.method === 'GET' ) {
+//     handleGet( request, response )    
+//   }else if( request.method === 'POST' ){
+//     handlePost( request, response ) 
+//   }
+// })
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
