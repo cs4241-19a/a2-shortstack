@@ -1,11 +1,14 @@
 const express    = require('express'),
       app        = express(),
       bodyparser = require( 'body-parser' ),
-      dreams     = []
+      dreams     = [],
+      favicon = require('serve-favicon'),
+      path = require('path')
 
 // automatically deliver all files in the public folder
 // with the correct headers / MIME type.
 app.use( express.static( 'public' ) )
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // get json when appropriate
 app.use( bodyparser.json() )
@@ -142,82 +145,7 @@ app.post( '/update', function( request, response ) {
 
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
-    
-      const MRdelete = JSON.parse(dataString); //match result
-       appdata.splice(MRdelete.matchNumber, 1);
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-      response.end();
-      rank();
-})
-})
-
-
-
-
-// const handleGet = function( request, response ) {
-//   const filename = dir + request.url.slice( 1 ) 
-
-//   if( request.url === '/' ) {
-//     sendFile( response, 'public/index.html' )
-//   } else if (request.url === '/public/css/style.css'){
-//     sendFile( response, 'public/css/style.css' )
-//   } else if ( request.url === '/m' ){
-//     sendData( response, appdata )
-//    } else if ( request.url === '/appdata2' ){
-//     sendData( response, appdata2 )
-//    } else {
-//     sendFile( response, filename )
-//    }
-// }
-
-const handlePost = function( request, response ) {
-  let dataString = ''
-
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
-
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-    
-  switch ( request.url ) {
-      case '/submit':
-      const MR = JSON.parse(dataString); //match result
-      let r = 0;
-      if(MR.redScore > MR.blueScore){
-        r = 1;
-      } else if(MR.redScore < MR.blueScore){
-        r = 2;
-      }
-      const newMR ={
-        'matchNumber':MR.matchN,
-        'red1': MR.red1, 
-        'blue1': MR.blue1, 
-        'redScore': MR.redScore, 
-        'blueScore':MR.blueScore,
-        'result':r
-      }
-      appdata.push(newMR);
-      addTeam(MR.red1);
-      addTeam(MR.blue1);
-      rank();
-      
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-      response.end();
-
-      break;
-      
-     case '/delete':
-       const MRdelete = JSON.parse(dataString); //match result
-       appdata.splice(MRdelete.matchNumber, 1);
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-      response.end();
-      rank();
-      break;
-      
-      
-      case '/update':
-        const MRupdate = JSON.parse(dataString);
+    const MRupdate = JSON.parse(dataString);
         let r2 = 0;
         if(MRupdate.redScore > MRupdate.blueScore){
           r2 = 1;
@@ -238,12 +166,9 @@ const handlePost = function( request, response ) {
         response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
         response.end();
 
-        break;
-      
-  
-  }
-  })
-}
+})
+})
+
 
 const sendData = function( response, MHs ) {
   const type = mime.getType( MHs );

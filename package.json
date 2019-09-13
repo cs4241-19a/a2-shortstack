@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mime": "^2.4.4"
+    "mime": "^2.4.4",
+    "serve-favicon": "^2.5.0"
   }
 }
