@@ -61,8 +61,47 @@ app.get('/', function(request, response) {
 
 
 app.get('/public/css/style.css', function(request, response) {
-  response.sendFile( __dirname + 'public/css/style.css' )
+    sendFile( response, 'public/css/style.css' )
 })
+
+
+app.get('/m', function(request, response) {
+    sendData( response, appdata )
+})
+
+app.get('/appdata2', function(request, response) {
+    sendData( response, appdata2 )
+})
+
+app.post( '/submit', function( request, response ) {
+  // our request object now has a 'json' field in it from our
+  // previous middleware
+  response.writeHead( 200, { 'Content-Type': 'application/json'})
+  response.end( JSON.stringify( request.json ) )
+  const MR = JSON.parse(dataString); //match result
+      let r = 0;
+      if(MR.redScore > MR.blueScore){
+        r = 1;
+      } else if(MR.redScore < MR.blueScore){
+        r = 2;
+      }
+      const newMR ={
+        'matchNumber':MR.matchN,
+        'red1': MR.red1, 
+        'blue1': MR.blue1, 
+        'redScore': MR.redScore, 
+        'blueScore':MR.blueScore,
+        'result':r
+      }
+      appdata.push(newMR);
+      addTeam(MR.red1);
+      addTeam(MR.blue1);
+      rank();
+      
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+      response.end();
+})
+
 
 // const handleGet = function( request, response ) {
 //   const filename = dir + request.url.slice( 1 ) 
