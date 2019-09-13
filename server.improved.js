@@ -12,9 +12,7 @@ app.use( bodyparser.json() )
 
 // even with our static file handler, we still
 // need to explicitly handle the domain name alone...
-app.get('/', function(request, response) {
-  response.sendFile( __dirname + '/views/index.html' )
-})
+
 
 app.post( '/submit', function( request, response ) {
   dreams.push( request.body.newdream )
@@ -57,6 +55,10 @@ const appdata2 = [
 //     handlePost( request, response ) 
 //   }
 // })
+
+app.get('/', function(request, response) {
+  response.sendFile( __dirname + 'public/index.html' )
+})
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
