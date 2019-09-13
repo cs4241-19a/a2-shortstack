@@ -20,7 +20,6 @@ app.post( '/submit', function( request, response ) {
   response.end( JSON.stringify( dreams ) )
 })
 
-app.listen( process.env.PORT )
 
 
 const http = require( 'http' ),
@@ -60,21 +59,21 @@ app.get('/', function(request, response) {
   response.sendFile( __dirname + 'public/index.html' )
 })
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+// const handleGet = function( request, response ) {
+//   const filename = dir + request.url.slice( 1 ) 
 
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  } else if (request.url === '/public/css/style.css'){
-    sendFile( response, 'public/css/style.css' )
-  } else if ( request.url === '/m' ){
-    sendData( response, appdata )
-   } else if ( request.url === '/appdata2' ){
-    sendData( response, appdata2 )
-   } else {
-    sendFile( response, filename )
-   }
-}
+//   if( request.url === '/' ) {
+//     sendFile( response, 'public/index.html' )
+//   } else if (request.url === '/public/css/style.css'){
+//     sendFile( response, 'public/css/style.css' )
+//   } else if ( request.url === '/m' ){
+//     sendData( response, appdata )
+//    } else if ( request.url === '/appdata2' ){
+//     sendData( response, appdata2 )
+//    } else {
+//     sendFile( response, filename )
+//    }
+// }
 
 const handlePost = function( request, response ) {
   let dataString = ''
@@ -249,4 +248,4 @@ const sendFile = function( response, filename ) {
    })
 }
 
-server.listen( process.env.PORT || port )
+app.listen( process.env.PORT || port )
