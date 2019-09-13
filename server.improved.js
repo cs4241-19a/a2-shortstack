@@ -76,8 +76,14 @@ app.get('/appdata2', function(request, response) {
 app.post( '/submit', function( request, response ) {
   // our request object now has a 'json' field in it from our
   // previous middleware
-  response.writeHead( 200, { 'Content-Type': 'application/json'})
-  response.end( JSON.stringify( request.json ) )
+    let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+
+  request.on( 'end', function() {
+    console.log( JSON.parse( dataString ) )
   const MR = JSON.parse(dataString); //match result
       let r = 0;
       if(MR.redScore > MR.blueScore){
@@ -101,6 +107,51 @@ app.post( '/submit', function( request, response ) {
       response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
       response.end();
 })
+})
+
+
+
+app.post( '/delete', function( request, response ) {
+  // our request object now has a 'json' field in it from our
+  // previous middleware
+    let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+
+  request.on( 'end', function() {
+    console.log( JSON.parse( dataString ) )
+    
+      const MRdelete = JSON.parse(dataString); //match result
+       appdata.splice(MRdelete.matchNumber, 1);
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+      response.end();
+      rank();
+})
+})
+
+app.post( '/update', function( request, response ) {
+  // our request object now has a 'json' field in it from our
+  // previous middleware
+    let dataString = ''
+
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+
+  request.on( 'end', function() {
+    console.log( JSON.parse( dataString ) )
+    
+      const MRdelete = JSON.parse(dataString); //match result
+       appdata.splice(MRdelete.matchNumber, 1);
+      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+      response.end();
+      rank();
+})
+})
+
+
 
 
 // const handleGet = function( request, response ) {
