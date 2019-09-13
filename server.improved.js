@@ -8,7 +8,7 @@ const express    = require('express'),
 // automatically deliver all files in the public folder
 // with the correct headers / MIME type.
 app.use( express.static( 'public' ) )
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+//app.use(favicon(path.join(__dirname, 'assets', 'icon.ico')))
 
 // get json when appropriate
 app.use( bodyparser.json() )
