@@ -4,7 +4,14 @@ const http = require( 'http' ),
       // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
+      express = require('express'),
+      app = express(),
       port = 3000
+
+app.get('/', (request, response) => response.send('Hello World!'))
+
+
+
 
 const data = [
   { 'index': 'MondayCS4241 A2 Due11:59', 'day': 'Monday', 'task': 'CS4241 A2 Due', time: '11:59'},
@@ -100,7 +107,8 @@ const sendFile = function( response, filename ) {
   )
 }
        
-     
-server.listen(process.env.PORT || port )
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+//server.listen(process.env.PORT || port )
      
   
