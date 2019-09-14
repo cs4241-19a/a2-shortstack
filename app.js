@@ -8,8 +8,24 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy
 
-const passport = require('passport');
+// database information
+var db = low('db.json')
+
+db.defaults({ posts: [], user: {} })
+  .value()
+
+db.get('posts')
+  .push({ id: 1, title: 'lowdb is awesome'})
+  .value()
+
+db.set('user.name', 'typicode')
+  .value()
+
+
+// password information
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -27,7 +43,7 @@ passport.deserializeUser(function(id, cb) {
 });
 
 
-// password information
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.sendFile('index.html', { root : 'public'}));
@@ -38,9 +54,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
