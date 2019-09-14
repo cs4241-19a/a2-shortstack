@@ -11,20 +11,6 @@ var app = express();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy
 
-// database information
-var db = low('db.json')
-
-db.defaults({ posts: [], user: {} })
-  .value()
-
-db.get('posts')
-  .push({ id: 1, title: 'lowdb is awesome'})
-  .value()
-
-db.set('user.name', 'typicode')
-  .value()
-
-
 // password information
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,6 +27,19 @@ passport.deserializeUser(function(id, cb) {
     cb(err, user);
   });
 });
+
+// database information
+var db = low('db.json')
+
+db.defaults({ posts: [], user: {} })
+  .value()
+
+db.get('posts')
+  .push({ id: 1, title: 'lowdb is awesome'})
+  .value()
+
+db.set('user.name', 'typicode')
+  .value()
 
 
 
