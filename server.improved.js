@@ -8,12 +8,17 @@ const http = require( 'http' ),
       app = express(),
       port = 3000
 
-app.get('/', (request, response) => response.send(  
-  ( request.method === 'GET' ) ? handleGet( request, response ) :
-  ( request.method === 'POST' ) ? handlePost( request, response ) :
-  "ERROR" ))
+app.use(express.static('public'))
 
 
+const server = http.createServer( function( request,response ) {
+  
+  if( request.method === 'GET' ) {
+    handleGet( request, response )    
+  }else if( request.method === 'POST' ){
+    handlePost( request, response )    
+  } 
+})
 
 
 const data = [
