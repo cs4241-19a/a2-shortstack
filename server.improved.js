@@ -8,7 +8,10 @@ const http = require( 'http' ),
       app = express(),
       port = 3000
 
-app.get('/', (request, response) => response.send('Hello World!'))
+app.get('/', (request, response) => response.send(  
+  ( request.method === 'GET' ) ? handleGet( request, response ) :
+  ( request.method === 'POST' ) ? handlePost( request, response ) :
+  "ERROR" ))
 
 
 
@@ -19,13 +22,7 @@ const data = [
   { 'index': 'TuesdayCH1010 Daily Problem11:00', 'day': 'Tuesday', 'task': 'CH1010 Daily Problem', time: '11:00'}
 ]     
    
-const server = http.createServer( function( request,response ) {
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response )    
-  } 
-})
+
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
