@@ -1,9 +1,9 @@
 const express    = require('express'),
       app        = express(),
       bodyparser = require( 'body-parser' ),
-      dreams     = [],
-      favicon = require('serve-favicon'),
-      path = require('path')
+      dreams     = []
+      // favicon = require('serve-favicon'),
+      // path = require('path')
 
 // automatically deliver all files in the public folder
 // with the correct headers / MIME type.
