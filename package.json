@@ -1,12 +1,24 @@
 {
-  "name": "Paris Lopez",
-  "version": "",
-  "description": "",
-  "author": "",
-  "scripts": {
-    "start": "node server.improved.js"
-  },
+  "name": "app",
+  "version": "1.0.0",
+  "description": "Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js   ===",
+  "main": "index.js",
   "dependencies": {
+    "express": "^4.17.1",
     "mime": "^2.4.4"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paristhecity/a2-pllopez.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paristhecity/a2-pllopez/issues"
+  },
+  "homepage": "https://github.com/paristhecity/a2-pllopez#readme"
 }
