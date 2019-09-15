@@ -1,28 +1,17 @@
 {
+  
   "users": [
     {
-      "username": "pllopez",
-      "password": "1234"
+      "username": "admin",
+      "password": "admin",
+      "level": "1",
+      "students": []
     },
     {
-      "username": "pllopez",
-      "password": "1234"
-    },
-    {
-      "username": "pllopez",
-      "password": "1234"
-    },
-    {
-      "username": "pllopez",
-      "password": "1234"
-    },
-    {
-      "username": "pllopez",
-      "password": "1234"
-    },
-    {
-      "username": "pllopez",
-      "password": "1234"
+      "username": "teacher1",
+      "password": "teacher2",
+      "level": "1",
+      "students": []
     }
   ]
 }

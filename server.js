@@ -21,9 +21,15 @@ app.use(express.static('public'));
 //DATABASE
 db.defaults({ users: [] }).write();
 let users = []
-var i;
-for(i = 0; i > -1; i++) {
-  let user = db.get(users[$i])
+let i = 0;
+while(true) {
+  let user = db.get('users[${i}]').value;
+  if(user !== null){
+    users.push(user)
+    i++
+  }
+  else
+    break
 }
   
 
@@ -50,7 +56,7 @@ app.post(
     '/login',
     passport.authenticate('local'),
     function(req, res) {
-        you = allUsers.find(__user => __user.username === req.user.username)
+        let currentUser = users.find(usr => usr.username === req.user.username)
         res.json({ status: true })
     }
 )
@@ -59,8 +65,6 @@ app.post(
 
 
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 
