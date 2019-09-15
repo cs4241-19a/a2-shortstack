@@ -1,29 +1,28 @@
-console.log("/index.js being read");
+console.log("javascript file: 'index.js' being read");
 
-const login = document.getElementById('login')
 const username = document.querySelector('#username')
 const password = document.querySelector('#password')
-const hint = document.getElementById('hint')
 
-const makeBody = function() {
-    const json = { username: username.value, password: password.value };
-    return JSON.stringify(json);
-};
-login.onclick = function(e) {
-    fetch('/login', {
-            method: 'POST',
-            body: makeBody(),
-            headers: { 'Content-Type': 'application/json' }
+const loginAction = function(e) {
+  e.preventDefault()
+  const json = { username: username.value, password: password.value };
+  const body = JSON.stringify(json);
+  fetch('/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body
         })
         .then(res => res.json())
         .then(res => {
             console.log(res)
-            location.href = './tables/overview.html'
+            location.href = './homePage/home.html'
         })
         .catch(err => {
             console.log(err)
-            hint.innerHTML = 'Invalid Input'
         })
-    e.preventDefault();
     return false;
 };
+
+
+const loginButton = document.getElementById('login');
+loginButton.onclick = loginAction;

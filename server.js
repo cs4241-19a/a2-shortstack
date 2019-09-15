@@ -14,7 +14,8 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter);
 
-app.use(express.static('public'));
+const dir = "public/";
+app.use(express.static(dir + "loginPage"));
 app.use(bodyParser.json());
 
 //
