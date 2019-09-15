@@ -14,20 +14,15 @@ const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
 const db = low(adapter)
 
-
-
-
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-
+// Data is automatically saved to localStorage
 db.defaults({ users: [] })
   .write()
 
-// Data is automatically saved to localStorage
 db.get('users')
   .push({ username: 'pllopez' , password: '1234'})
   .write()

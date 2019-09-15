@@ -16,19 +16,7 @@
   </body>
   <script>
 
-const adapter = new LocalStorage('db')
 
-// Create database instance
-const db = low(adapter)
-  const render = function() {
-    const state = db.getState()
-    console.log(state)
-    const str = JSON.stringify(state, null, 2)
-    console.log(str)
-    document.getElementById('state').innerHTML = 'str'
-  }
-
-  render();
     
     
   const occupySchedule = function() {
