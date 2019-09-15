@@ -1,32 +1,40 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-    <script type="text/javascript" src="../js/scripts.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/instructions.css">
-  </head>
-  <body>
-    <h1>HOW TO PLAY</h1>
-    <div id="instructpanel">
-      <br>
-      <img class="images" src="../assets/howtoplay.png"/>
-      <p>As you wait, you will notice that orders will start to line up in front of the ice cream truck.
-        These are the orders that need to be fulfilled in order to make money!</p>
-        <br>
-      <img class="images" src="../assets/earningpoints.png"/>
-      <p>In order to complete the orders and earn money, you need to click and drag the correct pictures from the menu
-      and place them on top of the orders by the truck! You will earn the amount that the particular menu item costs.</p>
-      <img class="images" src="../assets/losingpoints.png"/>
-      <p>Be careful not to place a wrong item onto any of the orders; you will lose $10 no matter what flavor you messed up!
-      You lose when you mess up 2 times, or if you run out of money!</p>
-      <br>
-      <br>
-      <p style="text-align:center;">**Warning: There is sound in this game!**</p>
-    </div>
-    <form action="/">
-      <input type="submit" value="BACK"/>
-    </form>
+<head>
+  <title>Ken's Ice Cream Shop</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="../js/scripts.js"></script>
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../css/instructions.css">
+</head>
+<body>
+  <h1>HOW TO PLAY</h1>
+  <div class="nes-container is-rounded" id="instructpanel">
     <br>
-  </body>
-</html>
+    <img class="images" src="../assets/howtoplay.png"/>
+    <br>
+    <p>As you wait, you will notice that orders will start to line up in front of the ice cream truck.
+      These are the orders that need to be fulfilled in order to make money!</p>
+      <br>
+      <br>
+      <img class="images" src="../assets/earningpoints.png"/>
+      <p>In order to complete the orders and earn money, you need to press on the key that corresponds to the correct
+        menu item! The keys are 1, 2, 3, and 4 for the corresponding flavors. You will earn the amount that the menu item costs.</p>
+        <br>
+        <img class="images" src="../assets/losingpoints.png"/>
+        <p>Be careful not to press the wrong button for any of the orders; you will lose $10 no matter what flavor you messed up!
+          You lose when you mess up 5 times or if you have more than 15 backed up orders!</p>
+          <br>
+          <br>
+          <br>
+          <p style="text-align:center;">Warning: There is sound in this game!</p>
+        </div>
+        <br>
+        <div class="buttondiv">
+          <button type="button" class="nes-btn is-warning" onclick="window.location='/'">BACK</button>
+        </div>
+      </div>
+      <br>
+      <br>
+    </body>
+    </html>

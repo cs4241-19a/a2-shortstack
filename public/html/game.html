@@ -1,85 +1,81 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>CS4241 Assignment 2</title>
+  <title>Ken's Ice Cream Shop</title>
   <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script type="text/javascript" src="../js/scripts.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="../css/game.css">
 </head>
-<body>
+<body onkeypress="makeMove(event)">
   <audio loop autoplay>
-  <source src="assets/icecreamsong.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
-<div class="modal fade" id="YOULOSE" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title">GAME OVER!</h2>
-          </div>
-          <div class="modal-body">
-            <p>Enter your name to be put on the score board! Please no inappropriate names!</p>
-            <form>
-              <input input="text" id="name" placeholder="Enter your name">
-            </form>
-          </div>
-          <div class="modal-footer">
-            <form action="/">
-              <input class="button" onclick="recordScore()" type="submit" value="SUBMIT"/>
-            </form>
-          </div>
-        </div>
+    <source src="assets/icecreamsong.mp3" type="audio/mpeg">
+    </audio>
+    <section>
+      <dialog class="nes-dialog is-rounded" id="YOULOSE" data-backdrop="static">
+        <form method="dialog">
+          <p class="title">GAME OVER!</p>
+          <p>Please enter your name for the scoreboard!</p>
+          <p>Please no inappropriate names!</p>
+          <menu class="dialog-menu">
+            <div class="nes-field is-inline">
+              <input type="text" id="name" class="nes-input is-warning" placeholder="Your Name">
+              <button onclick="recordScore()" class="nes-btn is-warning">SUBMIT</button>
+            </div>
+          </menu>
+        </form>
+      </dialog>
+    </section>
+    <button onclick="quit()" type="button" class="nes-btn is-warning">QUIT</button>
+    <h1>Money: <span id="money" style="color: green; font-size: 4vw; margin: 0;">$ <span id="bills">0</span></span></h1>
+    <div class="divs">
+      <div class="category nes-container is-rounded" id="menu">
+        <p class="title">MENU</p>
+        <br>
+        <ol>
+          <li>
+            VANILLA -
+            <img class="menuitem" src="../assets/vanilla.png"/>
+          </li>
+          <br>
+          <li>
+            Chocolate -
+            <img class="menuitem" src="../assets/chocolate.png"/>
+          </li>
+          <br>
+          <li>
+            Strawberry -
+            <img class="menuitem" src="../assets/strawberry.png"/>
+          </li>
+          <br>
+          <li>
+            Cookie Dough -
+            <img class="menuitem" src="../assets/cookie-dough.png"/>
+          </li>
+        </ol>
+      </div>
+      <div class="category nes-container is-rounded">
+        <p class="title">ORDERS</p>
+        <br>
+        <ul class="nes-list is-disc" id="orders" style="list-style-type:none"></ul>
+      </div>
+      <div class="category nes-container is-rounded">
+        <p  class="title">COMPLETED</p>
+        <br>
+        <ul class="nes-list is-disc" id="completed" style="list-style-type:none"></ul>
       </div>
     </div>
-<br>
-<br>
-  <form action="/">
-    <input class="button" onclick="quit()" type="submit" value="QUIT"/>
-  </form>
-<h1>Money: <span id="money" style="color: green; font-size: 50px; margin: 0;">$ <span id="bills">0</span></span></h1>
-<div class="divs">
-    <div class="category" id="menu">
-      <p style="margin: 0; text-decoration: underline;">MENU</p>
-      <p ondragover="allowDragging(event)">
-        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/vanilla.png"/>
-        VANILLA -
-        <span style="padding-left: 15px;">$3</span>
-      </p>
-      <p ondragover="allowDragging(event)">
-        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/chocolate.png"/>
-        CHOCOLATE -
-        <span style="padding-left: 15px;">$6</span>
-      </p>
-      <p ondragover="allowDragging(event)">
-        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/strawberry.png"/>
-        STRAWBERRY -
-        <span style="padding-left: 15px;">$5</span>
-      </p>
-      <p ondragover="allowDragging(event)">
-        <img class="menuitem" draggable="true" ondragstart="duringDrag(event)" src="../assets/cookie-dough.png"/>
-        COOKIE DOUGH -
-        <span style="padding-left: 15px;">$6</span>
-      </p>
+    <br>
+    <br>
+    <div style="display: inline; width: 100%;">
+      <img style="width: 10%; height: auto;" src="../assets/truck.png"/>
+      <div style="display: inline" id="line"></div>
     </div>
-    <div class="category">
-      <p style="margin: 0; text-decoration: underline;">ORDERS</p>
-      <ul id="orders" style="list-style-type:none"></ul>
-    </div>
-    <div class="category">
-      <p style="margin: 0; text-decoration: underline;">COMPLETED</p>
-      <ul id="completed" style="list-style-type:none"></ul>
-    </div>
-  </div>
-  <div style="display: inline; width: 100%;">
-    <img style="width: 10%; height: auto;" src="../assets/truck.png"/>
-    <div style="display: inline" id="line"></div>
-  </div>
-  <script>
-   window.onload(setInterval(generateCustomer, 1000));
-  </script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</body>
-</html>
+    <script>
+    window.onload = function(){
+      go();
+    }
+    </script>
+  </body>
+  </html>

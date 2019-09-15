@@ -1,0 +1,10 @@
+{
+  "accounts": [
+    {
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "entries": [],
+  "secretkey": "kenslittlesupersecretsecret"
+}

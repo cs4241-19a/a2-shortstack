@@ -1,17 +1,56 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
-    <script type="text/javascript" src="../js/scripts.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/scoreboard.css">
-  </head>
-  <body onload="loadScoreBoard()">
-    <h1>SCORE BOARD</h1>
-    <table id="table"></table>
-    <form action="/">
-      <input id="back" type="submit" value="BACK"/>
-    </form>
-    <br>
-  </body>
+<head>
+  <title>Ken's Ice Cream Shop</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="../js/scripts.js"></script>
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../css/scoreboard.css">
+</head>
+<body onload="loadScoreBoard()">
+  <section>
+    <dialog class="nes-dialog is-rounded" id="adminform" data-backdrop="static">
+      <form>
+        Username: <input type="text" id="username" name="username" class="nes-input is-warning" placeholder="Username">
+        Password: <input type="password" id="password" name="password"  class="nes-input is-warning" placeholder="Password">
+        <br>
+        <button onclick="login()" type="submit" class="nes-btn is-warning">SUBMIT</button>
+      </form>
+    </dialog>
+  </section>
+  <script>
+  function openAdmin(){
+    document.querySelector('#adminform').showModal()
+  }
+  </script>
+  <section>
+    <dialog class="nes-dialog is-rounded" id="editform" data-backdrop="static">
+      <form>
+        <div class="nes-field">
+          New Name: <input id="modifiedvalue" type="text" name="name"  class="nes-input is-warning" placeholder="New Name" required>
+          <button onclick="modifyentry()" class="nes-btn is-warning">MODIFY</button>
+        </div>
+      </form>
+      <br>
+      <button onclick="deleteRow()" class="nes-btn is-warning">DELETE ROW</button>
+    </dialog>
+  </section>
+  <div class="buttondiv">
+    <button style="margin-right: 2vw;" class="nes-btn is-warning" onclick="goBack()">BACK</button>
+    <button class="nes-btn is-warning" onclick="openAdmin()">ADMIN</button>
+  </div>
+  <h1>SCORE BOARD</h1>
+  <div style="display: block">
+    <table style="margin: auto" class="nes-table is-bordered">
+      <tbody>
+        <tr><td>Name</td><td>Score</td></tr>
+      </tbody>
+    </table>
+    <table style="margin: auto" id="table" class="nes-table is-bordered">
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+  <br>
+  <br>
+</body>
 </html>

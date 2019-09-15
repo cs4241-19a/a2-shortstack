@@ -1,5 +1,5 @@
 @font-face {
-  src: url(../assets/otherarcade.ttf);
+  src: url(../assets/kongtext.ttf);
   font-family: arcade;
 }
 body{
@@ -12,41 +12,31 @@ body{
 .category{
   width: 30%;
   display: inline-block;
-  text-align: center;
-  margin-right: 10px;
-  font-size: 35px;
+  text-align: left;
+  font-size: 1.2vw;
   overflow: scroll;
-  height: 61vh;
-  justify-content: left;
+  height: 50vh;
   background-color: white;
+}
+
+.title{
+  margin: 0;
+  text-align: center;
+  text-decoration: underline;
+  font-size: 2vw;
 }
 
 .divs{
   display: flex;
   align-items: center;
- justify-content: center;
-}
-.button{
-  font-family: arcade;
-  border-radius: 30px;
-  font-size: 25px;
-  background-color: yellow;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  cursor: pointer;
-  line-height: 35px;
-}
-.button:hover{
-  font-size: 30px;
-  line-height: 35px;
+  justify-content: center;
 }
 h1{
-  font-size: 50px;
+  font-size: 4vw;
   text-align: center;
 }
 img.menuitem{
-  width: 50px;
-  height: 70px;
+  width: 1.5vw;
+  height: 4.5vh;
   cursor: pointer;
 }
