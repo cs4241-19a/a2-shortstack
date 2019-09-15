@@ -15,10 +15,7 @@ db.defaults({ users:[] }).write()
 db.get( 'users' ).push({ username:'bob', password:42 }).write()
 
 
-// filter users by age
-const seniors = db.get( 'users' )
-  .filter( user => user.age > 70 )
-  .value()
+
 
 const http = require( 'http' ),
       fs   = require( 'fs' ),
@@ -71,13 +68,22 @@ app.get('/appdata2', function(request, response) {
     sendData( response, appdata2 )
 })
 
-app.post( '/login', function( req, res ) {
-   let username = req.body.username;
-   let password = req.body.password;
-    console.log( 'user:', req.user )
-    res.json({ status:true })
+app.post( '/login', function( request, response ) {
+   let username = request.body.username;
+   let password = request.body.password;
+  const user = db.get( 'users' ).find( __user => __user.username === username )
+  
+  // if user is undefined, then there was no match for the submitted username
+  if( user === undefined ) {
+    /* arguments to done():
+     - an error object (usually returned from database requests )
+     - authentication status
+     - a message / other data to send to client
+    */   
+    console.log( 'user:', request.user )
+    response.json({ status:true })
   }
-)
+})
 
 
 app.post( '/submit', function( request, response ) {
