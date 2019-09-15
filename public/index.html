@@ -50,6 +50,22 @@
   </body>
   <script>
 
+  const login = function(e){
+  const logInfor ={
+    username:document.getElementById( 'username' ).value,
+    password:document.getElementById( 'password' ).value
+  }
+  const body = JSON.stringify(logInfor);
+
+    fetch( '/login', {
+      method:'POST',
+      body 
+    })
+    .then( function( response ) {
+      console.log( response )
+    }
+  }
+    
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
