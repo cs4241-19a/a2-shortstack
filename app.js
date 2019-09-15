@@ -27,42 +27,15 @@ db.get('users')
   .push({ username: 'pllopez' , password: '1234'})
   .write()
 
-
-
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
   });
 
-/*
-//database
-low(adapter)
-  .then(db => {
-    // Routes
-    // GET /posts/:id
-    app.get('/posts/:id', (req, res) => {
-      const post = db.get('posts')
-        .find({ id: req.params.id })
-        .value()
 
-      res.send(post)
-    })
 
-    // POST /posts
-    app.post('/posts', (req, res) => {
-      db.get('posts')
-        .push(req.body)
-        .last()
-        .assign({ id: Date.now().toString() })
-        .write()
-        .then(post => res.send(post))
-    })
 
-    // Set db default values
-    return db.defaults({ posts: [] }).write()
-  })
-*/
 
 //password
 passport.use(new LocalStrategy( 
