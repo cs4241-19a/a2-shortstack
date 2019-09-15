@@ -3,7 +3,8 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/wingcss"/>
+<!--     <link rel="stylesheet" href="../public/css/style.css"> -->
   </head>
   <body>
     
@@ -11,7 +12,7 @@
           <h1>Robotics Competition Assistant</h1>
     </header>
     <div>
-      <table border="1">
+<!--       <table border="1">
         <tr>       
           <th >Login</th>         
         </tr>
@@ -24,8 +25,25 @@
         <tr>
           <td><button id="submit" disabled="true" >Login</button></td>     
         </tr>
-      </table>
+      </table> -->
+      
+
+
+      <div class="row"><h3>Login</h3></div>
+
+  <div class="row">Username:<input type="text" placeholder="Username" id="username" onkeyup="checkInput()"></div>
+
+  <div class="row">Password:<input type="password" placeholder="Password" id="password"  onkeyup="checkInput()"></div>
+
+  <div class="row"><button id="submit" disabled="true" class='outline' >Login</button></div>      
     </div>
+    
+    
+    <div class="card">
+    <h5 class="card-header">Header</h5>
+    <p class="card-body">Content</p>
+    <div class="card-footer center text-center"><p>Footer</p></div>
+  </div>
   
     
     

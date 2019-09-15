@@ -11,6 +11,7 @@
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
     "mime": "^2.4.4",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "wingcss": "^1.0.0-beta"
   }
 }
