@@ -1,17 +1,35 @@
 {
-  
   "users": [
     {
       "username": "admin",
       "password": "admin",
-      "level": "1",
-      "students": []
+      "access": "1",
+      "students": [
+        {
+          "name": "John Smith"
+        },
+        {
+          "name": "Jane Doe"
+        }
+      ]
     },
     {
       "username": "teacher1",
-      "password": "teacher2",
-      "level": "1",
+      "password": "teacher1",
+      "access": "1",
       "students": []
+    },
+    {
+      "username": "student1",
+      "password": "student1",
+      "access": "2",
+      "teacher": "John Smith"
+    },
+    {
+      "username": "student2",
+      "password": "student2",
+      "access": "2",
+      "teacher": "Jane Doe"
     }
   ]
 }
