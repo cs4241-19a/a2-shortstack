@@ -5,7 +5,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const low = require('lowdb')
 
 const passport = require('passport');
-const authService = require('./services/authService');
+const authService = require('./info/authentication');
 authService.configurePassport(passport)
 
 const router = require('express').Router();
