@@ -60,16 +60,16 @@ function updateBank(num) {
       headers: {'Content-Type': 'application/json'},
       body
     })
-  .then( promiseresponse => promiseresponse.json())
-  .then(response => {
-    document.querySelector('#bills').innerHTML = response.result;
-    var amount = Number(document.querySelector('#bills').innerHTML);
-    if (wrong >= 5) {
-      open = true;
-      document.querySelector('#YOULOSE').showModal();
-    }
-  })
-  return false;
+    .then( promiseresponse => promiseresponse.json())
+    .then(response => {
+      document.querySelector('#bills').innerHTML = response.result;
+      var amount = Number(document.querySelector('#bills').innerHTML);
+      if (wrong >= 5) {
+        open = true;
+        document.querySelector('#YOULOSE').showModal();
+      }
+    })
+    return false;
   }
   else{
     let json = { amount: num},
@@ -83,7 +83,7 @@ function updateBank(num) {
     .then(response => {
       document.querySelector('#bills').innerHTML = response.result;
     })
-  return false;
+    return false;
   }
 }
 

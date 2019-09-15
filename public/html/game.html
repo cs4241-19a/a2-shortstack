@@ -10,8 +10,8 @@
 </head>
 <body onkeypress="makeMove(event)">
   <audio loop autoplay>
-  <source src="assets/icecreamsong.mp3" type="audio/mpeg">
-</audio>
+    <source src="assets/icecreamsong.mp3" type="audio/mpeg">
+    </audio>
     <section>
       <dialog class="nes-dialog is-rounded" id="YOULOSE" data-backdrop="static">
         <form method="dialog">
@@ -27,55 +27,55 @@
         </form>
       </dialog>
     </section>
-<button onclick="quit()" type="button" class="nes-btn is-warning">QUIT</button>
-<h1>Money: <span id="money" style="color: green; font-size: 4vw; margin: 0;">$ <span id="bills">0</span></span></h1>
-<div class="divs">
-    <div class="category nes-container is-rounded" id="menu">
-      <p class="title">MENU</p>
-      <br>
-      <ol>
-        <li>
-          VANILLA -
-          <img class="menuitem" src="../assets/vanilla.png"/>
-        </li>
+    <button onclick="quit()" type="button" class="nes-btn is-warning">QUIT</button>
+    <h1>Money: <span id="money" style="color: green; font-size: 4vw; margin: 0;">$ <span id="bills">0</span></span></h1>
+    <div class="divs">
+      <div class="category nes-container is-rounded" id="menu">
+        <p class="title">MENU</p>
         <br>
-        <li>
-          Chocolate -
-          <img class="menuitem" src="../assets/chocolate.png"/>
-        </li>
+        <ol>
+          <li>
+            VANILLA -
+            <img class="menuitem" src="../assets/vanilla.png"/>
+          </li>
+          <br>
+          <li>
+            Chocolate -
+            <img class="menuitem" src="../assets/chocolate.png"/>
+          </li>
+          <br>
+          <li>
+            Strawberry -
+            <img class="menuitem" src="../assets/strawberry.png"/>
+          </li>
+          <br>
+          <li>
+            Cookie Dough -
+            <img class="menuitem" src="../assets/cookie-dough.png"/>
+          </li>
+        </ol>
+      </div>
+      <div class="category nes-container is-rounded">
+        <p class="title">ORDERS</p>
         <br>
-        <li>
-          Strawberry -
-          <img class="menuitem" src="../assets/strawberry.png"/>
-        </li>
+        <ul class="nes-list is-disc" id="orders" style="list-style-type:none"></ul>
+      </div>
+      <div class="category nes-container is-rounded">
+        <p  class="title">COMPLETED</p>
         <br>
-        <li>
-          Cookie Dough -
-          <img class="menuitem" src="../assets/cookie-dough.png"/>
-        </li>
-      </ol>
+        <ul class="nes-list is-disc" id="completed" style="list-style-type:none"></ul>
+      </div>
     </div>
-    <div class="category nes-container is-rounded">
-      <p class="title">ORDERS</p>
-      <br>
-      <ul class="nes-list is-disc" id="orders" style="list-style-type:none"></ul>
+    <br>
+    <br>
+    <div style="display: inline; width: 100%;">
+      <img style="width: 10%; height: auto;" src="../assets/truck.png"/>
+      <div style="display: inline" id="line"></div>
     </div>
-    <div class="category nes-container is-rounded">
-      <p  class="title">COMPLETED</p>
-      <br>
-      <ul class="nes-list is-disc" id="completed" style="list-style-type:none"></ul>
-    </div>
-  </div>
-  <br>
-  <br>
-  <div style="display: inline; width: 100%;">
-    <img style="width: 10%; height: auto;" src="../assets/truck.png"/>
-    <div style="display: inline" id="line"></div>
-  </div>
-  <script>
-  window.onload = function(){
-    go();
-  }
-  </script>
-</body>
-</html>
+    <script>
+    window.onload = function(){
+      go();
+    }
+    </script>
+  </body>
+  </html>

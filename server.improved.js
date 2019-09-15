@@ -1,25 +1,25 @@
 const bodyParser = require('body-parser'),
-      express = require('express'),
-      app = express(),
-      path = require('path'),
-      passport = require('passport'),
-      favicon = require('serve-favicon'),
-      serveStatic = require('serve-static'),
-      jwt = require('jsonwebtoken'),
-      passportJWT = require('passport-jwt'),
-      low = require('lowdb'),
-      FileSync = require('lowdb/adapters/FileSync'),
-      adapter = new FileSync('.data/db.json'),
-      db = low(adapter),
-      port = process.env.PORT || 3000;
+express = require('express'),
+app = express(),
+path = require('path'),
+passport = require('passport'),
+favicon = require('serve-favicon'),
+serveStatic = require('serve-static'),
+jwt = require('jsonwebtoken'),
+passportJWT = require('passport-jwt'),
+low = require('lowdb'),
+FileSync = require('lowdb/adapters/FileSync'),
+adapter = new FileSync('.data/db.json'),
+db = low(adapter),
+port = process.env.PORT || 3000;
 db.defaults({accounts: [{username: "admin", password: "admin"}],
 entries: [], secretkey: "kenslittlesupersecretsecret"})
 .write()
 let ExtractJwt = passportJWT.ExtractJwt,
-  JwtStrategy = passportJWT.Strategy,
-  Users = db.get('accounts').value(),
-  Entries = db.get('entries').value(),
-  jwtOptions = {}
+JwtStrategy = passportJWT.Strategy,
+Users = db.get('accounts').value(),
+Entries = db.get('entries').value(),
+jwtOptions = {}
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
 jwtOptions.secretOrKey = db.get('secretkey').value();
 
@@ -37,10 +37,10 @@ passport.use(strategy)
 
 
 let money = 0,
-  speed = 0,
-  thetoken = "",
-  imageOrders = [],
-  orders = [];
+speed = 0,
+thetoken = "",
+imageOrders = [],
+orders = [];
 app.use(favicon(path.join(__dirname,'public','assets','favicon.ico')))
 app.use(passport.initialize())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -144,7 +144,7 @@ app.post('/login', function(req, res) {
   }
   if(user.password === password){
     let payload = {username: username, password: password},
-        token = jwt.sign(payload, jwtOptions.secretOrKey)
+    token = jwt.sign(payload, jwtOptions.secretOrKey)
     thetoken = 'Bearer '+token
     res.end();
   } else{

@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>Ken's Ice Cream Shop</title>
-    <meta charset="utf-8">
-    <script type="text/javascript" src="../js/scripts.js"></script>
-    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="../css/scoreboard.css">
-  </head>
-  <body onload="loadScoreBoard()">
+<head>
+  <title>Ken's Ice Cream Shop</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="../js/scripts.js"></script>
+  <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="../css/scoreboard.css">
+</head>
+<body onload="loadScoreBoard()">
   <section>
     <dialog class="nes-dialog is-rounded" id="adminform" data-backdrop="static">
       <form>
@@ -19,9 +19,9 @@
     </dialog>
   </section>
   <script>
-    function openAdmin(){
-      document.querySelector('#adminform').showModal()
-    }
+  function openAdmin(){
+    document.querySelector('#adminform').showModal()
+  }
   </script>
   <section>
     <dialog class="nes-dialog is-rounded" id="editform" data-backdrop="static">
@@ -35,22 +35,22 @@
       <button onclick="deleteRow()" class="nes-btn is-warning">DELETE ROW</button>
     </dialog>
   </section>
-    <div class="buttondiv">
+  <div class="buttondiv">
     <button style="margin-right: 2vw;" class="nes-btn is-warning" onclick="goBack()">BACK</button>
     <button class="nes-btn is-warning" onclick="openAdmin()">ADMIN</button>
   </div>
-    <h1>SCORE BOARD</h1>
-    <div style="display: block">
-      <table style="margin: auto" class="nes-table is-bordered">
-        <tbody>
-          <tr><td>Name</td><td>Score</td></tr>
-        </tbody>
-      </table>
-      <table style="margin: auto" id="table" class="nes-table is-bordered">
-        <tbody id="table-body"></tbody>
-      </table>
-    </div>
-      <br>
-    <br>
-  </body>
+  <h1>SCORE BOARD</h1>
+  <div style="display: block">
+    <table style="margin: auto" class="nes-table is-bordered">
+      <tbody>
+        <tr><td>Name</td><td>Score</td></tr>
+      </tbody>
+    </table>
+    <table style="margin: auto" id="table" class="nes-table is-bordered">
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+  <br>
+  <br>
+</body>
 </html>
