@@ -6,27 +6,14 @@ const express    = require('express'),
       path = require('path'),
       passport = require('passport'),
       low = require('lowdb'),
-      db = low(adapter),
-
-// automatically deliver all files in the public folder
-// with the correct headers / MIME type.
-app.use( express.static( 'public' ) )
-//app.use(favicon(path.join(__dirname, 'assets', 'icon.ico')))
-// even with our static file handler, we still
-// need to explicitly handle the domain name alone...
-
-
-
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
- 
-const adapter = new FileSync('db.json')
-const db = low( adapter )
+      FileSync = require('lowdb/adapters/FileSync'),
+      adapter = new FileSync('db.json'),
+      db = low(adapter);
 
 db.defaults({ users:[] }).write()
-
 // add a user
-db.get( 'users' ).push({ name:'bob', age:42 }).write()
+db.get( 'users' ).push({ username:'bob', password:42 }).write()
+
 
 // filter users by age
 const seniors = db.get( 'users' )
@@ -83,6 +70,15 @@ app.get('/m', function(request, response) {
 app.get('/appdata2', function(request, response) {
     sendData( response, appdata2 )
 })
+
+app.post( '/login', function( req, res ) {
+   let username = req.body.username;
+   let password = req.body.password;
+    console.log( 'user:', req.user )
+    res.json({ status:true })
+  }
+)
+
 
 app.post( '/submit', function( request, response ) {
   // our request object now has a 'json' field in it from our

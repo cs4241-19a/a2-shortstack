@@ -31,6 +31,38 @@
     {
       "name": "bob",
       "age": 42
+    },
+    {
+      "username": "bob",
+      "password": 42
+    },
+    {
+      "username": "bob",
+      "password": 42
+    },
+    {
+      "username": "bob",
+      "password": 42
+    },
+    {
+      "username": "bob",
+      "password": 42
+    },
+    {
+      "username": "bob",
+      "password": 42
+    },
+    {
+      "username": "bob",
+      "password": 42
+    },
+    {
+      "username": "bob",
+      "password": 42
+    },
+    {
+      "username": "bob",
+      "password": 42
     }
   ]
 }
