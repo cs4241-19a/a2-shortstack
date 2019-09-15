@@ -5,15 +5,39 @@ const port = 3000
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+//var User = require('./models/user')
 
 const low = require('lowdb')
-const FileAsync = require('lowdb/adapters/FileAsync')
-const adapter = new FileAsync('db.json')
-//const db = low(adapter)
+//const FileAsync = require('lowdb/adapters/FileAsync')
+//const adapter = new FileAsync('db.json')
+const FileSync = require('lowdb/adapters/FileSync')
+const adapter = new FileSync('db.json')
+const db = low(adapter)
+
+
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
+app.use(passport.initialize());
+app.use(passport.session());
 
+
+
+db.defaults({ posts: [] })
+  .write()
+
+// Data is automatically saved to localStorage
+db.get('posts')
+  .push({ username: 'pllopez' , password: '1234'})
+  .write()
+
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+/*
 //database
 low(adapter)
   .then(db => {
@@ -40,6 +64,7 @@ low(adapter)
     // Set db default values
     return db.defaults({ posts: [] }).write()
   })
+*/
 
 //password
 passport.use(new LocalStrategy( 
