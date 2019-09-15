@@ -1,5 +1,8 @@
 var wrong = 0;
 var open = false;
+var currentrow = "";
+var currentname = "";
+var token = "";
 
 //to generate a new customer every so often
 function generateCustomer(){
@@ -141,17 +144,13 @@ function recordScore(){
   else{
     name = "No Name";
   }
-  let element = "<tr><td>"+name+"</td><td>"+score+"</td></tr>";
+  let element = "<tr style='cursor:pointer' onclick='rowselect(event)'><td>"+name+"</td><td>"+score+"</td></tr>";
   let json = { entry: element},
   body = JSON.stringify( json )
   fetch( '/submit', {
     method:'POST',
     headers: {'Content-Type': 'application/json'},
     body
-  })
-  .then(response => response.json())
-  .then( response => {
-    loadScoreBoard(response);
   })
 }
 
@@ -165,6 +164,88 @@ function loadScoreBoard(){
     document.querySelector('#table').innerHTML = response.result.join("");
   })
 }
+
+function rowselect(event){
+  document.querySelector('#editform').showModal()
+  currentrow = event.currentTarget.innerHTML;
+  currentname = event.path[1].firstChild.innerHTML;
+}
+
+function modifyentry(){
+  fetch( '/token', {
+    method:'GET'
+  })
+  .then (response => response.json())
+  .then (response => {
+    if(response.token){
+      token = response.token
+    } else{
+      alert('You haven\'t logged in yet!')
+      return;
+    }
+    let text = document.querySelector('#modifiedvalue').value;
+    let body = JSON.stringify({entry: currentrow, diffname: text, name: currentname})
+    fetch('/modifyentry', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Authorization': token},
+      body
+    })
+  })
+}
+function goBack(){
+  fetch( '/erasetoken', {
+    method:'GET'
+  })
+  window.location='/';
+}
+function deleteRow(){
+  fetch( '/token', {
+    method:'GET'
+  })
+  .then (response => response.json())
+  .then (response => {
+    if(response.token){
+      token = response.token
+    } else{
+      alert('You haven\'t logged in yet!')
+      return;
+    }
+    let body = JSON.stringify({entry: currentrow})
+    fetch('/deleteentry', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Authorization': token},
+      body
+    })
+    .then(
+      alert('reload the page!')
+    )
+  })
+}
+
+function login(){
+  if(document.querySelector('#username').value !== "" && document.querySelector('#password').value !== ""){
+    let name = document.querySelector('#username').value
+    let pass = document.querySelector('#password').value
+    let json = { username: name, password: pass},
+    body = JSON.stringify( json )
+    fetch( '/login', {
+      method:'POST',
+      headers: {'Content-Type': 'application/json'},
+      body
+    })
+    .then (response => response.json())
+    .then (response => {
+      if (response.message){
+        if(response.message === 'no user'){
+          alert('No user with this username!');
+        } else{
+          alert('Wrong password!');
+        }
+      }
+    })
+  }
+}
+
 
 function makeMove(event){
   if(open === false){
