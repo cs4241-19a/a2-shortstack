@@ -16,6 +16,7 @@ const db = low(adapter)
 
 
 
+
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(passport.initialize());
@@ -30,6 +31,8 @@ db.defaults({ users: [] })
 db.get('users')
   .push({ username: 'pllopez' , password: '1234'})
   .write()
+
+
 
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
