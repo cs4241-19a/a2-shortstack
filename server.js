@@ -32,12 +32,23 @@ for(i = 0; i < 4; i++) {
 }
   
 //Password Authentication
+const myLocalStrategy = function(username, password, done) {
+    const user = users.find(usr => usr.username === username);
+    if (user === undefined) 
+      return done(null, false, { message: 'User Not Found' });
+    else if (user.password === password) 
+      return done(null, { username, password });
+    else 
+      return done(null, false, { message: 'Password Incorrect' });
+};
+
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(myLocalStrategy))
 
 passport.serializeUser((user, done) => done(null, user.username))
 passport.deserializeUser((username, done) => {
-    const user = users.find(u => u.username === username)
+    let user = users.find(u => u.username === username)
     if (user !== undefined) {
         done(null, user)
     } else {
@@ -53,9 +64,6 @@ app.post(
         res.json({ status: true })
     }
 )
-
-
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
