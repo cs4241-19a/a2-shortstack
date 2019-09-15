@@ -8,6 +8,8 @@ authService.configurePassport(passport)
 
 var db = require('./db');
 
+//app.set('view engine', 'ejs');
+
 // intialize passport
 app.use(passport.initialize());
 // use express.session() before passport.session()
@@ -16,6 +18,10 @@ app.use(passport.session());
 
 // routes
 app.use('/', db);
+
+app.get('/', (req, res) => 
+        res.json({ error: err })
+       )
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

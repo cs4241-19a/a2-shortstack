@@ -3,7 +3,10 @@ var path = require('path');
 var LocalStrategy   = require('passport-local').Strategy;
 var passport = require('passport');
 
-var db = low(path.join('data', 'db.json'));
+const FileSync = require('lowdb/adapters/FileSync')
+const adapter = new FileSync('db.json')
+
+var db = low(adapter);
 
 exports.signup = function signup(options, res) {
   // get all values for the username that are in the database
