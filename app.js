@@ -1,13 +1,17 @@
+const app = require('../app');
+const debug = require('debug')('app:server');
+const http = require('http');
+
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-
+const bodyParser = require('body-parser');
 
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
