@@ -1,15 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy
+
+const low = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+
+const adapter = new FileSync('db.json');
+const db = low(adapter);
+
+const app = express();
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy
 
 // password information
 app.use(passport.initialize());
@@ -29,8 +37,6 @@ passport.deserializeUser(function(id, cb) {
 });
 
 // database information
-var db = low('db.json')
-
 db.defaults({ posts: [], user: {} })
   .value()
 
@@ -43,7 +49,7 @@ db.set('user.name', 'typicode')
 
 
 
-const bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', (req, res) => res.sendFile('index.html', { root : 'public'}));
 
