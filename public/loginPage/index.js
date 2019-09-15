@@ -1,5 +1,7 @@
   const loginAction = function( e ) {
     e.preventDefault()
+    console.log("Button pushed")
+    
     const username = document.querySelector('#username')
     const password = document.querySelector('#password')
     
@@ -22,9 +24,9 @@
       return false;
   };
 
-window.onload = function() {
-  console.log("javascript file: 'index.js' being read");
-
-  const loginButton = document.querySelector('login');
-  loginButton.onclick = loginAction;
-}
+  window.onload = function() {
+    console.log("index.html: javascript loading")
+    
+    const loginButton = document.querySelector('#login');
+    loginButton.onclick = loginAction;
+  }
