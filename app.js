@@ -9,9 +9,10 @@ const LocalStrategy = require('passport-local').Strategy;
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const adapter = new FileSync('db.json')
-const db = low(adapter)
+//const db = low(adapter)
 
 app.use(express.static('public'))
+app.use(bodyParser.json())
 
 //password
 passport.use(new LocalStrategy( 
@@ -26,15 +27,31 @@ passport.use(new LocalStrategy(
 ));
 
 //database
-db.defaults({ posts: [] })
-  .write()
+low(adapter)
+  .then(db => {
+    // Routes
+    // GET /posts/:id
+    app.get('/posts/:id', (req, res) => {
+      const post = db.get('posts')
+        .find({ id: req.params.id })
+        .value()
 
-const result = db.get('posts')
-  .push({ title: process.argv[2] })
-  .write()
+      res.send(post)
+    })
 
-console.log(result)
+    // POST /posts
+    app.post('/posts', (req, res) => {
+      db.get('posts')
+        .push(req.body)
+        .last()
+        .assign({ id: Date.now().toString() })
+        .write()
+        .then(post => res.send(post))
+    })
 
+    // Set db default values
+    return db.defaults({ posts: [] }).write()
+  })
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

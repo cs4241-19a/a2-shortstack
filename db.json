@@ -2,6 +2,37 @@
   "posts": [
     {},
     {},
+    {},
     {}
+  ],
+  "teachers": [],
+  "users": [
+    {},
+    {},
+    {},
+    {
+      "username": ""
+    },
+    {
+      "username": "pllopez"
+    },
+    {
+      "users": "pllopez"
+    },
+    {
+      "username": "pllopez"
+    },
+    {
+      "username": "pllopez"
+    },
+    {
+      "username": "pllopez"
+    },
+    {
+      "username": "pllopez"
+    },
+    {
+      "username": "pllopez"
+    }
   ]
 }
