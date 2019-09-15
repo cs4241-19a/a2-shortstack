@@ -1,28 +1,30 @@
-console.log("javascript file: 'index.js' being read");
+  const loginAction = function( e ) {
+    e.preventDefault()
+    const username = document.querySelector('#username')
+    const password = document.querySelector('#password')
+    
+    let json = { username: username.value, password: password.value };
+    let body = JSON.stringify(json);
+    console.log(body)
+    fetch('/login', {
+            method: 'POST',
+            body: body,
+            headers: { 'Content-Type': 'application/json' }
+          })
+          .then(res => res.json())
+          .then(res => {
+              console.log(res)
+              location.href = './homePage/home.html'
+          })
+          .catch(err => {
+              console.log(err)
+          })
+      return false;
+  };
 
-const username = document.querySelector('#username')
-const password = document.querySelector('#password')
+window.onload = function() {
+  console.log("javascript file: 'index.js' being read");
 
-const loginAction = function(e) {
-  e.preventDefault()
-  const json = { username: username.value, password: password.value };
-  const body = JSON.stringify(json);
-  fetch('/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body
-        })
-        .then(res => res.json())
-        .then(res => {
-            console.log(res)
-            location.href = './homePage/home.html'
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    return false;
-};
-
-
-const loginButton = document.getElementById('login');
-loginButton.onclick = loginAction;
+  const loginButton = document.querySelector('login');
+  loginButton.onclick = loginAction;
+}
