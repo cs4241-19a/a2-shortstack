@@ -1,6 +1,6 @@
 const express    = require('express'),
       app        = express(),
-      // bodyparser = require( 'body-parser' ),
+       bodyparser = require( 'body-parser' ),
       // dreams     = [],
       favicon = require('serve-favicon'),
       path = require('path'),
@@ -51,10 +51,15 @@ const appdata2 = [
 // })
 
 app.get('/', function(request, response) {
-  response.sendFile( __dirname + 'public/index.html' )
+  // let thepath = path.normalize(__dirname + 'public/index.html');
+  // response.sendFile(thepath);
+  // response.sendFile( __dirname + 'public/index.html' )
+  
+  
+  sendFile( response, 'public/index.html'  )
 })
 
-
+   
 app.get('/public/css/style.css', function(request, response) {
     sendFile( response, 'public/css/style.css' )
 })
