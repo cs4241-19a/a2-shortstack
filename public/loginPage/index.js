@@ -10,7 +10,7 @@
     console.log(body)
     fetch('/login', {
             method: 'POST',
-            body: body,
+            body : body,
             headers: { 'Content-Type': 'application/json' }
           })
           .then(res => res.json())
