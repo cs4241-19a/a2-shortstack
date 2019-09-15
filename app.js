@@ -23,11 +23,11 @@ app.use(passport.session());
 
 
 
-db.defaults({ posts: [] })
+db.defaults({ users: [] })
   .write()
 
 // Data is automatically saved to localStorage
-db.get('posts')
+db.get('users')
   .push({ username: 'pllopez' , password: '1234'})
   .write()
 

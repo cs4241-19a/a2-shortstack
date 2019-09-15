@@ -12,10 +12,34 @@
     <button id="submit">
       Submit
     </button>
-
+    <pre id="state"> Hello </pre>
   </body>
   <script>
   
+  //
+  // UI code using vanilla JavaScript
+  // You can use any other UI lib with lowdb
+  //
+
+  function render() {
+    const state = db.getState()
+    const str = JSON.stringify(state, null, 2)
+    document.getElementById('state').innerHTML = str
+  }
+
+  document.getElementById('reset').onclick = function() {
+    reset()
+    render()
+  }
+
+  document.getElementById('add').onclick = function() {
+    add()
+    render()
+  }
+
+  render()
+    
+    
   const occupySchedule = function() {
     fetch( '/info' )
       .then( function( response ) {
