@@ -39,7 +39,7 @@
 
   <div class="row">Password:<input type="password" placeholder="Password" id="password"  onkeyup="checkInput()"></div>
 
-  <div class="row center"><button id="login" class="outline" >Login</button></div>      
+  <div class="row "><button id="login" class="outline" >Login</button> <button id="register" class="outline" >Register</button></div>      
     </div>
     
 </section>
@@ -50,7 +50,8 @@
   </body>
   <script>
 
-//   const login = function(e){
+  const login = function(e){
+    
 //   const logInfor ={
 //     username:document.getElementById( 'username' ).value,
 //     password:document.getElementById( 'password' ).value
@@ -61,10 +62,23 @@
 //       method:'POST',
 //       body 
 //     })
-//     .then( function( response ) {
-//       console.log( response )
-//     }
+    document.getElementById( 'username' ).value='-8ouj';
+  }
+  
+    const register = function(e){
+    
+//   const logInfor ={
+//     username:document.getElementById( 'username' ).value,
+//     password:document.getElementById( 'password' ).value
 //   }
+//   const body = JSON.stringify(logInfor);
+
+//     fetch( '/login', {
+//       method:'POST',
+//       body 
+//     })
+    document.getElementById( 'username' ).value='-8ouj';
+  }
     
   const submit = function( e ) {
     // prevent default form action from being carried out
@@ -95,6 +109,9 @@
   window.onload = function() {
     const submitButton = document.getElementById( 'submit' );
     submitButton.onclick = submit;
+    
+      const registerButton = document.getElementById( 'register' );
+    registerButton.onclick = register;
     
     const loginButton = document.getElementById( 'login' );
     loginButton.onclick = login;
