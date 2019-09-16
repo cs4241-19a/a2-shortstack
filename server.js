@@ -18,7 +18,7 @@ const dir = "public/";
 app.use(express.static(dir));
 app.use(bodyParser.json());
 
-//
+//Teacher Users
 db.defaults({ users: [] }).write();
 let users
 const occupyUsers = function() {
@@ -32,6 +32,21 @@ const occupyUsers = function() {
     }
 };
 occupyUsers();
+//Students
+db.defaults({ users: [] }).write();
+let students
+const occupyStudents = function() {
+    students = [];
+    let i = 0;
+    while (true) {
+        let student = db.get(`students[${i}]`).value();
+        if (student) users.push(student)
+        else break
+        i++;
+    }
+};
+occupyStudents();
+
   
 //Password Authentication
 const strategy = function(username, password, done) {
@@ -63,24 +78,18 @@ app.post( '/login',
     function(request, response) {
         const currentUser = users.find(usr => usr.username === request.user.username)
         response.json({ status: true })
-    }
-)
+    })
 
-app.get( '/update', function(request, response) {
-  let body = request.body
-  
-  db.get('students')
-}
-         
-    passport.authenticate('local'),
-    function(request, response) {
-        const currentUser = users.find(usr => usr.username === request.user.username)
-        response.json({ status: true })
-    }
-)
+app.get( '/occupyStudents', function(request, response) {
+  response.send(students)
+})
 
 
 /*
+app.get('/refreshAll', function(request, response) {
+    response.send(allUsers);
+});
+
 app.post('/update', function(request, response) {
     let body = request.body
 
