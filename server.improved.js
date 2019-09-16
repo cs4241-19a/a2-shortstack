@@ -2,8 +2,8 @@ const express    = require('express'),
       session = require('express-session'),
       app        = express(),
       bodyparser = require( 'body-parser' ),
-      // dreams     = [],
       favicon = require('serve-favicon'),
+      morgan = require('morgan'),
       passport = require('passport'),
       low = require('lowdb'),
       FileSync = require('lowdb/adapters/FileSync'),
@@ -11,6 +11,8 @@ const express    = require('express'),
 
 const db = low(new FileSync('db.json'));
 app.use(express.static('public'));
+app.use(morgan('tiny'));
+app.use(favicon(__dirname + '/public/img/favicon.png'));
 const info = low(new FileSync('userData.json'));
 
 const myLocalStrategy = function (username, password, done) {
@@ -66,8 +68,8 @@ response.sendFile( response, 'public/database.html' )
 app.post(
     '/login',
     passport.authenticate('local', {
-        successRedirect: '/database.html',
-        failureRedirect: '/'
+        successRedirect: '/',
+        failureRedirect: '/database.html'
     }),
     function (req, res) {
         console.log("Login successful")
