@@ -24,7 +24,7 @@ const gradeCalc = function( assignments ) {
   let i 
   if(assignments) {
     for(i = 0; i < assignments.length; i++){
-      sum += parseInt(Object.values(assignments[i]))
+      sum += parseInt(assignments[i].grade)
     }
     return (sum/assignments.length).toFixed(2)
   }

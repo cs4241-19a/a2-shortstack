@@ -32,23 +32,6 @@ const occupyUsers = function() {
     }
 };
 occupyUsers();
-//Students
-/*
-db.defaults({ users: [] }).write();
-let students
-const occupyStudents = function() {
-    students = [];
-    let i = 0;
-    while (true) {
-        let student = db.get(`students[${i}]`).value();
-        if (student) users.push(student)
-        else break
-        i++;
-    }
-};
-occupyStudents();
-*/
-
   
 //Password Authentication
 const strategy = function(username, password, done) {
@@ -106,7 +89,7 @@ app.post( '/addAssignment', function( request, response ) {
 })
 
 app.post( '/delAssignment', function( request, response ) {
-    db.get('users[0].students[0].assignments').remove({ assignment: request.body.grade, grade: request.body.grade }).write()
+    db.get('users[0].students[0].assignments').remove({ assignment: request.body.assignment, grade: request.body.grade }).write()
     occupyUsers()
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end();

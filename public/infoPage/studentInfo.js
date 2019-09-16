@@ -22,7 +22,7 @@ const removeAssignment = function( assignment, grade ) {
   console.log("Remove Assignment")
   const info = {assignment: assignment, grade: grade }
   const body = JSON.stringify(info)
-  fetch('/deleteStudent', {
+  fetch('/delAssignment', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body

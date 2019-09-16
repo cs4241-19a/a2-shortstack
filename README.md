@@ -15,7 +15,10 @@ Because the database, password service, and server required a lot of time to get
 than intended to piece together my design. With the remaining time I was able to build a login page, as well 
 as the beginnings of a student roster and list of assignments. Students can be added and removed from the list, 
 and the more information button brings the user to the list of assignments. The teacher can add assignments as well 
-as remove them. Though, I was unable to complete more of my original ideas beyond these features, the web app still 
+as remove them. Currently, all the information is based on one account of a teacher, and if one were to login as the other
+teacher (teacher1, teacher1), the tables would be occupied by only the students of the 
+
+Though, I was unable to complete more of my original ideas beyond these features, the web app still 
 provides a few options for the user and does so in a responsive and clear manner.
 
 Login information: <br>

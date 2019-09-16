@@ -8,6 +8,7 @@
         {
           "first": "Jane",
           "last": "Doe",
+          "active": 0,
           "assignments": [
             {
               "assignment": "HW1",
@@ -26,6 +27,7 @@
         {
           "first": "John",
           "last": "Smith",
+          "active": 0,
           "assignments": [
             {
               "assignment": "HW1",
@@ -33,7 +35,7 @@
             },
             {
               "assignment": "HW2",
-              "grade": 60
+              "grade": 100
             },
             {
               "assignment": "Test",
