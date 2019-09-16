@@ -1,7 +1,7 @@
 const express    = require('express'),
-      app        = express(),
       session = require('express-session'),
-       bodyparser = require( 'body-parser' ),
+      app        = express(),
+      bodyparser = require( 'body-parser' ),
       // dreams     = [],
       favicon = require('serve-favicon'),
       path = require('path'),
@@ -11,7 +11,7 @@ const express    = require('express'),
       Local = require('passport-local').Strategy;
 
 const db = low(new FileSync('db.json'));
-const info = low(new FileSync('./public/json/userData.json'));
+const info = low(new FileSync('userData.json'));
 
 const myLocalStrategy = function (username, password, done) {
     db = db.value()
