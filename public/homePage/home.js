@@ -9,6 +9,7 @@ const occupyStudents = function( e ) {
     let students = data;
     
     
+  })
 }
 
 
@@ -18,22 +19,31 @@ const addStudent = function( e ) {
   
     const firstName = document.querySelector('#first').value
     const lastName = document.querySelector('#last').value
+    const grade = "100"
+    
+    fetch('/addStudent', 
+         
+         )
+    
+    fillStudentInfo(firstName, lastName, grade);
+}
 
-    var start = document.querySelector("tbody")
-    var row = document.createElement("tr")
+const fillStudentInfo = function( firstName, lastName, grade ) {  
+  var start = document.querySelector("tbody")
+  var row = document.createElement("tr")
 
-    var cell_firstName = document.createElement("td")
-    cell_firstName.innerHTML = firstName
-    cell_firstName.setAttribute("scope", "row")
-    var cell_lastName = document.createElement("td")
-    cell_lastName.innerHTML = lastName
-    var cell_grade = document.createElement("td")
-    cell_grade.innerHTML = "100"
+  var cell_firstName = document.createElement("td")
+  cell_firstName.innerHTML = firstName
+  cell_firstName.setAttribute("scope", "row")
+  var cell_lastName = document.createElement("td")
+  cell_lastName.innerHTML = lastName
+  var cell_grade = document.createElement("td")
+  cell_grade.innerHTML = grade
 
-    row.appendChild(cell_firstName)
-    row.appendChild(cell_lastName)
-    row.appendChild(cell_grade)
-    start.appendChild(row) 
+  row.appendChild(cell_firstName)
+  row.appendChild(cell_lastName)
+  row.appendChild(cell_grade)
+  start.appendChild(row) 
 
 }
   
@@ -43,9 +53,6 @@ const addStudent = function( e ) {
 
 window.onload = function() {
   console.log("home.html: javascript loaded")
-  
-  
-  
   
   const addButton = document.querySelector("#addStudent");
   addButton.onclick = addStudent

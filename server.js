@@ -73,6 +73,8 @@ passport.deserializeUser((username, done) => {
     }
 })
 
+
+//POST REQUESTS
 app.post( '/login',
     passport.authenticate('local'),
     function(request, response) {
@@ -80,6 +82,14 @@ app.post( '/login',
         response.json({ status: true })
     })
 
+app.post( '/addStudent', function( request, response ) {
+    db.get('students').push(request.body).write();
+    occupyStudents();
+    response.writeHead(200, { 'Content-Type': 'application/json' });
+    response.end();
+})
+
+//GET REQUESTS
 app.get( '/occupyStudents', function(request, response) {
   response.send(students)
 })
@@ -106,5 +116,5 @@ app.post('/update', function(request, response) {
     response.end();
 */
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log('Example app listening on port ${port}!'))
 
