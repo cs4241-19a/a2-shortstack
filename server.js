@@ -58,10 +58,12 @@ passport.deserializeUser((username, done) => {
     }
 })
 
-app.post(
-    '/login',
+app.post( '/login',
     passport.authenticate('local'),
     function(request, response) {
+  console.log(request)
+    console.log(response)
+
         let currentUser = users.find(usr => usr.username === request.user.username)
         response.json({ status: true })
     }

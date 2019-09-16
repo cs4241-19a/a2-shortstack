@@ -5,17 +5,16 @@
     const username = document.querySelector('#username')
     const password = document.querySelector('#password')
     
-    let json = { username: username.value, password: password.value };
-    let body = JSON.stringify(json);
-    console.log(body)
+    let body = { username: username.value, password: password.value };
+    console.log(body);
     fetch('/login', {
             method: 'POST',
-            body : body,
+            body : JSON.stringify(body),
             headers: { 'Content-Type': 'application/json' }
           })
           .then(function( response ) { 
                 return response.json()})
-          .then(function(response) {
+          .then(function( response ) {
               console.log(response)
               location.href = './homePage/home.html'
           })
