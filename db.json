@@ -19,6 +19,21 @@
               "Test": 30
             }
           ]
+        },
+        {
+          "first": "John",
+          "last": "Smith",
+          "assignments": [
+            {
+              "HW1": 100
+            },
+            {
+              "HW2": 95
+            },
+            {
+              "Test": 70
+            }
+          ]
         }
       ]
     },

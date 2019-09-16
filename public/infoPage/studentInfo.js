@@ -1,5 +1,4 @@
-const occupyAssignments = function( e ) {
-  e.preventDefault()
+const occupyAssignments = function( ) {
   fetch('/occupyAssignments', {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' }
@@ -12,7 +11,8 @@ const occupyAssignments = function( e ) {
     for(i = 0; i < assignments.length; i++) {
       let assignment = assignments[i]
       //let assignments = student.assignments
-      fillAssignment(assignment, assignment.value())
+      console.log(Object.values(assignment))
+      fillAssignment(assignment, Object.values(assignment))
     }
     console.log(assignments)
   })
@@ -67,7 +67,7 @@ const fillAssignment = function( assignment, grade ) {
 
 window.onload = function() {
   console.log("home.html: javascript loaded")
-  //occupyStudents()
+  occupyAssignments()
   
   const addButton = document.querySelector("#addAssignment");
   addButton.onclick = addAssignment

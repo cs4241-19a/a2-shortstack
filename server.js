@@ -116,12 +116,12 @@ app.get( '/occupyStudents', function( request, response ) {
 })
 
 app.get( '/occupyAssignments', function( request, response ) {
-  var studentList = []
+  var assignmentList = []
   let i
   for(i = 0; i < users.length; i++){
   }
-  studentList = users[0].students
-  response.send(studentList)
+  assignmentList = users[0].students[0].assignments
+  response.send(assignmentList)
 })
 
 
