@@ -59,18 +59,21 @@
       method:'POST',
       body 
     })
-    .then (response => {
-      console.log( response )
-      if (response.message){
-        if(response.message === 'no user'){
-          console.log('No user with this username!');
-        } else{
-          console.log('Wrong password!');
-        }
-      }
-    })
-    document.getElementById( 'username' ).value='-8ouj';
+    loggg();
 }
+  
+  
+  const loggg = async function(){
+       const log = await fetch('/log', { method: 'GET' });
+        const data = await log.json();
+        const result = data.data;
+    console.log(result);
+        if(result === 0){
+          document.getElementById( 'username' ).value = '0'
+        } else {
+          document.getElementById( 'username' ).value = '1'
+      }
+  }
   
   
     const register = function(e){

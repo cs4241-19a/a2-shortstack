@@ -14,7 +14,7 @@ db.defaults({ users:[] }).write()
 // add a user
 db.get( 'users' ).push({ username:'bob', password:42 }).write()
 
-
+var log =0
 
 
 const http = require( 'http' ),
@@ -73,6 +73,10 @@ app.get('/appdata2', function(request, response) {
     sendData( response, appdata2 )
 })
 
+app.get('/log', function(request, response) {
+    sendData( response, log )
+})
+
 app.post( '/login', function( request, response ) {
   let dataString = ''
   request.on( 'data', function( data ) {
@@ -83,13 +87,13 @@ app.post( '/login', function( request, response ) {
     const UP = JSON.parse(dataString); //match result
    let username = UP.username;
    let password = UP.password;
-  const user = db.get( 'users' ).find(function(element) {
-    return (element.username === username)
-  });
-  if(!user){
-    response.status(401).json({message:'no user'})
+  const user = db.get( 'users' ).find( __user => __user.username === username )
+  
+  // if user is undefined, then there was no match for the submitted username
+  if( user === undefined ) {
+    log=0;
   } else{
-     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    log=1;
   }
 })
 })
