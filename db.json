@@ -18,19 +18,36 @@
       "password": "teacher1",
       "access": "1",
       "students": []
-    },
-    {
-      "username": "student1",
-      "password": "student1",
-      "access": "2",
-      "teacher": "John Smith"
-    },
-    {
-      "username": "student2",
-      "password": "student2",
-      "access": "2",
-      "teacher": "Jane Doe"
     }
   ],
-  "allUsers": []
+  "students": [
+    {
+      "name": "John Smith",
+      "assignments": [
+        {
+          "HW1": 90
+        },
+        {
+          "HW2": 45
+        },
+        {
+          "Test": 100
+        }
+      ]
+    },
+    {
+      "name": "Jane Doe",
+      "assignments": [
+        {
+          "HW1": 30
+        },
+        {
+          "HW2": 25
+        },
+        {
+          "Test": 30
+        }
+      ]
+    }
+  ]
 }

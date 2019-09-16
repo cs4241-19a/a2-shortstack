@@ -1,36 +1,49 @@
 
-const loginAction = function( e ) {
-    e.preventDefault()
+
+
+
+
+
+
+const occupyTable = function() {
   
-    const username = document.querySelector('#first')
-    const password = document.querySelector('#last')
+}
+
+
+
+const addStudent = function( e ) {
+    e.preventDefault()
+    console.log("Add Student")
+  
+    const firstName = document.querySelector('#first')
+    const lastName = document.querySelector('#last')
+
+    var start = document.querySelector(".boardsection[data-board='"+  +"'] .tasklist")
     
-    const body = { username: username.value, password: password.value };
-    console.log(body);
-    fetch('/login', {
-            method: 'POST',
-            body : JSON.stringify(body),
-            headers: { 'Content-Type': 'application/json' }
-          })
-          .then( response => {
-                console.log(response)
-                return response.json()
-          })
-          .then( response => {
-              console.log(response)
-              location.href = './homePage/home.html'
-          })
-          .catch(err => {
-              console.log(err)
-              state.innerHTML = "Incorrect Username or Password";
-          })
-      return false;
+      var first = document.createTextNode(firstName)
+      var last = document.createTextNode(lastName)
+      var divNode = document.createElement("div")
+      var breakNode = document.createElement("br")
+      var breakNode1 = document.createElement("br")
+      divNode.setAttribute('id', index)
+      divNode.appendChild(timeNode)
+      divNode.appendChild(breakNode1)
+      divNode.appendChild(textNode)
+
+      dayCol.appendChild(divNode)
+      dayCol.appendChild(breakNode)
+    
+    
 };
 
 
 window.onload = function() {
-  console.log("home.html: javascript loading")
+  console.log("home.html: javascript loaded")
   
-  const addButton = querySelector()
+  occupyTable();
+  
+  
+  const addButton = document.querySelector("#addStudent");
+  addButton.onclick = addStudent
 
 }

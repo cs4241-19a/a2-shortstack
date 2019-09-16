@@ -30,7 +30,7 @@ const loginAction = function( e ) {
 };
 
 window.onload = function() {
-    console.log("index.html: javascript loading")
+    console.log("index.html: javascript loaded")
 
     const loginButton = document.querySelector('#login');
     loginButton.onclick = loginAction;
