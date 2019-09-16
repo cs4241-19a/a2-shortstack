@@ -13,13 +13,16 @@
             headers: { 'Content-Type': 'application/json' }
           })
           .then(function( response ) { 
-                return response.json()})
+                return response.json()
+                console.log(response.json())
+          })
           .then(function( response ) {
               console.log(response)
               location.href = './homePage/home.html'
           })
           .catch(err => {
               console.log(err)
+              
           })
       return false;
   };

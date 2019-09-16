@@ -15,7 +15,7 @@ const adapter = new FileSync('db.json')
 const db = low(adapter);
 
 const dir = "public/";
-app.use(express.static(dir + "loginPage"));
+app.use(express.static(dir));
 app.use(bodyParser.json());
 
 //
