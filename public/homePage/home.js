@@ -18,14 +18,38 @@ const addStudent = function( e ) {
     const firstName = document.querySelector('#first')
     const lastName = document.querySelector('#last')
 
-    var start = document.querySelector(".boardsection[data-board='"+  +"'] .tasklist")
+    var start = document.querySelector("thead")
+    var row = document.createElement("tr")
+
     
-      var first = document.createTextNode(firstName)
-      var last = document.createTextNode(lastName)
-      var divNode = document.createElement("div")
-      var breakNode = document.createElement("br")
-      var breakNode1 = document.createElement("br")
-      divNode.setAttribute('id', index)
+    var first = document.createTextNode(firstName)
+    var last = document.createTextNode(lastName)
+    var grade = document.createTextNode("100")
+
+    var cell_firstName = document.createElement("td").appendChild(first)
+    var cell_lastName = document.createElement("td").appendChild(last)
+    var cell_grade = document.createElement("td").appendChild(grade)
+    var cell_grade = document.createElement("td").appendChild(grade)
+
+    
+  
+      
+      /*
+              <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>90</td>
+          <td>
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </td>
+          
+        </tr>
+      */
+      
+      divNode.setAttribute('id')
       divNode.appendChild(timeNode)
       divNode.appendChild(breakNode1)
       divNode.appendChild(textNode)
