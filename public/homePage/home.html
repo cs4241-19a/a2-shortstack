@@ -72,10 +72,11 @@
               $(this).closest('tr').remove();
           });
       });
-      $("table").on("click", ".info", function () 
-          window.location.replace("./infoPage/studentInformation.html");
-      });  
-      
+      $(function () {
+          $("table").on("click", ".info", function () {
+              window.location.href = "public/infoPage/studentInfo.html"
+          });
+      });
     });
     </script>
   </body>

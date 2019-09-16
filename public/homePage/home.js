@@ -91,7 +91,7 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
 
   var info = document.createElement("button")
   info.setAttribute('type', 'button')
-  info.setAttribute('class', 'btn btn-light .info')
+  info.setAttribute('class', 'btn btn-secondary info')
   info.innerHTML = "Information"
   cell_info.appendChild(info)
   
