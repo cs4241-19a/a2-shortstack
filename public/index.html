@@ -78,17 +78,17 @@
   
     const register = function(e){
     
-//   const logInfor ={
-//     username:document.getElementById( 'username' ).value,
-//     password:document.getElementById( 'password' ).value
-//   }
-//   const body = JSON.stringify(logInfor);
+const regInfor ={
+    username:document.getElementById( 'username' ).value,
+    password:document.getElementById( 'password' ).value
+  }
+  const body = JSON.stringify(regInfor);
 
-//     fetch( '/login', {
-//       method:'POST',
-//       body 
-//     })
-    document.getElementById( 'username' ).value='-8ouj';
+    fetch( '/register', {
+      method:'POST',
+      body 
+    })
+   
   }
     
   const submit = function( e ) {

@@ -77,6 +77,20 @@ app.get('/log', function(request, response) {
     sendData( response, log )
 })
 
+app.post( '/register', function( request, response ) {
+  let dataString = ''
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+  request.on( 'end', function() {
+    console.log( JSON.parse( dataString ) )
+    const REG = JSON.parse(dataString); //match result
+  db.get( 'users' ).push({ username:REG.username, password:REG.password }).write()
+  
+}
+  )})
+
+
 app.post( '/login', function( request, response ) {
   let dataString = ''
   request.on( 'data', function( data ) {
@@ -87,13 +101,14 @@ app.post( '/login', function( request, response ) {
     const UP = JSON.parse(dataString); //match result
    let username = UP.username;
    let password = UP.password;
-  const user = db.get( 'users' ).find( __user => __user.username === username )
+  let user = db.get( 'users' ).find(function(element) { 
+  return (element.username === username)}); 
   
   // if user is undefined, then there was no match for the submitted username
-  if( user === undefined ) {
+  if(!user){
     log=0;
   } else{
-    log=1;
+    log=4;
   }
 })
 })
