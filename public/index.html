@@ -58,13 +58,14 @@
     fetch( '/login', {
       method:'POST',
       body 
-    }).then (response => response.json())
+    })
     .then (response => {
+      console.log( response )
       if (response.message){
         if(response.message === 'no user'){
-          alert('No user with this username!');
+          console.log('No user with this username!');
         } else{
-          alert('Wrong password!');
+          console.log('Wrong password!');
         }
       }
     })

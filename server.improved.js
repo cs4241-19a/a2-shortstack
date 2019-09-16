@@ -74,14 +74,24 @@ app.get('/appdata2', function(request, response) {
 })
 
 app.post( '/login', function( request, response ) {
-   let username = request.body.username;
-   let password = request.body.password;
-  const user = db.get( 'users' ).find( __user => __user.username === username )
-  
-  // if user is undefined, then there was no match for the submitted username
-  if( user === undefined ) {
-   response.status(401).json({message:'no user'})
+  let dataString = ''
+  request.on( 'data', function( data ) {
+      dataString += data 
+  })
+  request.on( 'end', function() {
+    console.log( JSON.parse( dataString ) )
+    const UP = JSON.parse(dataString); //match result
+   let username = UP.username;
+   let password = UP.password;
+  const user = db.get( 'users' ).find(function(element) {
+    return (element.username === username)
+  });
+  if(!user){
+    response.status(401).json({message:'no user'})
+  } else{
+     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
   }
+})
 })
 
 
