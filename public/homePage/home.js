@@ -1,4 +1,7 @@
-
+const removeStudent = function( e ) {
+  e.preventDefault()
+  alert("Working")
+}
 
 const occupyStudents = function( e ) {
   fetch('/occupyStudents', {
@@ -71,12 +74,9 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
   var cell_del = document.createElement("td")
   var button = document.createElement("button")
   button.setAttribute('type', 'delete')
-  button.setAttribute('class', 'btn btn-default btn-sm')
+  button.setAttribute('class', 'btn btn-danger remove')
   cell_del.appendChild(button)
-  /*
-<button type="submit" class="btn btn-default btn-sm">  
-  */
-  
+
   row.appendChild(cell_firstName)
   row.appendChild(cell_lastName)
   row.appendChild(cell_grade)
@@ -90,10 +90,22 @@ window.onload = function() {
   console.log("home.html: javascript loaded")
   occupyStudents()
   
+  const delButton = document.querySelectorAll('button')
+  console.log(delButton)
+  //delButton.onclick = removeStudent
   
   const addButton = document.querySelector("#addStudent");
   addButton.onclick = addStudent
 
 }
-
-
+/*
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $(function () {
+          $("table").on("click", ".remove", function () {
+              $(this).closest('tr').remove();
+          });
+      });
+    });
+    </script>
+    */
