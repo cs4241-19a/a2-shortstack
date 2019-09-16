@@ -1,9 +1,14 @@
-  const loginAction = function( e ) {
+
+
+const loginAction = function( e ) {
+    e.preventDefault()
+    console.log("Button pushed")
+  
     const username = document.querySelector('#username')
     const password = document.querySelector('#password')
-    const state  = document.querySelector('#state')
+    const state  = document.querySelector('#state')  
     
-    let body = { username: username.value, password: password.value };
+    const body = { username: username.value, password: password.value };
     console.log(body);
     fetch('/login', {
             method: 'POST',
@@ -11,7 +16,8 @@
             headers: { 'Content-Type': 'application/json' }
           })
           .then( response => {
-                response.json()
+                console.log(response)
+                return response.json()
           })
           .then( response => {
               console.log(response)
@@ -21,10 +27,8 @@
               console.log(err)
               state.innerHTML = "Incorrect Username or Password";
           })
-        e.preventDefault()    
-
       return false;
-  };
+};
 
   window.onload = function() {
     console.log("index.html: javascript loading")
