@@ -29,11 +29,10 @@ const addStudent = function( e ) {
       headers: { 'Content-Type': 'application/json' },
       body
     }).then(function( response ) {
-      
+      fillStudentInfo(firstName, lastName, grade);
     })
-        
-    
-    fillStudentInfo(firstName, lastName, grade);
+       
+  return false;
 }
 
 const fillStudentInfo = function( firstName, lastName, grade ) {  
@@ -55,10 +54,6 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
 
 }
   
-  
-
-
-
 window.onload = function() {
   console.log("home.html: javascript loaded")
   
