@@ -67,6 +67,10 @@ const removeStudent = function( first, last ) {
   }).then(function(response) {
     console.log(response)
   })
+}
+
+const getStudentInfo = function( ) {
+  console.log("Retrieve Student Information")
   
 }
 
@@ -82,7 +86,15 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
   cell_lastName.innerHTML = lastName
   var cell_grade = document.createElement("td")
   cell_grade.innerHTML = grade
+  var cell_info = document.createElement("td")
   var cell_del = document.createElement("td")
+
+  var info = document.createElement("button")
+  info.setAttribute('type', 'button')
+  info.setAttribute('class', 'btn btn-light .info')
+  info.innerHTML = "Information"
+  cell_info.appendChild(info)
+  
   var button = document.createElement("button")
   button.setAttribute('type', 'delete')
   button.setAttribute('class', 'btn btn-danger remove')
@@ -92,6 +104,7 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
   row.appendChild(cell_firstName)
   row.appendChild(cell_lastName)
   row.appendChild(cell_grade)
+  row.appendChild(cell_info)
   row.appendChild(cell_del)
 
   start.appendChild(row) 
@@ -101,10 +114,6 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
 window.onload = function() {
   console.log("home.html: javascript loaded")
   occupyStudents()
-  
-  const delButton = document.querySelectorAll('button')
-  console.log(delButton)
-  //delButton.onclick = removeStudent
   
   const addButton = document.querySelector("#addStudent");
   addButton.onclick = addStudent

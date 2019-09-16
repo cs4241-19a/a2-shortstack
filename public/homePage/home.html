@@ -44,7 +44,8 @@
           <th scope="col">First</th>
           <th scope="col">Last</th>
           <th scope="col">Final Grade</th>
-          <th scope="col">Delete</th>
+          <th scope="col">More Information</th>
+          <th scope="col">Remove Student</th>
         </tr>
       </thead>
       <tbody>
@@ -71,6 +72,10 @@
               $(this).closest('tr').remove();
           });
       });
+      $("table").on("click", ".info", function () 
+          window.location.replace("./infoPage/studentInformation.html");
+      });  
+      
     });
     </script>
   </body>
