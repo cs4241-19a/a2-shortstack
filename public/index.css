@@ -1,4 +1,5 @@
 .container {
-  justify-content: center;
+  align-self: center;
+  width: 40%;
 }
 
