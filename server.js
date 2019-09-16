@@ -92,7 +92,7 @@ app.post( '/addStudent', function( request, response ) {
 })
 
 app.post( '/deleteStudent', function(request, response) {
-    db.get('users[0].students').remove({ name: request.name }).write()
+    db.get('users[0].students').remove({ first: request.first, last: request.last }).write()
     occupyUsers()
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end();
@@ -106,7 +106,6 @@ app.get( '/occupyStudents', function(request, response) {
   }
   studentList = users[0].students
   response.send(studentList)
-  
 })
 
 

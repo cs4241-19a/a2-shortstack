@@ -1,7 +1,3 @@
-const removeStudent = function( e ) {
-  e.preventDefault()
-  alert("Working")
-}
 
 const occupyStudents = function( e ) {
   fetch('/occupyStudents', {
@@ -60,6 +56,24 @@ const addStudent = function( e ) {
   return false;
 }
 
+const removeStudent = function( first, last ) {
+  alert("Remove Student")
+  const info = {first: first, last: last }
+  const body = JSON.stringify(info)
+  
+  fetch('/deleteStudent', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body
+  }).then(function(response) {
+    console.log(response)
+    //occupyStudents()
+
+  })
+  
+}
+
+
 const fillStudentInfo = function( firstName, lastName, grade ) {  
   var start = document.querySelector("tbody")
   var row = document.createElement("tr")
@@ -99,13 +113,5 @@ window.onload = function() {
 
 }
 /*
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $(function () {
-          $("table").on("click", ".remove", function () {
-              $(this).closest('tr').remove();
-          });
-      });
-    });
-    </script>
+
     */
