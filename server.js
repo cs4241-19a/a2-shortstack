@@ -91,6 +91,13 @@ app.post( '/addStudent', function( request, response ) {
     response.end();
 })
 
+app.post( '/deleteStudent', function(request, response) {
+    db.get('users[0].students').remove({ name: request.name }).write()
+    occupyUsers()
+    response.writeHead(200, { 'Content-Type': 'application/json' });
+    response.end();
+})
+
 //GET REQUESTS
 app.get( '/occupyStudents', function(request, response) {
   var studentList = []
