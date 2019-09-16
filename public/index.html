@@ -7,10 +7,7 @@
 <!--     <link rel="stylesheet" href="../public/css/style.css"> -->
   </head>
   <body>
-    
-    <header>
-          <h1>Robotics Competition Assistant</h1>
-    </header>
+
 
 <!--       <table border="1">
         <tr>       
@@ -39,7 +36,7 @@
 
   <div class="row">Password:<input type="password" placeholder="Password" id="password"  onkeyup="checkInput()"></div>
 
-  <div class="row "><button id="login" class="outline" >Login</button> <button id="register" class="outline" >Register</button></div>      
+  <div class="row "><button id="login" onclick="login()" class="outline" >Login</button> <button id="register" class="outline" onclick="register()">Register</button></div>      
     </div>
     
 </section>
@@ -52,18 +49,28 @@
 
   const login = function(e){
     
-//   const logInfor ={
-//     username:document.getElementById( 'username' ).value,
-//     password:document.getElementById( 'password' ).value
-//   }
-//   const body = JSON.stringify(logInfor);
-
-//     fetch( '/login', {
-//       method:'POST',
-//       body 
-//     })
-    document.getElementById( 'username' ).value='-8ouj';
+  const logInfor ={
+    username:document.getElementById( 'username' ).value,
+    password:document.getElementById( 'password' ).value
   }
+  const body = JSON.stringify(logInfor);
+
+    fetch( '/login', {
+      method:'POST',
+      body 
+    }).then (response => response.json())
+    .then (response => {
+      if (response.message){
+        if(response.message === 'no user'){
+          alert('No user with this username!');
+        } else{
+          alert('Wrong password!');
+        }
+      }
+    })
+    document.getElementById( 'username' ).value='-8ouj';
+}
+  
   
     const register = function(e){
     
@@ -111,10 +118,10 @@
     submitButton.onclick = submit;
     
       const registerButton = document.getElementById( 'register' );
-    registerButton.onclick = register;
+    registerButton.onclick = register();
     
     const loginButton = document.getElementById( 'login' );
-    loginButton.onclick = login;
+    loginButton.onclick = login();
     
     const matchHistory = document.getElementById( 'viewMatchHistory' );
     matchHistory.onclick = viewMH;
