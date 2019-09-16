@@ -54,6 +54,15 @@ app.post('/test', function (req, res) {
     res.json({ status: 'success' })
 })
 
+app.get('/', function(request, response) {
+  // let thepath = path.normalize(__dirname + 'public/index.html');
+  // response.sendFile(thepath);
+  // response.sendFile( __dirname + 'public/index.html' )
+  
+  
+ response.sendFile(__dirname + '/public/index.html');
+})
+
 
 app.post(
     '/login',
@@ -113,14 +122,7 @@ const appdata2 = [
 //   }
 // })
 
-app.get('/', function(request, response) {
-  // let thepath = path.normalize(__dirname + 'public/index.html');
-  // response.sendFile(thepath);
-  // response.sendFile( __dirname + 'public/index.html' )
-  
-  
-  sendFile( response, 'public/index.html'  )
-})
+
 
    
 app.get('/public/css/style.css', function(request, response) {
