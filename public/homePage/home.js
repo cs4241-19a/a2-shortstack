@@ -57,18 +57,15 @@ const addStudent = function( e ) {
 }
 
 const removeStudent = function( first, last ) {
-  alert("Remove Student")
+  console.log("Remove Student")
   const info = {first: first, last: last }
   const body = JSON.stringify(info)
-  
   fetch('/deleteStudent', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body
   }).then(function(response) {
     console.log(response)
-    //occupyStudents()
-
   })
   
 }
@@ -89,8 +86,9 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
   var button = document.createElement("button")
   button.setAttribute('type', 'delete')
   button.setAttribute('class', 'btn btn-danger remove')
+  button.innerHTML = "Delete"
   cell_del.appendChild(button)
-
+  
   row.appendChild(cell_firstName)
   row.appendChild(cell_lastName)
   row.appendChild(cell_grade)

@@ -92,7 +92,7 @@ app.post( '/addStudent', function( request, response ) {
 })
 
 app.post( '/deleteStudent', function(request, response) {
-    db.get('users[0].students').remove({ first: request.first, last: request.last }).write()
+    db.get('users[0].students').remove({ first: request.body.first, last: request.body.last }).write()
     occupyUsers()
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end();

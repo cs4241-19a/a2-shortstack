@@ -34,21 +34,6 @@
               "Test": 30
             }
           ]
-        },
-        {
-          "first": "paris",
-          "last": "lopez",
-          "grade": 0
-        },
-        {
-          "first": "adam",
-          "last": "croteau",
-          "grade": 0
-        },
-        {
-          "first": "Adam",
-          "last": "Croteau",
-          "grade": 0
         }
       ]
     },
@@ -57,13 +42,6 @@
       "password": "teacher1",
       "access": "1",
       "students": []
-    },
-    {
-      "first": "Paris",
-      "last": "Lopez",
-      "grade": 100
     }
-  ],
-  "stud": [],
-  "students": []
+  ]
 }

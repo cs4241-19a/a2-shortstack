@@ -66,7 +66,7 @@
       $(function () {
           $("table").on("click", ".remove", function () {
               var first = $(this).closest('tr').children()[0].innerHTML
-              var last = $(this).closest('tr').children()[0].innerHTML
+              var last = $(this).closest('tr').children()[1].innerHTML
               removeStudent(first, last);
               $(this).closest('tr').remove();
           });
