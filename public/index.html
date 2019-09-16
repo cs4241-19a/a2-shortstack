@@ -48,18 +48,35 @@
   <script>
 
   const login = function(e){
-    
-  const logInfor ={
-    username:document.getElementById( 'username' ).value,
-    password:document.getElementById( 'password' ).value
-  }
-  const body = JSON.stringify(logInfor);
+    let username = document.getElementById( 'username' ).value
+  let password = document.getElementById( 'password' ).value
+  //send session info here
+  let json = { username: username, password: password}
 
-    fetch( '/login', {
+  let body = JSON.stringify(json)
+  //let body = URL
+
+  fetch( '/login', {
+      headers: {
+            'Content-Type': 'application/json',
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
       method:'POST',
-      body 
-    })
-    loggg();
+      body: body
+    }).then(function(response){
+       return response.text();
+      }).then(function (r){
+        if (r == "OK"){
+          document.getElementById( 'username' ).value="ok"
+        }
+        else {
+          alert(r)
+         // alert("Account credentials invalid")
+         //alert("Account credentials invalid")
+         //document.getElementById("baddy").style.display = "inline"
+        }
+  })
+
 }
   
   

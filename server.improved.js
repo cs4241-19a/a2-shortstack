@@ -10,11 +10,12 @@ const express    = require('express'),
       adapter = new FileSync('db.json'),
       db = low(adapter);
 
-db.defaults({ users:[] }).write()
-// add a user
-db.get( 'users' ).push({ username:'bob', password:42 }).write()
+db.defaults({ users: [
+      {"username":"admin", "password":"admin"}
+    ]
+  }).write();
 
-var log =0
+var allUsers = []
 
 
 const http = require( 'http' ),
@@ -90,28 +91,53 @@ app.post( '/register', function( request, response ) {
 }
   )})
 
+app.post('/login', 
+         passport.authenticate('local'),
+         function (req, res) {
+  console.log(req.body)
+  allUsers = syncAllUsers()
+  console.log((allUsers))
+  console.log("handlig log")
+  let data = req.body
+  console.log(data)
+    if(allUsers.length > 0){
+      for (let i = 0; i < allUsers.length; i++){
+        let obj = JSON.parse(allUsers[i])
+        if (obj.username == data.username && obj.password == data.password){
+          currentSession[0] = data.username;
+          currentSession[1] = data.password;
+          console.log(" login")
+          res.send("OK")
+          //send all packets of user data
+          return
+        }
+        else{
+          //console.log("bad login")
+          //res.send("BAD")
+        }
+      }
+       console.log("bad login")
+       res.send("BAD")
+       return
+    }
+    else{
+       console.log("bad login")
+       res.send("BAD")
+       return
+    }
+  //})
+})
 
-app.post( '/login', function( request, response ) {
-  let dataString = ''
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-    const UP = JSON.parse(dataString); //match result
-   let username = UP.username;
-   let password = UP.password;
-  let user = db.get( 'users' ).find(function(element) { 
-  return (element.username === username)}); 
-  
-  // if user is undefined, then there was no match for the submitted username
-  if(!user){
-    log=0;
-  } else{
-    log=4;
-  }
-})
-})
+
+function syncAllUsers(){
+  allUsers = []
+  var users = db.get('users').value() // Find all users in the collection
+  users.forEach(function(user) {
+    allUsers.push(JSON.stringify({username : user.username, password: user.password})); // adds their info to the dbUsers value
+  });
+  return allUsers
+}
+
 
 
 app.post( '/submit', function( request, response ) {
