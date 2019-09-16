@@ -68,10 +68,20 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
   cell_lastName.innerHTML = lastName
   var cell_grade = document.createElement("td")
   cell_grade.innerHTML = grade
-
+  var cell_del = document.createElement("td")
+  var button = document.createElement("button")
+  button.setAttribute('type', 'delete')
+  button.setAttribute('class', 'btn btn-default btn-sm')
+  cell_del.appendChild(button)
+  /*
+<button type="submit" class="btn btn-default btn-sm">  
+  */
+  
   row.appendChild(cell_firstName)
   row.appendChild(cell_lastName)
   row.appendChild(cell_grade)
+  row.appendChild(cell_del)
+
   start.appendChild(row) 
 
 }
@@ -85,3 +95,5 @@ window.onload = function() {
   addButton.onclick = addStudent
 
 }
+
+
