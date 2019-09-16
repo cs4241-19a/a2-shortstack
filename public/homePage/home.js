@@ -7,8 +7,11 @@ const occupyStudents = function( e ) {
     return response.json();
   }).then(function(data) {
     let students = data;
-    
-    
+    let i 
+    for(i = 0; i < students.length; i++) {
+      
+    }
+    console.log(students)
   })
 }
 
@@ -56,6 +59,8 @@ const fillStudentInfo = function( firstName, lastName, grade ) {
   
 window.onload = function() {
   console.log("home.html: javascript loaded")
+  occupyStudents()
+  
   
   const addButton = document.querySelector("#addStudent");
   addButton.onclick = addStudent

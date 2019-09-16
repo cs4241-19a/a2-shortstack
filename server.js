@@ -93,6 +93,13 @@ app.post( '/addStudent', function( request, response ) {
 
 //GET REQUESTS
 app.get( '/occupyStudents', function(request, response) {
+  var studentList = []
+  let i
+  for(i = 0; i < users.length; i++){
+  }
+  studentList = users[0].students
+  response.send(studentList)
+  
 })
 
 
