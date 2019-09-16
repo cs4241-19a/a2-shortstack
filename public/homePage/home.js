@@ -29,22 +29,20 @@ const addStudent = function( e ) {
     button.setAttribute('type', "button")
     button.setAttribute('class', "close")
     button.setAttribute('aria-label', "close")
-    var button_content = document.createElement("span")
-    button_content.setAttribute('aria-hidden', "true")
-    var button_text = document.createTextNode('&times;')
-    button_content.appendChild(button_text)
-    button.appendChild(button_content)
+    button.innerHTML = '&times;'
     
-    var cell_btn = document.createElement("th")
-    var cell_fn = document.createElement("td")
-    var cell_ln = document.createElement("td")
-    var cell_grd = document.createElement("td")
-  
-    var cell_firstName = cell_fn.appendChild(first)
-    var cell_lastName = cell_ln.appendChild(last)
-    var cell_grade = cell_grd.appendChild(grade)
+    var cell_firstName = document.createElement("td")
+    cell_firstName.innerHTML = firstName
+    cell_firstName.setAttribute("scope", "row")
+    var cell_lastName = document.createElement("td")
+    cell_lastName.innerHTML = lastName
+    var cell_grade = document.createElement("td")
+    cell_grade.innerHTML = "100"
+    var cell_button = document.createElement("td")
     var cell_button = cell_btn.appendChild(button)
 
+    
+    
     row.appendChild(cell_firstName)
     row.appendChild(cell_lastName)
     row.appendChild(cell_grade)
@@ -52,7 +50,7 @@ const addStudent = function( e ) {
     start.appendChild(row) 
     
       /*
-              <tr>
+        <tr>
           <th scope="row">1</th>
           <td>Mark</td>
           <td>Otto</td>
