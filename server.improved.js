@@ -1,5 +1,6 @@
 const express    = require('express'),
       app        = express(),
+      session = require('express-session'),
        bodyparser = require( 'body-parser' ),
       // dreams     = [],
       favicon = require('serve-favicon'),
@@ -10,11 +11,11 @@ const express    = require('express'),
       Local = require('passport-local').Strategy;
 
 const db = low(new FileSync('db.json'));
-
+const info = low(new FileSync('./public/json/userData.json'));
 
 const myLocalStrategy = function (username, password, done) {
-    users = db.value()
-    const user = users.find(__user => __user.username === username)
+    db = db.value()
+    const user = db.find(__user => __user.username === username)
     if (user === undefined) {
         console.log('user not found')
         return done(null, false, { message: 'user not found' })
@@ -27,18 +28,44 @@ const myLocalStrategy = function (username, password, done) {
     }
 }
 
+passport.use(new Local(myLocalStrategy))
+passport.initialize()
+
+passport.serializeUser((user, done) => done(null, user.username))
+
+passport.deserializeUser((username, done) => {
+    const user = db.find(u => u.username === username)
+    console.log('deserializing:', user)
+
+    if (user !== undefined) {
+        done(null, user)
+    } else {
+        done(null, false, { message: 'user not found; session not restored' })
+    }
+})
+
+app.use(session({ secret: 'cats cats cats', resave: false, saveUninitialized: false }))
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.post('/test', function (req, res) {
+    console.log('authenticate with cookie?', req.user)
+    res.json({ status: 'success' })
+})
 
 
-
-
-
-
-
-
-
-
-
-
+app.post(
+    '/login',
+    passport.authenticate('local', {
+        successRedirect: '/database.html',
+        failureRedirect: '/'
+    }),
+    function (req, res) {
+        console.log("Login successful")
+        console.log(req.user)
+        res.json({ status: true })
+    }
+)
 
 
 
@@ -122,53 +149,6 @@ app.post( '/register', function( request, response ) {
   
 }
   )})
-
-app.post('/login', 
-         function (req, res) {
-  console.log(req.body)
-  allUsers = syncAllUsers()
-  console.log((allUsers))
-  console.log("handlig log")
-  let data = req.body
-  console.log(data)
-    if(allUsers.length > 0){
-      for (let i = 0; i < allUsers.length; i++){
-        let obj = JSON.parse(allUsers[i])
-        if (obj.username == data.username && obj.password == data.password){
-          currentSession[0] = data.username;
-          currentSession[1] = data.password;
-          console.log(" login")
-          res.send("OK")
-          //send all packets of user data
-          return
-        }
-        else{
-          //console.log("bad login")
-          //res.send("BAD")
-        }
-      }
-       console.log("bad login")
-       res.send("BAD")
-       return
-    }
-    else{
-       console.log("bad login")
-       res.send("BAD")
-       return
-    }
-  //})
-})
-
-
-function syncAllUsers(){
-  allUsers = []
-  var users = db.get('users').value() // Find all users in the collection
-  users.forEach(function(user) {
-    allUsers.push(JSON.stringify({username : user.username, password: user.password})); // adds their info to the dbUsers value
-  });
-  return allUsers
-}
-
 
 
 app.post( '/submit', function( request, response ) {

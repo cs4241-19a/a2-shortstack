@@ -80,18 +80,6 @@
 }
   
   
-  const loggg = async function(){
-       const log = await fetch('/log', { method: 'GET' });
-        const data = await log.json();
-        const result = data.data;
-    console.log(result);
-        if(result === 0){
-          document.getElementById( 'username' ).value = '0'
-        } else {
-          document.getElementById( 'username' ).value = '1'
-      }
-  }
-  
   
     const register = function(e){
     
