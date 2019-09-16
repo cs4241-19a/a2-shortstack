@@ -99,14 +99,23 @@ app.post( '/deleteStudent', function( request, response ) {
 })
 
 app.post( '/addAssignment', function( request, response ) {
-    db.get('users[0].students').push(request.body).write();
+    db.get('users[0].students[0]').push(request.body).write();
     occupyUsers()
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end();
 })
 
 //GET REQUESTS
-app.get( '/occupyStudents', function(request, response) {
+app.get( '/occupyStudents', function( request, response ) {
+  var studentList = []
+  let i
+  for(i = 0; i < users.length; i++){
+  }
+  studentList = users[0].students
+  response.send(studentList)
+})
+
+app.get( '/occupyAssignments', function( request, response ) {
   var studentList = []
   let i
   for(i = 0; i < users.length; i++){

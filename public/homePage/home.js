@@ -119,6 +119,4 @@ window.onload = function() {
   addButton.onclick = addStudent
 
 }
-/*
 
-    */

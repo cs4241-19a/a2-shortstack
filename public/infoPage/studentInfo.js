@@ -1,4 +1,22 @@
-
+const occupyAssignments = function( e ) {
+  e.preventDefault()
+  fetch('/occupyAssignments', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' }
+  }).then(function(response) {
+    console.log(response)
+    return response.json();
+  }).then(function(data) {
+    let assignments = data;
+    let i 
+    for(i = 0; i < assignments.length; i++) {
+      let assignment = assignments[i]
+      //let assignments = student.assignments
+      fillAssignment(assignment, assignment.value())
+    }
+    console.log(assignments)
+  })
+}
 
 const addAssignment = function( e ) {
   e.preventDefault()
@@ -44,5 +62,14 @@ const fillAssignment = function( assignment, grade ) {
   row.appendChild(cell_del)
 
   start.appendChild(row) 
+
+}
+
+window.onload = function() {
+  console.log("home.html: javascript loaded")
+  //occupyStudents()
+  
+  const addButton = document.querySelector("#addAssignment");
+  addButton.onclick = addAssignment
 
 }
