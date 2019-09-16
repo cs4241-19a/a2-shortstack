@@ -34,7 +34,7 @@ const occupyUsers = function() {
 occupyUsers();
   
 //Password Authentication
-const myLocalStrategy = function(username, password, done) {
+const strategy = function(username, password, done) {
     const user = users.find(usr => usr.username === username);
     if (user === undefined) 
       return done(null, false, { message: 'User Not Found' });
@@ -46,7 +46,7 @@ const myLocalStrategy = function(username, password, done) {
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(myLocalStrategy))
+passport.use(new LocalStrategy(strategy))
 
 passport.serializeUser((user, done) => done(null, user.username))
 passport.deserializeUser((username, done) => {

@@ -20,7 +20,7 @@ const loginAction = function( e ) {
           })
           .then( response => {
               console.log(response)
-              response.location.href = './homePage/home.html'
+              location.href = './homePage/home.html'
           })
           .catch(err => {
               console.log(err)
