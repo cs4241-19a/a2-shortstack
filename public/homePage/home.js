@@ -9,10 +9,25 @@ const occupyStudents = function( e ) {
     let students = data;
     let i 
     for(i = 0; i < students.length; i++) {
-      
+      let student = students[i]
+      let assignments = student.assignments
+      var grade = gradeCalc(assignments)
+      fillStudentInfo(student.first, student.last, grade)
     }
     console.log(students)
   })
+}
+
+const gradeCalc = function( assignments ) {
+  var sum = 0
+  var keys = assignments.keys()
+    console.log(keys[0])
+
+  let i 
+  for(i = 0; i < assignments.length; i++){
+    sum += assignments[i]["HW1"]
+  }
+  return sum/assignments.length
 }
 
 
