@@ -11,7 +11,8 @@ const express    = require('express'),
       Local = require('passport-local').Strategy;
 
 const db = low(new FileSync('db.json'));
-const info = low(new FileSync('userData.json'));
+app.use(express.static('public'));
+// const info = low(new FileSync('userData.json'));
 
 const myLocalStrategy = function (username, password, done) {
     db = db.value()
