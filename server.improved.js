@@ -16,7 +16,7 @@ db.defaults({ users: [
   }).write();
 
 var allUsers = []
-
+var currentSession = ["", ""]
 
 const http = require( 'http' ),
       fs   = require( 'fs' ),
@@ -74,9 +74,7 @@ app.get('/appdata2', function(request, response) {
     sendData( response, appdata2 )
 })
 
-app.get('/log', function(request, response) {
-    sendData( response, log )
-})
+
 
 app.post( '/register', function( request, response ) {
   let dataString = ''
@@ -92,7 +90,6 @@ app.post( '/register', function( request, response ) {
   )})
 
 app.post('/login', 
-         passport.authenticate('local'),
          function (req, res) {
   console.log(req.body)
   allUsers = syncAllUsers()
