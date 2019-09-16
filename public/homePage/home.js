@@ -15,12 +15,13 @@ const addStudent = function( e ) {
     e.preventDefault()
     console.log("Add Student")
   
-    const firstName = document.querySelector('#first')
-    const lastName = document.querySelector('#last')
+    const firstName = document.querySelector('#first').value
+    const lastName = document.querySelector('#last').value
 
-    var start = document.querySelector("thead")
+    var start = document.querySelector("tbody")
     var row = document.createElement("tr")
 
+    var del = document.createTextNode("1")
     var first = document.createTextNode(firstName)
     var last = document.createTextNode(lastName)
     var grade = document.createTextNode("100")
@@ -34,11 +35,10 @@ const addStudent = function( e ) {
     button_content.appendChild(button_text)
     button.appendChild(button_content)
     
+    var cell_btn = document.createElement("th")
     var cell_fn = document.createElement("td")
     var cell_ln = document.createElement("td")
     var cell_grd = document.createElement("td")
-    var cell_btn = document.createElement("td")
-  
   
     var cell_firstName = cell_fn.appendChild(first)
     var cell_lastName = cell_ln.appendChild(last)
