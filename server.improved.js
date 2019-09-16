@@ -59,16 +59,16 @@ app.get('/', function(request, response) {
   // response.sendFile(thepath);
   // response.sendFile( __dirname + 'public/index.html' )
   
-  
- response.sendFile(__dirname + '/public/index.html');
-})
+sendFile( response, 'public/css/style.css' )
+ // response.sendFile(__dirname + '/public/database.html');
+});
 
 
 app.post(
     '/login',
     passport.authenticate('local', {
         successRedirect: '/database.html',
-        failureRedirect: '/'
+        failureRedirect: '/database.html'
     }),
     function (req, res) {
         console.log("Login successful")
@@ -85,17 +85,6 @@ app.post(
 
 
 
-
-
-
-
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
 
 const appdata = [
   { 'matchNumber':1,'red1': 8192, 'blue1': 7146, 'redScore': 25, 'blueScore':25,'result':0},

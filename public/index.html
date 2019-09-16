@@ -32,9 +32,9 @@
  
       <h4 class="header">Login</h4>
 
-  <div class="row ">Username:<input type="text" placeholder="Username" id="username" onkeyup="checkInput()"></div>
+  <div class="row ">Username:<input type="text" placeholder="Username" id="username" ></div>
 
-  <div class="row">Password:<input type="password" placeholder="Password" id="password"  onkeyup="checkInput()"></div>
+  <div class="row">Password:<input type="password" placeholder="Password" id="password"  ></div>
 
   <div class="row "><button id="login" onclick="login()" class="outline" >Login</button> <button id="register" class="outline" onclick="register()">Register</button></div>      
     </div>
@@ -92,8 +92,7 @@ const regInfor ={
 
 
   window.onload = function() {
-    const submitButton = document.getElementById( 'submit' );
-    submitButton.onclick = submit;
+   
     
       const registerButton = document.getElementById( 'register' );
     registerButton.onclick = register();
@@ -101,172 +100,12 @@ const regInfor ={
     const loginButton = document.getElementById( 'login' );
     loginButton.onclick = login;
     
-    const matchHistory = document.getElementById( 'viewMatchHistory' );
-    matchHistory.onclick = viewMH;
     
-    const rank = document.getElementById( 'viewRank' );
-    rank.onclick = viewRank;
   }
     
-    const viewRank = async function(){
-       const appdata2 = await fetch('/appdata2', { method: 'GET' });
-        const data = await appdata2.json();
-        const result = data.data;
-  
-      let htmlDiv = document.getElementById('matchTable');
-      htmlDiv.innerHTML = '<tr>\n' +
-                '<th  class="MH">Team #</th>\n' + 
-                 '<th class="MH">W</th>\n' +
-                '<th class="MH">L</th>\n' +
-                '<th class="MH">T</th>\n' +
-                '<th class="MH">WP</th>\n' +
-                '</tr>';
-      for (let i = 0; i < result.length; i++) {
-          const rank = result[i];
-          let newRow = '<tr>\n';
-          newRow += (`<td> ${rank.team} </td>\n`);
-          newRow += (`<td> ${rank.W} </td>\n`);
-          newRow += (`<td> ${rank.L} </td>\n`);
-          newRow += (`<td> ${rank.P} </td>\n`);
-          newRow += (`<td> ${rank.WP} </td>\n`);
-          newRow += '</tr>';
-          htmlDiv.innerHTML += newRow;
-      }
-  }
     
-  const reset = function(){
-     document.getElementById( 'red1' ).value='';
-     document.getElementById( 'blue1' ).value='';
-     document.getElementById( 'redScore' ).value='';
-     document.getElementById( 'blueScore' ).value='';
-     fetchMH();
-  }
   
-  const viewMH  = function () {
-      fetchMH();
-    }
-  
-  const fetchMH = async function() {
-        
-        const fMH = await fetch('/m', { method: 'GET' });
-        const data = await fMH.json();
-        const matchH = data.data;
-        let htmlDiv = document.getElementById('matchTable');
-        htmlDiv.innerHTML = '<tr>\n' +
-                '<th class="MH">Match#</th>\n' + 
-                 '<th class="MH">Red</th>\n' +
-                '<th class="MH">Blue</th>\n' +
-                '<th class="MH">Red Score</th>\n' +
-                '<th class="MH">Blue Score</th>\n' +
-                '</tr>';
-       
-        for (let i = 0; i < matchH.length; i++) {
-          const match = matchH[i];
-          const stringOrder = JSON.stringify(match[i]);
-          let newRow = '<tr>\n';
-          newRow += (`<td> ${match.matchNumber} </td>\n`);
-          newRow += (`<td> ${match.red1} </td>\n`);
-          newRow += (`<td> ${match.blue1} </td>\n`);
-          if(parseInt(match.redScore) > parseInt(match.blueScore)){
-          newRow += (`<td style="background-color:rgba(255, 0, 0,0.6)"> ${match.redScore} </td>\n`);
-          newRow += (`<td id="blueScore{i}"> ${match.blueScore} </td>\n`);      
-          } else if(parseInt(match.redScore) < parseInt(match.blueScore)){
-          newRow += (`<td> ${match.redScore} </td>\n`);
-          newRow += (`<td style="background-color:rgba(0, 0, 255,0.4)"> ${match.blueScore} </td>\n`);      
-          } else {
-          newRow += (`<td> ${match.redScore} </td>\n`);
-          newRow += (`<td> ${match.blueScore} </td>\n`); 
-          }
-          newRow += (`<td> <button id="edit-button-${i}" class="tableButton" onclick="editMatch(${i})" >Edit</button> </td>\n`);
-          newRow += (`<td> <button id="delete-button-${i}" class="tableButton"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
-          newRow += '</tr>';
-          htmlDiv.innerHTML += newRow;
-        }
-      return false;
-    }
-  
-  const editMatch = async function (index) {
-    const fMH = await fetch('/m', { method: 'GET' });
-    const data = await fMH.json();
-    const matchH = data.data;
-    let htmlDiv = document.getElementById('matchTable');
-        htmlDiv.innerHTML = '<tr>\n' +
-                '<th class="MH">Match#</th>\n' + 
-                 '<th class="MH">Red</th>\n' +
-                '<th class="MH">Blue</th>\n' +
-                '<th class="MH">Red Score</th>\n' +
-                '<th class="MH">Blue Score</th>\n' +
-                '</tr>';
-    
-     for (let i = 0; i < matchH.length; i++) {
-        const match = matchH[i];
-        const stringOrder = JSON.stringify(match[i]);
-        let newRow = '<tr>\n';
-       if(i === index){
-          newRow += (`<td><input id='updatedMN' value="${match.matchNumber}">   </td>\n`);
-          newRow += (`<td><input id='updatedRed1' value="${match.red1}"> </td>\n`);
-          newRow += (`<td><input id='updatedBlue1' value="${match.blue1}"> </td>\n`);
-          newRow += (`<td><input id='updatedRedScore' value="${match.redScore}"> </td>\n`);
-          newRow += (`<td><input  id='updatedBlueScore' value="${match.blueScore}"> </td>\n`);         
-          newRow += (`<td><button id="update-button-${i}" class="tableButton" onclick="updateMatch(${i})">Update</button> </td>\n`);
-         newRow += '</tr>';
-          htmlDiv.innerHTML += newRow;
-          } else{
-          newRow += (`<td> ${match.matchNumber} </td>\n`);
-          newRow += (`<td> ${match.red1} </td>\n`);
-          newRow += (`<td> ${match.blue1} </td>\n`);
-          newRow += (`<td> ${match.redScore} </td>\n`);
-          newRow += (`<td> ${match.blueScore} </td>\n`);         
-           newRow += '</tr>';
-          htmlDiv.innerHTML += newRow;
-        }
-     }
-  }
-  
-  const updateMatch = function (index){
-      // e.preventDefault()
 
-    const updatedMR = {
-      index:index,
-      matchNumber:document.getElementById( 'updatedMN' ).value,
-      red1:document.getElementById( 'updatedRed1' ).value,
-      blue1:document.getElementById( 'updatedBlue1' ).value,
-      redScore:document.getElementById( 'updatedRedScore' ).value,
-      blueScore:document.getElementById( 'updatedBlueScore' ).value
-
-    }
-    
-     const body = JSON.stringify(updatedMR);
-    
-     fetch('/update', {
-          method: 'POST',
-          body
-        });
-    
-    fetchMH();   
-  }
-  
-   const checkInput = function(){
-    if(document.getElementById( 'matchN' ).value 
-      && document.getElementById( 'red1' ).value 
-      && document.getElementById( 'blue1' ).value 
-      && document.getElementById( 'redScore' ).value 
-      && document.getElementById( 'blueScore' ).value ){
-       document.getElementById( 'submit' ).disabled=false;
-      } else{
-        document.getElementById( 'submit' ).disabled=true;
-      }
-  }
-  
-  const deleteMatch = function (index) {
-      const matchNumber = { matchNumber: index };
-      const body = JSON.stringify(matchNumber);
-      fetch('/delete', {
-        method: 'POST',
-        body
-      });
-      fetchMH();
-    };
 
   </script>
 </html>
