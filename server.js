@@ -85,7 +85,7 @@ app.post( '/login',
     })
 
 app.post( '/addStudent', function( request, response ) {
-    db.get('users').push(request.body).write();
+    db.get('users[0].students').push(request.body).write();
     occupyUsers()
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end();

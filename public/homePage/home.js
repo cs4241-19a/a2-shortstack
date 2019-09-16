@@ -20,14 +20,15 @@ const occupyStudents = function( e ) {
 
 const gradeCalc = function( assignments ) {
   var sum = 0
-  var keys = assignments.keys()
-    console.log(keys[0])
-
   let i 
-  for(i = 0; i < assignments.length; i++){
-    sum += assignments[i]["HW1"]
+  if(assignments) {
+    for(i = 0; i < assignments.length; i++){
+      sum += parseInt(Object.values(assignments[i]))
+    }
+    return (sum/assignments.length).toFixed(2)
   }
-  return sum/assignments.length
+  else
+    return 0
 }
 
 
@@ -37,7 +38,7 @@ const addStudent = function( e ) {
   
     const firstName = document.querySelector('#first').value
     const lastName = document.querySelector('#last').value
-    const grade = 100
+    const grade = 0
     
     const info = {first: firstName, last: lastName, grade: grade}
     const body = JSON.stringify(info)
@@ -47,6 +48,7 @@ const addStudent = function( e ) {
       headers: { 'Content-Type': 'application/json' },
       body
     }).then(function( response ) {
+      console.log(response)
       fillStudentInfo(firstName, lastName, grade);
     })
        
