@@ -22,7 +22,8 @@
   ],
   "students": [
     {
-      "name": "John Smith",
+      "first": "John",
+      "last": "Smith",
       "assignments": [
         {
           "HW1": 90
@@ -36,7 +37,8 @@
       ]
     },
     {
-      "name": "Jane Doe",
+      "first": "Jane",
+      "last": "Doe",
       "assignments": [
         {
           "HW1": 30

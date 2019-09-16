@@ -3,11 +3,11 @@
 const loginAction = function( e ) {
     e.preventDefault()
   
-    const username = document.querySelector('#username')
-    const password = document.querySelector('#password')
+    const username = document.querySelector('#username').value
+    const password = document.querySelector('#password').value
     const state  = document.querySelector('#state')  
     
-    const body = { username: username.value, password: password.value };
+    const body = { username: username, password: password };
     console.log(body);
     fetch('/login', {
             method: 'POST',

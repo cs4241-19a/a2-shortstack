@@ -66,5 +66,36 @@ app.post( '/login',
     }
 )
 
+app.get( '/update', function(request, response) {
+  let body = request.body
+  
+  db.get('students')
+}
+         
+    passport.authenticate('local'),
+    function(request, response) {
+        const currentUser = users.find(usr => usr.username === request.user.username)
+        response.json({ status: true })
+    }
+)
+
+
+/*
+app.post('/update', function(request, response) {
+    let body = request.body
+
+    db.get('allUsers')
+        .find({ username: you.username })
+        .assign({
+            name: body.name,
+            age: body.age,
+            gender: body.gender,
+            hobby: body.hobby
+        }).write()
+    copyAllUsers()
+    response.writeHead(200, { 'Content-Type': 'application/json' });
+    response.end();
+*/
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
