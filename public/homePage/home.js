@@ -1,3 +1,5 @@
+
+
 const occupyStudents = function( e ) {
   fetch('/occupyStudents', {
     method: 'GET',
