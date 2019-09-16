@@ -99,7 +99,14 @@ app.post( '/deleteStudent', function( request, response ) {
 })
 
 app.post( '/addAssignment', function( request, response ) {
-    db.get('users[0].students[0]').push(request.body).write();
+    db.get('users[0].students[0].assignments').push(request.body).write();
+    occupyUsers()
+    response.writeHead(200, { 'Content-Type': 'application/json' });
+    response.end();
+})
+
+app.post( '/delAssignment', function( request, response ) {
+    db.get('users[0].students[0].assignments').remove({ assignment: request.body.grade, grade: request.body.grade }).write()
     occupyUsers()
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end();

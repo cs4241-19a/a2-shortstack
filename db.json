@@ -10,13 +10,16 @@
           "last": "Doe",
           "assignments": [
             {
-              "HW1": 30
+              "assignment": "HW1",
+              "grade": 30
             },
             {
-              "HW2": 25
+              "assignment": "HW2",
+              "grade": 90
             },
             {
-              "Test": 30
+              "assignment": "Test",
+              "grade": 70
             }
           ]
         },
@@ -25,13 +28,16 @@
           "last": "Smith",
           "assignments": [
             {
-              "HW1": 100
+              "assignment": "HW1",
+              "grade": 40
             },
             {
-              "HW2": 95
+              "assignment": "HW2",
+              "grade": 60
             },
             {
-              "Test": 70
+              "assignment": "Test",
+              "grade": 90
             }
           ]
         }

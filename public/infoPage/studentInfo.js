@@ -12,11 +12,25 @@ const occupyAssignments = function( ) {
       let assignment = assignments[i]
       //let assignments = student.assignments
       console.log(Object.values(assignment))
-      fillAssignment(assignment, Object.values(assignment))
+      fillAssignment( assignment.assignment, assignment.grade)
     }
     console.log(assignments)
   })
 }
+
+const removeAssignment = function( assignment, grade ) {
+  console.log("Remove Assignment")
+  const info = {assignment: assignment, grade: grade }
+  const body = JSON.stringify(info)
+  fetch('/deleteStudent', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body
+  }).then(function(response) {
+    console.log(response)
+  })
+}
+
 
 const addAssignment = function( e ) {
   e.preventDefault()
