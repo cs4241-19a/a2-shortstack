@@ -1,0 +1,65 @@
+[
+  {
+    "user": "admin",
+    "people": [
+      {
+        "name": "test1",
+        "birthday": "2008-01-01",
+        "major": "CS",
+        "age": 11
+      },
+      {
+        "name": "test2",
+        "birthday": "1997-01-01",
+        "major": "CS",
+        "age": 22
+      },
+      {
+        "name": "Test3",
+        "birthday": "1986-01-01",
+        "major": "BCB",
+        "age": 33
+      }
+    ]
+  },
+  {
+    "user": "yang",
+    "people": [
+      {
+        "name": "Jhon Lee",
+        "birthday": "1998-03-27",
+        "major": "CS",
+        "age": 21
+      },
+      {
+        "name": "Akali Smith",
+        "birthday": "1999-05-21",
+        "major": "CS",
+        "age": 20
+      },
+      {
+        "name": "Iris Five",
+        "birthday": "2000-08-29",
+        "major": "CS",
+        "age": 19
+      }
+    ]
+  },
+  {
+    "user": "4241",
+    "people": [
+      {
+        "name": "rui",
+        "birthday": "1991-01-01",
+        "major": "CS",
+        "age": 28
+      },
+      {
+        "name": "iris",
+        "birthday": "1995-05-05",
+        "major": "MAC",
+        "age": 24
+      }
+    ]
+  }
+]

@@ -12,13 +12,45 @@ const express    = require('express'),
 const db = low(new FileSync('db.json'));
 
 
-db.defaults({ users: [
-      {"username":"admin", "password":"admin"}
-    ]
-  }).write();
+const myLocalStrategy = function (username, password, done) {
+    users = db.value()
+    const user = users.find(__user => __user.username === username)
+    if (user === undefined) {
+        console.log('user not found')
+        return done(null, false, { message: 'user not found' })
+    } else if (user.password === password) {
+        console.log('correct')
+        return done(null, { username, password })
+    } else {
+        console.log('incorrect password')
+        return done(null, false, { message: 'incorrect password' })
+    }
+}
 
-var allUsers = []
-var currentSession = ["", ""]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const http = require( 'http' ),
       fs   = require( 'fs' ),
