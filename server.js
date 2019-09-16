@@ -20,18 +20,18 @@ app.use(bodyParser.json());
 
 //
 db.defaults({ users: [] }).write();
-let users = []
-let i = 0;
-for(i = 0; i < 4; i++) {
-  let user = db.get('users[${i}]').value;
-  if(user !== null){
-    users.push(user)
-    i++
-  }
-  else
-    break
-}
-console.log("Users" + users)
+let users
+const occupyUsers = function() {
+    users = [];
+    let i = 0;
+    while (true) {
+        let user = db.get(`users[${i}]`).value();
+        if (user) users.push(user)
+        else break
+        i++;
+    }
+};
+occupyUsers();
   
 //Password Authentication
 const myLocalStrategy = function(username, password, done) {
@@ -50,7 +50,7 @@ passport.use(new LocalStrategy(myLocalStrategy))
 
 passport.serializeUser((user, done) => done(null, user.username))
 passport.deserializeUser((username, done) => {
-    let user = users.find(u => u.username === username)
+    let user = users.find(usr => usr.username === username)
     if (user !== undefined) {
         done(null, user)
     } else {

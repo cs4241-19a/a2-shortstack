@@ -2,7 +2,6 @@
 
 const loginAction = function( e ) {
     e.preventDefault()
-    console.log("Button pushed")
   
     const username = document.querySelector('#username')
     const password = document.querySelector('#password')
@@ -21,7 +20,7 @@ const loginAction = function( e ) {
           })
           .then( response => {
               console.log(response)
-              location.href = './homePage/home.html'
+              response.location.href = './homePage/home.html'
           })
           .catch(err => {
               console.log(err)
@@ -30,9 +29,9 @@ const loginAction = function( e ) {
       return false;
 };
 
-  window.onload = function() {
+window.onload = function() {
     console.log("index.html: javascript loading")
-    
+
     const loginButton = document.querySelector('#login');
     loginButton.onclick = loginAction;
-  }
+}
