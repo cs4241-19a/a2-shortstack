@@ -21,19 +21,36 @@ const addStudent = function( e ) {
     var start = document.querySelector("thead")
     var row = document.createElement("tr")
 
-    
     var first = document.createTextNode(firstName)
     var last = document.createTextNode(lastName)
     var grade = document.createTextNode("100")
-
-    var cell_firstName = document.createElement("td").appendChild(first)
-    var cell_lastName = document.createElement("td").appendChild(last)
-    var cell_grade = document.createElement("td").appendChild(grade)
-    var cell_grade = document.createElement("td").appendChild(grade)
-
+    var button = document.createElement("button")
+    button.setAttribute('type', "button")
+    button.setAttribute('class', "close")
+    button.setAttribute('aria-label', "close")
+    var button_content = document.createElement("span")
+    button_content.setAttribute('aria-hidden', "true")
+    var button_text = document.createTextNode('&times;')
+    button_content.appendChild(button_text)
+    button.appendChild(button_content)
     
+    var cell_fn = document.createElement("td")
+    var cell_ln = document.createElement("td")
+    var cell_grd = document.createElement("td")
+    var cell_btn = document.createElement("td")
   
-      
+  
+    var cell_firstName = cell_fn.appendChild(first)
+    var cell_lastName = cell_ln.appendChild(last)
+    var cell_grade = cell_grd.appendChild(grade)
+    var cell_button = cell_btn.appendChild(button)
+
+    row.appendChild(cell_firstName)
+    row.appendChild(cell_lastName)
+    row.appendChild(cell_grade)
+    row.appendChild(cell_button)
+    start.appendChild(row) 
+    
       /*
               <tr>
           <th scope="row">1</th>
@@ -48,14 +65,7 @@ const addStudent = function( e ) {
           
         </tr>
       */
-      
-      divNode.setAttribute('id')
-      divNode.appendChild(timeNode)
-      divNode.appendChild(breakNode1)
-      divNode.appendChild(textNode)
 
-      dayCol.appendChild(divNode)
-      dayCol.appendChild(breakNode)
     
     
 };
