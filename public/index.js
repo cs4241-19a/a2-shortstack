@@ -1,9 +1,7 @@
   const loginAction = function( e ) {
-    e.preventDefault()
-    console.log("Button pushed")
-    
     const username = document.querySelector('#username')
     const password = document.querySelector('#password')
+    const state  = document.querySelector('#state')
     
     let body = { username: username.value, password: password.value };
     console.log(body);
@@ -12,18 +10,19 @@
             body : JSON.stringify(body),
             headers: { 'Content-Type': 'application/json' }
           })
-          .then(function( response ) { 
-                return response.json()
-                console.log(response.json())
+          .then( response => {
+                response.json()
           })
-          .then(function( response ) {
+          .then( response => {
               console.log(response)
               location.href = './homePage/home.html'
           })
           .catch(err => {
               console.log(err)
-              
+              state.innerHTML = "Incorrect Username or Password";
           })
+        e.preventDefault()    
+
       return false;
   };
 
