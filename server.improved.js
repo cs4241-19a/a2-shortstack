@@ -7,8 +7,10 @@ const express    = require('express'),
       passport = require('passport'),
       low = require('lowdb'),
       FileSync = require('lowdb/adapters/FileSync'),
-      adapter = new FileSync('db.json'),
-      db = low(adapter);
+      Local = require('passport-local').Strategy;
+
+const db = low(new FileSync('db.json'));
+
 
 db.defaults({ users: [
       {"username":"admin", "password":"admin"}

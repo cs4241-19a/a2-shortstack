@@ -1,116 +1,14 @@
-{
-  "users": [
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bobw",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bobw",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bobw",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bobw",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bobw",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bobw",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bobw",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "bob",
-      "password": 42
-    },
-    {
-      "username": "333",
-      "password": "333"
-    },
-    {
-      "username": "9",
-      "password": "9"
-    }
-  ]
-}
+[
+  {
+    "username": "admin",
+    "password": "admin"
+  },
+  {
+    "username": "yang",
+    "password": "yang"
+  },
+  {
+    "username": "4241",
+    "password": "4241"
+  }
+]
