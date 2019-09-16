@@ -30,7 +30,7 @@ window.onload = function() {
 
                     for(var i = 1; i <= t; i++) {
                         var ref = response.users[n][b].lists[1].tasks[i];
-                        if(ref !== null) {
+                        if(ref !== undefined && ref !== null) {
                             var col1 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskName).replace(/^"(.*)"$/, '$1')
                             var col2 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDesc).replace(/^"(.*)"$/, '$1')
                             var col3 = JSON.stringify(response.users[n][b].lists[1].tasks[i].taskDue).replace(/^"(.*)"$/, '$1')
