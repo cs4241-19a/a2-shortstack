@@ -31,6 +31,7 @@ for(i = 0; i < 4; i++) {
   else
     break
 }
+console.log("Users" + users)
   
 //Password Authentication
 const myLocalStrategy = function(username, password, done) {
@@ -60,9 +61,9 @@ passport.deserializeUser((username, done) => {
 app.post(
     '/login',
     passport.authenticate('local'),
-    function(req, res) {
-        let currentUser = users.find(usr => usr.username === req.user.username)
-        res.json({ status: true })
+    function(request, response) {
+        let currentUser = users.find(usr => usr.username === request.user.username)
+        response.json({ status: true })
     }
 )
 

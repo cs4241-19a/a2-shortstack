@@ -13,9 +13,10 @@
             body : body,
             headers: { 'Content-Type': 'application/json' }
           })
-          .then(res => res.json())
-          .then(res => {
-              console.log(res)
+          .then(function( response ) { 
+                return response.json()})
+          .then(function(response) {
+              console.log(response)
               location.href = './homePage/home.html'
           })
           .catch(err => {
