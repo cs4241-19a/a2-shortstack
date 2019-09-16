@@ -6,10 +6,34 @@
       "access": "1",
       "students": [
         {
-          "name": "John Smith"
+          "first": "John",
+          "last": "Smith",
+          "assignments": [
+            {
+              "HW1": 90
+            },
+            {
+              "HW2": 45
+            },
+            {
+              "Test": 100
+            }
+          ]
         },
         {
-          "name": "Jane Doe"
+          "first": "Jane",
+          "last": "Doe",
+          "assignments": [
+            {
+              "HW1": 30
+            },
+            {
+              "HW2": 25
+            },
+            {
+              "Test": 30
+            }
+          ]
         }
       ]
     },
@@ -20,36 +44,6 @@
       "students": []
     }
   ],
-  "students": [
-    {
-      "first": "John",
-      "last": "Smith",
-      "assignments": [
-        {
-          "HW1": 90
-        },
-        {
-          "HW2": 45
-        },
-        {
-          "Test": 100
-        }
-      ]
-    },
-    {
-      "first": "Jane",
-      "last": "Doe",
-      "assignments": [
-        {
-          "HW1": 30
-        },
-        {
-          "HW2": 25
-        },
-        {
-          "Test": 30
-        }
-      ]
-    }
-  ]
+  "stud": [],
+  "students": []
 }

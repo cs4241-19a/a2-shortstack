@@ -19,11 +19,19 @@ const addStudent = function( e ) {
   
     const firstName = document.querySelector('#first').value
     const lastName = document.querySelector('#last').value
-    const grade = "100"
+    const grade = 100
     
-    fetch('/addStudent', 
-         
-         )
+    const info = {first: firstName, last: lastName, grade: grade}
+    const body = JSON.stringify(info)
+    
+    fetch('/addStudent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body
+    }).then(function( response ) {
+      
+    })
+        
     
     fillStudentInfo(firstName, lastName, grade);
 }

@@ -33,6 +33,7 @@ const occupyUsers = function() {
 };
 occupyUsers();
 //Students
+/*
 db.defaults({ users: [] }).write();
 let students
 const occupyStudents = function() {
@@ -46,6 +47,7 @@ const occupyStudents = function() {
     }
 };
 occupyStudents();
+*/
 
   
 //Password Authentication
@@ -83,15 +85,14 @@ app.post( '/login',
     })
 
 app.post( '/addStudent', function( request, response ) {
-    db.get('students').push(request.body).write();
-    occupyStudents();
+    db.get('users').push(request.body).write();
+    occupyUsers()
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end();
 })
 
 //GET REQUESTS
 app.get( '/occupyStudents', function(request, response) {
-  response.send(students)
 })
 
 
