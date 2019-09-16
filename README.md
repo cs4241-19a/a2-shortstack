@@ -11,13 +11,14 @@ The teacher would be able to remove students from their class and add new studen
 is clicked, the teacher can add grades and assignments to the student chosen. Preferably, there would have been
 a navigation bar at the top of the page to switch between assignments and account information for the target student.
 
-Because the database, password serveice, and server required a lot of time to get started, I found myself with less time 
+Because the database, password service, and server required a lot of time to get started, I found myself with less time 
 than intended to piece together my design. With the remaining time I was able to build a login page, as well 
 as the beginnings of a student roster and list of assignments. Students can be added and removed from the list, 
 and the more information button brings the user to the list of assignments. The teacher can add assignments as well 
 as remove them. Though, I was unable to complete more of my original ideas beyond these features, the web app still 
 provides a few options for the user and does so in a responsive and clear manner.
 
+Login information: <br>
 Username: admin <br>
 Password: admin
 
