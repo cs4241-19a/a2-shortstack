@@ -42,6 +42,11 @@
               "grade": 90
             }
           ]
+        },
+        {
+          "first": "Paris",
+          "last": "Lopez",
+          "grade": 0
         }
       ]
     },
