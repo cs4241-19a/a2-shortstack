@@ -79,10 +79,10 @@ passport.deserializeUser((username, done) => {
 //POST REQUESTS
 app.post( '/login',
     passport.authenticate('local'),
-    function(request, response) {
+    function( request, response ) {
         const currentUser = users.find(usr => usr.username === request.user.username)
         response.json({ status: true })
-    })
+})
 
 app.post( '/addStudent', function( request, response ) {
     db.get('users[0].students').push(request.body).write();
@@ -91,8 +91,15 @@ app.post( '/addStudent', function( request, response ) {
     response.end();
 })
 
-app.post( '/deleteStudent', function(request, response) {
+app.post( '/deleteStudent', function( request, response ) {
     db.get('users[0].students').remove({ first: request.body.first, last: request.body.last }).write()
+    occupyUsers()
+    response.writeHead(200, { 'Content-Type': 'application/json' });
+    response.end();
+})
+
+app.post( '/addAssignment', function( request, response ) {
+    db.get('users[0].students').push(request.body).write();
     occupyUsers()
     response.writeHead(200, { 'Content-Type': 'application/json' });
     response.end();

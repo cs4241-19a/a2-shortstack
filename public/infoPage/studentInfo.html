@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" type="text/css" href="infoStudent.css">
 
     
     <!-- Javascript --> 
@@ -23,13 +23,13 @@
       <form>
         <div class="row">
           <div class="col">
-            <input type="text" id="first" class="form-control" placeholder="First name">
+            <input type="text" id="assignment" class="form-control" placeholder="Assignment">
           </div>
           <div class="col">
-            <input type="text" id="last" class="form-control" placeholder="Last name">
+            <input type="number" id="grade" class="form-control" min="0" max="100" placeholder="Grade">
           </div>
           <div class="col">
-            <button id="addStudent" type="submit" class="form-control btn-primary">Submit</button>
+            <button id="addAssignment" type="submit" class="form-control btn-primary">Submit</button>
           </div>
         </div>
       </form>
@@ -41,6 +41,7 @@
         <tr>
           <th scope="col">Assignment</th>
           <th scope="col">Grade</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
