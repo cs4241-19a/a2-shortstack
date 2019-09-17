@@ -9,13 +9,22 @@ const http = require( 'http' ),
       app = Express(),
       bodyParser = require('body-parser'),
       passport = require('passport'),
-      local = require('passport-local').Strategy
+      Strategy = require('passport-local').Strategy,
+      low = require('lowdb'),
+      FileSync = require('lowdb/adapters/FileSync'),
+      adapter = new FileSync('db.json'),
+      db = low(adapter),
+      database = require('./db')
+
+      db.defaults({users:[], data:[]}).write()
       
 
 
       app.use(Express.static('public'))
       app.use(bodyParser.json())
       app.use(bodyParser.urlencoded())
+      app.use(passport.initialize());
+      app.use(passport.session());
 
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 71 },
@@ -27,7 +36,7 @@ const newData = []
 
 
 //passport
-passport.use(new Strategy(
+passport.use('local', new Strategy(
   function(username, password, cb) {
     db.users.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
@@ -137,8 +146,12 @@ const sendFile = function( response, filename ) {
 }
 
 
-app.post("/signup", function(request,response){
-  let json = { name: request.body.delName, year: 200, inches: 0}
+app.post("/signup", passport.authenticate('local', {}),function(request,response){
+  
+  
+  
+  
+  /*let json = { name: request.body.delName, year: 200, inches: 0}
   let index = -1
   let val = request.body.delName
   let filteredObj = appdata.find(function(item,i){
@@ -152,6 +165,7 @@ app.post("/signup", function(request,response){
     {
       appdata.splice(index, 1)
     }
+    */
 })
 
 
