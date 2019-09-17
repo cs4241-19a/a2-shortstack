@@ -7,7 +7,12 @@ const http = require( 'http' ),
       port = 3000,
       Express = require('express'),
       app = Express(),
-      bodyParser = require('body-parser')
+      bodyParser = require('body-parser'),
+      passport = require('passport'),
+      local = require('passport-local').Strategy
+      
+
+
       app.use(Express.static('public'))
       app.use(bodyParser.json())
       app.use(bodyParser.urlencoded())
@@ -19,6 +24,21 @@ const appdata = [
 ]
 
 const newData = []
+
+
+//passport
+passport.use(new Strategy(
+  function(username, password, cb) {
+    db.users.findByUsername(username, function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
+    });
+}));
+
+
+
 
 
 
@@ -115,6 +135,25 @@ const sendFile = function( response, filename ) {
      }
    })
 }
+
+
+app.post("/signup", function(request,response){
+  let json = { name: request.body.delName, year: 200, inches: 0}
+  let index = -1
+  let val = request.body.delName
+  let filteredObj = appdata.find(function(item,i){
+    if(item.name === val){
+      index = i
+      return i
+    }
+  })
+  console.log(request.body.delName + " is in position " + index  )
+  if(index > -1)
+    {
+      appdata.splice(index, 1)
+    }
+})
+
 
 
 app.listen(process.env.PORT || port)
