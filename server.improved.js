@@ -49,6 +49,7 @@ app.post("/submit", function(request, response){
   
   appdata.push(json)
   console.log(appdata)
+  
 })
 
 

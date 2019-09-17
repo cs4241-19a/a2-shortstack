@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <!-- importing css for website styling -->
+    <link rel = "stylesheet"
+   type = "text/css"
+   href = "css/style.css" />
+  </head>
+  <body>
+    <div class="input">
+      
+    <!-- Input fields and submit button -->
+    <form id = "info" action="/submit" method = "POST">
+      <input type="text" name="yourname" placeholder="your name here"><br>
+      <input type ="text" name="classyear" placeholder="Your class year"><br>
+      <input type = "text" name="height" placeholder="Your height in inches"><br>
+      
+    </form>
+    <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
+    </div>
+    
+    <!-- Delete field and delete button -->
+    <form id = "delete" action = "/delete" method = "POST">
+      <input type = "text" name = "delName" placeholder = "Name to delete"><br>
+      <button id = "deleteBtn" class = "inputbutton" onclick = "onDelete()">delete</button><br><br>
+    </form>
+    
+    <!-- Data table with student info -->
+    <table id = "dataTable">
+      <th>Name</th>
+      <th>ClassYear</th>
+      <th> Height in inches</th>
+      <th> Height in centimeters</th>
+    </table>
+  </body>
+  
+  <!-- jquery import -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  
+  <!-- js import for server client interaction -->
+  <script src="js/scripts.js"></script>
+</html>

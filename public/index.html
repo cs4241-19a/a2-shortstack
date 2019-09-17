@@ -9,31 +9,19 @@
    href = "css/style.css" />
   </head>
   <body>
-    <div class="input">
-      
-    <!-- Input fields and submit button -->
-    <form id = "info" action="/submit" method = "POST">
-      <input type="text" name="yourname" placeholder="your name here"><br>
-      <input type ="text" name="classyear" placeholder="Your class year"><br>
-      <input type = "text" name="height" placeholder="Your height in inches"><br>
-      
-    </form>
-    <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
-    </div>
-    
-    <!-- Delete field and delete button -->
-    <form id = "delete" action = "/delete" method = "POST">
-      <input type = "text" name = "delName" placeholder = "Name to delete"><br>
-      <button id = "deleteBtn" class = "inputbutton" onclick = "onDelete()">delete</button><br><br>
+     <!--<form id = "signup" action = "/signup" method = "POST">-->
+    <form id = "signup" action = "" method = "">
+      <input type = "text" id = "jusername" placeholder = "Username"><br>
+      <input type = "text" id = "jpassword" placeholder = "Password"><br>
+      <button id = "signUpBtn" class = "inputbutton" onclick = "signUp()">Sign up</button><br><br>
     </form>
     
-    <!-- Data table with student info -->
-    <table id = "dataTable">
-      <th>Name</th>
-      <th>ClassYear</th>
-      <th> Height in inches</th>
-      <th> Height in centimeters</th>
-    </table>
+    
+    <form id = "login" action = "" method = "">
+      <input type = "text" id = "username" placeholder = "Username"><br>
+      <input type = "text" id = "password" placeholder = "Password"><br>
+      <button id = "logBtn" class = "inputbutton" onclick = "login()">login</button><br><br>
+    </form>
   </body>
   
   <!-- jquery import -->
