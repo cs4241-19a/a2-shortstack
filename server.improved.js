@@ -158,9 +158,9 @@ const sendFile = function( response, filename ) {
 }
 
 
-app.post("/signup",passport.authenticate('local', { successRedirect: '/info.html' }), function(request,response){
+app.post("/signup",passport.authenticate('local', { failureRedirect: '/asdlfkjas;dlkfjasdf' }), function(request,response){
   console.log("signup")
-  response.redirect("/info.html")
+  response.redirect('/red')
   
   
   /*let json = { name: request.body.delName, year: 200, inches: 0}
@@ -180,6 +180,10 @@ app.post("/signup",passport.authenticate('local', { successRedirect: '/info.html
     */
 })
 
+app.get("/red", function(request,response){
+  console.log("red")
+  response.redirect('./info.html')
+})
 
 
 app.listen(process.env.PORT || port)
