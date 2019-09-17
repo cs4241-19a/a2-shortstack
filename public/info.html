@@ -12,17 +12,17 @@
     <div class="input">
       
     <!-- Input fields and submit button -->
-    <form id = "info" action="/submit" method = "POST">
+    <form id = "info">
       <input type="text" name="yourname" placeholder="your name here"><br>
       <input type ="text" name="classyear" placeholder="Your class year"><br>
       <input type = "text" name="height" placeholder="Your height in inches"><br>
       
     </form>
-    <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
+    <button id = "submit" class = "inputbutton" >submit</button><br><br>
     </div>
     
     <!-- Delete field and delete button -->
-    <form id = "delete" action = "/delete" method = "POST">
+    <form id = "delete" >
       <input type = "text" name = "delName" placeholder = "Name to delete"><br>
       <button id = "deleteBtn" class = "inputbutton" onclick = "onDelete()">delete</button><br><br>
     </form>
@@ -38,9 +38,14 @@
   
   <!-- jquery import -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script>console.log("hello") </script>
+  <script>
+  window.onload = function()
+  {
+    console.log("hello") 
+  }
+  </script>
   
   
-  <!-- js import for server client interaction -->
-  <script src="js/scripts.js"></script>
+  <!-- js import for server client interaction 
+  <script src="js/scripts.js"></script>-->
 </html>

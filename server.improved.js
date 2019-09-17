@@ -14,7 +14,9 @@ const http = require( 'http' ),
       FileSync = require('lowdb/adapters/FileSync'),
       adapter = new FileSync('db.json'),
      // db = low(adapter),
-      database = require('./public/db')
+      database = require('./public/db'),
+      serveStatic = require('serve-static'),
+      path = require('path')
 
       //db.defaults({users:[], data:[]}).write()
       
@@ -23,6 +25,7 @@ const http = require( 'http' ),
       app.use(Express.static('public'))
       app.use(bodyParser.urlencoded())
       app.use(bodyParser.json())
+      app.use(serveStatic(path.join(__dirname, 'public')))
       
       
 
@@ -182,7 +185,7 @@ app.post("/signup",passport.authenticate('local', { failureRedirect: '/asdlfkjas
 
 app.get("/red", function(request,response){
   console.log("red")
-  response.redirect('./info.html')
+  response.redirect('../info.html')
 })
 
 
