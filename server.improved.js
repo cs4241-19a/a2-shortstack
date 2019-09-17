@@ -20,9 +20,10 @@ const http = require( 'http' ),
       
 
 
-      app.use(Express.static('public'))
-      app.use(bodyParser.json())
+      app.use(Express.static('public','db'))
       app.use(bodyParser.urlencoded())
+      app.use(bodyParser.json())
+      
       app.use(passport.initialize());
       app.use(passport.session());
 
@@ -146,7 +147,7 @@ const sendFile = function( response, filename ) {
 }
 
 
-app.post("/signup", passport.authenticate('local', {}),function(request,response){
+app.post("/signup", passport.authenticate('local', {successRedirect: '/asdflkjasldkjfalskdjf'}),function(request,response){
   
   
   
