@@ -13,19 +13,18 @@ const http = require( 'http' ),
       low = require('lowdb'),
       FileSync = require('lowdb/adapters/FileSync'),
       adapter = new FileSync('db.json'),
-      db = low(adapter),
-      database = require('./db')
+     // db = low(adapter),
+      database = require('./public/db')
 
-      db.defaults({users:[], data:[]}).write()
+      //db.defaults({users:[], data:[]}).write()
       
 
 
-      app.use(Express.static('public','db'))
+      app.use(Express.static('public'))
       app.use(bodyParser.urlencoded())
       app.use(bodyParser.json())
       
-      app.use(passport.initialize());
-      app.use(passport.session());
+      
 
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 71 },
@@ -37,9 +36,9 @@ const newData = []
 
 
 //passport
-passport.use('local', new Strategy(
+passport.use( new Strategy(
   function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
+    database.users.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
@@ -48,8 +47,20 @@ passport.use('local', new Strategy(
 }));
 
 
+passport.serializeUser(function(user, cb) {
+  cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+  database.users.findById(id, function (err, user) {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
 
 
+app.use(passport.initialize());
+      app.use(passport.session());
 
 
 
@@ -147,9 +158,9 @@ const sendFile = function( response, filename ) {
 }
 
 
-app.post("/signup", passport.authenticate('local', {successRedirect: '/asdflkjasldkjfalskdjf'}),function(request,response){
-  
-  
+app.post("/signup",passport.authenticate('local', { successRedirect: '/info.html' }), function(request,response){
+  console.log("signup")
+  response.redirect("/info.html")
   
   
   /*let json = { name: request.body.delName, year: 200, inches: 0}
