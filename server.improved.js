@@ -16,7 +16,8 @@ const http = require( 'http' ),
      // db = low(adapter),
       database = require('./public/db'),
       serveStatic = require('serve-static'),
-      path = require('path')
+      path = require('path'),
+      session = require('express-session')
 
       //db.defaults({users:[], data:[]}).write()
       
@@ -26,7 +27,8 @@ const http = require( 'http' ),
       app.use(bodyParser.urlencoded())
       app.use(bodyParser.json())
       app.use(serveStatic(path.join(__dirname, 'public')))
-      
+      app.use( session({ secret:'cats cats cats', resave:false, saveUninitialized:false }) )
+
       
 
 const appdata = [
@@ -90,7 +92,7 @@ app.get("/", function(request, response){
 
 app.post("/submit", function(request, response){
   console.log(request.user.id)
-  console.log(request.user)
+  console.log(request.user.username)
   console.log("name is " + request.body.yourname)
   let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
   let index = -1
