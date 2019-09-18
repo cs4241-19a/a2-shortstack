@@ -6,39 +6,14 @@
       "password": "secret",
       "data": [
         {
-          "name": "Justin",
-          "year": 2020,
-          "inches": 71
+          "name": "Andy",
+          "year": 2022,
+          "inches": 80
         },
         {
-          "name": "Justin",
-          "year": 2020,
-          "inches": 71
-        },
-        {
-          "name": "Justin",
-          "year": 2020,
-          "inches": 71
-        },
-        {
-          "name": "Justin",
-          "year": 2020,
-          "inches": 71
-        },
-        {
-          "name": "Jake",
-          "year": 2020,
-          "inches": 71
-        },
-        {
-          "name": "Jake",
-          "year": 2020,
-          "inches": 71
-        },
-        {
-          "name": "Jake",
-          "year": 2020,
-          "inches": 71
+          "name": "j",
+          "year": "2030",
+          "inches": "123"
         }
       ]
     }

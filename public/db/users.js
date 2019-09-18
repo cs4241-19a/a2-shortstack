@@ -53,16 +53,50 @@ exports.updateData = function(user, info)
   
   let update = db.get('users').find({id: user.id}).get('data').value()
   
-  let json = { name: info.body.yourname, year: info.body.classyear, inches: info.body.height }
+  let json = { name: info.name, year: info.year, inches: info.inches }
   let index = -1
-  let val = info.body.yourname
+  let val = info.name
+  let filteredObj = update.find(function(item,i){
+    if(item.name === val){
+      index = i
+      return i
+    }
+  })
+  console.log(info.name + "is in position " + index  )
+  if(index > -1)
+    {
+      update.splice(index, 1)
+    }
   
  // console.log("update is ", update)
   
-  update.push({name: 'Jake', year: 2020, inches: 71})
+  update.push(json)
   
   
   //console.log("update is now ", update)
   
   db.get('users').find({id: user.id}).assign({data:update}).write()
+}
+
+
+exports.deleteData = function(user, info)
+{
+   let newData = []
+   let appdata = db.get('users').find({id: user.id}).get('data').value()
+   
+   appdata.forEach(function(item){
+    
+    newData.push({name: item.name, year: item.year, inches: item.inches, cm: (item.inches * 2.54)})
+  })
+  
+  while(newData.length !== appdata.length)
+    {
+      newData.shift()
+    }
+  
+  console.log("Post newData is ")
+  console.log(newData)
+  console.log(appdata)
+  
+  db.get('users').find({id: user.id}).assign({data:newData}).write()
 }

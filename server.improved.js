@@ -94,32 +94,15 @@ app.post("/submit", function(request, response){
   console.log(request.user.id)
   console.log(request.user.username)
   console.log(request.user.data)
-  database.users.updateData(request.user, {})
+  database.users.updateData(request.user, { name: request.body.yourname, year: request.body.classyear, inches: request.body.height} )
   console.log("final data is ", request.user.data)
-  /*
-  console.log("name is " + request.body.yourname)
-  let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
-  let index = -1
-  let val = request.body.yourname
-  let filteredObj = appdata.find(function(item,i){
-    if(item.name === val){
-      index = i
-      return i
-    }
-  })
-  console.log(request.body.yourname + "is in position " + index  )
-  if(index > -1)
-    {
-      appdata.splice(index, 1)
-    }
   
-  appdata.push(json)
-  console.log(appdata)
-  */
 })
 
 
 app.post("/delete", function(request,response){
+  
+  
   let json = { name: request.body.delName, year: 200, inches: 0}
   let index = -1
   let val = request.body.delName
