@@ -81,16 +81,17 @@ exports.updateData = function(user, info)
 
 exports.deleteData = function(user, del)
 {
+ 
   let appdata = db.get('users').find({id: user.id}).get('data').value()
   let index = -1
-  let val = del.name
+    console.log("val is ", del)
   let filteredObj = appdata.find(function(item,i){
-    if(item.name === val){
+    if(item === del){
       index = i
       return i
     }
   })
-  console.log(del.name + " is in position " + index  )
+  console.log(del + " is in position " + index  )
   if(index > -1)
     {
       appdata.splice(index, 1)

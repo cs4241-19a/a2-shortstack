@@ -102,8 +102,8 @@ app.post("/submit", function(request, response){
 
 app.post("/delete", function(request,response){
   
-  
-  database.users.deleteData(request.user, )
+  console.log ("delName is ", request.body.delName)
+  database.users.deleteData(request.user, request.body.delName )
   /*
   let json = { name: request.body.delName, year: 200, inches: 0}
   let index = -1
