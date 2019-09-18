@@ -185,7 +185,7 @@ app.post("/signup",passport.authenticate('local', { failureRedirect: '/asdlfkjas
 
 app.get("/red", function(request,response){
   console.log("red")
-  response.redirect('/test.html')
+  response.redirect('/info.html')
 })
 
 
