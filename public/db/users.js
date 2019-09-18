@@ -25,3 +25,16 @@ exports.findByUsername = function(username, cb) {
     return cb(null, null);
   });
 }
+
+exports.findOldUsername = function(username, cb) {
+  process.nextTick(function() {
+    for (var i = 0, len = records.length; i < len; i++) {
+      var record = records[i];
+      if (record.username === username) {
+        return cb(null, null);
+      }
+    }
+    records.push()
+    return cb(null, null);
+  });
+}
