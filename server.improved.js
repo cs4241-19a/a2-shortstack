@@ -32,7 +32,7 @@ const http = require( 'http' ),
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 71 },
   { 'name': 'Bob', 'year': 2021, 'inches': 60 },
-  { 'name': 'Andy', 'year': 2022, 'inches': 840} 
+  { 'name': 'Andy', 'year': 2022, 'inches': 84} 
 ]
 
 const newData = []
@@ -41,12 +41,12 @@ const newData = []
 //passport
 passport.use( new Strategy(
   function(username, password, cb) {
-    database.users.findByUsername(username, function(err, user, pass) {
+    database.users.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       console.log("password is ")
-      console.log(pass)
-      if (pass != password) { return cb(null, false); }
+      console.log(user.password)
+      if (user.password != password) { return cb(null, false); }
       return cb(null, user);
     });
 }));
@@ -88,7 +88,7 @@ app.get("/", function(request, response){
 
 
 app.post("/submit", function(request, response){
-  console.log(request.body)
+  console.log(request.user)
   console.log("name is " + request.body.yourname)
   let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
   let index = -1
@@ -175,7 +175,7 @@ const sendFile = function( response, filename ) {
 }
 */
 
-app.post("/login",passport.authenticate('local', { failureRedirect: '/asdlfkjas;dlkfjasdf' }), function(request,response){
+app.post("/login",passport.authenticate('local', { failureRedirect: '/' }), function(request,response){
   console.log("login")
   response.redirect('/info.html')
   
@@ -197,7 +197,7 @@ app.post("/login",passport.authenticate('local', { failureRedirect: '/asdlfkjas;
     */
 })
 
-app.post("/signup",passport.authenticate('local-signup', { failureRedirect: '/asdlfkjas;dlkfjasdf' }), function(request,response){
+app.post("/signup",passport.authenticate('local-signup', { failureRedirect: '/' }), function(request,response){
   console.log("signup")
   response.redirect('/info.html')
   

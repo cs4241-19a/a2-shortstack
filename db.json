@@ -3,12 +3,7 @@
     {
       "id": 1,
       "username": "jack",
-      "password": "secret"
-    },
-    {
-      "id": 2,
-      "username": "admin",
-      "password": "admin",
+      "password": "secret",
       "data": []
     }
   ],
