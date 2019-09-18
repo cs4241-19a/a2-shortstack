@@ -29,9 +29,12 @@ exports.findById = function(id, cb) {
 
 exports.findByUsername = function(username, cb) {
   process.nextTick(function() {
-    for (var i = 0, len = records.length; i < len; i++) {
-      let names = db.get('users').map('username').value()
+    let size = db.get('users').map('username').value().length
+    for (var i = 0, len = size; i < len; i++) {
+      let names = db.get('users').map('username').value(),
+          taken = names.includes(username)
       var record = names[i];
+      console.log(record)
       if (record === username) {
         return cb(null, record);
       }
