@@ -14,7 +14,7 @@ var records = [
   , { id: 2, username: 'jill', password: 'birthday' }
 ];
 
-console.log(records.length)
+console.log(db.get('users').size().value())
 exports.findById = function(id, cb) {
   process.nextTick(function() {
     let ids = db.get('users').map('id').value()
@@ -52,4 +52,11 @@ exports.findOldUsername = function(username, password, cb) {
     records.push(json)
     return cb(null, null);
   });
+}
+
+exports.newUser = function(username, password)
+{
+  let newUser = {id: db.get('users').size().value() + 1, username: username, password: password, data:[] }
+  db.get('users').push(newUser).write()
+  return newUser
 }
