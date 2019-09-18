@@ -41,10 +41,12 @@ const newData = []
 //passport
 passport.use( new Strategy(
   function(username, password, cb) {
-    database.users.findByUsername(username, function(err, user) {
+    database.users.findByUsername(username, function(err, user, pass) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
+      console.log("password is ")
+      console.log(pass)
+      if (pass != password) { return cb(null, false); }
       return cb(null, user);
     });
 }));

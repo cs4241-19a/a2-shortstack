@@ -31,13 +31,15 @@ exports.findByUsername = function(username, cb) {
   process.nextTick(function() {
     let size = db.get('users').map('username').value().length
     for (var i = 0, len = size; i < len; i++) {
-      let names = db.get('users').map('username').value()
+      let names = db.get('users').map('username').value(),
+          password = db.get('users').map('password').value()
           //taken = names.includes(username)
-      let record = names[i];
+      let record = names[i],
+          pass = password[i]
       console.log(record)
       console.log(username)
       if (record === username) {
-        return cb(null, record);
+        return cb(null, record,pass);
       }
     }
     return cb(null, null);
