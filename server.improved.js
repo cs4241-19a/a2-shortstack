@@ -49,6 +49,16 @@ passport.use( new Strategy(
     });
 }));
 
+passport.use( 'local-signup',new Strategy(
+  function(username, password, cb) {
+    database.users.findByUsername(username, function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
+    });
+}));
+
 
 passport.serializeUser(function(user, cb) {
   cb(null, user.id);
@@ -162,9 +172,31 @@ const sendFile = function( response, filename ) {
 }
 */
 
+app.post("/login",passport.authenticate('local', { failureRedirect: '/asdlfkjas;dlkfjasdf' }), function(request,response){
+  console.log("login")
+  response.redirect('/info.html')
+  
+  
+  /*let json = { name: request.body.delName, year: 200, inches: 0}
+  let index = -1
+  let val = request.body.delName
+  let filteredObj = appdata.find(function(item,i){
+    if(item.name === val){
+      index = i
+      return i
+    }
+  })
+  console.log(request.body.delName + " is in position " + index  )
+  if(index > -1)
+    {
+      appdata.splice(index, 1)
+    }
+    */
+})
+
 app.post("/signup",passport.authenticate('local', { failureRedirect: '/asdlfkjas;dlkfjasdf' }), function(request,response){
   console.log("signup")
-  response.redirect('/red')
+  response.redirect('/info.html')
   
   
   /*let json = { name: request.body.delName, year: 200, inches: 0}

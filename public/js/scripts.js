@@ -62,6 +62,29 @@ function submit(  ) {
 
 
 
+function login(){
+    
+  
+  console.log("Testing for name " + document.getElementById('login').username.value )
+  document.getElementById('login').submit()
+    
+  
+  
+  /*
+  fetch( '/signup', {
+  method:'POST',
+      body:JSON.stringify({ username:document.getElementById("jusername").value, password:document.getElementById("jpassword").value }),
+      headers: { 'Content-Type': 'application/json' }
+ 
+})
+.then( res => res.json() )
+    .then( console.log )
+        
+  */
+    return false
+  }
+
+
 function signUp(){
     
   
