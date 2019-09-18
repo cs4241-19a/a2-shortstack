@@ -14,9 +14,7 @@
           "name": "Justin",
           "year": 2020,
           "inches": 71
-        }
-      ],
-      "update": [
+        },
         {
           "name": "Justin",
           "year": 2020,
@@ -24,6 +22,21 @@
         },
         {
           "name": "Justin",
+          "year": 2020,
+          "inches": 71
+        },
+        {
+          "name": "Jake",
+          "year": 2020,
+          "inches": 71
+        },
+        {
+          "name": "Jake",
+          "year": 2020,
+          "inches": 71
+        },
+        {
+          "name": "Jake",
           "year": 2020,
           "inches": 71
         }

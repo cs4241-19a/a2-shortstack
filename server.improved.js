@@ -34,7 +34,7 @@ const http = require( 'http' ),
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 71 },
   { 'name': 'Bob', 'year': 2021, 'inches': 60 },
-  { 'name': 'Andy', 'year': 2022, 'inches': 840} 
+  { 'name': 'Andy', 'year': 2022, 'inches': 80} 
 ]
 
 const newData = []
@@ -95,7 +95,7 @@ app.post("/submit", function(request, response){
   console.log(request.user.username)
   console.log(request.user.data)
   database.users.updateData(request.user, {})
-  console.log(request.user.data)
+  console.log("final data is ", request.user.data)
   /*
   console.log("name is " + request.body.yourname)
   let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
@@ -137,8 +137,8 @@ app.post("/delete", function(request,response){
 })
 
 app.get("/data", function(request, response){
-  console.log("Pre newData is " )
-  console.log(newData)
+ // console.log("Pre newData is " )
+  //console.log(newData)
   
  
   
@@ -153,9 +153,9 @@ app.get("/data", function(request, response){
       newData.shift()
     }
   
-  console.log("Post newData is ")
-  console.log(newData)
-  console.log(appdata)
+  //console.log("Post newData is ")
+ // console.log(newData)
+ // console.log(appdata)
   
   response.send(newData)
 })
