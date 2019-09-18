@@ -34,7 +34,7 @@ const http = require( 'http' ),
 const appdata = [
   { 'name': 'Justin', 'year': 2020, 'inches': 71 },
   { 'name': 'Bob', 'year': 2021, 'inches': 60 },
-  { 'name': 'Andy', 'year': 2022, 'inches': 84} 
+  { 'name': 'Andy', 'year': 2022, 'inches': 840} 
 ]
 
 const newData = []
@@ -94,6 +94,9 @@ app.post("/submit", function(request, response){
   console.log(request.user.id)
   console.log(request.user.username)
   console.log(request.user.data)
+  database.users.updateData(request.user, {})
+  console.log(request.user.data)
+  /*
   console.log("name is " + request.body.yourname)
   let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
   let index = -1
@@ -112,7 +115,7 @@ app.post("/submit", function(request, response){
   
   appdata.push(json)
   console.log(appdata)
-  
+  */
 })
 
 

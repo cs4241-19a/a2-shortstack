@@ -4,7 +4,30 @@
       "id": 1,
       "username": "jack",
       "password": "secret",
-      "data": []
+      "data": [
+        {
+          "name": "Justin",
+          "year": 2020,
+          "inches": 71
+        },
+        {
+          "name": "Justin",
+          "year": 2020,
+          "inches": 71
+        }
+      ],
+      "update": [
+        {
+          "name": "Justin",
+          "year": 2020,
+          "inches": 71
+        },
+        {
+          "name": "Justin",
+          "year": 2020,
+          "inches": 71
+        }
+      ]
     }
   ],
   "data": []

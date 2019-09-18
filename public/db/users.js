@@ -49,5 +49,12 @@ exports.newUser = function(username, password)
 
 exports.updateData = function(user, info)
 {
-  db.get('users').find({id})
+  console.log("user id is ", user.id)
+  
+  let update = db.get('users').find({id: user.id}).get('data').value()
+  
+  console.log(update)
+  update.push({name: 'Justin', year: 2020, inches: 71})
+  
+  db.get('users').find({id: user.id}).assign({data:update}).write()
 }
