@@ -3,6 +3,7 @@ var records = [
   , { id: 2, username: 'jill', password: 'birthday' }
 ];
 
+console.log(records.length)
 exports.findById = function(id, cb) {
   process.nextTick(function() {
     var idx = id - 1;
@@ -26,7 +27,7 @@ exports.findByUsername = function(username, cb) {
   });
 }
 
-exports.findOldUsername = function(username, cb) {
+exports.findOldUsername = function(username, password, cb) {
   process.nextTick(function() {
     for (var i = 0, len = records.length; i < len; i++) {
       var record = records[i];
@@ -34,7 +35,8 @@ exports.findOldUsername = function(username, cb) {
         return cb(null, null);
       }
     }
-    records.push()
+    let json = {id: records.length + 1, username: username, passowrd: password}
+    records.push(json)
     return cb(null, null);
   });
 }
