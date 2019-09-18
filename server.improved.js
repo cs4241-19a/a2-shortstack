@@ -93,6 +93,7 @@ app.get("/", function(request, response){
 app.post("/submit", function(request, response){
   console.log(request.user.id)
   console.log(request.user.username)
+  console.log(request.user.data)
   console.log("name is " + request.body.yourname)
   let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
   let index = -1

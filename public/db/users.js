@@ -47,7 +47,7 @@ exports.newUser = function(username, password)
   return newUser
 }
 
-exports.updateData = function(username, info)
+exports.updateData = function(user, info)
 {
-  
+  db.get('users').find({id})
 }
