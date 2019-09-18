@@ -1,3 +1,14 @@
+let   low = require('lowdb'),
+      FileSync = require('lowdb/adapters/FileSync'),
+      adapter = new FileSync('db.json'),
+      db = low(adapter)
+
+db.defaults({users:[]}).write()
+console.log(db.get('users').size().value())
+if(db.get('users').size().value() < 1)
+  {
+    
+  }
 var records = [
     { id: 1, username: 'jack', password: 'secret'  }
   , { id: 2, username: 'jill', password: 'birthday' }
