@@ -65,7 +65,7 @@ function submit(  ) {
 function signUp(){
     
   
-  console.log("Testing for name " + document.getElementById('yourname') )
+  console.log("Testing for name " + document.getElementById('signup').username.value )
   document.getElementById('signup').submit()
     
   

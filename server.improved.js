@@ -68,7 +68,8 @@ app.use(passport.initialize());
 
 
 app.get("/", function(request, response){
-  sendFile(response, 'public/index.html')
+  //sendFile(response, 'public/index.html')
+  response.send('public/index.html')
 });
 
 
@@ -137,7 +138,7 @@ app.get("/data", function(request, response){
   
   response.send(newData)
 })
-
+/*
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
 
@@ -159,7 +160,7 @@ const sendFile = function( response, filename ) {
      }
    })
 }
-
+*/
 
 app.post("/signup",passport.authenticate('local', { failureRedirect: '/asdlfkjas;dlkfjasdf' }), function(request,response){
   console.log("signup")
