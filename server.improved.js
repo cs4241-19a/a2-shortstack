@@ -69,6 +69,7 @@ passport.serializeUser(function(user, cb) {
 
 passport.deserializeUser(function(id, cb) {
   database.users.findById(id, function (err, user) {
+    console.log("deserializing: ", id)
     if (err) { return cb(err); }
     cb(null, user);
   });
@@ -88,7 +89,7 @@ app.get("/", function(request, response){
 
 
 app.post("/submit", function(request, response){
-  console.log(request.user.username)
+  console.log(request.user.id)
   console.log(request.user)
   console.log("name is " + request.body.yourname)
   let json = { name: request.body.yourname, year: request.body.classyear, inches: request.body.height }
