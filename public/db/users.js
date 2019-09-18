@@ -79,24 +79,22 @@ exports.updateData = function(user, info)
 }
 
 
-exports.deleteData = function(user, info)
+exports.deleteData = function(user, del)
 {
-   let newData = []
-   let appdata = db.get('users').find({id: user.id}).get('data').value()
-   
-   appdata.forEach(function(item){
-    
-    newData.push({name: item.name, year: item.year, inches: item.inches, cm: (item.inches * 2.54)})
+  let appdata = db.get('users').find({id: user.id}).get('data').value()
+  let index = -1
+  let val = del.name
+  let filteredObj = appdata.find(function(item,i){
+    if(item.name === val){
+      index = i
+      return i
+    }
   })
-  
-  while(newData.length !== appdata.length)
+  console.log(del.name + " is in position " + index  )
+  if(index > -1)
     {
-      newData.shift()
+      appdata.splice(index, 1)
     }
   
-  console.log("Post newData is ")
-  console.log(newData)
-  console.log(appdata)
-  
-  db.get('users').find({id: user.id}).assign({data:newData}).write()
+  db.get('users').find({id: user.id}).assign({data:appdata}).write()
 }

@@ -50,7 +50,7 @@ function submit(  ) {
           
           response.forEach(function(item){
           console.log("item is " +item)
-          $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches  + '</td><td>' + item.cm + '</td></tr>')
+          $('#dataTable').append('<tr><td>' + item.name + '</td><td>' + item.year + '</td><td>' + item.inches   + '</td></tr>')
           console.log("wrote " + item.name)
         })
           
