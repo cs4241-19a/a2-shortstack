@@ -85,8 +85,9 @@ exports.deleteData = function(user, del)
   let appdata = db.get('users').find({id: user.id}).get('data').value()
   let index = -1
     console.log("val is ", del)
+  console.log("appdata is ",appdata)
   let filteredObj = appdata.find(function(item,i){
-    if(item === del){
+    if(item.name === del){
       index = i
       return i
     }
