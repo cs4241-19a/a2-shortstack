@@ -62,8 +62,7 @@ app.get('/', function(request, response) {
   // response.sendFile(thepath);
   // response.sendFile( __dirname + 'public/index.html' )
   
-response.sendFile( response, 'public/database.html' )
- // response.sendFile(__dirname + '/public/database.html');
+response.sendFile( response, 'public/index.html' )
 });
 
 app.get('/style.css', function(request, response) {
@@ -134,16 +133,5 @@ app.post('/delete/:id', function (req, res) {
         res.sendStatus(200)
     }
 })
-
-appdata =  [
-        {
-            "courseName": "Operating System",
-            "courseId": "CS3013",
-            "term": "A"
-        }
-    ]
-
-
-  
 
 app.listen( process.env.PORT || 3000 )
