@@ -1,19 +1,30 @@
-## Robotics Competition Assistant
-The goal of this webpage is to provide a match result recorder as well as a ranking system to a robotics competition or any other similar competitions.
+## Course Management System
+https://a3-yangjack1998.glitch.me/
 
-The user need to give the system a match number, teams in that match and their score. The system will record the match and determine the winner automatically. Then, the system will update the rank by the number of matches each team won. User can view the both Match History and Rank by click on the tags. They can also edit or delete matches in Match History.
+Available username & password: admin admin / yang yang / sylar sylar
 
-The main challenge for this system is that it is hard to rank the teams since the dynamic features(user can add/edit/delele matches at any time). To solve this problem, I decided to use two lists which one is used for match recording and one is for rank recording. Each time the Match History renewed, both lists will be refreshed and re-iterated in order to get the lasted ranking. 
+-This system is a course management system. Users can log in to see their own courses and then add/edit/delete courses.
 
-It turns out the ranking system works fine with this idea and I also added the code to sort the list so that rank from high to low. There are several things can be down to make this web page more useful. First, adding two more teams column to the table will make the tool more realistic since most of robotics competition is 2v2(VEX, FRC, FTC). Second, we may want to make this webpage shareable. This is because some of the competitions' scale is so large that we need more than one person to record the result. If we can make this webpage shareable(database), the efficiency will increase a lot.  
-https://a2-yicheng-yang.glitch.me/
-http://a2-charlieroberts.glitch.med 
+-The goal of this application is to build a user associated database application. Also to practice using express and its middleware packages.
+
+-The unfamiliarity to the express middleware package is the largest challenge. It required me to search a lot to understand 
+the meaning of the given code.
+
+-Used passport and lowdb since these they have been taught in class and easy to implement.
+
+-Used wingcss since it is simple, lightweight and easy to use.
+
+-Five Express middleware packages: passport, body-parser, morgan, serve-favicon, session
 
 ## Technical Achievements
-- **Limited input type and submission**:  The code specifies the type of each input so that user cannot enter anything other than number in to the scoring field. Users are also not allowed to submit any uncompleted match result.
-- **Auto Sorting**: Used a very little amount of code in 'server.improved.js' to achieve the effect of auto sorting.
-- **Correct Number Comparing**: Even that both of the variables are numbers, direct comparing will lead to a wrong result. The code will only compare the first digit of each number. Thus, phareInt is added to the front of the variables to ensure the correct comparison.
+- **Alert Window**:  When user enter a wrong username/password and hit login, there will be an alert window that tell him/her that the information is invalid.
+- **Disabled Button**: Add button is disabled until all fields are completed. This prevents invalid inputs.
+- **Alternative Image Replacement**: If for some reasons, the image on webpage cannot be load, there will appear alternative 
+text.
 
 ### Design/Evaluation Achievements
-- **Simple to understand**: Since this is a robotics competition assistant, the interface is designed to be very simple. Shown in 'style.css', the code makes everything properly stand around middle. The text is large and background color of teams is specified so that users can easily under stand the concept.
+- **Inline adding/updating**: There is no extra adding/updating field. The input fields are put right under the existing 
+information. This not only saves space for the webpage, but also make the webpage much easier to understand and use.
 - **Hover Reaction**: The proper hover reaction can tell user which button/tag is available. Whenever users hover over a input/button/tag, if the element is available, there will be reaction. If the button is not available(like submit button won't be available until every field is filled), uesr can easily tell because of the style and lack of reaction.
+- **Icons**: There are icons both on web title and web page. This can help people easier to understand the meaning of each
+fields (especially for people who cannot read the language).
