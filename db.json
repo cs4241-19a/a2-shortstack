@@ -4,7 +4,13 @@
       "id": 1,
       "username": "jack",
       "password": "secret",
-      "data": []
+      "data": [
+        {
+          "name": "j",
+          "year": "0",
+          "inches": "j"
+        }
+      ]
     },
     {
       "id": 2,

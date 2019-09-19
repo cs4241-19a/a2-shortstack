@@ -10,16 +10,12 @@ const http = require( 'http' ),
       bodyParser = require('body-parser'),
       passport = require('passport'),
       Strategy = require('passport-local').Strategy,
-      low = require('lowdb'),
-      FileSync = require('lowdb/adapters/FileSync'),
-      adapter = new FileSync('db.json'),
-     // db = low(adapter),
       database = require('./public/db'),
       serveStatic = require('serve-static'),
       path = require('path'),
       session = require('express-session')
 
-      //db.defaults({users:[], data:[]}).write()
+      
       
 
 
@@ -29,15 +25,8 @@ const http = require( 'http' ),
       app.use(serveStatic(path.join(__dirname, 'public')))
       app.use( session({ secret:'cats cats cats', resave:false, saveUninitialized:false }) )
 
-      
 
-const appdata = [
-  { 'name': 'Justin', 'year': 2020, 'inches': 71 },
-  { 'name': 'Bob', 'year': 2021, 'inches': 60 },
-  { 'name': 'Andy', 'year': 2022, 'inches': 80} 
-]
 
-const newData = []
 
 
 //passport
@@ -84,7 +73,7 @@ passport.deserializeUser(function(id, cb) {
 
 
 app.get("/", function(request, response){
-  //sendFile(response, 'public/index.html')
+
   response.send('public/index.html')
 });
 
@@ -104,21 +93,7 @@ app.post("/delete", function(request,response){
   
   console.log ("delName is ", request.body.delName)
   database.users.deleteData(request.user, request.body.delName )
-  /*
-  let json = { name: request.body.delName, year: 200, inches: 0}
-  let index = -1
-  let val = request.body.delName
-  let filteredObj = appdata.find(function(item,i){
-    if(item.name === val){
-      index = i
-      return i
-    }
-  })
-  console.log(request.body.delName + " is in position " + index  )
-  if(index > -1)
-    {
-      appdata.splice(index, 1)
-    }*/
+
 }) 
 
 app.get("/data", function(request, response){
