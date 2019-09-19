@@ -1,224 +1,150 @@
+const express    = require('express'),
+      session = require('express-session'),
+      app        = express(),
+      bodyparser = require( 'body-parser' ),
+      favicon = require('serve-favicon'),
+      morgan = require('morgan'),
+      passport = require('passport'),
+      low = require('lowdb'),
 
-const http = require( 'http' ),
-      fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
-      mime = require( 'mime' ),
-      dir  = 'public/',
-      port = 3000
+      FileSync = require('lowdb/adapters/FileSync'),
+      Local = require('passport-local').Strategy;
+const info = low(new FileSync('userData.json'));
+const db = low(new FileSync('db.json'));
+app.use(express.static('public'));
+app.use(morgan('tiny'));
+app.use(bodyparser.json());
+app.use(favicon(__dirname + '/public/icon.ico'));
 
-const appdata = [
-  { 'matchNumber':1,'red1': 8192, 'blue1': 7146, 'redScore': 25, 'blueScore':25,'result':0},
-  { 'matchNumber':2,'red1': 6439, 'blue1': 359, 'redScore': 23, 'blueScore':32,'result':2 } 
-]
 
-const appdata2 = [
-  // {'team':8192,'WLP':"0-0-0",'WP':1},
-  // {'team':7146,'WLP':"0-0-0",'WP':1},
-  // {'team':6439,'WLP':"0-0-0",'WP':0},
-  // {'team':359,'WLP':"0-0-0",'WP':2}
-]
+const myLocalStrategy = function (username, password, done) {
+   // db = db.value()
+    const user = db.value().find(__user => __user.username === username)
+    if (user === undefined) {
+        console.log('user not found')
+        return done(null, false, { message: 'user not found' })
+    } else if (user.password === password) {
+        console.log('correct')
+        return done(null, { username, password })
+    } else {
+        console.log('incorrect password')
+        return done(null, false, { message: 'incorrect password' })
+    }
+}
 
-const server = http.createServer( function( request,response ) {
-  addTeam(8192);
-  addTeam(7146);
-  addTeam(6439);
-  addTeam(359);
-  rank();
-  if( request.method === 'GET' ) {
-    handleGet( request, response )    
-  }else if( request.method === 'POST' ){
-    handlePost( request, response ) 
-  }
+passport.use(new Local(myLocalStrategy))
+passport.initialize()
+
+passport.serializeUser((user, done) => done(null, user.username))
+
+passport.deserializeUser((username, done) => {
+    const user = db.value().find(u => u.username === username)
+    console.log('deserializing:', user)
+
+    if (user !== undefined) {
+        done(null, user)
+    } else {
+        done(null, false, { message: 'user not found; session not restored' })
+    }
 })
 
-const handleGet = function( request, response ) {
-  const filename = dir + request.url.slice( 1 ) 
+app.use(session({ secret: 'cats cats cats', resave: false, saveUninitialized: false }))
+app.use(passport.initialize())
+app.use(passport.session())
 
-  if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
-  } else if (request.url === '/public/css/style.css'){
-    sendFile( response, 'public/css/style.css' )
-  } else if ( request.url === '/m' ){
-    sendData( response, appdata )
-   } else if ( request.url === '/appdata2' ){
-    sendData( response, appdata2 )
-   } else {
-    sendFile( response, filename )
-   }
-}
+app.post('/test', function (req, res) {
+    console.log('authenticate with cookie?', req.user)
+    res.json({ status: 'success' })
+})
 
-const handlePost = function( request, response ) {
-  let dataString = ''
-
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
-
-  request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-    
-  switch ( request.url ) {
-      case '/submit':
-      const MR = JSON.parse(dataString); //match result
-      let r = 0;
-      if(MR.redScore > MR.blueScore){
-        r = 1;
-      } else if(MR.redScore < MR.blueScore){
-        r = 2;
-      }
-      const newMR ={
-        'matchNumber':MR.matchN,
-        'red1': MR.red1, 
-        'blue1': MR.blue1, 
-        'redScore': MR.redScore, 
-        'blueScore':MR.blueScore,
-        'result':r
-      }
-      appdata.push(newMR);
-      addTeam(MR.red1);
-      addTeam(MR.blue1);
-      rank();
-      
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-      response.end();
-
-      break;
-      
-     case '/delete':
-       const MRdelete = JSON.parse(dataString); //match result
-       appdata.splice(MRdelete.matchNumber, 1);
-      response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-      response.end();
-      rank();
-      break;
-      
-      
-      case '/update':
-        const MRupdate = JSON.parse(dataString);
-        let r2 = 0;
-        if(MRupdate.redScore > MRupdate.blueScore){
-          r2 = 1;
-        } else if(MRupdate.redScore < MRupdate.blueScore){
-          r2 = 2;
-        }
-        const updatedMR = {
-        'matchNumber':MRupdate.matchNumber,
-        'red1': MRupdate.red1, 
-        'blue1': MRupdate.blue1, 
-        'redScore': MRupdate.redScore, 
-        'blueScore':MRupdate.blueScore,
-         'result': r2
-        };
-        
-        appdata.splice(MRupdate.index, 1, updatedMR);
-        rank();
-        response.writeHead( 200, "OK", {'Content-Type': 'text/plain'});
-        response.end();
-
-        break;
-      
+app.get('/', function(request, response) {
+  // let thepath = path.normalize(__dirname + 'public/index.html');
+  // response.sendFile(thepath);
+  // response.sendFile( __dirname + 'public/index.html' )
   
-  }
-  })
-}
+response.sendFile( response, 'public/database.html' )
+ // response.sendFile(__dirname + '/public/database.html');
+});
 
-const sendData = function( response, MHs ) {
-  const type = mime.getType( MHs );
-  response.writeHeader(200, { 'Content-Type': type });
-  response.write(JSON.stringify({ data: MHs }));
-  response.end();
-}
+app.get('/style.css', function(request, response) {
+    response.sendFile( response, 'public/css/style.css')
+} )
 
-const rank = function(){
-  for(let j=0; j<appdata2.length;j++){
-    appdata2[j].W = 0; 
-    appdata2[j].L = 0; 
-    appdata2[j].P = 0; 
-    appdata2[j].WP = 0; 
-  }
+app.get('/courses', function (req, res) {
+    if (req.user === undefined) {
+        res.redirect(401, '/login.html')
+    }
+    else {
+        let user = req.user.username
+        res.set('Content-Type', 'application/json');
+        console.log(info.get('people').value());
+        console.log(req.user);
+        res.send(info.get('people').find({ 'user': user }).get('courses').value());
+    }
+})
+
+app.post(
+    '/login',
+    passport.authenticate('local', {
+        successRedirect: '/success.html',
+        failureRedirect: '/'
+    }),
+    function (req, res) {
+        console.log("Login successful")
+        console.log(req.user)
+        res.json({ status: true })
+        //res.redirect('/success.html');
+        //successRedirect: '/success.html',
+    }
+)
+
+app.post('/add', function (req, res) {
+    if (req.user === undefined) {
+        res.redirect(401, '/login.html')
+    }
+    else {
+        let user = req.user.username
+        let data = req.body
+        console.log(data)
+        info.get('people').find({ 'user': user }).get('courses').push(data).write()
+        res.sendStatus(200);
+    }
+})
+
+
+app.post('/update/:id', function (req, res) {
+    if (req.user === undefined) {
+        res.redirect(401, '/login.html')
+    }
+    else {
+        let user = req.user.username
+        let data = req.body
+        console.log(data)
+        info.get('people').find({ 'user': user }).get('courses').nth(req.params.id).assign(data).write()
+        res.sendStatus(200)
+    }
+})
+
+app.post('/delete/:id', function (req, res) {
+    if (req.user === undefined) {
+        res.redirect(401, '/login.html')
+    }
+    else {
+        let user = req.user.username
+        info.get('people').find({ 'user': user }).get('courses').pullAt(req.params.id).write()
+        res.sendStatus(200)
+    }
+})
+
+appdata =  [
+        {
+            "courseName": "Operating System",
+            "courseId": "CS3013",
+            "term": "A"
+        }
+    ]
+
+
   
-  for(let i=0; i<appdata.length;i++){
-    if(appdata[i].result===1){
-      for(let j=0; j<appdata2.length;j++){
-        if(appdata2[j].team == appdata[i].red1){
-          appdata2[j].W++;
-          appdata2[j].WP+=2;
-        }
-        if(appdata2[j].team == appdata[i].blue1){
-        appdata2[j].L++;
-        }
-      }
-    } else if (appdata[i].result===2){
-      for(let j=0; j<appdata2.length;j++){
-        if(appdata2[j].team == appdata[i].blue1){
-          appdata2[j].WP+=2;
-          appdata2[j].W++; 
-        }
-        if(appdata2[j].team == appdata[i].red1){
-        appdata2[j].L++;
-        }
-      }
-    } else{
-      for(let j=0; j<appdata2.length;j++){
-        if(appdata2[j].team == appdata[i].red1){
-          appdata2[j].WP++;
-          appdata2[j].P++;
-        }
-        if(appdata2[j].team == appdata[i].blue1){
-          appdata2[j].WP++;
-          appdata2[j].P++;
-        }
-      }
-    
-    }
-     
-  }
-  appdata2.sort(function(b,a){
-  return a.WP-b.WP});
-}
 
-
-
-const addTeam = function(t){
-  let exist = 0;
-  for(let i=0; i<appdata2.length;i++){
-    if(appdata2[i].team == t){
-      exist = 1;
-    }
-  }
-  if(exist === 0){
-    const newteam ={
-      'team':t,
-       'W':0,
-      'L':0,
-      'P':0,
-      'WP':0
-    }
-    appdata2.push(newteam);
-  }
-}
-
-const sendFile = function( response, filename ) {
-   const type = mime.getType( filename ) 
-
-   fs.readFile( filename, function( err, content ) {
-
-     // if the error = null, then we've loaded the file successfully
-     if( err === null ) {
-
-       // status code: https://httpstatuses.com
-       response.writeHeader( 200, { 'Content-Type': type })
-       response.end( content )
-
-     }else{
-
-       // file not found, error code 404
-       response.writeHeader( 404 )
-       response.end( '404 Error: File Not Found' )
-
-     }
-   })
-}
-
-server.listen( process.env.PORT || port )
+app.listen( process.env.PORT || 3000 )

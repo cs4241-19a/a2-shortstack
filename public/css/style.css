@@ -40,7 +40,7 @@ text-align:center;
 
 input{
   font-size:32px;
-  width:90px;
+  width:140px;
   text-align:center;
   background-color:rgba(0, 0, 255,0);
    border-style:none none double none; 
@@ -113,3 +113,12 @@ a:hover {
   color: white;
   cursor: pointer;
 }
+
+#add3{
+  font-size: 32px;
+}
+
+#updatedCT{
+  font-size: 32px;
+}
+

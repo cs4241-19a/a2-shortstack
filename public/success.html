@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success!</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<h1>Course Management System</h1>
+<table style="border:3px;" id="matchTable"></table>
+</body>
+
+
+<script>
+    const getData = function () {
+
+        fetch('courses', {
+            method: 'GET'
+        }).then(function (response) {
+            console.log(response)
+            return response.json()
+        }).then(function (data) {
+            console.log(data)
+            let htmlDiv = document.getElementById('matchTable');
+            htmlDiv.innerHTML = '<tr>\n' +
+                '<th  class="MH">Course Name</th>\n' +
+                '<th class="MH">Course ID</th>\n' +
+                '<th class="MH">Term</th>\n' +
+                '</tr>';
+            for (let i = 0; i < data.length; i++) {
+                const rank = data[i];
+                let newRow = '<tr>\n';
+                newRow += (`<td> ${rank.courseName} </td>\n`);
+                newRow += (`<td> ${rank.courseId} </td>\n`);
+                newRow += (`<td> ${rank.term} </td>\n`);
+                newRow += (`<td> <button id="edit-button-${i}" class="tableButton" onclick="editMatch(${i})" >Edit</button> </td>\n`);
+                newRow += (`<td> <button id="delete-button-${i}" class="tableButton"  onclick="deleteMatch(${i})">Delete</button> </td>\n`);
+                newRow += '</tr>';
+                htmlDiv.innerHTML += newRow;
+            }
+            htmlDiv.innerHTML += '<tr>\n' +
+                '<td  class="MH"> <input id="add1" onkeyup="checkInput()"></td>\n' +
+                '<td class="MH"> <input id="add2" onkeyup="checkInput()"></td>\n' +
+                '<td class="MH"> <select id="add3">\n' +
+                '  <option value ="A">A</option>\n' +
+                '  <option value ="B">B</option>\n' +
+                '  <option value="C">C</option>\n' +
+                '  <option value="D">D</option>\n' +
+                '</select></td>\n' +
+                '<td> <button id="addButton" class="tableButton" onclick="addCourse()" disabled="disabled">Add</button> </td>\n' +
+                '</tr>';
+
+            return data
+        }).catch(function (err){
+            console.log(err)
+        })
+    }
+
+    const checkInput = function(){
+        if(document.getElementById( 'add1' ).value
+            && document.getElementById( 'add2' ).value
+            && document.getElementById( 'add3' ).value ){
+            document.getElementById( 'addButton' ).disabled=false;
+        } else{
+            document.getElementById( 'addButton' ).disabled=true;
+        }
+    }
+
+    const addCourse = function () {
+        // prevent default form action from being carried out
+
+        console.log("add")
+        const addCourse = {
+            courseName: document.getElementById( 'add1' ).value,
+            courseId:  document.getElementById( 'add2' ).value,
+            term: document.getElementById( 'add3' ).value
+        }
+        body = JSON.stringify(addCourse)
+
+        fetch('add', {
+            headers: {
+                'content-type': 'application/json'
+            },
+            method: 'POST',
+            body: body
+        }).then(function (response) {
+            console.log(response)
+        })
+
+        getData();
+    }
+
+
+    const editMatch = function (index) {
+        fetch('courses', {
+            method: 'GET'
+        }).then(function (response) {
+            console.log(response)
+            return response.json()
+        }).then(function (data) {
+            console.log(data)
+            let htmlDiv = document.getElementById('matchTable');
+            htmlDiv.innerHTML = '<tr>\n' +
+                '<th  class="MH">Course Name</th>\n' +
+                '<th class="MH">Course ID</th>\n' +
+                '<th class="MH">Term</th>\n' +
+                '</tr>';
+            for (let i = 0; i < data.length; i++) {
+                const rank = data[i];
+                let newRow = '<tr>\n';
+                if (i === index) {
+                    newRow += (`<td> <input id='updatedCN' value="${rank.courseName}"> </td>\n`);
+                    newRow += (`<td><input id='updatedCI' value="${rank.courseId}"> </td>\n`);
+                    newRow += (`<td>
+                    <select id='updatedCT' value="${rank.term}">\\n' +
+                '  <option value ="A">A</option>\\n' +
+                '  <option value ="B">B</option>\\n' +
+                '  <option value="C">C</option>\\n' +
+                '  <option value="D">D</option>\\n' +
+                '</select>
+ </td>\n`);
+                    newRow += (`<td><button id="update-button-${i}" class="tableButton" onclick="updateMatch(${i})">Update</button> </td>\n`);
+                } else {
+                    newRow += (`<td> ${rank.courseName} </td>\n`);
+                    newRow += (`<td> ${rank.courseId} </td>\n`);
+                    newRow += (`<td> ${rank.term} </td>\n`);
+                }
+                newRow += '</tr>';
+                htmlDiv.innerHTML += newRow;
+            }
+
+        })
+
+    }
+
+
+    const updateMatch = function (index) {
+        let path = 'update/' + index;
+        const updateCourse = {
+            courseName: document.getElementById( 'updatedCN' ).value,
+            courseId:  document.getElementById( 'updatedCI' ).value,
+            term: document.getElementById( 'updatedCT' ).value
+        }
+        console.log(document.getElementById( 'updatedCI' ).value)
+        body = JSON.stringify(updateCourse)
+        fetch(path, {
+            headers: {
+                'content-type': 'application/json'
+            },
+            method: 'POST',
+            body: body
+        }).then(function (response) {
+            console.log(response)
+        })
+        getData();
+    }
+
+    const deleteMatch = function (index) {
+        let path  = 'delete/' + index;
+        fetch(path, {
+            method: 'POST'
+        }).then(function (response) {
+            console.log(response)
+        })
+
+        getData();
+    };
+
+    window.onload = function() {
+        getData();
+    }
+</script>
+</html>
