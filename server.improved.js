@@ -42,7 +42,7 @@ passport.use( new Strategy(
     });
 }));
 
-passport.use( 'local-signup',new Strategy(
+passport.use( 'signup',new Strategy(
   function(username, password, cb) {
     database.users.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
@@ -113,7 +113,7 @@ app.post("/login",passport.authenticate('local', { failureRedirect: '/' }), func
   
 })
 
-app.post("/signup",passport.authenticate('local-signup', { failureRedirect: '/' }), function(request,response){
+app.post("/signup",passport.authenticate('signup', { failureRedirect: '/' }), function(request,response){
   console.log("signup")
   response.redirect('/info.html')
   

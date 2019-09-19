@@ -4,7 +4,7 @@ let   low = require('lowdb'),
       db = low(adapter)
 
 db.defaults({users:[]}).write()
-//db.get('users').remove().write()
+db.get('users').remove().write()
 console.log(db.get('users').value())
 if(db.get('users').size().value() < 1)
   {
@@ -14,27 +14,27 @@ if(db.get('users').size().value() < 1)
 console.log(db.get('users').size().value())
 
 
-exports.findById = function(id, cb) {
+exports.findById = function(id, done) {
   process.nextTick(function() {
     var idx = id - 1;
     if (db.get('users').value()[idx]) {
-      cb(null, db.get('users').value()[idx]);
+      done(null, db.get('users').value()[idx]);
     } else {
-      cb(new Error('User ' + id + ' does not exist'));
+      done(new Error('User ' + id + ' does not exist'));
     }
   });
 }
 
 
-exports.findByUsername = function(username, cb) {
+exports.findByUsername = function(username, done) {
   process.nextTick(function() {
     for (var i = 0, len = db.get('users').map('username').value().length; i < len; i++) {
       var record = db.get('users').value()[i];
       if (record.username === username) {
-        return cb(null, record);
+        return done(null, record);
       }
     }
-    return cb(null, null);
+    return done(null, null);
   });
 }
 
@@ -49,7 +49,7 @@ exports.newUser = function(username, password)
 
 exports.updateData = function(user, info)
 {
- // console.log("user id is ", user.id)
+
   
   let update = db.get('users').find({id: user.id}).get('data').value()
   
@@ -68,12 +68,11 @@ exports.updateData = function(user, info)
       update.splice(index, 1)
     }
   
- // console.log("update is ", update)
+
   
   update.push(json)
   
-  
-  //console.log("update is now ", update)
+
   
   db.get('users').find({id: user.id}).assign({data:update}).write()
 }

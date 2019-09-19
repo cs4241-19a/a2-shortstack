@@ -28,9 +28,9 @@
       
     <!-- Input fields and submit button -->
     <form id = "info" action="/submit" method = "POST">
-      <input type="text" name="yourname" placeholder="your name here"><br>
-      <input type ="number" id = "num" name="classyear" min = "1990" max = "3000" placeholder="Your class year"><br>
-      <input type = "text" name="height" placeholder="Your height in inches"><br>
+      <input class = "form-control" type="text" name="yourname" placeholder="your name here"><br>
+      <input class = "form-control" type ="number" id = "num" name="classyear" min = "1990" max = "3000"  placeholder="class year"><br>
+      <input class = "form-control" type = "text" name="height" placeholder="Your height in inches"><br>
       
     </form>
     <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
@@ -39,7 +39,7 @@
     
     <!-- Delete field and delete button -->
     <form id = "delete" action = "/delete" method = "POST">
-      <input type = "text" name = "delName" placeholder = "Name to delete"><br>
+      <input class = "form-control" type = "text" name = "delName" placeholder = "Name to delete"><br>
       <button id = "deleteBtn" class = "inputbutton" onclick = "onDelete()">delete</button><br><br>
     </form>
     

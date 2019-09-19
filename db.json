@@ -4,24 +4,12 @@
       "id": 1,
       "username": "jack",
       "password": "secret",
-      "data": [
-        {
-          "name": "jack",
-          "year": "1993",
-          "inches": "456"
-        }
-      ]
+      "data": []
     },
     {
       "id": 2,
       "username": "admin",
       "password": "admin",
-      "data": []
-    },
-    {
-      "id": 3,
-      "username": "cold",
-      "password": "cold",
       "data": []
     }
   ],
