@@ -4,7 +4,7 @@ let   low = require('lowdb'),
       db = low(adapter)
 
 db.defaults({users:[]}).write()
-db.get('users').remove().write()
+//db.get('users').remove().write()
 console.log(db.get('users').value())
 if(db.get('users').size().value() < 1)
   {

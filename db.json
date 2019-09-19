@@ -5,12 +5,6 @@
       "username": "jack",
       "password": "secret",
       "data": []
-    },
-    {
-      "id": 2,
-      "username": "admin",
-      "password": "admin",
-      "data": []
     }
   ],
   "data": []

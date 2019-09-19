@@ -24,7 +24,8 @@ const http = require( 'http' ),
       app.use(bodyParser.json())
       app.use(serveStatic(path.join(__dirname, 'public')))
       app.use( session({ secret:'cats cats cats', resave:false, saveUninitialized:false }) )
-
+      app.use(passport.initialize());
+      app.use(passport.session());
 
 
 
@@ -67,8 +68,7 @@ passport.deserializeUser(function(id, cb) {
 });
 
 
-      app.use(passport.initialize());
-      app.use(passport.session());
+     
 
 
 
