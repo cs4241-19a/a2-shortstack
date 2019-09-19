@@ -13,11 +13,11 @@
      <div>
       <h4 class="header">Login</h4>
 
-  <div class="row ">Username:<input type="text" placeholder="Username" id="username" ></div>
+  <div class="row ">Username:<img height="20px" src="uesr.png" alt="user icon"><input type="text" placeholder="Username" id="username" ></div>
 
-  <div class="row">Password:<input type="password" placeholder="Password" id="password"  ></div>
+  <div class="row">Password:<img height="20px" src="password.png" alt="password icon"><input type="password" placeholder="Password" id="password"></div>
 
-  <div class="row "><button id="login" onclick="login()" class="outline" >Login</button> <button id="register" class="outline" onclick="register()">Register</button></div>
+  <div class="row center "><button id="login" onclick="login()" class="outline" >Login</button> </div>
     </div>
 </section>
 
@@ -43,31 +43,19 @@
     }).then(function (response) {
         console.log(response)
         if (response.redirected){
+          if(window.location == response.url) {
+            window.alert("Invalid username or password")
+          }
             window.location = response.url
-        //  window.open(response.url, "newwindow", "height=100, width=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=no, status=no")&nbsp;
+
         }
     })
 
 }
 
-    const register = function(e){
-    
-const regInfor ={
-    username:document.getElementById( 'username' ).value,
-    password:document.getElementById( 'password' ).value
-  }
-  const body = JSON.stringify(regInfor);
 
-    fetch( '/register', {
-      method:'POST',
-      body 
-    })
-   
-  }
 
   window.onload = function() {
-      const registerButton = document.getElementById( 'register' );
-    registerButton.onclick = register();
     
     const loginButton = document.getElementById( 'login' );
     loginButton.onclick = login;

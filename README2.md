@@ -1,11 +1,28 @@
-## Robotics Competition Assistant
-passport favicon session morgan body parser
+## Course Management System
+https://a3-yangjack1998.glitch.me/
+
+-This system is a course management system. Users can log in to see their own courses and then add/edit/delete courses.
+
+-The goal of this application is to build a user associated database application. Also to practice using express and its middleware packages.
+
+-The unfamiliarity to the express middleware package is the largest challenge. It required me to search a lot to understand 
+the meaning of the given code.
+
+-Used passport and lowdb since these they have been taught in class and easy to implement.
+
+-Used wingcss since it is simple, lightweight and easy to use.
+
+-Five Express middleware packages: passport, body-parser, morgan, serve-favicon, session
 
 ## Technical Achievements
-- **Limited input type and submission**:  The code specifies the type of each input so that user cannot enter anything other than number in to the scoring field. Users are also not allowed to submit any uncompleted match result.
-- **Auto Sorting**: Used a very little amount of code in 'server.improved.js' to achieve the effect of auto sorting.
-- **Correct Number Comparing**: Even that both of the variables are numbers, direct comparing will lead to a wrong result. The code will only compare the first digit of each number. Thus, phareInt is added to the front of the variables to ensure the correct comparison.
+- **Alert Window**:  When user enter a wrong username/password and hit login, there will be an alert window that tell him/her that the information is invalid.
+- **Disabled Button**: Add button is disabled until all fields are completed. This prevents invalid inputs.
+- **Alternative Image Replacement**: If for some reasons, the image on webpage cannot be load, there will appear alternative 
+text.
 
 ### Design/Evaluation Achievements
-- **Simple to understand**: Since this is a robotics competition assistant, the interface is designed to be very simple. Shown in 'style.css', the code makes everything properly stand around middle. The text is large and background color of teams is specified so that users can easily under stand the concept.
+- **Inline adding/updating**: There is no extra adding/updating field. The input fields are put right under the existing 
+information. This not only saves space for the webpage, but also make the webpage much easier to understand and use.
 - **Hover Reaction**: The proper hover reaction can tell user which button/tag is available. Whenever users hover over a input/button/tag, if the element is available, there will be reaction. If the button is not available(like submit button won't be available until every field is filled), uesr can easily tell because of the style and lack of reaction.
+- **Icons**: There are icons both on web title and web page. This can help people easier to understand the meaning of each
+fields (especially for people who cannot read the language).

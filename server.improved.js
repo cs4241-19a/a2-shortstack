@@ -93,8 +93,7 @@ app.post(
         console.log("Login successful")
         console.log(req.user)
         res.json({ status: true })
-        //res.redirect('/success.html');
-        //successRedirect: '/success.html',
+
     }
 )
 
