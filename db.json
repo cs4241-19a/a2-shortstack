@@ -6,9 +6,9 @@
       "password": "secret",
       "data": [
         {
-          "name": "j",
-          "year": "0",
-          "inches": "j"
+          "name": "jack",
+          "year": "1993",
+          "inches": "456"
         }
       ]
     },
@@ -16,13 +16,7 @@
       "id": 2,
       "username": "admin",
       "password": "admin",
-      "data": [
-        {
-          "name": "jo",
-          "year": "456",
-          "inches": "456"
-        }
-      ]
+      "data": []
     },
     {
       "id": 3,

@@ -3,6 +3,7 @@
   <head>
     <title>CS4241 Assignment 3</title>
     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- importing css for website styling -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
@@ -14,6 +15,11 @@
   <body>
     <div class="input">
       
+      
+      <div class = "into justify-content-md-left">
+        
+        
+      
     <!-- Input fields and submit button -->
     <form id = "info" action="/submit" method = "POST">
       <input type="text" name="yourname" placeholder="your name here"><br>
@@ -22,6 +28,7 @@
       
     </form>
     <button id = "submit" class = "inputbutton" onclick = "submit()">submit</button><br><br>
+    </div>
     </div>
     
     <!-- Delete field and delete button -->
@@ -42,9 +49,13 @@
   </body>
   
   <!-- jquery import -->
- <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
     console.log("hello")
+    window.onload = function()
+    {
+      getData()
+    }
   </script>
   
   <!-- js import for server client interaction -->

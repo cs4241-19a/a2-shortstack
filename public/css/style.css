@@ -4,7 +4,7 @@
     
     .input{
       
-      margin-right:1%;
+      margin-left:10%;
       float: left;
       
     }
@@ -15,7 +15,7 @@ label{
     
 .container2, .container3
 {
-  padding: 20px 10px; border: 1px solid; background: gray
+  padding: 20px 10px; border: 1px solid; background: white
 }
     table, th{  border: 1px solid black;
     text-align: center;
@@ -24,7 +24,7 @@ label{
     
     #delete{
       float: right;
-      margin-left: 5%;
+      margin-right: 10%;
       
     }
     #deleteBtn, #submit{
