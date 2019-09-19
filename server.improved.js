@@ -6,18 +6,20 @@ const express    = require('express'),
       morgan = require('morgan'),
       passport = require('passport'),
       low = require('lowdb'),
+
       FileSync = require('lowdb/adapters/FileSync'),
       Local = require('passport-local').Strategy;
-
+const info = low(new FileSync('userData.json'));
 const db = low(new FileSync('db.json'));
 app.use(express.static('public'));
 app.use(morgan('tiny'));
-app.use(favicon(__dirname + '/public/img/favicon.png'));
-const info = low(new FileSync('userData.json'));
+app.use(bodyparser.json());
+app.use(favicon(__dirname + '/public/icon.ico'));
+
 
 const myLocalStrategy = function (username, password, done) {
-    db = db.value()
-    const user = db.find(__user => __user.username === username)
+   // db = db.value()
+    const user = db.value().find(__user => __user.username === username)
     if (user === undefined) {
         console.log('user not found')
         return done(null, false, { message: 'user not found' })
@@ -36,7 +38,7 @@ passport.initialize()
 passport.serializeUser((user, done) => done(null, user.username))
 
 passport.deserializeUser((username, done) => {
-    const user = db.find(u => u.username === username)
+    const user = db.value().find(u => u.username === username)
     console.log('deserializing:', user)
 
     if (user !== undefined) {
@@ -64,21 +66,83 @@ response.sendFile( response, 'public/database.html' )
  // response.sendFile(__dirname + '/public/database.html');
 });
 
+app.get('/style.css', function(request, response) {
+    response.sendFile( response, 'public/css/style.css')
+} )
+
+app.get('/courses', function (req, res) {
+    if (req.user === undefined) {
+        res.redirect(401, '/login.html')
+    }
+    else {
+        let user = req.user.username
+        res.set('Content-Type', 'application/json');
+        console.log(info.get('people').value());
+        console.log(req.user);
+        res.send(info.get('people').find({ 'user': user }).get('courses').value());
+    }
+})
 
 app.post(
     '/login',
     passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/database.html'
+        successRedirect: '/success.html',
+        failureRedirect: '/'
     }),
     function (req, res) {
         console.log("Login successful")
         console.log(req.user)
         res.json({ status: true })
+        //res.redirect('/success.html');
+        //successRedirect: '/success.html',
     }
 )
 
+app.post('/add', function (req, res) {
+    if (req.user === undefined) {
+        res.redirect(401, '/login.html')
+    }
+    else {
+        let user = req.user.username
+        let data = req.body
+        console.log(data)
+        info.get('people').find({ 'user': user }).get('courses').push(data).write()
+        res.sendStatus(200);
+    }
+})
 
+
+app.post('/update/:id', function (req, res) {
+    if (req.user === undefined) {
+        res.redirect(401, '/login.html')
+    }
+    else {
+        let user = req.user.username
+        let data = req.body
+        console.log(data)
+        info.get('people').find({ 'user': user }).get('courses').nth(req.params.id).assign(data).write()
+        res.sendStatus(200)
+    }
+})
+
+app.post('/delete/:id', function (req, res) {
+    if (req.user === undefined) {
+        res.redirect(401, '/login.html')
+    }
+    else {
+        let user = req.user.username
+        info.get('people').find({ 'user': user }).get('courses').pullAt(req.params.id).write()
+        res.sendStatus(200)
+    }
+})
+
+appdata =  [
+        {
+            "courseName": "Operating System",
+            "courseId": "CS3013",
+            "term": "A"
+        }
+    ]
 
 
   

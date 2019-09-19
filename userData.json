@@ -1,49 +1,59 @@
-[
-  {
-    "user": "admin",
-    "task": [
-      {
-        "name": "test",
-        "date": "09/17/2019"
-      },
-      {
-        "name": "hw",
-        "date": "09/17/2019"
-      }
-    ]
-  },
-  {
-    "user": "yang",
-    "task": [
-      {
-        "name": "test",
-        "date": "09/17/2019"
-      },
-      {
-        "name": "hw",
-        "date": "09/17/2019"
-      }
-    ]
-  },
-  {
-    "user": "4241",
-    "task": [
-      {
-        "name": "4241",
-        "date": "09/17/4241"
-      }
-    ]
-  },
-  {
-    "people": []
-  },
-  {
-    "people": []
-  },
-  {
-    "people": []
-  },
-  {
-    "people": []
-  }
-]
+{
+  "people": [
+    {
+      "user": "admin",
+      "courses": [
+        {
+          "courseName": "Soft Eng",
+          "courseId": "CS3733",
+          "term": "A"
+        },
+        {
+          "courseName": "Soft Eng",
+          "courseId": "CS3733",
+          "term": "A"
+        }
+      ]
+    },
+    {
+      "user": "yang",
+      "courses": [
+        {
+          "courseName": "Webware",
+          "courseId": "CS4241",
+          "term": "A"
+        },
+        {
+          "courseName": "OS",
+          "courseId": "CS3013",
+          "term": "A"
+        },
+        {
+          "courseName": "Foundations of CS",
+          "courseId": "CS3133",
+          "term": "A"
+        }
+      ]
+    },
+    {
+      "user": "sylar",
+      "courses": [
+        {
+          "courseName": "Racket",
+          "courseId": "CS1101",
+          "term": "A"
+        },
+        {
+          "courseName": "\tFundamentals of Music I",
+          "courseId": "MU1611",
+          "term": "A"
+        },
+        {
+          "courseName": "Calculus I",
+          "courseId": "MA1021",
+          "term": "A"
+        }
+      ]
+    }
+  ]
+}
