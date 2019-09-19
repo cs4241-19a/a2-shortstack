@@ -1,0 +1,46 @@
+---
+  0 debug pnpm:scope: 
+    selected: 1
+    workspacePrefix: null
+  1 info pnpm: 
+    message: "A store server is running. All store manipulations are delegated to it."
+    prefix: "/app"
+  2 debug pnpm:package-json: 
+    initial: 
+      name: ""
+      version: ""
+      description: "Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js   ==="
+      author: ""
+      scripts: 
+        start: "node server.improved.js"
+      dependencies: 
+        mime: "^2.4.4"
+        express: "^4.16.4"
+        body-parser: "^1.19.0"
+        bo: "^0.0.3"
+        passport: "^0.4.0"
+        passport-local: "^1.0.0"
+        serve-static: "^1.14.1"
+        path: "^0.12.7"
+        lowdb: "^1.0.0"
+        express-session: "^1.16.1"
+      readme: "Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  \n===\n\n\n\n## Student Height Converter\nThis application is used to record students' names, class years and height in inches and returns the students height in centimeters. The data is stored in a server until the server restarts.\nThe user will input a student's data into the field on the left side and click submit. The fields are for the student's name, class year, and height in inches. If a user would like to remove a student from the list\nthey would need to input the student's name into the right side text box and click on delete. It will only delete the proper field if the name is typed exactly as shown in the table, ie capitalization and spelling.\nThe table has been prefilled with info of three students. The table will appear when data is added to it.\n\n- This application is used to quickly convert the student's height from inches to centimeters. \n- This application addresses the problem of knowing what the conversion from inches to centimeters is.\n- Future work includes optimizing some of the tabling functions to display the information.\n\nCSS changes include moving the table to the center of the webpage, placing the input and delete fields side by side around the table and modifying the buttons to appear larger.\n\n\nJustin Kreiselman (jkreiselman)\nhttps://a2-kreiselman-justin-kreiselman.glitch.me\n\n## Technical Achievements\n- **Tech Achievement 1**: Used express js (https://expressjs.com/) to streamline get/post requests and functions. This can be seen in server.improved.js in the .get and .post functions as well as in scripts.js for the getData()\n    and clearData() functions.\n    \n- **Tech Achievement 2**: Used jquery (https://jquery.com/) to help with manipulating the data to display it in the table. This can be seen in scripts.js in the getData() function.\n\n\n"
+      readmeFilename: "README.md"
+      gitHead: "dbaef38e03ad0840ef1518a250f40e59d1e58f51"
+      _id: "@"
+    prefix: "/app"
+  3 warn pnpm: 
+    message: "Moving mime that was installed by a different package manager to \"node_modules/.ignored"
+    prefix: "/app"
+  4 error pnpm: 
+    message: 
+      errno: -39
+      code: "ENOTEMPTY"
+      syscall: "rename"
+      path: "/rbd/pnpm-volume/0bf8cd6d-0872-4b84-9501-0bdaff802205/node_modules/mime"
+      dest: "/rbd/pnpm-volume/0bf8cd6d-0872-4b84-9501-0bdaff802205/node_modules/.ignored/mime"
+    err: 
+      name: "Error"
+      message: "ENOTEMPTY: directory not empty, rename '/rbd/pnpm-volume/0bf8cd6d-0872-4b84-9501-0bdaff802205/node_modules/mime' -> '/rbd/pnpm-volume/0bf8cd6d-0872-4b84-9501-0bdaff802205/node_modules/.ignored/mime'"
+      code: "ENOTEMPTY"
+      stack: "Error: ENOTEMPTY: directory not empty, rename '/rbd/pnpm-volume/0bf8cd6d-0872-4b84-9501-0bdaff802205/node_modules/mime' -> '/rbd/pnpm-volume/0bf8cd6d-0872-4b84-9501-0bdaff802205/node_modules/.ignored/mime'"

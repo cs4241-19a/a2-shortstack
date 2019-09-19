@@ -2,8 +2,14 @@
   "users": [
     {
       "id": 1,
-      "username": "jack",
-      "password": "secret",
+      "username": "admin",
+      "password": "admin",
+      "data": []
+    },
+    {
+      "id": 2,
+      "username": "msrobinson",
+      "password": "111111",
       "data": []
     }
   ],

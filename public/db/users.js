@@ -8,7 +8,7 @@ db.defaults({users:[]}).write()
 console.log(db.get('users').value())
 if(db.get('users').size().value() < 1)
   {
-    db.get('users').push({id: 1, username: 'jack', password: 'secret', data:[]}).write()
+    db.get('users').push({id: 1, username: 'admin', password: 'admin', data:[]}).write()
   }
 
 console.log(db.get('users').size().value())
