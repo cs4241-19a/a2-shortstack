@@ -36,7 +36,9 @@ function generateCustomer(){
   .then (response => {
     if(response.images.length > 15 || wrong >= 5){
       open = true;
-      document.querySelector('#YOULOSE').showModal();
+      let d = document.querySelector('#YOULOSE');
+      dialogPolyfill.registerDialog(d);
+      d.showModal();
     }
     document.querySelector('#line').innerHTML = response.images.join("");
     document.querySelector('#orders').innerHTML = response.orders.join("");
@@ -66,7 +68,9 @@ function updateBank(num) {
       var amount = Number(document.querySelector('#bills').innerHTML);
       if (wrong >= 5) {
         open = true;
-        document.querySelector('#YOULOSE').showModal();
+        let d = document.querySelector('#YOULOSE');
+        dialogPolyfill.registerDialog(d);
+        d.showModal();
       }
     })
     return false;
@@ -110,8 +114,10 @@ function chooseLevel(){
     speed = 200;
   }
   else{
-    document.querySelector('#choose').showModal();
-    setTimeout(function(){document.querySelector('#choose').close();}, 900);
+    let d = document.querySelector('#choose');
+    dialogPolyfill.registerDialog(d);
+    d.showModal();
+    setTimeout(function(){d.close();}, 900);
     return;
   }
   let json = { speed: speed},
@@ -166,7 +172,9 @@ function loadScoreBoard(){
 }
 
 function rowselect(event){
-  document.querySelector('#editform').showModal()
+  let d = document.querySelector('#editform');
+  dialogPolyfill.registerDialog(d);
+  d.showModal();
   currentrow = event.currentTarget.innerHTML;
   currentname = event.path[1].firstChild.innerHTML;
 }

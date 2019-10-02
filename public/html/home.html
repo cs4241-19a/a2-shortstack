@@ -4,8 +4,10 @@
   <title>Ken's Ice Cream Shop</title>
   <meta charset="utf-8">
   <script type="text/javascript" src="../js/scripts.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.0/dialog-polyfill.js"></script>
   <link rel="icon" type="image/png" href="../assets/favicon.ico">
   <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.0/dialog-polyfill.css">
   <link rel="stylesheet" type="text/css" href="../css/home.css">
 </head>
 <body>
@@ -23,7 +25,9 @@
       <br>
       <script>
       function openModal(){
-        document.querySelector('#level').showModal();
+        let d = document.querySelector('#level');
+        dialogPolyfill.registerDialog(d);
+        d.showModal();
       }
       </script>
     </div>
