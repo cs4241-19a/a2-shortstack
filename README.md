@@ -1,12 +1,11 @@
 Assignment 2 - Short Stack: Basic Two-tier Web Application using HTML/CSS/JS and Node.js  
 ===
 
-Due: September 9th, by 11:59 AM.
+Due: September 16th, by 11:59 AM.
 
 This assignment aims to introduce you to the concepts and practice involved in creating a prototype (i.e. not deployment ready) two-tiered web application. 
 
 The baseline aims of this assignment involve creating an application that demonstrates the use of several specific pieces of HTML, CSS, JavaScript, and Node.js functionality.
-Another aim of this assignment is to establish creative boundaries in which you and your partner can explore designing, implementing, and evaluating usable, useful, novel, and technically efficient web applications.
 
 Baseline Requirements
 ---
@@ -30,7 +29,7 @@ Your application is required to demonstrate the use of the following concepts:
 
 HTML:
 - One or more [HTML Forms](https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms), with any combination of form tags appropriate for the user input portion of the application
-    - Clarification: the results page can be implemented in any way. `<div>`s, `table`s, and `list`s are common choices
+- A results page displaying all data currently available on the server. You will most likely use a `<table>` tag for this, but `<ul>` could also work and might be simpler to work with.
 
 CSS:
 - CSS styling of the primary visual elements in the application
