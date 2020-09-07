@@ -10,12 +10,7 @@ The baseline aims of this assignment involve creating an application that demons
 Baseline Requirements
 ---
 
-Note that there is a very large range of application areas and possibilities that meet these baseline requirements.
-Games, internet of things, organizational tools, commerce, media - all are possibilities with a two-tiered form-focused web application.
-
-Do not limit yourselves to any of the examples given below. 
-Examples like the upcoming `efficiency_ratio` idea for the `cars` dataset are meant to be illustrative and easy to understand.
-They are not intended to be sensible or useful ideas.
+Note that there is a very large range of application areas and possibilities that meet these baseline requirements. Make your application do something useful! A todo list, storing / retrieving high scores for a very simple game, have a little fun with it.
 
 Your application is required to implement the following functionalities:
 
@@ -23,7 +18,7 @@ Your application is required to implement the following functionalities:
 - a `Results` functionality which shows the entire dataset residing in the server's memory
 - a `Form/Entry` functionality which allows a user to add, modify, or delete data items residing in the server's memory
 - a `Server Logic` which, upon receiving new or modified "incoming" data, includes and uses a function that adds at least one additional derived field to this incoming data before integrating it with the existing dataset
-    - the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `cars` dataset with `year`, `horsepower`, and `fuel_efficiency` may create a new field `efficiency_ratio` by dividing `fuel_efficiency` by `horsepower`
+- the `Derived field` for a new row of data must be computed based on fields already existing in the row. For example, a `todo` dataset with `task`, `priority`, and `creation_date` may generate a new field `deadline` by looking at `creation_date` and `priority`
 
 Your application is required to demonstrate the use of the following concepts:
 
@@ -37,10 +32,11 @@ CSS:
     - Element selectors
     - ID selectors
     - Class selectors
-- CSS positioning and sizing of the primary visual elements in the application:
-    - CSS to cause at least one element to be horizontally centered on the page
-    - CSS to cause at least one pair of elements to appear side-by-side
-    - CSS defined in a maintainable, readable form, in external stylesheets 
+- CSS positioning and styling of the primary visual elements in the application:
+    - Use of either a CSS grid or flexbox for layout
+    - Rules defining fonts for all text used; no default fonts! Be sure to use a web safe font or a font from a web service like [Google Fonts](http://fonts.google.com/)
+
+- CSS defined in a maintainable, readable form, in external stylesheets 
 
 JavaScript:
 - At minimum, a small amount of front-end JavaScript to get / fetch data from the server; a sample is provided in this repository.
