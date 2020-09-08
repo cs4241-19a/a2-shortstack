@@ -6,9 +6,8 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-// Store all bill entries here
-// Must be tabular?
-const appdata = []
+// "Tabular" data storage
+const appdata = ['test']
 
 // Server object
 const server = http.createServer( function( request,response ) {
@@ -25,7 +24,18 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  // Send all bill objects at '/results' request
+  else if (request.url === '/results') {
+    //console.log("made it :)")
+    //console.log(appdata)
+    //response.end(appdata.json)
+    var msg = {test: 'test'}
+    response.setHeader("Content-Type", "application/json")
+    response.end( JSON.stringify({a: 1}) )
+    //response.end('<h1>WTF</h1>')
+  }
+  else {
     sendFile( response, filename )
   }
 }
