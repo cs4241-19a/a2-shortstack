@@ -34,10 +34,11 @@
               ssn : ssn,
               admin: priv};
     body = JSON.stringify( json );
+    console.log(body)
 
     fetch( '/submit', {
       method:'POST',
-      body 
+      body : body
     })
     .then( function( response ) {
       // do something with the reponse 

@@ -54,8 +54,16 @@ function buildPage(){
 
   toReturn += "</table></body>";
   toReturn += ` <script>
-  function deleteItem(item){
-    let item = document.getElementById(item);
+  function deleteItem(id){
+    let item = document.getElementById(id);
+    fetch( '/delete', {
+      method:'POST',
+      body: JSON.stringify({id: id})
+    })
+    .then( function( response ) {
+      console.log( response )
+      console.log( response.body)
+    })
     item.remove();
   }
   </script>`
@@ -79,24 +87,43 @@ const handleGet = function( request, response ) {
 }
 
 const handlePost = function( request, response ) {
-  let dataString = ''
+  if( request.url === '/delete' ) {
+    console.log('hit')
+    let toDelete = null;
 
-  request.on( 'data', function( data ) {
-      dataString += data 
-  })
+    request.on('data', function( data ) {
+      toDelete = data;
+      console.log(toDelete);
+    });
 
-  request.on( 'end', function() {
-    let data = JSON.parse(dataString);
-    wasLastAnAdmin = data.admin;
-    let dateAdded = new Date();
-    dateAdded =  `${dateAdded.getFullYear()}-${dateAdded.getMonth()}-${dateAdded.getDate()}-${dateAdded.getHours()}-${dateAdded.getMinutes()}`;
-    data.dateAdded = dateAdded;
-    data.id = appdata[appdata.length - 1].id + 1;
-    console.log(data.id);
-    appdata.push(data);
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-    response.end();
-  })
+    request.on('end', function(){
+      appdata.filter(function(val){
+        return val.id !== toDelete;
+      })
+    })
+    
+  } else {
+    let dataString = ''
+
+    request.on( 'data', function( data ) {
+        dataString += data 
+    })
+    console.log('hi')
+    console.log(request.header)
+    request.on( 'end', function() {
+      let data = JSON.parse(dataString);
+      wasLastAnAdmin = data.admin;
+      let dateAdded = new Date();
+      dateAdded =  `${dateAdded.getFullYear()}-${dateAdded.getMonth()}-${dateAdded.getDate()} ${dateAdded.getHours()}:${dateAdded.getMinutes()}`;
+      data.dateAdded = dateAdded;
+      data.id = parseInt(appdata[appdata.length - 1].id) + 1;
+      console.log(data.id);
+      appdata.push(data);
+
+    })
+  }
+  response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+  response.end();
 }
 
 const sendFile = function( response, filename ) {
