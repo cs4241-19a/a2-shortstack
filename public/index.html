@@ -10,13 +10,14 @@
   <h1>Bill Tracker</h1>
   <h3>Enter your bill:</h3>
   <form name="billForm" action="">
-    <input type="text" id="name" value="Bill name">
-    <input type="number" id="amt" value="0.00">
-    <input type="date" id="date">
+    <input type="text" id="name" value="Bill name" required>
+    <input type="number" id="amt" value="0.00" required>
+    <input type="date" id="date" required>
     <input type="checkbox" id="paid" value="true">
     <label for="paid">Paid?</label>
     <button>submit</button>
   </form>
+  <p id="errorMsg"></p>
 
   <!-- Results functionality to show entire dataset -->
   <br>
@@ -35,10 +36,32 @@
   </div>
 </body>
 <script>
+  // Form Submit + validation
   const submit = function (e) {
     // prevent default form action from being carried out
     e.preventDefault()
+    validateForm()
 
+    return false
+  }
+
+  function validateForm() {
+    // Check all fields are filled out 
+    let errorMsg = ""
+    if (document.forms["billForm"]["name"].value == "") {
+      errorMsg = "Please enter a bill name"
+    } else if (document.forms["billForm"]["amt"].value == "") {
+      errorMsg = "Please enter a bill amount"
+    } else if (document.forms["billForm"]["date"].value == "") {
+      errorMsg = "Please enter a date"
+    }
+    document.getElementById("errorMsg").innerHTML = errorMsg
+    if (!errorMsg) {
+      submitForm()
+    }
+  }
+
+  function submitForm() {
     var computePaid = document.getElementById("paid").checked;
 
     const input = document.querySelector('billForm'),
@@ -59,7 +82,6 @@
         // do something with the reponse 
         console.log(response)
       })
-    return false
   }
 
   window.onload = function () {
@@ -86,10 +108,10 @@
     // TODO: Clear table and repopulate
 
 
-    for (obj in jsonArray){
+    for (obj in jsonArray) {
       var newRow = document.createElement('tr')
-      newRow.innerHTML = 
-      `<td>${jsonArray[obj].billName}</td>
+      newRow.innerHTML =
+        `<td>${jsonArray[obj].billName}</td>
       <td>${jsonArray[obj].billAmt}</td>
       <td>${jsonArray[obj].billDate}</td>
       <td>${jsonArray[obj].billPay}</td>`
