@@ -26,12 +26,14 @@
   Select an entry to modify
   <div>
     <table id="all_bills">
+      <tbody>
       <tr>
         <th>Name</th>
         <th>Amount</th>
         <th>Date Issued</th>
         <th>Paid</th>
       </tr>
+      </tbody>
     </table>
   </div>
 </body>
@@ -106,6 +108,10 @@
     let billDiv = document.getElementById('all_bills')
 
     // TODO: Clear table and repopulate
+    var rows = billDiv.rows.length
+    for (let i = rows - 1 ; i > 0 ; i--) {
+      billDiv.deleteRow(i)
+    }
 
 
     for (obj in jsonArray) {
