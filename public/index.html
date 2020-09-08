@@ -4,49 +4,64 @@
 <head>
   <title>CS4241 Assignment 2</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;700&family=Roboto:wght@300,700&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-  <h1>Bill Tracker</h1>
-  <h3>Enter your bill:</h3>
-  <form name="billForm" action="">
-    <input type="text" id="name" value="Bill name" required>
-    <input type="number" id="amt" value="0.00" required>
-    <input type="date" id="date" required>
-    <input type="checkbox" id="paid" value="true">
-    <label for="paid">Paid?</label>
-    <button>submit</button>
-  </form>
-  <p id="errorMsg"></p>
-
-  <!-- Results functionality to show entire dataset -->
-  <br>
-  <button onClick="getAllBills()">Show all bills</button>
-  <br>
-  Select an entry to modify
-  <div>
-    <table id="all_bills">
-      <tbody>
-      <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Date Issued</th>
-        <th>Paid</th>
-      </tr>
-      </tbody>
-    </table>
+  <div class="head">
+    <h1>Bill Tracker</h1>
   </div>
-</body>
+  <div class="content">
+    <div class="form_div">
+      <h3>Enter your bill:</h3>
+      <form name="billForm" action="">
+        <input type="text" id="name" value="Bill name" required>
+        <input type="number" id="amt" value="0.00" required>
+        <input type="date" id="date" required>
+        <input type="checkbox" id="paid" value="true">
+        <label for="paid">Paid?</label>
+
+        <br><br>
+        <button>Submit</button>
+      </form>
+      <p id="errorMsg"></p>
+    </div>
+
+    <!-- Results functionality to show entire dataset -->
+    <br>
+    <button id="allBillBtn" onClick="getAllBills(false)">Show all bills</button>
+    <br>
+    <div id="hidden" style="visibility: hidden">
+      <p>Select an entry to modify</p>
+      <div>
+        <table id="all_bills">
+          <tbody>
+            <tr class="table_header">
+              <th>Name</th>
+              <th>Amount</th>
+              <th>Date Issued</th>
+              <th>Paid</th>
+              <th>Priority</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
 <script>
   // Form Submit + validation
   const submit = function (e) {
     // prevent default form action from being carried out
     e.preventDefault()
     validateForm()
-
     return false
   }
 
+  // Validate form, block submission if missing fields
   function validateForm() {
     // Check all fields are filled out 
     let errorMsg = ""
@@ -84,16 +99,35 @@
         // do something with the reponse 
         console.log(response)
       })
+
+    // If all bills are expanded, update them
+    if (document.getElementById("hidden").style.visibility == "visible") {
+      getAllBills(true)
+    }
   }
 
+  // What is this?
   window.onload = function () {
     const button = document.querySelector('button')
     button.onclick = submit
   }
 
-  // 
-  function getAllBills() {
-    // let billDiv = document.getElementById('all_bills')
+  // Retrieve all bills from server
+  function getAllBills(stayOpen) {
+
+    // If div should remain open to be updated
+    if (!stayOpen) {
+      // Toggle button text and div visibility
+      if (document.getElementById("hidden").style.visibility == "visible") {
+        document.getElementById("allBillBtn").innerHTML = "Show all bills"
+        document.getElementById("hidden").style.visibility = "hidden"
+      } else {
+        document.getElementById("allBillBtn").innerHTML = "Hide all bills"
+        document.getElementById("hidden").style.visibility = "visible"
+      }
+    }
+
+
     const response = fetch('/results', {
         method: 'GET'
       })
@@ -104,26 +138,31 @@
       })
   }
 
+  // Display all bills in HTML
   function displayBills(jsonArray) {
     let billDiv = document.getElementById('all_bills')
 
-    // TODO: Clear table and repopulate
+    // Clear table to avoid duplication
     var rows = billDiv.rows.length
-    for (let i = rows - 1 ; i > 0 ; i--) {
+    for (let i = rows - 1; i > 0; i--) {
       billDiv.deleteRow(i)
     }
 
-
+    // Populate table
     for (obj in jsonArray) {
       var newRow = document.createElement('tr')
       newRow.innerHTML =
         `<td>${jsonArray[obj].billName}</td>
       <td>${jsonArray[obj].billAmt}</td>
       <td>${jsonArray[obj].billDate}</td>
-      <td>${jsonArray[obj].billPay}</td>`
+      <td>${jsonArray[obj].billPay}</td>
+      <td>${jsonArray[obj].priority}</td>`
       billDiv.appendChild(newRow)
     }
   }
 </script>
+
+<!-- <link href="js/scripts.js" type="text/javascript"> -->
+</body>
 
 </html>

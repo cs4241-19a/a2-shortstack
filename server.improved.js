@@ -51,10 +51,6 @@ const handlePost = function (request, response) {
     // Derive a prioirty field 
     addPriority(JSON.parse(dataString))
 
-    // Add new entry to appdata
-    appdata.push(JSON.parse(dataString))
-    console.log(appdata.length)
-
     response.writeHead(200, "OK", {
       'Content-Type': 'text/plain'
     })
@@ -91,7 +87,10 @@ function addPriority(data) {
       }
     }
   }
-  console.log("After addPrioirty(): ")
+  // Add new entry to appdata
+  data = (JSON.stringify(data))
+  appdata.push(JSON.parse(data))
+
   printObject(data)
 }
 
