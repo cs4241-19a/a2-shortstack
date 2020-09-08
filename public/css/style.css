@@ -1,1 +1,21 @@
 /*Style your own assignment! This is fun! */
+.hidden{
+    color:red;
+}
+
+th{
+    border:solid;
+    border-width: 2px;
+}
+
+body, button, ::placeholder{
+    font-size: 28px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+input{
+    width: 500px;
+    height: 30px;
+    font-size: 28px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

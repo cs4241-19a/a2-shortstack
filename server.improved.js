@@ -6,11 +6,17 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+const appdata = [ 
+  {id: 0, username: "tRits",  password: "password" ,  ssn : "123456789", admin: false, dateAdded: '1991-8-21'},
+  {id: 1, username: "n0Passw0rdMan123",  password: "password123" ,  ssn : "987654321", admin: false, dateAdded: '2000-2-24'}
+];
+
+let wasLastAnAdmin = false;
+
+let resultsPage = null;
+fs.readFile('public/results.html', function(err, content){
+  resultsPage = content;
+})
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -20,11 +26,53 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
+function buildPage(){
+  let toReturn = resultsPage;
+  if (wasLastAnAdmin === true){
+    appdata.forEach(function(item){
+      toReturn += `<tr id = '${item.id}'>
+      <th>${item.username}</th>
+      <th>${item.password}</th>
+      <th class = "hidden">HIDDEN</th>
+      <th>${item.admin}</th>
+      <th>${item.dateAdded}</th>
+      <th><button id = '${item.id}-button' onclick="deleteItem(${item.id})">Delete</button></th>
+      </tr>`
+    });
+  } else {
+    appdata.forEach(function(item, idx){
+      toReturn += `<tr id = '${item.id}'>
+      <th>${item.username}</th>
+      <th class = "hidden">HIDDEN</th>
+      <th class = "hidden">HIDDEN</th>
+      <th>${item.admin}</th>
+      <th>${item.dateAdded}</th>
+      <th><button id = '${item.id}-button' onclick="deleteItem(${item.id})">Delete</button></th>
+      </tr>`
+    });
+  }
+
+  toReturn += "</table></body>";
+  toReturn += ` <script>
+  function deleteItem(item){
+    let item = document.getElementById(item);
+    item.remove();
+  }
+  </script>`
+  toReturn += "</html>"
+  return toReturn;
+}
+
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
   if( request.url === '/' ) {
-    sendFile( response, 'public/index.html' )
+    sendFile( response, 'public/index.html' );
+  }else if (request.url === '/users'){
+    response.writeHeader( 200, { 'Content-Type': 'text/html' })
+    response.end( buildPage() )
+  }else if (request.url === '/style.css') {
+    sendFile( response, 'public/css/style.css');
   }else{
     sendFile( response, filename )
   }
@@ -38,18 +86,21 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
-
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    let data = JSON.parse(dataString);
+    wasLastAnAdmin = data.admin;
+    let dateAdded = new Date();
+    dateAdded =  `${dateAdded.getFullYear()}-${dateAdded.getMonth()}-${dateAdded.getDate()}-${dateAdded.getHours()}-${dateAdded.getMinutes()}`;
+    data.dateAdded = dateAdded;
+    data.id = appdata[appdata.length - 1].id + 1;
+    console.log(data.id);
+    appdata.push(data);
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    response.end();
   })
 }
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
-
    fs.readFile( filename, function( err, content ) {
 
      // if the error = null, then we've loaded the file successfully

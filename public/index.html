@@ -3,11 +3,20 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <input type='text' id='username' placeholder="Username here">
+      <br>
+      <input type='text' id='password' placeholder="Password here">
+      <br>
+      <input type='text' id='ssn' placeholder="Social security number here">
+      <br>
+      <label>Are you an admin?</label>
+      <input type = "checkbox" id = 'admin' placeholder="Are you an admin?">
+      <br>
+      <button>Submit</button>
     </form>
   </body>
   <script>
@@ -16,9 +25,15 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
+    const username = document.querySelector( '#username' ).value;
+    const pass = document.querySelector( '#password' ).value;
+    const ssn = document.querySelector( '#ssn' ).value;
+    const priv = document.querySelector( '#admin' ).checked;
+    json = { username: username,
+              password: pass ,
+              ssn : ssn,
+              admin: priv};
+    body = JSON.stringify( json );
 
     fetch( '/submit', {
       method:'POST',
@@ -27,9 +42,10 @@
     .then( function( response ) {
       // do something with the reponse 
       console.log( response )
+      console.log( response.body)
     })
 
-    return false
+    return false;
   }
 
   window.onload = function() {
