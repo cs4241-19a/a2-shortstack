@@ -5,10 +5,20 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
+    <h1>Bill Tracker</h1>
+    <h3>Enter your bill:</h3>
+    <form name="billForm" action="">
+      <input type="text" id="name" value="Bill name">
+      <input type="number" id="amt" value="0.00">
+      <input type="date" id="date">
+      <input type="checkbox" id="paid" value="true">
+      <label for="paid">Paid?</label>
       <button>submit</button>
     </form>
+
+    <br>
+    <button>Show all bills</button>
+    Select an entry to modify
   </body>
   <script>
 
@@ -16,8 +26,15 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    var computePaid = document.getElementById("paid").checked;
+
+    const input = document.querySelector('billForm'),
+          json = 
+          { billName: document.querySelector('#name').value,
+          billAmt: document.querySelector('#amt').value,
+          billDate: document.querySelector('#date').value,
+          billPay: computePaid },
+           
           body = JSON.stringify( json )
 
     fetch( '/submit', {
