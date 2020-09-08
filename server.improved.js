@@ -1,13 +1,12 @@
 const http = require( 'http' ),
       fs   = require( 'fs' ),
-      // IMPORTANT: you must run `npm install` in the directory for this assignment
-      // to install the mime library used in the following line of code
       mime = require( 'mime' ),
       dir  = 'public/',
       port = 3000
 
+
 // "Tabular" data storage
-const appdata = ['test']
+const appdata = []
 
 // Server object
 const server = http.createServer( function( request,response ) {
@@ -22,18 +21,15 @@ const server = http.createServer( function( request,response ) {
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
 
+  // Load index.html
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
   }
-  // Send all bill objects at '/results' request
+
+  // Send all bill objects on '/results' request
   else if (request.url === '/results') {
-    //console.log("made it :)")
-    //console.log(appdata)
-    //response.end(appdata.json)
-    var msg = {test: 'test'}
     response.setHeader("Content-Type", "application/json")
-    response.end( JSON.stringify({a: 1}) )
-    //response.end('<h1>WTF</h1>')
+    response.end( JSON.stringify(appdata) )
   }
   else {
     sendFile( response, filename )
