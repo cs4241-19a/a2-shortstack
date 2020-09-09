@@ -34,11 +34,12 @@ label {
 button {
     font-family: 'Roboto', sans-serif;
     padding: 10px 20px; 
-    background-color: #807182;
+    background-color: #151E3F;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #ffffff;
     font-size: 1rem;
+    margin-bottom: 20px;
 }
 
 table {
@@ -76,4 +77,16 @@ p {
 
 input[type='checkbox'] {
     margin: 0px; 
+}
+
+.changeBtn {
+    margin: 20px 20px 20px 0px; 
+}
+
+#saveBtn {
+    background-color: #D78F09;
+}
+.submit {
+    background-color: #D78F09;
+
 }
