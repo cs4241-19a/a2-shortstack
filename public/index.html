@@ -36,12 +36,13 @@
     <div id="hidden" style="visibility: hidden">
       <button id="editRowBtn" style="visibility: hidden;" onClick="editEntry()">Edit Selected Rows</button>
       <button id="deleteRowBtn" style="visibility: hidden;" onClick="deleteEntry()">Delete Selected Rows</button>
+      <button id="saveBtn" style="visibility: hidden;" onClick="saveChanges()">Save Changes</button>
       <div>
         <table id="all_bills">
           <tbody>
             <tr class="table_header">
               <th> </th>
-              <th>Name</th>
+              <th id="skip">Name</th>
               <th>Amount</th>
               <th>Date Issued</th>
               <th>Paid</th>
@@ -155,18 +156,76 @@
         var newRow = document.createElement('tr')
         newRow.innerHTML =
           `<td class="checkbox_col"><input onClick="showOptions(${obj})" id=${obj} type="checkbox"></td>
-      <td id="${obj}name">${jsonArray[obj].billName}</td>
-      <td id="${obj}amt">${jsonArray[obj].billAmt}</td>
-      <td id="${obj}date">${jsonArray[obj].billDate}</td>
-      <td id="${obj}pay">${jsonArray[obj].billPay}</td>
-      <td>${jsonArray[obj].priority}</td>`
+      <td class="editable" id="${obj}name">${jsonArray[obj].billName}</td>
+      <td class="editable" id="${obj}amt">${jsonArray[obj].billAmt}</td>
+      <td class="editable" id="${obj}date">${jsonArray[obj].billDate}</td>
+      <td class="editable" id="${obj}pay">${jsonArray[obj].billPay}</td>
+      <td class="editable" id="${obj}priority">${jsonArray[obj].priority}</td>`
         billDiv.appendChild(newRow)
       }
 
     }
 
     function editEntry() {
-      console.log("hey")
+      document.getElementById("saveBtn").style.visibility = "visible"
+
+      let rows = document.getElementById('all_bills').rows.length
+      let editRows = []
+      let temp = []
+
+      // Get the rows to be edited
+      for (let i = 0; i < rows - 1; i++) {
+        if (document.getElementById(i).checked) {
+          editRows.push(i)
+        }
+      }
+      // Get children of the row
+      for (row in editRows) {
+        let elt = document.getElementById(editRows[row])
+        temp.push(elt.parentNode.parentNode.children)
+      }
+      // FINALLY get the actual editable elements in the row 
+      for (tr in temp) {
+        for (elt in temp[tr]){
+          // Preserve id, class, and value, but change to textbox
+          if (temp[tr][elt].className == "editable") { 
+            temp[tr][elt].innerHTML=`<input type="text" class="editable" id=${temp[tr][elt].id} value=${temp[tr][elt].innerText}>`
+          }
+        }
+      }
+
+    }
+
+
+    function saveChanges() {
+      // Get elements that were possibly edited 
+      let changedElts = []
+      let inputs = document.getElementsByTagName("input")
+      for (input in inputs) {
+        if (inputs[input].className == "editable") {
+          changedElts.push(inputs[input])
+        }
+      }
+      console.log(changedElts)
+
+      // Change elements back to have innerText with id, class in <td> parent elt 
+        for (elt in changedElts) {
+          // Set parent 
+          let parent = changedElts[elt].parentNode
+          parent.className = changedElts[elt].className
+          parent.id = changedElts[elt].id
+          parent.innerText = changedElts[elt].value
+        }
+
+        // Uncheck all checkboxes
+        let rows = document.getElementById('all_bills').rows.length
+        for (let i = 0; i < rows - 1; i++) {
+          if (document.getElementById(i).checked) {
+            document.getElementById(i).checked = false
+          }
+        }
+
+
     }
 
     function deleteEntry() {
@@ -188,26 +247,20 @@
     }
 
     function deleteFromServer(deleteArr) {
-      let jsonObjs
+      let jsonObjs = []
 
       for (obj in deleteArr) {
-        // work bools
         let payBool = false
         if (document.getElementById(deleteArr[obj]+'pay').innerText == 'true') { payBool = true }
-        jsonObjs += {"billName":`${document.getElementById(deleteArr[obj]+'name').innerText}`, "billAmt":`${document.getElementById(deleteArr[obj]+'amt').innerText}`, "billDate":`${document.getElementById(deleteArr[obj]+'date').innerText}`, "billPay":payBool}
+        jsonObjs.push({"billName":`${document.getElementById(deleteArr[obj]+'name').innerText}`, "billAmt":`${document.getElementById(deleteArr[obj]+'amt').innerText}`, "billDate":`${document.getElementById(deleteArr[obj]+'date').innerText}`, "billPay":payBool})
       }
 
-              // work bools
-              let payBool = false
-        if (document.getElementById(deleteArr[obj]+'pay').innerText == 'true') { payBool = true }
-      let test = {"billName":`${document.getElementById(deleteArr[obj]+'name').innerText}`, "billAmt":`${document.getElementById(deleteArr[obj]+'amt').innerText}`, "billDate":`${document.getElementById(deleteArr[obj]+'date').innerText}`, "billPay":payBool}
-
       //jsonObjs.push(jsonObj)
-      console.log(test)
-      body = JSON.stringify(test)
+      console.log(jsonObjs)
+      body = JSON.stringify(jsonObjs)
       console.log(body)
 
-      fetch('/edit', {
+      fetch('/delete', {
           method: 'POST',
           body
         })
