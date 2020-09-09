@@ -6,7 +6,7 @@ const http = require('http'),
 
 
 // "Tabular" data storage
-const appdata = []
+var appdata = []
 
 // Server object
 const server = http.createServer(function (request, response) {
@@ -82,7 +82,7 @@ function manageAppData(url, data) {
           if (url == '/delete') {
             appdata.splice(obj, 1)
           } else if (url == '/edit') {
-            console.log("edit this mf")
+            appdata = data
           }
         }
       }
