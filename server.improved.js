@@ -6,9 +6,9 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [ 
-  {id: 0, username: "tRits",  password: "password" ,  ssn : "123456789", admin: false, dateAdded: '1991-8-21'},
-  {id: 1, username: "n0Passw0rdMan123",  password: "password123" ,  ssn : "987654321", admin: false, dateAdded: '2000-2-24'}
+let appdata = [ 
+  {id: 0, username: "tRits",  password: "password" ,  ssn : "123456789", admin: false, dateAdded: '1991-8-21', nick: 'R'},
+  {id: 1, username: "n0Passw0rdMan123",  password: "password123" ,  ssn : "987654321", admin: false, dateAdded: '2000-2-24', nick: 'PM'}
 ];
 
 let wasLastAnAdmin = false;
@@ -31,6 +31,7 @@ function buildPage(){
   if (wasLastAnAdmin === true){
     appdata.forEach(function(item){
       toReturn += `<tr id = '${item.id}'>
+      <th>${item.nick}</th>
       <th>${item.username}</th>
       <th>${item.password}</th>
       <th class = "hidden">HIDDEN</th>
@@ -42,6 +43,7 @@ function buildPage(){
   } else {
     appdata.forEach(function(item, idx){
       toReturn += `<tr id = '${item.id}'>
+      <th>${item.nick}</th>
       <th>${item.username}</th>
       <th class = "hidden">HIDDEN</th>
       <th class = "hidden">HIDDEN</th>
@@ -61,10 +63,14 @@ function buildPage(){
       body: JSON.stringify({id: id})
     })
     .then( function( response ) {
-      console.log( response )
-      console.log( response.body)
+      if (response.status === 200){
+        alert("Successfully removed");
+        item.remove();
+      } else {
+        alert("Was not removed successfully, try again");
+      }
+
     })
-    item.remove();
   }
   </script>`
   toReturn += "</html>"
@@ -88,16 +94,15 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   if( request.url === '/delete' ) {
-    console.log('hit')
-    let toDelete = null;
+    let toDelete = '';
 
     request.on('data', function( data ) {
-      toDelete = data;
-      console.log(toDelete);
+      toDelete += data;
+      toDelete = JSON.parse(toDelete).id;
     });
 
     request.on('end', function(){
-      appdata.filter(function(val){
+      appdata = appdata.filter(function(val){
         return val.id !== toDelete;
       })
     })
@@ -108,16 +113,32 @@ const handlePost = function( request, response ) {
     request.on( 'data', function( data ) {
         dataString += data 
     })
-    console.log('hi')
-    console.log(request.header)
     request.on( 'end', function() {
       let data = JSON.parse(dataString);
       wasLastAnAdmin = data.admin;
       let dateAdded = new Date();
       dateAdded =  `${dateAdded.getFullYear()}-${dateAdded.getMonth()}-${dateAdded.getDate()} ${dateAdded.getHours()}:${dateAdded.getMinutes()}`;
       data.dateAdded = dateAdded;
-      data.id = parseInt(appdata[appdata.length - 1].id) + 1;
-      console.log(data.id);
+      let upperCase = '';
+      for (let i = 0; i < data.username.length; i++){
+        if (data.username.charAt(i) === data.username.charAt(i).toUpperCase()){
+          upperCase += data.username.charAt(i);
+        }
+      }
+      if (upperCase.length > 0){
+        data.nick = upperCase;
+      } else{
+        if (data.username.length === 0){
+          data.nick = 'Blank';
+        } else {
+          data.nick = data.username.charAt(0);
+        }
+      }
+      if (appdata.length === 0){
+        data.id = 0
+      } else {
+        data.id = parseInt(appdata[appdata.length - 1].id) + 1;
+      }
       appdata.push(data);
 
     })
