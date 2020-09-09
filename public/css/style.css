@@ -1,1 +1,9 @@
-/*Style your own assignment! This is fun! */
+body {
+	padding: 24px;
+	margin: auto;
+}
+
+#f-name,
+#l-name {
+	margin-bottom: 16px;
+}
