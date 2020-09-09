@@ -21,7 +21,7 @@ document.getElementById("submit-button").addEventListener("click", (evt) => {
 
 	const fNameField = document.getElementById("f-name");
 	const lNameField = document.getElementById("l-name");
-	const body = JSON.stringify({name: `${fNameField.value} ${lNameField.value}`, test: "testing"});
+	const body = JSON.stringify({name: `${fNameField.value} ${lNameField.value}`});
 
 	fetch("/submit", {
 		method: "POST",
@@ -48,6 +48,7 @@ const formatDataAsTable = (data) => {
 	});
 	
 	const table = document.createElement("table");
+	table.className = "table";
 	let tableRow = table.insertRow(-1);
 
 	keys.forEach(key => {

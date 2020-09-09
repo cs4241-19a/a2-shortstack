@@ -3,20 +3,35 @@ body {
 	margin: auto;
 }
 
+.grid {
+	display: grid;
+	grid-template-columns: auto;
+	justify-content: start;
+	justify-items: start;
+	align-items: center;
+}
+
 #f-name,
 #l-name {
 	margin-bottom: 16px;
 }
 
-table, th, td {
-	border: solid 1px #DDD;
-	border-collapse: collapse;
-	padding: 2px 3px;
-	text-align: center;
-}
 table {
 	margin-top: 64px;
+	border-collapse: separate;
+	border: solid 2px #d6dbe0;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
 }
-th {
-	font-weight: bold;
+
+td, th {
+	border-left: solid 2px #d6dbe0;
+}
+
+td:first-child, th:first-child {
+	border-left: none;
+}
+
+tr:first-child td, tr:first-child th {
+	border-top: none;
 }

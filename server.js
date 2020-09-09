@@ -4,10 +4,10 @@ const mime = require("mime");
 const {v4: uuid} = require("uuid");
 
 const PUBLIC_DIR = "./public";
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 const appData = [
-	{id: uuid(), name: "Test Testerson"},
+	{id: uuid(), name: "John Smith"}
 ];
 
 http.createServer((req, res) => {
@@ -31,8 +31,9 @@ http.createServer((req, res) => {
 		let dataString = "";
 		req.on("data", (data) => dataString += data);
 		req.on("end", () => {
-			appData.push(JSON.parse(dataString));
-			console.log("App data: " + appData); 
+			const dataEntry = JSON.parse(dataString);
+			dataEntry.id = uuid();
+			appData.push(dataEntry);
 
 			res.writeHead(200, "OK", {"Content-Type": "text/plain"});
 			res.end();
@@ -41,4 +42,4 @@ http.createServer((req, res) => {
 		res.writeHeader(405);
 		res.end("Error 405. Method not allowed.");
 	}
-}).listen(process.env.PORT || port, () => console.log(`Listening on port ${port}`));
+}).listen(PORT, () => console.log(`Listening on port ${PORT}`));
