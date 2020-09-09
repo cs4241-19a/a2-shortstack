@@ -1,9 +1,22 @@
 body {
-	padding: 24px;
+	padding: 32px;
 	margin: auto;
 }
 
 #f-name,
 #l-name {
 	margin-bottom: 16px;
+}
+
+table, th, td {
+	border: solid 1px #DDD;
+	border-collapse: collapse;
+	padding: 2px 3px;
+	text-align: center;
+}
+table {
+	margin-top: 64px;
+}
+th {
+	font-weight: bold;
 }
