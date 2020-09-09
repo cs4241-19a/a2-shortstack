@@ -34,11 +34,13 @@
     <button id="allBillBtn" onClick="getAllBills(false)">Show all bills</button>
     <br>
     <div id="hidden" style="visibility: hidden">
-      <p>Select an entry to modify</p>
+      <button id="editRowBtn" style="visibility: hidden;" onClick="editEntry()">Edit Selected Rows</button>
+      <button id="deleteRowBtn" style="visibility: hidden;" onClick="deleteEntry()">Delete Selected Rows</button>
       <div>
         <table id="all_bills">
           <tbody>
             <tr class="table_header">
+              <th> </th>
               <th>Name</th>
               <th>Amount</th>
               <th>Date Issued</th>
@@ -52,117 +54,198 @@
 
   </div>
 
-<script>
-  // Form Submit + validation
-  const submit = function (e) {
-    // prevent default form action from being carried out
-    e.preventDefault()
-    validateForm()
-    return false
-  }
-
-  // Validate form, block submission if missing fields
-  function validateForm() {
-    // Check all fields are filled out 
-    let errorMsg = ""
-    if (document.forms["billForm"]["name"].value == "") {
-      errorMsg = "Please enter a bill name"
-    } else if (document.forms["billForm"]["amt"].value == "") {
-      errorMsg = "Please enter a bill amount"
-    } else if (document.forms["billForm"]["date"].value == "") {
-      errorMsg = "Please enter a date"
+  <script>
+    // Form Submit + validation
+    const submit = function (e) {
+      // prevent default form action from being carried out
+      e.preventDefault()
+      validateForm()
+      return false
     }
-    document.getElementById("errorMsg").innerHTML = errorMsg
-    if (!errorMsg) {
-      submitForm()
-    }
-  }
 
-  function submitForm() {
-    var computePaid = document.getElementById("paid").checked;
-
-    const input = document.querySelector('billForm'),
-      json = {
-        billName: document.querySelector('#name').value,
-        billAmt: document.querySelector('#amt').value,
-        billDate: document.querySelector('#date').value,
-        billPay: computePaid
-      },
-
-      body = JSON.stringify(json)
-
-    fetch('/submit', {
-        method: 'POST',
-        body
-      })
-      .then(function (response) {
-        // do something with the reponse 
-        console.log(response)
-      })
-
-    // If all bills are expanded, update them
-    if (document.getElementById("hidden").style.visibility == "visible") {
-      getAllBills(true)
-    }
-  }
-
-  // What is this?
-  window.onload = function () {
-    const button = document.querySelector('button')
-    button.onclick = submit
-  }
-
-  // Retrieve all bills from server
-  function getAllBills(stayOpen) {
-
-    // If div should remain open to be updated
-    if (!stayOpen) {
-      // Toggle button text and div visibility
-      if (document.getElementById("hidden").style.visibility == "visible") {
-        document.getElementById("allBillBtn").innerHTML = "Show all bills"
-        document.getElementById("hidden").style.visibility = "hidden"
-      } else {
-        document.getElementById("allBillBtn").innerHTML = "Hide all bills"
-        document.getElementById("hidden").style.visibility = "visible"
+    // Validate form, block submission if missing fields
+    function validateForm() {
+      // Check all fields are filled out 
+      let errorMsg = ""
+      if (document.forms["billForm"]["name"].value == "") {
+        errorMsg = "Please enter a bill name"
+      } else if (document.forms["billForm"]["amt"].value == "") {
+        errorMsg = "Please enter a bill amount"
+      } else if (document.forms["billForm"]["date"].value == "") {
+        errorMsg = "Please enter a date"
+      }
+      document.getElementById("errorMsg").innerHTML = errorMsg
+      if (!errorMsg) {
+        submitForm()
       }
     }
 
+    function submitForm() {
+      var computePaid = document.getElementById("paid").checked;
 
-    const response = fetch('/results', {
-        method: 'GET'
-      })
-      .then(response => response.json())
-      .then(function (data) {
-        console.log(data)
-        displayBills(data)
-      })
-  }
+      const input = document.querySelector('billForm'),
+        json = {
+          billName: document.querySelector('#name').value,
+          billAmt: document.querySelector('#amt').value,
+          billDate: document.querySelector('#date').value,
+          billPay: computePaid
+        },
 
-  // Display all bills in HTML
-  function displayBills(jsonArray) {
-    let billDiv = document.getElementById('all_bills')
+        body = JSON.stringify(json)
 
-    // Clear table to avoid duplication
-    var rows = billDiv.rows.length
-    for (let i = rows - 1; i > 0; i--) {
-      billDiv.deleteRow(i)
+      fetch('/submit', {
+          method: 'POST',
+          body
+        })
+        .then(function (response) {
+          // do something with the reponse 
+          console.log(response)
+        })
+
+      // If all bills are expanded, update them
+      if (document.getElementById("hidden").style.visibility == "visible") {
+        getAllBills(true)
+      }
     }
 
-    // Populate table
-    for (obj in jsonArray) {
-      var newRow = document.createElement('tr')
-      newRow.innerHTML =
-        `<td>${jsonArray[obj].billName}</td>
-      <td>${jsonArray[obj].billAmt}</td>
-      <td>${jsonArray[obj].billDate}</td>
-      <td>${jsonArray[obj].billPay}</td>
+    // What is this?
+    window.onload = function () {
+      const button = document.querySelector('button')
+      button.onclick = submit
+    }
+
+    // Retrieve all bills from server
+    function getAllBills(stayOpen) {
+
+      // If div should remain open to be updated
+      if (!stayOpen) {
+        // Toggle button text and div visibility
+        if (document.getElementById("hidden").style.visibility == "visible") {
+          document.getElementById("allBillBtn").innerHTML = "Show all bills"
+          document.getElementById("hidden").style.visibility = "hidden"
+        } else {
+          document.getElementById("allBillBtn").innerHTML = "Hide all bills"
+          document.getElementById("hidden").style.visibility = "visible"
+        }
+      }
+
+
+      const response = fetch('/results', {
+          method: 'GET'
+        })
+        .then(response => response.json())
+        .then(function (data) {
+          console.log(data)
+          displayBills(data)
+        })
+    }
+
+    // Display all bills in HTML
+    function displayBills(jsonArray) {
+      let billDiv = document.getElementById('all_bills')
+
+      // Clear table to avoid duplication
+      var rows = billDiv.rows.length
+      for (let i = rows - 1; i > 0; i--) {
+        billDiv.deleteRow(i)
+      }
+
+      // Populate table
+      for (obj in jsonArray) {
+        var newRow = document.createElement('tr')
+        newRow.innerHTML =
+          `<td class="checkbox_col"><input onClick="showOptions(${obj})" id=${obj} type="checkbox"></td>
+      <td id="${obj}name">${jsonArray[obj].billName}</td>
+      <td id="${obj}amt">${jsonArray[obj].billAmt}</td>
+      <td id="${obj}date">${jsonArray[obj].billDate}</td>
+      <td id="${obj}pay">${jsonArray[obj].billPay}</td>
       <td>${jsonArray[obj].priority}</td>`
-      billDiv.appendChild(newRow)
-    }
-  }
-</script>
+        billDiv.appendChild(newRow)
+      }
 
-<!-- <link href="js/scripts.js" type="text/javascript"> -->
+    }
+
+    function editEntry() {
+      console.log("hey")
+    }
+
+    function deleteEntry() {
+      let rows = document.getElementById('all_bills').rows.length
+      let doDelete = []
+      // Iterate through rows and delete the checked row
+      for (let i = 0; i < rows - 1; i++) {
+        if (document.getElementById(i).checked) {
+          doDelete.push(i)
+        }
+      }
+      deleteFromServer(doDelete)
+
+      for (row in doDelete) {
+        let elt = document.getElementById(doDelete[row])
+        elt.parentNode.parentNode.parentNode.removeChild(elt.parentNode.parentNode)
+      }
+
+    }
+
+    function deleteFromServer(deleteArr) {
+      let jsonObjs
+
+      for (obj in deleteArr) {
+        // work bools
+        let payBool = false
+        if (document.getElementById(deleteArr[obj]+'pay').innerText == 'true') { payBool = true }
+        jsonObjs += {"billName":`${document.getElementById(deleteArr[obj]+'name').innerText}`, "billAmt":`${document.getElementById(deleteArr[obj]+'amt').innerText}`, "billDate":`${document.getElementById(deleteArr[obj]+'date').innerText}`, "billPay":payBool}
+      }
+
+              // work bools
+              let payBool = false
+        if (document.getElementById(deleteArr[obj]+'pay').innerText == 'true') { payBool = true }
+      let test = {"billName":`${document.getElementById(deleteArr[obj]+'name').innerText}`, "billAmt":`${document.getElementById(deleteArr[obj]+'amt').innerText}`, "billDate":`${document.getElementById(deleteArr[obj]+'date').innerText}`, "billPay":payBool}
+
+      //jsonObjs.push(jsonObj)
+      console.log(test)
+      body = JSON.stringify(test)
+      console.log(body)
+
+      fetch('/edit', {
+          method: 'POST',
+          body
+        })
+        .then(function (response) {
+          // do something with the reponse 
+          console.log(response)
+        })
+    }
+
+    function showOptions(eltId) {
+      let rows = document.getElementById('all_bills').rows.length
+      let clear = true
+
+      // If element was unchecked
+      if (!document.getElementById(eltId).checked) {
+
+        // Check if any other elements are currently checked 
+        for (let i = 0; i < rows - 1; i++) {
+          if (document.getElementById(i).checked) {
+            clear = false
+          }
+        }
+        // If nothing is checked, hide buttons
+        if (clear) {
+          console.log("hide")
+          document.getElementById("editRowBtn").style.visibility = "hidden"
+          document.getElementById("deleteRowBtn").style.visibility = "hidden"
+        }
+      }
+      // Show buttons on checkbox check
+      else {
+        document.getElementById("editRowBtn").style.visibility = "visible"
+        document.getElementById("deleteRowBtn").style.visibility = "visible"
+      }
+    }
+  </script>
+
+  <!-- <link href="js/scripts.js" type="text/javascript"> -->
 </body>
 
 </html>

@@ -44,18 +44,47 @@ const handlePost = function (request, response) {
     dataString += data
   })
 
-  // Handle data, write response
-  request.on('end', function () {
-    console.log(JSON.parse(dataString))
+  const filename = dir + request.url.slice(1)
 
-    // Derive a prioirty field 
-    addPriority(JSON.parse(dataString))
+  if (request.url === '/edit') {
+    // Handle data, write response
+    request.on('end', function () {
+      console.log("INCOMING DATA: " + JSON.parse(dataString))
+      dataString = JSON.parse(dataString)
+      console.log(dataString)
 
-    response.writeHead(200, "OK", {
-      'Content-Type': 'text/plain'
+      for (obj in appdata) {
+        console.log("datastring[0] = " + dataString.billName)
+        console.log("TEST: appdata[obj].billName = " + appdata[obj].billName + "  :  dataString.billName = " + dataString.billName)
+        if (appdata[obj].billName == dataString.billName && appdata[obj].billAmt == dataString.billAmt && appdata[obj].date == dataString.date && appdata[obj].billPay == dataString.billPay) {
+          console.log("MATCH FOUND")
+          appdata.splice(obj, 1)
+        }
+      }
+      console.log("NEW APPDATA: " + appdata)
+
+      // Derive a prioirty field 
+      //addPriority(JSON.parse(dataString))
+
+      response.writeHead(200, "OK", {
+        'Content-Type': 'text/plain'
+      })
+      response.end()
     })
-    response.end()
-  })
+  } else {
+    // Handle data, write response
+    request.on('end', function () {
+      console.log(JSON.parse(dataString))
+
+      // Derive a prioirty field 
+      addPriority(JSON.parse(dataString))
+
+      response.writeHead(200, "OK", {
+        'Content-Type': 'text/plain'
+      })
+      response.end()
+    })
+  }
 }
 
 // Calculate bill priorty on a scale of 0-3 based on amount, date, and if it has been paid
@@ -91,7 +120,7 @@ function addPriority(data) {
   data = (JSON.stringify(data))
   appdata.push(JSON.parse(data))
 
-  printObject(data)
+  //printObject(data)
 }
 
 // Serve files

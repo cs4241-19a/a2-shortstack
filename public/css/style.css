@@ -29,6 +29,8 @@ label {
     margin: 2px; 
 }
 
+
+
 button {
     font-family: 'Roboto', sans-serif;
     padding: 10px 20px; 
@@ -54,6 +56,10 @@ th, td {
 }
 
 tr:nth-child(even) {background-color: #EBEBEB;}
+
+.checkbox_col {
+    text-align: center;
+}
 
 p {
     margin-top: 10px; 
