@@ -17,20 +17,61 @@ h1, h3 {
     margin: 30px;
 }
 
-.form_div {
-    text-align: center;
+p {
+    margin-top: 10px; 
 }
+
+#errorMsg {
+    color: #E9470C;
+    font-weight: 700;
+}
+
+#paidDiv{
+    padding: 14.5px 0px 14.5px 0px;
+}
+
+.inputDiv {
+    margin: 30px;
+}
+
+
+/* Form Styles */
+.form_div {
+    text-align: left;
+    margin: 20px 40px 20px 40px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+/* Input Styles */
 
 input {
-    margin: 20px; 
+    margin: 10px 20px 10px 0px; 
 }
 
-label {
-    margin: 2px; 
+input[type="text"] {
+    width: 200px;
+}
+
+input[type="number"] {
+    width: 200px;
+}
+
+input[type="date"] {
+    width: 200px;
+}
+
+input[type='checkbox'] {
+    margin: 10px;
 }
 
 
-
+/* Button Styles */
 button {
     font-family: 'Roboto', sans-serif;
     padding: 10px 20px; 
@@ -40,8 +81,33 @@ button {
     color: #ffffff;
     font-size: 1rem;
     margin-bottom: 20px;
+    width: 200px;
 }
 
+.changeBtn {
+    margin: 20px 20px 20px 0px; 
+}
+
+#saveBtn {
+    background-color: #D78F09;
+}
+.submit {
+    background-color: #D78F09;
+    align-self: center;
+    width: 300px;
+    margin: 20px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button:disabled {
+    background-color: #EBEBEB;
+    color: #000000;
+}
+
+
+/* Table Syles */
 table {
     padding: 10px;
     width: 80%; 
@@ -62,36 +128,6 @@ tr:nth-child(even) {background-color: #EBEBEB;}
     text-align: center;
 }
 
-p {
-    margin-top: 10px; 
-}
-
 .table_header {
     font-family: 'Raleway', sans-serif;  
-}
-
-#errorMsg {
-    color: #E9470C;
-    font-weight: 700;
-}
-
-input[type='checkbox'] {
-    margin: 0px; 
-}
-
-.changeBtn {
-    margin: 20px 20px 20px 0px; 
-}
-
-#saveBtn {
-    background-color: #D78F09;
-}
-.submit {
-    background-color: #D78F09;
-
-}
-
-button:disabled {
-    background-color: #EBEBEB;
-    color: #000000;
 }

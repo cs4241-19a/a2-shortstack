@@ -47,17 +47,18 @@ const handlePost = function (request, response) {
   // Process request based on path
   request.on('end', function () {
     dataString = JSON.parse(dataString)
+    let possReturn = 200
 
     if (request.url === '/delete') {
       manageAppData('/delete', dataString)
     } else if (request.url === '/edit') {
       manageAppData('/edit', dataString)
     } else {
-      manageAppData('/other', dataString)
+      possReturn = manageAppData('/other', dataString)
     }
 
     // Write response
-    response.writeHead(200, "OK", {
+    response.writeHead(possReturn, "OK", {
       'Content-Type': 'text/plain'
     })
     response.end()
@@ -70,10 +71,17 @@ function manageAppData(url, data) {
 
   // If POST was for data entry
   if (url === '/other') {
-    // Derive a prioirty field 
-    data = addPriority(data)
-    // Add to data
-    appdata.push(data)
+    // Check for a duplicate entry 
+    if (!isDuplicate(data)) {
+      // Derive a prioirty field 
+      data = addPriority(data)
+      // Add to data
+      appdata.push(data)
+      return 200
+    } else {
+      // return different response
+      return 418
+    }
   }
   // If POST was to delete entry(ies)
   else if (url == '/delete') {
@@ -87,7 +95,7 @@ function manageAppData(url, data) {
         }
       }
     }
-  } 
+  }
   // If POST was to edit entry(ies)
   else if (url == '/edit') {
     // Derive prioirty fields
@@ -95,6 +103,17 @@ function manageAppData(url, data) {
     // Replace app data with new data
     appdata = finalData
   }
+}
+
+function isDuplicate(data) {
+  // Iterate over appdata to search for matching entries 
+    for (obj in appdata) {
+      // Object is a match if first four fields match 
+      if (appdata[obj].billName == data.billName && appdata[obj].billAmt == data.billAmt && appdata[obj].date == data.date && appdata[obj].billPay == data.billPay) {
+        return true
+      }
+  }
+  return false
 }
 
 
@@ -131,7 +150,7 @@ function addPriority(data) {
         }
       }
     }
-  } 
+  }
   // If data has length (aka multiple entries in an array)
   else {
     for (let i = 0; i < data.length; i++) {
