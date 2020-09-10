@@ -6,21 +6,22 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+    <h1>User Entry</h1>
     <form action="">
+      
       <input type='text' id='username' placeholder="Username here">
       <br>
       <input type='text' id='password' placeholder="Password here">
       <br>
       <input type='text' id='ssn' placeholder="Social security number here">
       <br>
-      <label>Are you an admin?</label>
+      <label>Are you an admin? </label>
       <input type = "checkbox" id = 'admin' placeholder="Are you an admin?">
       <br>
       <button>Submit</button>
     </form>
   </body>
   <script>
-
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()

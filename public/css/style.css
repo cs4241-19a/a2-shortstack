@@ -12,20 +12,28 @@ th{
 body, button, ::placeholder{
     font-size: 28px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column
 }
 
 table {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 }
 
-input{
+input[type = text]{
     width: 500px;
     height: 30px;
     font-size: 28px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+input[type = checkbox]{
+    width: 30px;
+    height: 30px;
+}
 #Title{
     text-align: center;
 }
