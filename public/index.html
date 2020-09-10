@@ -22,7 +22,6 @@
         <input type="date" id="date" required>
         <input type="checkbox" id="paid" value="true">
         <label for="paid">Paid?</label>
-        
         <br><br>
         <button class="submit">Submit</button>
       </form>
@@ -59,7 +58,7 @@
 
     // Form Submit + validation
     const submit = function (e) {
-      // prevent default form action from being carried out
+      // Prevent default form action from being carried out
       e.preventDefault()
       validateForm()
       return false
@@ -82,9 +81,10 @@
       }
     }
     
+    // Submit form data to server
     function submitForm() {
       var computePaid = document.getElementById("paid").checked;
-      
+
       const input = document.querySelector('billForm'),
       json = {
         billName: document.querySelector('#name').value,
@@ -100,11 +100,10 @@
         body
       })
       .then(function (response) {
-        // do something with the reponse 
         console.log(response)
       })
       
-      // If all bills are expanded, update them
+      // If 'all bills' section is expanded, update them
       if (document.getElementById("hidden").style.visibility == "visible") {
         getAllBills(true)
       }
@@ -118,9 +117,8 @@
     
     // Retrieve all bills from server
     function getAllBills(stayOpen) {
-      console.log("In getAllBills()")
       
-      // If div should remain open to be updated
+      // If div will remain open and be updated
       if (!stayOpen) {
         // Toggle button text and div visibility
         if (document.getElementById("hidden").style.visibility == "visible") {
@@ -132,6 +130,7 @@
         }
       }
       
+      // Retrieve all data from server
       const response = fetch('/results', {
         method: 'GET'
       })
@@ -143,15 +142,6 @@
     
     // Display all bills in HTML
     function displayBills(jsonArray) {
-      console.log("In displayBills()")
-
-      //??????
-      // console.log("GET json is of type " + typeof(jsonArray))
-      // console.log(jsonArray)
-      // console.log(jsonArray[0])
-      // console.log(jsonArray[0][0])
-      //console.log(jsonArray[0][0].billName)
-
       let billDiv = document.getElementById('all_bills')
       
       // Clear table to avoid duplication
@@ -172,25 +162,25 @@
         <td class="editable" id="${obj}priority">${jsonArray[obj].priority}</td>`
         billDiv.appendChild(newRow)
       }
-      
     }
     
+    // Edit entries in all bills section
     function editEntry() {
-      console.log("In editEntry()")
-
-      // Show save btn
-      document.getElementById("saveBtn").style.visibility = "visible"
-
       let rows = document.getElementById('all_bills').rows.length
+      let editRows = []
+      let temp = []
+
+      // Toggle btns
+      document.getElementById("saveBtn").style.visibility = "visible"
+      document.getElementById("editRowBtn").disabled = true
+      document.getElementById("deleteRowBtn").disabled = true
 
       // Disable other checkboxes
       for (let i = 0; i < rows - 1; i++) {
         document.getElementById(i).disabled = true
       }
       
-      let editRows = []
-      let temp = []
-      
+      // Ok, buckle up 
       // Get the rows to be edited
       for (let i = 0; i < rows - 1; i++) {
         if (document.getElementById(i).checked) {
@@ -211,12 +201,10 @@
           }
         }
       }
-      
     }
     
-    
+    // Save edited elements
     function saveChanges() {
-      console.log("In saveChanges()")
 
       // Get elements that were possibly edited 
       let changedElts = []
@@ -226,11 +214,9 @@
           changedElts.push(inputs[input])
         }
       }
-      //console.log(changedElts)
       
       // Change elements back to have innerText with id, class in <td> parent elt 
       for (elt in changedElts) {
-        // Set parent 
         let parent = changedElts[elt].parentNode
         parent.className = changedElts[elt].className
         parent.id = changedElts[elt].id
@@ -246,128 +232,117 @@
         document.getElementById(i).disabled = false
       }
 
+      // Toggle buttons
       document.getElementById("saveBtn").style.visibility = "hidden"
-
+      document.getElementById("editRowBtn").style.visibility = "hidden"
+      document.getElementById("deleteRowBtn").style.visibility = "hidden"
+      document.getElementById("editRowBtn").disabled = false
+      document.getElementById("deleteRowBtn").disabled = false
       
       // Update changes on server 
       editOnServer()
     }
 
 
-    // As of right now, overwrite all server data with saved client data
+    // Overwrite all server data with updated client data
     function editOnServer() {
-      console.log("In editOnServer()")
-
       let jsonObjs = []
       let allElts = []
-
       let rows = document.getElementById('all_bills').rows.length
 
-        // Iterate through rows and get all 
+      // Iterate through rows and get all elements
       for (let i = 0; i < rows - 1; i++) {
         allElts.push(i)
       }
-        
+      
+      // Create JSON object to send to server
       for (obj in allElts) {
         let payBool = false
         if (document.getElementById(allElts[obj]+'pay').innerText == 'true') { payBool = true }
-        //jsonObjs.push({"billName":`${document.getElementById(allElts[obj]+'name').innerText}`, "billAmt":`${document.getElementById(allElts[obj]+'amt').innerText}`, "billDate":`${document.getElementById(allElts[obj]+'date').innerText}`, "billPay":payBool})
         jsonObjs.push({billName: document.getElementById(allElts[obj]+'name').innerText, billAmt: document.getElementById(allElts[obj]+'amt').innerText, billDate: document.getElementById(allElts[obj]+'date').innerText, billPay:payBool})
       }
-        
-      //console.log(jsonObjs)
-      body = JSON.stringify(jsonObjs)
-      console.log("JSON STRING body = " + body)
-        
+      
+      // POST to server
+      body = JSON.stringify(jsonObjs)  
       fetch('/edit', {
         method: 'POST',
         body
       })
       .then(function (response) {
-        // do something with the reponse 
-        //console.log(response)
+        console.log(response)
       })
     }
       
-      function deleteEntry() {
-        console.log("In deleteEntry()")
+    // Delete selected entry(ies) from server and update HTML
+    function deleteEntry() {
+      let rows = document.getElementById('all_bills').rows.length
+      let doDelete = []
 
-        let rows = document.getElementById('all_bills').rows.length
-        let doDelete = []
-        // Iterate through rows and delete the checked row
+      // Iterate through rows and delete the checked row
+      for (let i = 0; i < rows - 1; i++) {
+        if (document.getElementById(i).checked) {
+          doDelete.push(i)
+        }
+      }
+
+      deleteFromServer(doDelete)
+      getAllBills(true)
+
+      document.getElementById("editRowBtn").style.visibility = "hidden"
+      document.getElementById("deleteRowBtn").style.visibility = "hidden"
+      
+    }
+      
+    // Delete entries from server
+    function deleteFromServer(deleteArr) {
+      let jsonObjs = []
+        
+      // Create JSON object to send to server
+      for (obj in deleteArr) {
+        let payBool = false
+        if (document.getElementById(deleteArr[obj]+'pay').innerText == 'true') { payBool = true }
+        jsonObjs.push({billName: document.getElementById(deleteArr[obj]+'name').innerText, billAmt: document.getElementById(deleteArr[obj]+'amt').innerText, billDate: document.getElementById(deleteArr[obj]+'date').innerText, billPay:payBool})
+      }
+
+      // POST to server
+      body = JSON.stringify(jsonObjs)
+      console.log("JSON STRING BODY = " + body)
+        
+      fetch('/delete', {
+        method: 'POST',
+        body
+      })
+      .then(function (response) {
+        console.log(response)
+      })
+    }
+      
+    // Show buttons if an element is selected
+    function showOptions(eltId) {
+      let rows = document.getElementById('all_bills').rows.length
+      let clear = true
+        
+      // If element was unchecked
+      if (!document.getElementById(eltId).checked) {
+          
+        // Check if any other elements are currently checked 
         for (let i = 0; i < rows - 1; i++) {
           if (document.getElementById(i).checked) {
-            doDelete.push(i)
+            clear = false
           }
         }
-        deleteFromServer(doDelete)
-
-        getAllBills(true)
-        
-        // maybe for now based on server load 
-        // for (row in doDelete) {
-        //   let elt = document.getElementById(doDelete[row])
-        //   elt.parentNode.parentNode.parentNode.removeChild(elt.parentNode.parentNode)
-        // }
-
-        
-      }
-      
-      function deleteFromServer(deleteArr) {
-        console.log("In deleteFromServer()")
-
-        let jsonObjs = []
-        
-        for (obj in deleteArr) {
-          let payBool = false
-          if (document.getElementById(deleteArr[obj]+'pay').innerText == 'true') { payBool = true }
-          //jsonObjs.push({"billName":`${document.getElementById(deleteArr[obj]+'name').innerText}`, "billAmt":`${document.getElementById(deleteArr[obj]+'amt').innerText}`, "billDate":`${document.getElementById(deleteArr[obj]+'date').innerText}`, "billPay":payBool})
-          jsonObjs.push({billName: document.getElementById(deleteArr[obj]+'name').innerText, billAmt: document.getElementById(deleteArr[obj]+'amt').innerText, billDate: document.getElementById(deleteArr[obj]+'date').innerText, billPay:payBool})
-        }
-        
-        //jsonObjs.push(jsonObj)
-        //console.log(jsonObjs)
-        body = JSON.stringify(jsonObjs)
-        console.log("JSON STRING BODY = " + body)
-        
-        fetch('/delete', {
-          method: 'POST',
-          body
-        })
-        .then(function (response) {
-          // do something with the reponse 
-          console.log(response)
-        })
-      }
-      
-      function showOptions(eltId) {
-        console.log("In showOptions()")
-
-        let rows = document.getElementById('all_bills').rows.length
-        let clear = true
-        
-        // If element was unchecked
-        if (!document.getElementById(eltId).checked) {
-          
-          // Check if any other elements are currently checked 
-          for (let i = 0; i < rows - 1; i++) {
-            if (document.getElementById(i).checked) {
-              clear = false
-            }
-          }
-          // If nothing is checked, hide buttons
-          if (clear) {
-            console.log("hide")
-            document.getElementById("editRowBtn").style.visibility = "hidden"
-            document.getElementById("deleteRowBtn").style.visibility = "hidden"
-          }
-        }
-        // Show buttons on checkbox check
-        else {
-          document.getElementById("editRowBtn").style.visibility = "visible"
-          document.getElementById("deleteRowBtn").style.visibility = "visible"
+        // If nothing is checked, hide buttons
+        if (clear) {
+          document.getElementById("editRowBtn").style.visibility = "hidden"
+          document.getElementById("deleteRowBtn").style.visibility = "hidden"
         }
       }
+      // Show buttons on checkbox check
+      else {
+        document.getElementById("editRowBtn").style.visibility = "visible"
+        document.getElementById("deleteRowBtn").style.visibility = "visible"
+      }
+    }
     </script>
     
     <!-- <link href="js/scripts.js" type="text/javascript"> -->
