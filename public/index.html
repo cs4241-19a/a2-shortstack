@@ -1,11 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>CS4241 Assignment 2</title>
+    <title>User Entry</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+    <div id = "header">
+      <a href = "/">Add user</a>
+      <a id = "userList" href = "/users">User list</a>
+    </div>
     <h1>User Entry</h1>
     <form action="">
       
@@ -35,16 +39,19 @@
               ssn : ssn,
               admin: priv};
     body = JSON.stringify( json );
-    console.log(body)
 
     fetch( '/submit', {
       method:'POST',
       body : body
     })
     .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-      console.log( response.body)
+      if(response.ok){
+        alert("Successfully added user");
+        let userLink = document.getElementById('userList');
+        userLink.classList.add('glow');
+      } else {
+        alert("Error in adding user");
+      }
     })
 
     return false;

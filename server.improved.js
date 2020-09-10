@@ -16,7 +16,13 @@ let wasLastAnAdmin = false;
 let resultsPage = null;
 fs.readFile('public/results.html', function(err, content){
   resultsPage = content;
-})
+});
+
+let headerFile;
+fs.readFile('public/header.html', function(err, content){
+    headerFile = content;
+});
+
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -72,6 +78,7 @@ function buildPage(){
 
     })
   }
+  
   </script>`
   toReturn += "</html>"
   return toReturn;
