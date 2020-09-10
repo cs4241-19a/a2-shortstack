@@ -195,6 +195,8 @@
         <td class="editable" id="${obj}priority">${jsonArray[obj].priority}</td>`
         billDiv.appendChild(newRow)
       }
+
+      colorPrioritization()
     }
 
     // Edit entries in all bills section
@@ -207,6 +209,7 @@
       document.getElementById("saveBtn").style.visibility = "visible"
       document.getElementById("editRowBtn").disabled = true
       document.getElementById("deleteRowBtn").disabled = true
+      document.getElementById("allBillBtn").disabled = true
 
       // Disable other checkboxes
       for (let i = 0; i < rows - 1; i++) {
@@ -272,9 +275,19 @@
       document.getElementById("deleteRowBtn").style.visibility = "hidden"
       document.getElementById("editRowBtn").disabled = false
       document.getElementById("deleteRowBtn").disabled = false
+      document.getElementById("allBillBtn").disabled = false
+
+
+      // console.log("pris in save, before edit on server: ")
+      // rows = document.getElementById('all_bills').rows.length
+      // for (let i = 0; i < rows - 1; i++) {
+      //   console.log(document.getElementById(1+"priority"))
+      // }
 
       // Update changes on server 
       editOnServer()
+
+      colorPrioritization()
     }
 
 
@@ -299,7 +312,8 @@
           billName: document.getElementById(allElts[obj] + 'name').innerText,
           billAmt: document.getElementById(allElts[obj] + 'amt').innerText,
           billDate: document.getElementById(allElts[obj] + 'date').innerText,
-          billPay: payBool
+          billPay: payBool, 
+          priority: document.getElementById(allElts[obj] + 'priority').innerText
         })
       }
 
@@ -363,6 +377,31 @@
         .then(function (response) {
           console.log(response)
         })
+    }
+
+    function colorPrioritization() {
+      // For each row get prioritization value 
+      let rows = document.getElementById('all_bills').rows.length
+
+      for (let i = 0; i < rows - 1; i++) {
+        let pri = document.getElementById(i+"priority")
+        console.log("looking for id: " + i+"priority")
+        console.log("inner txt = " + pri.innerText)
+        switch (pri.innerText) {
+          case "1": 
+            pri.parentNode.style.backgroundColor = '#C6EBAD'
+            break
+          case "2": 
+            pri.parentNode.style.backgroundColor = '#FBDA9D'
+            break
+          case "3": 
+          pri.parentNode.style.backgroundColor = '#F2BABA'
+            break
+          default: 
+            break 
+        }
+      }
+
     }
 
     // Show buttons if an element is selected

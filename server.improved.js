@@ -99,9 +99,10 @@ function manageAppData(url, data) {
   // If POST was to edit entry(ies)
   else if (url == '/edit') {
     // Derive prioirty fields
-    let finalData = addPriority(data)
+    //let finalData = addPriority(data)
     // Replace app data with new data
-    appdata = finalData
+    // appdata = finalData
+    appdata = data
   }
 }
 
@@ -118,14 +119,14 @@ function isDuplicate(data) {
 
 
 
-// Calculate bill priorty on a scale of 0-3 based on amount, date, and if it has been paid
+// Calculate bill priorty on a scale of 1-3 based on amount, date, and if it has been paid
 function addPriority(data) {
 
   // If data is single entry (not in an array), add prioirty to JSON obj
   if (data.length == undefined) {
     // If bill has been paid already
     if (data.billPay) {
-      data.priority = '0'
+      data.priority = '1'
     } else {
       // Calculate days since bill was issued
       var today, date;
@@ -136,18 +137,9 @@ function addPriority(data) {
 
       // If bill was issued over 3 weeks ago, set to level 2
       if (daysSinceBill > 21) {
-        data.priority = '2'
+        data.priority = '3'
       } else {
-        data.priority = '1'
-      }
-
-      // If bill is over $300 up the priority by one level
-      if (data.billAmt > 300) {
-        if (data.priority == 1) {
-          data.priority = 2
-        } else if (data.priority == 2) {
-          data.priority = 3
-        }
+        data.priority = '2'
       }
     }
   }
@@ -155,7 +147,7 @@ function addPriority(data) {
   else {
     for (let i = 0; i < data.length; i++) {
       if (data[i].billPay) {
-        data[i].priority = '0'
+        data[i].priority = '1'
       } else {
         var today, date;
         today = new Date();
@@ -163,16 +155,9 @@ function addPriority(data) {
         var res = Math.abs(today - date) / 1000;
         var daysSinceBill = Math.floor(res / 86400);
         if (daysSinceBill > 21) {
-          data[i].priority = '2'
+          data[i].priority = '3'
         } else {
-          data[i].priority = '1'
-        }
-        if (data[i].billAmt > 300) {
-          if (data[i].priority == 1) {
-            data[i].priority = 2
-          } else if (data.priority == 2) {
-            data[i].priority = 3
-          }
+          data[i].priority = '2'
         }
       }
     }

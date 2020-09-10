@@ -6,7 +6,8 @@ body {
 .head {
     padding: 30px;
     width: 100%;
-    background-color: #ABE188;
+    background-color: #8ccf30;
+    color: #ffffff;
 }
 
 h1, h3 {
@@ -89,10 +90,10 @@ button {
 }
 
 #saveBtn {
-    background-color: #D78F09;
+    background-color: #51B4CD;
 }
 .submit {
-    background-color: #D78F09;
+    background-color: #51B4CD;
     align-self: center;
     width: 300px;
     margin: 20px; 
@@ -122,7 +123,18 @@ th, td {
     padding: 10px; 
 }
 
-tr:nth-child(even) {background-color: #EBEBEB;}
+/* tr:nth-child(even) {background-color: #EBEBEB;} */
+.lowPriorityRow {
+    background-image: #ABE188;
+}
+
+.midPriorityRow {
+    background-image: #F8BD4F;
+}
+
+.highPriorityRow {
+    background-image: #E67575;
+}
 
 .checkbox_col {
     text-align: center;
