@@ -5,8 +5,9 @@
   <title>CS4241 Assignment 2</title>
   <meta charset="utf-8">
   <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;700&family=Roboto:wght@300,700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;500;700&family=Roboto:wght@300;700&display=swap" rel="stylesheet">    
+  <script src="node_modules/better-dom/dist/better-dom.js"></script>
+  <script src="node_modules/better-dateinput-polyfill/dist/better-dateinput-polyfill.js"></script>
 </head>
 
 <body>
@@ -16,7 +17,7 @@
   <div class="content">
     <h3>Enter your bill:</h3>
 
-    <form name="billForm" action="">
+    <form name="billForm" action="/server.improved.js">
 
       <div class="form_div">
         <div class="inputDiv">
@@ -32,7 +33,7 @@
       <div class="form_div">
         <div class="inputDiv">
           <label for="paid">Date Issued:</label><br>
-          <input type="date" id="date" required>
+          <input type="date" data-polyfill="all" id="date" required>
         </div>
         <div class="inputDiv" id="paidDiv">
           <input type="checkbox" id="paid" value="true" class="check">
@@ -41,9 +42,9 @@
       </div>
 
     </form>
-    <button class="submit">Submit</button>
 
     <p id="errorMsg"></p>
+    <button class="submit">Submit</button>
 
     <!-- Results functionality to show entire dataset -->
     <br>
