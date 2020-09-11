@@ -210,6 +210,7 @@
       document.getElementById("editRowBtn").disabled = true
       document.getElementById("deleteRowBtn").disabled = true
       document.getElementById("allBillBtn").disabled = true
+      document.getElementsByClassName("submit")[0].disabled = true
 
       // Disable other checkboxes
       for (let i = 0; i < rows - 1; i++) {
@@ -276,6 +277,8 @@
       document.getElementById("editRowBtn").disabled = false
       document.getElementById("deleteRowBtn").disabled = false
       document.getElementById("allBillBtn").disabled = false
+      document.getElementsByClassName("submit")[0].disabled = false
+
 
       // Update changes on server 
       editOnServer()
@@ -362,7 +365,6 @@
 
       // POST to server
       body = JSON.stringify(jsonObjs)
-      console.log("JSON STRING BODY = " + body)
 
       fetch('/delete', {
           method: 'POST',

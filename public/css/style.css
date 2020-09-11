@@ -72,6 +72,10 @@ input[type='checkbox'] {
     cursor: pointer;
 }
 
+input[data-polyfill='all'] {
+    border: 1px solid black;
+}
+
 
 /* Button Styles */
 button {
@@ -83,7 +87,7 @@ button {
     color: #ffffff;
     font-size: 1rem;
     margin-bottom: 20px;
-    width: 200px;
+    width: 250px;
     cursor: pointer;
 }
 
@@ -106,6 +110,7 @@ button {
 button:disabled {
     background-color: #EBEBEB;
     color: #000000;
+    cursor: default;
 }
 
 
@@ -122,19 +127,6 @@ table {
 th, td {
     border: 1px solid black;
     padding: 10px; 
-}
-
-/* tr:nth-child(even) {background-color: #EBEBEB;} */
-.lowPriorityRow {
-    background-image: #ABE188;
-}
-
-.midPriorityRow {
-    background-image: #F8BD4F;
-}
-
-.highPriorityRow {
-    background-image: #E67575;
 }
 
 .checkbox_col {
