@@ -12,7 +12,7 @@ The CSS includes styling element, ID, and class selectors, and flexbox was used 
 ### Graders Make Note:
 The HTML file validates with one warning for date input not being supported on all browsers. To solve this, I used a polyfill as described in Technical Achievement 4. Please be aware that while this is a working solution, the warning was not eliminated in validation.
 
-This site is hosted on Glitch at Molly Wirtz http://a1-mollywirtz.glitch.me, but if it were to be run locally, please use the command `nodemon server` to start the application. You may have to install nodemon (`npm install --save-dev nodemon`) and better-dom (`npm install better-dateinput-polyfill better-dom`). 
+This site is hosted on Glitch at Molly Wirtz http://a1-mollywirtz.glitch.me, but if it were to be run locally, you can use `nodemon server`, `node server.improved.js` or `npm start` to start the application. You may have to install nodemon (`npm install --save-dev nodemon`) and better-dom (`npm install better-dateinput-polyfill better-dom`). 
 
 ## Technical Achievements
 - **Tech Achievement 1**: Created a single page appliation that provides a form for users to submit data and always shows the current state of the server-side data. 

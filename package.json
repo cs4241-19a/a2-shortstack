@@ -1,10 +1,10 @@
 {
-  "name": "Bill Tracker",
-  "version": "",
+  "name": "bill-tracker",
+  "version": "0.1.0",
   "description": "This single page web application is an easy way to keep track of your bills.",
   "author": "Molly Wirtz",
   "scripts": {
-    "start": "nodemon server.improved.js"
+    "start": "node server.improved.js"
   },
   "dependencies": {
     "better-dom": "^4.1.0",
