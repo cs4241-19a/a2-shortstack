@@ -1,12 +1,16 @@
 /*Style your own assignment! This is fun! */
 .hidden{
     color:red;
-    font-family: 'Courier New', Courier, monospace;
 }
 
-th{
+table{
+    border-collapse: collapse;
+}
+
+tr, td, th{
     border:solid;
     border-width: 2px;
+    border-color: black;
 }
 
 body, button, ::placeholder{

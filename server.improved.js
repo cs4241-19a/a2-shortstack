@@ -7,7 +7,7 @@ const http = require( 'http' ),
       port = 3000
 
 let appdata = [ 
-  {id: 0, username: "tRits",  password: "password" ,  ssn : "123456789", admin: false, dateAdded: '1991-8-21', nick: 'R'},
+  {id: 0, username: "Test",  password: "password" ,  ssn : "123456789", admin: false, dateAdded: '1991-8-21', nick: 'T'},
   {id: 1, username: "n0Passw0rdMan123",  password: "password123" ,  ssn : "987654321", admin: false, dateAdded: '2000-2-24', nick: 'PM'}
 ];
 
@@ -32,66 +32,14 @@ const server = http.createServer( function( request,response ) {
   }
 })
 
-function buildPage(){
-  let toReturn = resultsPage;
-  if (wasLastAnAdmin === true){
-    appdata.forEach(function(item){
-      toReturn += `<tr id = '${item.id}'>
-      <th>${item.nick}</th>
-      <th>${item.username}</th>
-      <th>${item.password}</th>
-      <th class = "hidden">HIDDEN</th>
-      <th>${item.admin}</th>
-      <th>${item.dateAdded}</th>
-      <th><button id = '${item.id}-button' onclick="deleteItem(${item.id})">Delete</button></th>
-      </tr>`
-    });
-  } else {
-    appdata.forEach(function(item, idx){
-      toReturn += `<tr id = '${item.id}'>
-      <th>${item.nick}</th>
-      <th>${item.username}</th>
-      <th class = "hidden">HIDDEN</th>
-      <th class = "hidden">HIDDEN</th>
-      <th>${item.admin}</th>
-      <th>${item.dateAdded}</th>
-      <th><button id = '${item.id}-button' onclick="deleteItem(${item.id})">Delete</button></th>
-      </tr>`
-    });
-  }
 
-  toReturn += "</table></body>";
-  toReturn += ` <script>
-  function deleteItem(id){
-    let item = document.getElementById(id);
-    fetch( '/delete', {
-      method:'POST',
-      body: JSON.stringify({id: id})
-    })
-    .then( function( response ) {
-      if (response.status === 200){
-        alert("Successfully removed");
-        item.remove();
-      } else {
-        alert("Was not removed successfully, try again");
-      }
-
-    })
-  }
-  
-  </script>`
-  toReturn += "</html>"
-  return toReturn;
-}
 
 const handleGet = function( request, response ) {
   const filename = dir + request.url.slice( 1 ) 
-
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' );
   }else if (request.url === '/users'){
-    response.writeHeader( 200, { 'Content-Type': 'text/html' })
-    response.end( buildPage() )
+    sendFile( response, 'public/results.html' );
   }else if (request.url === '/style.css') {
     sendFile( response, 'public/css/style.css');
   }else{
@@ -112,8 +60,34 @@ const handlePost = function( request, response ) {
       appdata = appdata.filter(function(val){
         return val.id !== toDelete;
       })
-    })
-    
+    });
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    response.end();
+  } else if (request.url === '/userList'){
+    let redactedData = [];
+    if (wasLastAnAdmin){
+      appdata.forEach(function(element){
+        redactedData.push({id: element.id, 
+          username: element.username,  
+          password: element.password ,  
+          ssn : -1, 
+          admin: element.admin, 
+          dateAdded: element.dateAdded, 
+          nick: element.nick})
+      });
+    } else {
+      appdata.forEach(function(element){
+        redactedData.push({id: element.id, 
+          username: element.username,  
+          password: -1 ,  
+          ssn : -1, 
+          admin: element.admin, 
+          dateAdded: element.dateAdded, 
+          nick: element.nick})
+      });
+    }
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    response.end(JSON.stringify(redactedData));
   } else {
     let dataString = ''
 
@@ -148,10 +122,11 @@ const handlePost = function( request, response ) {
       }
       appdata.push(data);
 
-    })
+    })  
+    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
+    response.end();
   }
-  response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-  response.end();
+
 }
 
 const sendFile = function( response, filename ) {
