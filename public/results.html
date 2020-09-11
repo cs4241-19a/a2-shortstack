@@ -4,12 +4,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src = '/js/scripts.js'></script>
         <title>Users Page</title>
     </head>
     <body>
         <div id = "header">
             <a href = "/">Add user</a>
             <a id = "userList" href = "/users">User list</a>
+            <div id = "headerGreeting"></div>
         </div>
         <h1 id = "Title">Users Table</h1>
         <table id = "users">
@@ -71,7 +73,15 @@
                 });
             })
         }
-        reqUsers()
+        reqUsers();
+        window.onload = setGreeting;
+        function setGreeting(){
+            let greeting = document.getElementById('headerGreeting');
+            let name = localStorage.getItem('nick')
+            if (name !== null){
+                greeting.innerText = `Hello ${name}`;
+            }
+        }
     </script>
 </html>
 

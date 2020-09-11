@@ -48,10 +48,12 @@ input[type = checkbox]{
     display: flex;
     justify-content: space-around;
     font-size: 36px;
-    width: 100%;
-    padding: 5px
-    
+    width: 100%; 
+    padding-top: 5px;
+    padding-bottom: 5px;   
 }
+
+
 
 a {
     color: black;

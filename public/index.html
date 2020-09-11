@@ -4,11 +4,13 @@
     <title>User Entry</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src = '/js/scripts.js'></script>
   </head>
   <body>
     <div id = "header">
       <a href = "/">Add user</a>
       <a id = "userList" href = "/users">User list</a>
+      <div id = "headerGreeting"></div>
     </div>
     <h1>User Entry</h1>
     <form action="">
@@ -44,14 +46,18 @@
       method:'POST',
       body : body
     })
-    .then( function( response ) {
-      if(response.ok){
-        alert("Successfully added user");
-        let userLink = document.getElementById('userList');
-        userLink.classList.add('glow');
-      } else {
-        alert("Error in adding user");
-      }
+    .then(function(response){
+      console.log(response)
+      return  response.text()
+    })
+    .then( function( nick ) {
+      console.log(nick)
+      alert("Successfully added user");
+      let userLink = document.getElementById('userList');
+      userLink.classList.add('glow');
+      localStorage.setItem('nick', nick);
+      let greeting = document.getElementById('headerGreeting');
+      greeting.innerText = `Hello ${nick}`;
     })
 
     return false;
@@ -59,8 +65,13 @@
 
   window.onload = function() {
     const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
+    button.onclick = submit;
+    let greeting = document.getElementById('headerGreeting');
+    let name = localStorage.getItem('nick')
+    if (name !== null){
+        greeting.innerText = `Hello ${name}`;
+    }
+}
 
   </script>
 </html>

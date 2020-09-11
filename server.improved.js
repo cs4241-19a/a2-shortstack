@@ -89,42 +89,40 @@ const handlePost = function( request, response ) {
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
     response.end(JSON.stringify(redactedData));
   } else {
-    let dataString = ''
-
+    let dataString = '';
+    let nick = '';
     request.on( 'data', function( data ) {
-        dataString += data 
-    })
-    request.on( 'end', function() {
-      let data = JSON.parse(dataString);
-      wasLastAnAdmin = data.admin;
-      let dateAdded = new Date();
-      dateAdded =  `${dateAdded.getFullYear()}-${dateAdded.getMonth()}-${dateAdded.getDate()} ${dateAdded.getHours()}:${dateAdded.getMinutes()}`;
-      data.dateAdded = dateAdded;
-      let upperCase = '';
-      for (let i = 0; i < data.username.length; i++){
-        if (data.username.charAt(i) === data.username.charAt(i).toUpperCase()){
-          upperCase += data.username.charAt(i);
+        dataString += data;
+        data = JSON.parse(dataString);
+        wasLastAnAdmin = data.admin;
+        let dateAdded = new Date();
+        dateAdded =  `${dateAdded.getFullYear()}-${dateAdded.getMonth()}-${dateAdded.getDate()} ${dateAdded.getHours()}:${dateAdded.getMinutes()}`;
+        data.dateAdded = dateAdded;
+        let upperCase = '';
+        for (let i = 0; i < data.username.length; i++){
+          if (data.username.charAt(i) === data.username.charAt(i).toUpperCase()){
+            upperCase += data.username.charAt(i);
+          }
         }
-      }
-      if (upperCase.length > 0){
-        data.nick = upperCase;
-      } else{
-        if (data.username.length === 0){
-          data.nick = 'Blank';
+        if (upperCase.length > 0){
+          data.nick = upperCase;
+        } else{
+          if (data.username.length === 0){
+            data.nick = 'Blank';
+          } else {
+            data.nick = data.username.charAt(0);
+          }
+        }
+        response.end(data.nick);
+        if (appdata.length === 0){
+          data.id = 0
         } else {
-          data.nick = data.username.charAt(0);
+          data.id = parseInt(appdata[appdata.length - 1].id) + 1;
         }
-      }
-      if (appdata.length === 0){
-        data.id = 0
-      } else {
-        data.id = parseInt(appdata[appdata.length - 1].id) + 1;
-      }
-      appdata.push(data);
-
-    })  
+        appdata.push(data);
+    })
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' });
-    response.end();
+    
   }
 
 }
