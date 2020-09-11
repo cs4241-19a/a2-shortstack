@@ -9,7 +9,7 @@ This single page web application is an easy way to keep track of your bills. Bas
 
 The CSS includes styling element, ID, and class selectors, and flexbox was used in the form layout. Two Google fonts, Roboto and Raleway, were also used in this application.
 
-# Graders Make Note**:
+### Graders Make Note:
 The HTML file validates with one warning for date input not being supported on all browsers. To solve this, I used a polyfill as described in Technical Achievement 4. Please be aware that while this is a working solution, the warning was not eliminated in validation.
 
 This site is hosted on Glitch at Molly Wirtz http://a1-mollywirtz.glitch.me, but if it were to be run locally, please use the command `nodemon server` to start the application. You may have to install nodemon (`npm install --save-dev nodemon`) and better-dom (`npm install better-dateinput-polyfill better-dom`). 
