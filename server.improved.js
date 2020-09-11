@@ -32,13 +32,11 @@ const handleGet = function (request, response) {
     response.end(JSON.stringify(appdata))
   } 
 
+  // Serve polyfill
   else if (request.url === '/node_modules/better-dom/dist/better-dom.js') {
-    console.log("here")
     sendFile(response, 'node_modules/better-dom/dist/better-dom.js')
   }
-
   else if (request.url === '/node_modules/better-dateinput-polyfill/dist/better-dateinput-polyfill.js') {
-    console.log("here2")
     sendFile(response, 'node_modules/better-dateinput-polyfill/dist/better-dateinput-polyfill.js')
   }
   
@@ -110,10 +108,6 @@ function manageAppData(url, data) {
   }
   // If POST was to edit entry(ies)
   else if (url == '/edit') {
-    // Derive prioirty fields
-    //let finalData = addPriority(data)
-    // Replace app data with new data
-    // appdata = finalData
     appdata = data
   }
 }

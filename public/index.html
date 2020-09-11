@@ -102,7 +102,6 @@
 
     // Submit form data to server
     function submitForm() {
-
       var computePaid = document.getElementById("paid").checked;
 
       const input = document.querySelector('billForm'),
@@ -196,7 +195,7 @@
         <td class="editable" id="${obj}priority">${jsonArray[obj].priority}</td>`
         billDiv.appendChild(newRow)
       }
-
+      // Color based on prioirty number
       colorPrioritization()
     }
 
@@ -278,16 +277,10 @@
       document.getElementById("deleteRowBtn").disabled = false
       document.getElementById("allBillBtn").disabled = false
 
-
-      // console.log("pris in save, before edit on server: ")
-      // rows = document.getElementById('all_bills').rows.length
-      // for (let i = 0; i < rows - 1; i++) {
-      //   console.log(document.getElementById(1+"priority"))
-      // }
-
       // Update changes on server 
       editOnServer()
 
+      // Color based on prioirty number
       colorPrioritization()
     }
 
@@ -380,14 +373,14 @@
         })
     }
 
+    // Color based on prioirty number
     function colorPrioritization() {
+
       // For each row get prioritization value 
       let rows = document.getElementById('all_bills').rows.length
-
       for (let i = 0; i < rows - 1; i++) {
         let pri = document.getElementById(i+"priority")
-        console.log("looking for id: " + i+"priority")
-        console.log("inner txt = " + pri.innerText)
+        // Color based on level
         switch (pri.innerText) {
           case "1": 
             pri.parentNode.style.backgroundColor = '#C6EBAD'
@@ -433,7 +426,6 @@
     }
   </script>
 
-  <!-- <link href="js/scripts.js" type="text/javascript"> -->
 </body>
 
 </html>
