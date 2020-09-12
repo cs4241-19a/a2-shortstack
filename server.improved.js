@@ -7,9 +7,8 @@ const http = require( 'http' ),
       port = 3000
 
 const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
+  { 'assignmentName': 'hw1', 'due date': 09-27-1998, 'time remaining': 30, 'estimated time':10 },
+  { 'assignmentName': 'hw2', 'due date': 09-27-1998, 'time remaining': 30, 'estimated time':10 }
 ]
 
 const server = http.createServer( function( request,response ) {
@@ -40,10 +39,11 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
 
+    console.log("this is the data string: " + dataString );
     // ... do something with the data here!!!
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.writeHeader( 200, {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(appdata))
   })
 }
 
