@@ -54,10 +54,12 @@ const submit = function( e ) {
       body //testing sending multiple values
     })
     .then( function( response ) {
-      var responseValue = response.json()
+      var responseValue = response.text()
+      return responseValue;
+      
 
-      console.log("This is the responce" + responseValue);
-
+    }).then( function(responseValue){
+      console.log("This is the response" + responseValue);
     })
 
     return false
@@ -92,7 +94,7 @@ function convertMS( milliseconds ) {
     minute = minute % 60;
     day = Math.floor(hour / 24);
     hour = hour % 24;
-    return "Days: " + day + " Hours: " + hour + " Minutes: " + minute;
+    return day +" days, " + hour + " hours, " + minute + " minutes.";
 }
 
 function getDate(date_string) {

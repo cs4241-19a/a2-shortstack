@@ -6,10 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'assignmentName': 'hw1', 'due date': 09-27-1998, 'time remaining': 30, 'estimated time':10 },
-  { 'assignmentName': 'hw2', 'due date': 09-27-1998, 'time remaining': 30, 'estimated time':10 }
-]
+var appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -41,7 +38,13 @@ const handlePost = function( request, response ) {
 
     console.log("this is the data string: " + dataString );
     // ... do something with the data here!!!
+    var nonStringData = JSON.parse(dataString)//.slice(1,0,timeLeft);
+    nonStringData.timeLeft = '69';
+    console.log(nonStringData);
+    //nonStringData.getType()
 
+    appdata.push(nonStringData);
+    console.log("This is the current server data: " + JSON.stringify(appdata))
     response.writeHeader( 200, {'Content-Type': 'application/json' })
     response.end(JSON.stringify(appdata))
   })
