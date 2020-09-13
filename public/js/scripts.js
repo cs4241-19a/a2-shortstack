@@ -7,20 +7,7 @@ const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    // const assignmentNameInput = document.querySelector( '#assignmentname' ),
-    //       json = { assignmentname: assignmentNameInput.value },
-    //       body = JSON.stringify( json )
-    
-    // const dueDateInput = document.querySelector( '#duedate' ),
-    //       json2 = { duedate: dueDateInput.value },
-    //       body2 = JSON.stringify( json2 )
 
-    // const esttime = document.querySelector( '#esttime' ),
-    //       json3 = { esttime: esttime.value },
-    //       body3 = JSON.stringify( json3 )
-          
-    // var testjson = {assignmentname: assignmentNameInput.value, dueDate:dueDateInput.value, esttime:esttime.value}
-    // var testbody = JSON.stringify(testjson);
 
 
     const assignmentNameInput = document.querySelector( '#assignmentname' ),
@@ -29,20 +16,20 @@ const submit = function( e ) {
       json={assignmentname: assignmentNameInput.value, dueDate:dueDateInput.value, esttime:esttime.value},
       body=JSON.stringify(json);
 
+      if(assignmentNameInput.value==='' || dueDateInput.value==='' || esttime.value===''){
+        assignmentNameInput.style.backgroundColor="#F59487";
+        dueDateInput.style.backgroundColor="#F59487";
+        esttime.style.backgroundColor="#F59487";
+        var invalidLable = document.querySelector('#invalidInput');
+        invalidLable.innerHTML = "Input invalid, try again"
+        return false;
+      }
 
-    //const payload = body.concat(body2,body3);
+      assignmentNameInput.style.backgroundColor="#white";
+      dueDateInput.style.backgroundColor="#white";
+      esttime.style.backgroundColor="#white";
 
-    //console.log("this is the body: " + payload);
 
-    var table = document.getElementById("todotable");
-    var rowNode = document.createElement("tr");
-
-    rowNode.appendChild(newCell(assignmentNameInput.value.toString()));
-    rowNode.appendChild(newCell(dueDateInput.value.toString()));
-    rowNode.appendChild(newCell(stringTimeRemainingUntil(dueDateInput.value.toString())));
-    rowNode.appendChild(newCell(esttime.value.toString() + " Hours"));
-
-    table.appendChild(rowNode);
     
     //Clears input from fields
     assignmentNameInput.value = ''; 
@@ -51,7 +38,7 @@ const submit = function( e ) {
 
     fetch( '/submit', {
       method:'POST',
-      body //testing sending multiple values
+      body 
     })
     .then( function( response ) {
       var responseValue = response.text()
@@ -60,6 +47,9 @@ const submit = function( e ) {
 
     }).then( function(responseValue){
       console.log("This is the response" + responseValue);
+      var table = document.getElementById("todotable");
+      buildTableOfEntries(table,responseValue);
+      
     })
 
     return false
@@ -68,39 +58,43 @@ const submit = function( e ) {
 window.onload = function() {
     const button = document.querySelector( 'button' )
     button.onclick = submit
-    var table = document.getElementById('todotable');
+    
+
+    fetch("/data")
+    .then(function(response){
+      var responseValue = response.text()
+      return responseValue;
+    }).then(function(responseValue) {
+      var table = document.getElementById('todotable');
+      buildTableOfEntries(table,responseValue);
+    })
+
   }
 
+function buildTableOfEntries(table, entries){
+  table.innerHTML="";
 
-function newCell(text){
+  var headerRow = document.createElement("tr");
+  headerRow.appendChild(newCell("Assignment","th"));
+  headerRow.appendChild(newCell("Due Date","th"));
+  headerRow.appendChild(newCell("Time Remaining","th"));
+  headerRow.appendChild(newCell("Estimated Hours of Work","th"));
+  table.appendChild(headerRow);
+
+  JSON.parse(entries).forEach(element => {
+    var rowNode = document.createElement("tr");
+    rowNode.appendChild(newCell(element.assignmentname.toString(),"td"));
+    rowNode.appendChild(newCell(element.dueDate.toString(),"td"));
+    rowNode.appendChild(newCell(element.timeLeft.toString(),"td"))
+    rowNode.appendChild(newCell(element.esttime.toString() + " Hours","td"));
+    table.appendChild(rowNode);
+  });
+}
+
+function newCell(text, type){
       var textNode = document.createTextNode(text);
-      var cellNode = document.createElement("td");
+      var cellNode = document.createElement(type);
       cellNode.appendChild(textNode);
       return cellNode;
 }
 
-function stringTimeRemainingUntil(date){
-    var currentDate = new Date();
-    var dueDate = getDate(date);
-    return convertMS(Math.abs(dueDate-currentDate))
-}
-
-function convertMS( milliseconds ) {
-    var day, hour, minute, seconds;
-    seconds = Math.floor(milliseconds / 1000);
-    minute = Math.floor(seconds / 60);
-    seconds = seconds % 60;
-    hour = Math.floor(minute / 60);
-    minute = minute % 60;
-    day = Math.floor(hour / 24);
-    hour = hour % 24;
-    return day +" days, " + hour + " hours, " + minute + " minutes.";
-}
-
-function getDate(date_string) {
-    var date_components = date_string.split("-");
-    var year = date_components[0];
-    var month = date_components[1];
-    var day = date_components[2];
-    return new Date(year, month - 1, day);
-  }
