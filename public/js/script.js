@@ -1,37 +1,24 @@
 "use strict";
 
-const submitButton = document.getElementById("submit-button");
-
 const updateData = async () => {
-	fetch("/api/data", {
-		method: "GET",
-	}).then((res) => {
-		return res.json();
-	}).then((data) => {
-		formatDataAsTable(data);
-	});
+	const res = await fetch("/api/data", {method: "GET"});
+	formatDataAsTable(await res.json());
 }
 
 window.addEventListener("load", updateData);
-
 window.setInterval(updateData, 10000);
 
-document.getElementById("submit-button").addEventListener("click", (evt) => {
+document.getElementById("submit-button").addEventListener("click", async (evt) => {
 	evt.preventDefault();
 
 	const fNameField = document.getElementById("f-name");
 	const lNameField = document.getElementById("l-name");
-	const body = JSON.stringify({name: `${fNameField.value} ${lNameField.value}`});
 
-	fetch("/submit", {
-		method: "POST",
-		body,
-	}).then((res) => {
-		console.log(res);
-		updateData();
-		fNameField.value = "";
-		lNameField.value = "";
-	});
+	const body = JSON.stringify({name: `${fNameField.value} ${lNameField.value}`});
+	await fetch("/submit", {method: "POST", body});
+	updateData();
+	fNameField.value = "";
+	lNameField.value = "";
 
 	return false;
 });

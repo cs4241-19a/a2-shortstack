@@ -42,4 +42,4 @@ http.createServer((req, res) => {
 		res.writeHeader(405);
 		res.end("Error 405. Method not allowed.");
 	}
-}).listen(PORT, () => console.log(`Listening on port ${PORT}`));
+}).listen(PORT, () => console.log(`Listening on port ${PORT}`)); 
