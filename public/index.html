@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="js/scripts.js"></script>
   </head>
   <body>
   <div id="backgroundPane">
@@ -16,12 +17,12 @@
       Enter your to-do item: 
     </h2>
     <h4 id="invalidInput">
-      
+      -
     </h4>
-    <form action="" id="assignmentform">
-      <input type='text' id='assignmentname' placeholder="assignment name">
-      <input type='date' id ='duedate'>
-      <input type="number" id ='esttime' placeholder="estimated time (hrs)">
+    <form id="assignmentform">
+      <input type="text" id="assignmentname" placeholder="assignment name">
+      <input type="date" id ="duedate">
+      <input type="number" id ="esttime" placeholder="estimated time (hrs)">
 
     </form>
     <button  class="buttons">submit</button>
@@ -31,7 +32,7 @@
       Items to do: 
     </h2>
 
-    <table id='todotable'>
+    <table id="todotable">
       <tr>
         <th>Assignment</th>
         <th>Due Date</th>
@@ -44,5 +45,5 @@
 
   </div>
   </body>
-  <script src="js\scripts.js"></script>
+  
 </html>
