@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Mario Castro Assignment 2",
+  "version": "1",
+  "description": "My assignment 2 for WebWare CS4241",
+  "author": "Mario Castro",
   "scripts": {
     "start": "node server.improved.js"
   },
