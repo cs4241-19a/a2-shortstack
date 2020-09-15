@@ -3,12 +3,145 @@
   <head>
     <title>CS4241 Assignment 2</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
   </head>
   <body>
+    <header>Work-<span style="font-family:Architects Daughter;color: darksalmon; font-size:110px;font-weight: bolder">Play</span> Balance</header>
+<!--    <i id="addBtn" class="material-icons" style="font-size:48px;color:darksalmon;float: right">add_box</i>-->
+    <button id="addBtn" style="color:darksalmon;float: right">Add New</button>
+
+
+  <button id="history" class="tabs">History</button>
+  <button id="today" class="tabs">Today</button>
+  <div id="addBox" style="visibility: collapse;position: absolute; float: right">
+
     <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+      <ul><label for='eventName'></label><input type='text' id='eventName' placeholder="Enter event title"></ul>
+      <ul><label for="eventDesc"></label><input type="text" id="eventDesc" placeholder="Enter Description"></ul>
+      <ul><label for="eventSTime"></label><input type="time" id="eventSTime" placeholder="Enter Start Time"></ul>
+      <ul><label for="eventETime"></label><input type="time" id="eventETime" placeholder="Enter End Time"></ul>
+<!--      <ul><input type="radio" id="eventCategory1" name="category1"><label for="eventCategory1">Work</label>-->
+<!--        <input type="radio" id="eventCategory2" name="category1"><label for="eventCategory2">Play</label></ul>-->
+      <button id="submit">submit</button>
     </form>
+  </div>
+
+  <div id="mainContainer" style="background-color: white; margin: 0 auto;padding: 15px; width: 60vw;height: 60vh;overflow-y: scroll;justify-content: center">
+    <table id="cal" class="tg" style="table-layout: fixed; width: 756px;display: table">
+      <colgroup>
+        <col style="width: 178px">
+        <col style="width: 578px">
+      </colgroup>
+      <thead>
+      <tr>
+        <th class="tg-cly1">00:00</th>
+        <th class="tg-0lax"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="tg-cly1">01:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">02:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">03:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">04:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">05:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">06:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">07:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">08:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">09:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">10:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">11:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">12:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">13:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">14:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">15:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">16:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">17:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">18:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">19:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">20:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">21:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">22:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">23:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div id="hist" style="display: none">
+      History
+    </div>
+  </div>
+
   </body>
   <script>
 
@@ -16,16 +149,20 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const eName = document.querySelector( '#eventName' ),
+            eDesc=document.querySelector('#eventDesc'),
+          eSTime=document.querySelector('#eventSTime'),
+          eETime=document.querySelector('#eventETime'),
+          json = { eventName: eName.value, eventDesc:eDesc.value, eventSTime: eSTime.value, eventETime: eETime.value},
           body = JSON.stringify( json )
+
 
     fetch( '/submit', {
       method:'POST',
       body 
     })
     .then( function( response ) {
-      // do something with the reponse 
+      // do something with the reponse
       console.log( response )
     })
 
@@ -33,9 +170,11 @@
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
+    const button = document.querySelector( '#submit' )
     button.onclick = submit
   }
 
   </script>
+
+  <script src="js/scripts.js"></script>
 </html>

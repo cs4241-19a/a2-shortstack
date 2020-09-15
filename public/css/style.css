@@ -1,1 +1,59 @@
 /*Style your own assignment! This is fun! */
+body{
+    background-color:aliceblue;
+}
+
+#addBox{
+    padding: 10px;
+    box-shadow: 2px 5px 5px saddlebrown;
+    border: solid darksalmon;
+    background-color: darksalmon;
+}
+
+header{
+    color: white;
+    font-family: "Aclonica";
+    font-size: 100px;
+    text-align: center;
+
+}
+
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color: lightskyblue;border-style:solid;border-width:5px;font-family:Arial, sans-serif;font-size:14px;
+    overflow:hidden;padding:20px 10px;word-break:normal;}
+.tg th{border-color: lightskyblue;border-style:solid;border-width:5px;font-family:Arial, sans-serif;font-size:14px;
+    font-weight:normal;overflow:hidden;padding:20px 10px;word-break:normal;}
+.tg .tg-cly1{text-align:left;vertical-align:middle}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+
+.tabs{
+    padding: 2px;
+    background-color: darksalmon;
+    color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: darksalmon;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+}
+
+#add_box:hover{
+    color: #b30000;
+}
