@@ -1,10 +1,10 @@
 const http = require("http");
 const url = require("url");
-const querystring = require("querystring");
 const fs = require("fs");
+const querystring = require("querystring");
 const mime = require("mime");
-const {v4: uuid} = require("uuid");
 const moment = require("moment");
+const {v4: uuid} = require("uuid");
 
 const PUBLIC_DIR = "./public";
 const PORT = process.env.PORT || 3000;
@@ -24,7 +24,6 @@ http.createServer((req, res) => {
 			break;
 		}
 		case "DELETE": {
-			console.log("del req");
 			handleDelete(req, res)
 			break;
 		}
@@ -78,17 +77,17 @@ const handlePatch = (req, res) => {
 
 	req.on("end", () => {
 		let userEdits = JSON.parse(dataString);
-		console.log(userEdits);
 		const parsedUrl = url.parse(req.url);
 		const query = querystring.parse(parsedUrl.query);
 		if (parsedUrl.pathname === "/api/users") {
 			const {id} = query;
-			if (users.some(user => user.id === id)) {
+			const userIndex = users.findIndex(user => user.id === id);
+			if (userIndex != null) {
 				const {name, email, dob} = userEdits;
 				const userIndex = users.findIndex(user => user.id === id);
 				const user = users[userIndex];
 				users[userIndex] = {...user, name, email, dob, age: calculateUserAge(dob)};
-				handleSuccess(res);
+				handleSuccess(res);	
 			} else {
 				handleResourceNotFound(res);
 			}

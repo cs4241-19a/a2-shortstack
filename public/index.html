@@ -6,6 +6,10 @@
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap">
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<script src="./js/jquery.min.js"></script>
+		<script src ="./js/jquery.validate.min.js"></script>
+        <script src ="./js/validate-form.js"></script>
+
 		<script src="./js/script.js" defer></script>
 	</head>
 	<body>
@@ -13,18 +17,17 @@
 		<container class="grid">
 			<column class="left-col">
 				<h3 class="header">New user</h3>
-				<form action="">
+				<form class="needs-validation" action="">
 					<form-group class="form-group">
 						<label for="f-name">First name</label>
-						<input type="text" class="form-control" id="f-name" placeholder="Your first name">
+						<input type="text" class="form-control" id="f-name" placeholder="Your first name" required>
 						<label for="l-name">Last name</label>
-						<input type="text" class="form-control" id="l-name" placeholder="Your last name">
+						<input type="text" class="form-control" id="l-name" placeholder="Your last name" required>
 						<label for="email">Email</label>
-						<input type="email" class="form-control" id="email" placeholder="someone@example.com">
+						<input type="email" class="form-control" id="email" placeholder="someone@example.com" required>
 						<label for="dob">Date of birth</label>
-						<input type="date" class="form-control" id="dob">
+						<input type="date" class="form-control" id="dob" required>
 					</form-group>
-					<!-- For some reason this button won't stay centered unless it's wrapped in a div. I tried to avoid divs in favor of semantic elements but alas. -->
 					<div class="btn-wrapper">
 						<button type="button" class="btn btn-primary" id="submit-button">Submit</button>
 					</div>

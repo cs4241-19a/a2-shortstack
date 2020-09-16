@@ -154,3 +154,16 @@ const deleteUser = async ({id}) => {
 		}
 	}
 }
+
+window.addEventListener('load', function() {
+    const forms = document.getElementsByClassName("needs-validation");
+		const validation = Array.prototype.filter.call(forms, (form) => {
+		form.addEventListener("submit", function(evt) {
+			if (form.checkValidity() === false) {
+			evt.preventDefault();
+			evt.stopPropagation();
+			}
+			form.classList.add('was-validated');
+		}, false);
+	});
+}, false);
