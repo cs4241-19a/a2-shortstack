@@ -4,21 +4,35 @@
 		<title>CS4241 Assignment 2</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap">
 		<link rel="stylesheet" type="text/css" href="./css/style.css">
 		<script src="./js/script.js" defer></script>
 	</head>
 	<body>
-		<div class="grid">
-			<form action="">
-				<div class="form-group">
-					<label for="f-name">First Name</label>
-					<input type='text' class="form-control" id='f-name' placeholder="Your first name">
-					<label for="l-name">Last Name</label>
-					<input type='text' class="form-control" id='l-name' placeholder="Your last name">
-				</div>
-				<button type="button" class="btn btn-primary" id="submit-button">Submit</button>
-			</form>
-			<div id="data-container"></div>
-		</div>
+		<h1 class="title">Users</h1>
+		<container class="grid">
+			<column class="left-col">
+				<h3 class="header">New user</h3>
+				<form action="">
+					<form-group class="form-group">
+						<label for="f-name">First name</label>
+						<input type="text" class="form-control" id="f-name" placeholder="Your first name">
+						<label for="l-name">Last name</label>
+						<input type="text" class="form-control" id="l-name" placeholder="Your last name">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" id="email" placeholder="someone@example.com">
+						<label for="dob">Date of birth</label>
+						<input type="date" class="form-control" id="dob">
+					</form-group>
+					<div class="btn-wrapper">
+						<button type="button" class="btn btn-primary" id="submit-button">Submit</button>
+					</div>
+				</form>
+			</column>
+			<column class="right-col">
+				<h3 class="header">User data</h3>
+				<data-table id="data-container"></data-table>
+			</column>
+		</container>
 	</body>
 </html>

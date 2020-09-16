@@ -1,23 +1,49 @@
 body {
 	padding: 32px;
 	margin: auto;
+	/*TODO: Set font in each element*/
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 64px;
+}
+
+.header {
+	text-align: center;
+	margin-bottom: 12px;
 }
 
 .grid {
 	display: grid;
-	grid-template-columns: auto;
-	justify-content: start;
-	justify-items: start;
-	align-items: center;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	justify-items: center;
+	align-items: start;
 }
 
-#f-name,
-#l-name {
-	margin-bottom: 16px;
+.left-col {
+	justify-self: end;
+	margin-right: 128px;
+}
+
+.right-col {
+	justify-self: start;
+	margin-left: 128px;
+}
+
+.btn-wrapper {
+	text-align: center;
+}
+
+form-group {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 16px;
 }
 
 table {
-	margin-top: 64px;
 	border-collapse: separate;
 	border: solid 2px #d6dbe0;
 	border-radius: 6px;
