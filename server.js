@@ -57,14 +57,14 @@ const handleGet = (req, res) => {
 const handlePost = (req, res) => {
 	let dataString = "";
 	req.on("data", (data) => dataString += data);
+
 	req.on("end", () => {
 		if (req.url === "/api/users") {
-			const user = JSON.parse(dataString);
-			user.id = uuid();
+			let user = JSON.parse(dataString);
+			user = {id: uuid(), ...user};
 			user.dob = moment(new Date(user.dob)).add(1, "days").format("MM/DD/YYYY");
 			user.age = calculateUserAge(user.dob);
 			users.push(user);
-			console.log("here")
 			handleSuccess(res);
 		} else {
 			handleResourceNotFound(res);
@@ -73,20 +73,29 @@ const handlePost = (req, res) => {
 }
 
 const handlePatch = (req, res) => {
-	const parsedUrl = url.parse(req.url);
-	const query  = querystring.parse(parsedUrl.query);
+	let dataString = "";
+	req.on("data", (data) => dataString += data);
 
-	if (parsedUrl.pathname === "/api/users") {
-		const {id} = query;
-		if (users.some(user => user.id === id)) {
-			//TODO: update user
-			handleSuccess(res);
+	req.on("end", () => {
+		let userEdits = JSON.parse(dataString);
+		console.log(userEdits);
+		const parsedUrl = url.parse(req.url);
+		const query = querystring.parse(parsedUrl.query);
+		if (parsedUrl.pathname === "/api/users") {
+			const {id} = query;
+			if (users.some(user => user.id === id)) {
+				const {name, email, dob} = userEdits;
+				const userIndex = users.findIndex(user => user.id === id);
+				const user = users[userIndex];
+				users[userIndex] = {...user, name, email, dob, age: calculateUserAge(dob)};
+				handleSuccess(res);
+			} else {
+				handleResourceNotFound(res);
+			}
 		} else {
 			handleResourceNotFound(res);
 		}
-	} else {
-		handleResourceNotFound(res);
-	}
+	});
 }
 
 const handleDelete = (req, res) => {

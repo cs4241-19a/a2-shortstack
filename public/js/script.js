@@ -1,7 +1,6 @@
 "use strict";
 
-let editing = false;
-let edits = {};
+let isUserBeingEdited = false;
 
 const updateData = async () => {
 	const res = await fetch("/api/users", {method: "GET"});
@@ -11,31 +10,14 @@ const updateData = async () => {
 
 window.addEventListener("load", updateData);
 window.setInterval(() => {
-	if (!editing) {
+	if (!isUserBeingEdited) {
 		updateData();
 	}
 }, 10000);
 
 document.getElementById("submit-button").addEventListener("click", async (evt) => {
 	evt.preventDefault();
-
-	const fName = document.getElementById("f-name");
-	const lName = document.getElementById("l-name");
-	const email = document.getElementById("email");
-	const dob = document.getElementById("dob");
-	const body = JSON.stringify({name: `${fName.value} ${lName.value}`, email: email.value, dob: dob.value});
-
-	const res = await fetch("/api/users", {method: "POST", body});
-	if (res) {
-		const data = await res.json();
-		formatDataAsTable(data);
-		fName.value = "";
-		lName.value = "";
-		email.value = "";
-		dob.value = "";
-	}
-
-	return false;
+	addUser();
 });
  
 const formatDataAsTable = (data) => {
@@ -73,7 +55,6 @@ const formatDataAsTable = (data) => {
 		tableRow = table.insertRow(-1);
 		keys.forEach(key => {
 			const cell = tableRow.insertCell(-1);
-			// TODO: cleanup
 			if (cell.cellIndex !== 0 && cell.cellIndex !== 4) {
 				cell.className = "editable-cell";
 			}
@@ -90,7 +71,7 @@ const formatDataAsTable = (data) => {
 			editButton.value = "Edit";
 			editButton.style="border-radius: 8px";
 			editCell.appendChild(editButton);
-			editButton.onclick = () => foo(editCell.parentNode);
+			editButton.onclick = () => handleUserEditing(data, editButton, editCell.parentNode);
 			
 			const deleteCell = tableRow.insertCell(-1);
 			deleteCell.style="text-align: center"
@@ -113,28 +94,49 @@ const formatDataAsTable = (data) => {
 	}
 }
 
-const foo = (row) => {
-	editing = !editing;
-	if (editing) {
-		row.childNodes.forEach(childNode => {
-			if (childNode.className === "editable-cell") {
-				childNode.contentEditable = true;
-				console.log("data cell: [" + row.rowIndex + "][" + childNode.cellIndex + "]");
-			}
-		});
-		console.log(row.childNodes.length);
-		console.log("editing");
+const handleUserEditing = (data, editButton, row) => {
+	isUserBeingEdited = !isUserBeingEdited;
+	row.childNodes.forEach(childNode => {
+		if (childNode.className === "editable-cell") {
+			childNode.contentEditable = isUserBeingEdited;
+		}
+	});
+	if (isUserBeingEdited) {
+		editButton.value = "Submit";
 	} else {
-		console.log("submitting");
+		editButton.value = "Edit";
+		const name = row.cells[1].innerHTML;
+		const email = row.cells[2].innerHTML;
+		const dob = row.cells[3].innerHTML;
+		const editedUser = {...data[row.rowIndex - 1], name, email, dob};
+		editUser(editedUser);
 	}
 }
 
-const editUser = async ({id}) => {
+const addUser = async () => {
+	const fName = document.getElementById("f-name");
+	const lName = document.getElementById("l-name");
+	const email = document.getElementById("email");
+	const dob = document.getElementById("dob");
+	const body = JSON.stringify({name: `${fName.value} ${lName.value}`, email: email.value, dob: dob.value});
+
+	const res = await fetch("/api/users", {method: "POST", body});
+	if (res) {
+		const data = await res.json();
+		formatDataAsTable(data);
+		fName.value = "";
+		lName.value = "";
+		email.value = "";
+		dob.value = "";
+	}
+}
+
+const editUser = async (editedUser) => {
+	const {id, name, email, dob} = editedUser;
 	if (id) {
 		const params = new URLSearchParams({id});
-		//TODO
-		const body = null;
-		const res = await fetch(`/api/users?${params}`, {method: "PATCH"}, body);
+		const body = JSON.stringify({name, email, dob});
+		const res = await fetch(`/api/users?${params}`, {method: "PATCH", body});
 		if (res) {
 			const data = await res.json();
 			formatDataAsTable(data);
