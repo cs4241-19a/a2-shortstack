@@ -7,17 +7,23 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   </head>
   <body>
+  <div class="grid-container">
+    <div class="item1">
     <header>Work-<span style="font-family:Architects Daughter;color: darksalmon; font-size:110px;font-weight: bolder">Play</span> Balance</header>
 <!--    <i id="addBtn" class="material-icons" style="font-size:48px;color:darksalmon;float: right">add_box</i>-->
-    <button id="addBtn" style="color:darksalmon;float: right">Add New</button>
+    <button id="addBtn" style="float: right">Add New</button>
+    </div>
 
-
-  <button id="history" class="tabs">History</button>
+    <div class="item2">
+    <button id="history" class="tabs">History</button>
   <button id="today" class="tabs">Today</button>
-  <div id="addBox" style="visibility: collapse;position: absolute; float: right">
+      <button id="progress" class="tabs">Balance</button>
+    </div>
 
+  <div class="item3" id="addBox" style="visibility: collapse; float: right">
     <form action="">
       <ul><label for='eventName'>*</label><input type='text' id='eventName' class="inputBoxes" placeholder="Enter event title" ></ul>
       <ul><label for="eventDesc"></label><input type="text" id="eventDesc" placeholder="Enter Description"></ul>
@@ -29,7 +35,7 @@
     </form>
   </div>
 
-  <div id="mainContainer" style="background-color: white; margin: 0 auto;padding: 15px; width: 60vw;height: 60vh;overflow-y: scroll;justify-content: center">
+  <div class="item4" id="mainContainer" style="background-color: white; margin: 0 auto;padding: 15px; width: 60vw;height: 60vh;overflow-y: scroll;justify-content: center">
     <table id="cal" class="tg" style="table-layout: fixed; width: 756px;display: table">
       <colgroup>
         <col style="width: 178px">
@@ -162,10 +168,17 @@
       </thead>
       </table>
     </div>
+    <div id="playProg" style="display: none">
+        <progress id="prog" value="50" max="100" style="height:100px; color: darksalmon"> 50% </progress>
+    </div>
   </div>
-
+  </div>
   </body>
   <script>
+
+    var play=0
+    var work=0
+    var total=0
     
     var newName, newDesc, newSTime, newETime, newOption, duration
 
@@ -193,70 +206,94 @@
         }
     }
     
-    bool6=(count!=0)
+    bool6=(count===0)
     
 
-    if(bool1&bool2&bool3&bool4&bool5){
+    if(bool1&&bool2&&bool3&&bool4&&bool5&&(!bool6)){
       const json = { eventName: eName.value, eventDesc:eDesc.value, eventSTime: eSTime.value, eventETime: eETime.value, option: radioBtn.value},
-          body = JSON.stringify( json )
-    
-    fetch( '/submit', {
+      body = JSON.stringify( json )
+      fetch( '/submit', {
       method:'POST',
       body 
-    })
-    .then( function( response ) {
-      return response.json()
-    })
-    .then(function(txt){
-      addBox.style.visibility = 'hidden';
-      eName.value=""
-      eSTime.value=""
-      eDesc.value=""
-      eETime.value=""
-      radioBtn.checked=false
+      })
+      .then( function( response ) {
+        return response.json()
+      })
+      .then(function(txt){
+        addBox.style.visibility = 'hidden';
+        eName.value=""
+        eSTime.value=""
+        eDesc.value=""
+        eETime.value=""
+        radioBtn.checked=false
         
-      newName=txt['eventName']
-      newDesc=txt['eventDesc']
-      newSTime=txt['eventSTime']
-      newETime=txt['eventETime']    
-      newOption=txt['option']
-      duration=txt['duration']
-      console.log(txt)
+        newName=txt['eventName']
+        newDesc=txt['eventDesc']
+        newSTime=txt['eventSTime']
+        newETime=txt['eventETime']
+        newOption=txt['option']
+        duration=txt['duration']
+        total++
+        console.log(txt)
       
-       var tableRef = document.getElementById('histTable');
+        var tableRef = document.getElementById('histTable');
 
-var newRow   = tableRef.insertRow(tableRef.rows.length);
+        var newRow   = tableRef.insertRow(tableRef.rows.length);
 
-var nameCell  = newRow.insertCell(0);
-      var descCell  = newRow.insertCell(1);
-      var sCell  = newRow.insertCell(2);
-      var durCell = newRow.insertCell(3);
-      var typeCell = newRow.insertCell(4);
+        var nameCell  = newRow.insertCell(0);
+        var descCell  = newRow.insertCell(1);
+        var sCell  = newRow.insertCell(2);
+        var durCell = newRow.insertCell(3);
+        var typeCell = newRow.insertCell(4);
 
-      nameCell.innerHTML=newName
-      descCell.innerHTML=newDesc
-      sCell.innerHTML=newSTime
-      durCell.innerHTML=duration
-      typeCell.innerHTML=newOption
+        nameCell.innerHTML=newName
+        descCell.innerHTML=newDesc
+        sCell.innerHTML=newSTime
+        durCell.innerHTML=duration
+        typeCell.innerHTML=newOption
       
       
-      for(j=(parseInt(newSTime.substring(0,2))+1);j<(parseInt(newETime.substring(0,2))+1);j++){
-        var x = document.getElementById("cal").rows[j].cells;
-      x[1].innerHTML = newName;
+        for(j=(parseInt(newSTime.substring(0,2))+1);j<(parseInt(newETime.substring(0,2))+1);j++){
+          var x = document.getElementById("cal").rows[j].cells;
+          x[1].innerHTML = newName;
       
-      if(newOption==="work"){
-        x[1].style.backgroundColor = "black"
-      }else if(newOption==="play"){
-        x[1].style.backgroundColor = "darkSalmon"
-      }
-      }
-      
-      
-      
-    })
+          if(newOption==="work"){
+            x[1].style.backgroundColor = "black"
+            work++
+          }else if(newOption==="play"){
+            x[1].style.backgroundColor = "darkSalmon"
+            play++
+          }
+        }
 
-    return false
+        playCent=(play/total)*100
+      
+      
+      })
+
+      return false
+    }else{
+      alert("Please fill all the fields with valid information")
+    }
   }
+
+    var elem = document.getElementById("prog");
+
+    function playProg() {
+      prog.style.display='inline'
+      hist.style.display='none'
+      cal.style.display="none";
+      var width = elem.style.width;
+      setInterval(frame, 10);
+      function frame() {
+        if (width >= playCent) {
+          width--;
+          elem.style.width = width + '%';
+        } else {
+          width++;
+          elem.style.width = width + '%';
+        }
+      }
     }
 
   window.onload = function() {
