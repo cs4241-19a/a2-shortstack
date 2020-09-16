@@ -6,6 +6,7 @@ const http = require( 'http' ),
     dir  = 'public/',
     port = 3000
 
+var calArray=[]
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -33,12 +34,17 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
-
-    // ... do something with the data here!!!
+    var obj=JSON.parse( dataString )
+    
+    var hh=(parseInt(obj["eventETime"].substring(0,2))-parseInt((obj["eventSTime"]).substring(0,2)))*60
+    var mm=parseInt((obj["eventETime"]).substring(3,5))-parseInt((obj["eventSTime"]).substring(3,5))
+    
+    obj["duration"]= (hh+mm).toString()
+    
+    calArray.push(obj)
 
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(JSON.stringify(calArray[calArray.length-1]))
   })
 }
 
