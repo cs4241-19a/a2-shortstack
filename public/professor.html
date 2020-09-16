@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <style src="css/style.css"></style>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style1.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="background">
+    </div>
+      <div class="content">
+        <h1>Your Class Roster:</h1>
+        <p id="studentNum" style="padding-left:20px;">Students: </p>
+        <table id="results">
+          <colgroup>
+            <col span="5">
+          </colgroup>
+          <tr>
+            <th class="title">First Name</th>
+            <th class="title">Last Name</th>
+            <th class="title">Grade</th>
+            <th class="title"># Accidents</th>
+            <th class="title">D.O.G. (Date of Graduaton)</th>
+          </tr>
+          <script>
+            function getRoster(){
+              fetch( '/professorData', {
+                method:'GET'
+              })
+                      .then( function( response ) {
+                        // do something with the reponse
+                        return response.text()
+                      })
+                      .then( function(text){
+                        var json = JSON.parse(text).students;
+                        json.forEach(function(obj) {
+                          var row = document.getElementById("results").insertRow(1);
+
+                          var fn = row.insertCell(0);
+                          var ln = row.insertCell(1);
+                          var grade = row.insertCell(2);
+                          var accidents = row.insertCell(3);
+                          var dog = row.insertCell(4);
+                          fn.innerHTML = obj.firstName;
+                          ln.innerHTML = obj.lastName;
+                          grade.innerHTML = obj.Grade;
+                          accidents.innerHTML = obj.Accidents;
+                          dog.innerHTML = obj.DOG;
+                          console.log(obj.firstName);
+
+                          document.getElementById("studentNum").innerHTML = "Students: " + (document.getElementById("results").rows.length - 1);
+                        });
+                      })
+            }
+
+            window.onload = getRoster;
+          </script>
+        </table>
+      </div>
+  </body>
+</html>

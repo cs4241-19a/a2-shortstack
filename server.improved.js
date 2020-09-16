@@ -1,3 +1,13 @@
+var data = '{ "students" : [' +
+    '{ "firstName":"Rory" , "lastName":"Sullivan" , "Grade":"Senior" , "Accidents":"0" , "DOG":"2021" },' +
+    '{ "firstName":"Patrick" , "lastName":"Star" , "Grade":"Junior" , "Accidents":"2" , "DOG":"2022" },' +
+    '{ "firstName":"Spongebob" , "lastName":"Squarepants" , "Grade":"Junior" , "Accidents":"102" , "DOG":"2022" },' +
+    '{ "firstName":"Sandy" , "lastName":"Cheeks" , "Grade":"Senior" , "Accidents":"0" , "DOG":"2021" },' +
+    '{ "firstName":"Plankton" , "lastName":"Lawrence" , "Grade":"Freshman" , "Accidents":"4" , "DOG":"2024" },' +
+    '{ "firstName":"Eugene" , "lastName":"Krabs" , "Grade":"Sophmore" , "Accidents":"3" , "DOG":"2023" },' +
+    '{ "firstName":"Pearl" , "lastName":"Krabs" , "Grade":"Freshman" , "Accidents":"1" , "DOG":"2024" },' +
+    '{ "firstName":"Squidward" , "lastName":"Tentacles" , "Grade":"Senior" , "Accidents":"1" , "DOG":"2021" }]}';
+
 const http = require( 'http' ),
       fs   = require( 'fs' ),
       // IMPORTANT: you must run `npm install` in the directory for this assignment
@@ -25,12 +35,20 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
-  }else{
+  }
+  else if( request.url === '/professorData') {
+    var jsonData = JSON.parse(data);
+
+    response.writeHead(200, {'Content-type': 'text/plain'})
+    response.end(JSON.stringify(jsonData));
+  }
+  else{
     sendFile( response, filename )
   }
 }
 
 const handlePost = function( request, response ) {
+
   let dataString = ''
 
   request.on( 'data', function( data ) {
@@ -38,12 +56,37 @@ const handlePost = function( request, response ) {
   })
 
   request.on( 'end', function() {
-    console.log( JSON.parse( dataString ) )
+    console.log( JSON.parse( dataString ))
 
+    var obj = JSON.parse(data);
+
+    var fn;
+    var ln;
+    var json = JSON.parse( dataString );
+    var res = json.yourname.split(" ");
+    if(res.length <= 0) {
+      fn = "No first name given"
+      ln = "No last name given"
+    }
+    else if(res.length == 1){
+      fn = res[0];
+      ln = "No Last Name Given";
+    }
+    else {
+      fn = res[0];
+      ln = res[1];
+    }
+
+    var yog = new Date().getFullYear();
+
+    var newStr = {"firstName":fn , "lastName":ln , "Grade":"Freshman" , "Accidents":Math.round(Math.random() * Math.floor(20)) , "DOG":yog};
+
+
+    obj['students'].push(newStr);
+    data = JSON.stringify(obj);
     // ... do something with the data here!!!
-
     response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    response.end(dataString);
   })
 }
 

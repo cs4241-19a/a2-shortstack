@@ -1,0 +1,84 @@
+#background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 100;
+
+    background-image: url("../../background.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    /* Add the blur effect */
+    -webkit-filter: blur(3px);
+    -moz-filter: blur(3px);
+    -o-filter: blur(3px) -ms-filter: blur(3px);
+    filter: blur(3px);
+    z-index: -1;
+}
+
+body{
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+#results {
+    margin: 20px;
+    min-height: 100%;
+}
+
+table, th, td {
+    border-width: 2px;
+    text-align: center;
+}
+
+th {
+    text-align: center;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+#content {
+    overflow-x:auto;
+    overflow-y:auto;
+
+    text-align: center;
+    z-index: 10;
+
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px) -ms-filter: blur(0px);
+    filter: blur(0px);
+}
+
+h1 {
+    margin: 20px;
+}
+
+table {
+    border: solid;
+    border-collapse: collapse;
+    border-width: 4px;
+    border-color: #1D3557;
+    overflow: scroll;
+    width: 40%;
+    height: 20px;
+}
+
+.title {
+    background-color: #E63946;
+    border-bottom: solid 4px #1D3557;
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+tr:nth-child(odd) {
+    background-color: #A8DADC;
+}
+
+tr:nth-child(even) {
+    background-color: #F1FAEE;
+}
