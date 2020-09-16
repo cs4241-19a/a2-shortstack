@@ -1,5 +1,8 @@
 "use strict";
 
+let editing = false;
+let edits = {};
+
 const updateData = async () => {
 	const res = await fetch("/api/users", {method: "GET"});
 	const data = await res.json();
@@ -7,7 +10,11 @@ const updateData = async () => {
 }
 
 window.addEventListener("load", updateData);
-window.setInterval(updateData, 10000);
+window.setInterval(() => {
+	if (!editing) {
+		updateData();
+	}
+}, 10000);
 
 document.getElementById("submit-button").addEventListener("click", async (evt) => {
 	evt.preventDefault();
@@ -66,6 +73,10 @@ const formatDataAsTable = (data) => {
 		tableRow = table.insertRow(-1);
 		keys.forEach(key => {
 			const cell = tableRow.insertCell(-1);
+			// TODO: cleanup
+			if (cell.cellIndex !== 0 && cell.cellIndex !== 4) {
+				cell.className = "editable-cell";
+			}
 			const value = row[key];
 			cell.innerHTML = value != null ? value : "null";
 		});
@@ -79,7 +90,7 @@ const formatDataAsTable = (data) => {
 			editButton.value = "Edit";
 			editButton.style="border-radius: 8px";
 			editCell.appendChild(editButton);
-			editButton.onclick = () => editUser(data[editCell.parentNode.rowIndex - 1]);
+			editButton.onclick = () => foo(editCell.parentNode);
 			
 			const deleteCell = tableRow.insertCell(-1);
 			deleteCell.style="text-align: center"
@@ -99,6 +110,22 @@ const formatDataAsTable = (data) => {
 		dataContainer.appendChild(table);
 	} else {
 		dataContainer.innerHTML = "No users";
+	}
+}
+
+const foo = (row) => {
+	editing = !editing;
+	if (editing) {
+		row.childNodes.forEach(childNode => {
+			if (childNode.className === "editable-cell") {
+				childNode.contentEditable = true;
+				console.log("data cell: [" + row.rowIndex + "][" + childNode.cellIndex + "]");
+			}
+		});
+		console.log(row.childNodes.length);
+		console.log("editing");
+	} else {
+		console.log("submitting");
 	}
 }
 

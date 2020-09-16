@@ -9,7 +9,7 @@
 		<script src="./js/script.js" defer></script>
 	</head>
 	<body>
-		<h1 class="title">Users</h1>
+		<h1 class="title">User Manager</h1>
 		<container class="grid">
 			<column class="left-col">
 				<h3 class="header">New user</h3>
@@ -24,6 +24,7 @@
 						<label for="dob">Date of birth</label>
 						<input type="date" class="form-control" id="dob">
 					</form-group>
+					<!-- For some reason this button won't stay centered unless it's wrapped in a div. I tried to avoid divs in favor of semantic elements but alas. -->
 					<div class="btn-wrapper">
 						<button type="button" class="btn btn-primary" id="submit-button">Submit</button>
 					</div>
