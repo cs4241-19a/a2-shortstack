@@ -118,16 +118,20 @@ const addUser = async () => {
 	const lName = document.getElementById("l-name");
 	const email = document.getElementById("email");
 	const dob = document.getElementById("dob");
-	const body = JSON.stringify({name: `${fName.value} ${lName.value}`, email: email.value, dob: dob.value});
 
-	const res = await fetch("/api/users", {method: "POST", body});
-	if (res) {
-		const data = await res.json();
-		formatDataAsTable(data);
-		fName.value = "";
-		lName.value = "";
-		email.value = "";
-		dob.value = "";
+	if (fName.value == "" || lName.value == "" || email.value == "" || dob.value == "") {
+		alert("Please fill out the required fields!");
+	} else {
+		const body = JSON.stringify({name: `${fName.value} ${lName.value}`, email: email.value, dob: dob.value});
+		const res = await fetch("/api/users", {method: "POST", body});
+		if (res) {
+			const data = await res.json();
+			formatDataAsTable(data);
+			fName.value = "";
+			lName.value = "";
+			email.value = "";
+			dob.value = "";
+		}
 	}
 }
 
