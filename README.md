@@ -1,5 +1,5 @@
 Luke Bodwell
-git ad
+
 https://a2-lbodwell.glitch.me/
 
 ## User Manager
