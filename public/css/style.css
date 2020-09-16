@@ -1,1 +1,73 @@
-/*Style your own assignment! This is fun! */
+body{
+  text-align: center;
+  padding-top: 100px;
+  background-image: url(https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm21-smoke-bb-5_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c8347a73d6427dda5d03bd1100c39354);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+form{
+  display: block;
+  padding: 30px 30px 0 30px;
+}
+
+table{
+  display: flex;
+  justify-content: center;
+}
+
+th{
+  padding: 10px 30px;
+  margin-top: 30px;
+  background-color: #A8DAF5;
+  font-family: 'Poiret One', cursive;
+}
+
+td{
+  padding: 10px 30px;
+  font-family: 'Cutive Mono', monospace;
+}
+
+label{
+  padding-right: 10px;
+  font-family: 'Cutive Mono', monospace;
+}
+
+p{
+  color: #8EADDE;
+  font-family: 'Poiret One', cursive;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+#timelabel{  
+  font-size: 20px;
+}
+
+select{
+  font-size: 16px;
+  font-family: 'Cutive Mono', monospace;
+}
+
+button{
+  outline: none;
+  border: none;
+  border-radius: 50px;
+  padding: 5px;
+  width: 100px;
+  background-color: #8EADDE;
+  color: white;
+  margin: 30px
+}
+
+.timebox{
+  margin-top: 30px;
+}
+
+.submission{
+  background-color: #FEEDF2;
+  padding: 30px 0;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 0 auto;
+}
