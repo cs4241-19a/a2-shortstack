@@ -5,17 +5,19 @@
   <title>CS4241 Assignment 2</title>
   <meta charset="utf-8">
   <link rel="stylesheet" type="text/css" href="css/style1.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
 <form action="">
-  <input type='text' id='yourname' value="your name here">
-  <button>submit</button>
+  <h1 style="margin:0px; margin-bottom:12px;">Enter your first and last name to enroll:</h1>
+  <input type='text' id='yourfname' value="First and Last Name">
+  <button>enroll</button>
 </form>
 
 <div id="background">
 </div>
 <div class="content">
-  <h1 id="header">Your Class Roster:</h1>
+  <h2 id="header" style="margin:20px;">Your Class Roster:</h2>
   <table id="results">
     <colgroup>
       <col span="5">
@@ -27,37 +29,6 @@
       <th class="title"># Accidents</th>
       <th class="title">D.O.G. (Date of Graduaton)</th>
     </tr>
-    <script>
-      function getRoster(){
-        fetch( '/professorData', {
-          method:'GET'
-        })
-                .then( function( response ) {
-                  // do something with the reponse
-                  return response.text()
-                })
-                .then( function(text){
-                  var json = JSON.parse(text).students;
-                  json.forEach(function(obj) {
-                    var row = document.getElementById("results").insertRow(1);
-
-                    var fn = row.insertCell(0);
-                    var ln = row.insertCell(1);
-                    var grade = row.insertCell(2);
-                    var accidents = row.insertCell(3);
-                    var dog = row.insertCell(4);
-                    fn.innerHTML = obj.firstName;
-                    ln.innerHTML = obj.lastName;
-                    grade.innerHTML = obj.Grade;
-                    accidents.innerHTML = obj.Accidents;
-                    dog.innerHTML = obj.DOG;
-                    console.log(obj.firstName);
-                  });
-                })
-      }
-
-      window.onload = getRoster;
-    </script>
   </table>
 </div>
 </body>
@@ -67,7 +38,7 @@
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
+    const input = document.querySelector( '#yourfname' ),
             json = { yourname: input.value },
             body = JSON.stringify( json )
 
@@ -80,8 +51,37 @@
               return response.text()
             })
             .then( function(text){
+
+              var row = document.getElementById("results").insertRow(1);
+
+              var fn = row.insertCell(0);
+              var ln = row.insertCell(1);
+              var grade = row.insertCell(2);
+              var accidents = row.insertCell(3);
+              var dog = row.insertCell(4);
+
+              var json = JSON.parse(text);
+              var res = json.yourname.split(" ");
+              if(res.length <= 0) {
+                fn.innerHTML = "No Name Given";
+                ln.innerHTML = "No Last Name Given";
+              }
+              else if(res.length == 1){
+                fn.innerHTML = res[0];
+                ln.innerHTML = "No Last Name Given";
+              }
+              else {
+                fn.innerHTML = res[0];
+                ln.innerHTML = res[1];
+              }
+              grade.innerHTML = "Freshman";
+              accidents.innerHTML = Math.round(Math.random() * Math.floor(20));
+              var yog = new Date().getFullYear();
+              dog.innerHTML = yog;
+              console.log(obj.firstName);
+
               document.getElementById("header").innerHTML = text;
-              console.log(text);
+              // console.log(text);
             })
 
     return false

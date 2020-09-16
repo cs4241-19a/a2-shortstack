@@ -18,6 +18,10 @@
     z-index: -1;
 }
 
+body{
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
 #results {
     margin: 20px;
     min-height: 100%;

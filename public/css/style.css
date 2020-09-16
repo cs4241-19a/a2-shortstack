@@ -9,6 +9,10 @@
     z-index: 100;
 }
 
+body{
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
 #login-content {
     position: absolute;
     left: 50%;
@@ -28,6 +32,7 @@
 }
 
 #login-content h1 {
+    font-family: 'Kumbh Sans', sans-serif;
     margin: auto;
     line-height:51px;
     horizontal-align:middle;
