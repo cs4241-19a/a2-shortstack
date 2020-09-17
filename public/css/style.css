@@ -1,1 +1,65 @@
 /*Style your own assignment! This is fun! */
+.hidden{
+    color:red;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+tr, td, th{
+    border:solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+body, button, ::placeholder{
+    font-size: 28px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    margin: 0px;
+}
+
+table {
+    display: flex;
+    justify-content: space-around;
+}
+
+input[type = text]{
+    width: 500px;
+    height: 30px;
+    font-size: 28px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+input[type = checkbox]{
+    width: 30px;
+    height: 30px;
+}
+#Title{
+    text-align: center;
+}
+
+#header{
+    background-color: gray;
+    display: flex;
+    justify-content: space-around;
+    font-size: 36px;
+    width: 100%; 
+    padding-top: 5px;
+    padding-bottom: 5px;   
+}
+
+
+
+a {
+    color: black;
+}
+
+.glow{
+    text-shadow: 2px 2px 8px rgb(109, 0, 0);
+    color: red;
+}

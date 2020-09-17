@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src = '/js/scripts.js'></script>
+        <title>Users Page</title>
+    </head>
+    <body>
+        <div id = "header">
+            <a href = "/">Add user</a>
+            <a id = "userList" href = "/users">User list</a>
+            <div id = "headerGreeting"></div>
+        </div>
+        <h1 id = "Title">Users Table</h1>
+        <table id = "users">
+            <tr>
+                <th>Nickname</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>SSN</th>
+                <th>Admin Status</th>
+                <th>Date added</th>
+                <th>Delete</th>
+            </tr>
+        </table>
+        <script>
+            let order = {"nick":0, "username": 1,  "password": 2, "ssn" : 3, "admin": 4, "dateAdded": 5}
+            function deleteItem(id){
+                let item = document.getElementById(id);
+                fetch( '/delete', {
+                    method:'POST',
+                    body: JSON.stringify({id: id})
+                }).then( function( response ) {
+                if (response.status === 200){
+                    alert("Successfully removed");
+                    item.remove();
+                } else {
+                    alert("Was not removed successfully, try again");
+                }})
+            }
+    
+            function reqUsers(){
+                let userData = null;
+                let table = document.getElementById('users');
+                fetch( '/userList', {
+                    method:'POST',
+                })
+                .then( function( response ) {
+                    return response.text();
+                }).then(function(txt){
+                    JSON.parse(txt).forEach(element => {
+                        let row = table.insertRow(-1);
+                        let id = element.id;
+                        row.id = id;
+                        for (let key in order){
+                            let cell = row.insertCell(order[key]);
+                            if (element[key] === -1){
+                                    cell.innerHTML = 'HIDDEN'
+                                    cell.classList.add('hidden');
+                            } else {
+                                cell.innerHTML = element[key];
+                            }
+                        }
+    
+                        let delButton = document.createElement('button');
+                        delButton.innerText = 'Delete User'
+                        delButton.onclick = (() => deleteItem(id));
+                        let buttonCell = row.insertCell(6);
+                        buttonCell.appendChild(delButton);
+                    });
+                })
+            }
+            reqUsers();
+            window.onload = setGreeting;
+            function setGreeting(){
+                let greeting = document.getElementById('headerGreeting');
+                let name = localStorage.getItem('nick')
+                if (name !== null){
+                    greeting.innerText = `Hello ${name}`;
+                }
+            }
+        </script>
+    </body>
+</html>
+
+
