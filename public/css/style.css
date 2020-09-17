@@ -1,1 +1,56 @@
 /*Style your own assignment! This is fun! */
+body {
+  background-color: violet;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  text-align: center;
+  background: white;
+}
+
+input {
+  padding: 10px 2px;
+  margin: 2px 0 10px 10px;
+}
+
+h1 {
+  font-family: verdana;
+  color: purple;
+}
+
+button{
+    margin: 2px 0 2px 10px;
+}
+
+label{
+  font-size: 20px;
+  margin: 2px 0 2px 10px;
+}
+
+#add {
+  background-color: green;
+  color: white;
+}
+
+#submit {
+  background-color: blue;
+  color: white;
+}
+
+#delete {
+  background-color: red;
+  color: white;
+}
+
+#edit {
+  background-color: yellow;
+  color: black;
+}
+
+#results {
+  background-color: orange;
+  color: black;
+}

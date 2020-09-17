@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "To Do List",
   "version": "",
-  "description": "",
-  "author": "",
+  "description": "Create a todo list",
+  "author": "Nicole Cotto",
   "scripts": {
     "start": "node server.improved.js"
   },
