@@ -6,15 +6,12 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-/*const appdata = [
-  { 'username': 'Patrick', 'mode': 'Hot/Cold', 'guesses': 4, 'min' : 1, 'max' : 1000, 'score' : 100},
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]*/
-
 let secret = Math.floor(Math.random() * 8999) + 1000;
+let secretString = secret.toString();
 
 let guessCount = 0;
+
+let gameCount = 1;
 
 const database = [[]]
 
@@ -47,14 +44,21 @@ const handlePost = function( request, response ) {
     console.log( JSON.parse( dataString ) )
     const resultObj = JSON.parse( dataString )
     guessCount++;
-    let score = Math.floor(100 * (guessCount / Math.log2(8999)))
+    let score = Math.floor(100 * (Math.log2(8999) / (guessCount + 5)))
+    if (score > 100) {
+      score = 100;
+    }
     let result
     if (resultObj.mode === 'hc') result = hc(resultObj.guess);
     else result = pfb(resultObj.guess);
-    if (result === 'Success' || result === 'Fermi Fermi Fermi Fermi ') result = 'You guessed the number!'
-    let gameArr = [resultObj.mode, guessCount, resultObj.guess, result, score]
+    
+    let gameArr = [gameCount, resultObj.mode, resultObj.guess, result, score]
     database.push(gameArr)
-    response.writeHead( 200, result, {'Content-Type': 'text/plain' })
+    if (result === 'Success' || result === 'Fermi Fermi Fermi Fermi ') {
+      result = 'You guessed the number! A new number has been selected!'
+    }
+    let retVal = JSON.stringify({"game" : gameCount, "mode" : resultObj.mode, "guess" : resultObj.guess, "result" : result, "score" : score})
+    response.write(retVal)
     response.end()
   })
 }
@@ -84,54 +88,42 @@ const sendFile = function( response, filename ) {
 server.listen( process.env.PORT || port )
 
 function newSecret () {
-  secret = Math.floor(Math.random() * 9999);
+  secret = Math.floor(Math.random() * 8999) + 1000;
+  gameCount++;
 }
 
 function pfb (guess) {
   let result = '';
-  let guessDigits = guess.toString().split('');
-  let secretDigits = secret.toString().split('');
+  let guessDigits = guess.split('')
+  console.log(guess.split(""))
+  let secretDigits = secretString.split('')
+  console.log(secretString.split(''))
   for (let i = 0; i < guessDigits.length; i++) {
-    if (guessDigits[i] === secretDigits[i]) result.concat('Fermi ');
-    else {
-      for (let j = 1; j < secretDigits.length; j++) {
-        if (guessDigits[i] === guessDigits[j]) {
-            result.concat('Pico ');
-        }
-      }
-    }
+    console.log("guess digits")
+    console.log(guessDigits[i])
+    if (secretDigits.includes(guessDigits[i]) && secretDigits[i] === guessDigits[i]) result += "Fermi ";
+    else if (secretDigits.includes(guessDigits[i])) result += "Pico ";
+    console.log(result)
   }
   if (result === '') {
-    result = 'Bagel';
+    result += 'Bagel';
   }
   return result;
 }
 
 function hc (guess) {
-  let resultOptions = ['Burning', 'Hot', 'Room Temperature', 'Cold', 'Ice Age'];
-  let closestLower;
-  let closestUpper;
-  if (guess === secret) return "Success";
-  for (let i  = 0; i < database.length; i++) {
-    if (database[i][0] === 'hc') {
-      if (database[i][2] < secret) {
-        closestLower = database[i][2]
-      } 
-      else {
-        closestUpper = database[i][2]
-      }
-    }
+  let resultOptions = ['Higher', 'Lower']
+  let guessNumber = parseInt(guess)
+  console.log(guessNumber)
+  if (guessNumber === secret) return "Success";
+  else if (guessNumber > secret) {
+    return resultOptions[1];
   }
-  let close;
-  if (guess < secret) close = Math.abs((guess - secret)/(secret - closestLower));
-  else close = Math.abs((guess - secret)/(secret - closestUpper));
-  if (close < 0.1) return resultOptions[0];
-  else if (close < 0.25) return resultOptions[1];
-  else if (close < 0.5) return resultOptions[2];
-  else if (close < 0.75) return resultOptions[3];
-  else if (close < 1.0) return resultOptions[4];
+  else if (guessNumber < secret) {
+    return resultOptions[0];
+  }
 }
 
 function lookupLastScore () {
-  return database[guessCount][score]
+  return database[guessCount][4]
 }
