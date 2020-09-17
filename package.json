@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "pfb",
+  "version": "1.0.0",
+  "description": "Assignment 2",
+  "author": "Patrick Houlihan",
   "scripts": {
     "start": "node server.improved.js"
   },

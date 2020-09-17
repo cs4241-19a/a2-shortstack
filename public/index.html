@@ -2,38 +2,75 @@
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
+    <link rel = "stylesheet" href = "css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet"> 
     <meta charset="utf-8">
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
+    
+    <h1>Welcome to Assignment 2: Number Games</h1>
+    <h1 id = "range">Guessing Range : 1000 - 9999</h1>
+    <form method = "post">
+    <div class = "grid">
+        <div class = "gridItem1a">
+          <ul>
+            <li class = "listItem">Hint Mode</li>
+            <li><input type = "radio" id = "hc" name= "mode" value="hc">Hot / Cold</li>
+            <li><input type = "radio" id = "pfb" name= "mode" value = "pfb">Pico Fermi Bagel</li>
+          </ul>
+          <!-- Mode -->
+        </div>
+        <div class = "gridItem1b">
+          <ul>
+            <li class = "listItem">Guess</li>
+            <li class = "listItem"><input type = "text" class = "textfield" id = "guess"></li>
+          </ul>
+          <!-- Guess -->
+        </div>
+        <div class = "gridItem2a">
+          <button class = "button2" id = "ruleSwap"><a href = "https://sites.math.washington.edu/~mathcircle/mmc/mmc2010/PicoFermiBagel.pdf" id = "ruleLink">Rules</a></button>
+          <!-- Submit -->
+        </div>
+        <div class = "gridItem2b">
+          <button id = "start">Submit guess</button>
+        </div>
+        <div class = "gridItem3">
+           <h1 id = "result">Result : </h1>
+        </div>
+        <div class = "gridItem4">
+           <p id = "resultSection">Past Guesses : </p>
+        </div>
+    </div>
     </form>
   </body>
   <script>
-
   const submit = function( e ) {
     // prevent default form action from being carried out
     e.preventDefault()
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
+    const modeVal = document.querySelector( 'input[name="mode"]:checked' ).value,
+          guessVal = document.getElementById( 'guess' ).value, 
+          json = { "mode" : modeVal, "guess" : guessVal},
           body = JSON.stringify( json )
 
     fetch( '/submit', {
       method:'POST',
       body 
     })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
+    // parses json
+    .then(response => response.json())
+    .then(data => {
+      console.log(data)
+     // let result = JSON.parse(response.body);
+      document.getElementById('result').innerHTML = "Result : " + data.result;
+      document.getElementById('resultSection').innerHTML += ("\n" + "Game " + data.game + " : " + data.mode + " : " +  + data.guess + " : " + data.result + " : score " + data.score);
     })
 
     return false
   }
 
   window.onload = function() {
-    const button = document.querySelector( 'button' )
+    const button = document.querySelector( '#start' )
     button.onclick = submit
   }
 
