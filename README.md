@@ -1,8 +1,7 @@
 ## Name
 Patrick Houlihan
 
-## Your Web Application Title
-Include a very brief summary of your project here. Be sure to include the CSS positioning technique you used, and any required instructions to use your application.
+## Pico Fermi Bagel : A Guessing Game
 
 To make a guess simply select your mode, type in your guess (4 digit 0-9), and submit, the server will handle the rest. A game will begin as the previous one ends.
 
