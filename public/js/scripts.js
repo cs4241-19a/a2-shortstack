@@ -21,14 +21,17 @@ document.getElementById("history").addEventListener("click",function () {
     hist.style.display = 'inline';
     cal.style.display="none";
     prog.style.display='none'
+  document.getElementById("mainContainer").style.overflowY="hidden"
 })
 
 document.getElementById("today").addEventListener("click", function () {
     cal.style.display='inline'
     hist.style.display='none'
     prog.style.display='none'
+  document.getElementById("mainContainer").style.overflowY="scroll"
 })
 
 document.getElementById("progress").addEventListener("click", function () {
     playProg()
+  document.getElementById("mainContainer").style.overflowY="hidden"
 })

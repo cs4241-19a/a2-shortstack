@@ -3,6 +3,7 @@ const http = require( 'http' ),
     // IMPORTANT: you must run `npm install` in the directory for this assignment
     // to install the mime library used in the following line of code
     mime = require( 'mime' ),
+    url = require('url'),
     dir  = 'public/',
     port = 3000
 
@@ -28,26 +29,47 @@ const handleGet = function( request, response ) {
 
 const handlePost = function( request, response ) {
   let dataString = ''
+  
+  switch(request.url){
+    case '/submit':
+      request.on( 'data', function( data ) {
+        dataString += data
+      })
 
-  request.on( 'data', function( data ) {
-    dataString += data
-  })
+      request.on( 'end', function() {
+        var obj=JSON.parse( dataString )
+    
+        var hh=(parseInt(obj["eventETime"].substring(0,2))-parseInt((obj["eventSTime"]).substring(0,2)))*60
+        var mm=parseInt((obj["eventETime"]).substring(3,5))-parseInt((obj["eventSTime"]).substring(3,5))
+      
+        obj["duration"]= (hh+mm).toString()
+    
+        calArray.push(obj)
 
-  request.on( 'end', function() {
-    var obj=JSON.parse( dataString )
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end(JSON.stringify(calArray[calArray.length-1]))
+      })
     
-    var hh=(parseInt(obj["eventETime"].substring(0,2))-parseInt((obj["eventSTime"]).substring(0,2)))*60
-    var mm=parseInt((obj["eventETime"]).substring(3,5))-parseInt((obj["eventSTime"]).substring(3,5))
-    
-    obj["duration"]= (hh+mm).toString()
-    
-    calArray.push(obj)
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end(JSON.stringify(calArray[calArray.length-1]))
-  })
+      break;
+    case '/delete':
+      request.on( 'data', function( data ) {
+        dataString += data
+      })
+
+      request.on( 'end', function() {
+        // var obj=JSON.parse( dataString )
+
+        response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
+        response.end()
+      })
+      
+      delete calArray[parseInt(dataString)]
+      break;
+  }
 }
 
+  
 const sendFile = function( response, filename ) {
   const type = mime.getType( filename )
 

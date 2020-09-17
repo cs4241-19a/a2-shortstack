@@ -18,18 +18,28 @@ header{
 
 }
 
+#pBar {
+  background-color: #20201F;
+  border-radius: 5px; /* (heightOfInnerDiv / 2) + padding */
+  padding: 4px;
+}
+
+#prog{
+  background-color: darksalmon;
+  width: 50%;
+  /* Adjust with JavaScript */
+  height: 50px;
+  border-radius: 2px;
+}
+
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color: lightskyblue;border-style:solid;border-width:5px;font-family:Arial, sans-serif;font-size:14px;
     overflow:hidden;padding:20px 10px;word-break:normal;}
 .tg th{border-color: lightskyblue;border-style:solid;border-width:5px;font-family:Arial, sans-serif;font-size:14px;
     font-weight:normal;overflow:hidden;padding:20px 10px;word-break:normal;}
-.tg .tg-cly1{text-align:left;vertical-align:middle}
-.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-cly1{text-align:center;vertical-align:middle; font-family: 'Andika';font-size:15px}
+.tg .tg-0lax{text-align:center;vertical-align:top;font-family: 'Andika';font-size:15px}
 
-.tabs{
-    background-color: darksalmon;
-    color: white;
-}
 
 /* width */
 ::-webkit-scrollbar {
@@ -51,7 +61,7 @@ header{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #b30000;
-}
+} 
 
 #add_box:hover{
     color: #b30000;
@@ -81,7 +91,11 @@ button{
 
 .item2{
     background-color: darksalmon;
-    align-content: center;
+    text-align:center;
+  display:flex;
+  align-content:space-between;
+  justify-content:space-between;
+  flex-direction:column;
     width: 15vw;
     margin: 15px;
     box-shadow: 2px 5px 5px saddlebrown;

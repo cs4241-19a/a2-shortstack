@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
-    <link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Aclonica" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=ArchitectsDaughter" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="https://fonts.googleapis.com/css?family=Andika" rel="stylesheet">
   </head>
   <body>
   <div class="grid-container">
     <div class="item1">
     <header>Work-<span style="font-family:Architects Daughter;color: darksalmon; font-size:110px;font-weight: bolder">Play</span> Balance</header>
-<!--    <i id="addBtn" class="material-icons" style="font-size:48px;color:darksalmon;float: right">add_box</i>-->
-    <button id="addBtn" style="float: right">Add New</button>
+    <button id="addBtn" style="float: right;margin-right:15px">Add New</button>
     </div>
 
     <div class="item2">
@@ -24,19 +24,19 @@
     </div>
 
   <div class="item3" id="addBox" style="visibility: collapse; float: right">
-    <form action="">
-      <ul><label for='eventName'>*</label><input type='text' id='eventName' class="inputBoxes" placeholder="Enter event title" ></ul>
-      <ul><label for="eventDesc"></label><input type="text" id="eventDesc" placeholder="Enter Description"></ul>
-      <ul><label for="eventSTime">*</label><input type="time" id="eventSTime" class="inputBoxes" placeholder="Enter Start Time" ></ul>
-      <ul><label for="eventETime">*</label><input type="time" id="eventETime" class="inputBoxes" placeholder="Enter End Time" ></ul>
-   <ul>*<input type="radio" id="eventCategory1" name="category1" value="work"><label for="eventCategory1">Work</label>
-      <input type="radio" id="eventCategory2" name="category1" value="play"><label for="eventCategory2">Play</label></ul>
+    <form>
+      <input type="text" id="eventName" class="inputBoxes" placeholder="Enter event title" >*<br><br>
+      <input type="text" id="eventDesc" placeholder="Enter Description"><br>
+      Enter Start Time: *<input type="time" id="eventSTime" class="inputBoxes"><br>
+      Enter End Time: *<input type="time" id="eventETime" class="inputBoxes"><br><br>
+   <input type="radio" id="eventCategory1" name="category1" value="work"><label for="eventCategory1">Work</label>
+      <input type="radio" id="eventCategory2" name="category1" value="play"><label for="eventCategory2">Play</label>*<br><br>
       <button id="submit">submit</button>
     </form>
   </div>
 
   <div class="item4" id="mainContainer" style="background-color: white; margin: 0 auto;padding: 15px; width: 60vw;height: 60vh;overflow-y: scroll;justify-content: center">
-    <table id="cal" class="tg" style="table-layout: fixed; width: 756px;display: table">
+    <table id="cal" class="tg" style="table-layout: fixed; width: 756px; display: table">
       <colgroup>
         <col style="width: 178px">
         <col style="width: 578px">
@@ -148,11 +148,11 @@
     </table>
 
     <div id="hist" style="display: none;text-align:center">
-      History
       <table id="histTable">
         <colgroup>
         <col style="width: 178px">
         <col style="width: 178px">
+          <col style="width: 178px">
           <col style="width: 178px">
           <col style="width: 178px">
           <col style="width: 178px">
@@ -164,20 +164,31 @@
         <th class="sTime">Start Time</th>
         <th class="duration">Duration</th>
         <th class="type">Type</th>
-      </tr>
+        <th></th>
+        </tr>
       </thead>
       </table>
     </div>
-    <div id="playProg" style="display: none">
-        <progress id="prog" value="50" max="100" style="height:100px; color: darksalmon"> 50% </progress>
+    
+    <div id="playProg" style="display:none">
+      <div id="pBar">
+        <div id="prog"></div>
+      </div>
+    
+      <h1 style="float:left">
+        Play
+      </h1>
+      <h1 style="float:right">
+        Work
+      </h1>
     </div>
+    
   </div>
-  </div>
-  </body>
+</div>
+  
   <script>
+    array=[23]
 
-    var play=0
-    var work=0
     var total=0
     
     var newName, newDesc, newSTime, newETime, newOption, duration
@@ -220,6 +231,7 @@
         return response.json()
       })
       .then(function(txt){
+        
         addBox.style.visibility = 'hidden';
         eName.value=""
         eSTime.value=""
@@ -233,7 +245,6 @@
         newETime=txt['eventETime']
         newOption=txt['option']
         duration=txt['duration']
-        total++
         console.log(txt)
       
         var tableRef = document.getElementById('histTable');
@@ -245,12 +256,26 @@
         var sCell  = newRow.insertCell(2);
         var durCell = newRow.insertCell(3);
         var typeCell = newRow.insertCell(4);
+        var delCell = newRow.insertCell(5);
 
         nameCell.innerHTML=newName
         descCell.innerHTML=newDesc
         sCell.innerHTML=newSTime
         durCell.innerHTML=duration
         typeCell.innerHTML=newOption
+        
+        var x = document.createElement("BUTTON");
+        var t = document.createTextNode("Delete");
+        x.style.backgroundColor="red";
+        x.appendChild(t);
+        delCell.appendChild(x);
+        x.addEventListener("click",function(){
+          myDelete(tableRef.rows.length)
+        })
+        
+        prog.style.display='none'
+      hist.style.display='none'
+      cal.style.display="inline";
       
       
         for(j=(parseInt(newSTime.substring(0,2))+1);j<(parseInt(newETime.substring(0,2))+1);j++){
@@ -258,17 +283,15 @@
           x[1].innerHTML = newName;
       
           if(newOption==="work"){
-            x[1].style.backgroundColor = "black"
-            work++
+            x[1].style.backgroundColor = "grey"
+            array[j]=0
           }else if(newOption==="play"){
             x[1].style.backgroundColor = "darkSalmon"
-            play++
+            array[j]=1
           }
         }
 
-        playCent=(play/total)*100
-      
-      
+        
       })
 
       return false
@@ -277,23 +300,44 @@
     }
   }
 
-    var elem = document.getElementById("prog");
-
+    
+var prog=document.getElementById("playProg")
     function playProg() {
+      work=play=1
       prog.style.display='inline'
       hist.style.display='none'
       cal.style.display="none";
-      var width = elem.style.width;
-      setInterval(frame, 10);
-      function frame() {
-        if (width >= playCent) {
-          width--;
-          elem.style.width = width + '%';
-        } else {
-          width++;
-          elem.style.width = width + '%';
+      for (i=0; i<array.length; i++) {
+        if (array[i] === 0){
+          work++
+        }else if(array[i]===1){
+          play++
         }
+    }
+        
+      if((work!=1)&&(play!=1)){
+        play--
+        work--
       }
+      playCent=(play/(play+work))*100
+        
+      var elem = document.getElementById("prog");
+        
+      elem.style.width = playCent+"%";
+        
+      
+    }
+    
+    function myDelete(num){
+      document.getElementById("histTable").deleteRow(num-1);
+      body = toString(num)
+      fetch( '/delete', {
+        method:'POST',
+        body 
+      })
+      .then( function( response ) {
+        return response
+      })
     }
 
   window.onload = function() {
@@ -304,4 +348,5 @@
   </script>
 
   <script src="js/scripts.js"></script>
+    </body>
 </html>
