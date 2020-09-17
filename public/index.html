@@ -1,41 +1,77 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>CS4241 Assignment 2</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <form action="">
-      <input type='text' id='yourname' value="your name here">
-      <button>submit</button>
-    </form>
+    <div class="mainGrid">
+      <div class="headerGrid">
+        <h1>
+          Generic Leaderboard
+        </h1>
+      </div>
+      <div class="infoGrid">
+        <h3 class="infoTitle">
+          Info:
+        </h3>
+        <p class="infoText">
+          This site is meant to provide a generic time based leaderboard. Results are not
+          maintained. Each must have a unique name. To edit an entry, enter its
+          name and the new information and press edit. To delete an entry, enter
+          just its name and press delete.
+        </p>
+      </div>
+      <div class="formGrid">
+        <form action="">
+          <label for="yourname"> Entry Name: </label>
+          <input type="text" id="yourname" placeholder="Entry Name" />
+
+          <label for="time"> Time (Seconds):</label>
+          <input type="number" id="time" value="Time" />
+
+          <label for="loads">Finished?</label>
+          <input list="options" id="loads" />
+          <datalist id="options">
+            <option value="Yes" />
+            <option value="No" />
+          </datalist>
+
+          <button id="submitButton">Submit</button>
+          <button id="editButton">Edit</button>
+          <button id="delButton">Delete</button>
+        </form>
+      </div>
+      <div class="resultGrid">
+        <div class="lbTitle">
+          <h3 class="leaderboardTitle">
+            Leaderboard
+          </h3>
+        </div>
+        <div class="lbTable">
+          <table id="leaderboard">
+            <thead>
+            <tr>
+              <th>Pos.</th>
+              <th>Name</th>
+              <th>Time</th>
+              <th>Diff.</th>
+              <th>Done?</th>
+            </tr>
+            </thead>
+            <tbody id="lbBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="blankGrid"></div>
+    </div>
   </body>
-  <script>
 
-  const submit = function( e ) {
-    // prevent default form action from being carried out
-    e.preventDefault()
+  <script src="js/scripts.js"></script>
 
-    const input = document.querySelector( '#yourname' ),
-          json = { yourname: input.value },
-          body = JSON.stringify( json )
-
-    fetch( '/submit', {
-      method:'POST',
-      body 
-    })
-    .then( function( response ) {
-      // do something with the reponse 
-      console.log( response )
-    })
-
-    return false
-  }
-
-  window.onload = function() {
-    const button = document.querySelector( 'button' )
-    button.onclick = submit
-  }
-
-  </script>
 </html>
