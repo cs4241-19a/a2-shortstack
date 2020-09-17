@@ -1,7 +1,9 @@
 ## Generic Leaderboard
 https://csmbrad-a2-shortstack.glitch.me/
 
-This project is a simple time-based leaderboard. Grids are used to position the elements, and a Table is used to create ther results.
+This project is meant to be a simple time-based leaderboard. Grids are used to position the elements, and a Table is used to create ther results.
+The derived field is calculated server side. there are 2 derived fields, one with the position of the time and the other the difference from first place.
+at least, that's how the derived fields should be.
 I could not get the results to show up in the table, trying to request them at the start makes the site hang and I can't figure out why.
 The server does support adding, removing, and editing entries.
 
