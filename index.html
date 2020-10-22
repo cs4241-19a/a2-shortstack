@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>CS4241 Assignment 2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Architects Daughter' rel='stylesheet'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+  <body>
+  <div class="grid-container">
+    <div class="item1">
+    <header>Work-<span style="font-family:Architects Daughter;color: darksalmon; font-size:110px;font-weight: bolder">Play</span> Balance</header>
+<!--    <i id="addBtn" class="material-icons" style="font-size:48px;color:darksalmon;float: right">add_box</i>-->
+    <button id="addBtn" style="float: right">Add New</button>
+    </div>
+
+    <div class="item2">
+    <button id="history" class="tabs">History</button>
+  <button id="today" class="tabs">Today</button>
+      <button id="progress" class="tabs">Balance</button>
+    </div>
+
+  <div class="item3" id="addBox" style="visibility: collapse; float: right">
+    <form action="">
+      <ul><label for='eventName'>*</label><input type='text' id='eventName' class="inputBoxes" placeholder="Enter event title" ></ul>
+      <ul><label for="eventDesc"></label><input type="text" id="eventDesc" placeholder="Enter Description"></ul>
+      <ul><label for="eventSTime">*</label><input type="time" id="eventSTime" class="inputBoxes" placeholder="Enter Start Time" ></ul>
+      <ul><label for="eventETime">*</label><input type="time" id="eventETime" class="inputBoxes" placeholder="Enter End Time" ></ul>
+   <ul>*<input type="radio" id="eventCategory1" name="category1" value="work"><label for="eventCategory1">Work</label>
+      <input type="radio" id="eventCategory2" name="category1" value="play"><label for="eventCategory2">Play</label></ul>
+      <button id="submit">submit</button>
+    </form>
+  </div>
+
+  <div class="item4" id="mainContainer" style="background-color: white; margin: 0 auto;padding: 15px; width: 60vw;height: 60vh;overflow-y: scroll;justify-content: center">
+    <table id="cal" class="tg" style="table-layout: fixed; width: 756px;display: table">
+      <colgroup>
+        <col style="width: 178px">
+        <col style="width: 578px">
+      </colgroup>
+      <thead>
+      <tr>
+        <th class="tg-cly1">Time</th>
+        <th class="tg-0lax">Event</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <th class="tg-cly1">00:00</th>
+        <th class="tg-0lax"></th>
+      </tr>
+      <tr>
+        <td class="tg-cly1">01:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">02:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">03:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">04:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">05:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">06:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">07:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">08:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">09:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">10:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">11:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">12:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">13:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">14:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">15:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">16:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">17:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">18:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">19:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">20:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">21:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">22:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      <tr>
+        <td class="tg-cly1">23:00</td>
+        <td class="tg-0lax"></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div id="hist" style="display: none;text-align:center">
+      History
+      <table id="histTable">
+        <colgroup>
+        <col style="width: 178px">
+        <col style="width: 178px">
+          <col style="width: 178px">
+          <col style="width: 178px">
+          <col style="width: 178px">
+      </colgroup>
+      <thead>
+      <tr>
+        <th class="eName">Event Name</th>
+        <th class="eDesc">Event Description</th>
+        <th class="sTime">Start Time</th>
+        <th class="duration">Duration</th>
+        <th class="type">Type</th>
+      </tr>
+      </thead>
+      </table>
+    </div>
+    <div id="playProg" style="display: none">
+        <progress id="prog" value="50" max="100" style="height:100px; color: darksalmon"> 50% </progress>
+    </div>
+  </div>
+  </div>
+  </body>
+  <script>
+
+    var play=0
+    var work=0
+    var total=0
+    
+    var newName, newDesc, newSTime, newETime, newOption, duration
+
+  const submit = function( e ) {
+    // prevent default form action from being carried out
+    e.preventDefault()
+    const eName = document.querySelector( '#eventName' ),
+            eDesc=document.querySelector('#eventDesc'),
+          eSTime=document.querySelector('#eventSTime'),
+          eETime=document.querySelector('#eventETime')
+    
+    bool1=(eName.value!=null)
+    bool2=(eDesc.value!=null)
+    bool3=(eSTime.value!=null)
+    bool4=(eETime.value!=null)
+    bool5=(eETime.value>eSTime.value)
+    count=0;
+    
+    for (var i = 0; i < 2 ;i++)
+    {
+        if (document.getElementsByName('category1')[i].checked)
+        {
+          count++;
+            var radioBtn= document.getElementsByName('category1')[i];
+        }
+    }
+    
+    bool6=(count===0)
+    
+
+    if(bool1&&bool2&&bool3&&bool4&&bool5&&(!bool6)){
+      const json = { eventName: eName.value, eventDesc:eDesc.value, eventSTime: eSTime.value, eventETime: eETime.value, option: radioBtn.value},
+      body = JSON.stringify( json )
+      fetch( '/submit', {
+      method:'POST',
+      body 
+      })
+      .then( function( response ) {
+        return response.json()
+      })
+      .then(function(txt){
+        addBox.style.visibility = 'hidden';
+        eName.value=""
+        eSTime.value=""
+        eDesc.value=""
+        eETime.value=""
+        radioBtn.checked=false
+        
+        newName=txt['eventName']
+        newDesc=txt['eventDesc']
+        newSTime=txt['eventSTime']
+        newETime=txt['eventETime']
+        newOption=txt['option']
+        duration=txt['duration']
+        total++
+        console.log(txt)
+      
+        var tableRef = document.getElementById('histTable');
+
+        var newRow   = tableRef.insertRow(tableRef.rows.length);
+
+        var nameCell  = newRow.insertCell(0);
+        var descCell  = newRow.insertCell(1);
+        var sCell  = newRow.insertCell(2);
+        var durCell = newRow.insertCell(3);
+        var typeCell = newRow.insertCell(4);
+
+        nameCell.innerHTML=newName
+        descCell.innerHTML=newDesc
+        sCell.innerHTML=newSTime
+        durCell.innerHTML=duration
+        typeCell.innerHTML=newOption
+      
+      
+        for(j=(parseInt(newSTime.substring(0,2))+1);j<(parseInt(newETime.substring(0,2))+1);j++){
+          var x = document.getElementById("cal").rows[j].cells;
+          x[1].innerHTML = newName;
+      
+          if(newOption==="work"){
+            x[1].style.backgroundColor = "black"
+            work++
+          }else if(newOption==="play"){
+            x[1].style.backgroundColor = "darkSalmon"
+            play++
+          }
+        }
+
+        playCent=(play/total)*100
+      
+      
+      })
+
+      return false
+    }else{
+      alert("Please fill all the fields with valid information")
+    }
+  }
+
+    var elem = document.getElementById("prog");
+
+    function playProg() {
+      prog.style.display='inline'
+      hist.style.display='none'
+      cal.style.display="none";
+      var width = elem.style.width;
+      setInterval(frame, 10);
+      function frame() {
+        if (width >= playCent) {
+          width--;
+          elem.style.width = width + '%';
+        } else {
+          width++;
+          elem.style.width = width + '%';
+        }
+      }
+    }
+
+  window.onload = function() {
+    const button = document.querySelector( '#submit' )
+    button.onclick = submit
+  }
+
+  </script>
+
+  <script src="public/js/scripts.js"></script>
+</html>
