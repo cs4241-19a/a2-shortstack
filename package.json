@@ -1,8 +1,8 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Work-Play Balance",
+  "version": "1.0",
+  "description": "Application to keep track of tasks",
+  "author": "Rimsha Kayastha",
   "scripts": {
     "start": "node server.improved.js"
   },
