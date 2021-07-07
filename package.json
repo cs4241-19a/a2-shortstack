@@ -1,12 +1,13 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
-  "author": "",
+  "name": "Mario Castro Assignment 2",
+  "version": "1",
+  "description": "My assignment 2 for WebWare CS4241",
+  "author": "Mario Castro",
   "scripts": {
     "start": "node server.improved.js"
   },
   "dependencies": {
-    "mime": "^2.4.4"
+    "mime": "^2.4.6",
+    "mine": "^0.1.0"
   }
 }

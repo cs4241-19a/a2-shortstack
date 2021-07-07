@@ -1,1 +1,118 @@
 /*Style your own assignment! This is fun! */
+form{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+input{
+    margin: 10px;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: 1px;
+    background-color:  #92FFF6;
+    padding: 10px;
+    width: 200px;
+}
+
+
+
+#title{
+    text-align: center;
+    padding: 0%;
+    margin-right: 30%;
+    margin-left: 30%;
+    
+    
+}
+
+
+
+body{
+    
+    background: rgb(133,253,124);
+    background: linear-gradient(0deg, rgba(133,253,124,1) 0%, rgba(223,250,134,1) 100%);
+    text-align: center;
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin:10px;
+    padding:5px;
+    
+}
+
+#backgroundPane{
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 25%;
+    margin-right: 25%;
+    background: #92FFF6;
+    border-radius: 15px;
+    min-height: 600px;
+    height: auto;
+    height: 100%;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+input:focus{
+    outline: none;
+    background-color: #B8FFF6;
+    border-radius: 5px;
+}
+
+input:hover{
+    outline: none;
+    background-color: #B8FFF6;
+    border-radius: 5px;
+}
+
+.buttons:hover{
+    background-color: #00FFFF;
+}
+
+.buttons{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    background-color: #008FFF;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 10px;
+}
+
+h2{
+    text-align: center;
+}
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+table{
+    table-layout: auto;
+    background-color:  #B8FFF6;
+}
+
+
+table, th, td{
+    
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+tr{
+    width: 30px;
+}
+td,th{
+    padding: 5px;
+}
+
+hr{
+    width:50%;
+}

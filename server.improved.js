@@ -6,11 +6,7 @@ const http = require( 'http' ),
       dir  = 'public/',
       port = 3000
 
-const appdata = [
-  { 'model': 'toyota', 'year': 1999, 'mpg': 23 },
-  { 'model': 'honda', 'year': 2004, 'mpg': 30 },
-  { 'model': 'ford', 'year': 1987, 'mpg': 14} 
-]
+var appdata = []
 
 const server = http.createServer( function( request,response ) {
   if( request.method === 'GET' ) {
@@ -25,8 +21,11 @@ const handleGet = function( request, response ) {
 
   if( request.url === '/' ) {
     sendFile( response, 'public/index.html' )
+  }else if(request.url === '/data'){
+    response.writeHeader(200, {'Content-Type': 'application/json'})
+    response.end(JSON.stringify(appdata))
   }else{
-    sendFile( response, filename )
+    sendFile(response,filename)
   }
 }
 
@@ -40,12 +39,23 @@ const handlePost = function( request, response ) {
   request.on( 'end', function() {
     console.log( JSON.parse( dataString ) )
 
-    // ... do something with the data here!!!
+    console.log("this is the data string: " + dataString );
 
-    response.writeHead( 200, "OK", {'Content-Type': 'text/plain' })
-    response.end()
+    var nonStringData = JSON.parse(dataString)
+    nonStringData.timeLeft = stringTimeRemainingUntil(nonStringData.dueDate);
+    console.log(nonStringData);
+
+    appdata.push(nonStringData);
+    console.log("This is the current server data: " + JSON.stringify(appdata))
+    response.writeHeader( 200, {'Content-Type': 'application/json' })
+    response.end(JSON.stringify(appdata))
   })
 }
+
+
+
+
+
 
 const sendFile = function( response, filename ) {
    const type = mime.getType( filename ) 
@@ -70,3 +80,33 @@ const sendFile = function( response, filename ) {
 }
 
 server.listen( process.env.PORT || port )
+
+
+function stringTimeRemainingUntil(date){
+  var currentDate = new Date();
+  var dueDate = getDate(date);
+  return convertMS(Math.abs(dueDate-currentDate))
+
+  function getDate(date_string) {
+    var date_components = date_string.split("-");
+    var year = date_components[0];
+    var month = date_components[1];
+    var day = date_components[2];
+    return new Date(year, month - 1, day);
+  }
+
+  function convertMS( milliseconds ) {
+    var day, hour, minute, seconds;
+    seconds = Math.floor(milliseconds / 1000);
+    minute = Math.floor(seconds / 60);
+    seconds = seconds % 60;
+    hour = Math.floor(minute / 60);
+    minute = minute % 60;
+    day = Math.floor(hour / 24);
+    hour = hour % 24;
+    return day +" days, " + hour + " hours, " + minute + " minutes.";
+  }
+}
+
+
+
